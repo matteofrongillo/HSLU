@@ -1,0 +1,117 @@
+\documentclass{article}
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{babel}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.17}
+
+\usepackage{frongillo}
+\usepackage{stellar}
+
+\geometry{
+    a4paper,
+    total={170mm, 257mm},
+    left=20mm,
+    top=20mm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Orale}
+}
+
+% === TEXT ===
+\title{\textbf{Matematica - Esame orale \\ Passerella 2023-24}}
+\author{Matteo Frongillo, Paolo Bettelini}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Algebric definitions}
+\begin{itemize}
+    \item $\mathbb{N} := \text{Natural numbers}$
+    \item $\mathbb{Z} := \text{Integral numbers}$
+    \item $\mathbb{Q} := \text{Rational numbers}$
+    \item $\mathbb{R} := \text{Real numbers}$
+\end{itemize}
+
+We have that: 
+\[
+    \mathbb{N} \subset  \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} 
+\]
+
+\section{Prime numbers}
+A prime number is a natural number which can be
+devided only by itself or 1\\
+\figbox{$n \in \mathbb{N},\ n \neq {0, 1}$}
+
+\section{Powers}
+Let $a \in \mathbb{R}, n \it \mathbb{R}, n \neq 0$
+and ${a} \subset \mathbb{R}$
+
+\[
+    3¹ := 3 \\
+    3² := 3 \cdot 3 \\
+    3^{23} := 3 \cdot 3 \cdot ... \cdot 3, \text{23 times}
+\]
+
+\subsection{Property 1}
+Let $a, b \in \mathbb{R},\ n,m \in \mathbb{N}$, then \\
+\figbox{$a^n \cdot a^m = a^{n+m}$}
+
+\subsection{Property 2}
+Let $a,b \in \mathbb{R},\ n \in \mathbb{N}$, then \\
+\figbox{$(a \cdot b)^n = a^n \cdot b^n$}
+
+\underline{Notaton}: The power $a^n$, $a$ is the base nad $n$ is the
+    exponent.
+
+\subsection{Property 3}
+Let $a \in \mathbb{R},\ m,n \in \mathbb{N*}$, then \\
+\figbox{$(a^n)^m = a^{n \cdot m}$, which is $\neq a^{(n^m)}$}
+
+\newpage
+\section{Fractions}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -20,11 +20,9 @@
 \usepackage{ulem}
 \usepackage{wrapfig}
 \usepackage{subcaption}
+\usepackage[T1]{fontenc}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
-
-\usepackage{frongillo}
-\usepackage{stellar}
 
 \geometry{
     a4paper,
@@ -37,7 +35,15 @@
     colorlinks=true,
     linkcolor=black,
     urlcolor=blue,
-    pdftitle={Math refreshing course, lession 1}
+    pdftitle={Math refreshing course}
+}
+
+\newcommand{\figbox}[1]{ 
+    \begin{figure*}[ht!]        
+        \begin{center}            
+            \fbox{#1}        
+        \end{center}    
+    \end{figure*}
 }
 
 % === TEXT ===
@@ -50,12 +56,12 @@
 \tableofcontents
 \pagebreak
 
-\part{Lession 1}
+\part{Lesson 1}
 
-\section{Algebric definitions}
+\section{Algebraic definitions}
 \begin{itemize}
     \item $\mathbb{N} := \text{Natural numbers}$
-    \item $\mathbb{Z} := \text{Integral numbers}$
+    \item $\mathbb{Z} := \text{Integer numbers}$
     \item $\mathbb{Q} := \text{Rational numbers}$
     \item $\mathbb{R} := \text{Real numbers}$
 \end{itemize}
@@ -66,18 +72,16 @@ We have that:
 \]
 
 \section{Prime numbers}
-A prime number is a natural number which can be
-devided only by itself or 1\\
-\figbox{$n \in \mathbb{N},\ n \neq {0, 1}$}
+A prime number is a natural number which can be divided only by itself or 1.\\
+\figbox{$n \in \mathbb{N},\ n \neq \{0, 1\}$}
 
 \section{Positive powers}
-Let $a \in \mathbb{R}, n \it \mathbb{R}, n \neq 0$
-and ${a} \subset \mathbb{R}$
+Let $a \in \mathbb{R}, n \in \mathbb{R}^*$ and ${a} \subset \mathbb{R}$
 
 \[
-    3¹ := 3 \\
-    3² := 3 \cdot 3 \\
-    3^{23} := 3 \cdot 3 \cdot ... \cdot 3, \text{23 times}
+    3^{1} := 3 \\
+    3^{2} := 3 \cdot 3 \\
+    3^{23} := 3 \cdot 3 \cdot \ldots \cdot 3 \text{ (23 times)}
 \]
 
 \subsection{Property 1}
@@ -88,11 +92,10 @@ Let $a, b \in \mathbb{R},\ n,m \in \mathbb{N}$, then \\
 Let $a,b \in \mathbb{R},\ n \in \mathbb{N}$, then \\
 \figbox{$(a \cdot b)^n = a^n \cdot b^n$}
 
-\underline{Notaton}: The power $a^n$, $a$ is the base nad $n$ is the
-    exponent.
+\underline{Notation}: The power $a^n$, $a$ is the base and $n$ is the exponent.
 
 \subsection{Property 3}
-Let $a \in \mathbb{R},\ m,n \in \mathbb{N^*}$, then \\
+Let $a \in \mathbb{R},\ m,n \in \mathbb{N}^*$, then \\
 \figbox{$(a^n)^m = a^{n \cdot m}$, which is $\neq a^{(n^m)}$}
 
 \newpage
@@ -104,31 +107,47 @@ Let $a \in \mathbb{R},\ m,n \in \mathbb{N^*}$, then \\
 \underline{Notation 3}: $\frac{a}{b},\ a,b \in \mathbb{R},\ b \neq 0$
 
 \subsection{Property 1}
-Let $a, b, c ,d \in \mathbb{R},\ a,b \neq 0$
+Let $a, b, c ,d \in \mathbb{R},\ a,b \neq 0$\\
 \figbox{\large $\frac{a}{b} \cdot \frac{c}{d} = \frac{a \cdot c}{b \cdot d}$}
 
 \subsection{Property 2}
-Let $a, b, c ,d \in \mathbb{R},\ a,b \neq 0$
+Let $a, b, c ,d \in \mathbb{R},\ a,b \neq 0$\\
 \figbox{\large $\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \cdot \frac{d}{c}$}
 
 \subsection{Property 3}
-Let $a, b, c ,d \in \mathbb{R},\ a,b \neq 0$
-\figbox{\large $\frac{a}{b} \pm \frac{c}{d} = \frac{a \cdot b\ \pm\ c \cdot b}{b \cdot d}$}
+Let $a, b, c ,d \in \mathbb{R},\ a,b \neq 0$\\
+\figbox{\large $\frac{a}{b} \pm \frac{c}{d} = \frac{a \cdot d \pm c \cdot b}{b \cdot d}$}
 
 \section{Negative powers}
 \subsection{Definition}
 \figbox{$\forall a \in \mathbb{R},\ a \neq 0$; \; $a^{-1} := \frac{1}{a} $}
 
-\subsection{Property 1}
+\subsection{Property 4}
+Let $\forall n \in \mathbb{N},\ \forall a \in \mathbb{R}$\\
+\figbox{$a^{-n} = \left(\frac{1}{a}\right)^n$}
 
+This property implies that $\forall z \in \mathbb{Z},\ \forall a \in \mathbb{R},\ z \neq 0$\\
+We can compute $a^z$
 
-\subsection{Property 2}
+\subsection{Property 5}
+Let $\forall a \in \mathbb{R},\ a \neq 0,\ \forall n,m \in \mathbb{Z}$, then\\
+\figbox{$\frac{a^n}{a^m} = a^{n-m}$}
 
+\newpage
+\underline{Consequences}:
+\begin{enumerate}
+    \item Properties 1, 2 and 3 also hold for integral exponents:\\
+        $\forall a \in \mathbb{R},\ \forall n,m \in \mathbb{Z} \Rightarrow a^n \cdot a^m = a^{n+m}$\\
+        $\forall b \in \mathbb{R},\ (a \cdot b)^n = a^n \cdot b^n$\\
+        $(a^n)^m = a^{n \cdot m}$
+    \item $\forall a \in \mathbb{R}^*,\ a^0 = a^{1-1} = \frac{a^1}{a^1} = 1 \Rightarrow a^0 = 1$
+\end{enumerate}
 
+\section{Fractions and percentages (and back)}
+$\alpha \in \mathbb{R},\ n \% \text{ of } \alpha \Longleftrightarrow \frac{n}{100} \cdot \alpha$
 
-
-
-
+\newpage
+\part{Lesson 2}
 
 
 

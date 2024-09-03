@@ -21,6 +21,8 @@
 \usepackage{wrapfig}
 \usepackage{subcaption}
 \usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
 
@@ -153,6 +155,178 @@ $\alpha \in \mathbb{R},\ n \% \text{ of } \alpha \Longleftrightarrow \frac{n}{10
 \newpage
 \part{Lesson 2}
 
+\section{Symbols}
+Let $a,b \in \mathbb{R}$, then
+\begin{itemize}[label=--]
+    \item $a=b \rightarrow$ equality ;
+    \item $a \neq b \rightarrow$ inequality ($a$ is not equal to $b$);
+    \item $a<b \rightarrow$ minor (a is strictly less than b);
+    \item $a\leq b \rightarrow$ minor or equal ($a$ is less or equal than $b$);
+    \item $a>b \rightarrow$ major ($a$ is strictly greater than $b$);
+    \item $a\geq b \rightarrow$ major ($a$ is greater or equal than $b$).
+\end{itemize}
+
+\underline{Example}: $x \in \mathbb{R},\ x \geq 2 \rightarrow 2 \leq x < \infty$
+
+\section{Brackets}
+\begin{align}
+    &\left(\phantom{-}\right) \text{Parenthesis (round brackets)}\\
+    &\left[\phantom{-}\right] \text{Square brackets}\\
+    &\left\{\phantom{-}\right\} \text{Braces}
+\end{align}
+
+\section{Latin notations}
+\begin{itemize}
+    \item e.g. = for example;
+    \item i.e. = that is / that implies;
+    \item q.e.d. = we finally prove it;
+    \item $\Box$ = we finally prove it. 
+\end{itemize}
+
+\section{The real line (not completed)}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[latex-latex] (-3.5,0) -- (3.5,0) ; %edit here for the axis
+        \foreach \x in  {-3,-2,-1,0,1,2,3} % edit here for the vertical lines
+        \draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+        \foreach \x in {-3,-2,-1,0,1,2,3} % edit here for the numbers
+        \draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] 
+        {$\x$};
+    \end{tikzpicture} 
+\end{center}  
+
+\subsection{Exercises}
+1) \(\forall x \in \mathbb{R}, -3 \leq x \leq 2\)
+
+%\begin{center}
+%        \begin{tikzpicture}
+%            %number line
+%            \draw[-] (-4,0) -- (3,0);
+%            \draw[thick] (-3,-0.2) -- (-3,0.2);
+%            \draw[thick] (2,-0.2) -- (2,0.2);
+%            
+%            %interval
+%            \draw[thick] (-3,-1) -- (2,-1);
+%            \draw[thick] (-3,0) -- (-3,-1);
+%            \draw[thick] (2,0) -- (2,-1);
+%            \filldraw[black] (-3,-1) circle (2pt);
+%            \filldraw[black] (2,-1) circle (2pt);
+%            
+%            %points
+%            \node[above] at (-3,0.2) {-3};
+%            \node[above] at (2,0.2) {2};
+%            
+%            %arrow
+%            \draw[->] (3,0) -- (3.5,0);
+%
+%            %area
+%            \draw [draw=black] (-3,0) rectangle (2,-1);
+%            \filldraw [fill=Peach, draw=black] (-3,0) rectangle (2,-1);
+%            \filldraw [fill=RedOrange, draw=black] (-3,0) rectangle (2,-1);
+%        \end{tikzpicture}
+%\end{center}
+
+2) \(\forall x \in \mathbb{R}, -2 \leq x \leq 1 \quad \text{and} \quad x > \frac{3}{2}\)
+
+\begin{center}
+\begin{tikzpicture}
+    % Draw the number line
+    \draw[-] (-3,0) -- (4,0);
+    \draw[thick] (-2,-0.2) -- (-2,0.2);
+    \draw[thick] (1,-0.2) -- (1,0.2);
+    \draw[thick] (1.5,-0.2) -- (1.5,0.2);
+    
+    % Draw the intervals
+    \draw[thick] (-2,0) -- (1,0);
+    \filldraw[black] (-2,0) circle (2pt);
+    \filldraw[black] (1,0) circle (2pt);
+    \draw[thick] (1.5,0) -- (4,0);
+    \draw[thick] (1.5,0) circle (2pt);
+    
+    % Label the points
+    \node[below] at (-2,0) {-2};
+    \node[below] at (1,0) {1};
+    \node[below] at (1.5,0) {\(\frac{3}{2}\)};
+    
+    % Draw the arrow
+    \draw[->] (4,0) -- (4.5,0);
+\end{tikzpicture}
+\end{center}
+
+\newpage
+\section{Properties of real numbers}
+\subsection{Property 1 - Closure of ``$+$'' and ``$\cdot$''}
+$\forall x,y \in \mathbb{R}\\
+x+y \in \mathbb{R}\\
+x \cdot y \in \mathbb{R}$
+
+\underline{Remark}: for $\mathbb{Z}$ this property does not work.
+
+\subsection{Property 2 - Commutativity}
+$\forall x,y \in \mathbb{R}\\
+x+y=y+x\\
+x \cdot y=y \cdot x$
+
+\underline{Remark}: commutativity does not hold for divisions and
+subtractions.
+
+\subsection{Property 3 - Associative}
+$\forall x,y,z \in \mathbb{R}\\
+x+(y+z) = (x+y)+z\\
+x \cdot (y\cdot z)=(x\cdot y)\cdot z$
+
+\underline{Remark}: associativity does not hold for divisions and
+subtractions.
+
+\subsection{Property 4 - Distributive}
+$\forall x,y,z \in \mathbb{R}\\
+x(y \pm z)=xy \pm xz$
+
+\subsection{Property 5 - Identity}
+$\forall x \in \mathbb{R}$
+\begin{enumerate}[label=\alph*)]
+    \item $0+x=x$
+    \item $1 \cdot x=x$
+\end{enumerate}
+
+\underline{Remark}: $\forall x \in \mathbb{R},\ x \cdot 0=0$ is
+NOT an identity property.
+
+\subsection{Property 6 - Inverses and opposites}
+$\forall x \in \mathbb{R}$
+\begin{enumerate}[label=\alph*)]
+    \item $x+(-x)=0$ (inverse)
+    \item when $x \neq 0,\ x \cdot \frac{1}{x}=1$ (opposite)
+\end{enumerate}
+
+\underline{Remark 1}: $\forall x \in \mathbb{N}$ does not exist either
+inverse nor opposite.
+
+\underline{Remark 2}: $\forall x \in \mathbb{Z}$ has inverses, but
+not opposites.
+
+\section{The order of operations}
+\begin{enumerate}
+    \item Perform all operations inside grouping symbols beginning with the innermost set:\\
+        $\left(\phantom{-}\right)$ inside brackets operations;
+    \item Perform all exponential operations as you come to them, moving left-to-right:\\
+        $x^a$;
+    \item Perform all multiplications and divisions as you come to them, moving left-to-right:\\
+        ``$\cdot$'' and ``$\div$'';
+    \item Perform all additions and subtractions as you come to them, moving left-by-right:\\
+        ``$+$'' and ``$-$'';
+    \item When the level of priority is the same (e.g. multiplications and divisions) solve them as you come to them.
+\end{enumerate}
+
+\section{Signed numbers}
+A number is denoted as positive if it is directly preceded by a $+$ sign or no sign at all.\\
+A number is denoted as negative if it is directly preceded by a $-$ sign.
+
+$\forall x \in \mathbb{R}$
+\[-(-x)=x\\
++(-x)=-x\\
++(+x)=x\\
+-(+x)=-x\]
 
 
 

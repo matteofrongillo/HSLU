@@ -158,12 +158,12 @@ $\alpha \in \mathbb{R},\ n \% \text{ of } \alpha \Longleftrightarrow \frac{n}{10
 \section{Symbols}
 Let $a,b \in \mathbb{R}$, then
 \begin{itemize}[label=--]
-    \item $a=b \rightarrow$ equality ;
+    \item $a=b \rightarrow$ equality;
     \item $a \neq b \rightarrow$ inequality ($a$ is not equal to $b$);
-    \item $a<b \rightarrow$ minor (a is strictly less than b);
-    \item $a\leq b \rightarrow$ minor or equal ($a$ is less or equal than $b$);
-    \item $a>b \rightarrow$ major ($a$ is strictly greater than $b$);
-    \item $a\geq b \rightarrow$ major ($a$ is greater or equal than $b$).
+    \item $a<b \rightarrow$ less than (a is strictly less than b);
+    \item $a\leq b \rightarrow$ less than or equal to ($a$ is less than or equal to $b$);
+    \item $a>b \rightarrow$ greater than ($a$ is strictly greater than $b$);
+    \item $a\geq b \rightarrow$ greater than or equal to ($a$ is greater than or equal to $b$).
 \end{itemize}
 
 \underline{Example}: $x \in \mathbb{R},\ x \geq 2 \rightarrow 2 \leq x < \infty$
@@ -179,79 +179,87 @@ Let $a,b \in \mathbb{R}$, then
 \begin{itemize}
     \item e.g. = for example;
     \item i.e. = that is / that implies;
-    \item q.e.d. = we finally prove it;
-    \item $\Box$ = we finally prove it. 
+    \item q.e.d. ($\Box$)= quod erat demonstrandum (we finally prove it).
 \end{itemize}
 
-\section{The real line (not completed)}
+\section{The real line}
+\vspace*{.5cm}
 \begin{center}
     \begin{tikzpicture}
-        \draw[latex-latex] (-3.5,0) -- (3.5,0) ; %edit here for the axis
-        \foreach \x in  {-3,-2,-1,0,1,2,3} % edit here for the vertical lines
-        \draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
-        \foreach \x in {-3,-2,-1,0,1,2,3} % edit here for the numbers
-        \draw[shift={(\x,0)},color=black] (0pt,0pt) -- (0pt,-3pt) node[below] 
-        {$\x$};
-    \end{tikzpicture} 
-\end{center}  
+        \draw[->] (0,0) -- (6,0);
+        \draw[<-] (-6,0) -- (0,0);
+        
+        \foreach \x/\label in {-5/{$-\pi$}, -4/{$-e$}, -3/{$-2$}, -2/{$-1$}, -1/{$-\frac{1}{2}$}, 0/{$0$}, 1/{$\frac{1}{2}$}, 2/{$1$}, 3/{$2$}, 4/{$e$}, 5/{$\pi$}} {
+            \draw (\x,0.1) -- (\x,-0.1) node[below] {\label};
+        }
+        \node[below] at (-6,-0.1) {$-\infty$};
+        \node[below] at (6,-0.1) {$+\infty$};
+    \end{tikzpicture}
+\end{center}
 
 \subsection{Exercises}
-1) \(\forall x \in \mathbb{R}, -3 \leq x \leq 2\)
+1) $\forall a,b,x \in \mathbb{R},\ a \leq x \leq b$
 
-%\begin{center}
-%        \begin{tikzpicture}
-%            %number line
-%            \draw[-] (-4,0) -- (3,0);
-%            \draw[thick] (-3,-0.2) -- (-3,0.2);
-%            \draw[thick] (2,-0.2) -- (2,0.2);
-%            
-%            %interval
-%            \draw[thick] (-3,-1) -- (2,-1);
-%            \draw[thick] (-3,0) -- (-3,-1);
-%            \draw[thick] (2,0) -- (2,-1);
-%            \filldraw[black] (-3,-1) circle (2pt);
-%            \filldraw[black] (2,-1) circle (2pt);
-%            
-%            %points
-%            \node[above] at (-3,0.2) {-3};
-%            \node[above] at (2,0.2) {2};
-%            
-%            %arrow
-%            \draw[->] (3,0) -- (3.5,0);
-%
-%            %area
-%            \draw [draw=black] (-3,0) rectangle (2,-1);
-%            \filldraw [fill=Peach, draw=black] (-3,0) rectangle (2,-1);
-%            \filldraw [fill=RedOrange, draw=black] (-3,0) rectangle (2,-1);
-%        \end{tikzpicture}
-%\end{center}
+\begin{center}
+    \begin{tikzpicture}
+        %number line
+        \draw[-] (-4,0) -- (3,0);
+        \draw[thick] (-3,-0.2) -- (-3,0.2);
+        \draw[thick] (2,-0.2) -- (2,0.2);
+        
+        %interval
+        \draw[thick] (-3,-1) -- (2,-1);
+        \draw[thick] (-3,0) -- (-3,-1);
+        \draw[thick] (2,0) -- (2,-1);
+        \filldraw[black] (-3,-1) circle (2pt);
+        \filldraw[black] (2,-1) circle (2pt);
+        
+        %points
+        \node[above] at (-3,0.2) {a};
+        \node[above] at (2,0.2) {b};
+        
+        %arrow
+        \draw[->] (3,0) -- (3.5,0);
 
-2) \(\forall x \in \mathbb{R}, -2 \leq x \leq 1 \quad \text{and} \quad x > \frac{3}{2}\)
+        %area
+        \filldraw [fill=red, draw=black, opacity=0.3] (-3,0) rectangle (2,-1);
+    \end{tikzpicture}
+\end{center}
+
+2) $\forall x \in \mathbb{R},\ x \in\ ]-2,-1] \cup ] \frac{3}{2}, +\infty]$
 
 \begin{center}
 \begin{tikzpicture}
-    % Draw the number line
+    %number line
     \draw[-] (-3,0) -- (4,0);
-    \draw[thick] (-2,-0.2) -- (-2,0.2);
-    \draw[thick] (1,-0.2) -- (1,0.2);
-    \draw[thick] (1.5,-0.2) -- (1.5,0.2);
+    \draw[thick] (-2,-1) -- (-2,0.2);
+    \draw[thick] (1,-1) -- (1,0.2);
+    \draw[thick] (1.5,-0.95) -- (1.5,0.2);
     
-    % Draw the intervals
-    \draw[thick] (-2,0) -- (1,0);
-    \filldraw[black] (-2,0) circle (2pt);
-    \filldraw[black] (1,0) circle (2pt);
-    \draw[thick] (1.5,0) -- (4,0);
-    \draw[thick] (1.5,0) circle (2pt);
+    %intervals
+    \draw[thick] (-2,-1) -- (1,-1);
+    \filldraw[black] (-2,-1) circle (2pt);
+    \filldraw[black] (1,-1) circle (2pt);
+    \draw[thick] (1.55,-1) -- (4,-1);
+    \draw[thick, dashed] (4,-1) -- (4.5,-1);
+    \draw[thick] (1.5,-1) circle (2pt);
     
-    % Label the points
-    \node[below] at (-2,0) {-2};
-    \node[below] at (1,0) {1};
-    \node[below] at (1.5,0) {\(\frac{3}{2}\)};
+    %points
+    \node[above] at (-2,0.2) {-2};
+    \node[above] at (1,0.2) {1};
+    \node[above] at (1.5,0.2) {\(\frac{3}{2}\)};
     
-    % Draw the arrow
+    %arrow
     \draw[->] (4,0) -- (4.5,0);
+
+    %area
+    \filldraw [fill=red, draw=black, opacity=0.3] (-2,0) rectangle (1,-1);
+    \filldraw [fill=red, draw=black, opacity=0.3] (1.5,0) rectangle (4.5,-1);
 \end{tikzpicture}
 \end{center}
+\vspace*{.5cm}
+\underline{Notation}: The union of two or more intervals where $x \in \mathbb{R}$
+is denoted by the symbol $\cup$ or $\vee$.
 
 \newpage
 \section{Properties of real numbers}
@@ -260,7 +268,7 @@ $\forall x,y \in \mathbb{R}\\
 x+y \in \mathbb{R}\\
 x \cdot y \in \mathbb{R}$
 
-\underline{Remark}: for $\mathbb{Z}$ this property does not work.
+\underline{Remark}: for $\forall x \in \mathbb{Z}$, closure does not hold for division.
 
 \subsection{Property 2 - Commutativity}
 $\forall x,y \in \mathbb{R}\\
@@ -290,13 +298,13 @@ $\forall x \in \mathbb{R}$
 \end{enumerate}
 
 \underline{Remark}: $\forall x \in \mathbb{R},\ x \cdot 0=0$ is
-NOT an identity property.
+\underline{not} an identity property.
 
 \subsection{Property 6 - Inverses and opposites}
 $\forall x \in \mathbb{R}$
 \begin{enumerate}[label=\alph*)]
-    \item $x+(-x)=0$ (inverse)
-    \item when $x \neq 0,\ x \cdot \frac{1}{x}=1$ (opposite)
+    \item $x+(-x)=0$ (additive inverse)
+    \item when $x \neq 0,\ x \cdot \frac{1}{x}=1$ (multiplicative inverse or opposite)
 \end{enumerate}
 
 \underline{Remark 1}: $\forall x \in \mathbb{N}$ does not exist either
@@ -313,7 +321,7 @@ not opposites.
         $x^a$;
     \item Perform all multiplications and divisions as you come to them, moving left-to-right:\\
         ``$\cdot$'' and ``$\div$'';
-    \item Perform all additions and subtractions as you come to them, moving left-by-right:\\
+    \item Perform all additions and subtractions as you come to them, moving left-to-right:\\
         ``$+$'' and ``$-$'';
     \item When the level of priority is the same (e.g. multiplications and divisions) solve them as you come to them.
 \end{enumerate}

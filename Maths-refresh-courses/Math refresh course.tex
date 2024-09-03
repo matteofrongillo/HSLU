@@ -60,7 +60,7 @@
 
 \part{Lesson 1}
 
-\section{Algebraic definitions}
+\section{Numerical sets}
 \begin{itemize}
     \item $\mathbb{N} := \text{Natural numbers (including 0)}$
     \item $\mathbb{Z} := \text{Integer numbers}$
@@ -76,9 +76,8 @@ We have that:
 \]
 
 \section{Prime numbers}
-A prime number is a natural number greater than 1 that has no positive
-divisors other than 1 and itself.
-\figbox{$n \in \mathbb{N},\ n \neq \{0, 1\}$}
+A prime number is a number \( n \in \mathbb{N} \setminus \{0,1\} \) such that, for every divisor \( d \in \mathbb{N} \), if \( d \mid n \), then \( d = 1 \) or \( d = n \).
+\figbox{$n \in \mathbb{N} \setminus \{0,1\} \text{ is prime} \iff \forall d \in \mathbb{N}, (d \mid n) \Rightarrow (d = 1 \ \text{or} \ d = n)$}
 
 \section{Positive powers}
 Let $a \in \mathbb{R}, n \in \mathbb{R}^*$ and ${a} \subset \mathbb{R}$, then
@@ -179,7 +178,7 @@ Let $a,b \in \mathbb{R}$, then
 \begin{itemize}
     \item e.g. = for example;
     \item i.e. = that is / that implies;
-    \item q.e.d. ($\Box$)= quod erat demonstrandum (we finally prove it).
+    \item Q.E.D. ($\Box$)= quod erat demonstrandum (we finally prove it).
 \end{itemize}
 
 \section{The real line}
@@ -226,7 +225,7 @@ Let $a,b \in \mathbb{R}$, then
     \end{tikzpicture}
 \end{center}
 
-2) $\forall x \in \mathbb{R},\ x \in\ ]-2,-1] \cup ] \frac{3}{2}, +\infty]$
+2) $\forall x \in \mathbb{R},\ x \in\ ]-2,-1]\ \cup\ ] \frac{3}{2}, +\infty[$
 
 \begin{center}
 \begin{tikzpicture}
@@ -259,13 +258,13 @@ Let $a,b \in \mathbb{R}$, then
 \end{center}
 \vspace*{.5cm}
 \underline{Notation}: The union of two or more intervals where $x \in \mathbb{R}$
-is denoted by the symbol $\cup$ or $\vee$.
+is denoted by the symbol $\cup$.
 
 \newpage
 \section{Properties of real numbers}
-\subsection{Property 1 - Closure of ``$+$'' and ``$\cdot$''}
+\subsection{Property 1 - Closure under ``$+$'' and ``$\cdot$''}
 $\forall x,y \in \mathbb{R}\\
-x+y \in \mathbb{R}\\
+x+y \in \mathbb{R}\\    
 x \cdot y \in \mathbb{R}$
 
 \underline{Remark}: for $\forall x \in \mathbb{Z}$, closure does not hold for division.
@@ -341,7 +340,7 @@ Let $x \in \mathbb{R}$, then
 
 $|x|=$
 $\begin{cases}
-    x \qquad \text{if } x > 0\\
+    x \qquad \text{if } x \geq 0\\
     -x \;\quad \text{if } x < 0
 \end{cases}$
 
@@ -350,7 +349,8 @@ $\forall x \in \mathbb{R}\\
 |x|>0 \quad \text{if } y \neq 0\\
 |x|=0 \quad \text{if } x=0$
 
-
+\newpage
+\section{Lesson 3}
 
 
 
@@ -358,3 +358,4 @@ $\forall x \in \mathbb{R}\\
 
 
 \end{document}
+

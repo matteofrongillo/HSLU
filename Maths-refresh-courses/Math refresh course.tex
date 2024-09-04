@@ -402,11 +402,42 @@ Any expression made up terms is composed of several factors.
 
 \underline{Remark}: notable products are useful to factorize expressions when we don't know a common factor.
 
-\section{Polynomials}
+\section{Classification of polynomials}
+Polynomials can be classified using two criteria: 
+\begin{enumerate}
+    \item the number of terms;
+    \item the degree of the polynomial.
+\end{enumerate}
+\begin{equation}
+    \begin{aligned}
+        &\begin{array}{|c|c|l|c|}
+        \hline \text { Number of Terms } & \text { Name } & \text { Example } & \text { Comment } \\
+        \hline \text { One } & \text { Monmial } & ax^2 & \text { mono means ``one'' in Greek } \\
+        \hline \text { Two } & \text { Binomial } & ax^2-b x & \text { bi means ``two'' in Latin } \\
+        \hline \text { Three } & \text { Trinomial } & ax^2-b x+c & \text { Tri means ``three'' in Greek } \\
+        \hline \text { Four or more } & \text { Polynomial } & a x^3-b x^2+c x-d & \text { Poly means ``many'' in Greek } \\
+        \hline
+        \end{array}
+    \end{aligned}
+\end{equation}
 
+\subsection{Definition}
+Let $n \in \mathbb{N^*}$,then a polynomial is the sum or difference of n-monomials. 
 
+\subsection{Degree}
+... ...
+\subsubsection{Monomials}
+The degree of a monomial is the sum of all the exponents of all the variables.
 
+$p(x)=x^2+1 \rightarrow$ the degree is 2.\\
+$\forall x \in \mathbb{R},\ p(0)=0^2+1=1 \rightarrow$ 1 is a polynomial with degree 0.
 
+\subsubsection{Polynomials}
+The degree of a polynomial is the highest of all the degrees of all the
+monomials which compose the polynomial.
+
+$p(x)=x^3+1+x^5+x^21 \rightarrow deg(p(x))=21$\\
+$q(x)=12 \underbrace{abcd}_{deg=4} - 31x^3+2xy \rightarrow deg(q(x))=4$ 
 
 
 

@@ -447,12 +447,12 @@ The coefficient of the monomial with highest coefficient is called \textbf{leadi
 \part{Lesson 4}
 \section{Operations between polynomials}
 \subsection{Polynomials with one independent variable}
-The order of the monomials is not important, but it is preferible to write
-the highest degree monomial in decreasing order.
+The order of the monomials is not important, but it is preferable to write
+the highest degree monomials in decreasing order.
 \figbox{$p(x)=ax^2-bx+c$}
 
 \subsubsection{Sum}
-We have to sum all the same degree monomials.
+We have to sum all the monomials of the same degree.
 
 $p(x)=x^2+x-1\\
 q(x)=5-x+x^5-x^2$
@@ -465,7 +465,7 @@ degree are called \textbf{similar terms}.
 \underline{Remark}: when these is a difference between polynomials, the minus MUST be distributed throughout the next monomial.
 
 \subsubsection{Multiplications}
-We have to mulitply factors each other with the distributive property. 
+We have to multiply the factors with each other using the distributive property.
 
 $p(x)=(x-1)\\
 q(x)=(x^2+2x)$
@@ -482,12 +482,12 @@ $p(x)+q(x)=ab+a^2b+4ab-3ab^2=a^2b-3ab^2+5ab=ab(a-b+5)$
 \underline{Remark}: $5a^3b^4+7a^3b^4=12a^3b^4$, but with $5a^3b^4+7a^4b^3$ we can't go further with the sum.
 
 \section{Equations}
-An equation is a formula given by the equality of the expressions.
+An equation is a formula given by the equality of expressions.
 
 \underline{Symbol notations}: 
 \begin{itemize}
     \item $\exists =$ there exist(s);
-    \item $\nexists =$ not exists;
+    \item $\nexists =$ there does not exists;
     \item $\exists! =$ it exists and it is unique;
     \item $:$ or $| =$ such that.
 \end{itemize}
@@ -516,14 +516,14 @@ e.g.
 \begin{itemize}
     \item $0=1$, false;
     \item $x^2=-1$ it is always positive or zero;
-    \item $|a|=-3$ it is alway positive or zero;
+    \item $|a|=-3$ it is always positive or zero;
     \item $\sqrt{-(x^2+1)}=1$ it is never defined ($\nexists $).
 \end{itemize}
 
 \subsection{Conditional equations}
 In general, we want to find a solution for each equation, i.e. all the
-real number that, when they replace a variable inside the equation are
-giving an identity.
+real number that, when they replace a variable inside the equation,
+give an identity.
 \figbox{$\forall x \in \mathbb{R}, \ (x > 0 \Rightarrow \exists y \in \mathbb{R}\ |\ f(x, y) = 0)$}\\
 e.g.
 \begin{itemize}
@@ -542,13 +542,36 @@ $p(x)=q(x)$ where $\deg(0,(x))=1$
 
 \subsection{Simple tools}
 \subsubsection{Tool 1}
-$a,b \in \mathbb{R},\ x+a=b$, let's isolate the variable $x-a-a=b-a \Rightarrow x=b-a$
+$a,b \in \mathbb{R},\ x+a=b$, let's isolate the variable $x$: $x-a-a=b-a \Rightarrow x=b-a$
 
 \subsubsection{Tool 2}
-$a,b \in \mathbb{R},\ ax=b$, let's isolate the variable $\frac{ax}{a}=\frac{b}{a} \Rightarrow x=\frac{b}{a}$
+$a,b \in \mathbb{R},\ ax=b$, let's isolate the variable $x$: $\frac{ax}{a}=\frac{b}{a} \Rightarrow x=\frac{b}{a}$
 
 \newpage
-\section{--}
+\section{Linear inequalities with one variable}
+The inequality is a relation between two or more sets.\\
+Let $a,b,x \in \mathbb{R},\ a<x,\ b>x$, then:
+\figbox{$a<x<b$}
+
+\subsection{Negative sign}
+In solving the inequality we have to move a negative factor from one side to the other,
+so we need to reverse the sign of the inequality:
+\figbox{$-ax<b \Rightarrow x>-\frac{b}{a}$}
+
+\section{Equations and inequalities with absolute values}
+To solve absolute values we need to consider two cases.\\
+Let's take this equation: $|x+a|=-x+b$, then
+\figbox{$
+    \begin{cases}
+        \text{case 1: } x+a=-x+b \Rightarrow 2x=b-a \Rightarrow x_1=\frac{b-a}{2}\\
+        \text{case 2: } -x-a=x-b \Rightarrow -2x=a-b \Rightarrow x_2=\frac{b-a}{2}
+    \end{cases} \Longrightarrow \text{Sol: }x \in {\frac{b-a}{2}} 
+$}
+
+
+
+
+
 
 
 

@@ -500,8 +500,8 @@ Equations are the main topic, then we have
 \end{itemize}
 
 \newpage
-\subsection{Identities}
-An identity is an equality that holds true regardless of the values chosen for its variables
+\subsection{Identities}    
+An identity is an equality that holds true regardless of the values chosen for its variables:
 \figbox{$\forall x \in \mathbb{R},\ \exists y \in \mathbb{R}\ |\ f(x,y)=0$}\\
 e.g.
 \begin{itemize}
@@ -510,7 +510,7 @@ e.g.
     \item $\sin^2(x)+\cos^2(x)=1$.
 \end{itemize}
 \subsection{Contradictions}
-A contradiction occurs when we get a statement $p$, such that $p$ is true and its negation $\sim p$ is also true.
+A contradiction occurs when we get a statement $p$, such that $p$ is true and its negation $\sim p$ is also true:
 \figbox{$\forall x \in \mathbb{R}, \ \neg (\exists y \in \mathbb{R}\ |\ f(x, y) = 0)$}\\
 e.g.
 \begin{itemize}
@@ -522,8 +522,7 @@ e.g.
 
 \subsection{Conditional equations}
 In general, we want to find a solution for each equation, i.e. all the
-real numbers that, when they replace a variable inside the equation,
-give an identity.
+real numbers that, when they replace a variable inside the equation, give an identity:
 \figbox{$\forall x \in \mathbb{R}, \ (x > 0 \Rightarrow \exists y \in \mathbb{R}\ |\ f(x, y) = 0)$}\\
 e.g.
 \begin{itemize}
@@ -576,10 +575,39 @@ Let's take this equation: $|x+2|=-x+4$, then
 \part{Lesson 5}
 \section{Division of polynomials}
 \subsection{Division algorithm for polynomials by monomials}
-\textbf{\color{red}Write all steps}
+Let $f(x)$ be a polynomial and $g(x)$ a monomial such that $g(x) \neq 0$. Consider the rational expression $\frac{f(x)}{g(x)}$, then:
 
-When the sum of the coefficients is equal to 0, then the polynomial is always divisible
-by $x-1$.
+\begin{center}
+    \begin{tikzpicture}
+        %vline
+        \draw[thick] (0,0) -- (0,3.7);
+        %hlines
+        \draw[thick] (0,3) -- (3.5,3);
+        \draw[thick] (0,2.5) -- (-3.5,2.5);
+        \draw[thick] (0,0.48) -- (-3,0.48);
+        %dots
+        \draw[line width=0.4mm, loosely dotted] (-1.6,2.3) -- (-1.6,0.6);
+
+        %nodes
+        \node at (1.15,3.3) {Divisor $g(x)$};
+        \node at (-1.3,2.8) {Dividend $f(x)$};
+        \node at (1.3,2.65) {Quotient $Q(x)$};
+        \node at (-1.45,0.13) {Remainder $R(x)$};
+    \end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+    \item Divide the highest degree term in $f(x)$ (the dividend) by the highest degree term in $g(x)$ (the divisor). This gives the first partial quotient $q_1(x)$.
+    \item Multiply the partial quotient $R_1(x)$ by the entire divisor $g(x)$. This product represents the part of the dividend that can be "cancelled" in this step.
+    \item Subtract the product obtained in step 2 from the original dividend $f(x)$. This subtraction gives a new polynomial, often called the remainder $R_1(x)$, which is of a lower degree than the original dividend.
+    \item Now divide the leading term of the new remainder $R_1(x)$ by the leading term of $g(x)$. This gives the next partial quotient $Q_2(x)$.
+    \item Multiply $Q_2(x)$ by $g(x)$ and subtract it from the current remainder. This process generates a new remainder $R_2(x)$.
+    \item Keep repeating the division, multiplication, and subtraction steps until the degree of the remainder is less than the degree of the divisor $g(x)$. At this point, you cannot continue dividing.
+    \item The final quotient $Q(x)$ is the sum of all the partial quotients: $Q(x) = Q_1(x) + Q_2(x) + \dots + Q_n(x)$.
+    \item The remainder $R_n(x)$ is the result after all subtractions are completed. If the remainder is zero, the division is exact. If not, the remainder is the leftover part of the division.
+\end{itemize}\
+
+\underline{Tip}: When the sum of the coefficients is equal to 0, then the polynomial is always divisible by $x-1$.
 
 \section{Second degree polynomials}
 Let $a,b,c \in \mathbb{R}$, then

@@ -571,14 +571,17 @@ $}
 \newpage
 \part{Lesson 5}
 \section{Division of polynomials}
-\subsection{Division algorithm for polynomials}
-Write all steps
+\subsection{Division algorithm for polynomials by monomials}
+\textbf{\color{red}Write all steps}
 
-\section{Polynomials with $\deg=2$}
+When the sum of the coefficients is equal to 0, then the polynomial is always divisible
+by $x-1$.
+
+\section{Second degree polynomials}
 Let $a,b,c \in \mathbb{R}$, then
 \figbox{$ax^2+bx+c=0$}
 
-The three possible outputs we can have solving this 2nd grade polynomial are:
+The three possible outputs we can have solving this 2nd-degree polynomial are:
 \begin{itemize}
     \item 2 solutions;
     \item 1 solution;
@@ -586,8 +589,18 @@ The three possible outputs we can have solving this 2nd grade polynomial are:
 \end{itemize}
 
 \subsection{Quadratic formula}
-Delta: $\Delta=\sqrt{b^2-4ac}$
-\figbox{$x_{1,2}=\frac{-b \mp \Delta}{2a}$}
+\figbox{$x_{1,2}=\frac{-b \mp \sqrt{\Delta}}{2a}$}
+
+\subsubsection{Discriminant of the polynomial}
+\figbox{$\Delta=b^2-4ac$}
+
+From the discriminant we can count how many solutions the equation will have:
+\begin{itemize}
+    \item $\Delta>0 \Rightarrow 2$ real solutions;
+    \item $\Delta=0 \Rightarrow 1$ real solution;
+    \item $\Delta<0 \Rightarrow 0$ real solutions (2 complex solutions).
+\end{itemize}
+
 
 \subsubsection{Evident solutions}
 When we have a 2nd grade equation $(x-a)(x-b)=0$, we have two evident solutions

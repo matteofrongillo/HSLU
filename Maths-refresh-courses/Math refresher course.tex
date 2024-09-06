@@ -462,7 +462,7 @@ $p(x)+q(x)=x^2+x-1+5-x+x^5-x^2=x^5+4$
 \underline{Definition}: in a polynomial with one variable, monomials of same
 degree are called \textbf{similar terms}.
 
-\underline{Remark}: when these is a difference between polynomials, the minus MUST be distributed throughout the next monomial.
+\underline{Remark}: when there is a difference between polynomials, the minus MUST be distributed throughout the next monomial.
 
 \subsubsection{Multiplications}
 We have to multiply the factors with each other using the distributive property.
@@ -507,7 +507,7 @@ e.g.
 \begin{itemize}
     \item $1=1$;
     \item $x-1=-1+x$;
-    \item $sin^2(x)+cos^2(x)=1$.
+    \item $\sin^2(x)+\cos^2(x)=1$.
 \end{itemize}
 \subsection{Contradictions}
 A contradiction occurs when we get a statement $p$, such that $p$ is true and its negation $\sim p$ is also true.
@@ -522,14 +522,14 @@ e.g.
 
 \subsection{Conditional equations}
 In general, we want to find a solution for each equation, i.e. all the
-real number that, when they replace a variable inside the equation,
+real numbers that, when they replace a variable inside the equation,
 give an identity.
 \figbox{$\forall x \in \mathbb{R}, \ (x > 0 \Rightarrow \exists y \in \mathbb{R}\ |\ f(x, y) = 0)$}\\
 e.g.
 \begin{itemize}
     \item $x=1$;
     \item $x+y=3$;
-    \item $sin(\alpha)=0.5$.
+    \item $\sin(\alpha)=0.5$.
 \end{itemize}
 
 \section{Fundamental theorem of algebra}
@@ -558,15 +558,19 @@ In solving the inequality we have to move a negative factor from one side to the
 so we need to reverse the sign of the inequality:
 \figbox{$-ax<b \Rightarrow x>-\frac{b}{a}$}
 
-\section{\color{red}{TO CHECK Equations and inequalities with absolute values}}
+\section{Equations and inequalities with absolute values}
 To solve absolute values we need to consider two cases.\\
-Let's take this equation: $|x+a|=-x+b$, then
+Let's take this equation: $|x+2|=-x+4$, then
 \figbox{$
     \begin{cases}
-        \text{case 1: } x+a=-x+b \Rightarrow 2x=b-a \Rightarrow x_1=\frac{b-a}{2}\\
-        \text{case 2: } -x-a=-x+b \Rightarrow  \Rightarrow x_2=\frac{b-a}{2}
-    \end{cases} \Longrightarrow \text{Sol: }x \in {\frac{b-a}{2}} 
-$}
+        \text{case 1: } x+2 = -x+4 \Rightarrow 2x = 2 \Rightarrow x_1 = 1\\
+        \text{case 2: } -x-2 = -x+4 \Rightarrow -2 = 4 \ (\text{contradiction})
+    \end{cases} \Longrightarrow \text{Sol: } x=
+    \begin{cases}
+            1\ &\text{ if }\ x+2 \geq 0\\
+            \text{no solution} &\text{ if }\ x+2 < 0
+    \end{cases}$
+}
 
 \newpage
 \part{Lesson 5}
@@ -581,7 +585,7 @@ by $x-1$.
 Let $a,b,c \in \mathbb{R}$, then
 \figbox{$ax^2+bx+c=0$}
 
-The three possible outputs we can have solving this 2nd-degree polynomial are:
+The three possible outcomes we can have when solving this 2nd-degree polynomial are:
 \begin{itemize}
     \item 2 solutions;
     \item 1 solution;
@@ -594,19 +598,18 @@ The three possible outputs we can have solving this 2nd-degree polynomial are:
 \subsubsection{Discriminant of the polynomial}
 \figbox{$\Delta=b^2-4ac$}
 
-From the discriminant we can count how many solutions the equation will have:
+From the discriminant we can determine how many solutions the equation will have:
 \begin{itemize}
     \item $\Delta>0 \Rightarrow 2$ real solutions;
     \item $\Delta=0 \Rightarrow 1$ real solution;
     \item $\Delta<0 \Rightarrow 0$ real solutions (2 complex solutions).
 \end{itemize}
 
-
 \subsubsection{Evident solutions}
-When we have a 2nd grade equation $(x-a)(x-b)=0$, we have two evident solutions
+When we have a 2nd-degree equation $(x-a)(x-b)=0$, we have two obvious solutions
 in $\mathbb{R}$. In this case, $x_1=a,\ x_2=b$ 
 
-This factorization can be reached with notable products.
+This factorization can be obtained using notable products.
 
 e.g. Let $x^2+4x+4=0 \Rightarrow (x+2)^2=0$, then $x=-2$.
 

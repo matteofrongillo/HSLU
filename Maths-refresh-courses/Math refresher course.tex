@@ -48,6 +48,19 @@
     \end{figure*}
 }
 
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
 % === TEXT ===
 \title{\textbf{Maths refresher course \\ HSLU, Semester 1}}
 \author{Matteo Frongillo}
@@ -776,17 +789,10 @@ e.g.: Find the line with $m=-1$ and $A(2,-1)$.
 Let $a,b,c \in \mathbb{R}$, then
 \figbox{$a^2+bx+c=0$}
 
-\begin{center}
-    \begin{tabular}{c|c}
-        x & y \\ \hline
-        -3 & 9 \\
-        -2 & 4 \\
-        -1 & 1 \\
-        0 & 0 \\
-        1 & 1 \\
-        2 & 4 \\
-        3 & 9  
-    \end{tabular}
+\subsubsection*{Drawing}
+\vspace*{0.8cm}
+\begin{wrapfigure}{r}{10cm}
+    \vspace*{-2.75cm}
     \begin{tikzpicture}
         \begin{axis}[
             axis lines = middle,
@@ -800,7 +806,20 @@ Let $a,b,c \in \mathbb{R}$, then
         \addplot[color=blue, thick] {x^2};
         \end{axis}
     \end{tikzpicture}
-\end{center}
+\end{wrapfigure}
+\hspace*{2.25cm}
+\begin{tabular}{c|c}
+    x & y \\ \hline
+    -3 & 9 \\
+    -2 & 4 \\
+    -1 & 1 \\
+    0 & 0 \\
+    1 & 1 \\
+    2 & 4 \\
+    3 & 9  
+\end{tabular}
+\vspace*{-2cm}
+\wrapfill
 
 \subsection{Concavity of a parabola}
 We have three cases:
@@ -809,6 +828,7 @@ We have three cases:
     \item $a=0$, not a parabola;
     \item $a<0$, concave down.
 \end{itemize}
+
 
 
 

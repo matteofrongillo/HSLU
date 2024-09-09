@@ -645,14 +645,72 @@ e.g. Let $x^2+4x+4=0 \Rightarrow (x+2)^2=0$, then $x=-2$.
 Let $a \in \mathbb{R},\ a\geq 0$, then:
 \figbox{$x^2-a=0 \Rightarrow x=\pm\sqrt{a}$}
 
+\newpage
+\part{Lesson 6}
+\section{Lines and parabola}
+\subsection{Cartesian diagram}
+\begin{center}
+    \begin{tikzpicture}
+        \definecolor{darkgreen}{rgb}{0.0, 0.7, 0.0}
 
+        \draw[thick][->] (-2,0) -- (5,0);
+        \draw[thick][->] (0,-2) -- (0,5);
+        \node at (5,-.5) {x-axis};
+        \node at (-.7,5) {y-axis};
+        \draw[fill, thick] (3,0) circle (2pt);
+        \node[below] at (3,0) {x=3};
+        \draw[fill, thick] (0,3) circle (2pt);
+        \node[left] at (-.1,3) {y=3};
+        \draw[blue, thick] (3,0) -- (3,3);
+        \draw[blue,thick] (0,3) -- (3,3);
+        \draw[fill, blue, thick] (3,3) circle (2pt);
+        \node[blue, above] at (3,3) {P(3,3)};
+        \node[below] at (-0.2,0) {0};
+        
+        \draw[darkgreen, thick] (-2,-1) -- (4,5);
+        \draw[fill, darkgreen, thick] (0,1) circle (2pt);
+        \node[darkgreen, left] at (-0.1,1) {(y,q)};
 
+    \end{tikzpicture}
+\end{center}
 
+\subsection{Straight line}
+Let A and B be any two distinct points, then there is one and only one
+line passing throungh A and B.
 
+\subsection{Slope-intercept equation}
+Let $m,q \in \mathbb{R}$, then
+\figbox{$y=mx+q$}
 
+\begin{itemize}
+    \item $m$: slope ($\tan(\alpha)$);
+    \item $q$: vertical intercept.
+\end{itemize}
 
+\subsubsection{Slope}
+The slope of a line can be calculated with the equation
+\figbox{$m=\frac{y_B - y_A}{x_B - x_A} = \frac{\Delta y}{\Delta x}$}
 
+\subsubsection{Drawing}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick] (0,0) -- (5,3);
+        \draw[fill, thick, red] (1.65,1) circle (2pt);
+        \node[above, red] at (1.65,1) {A};
+        \draw[fill, thick, blue] (3.35,2) circle (2pt);
+        \node [above, blue] at (3.35, 2) {B};
 
+        %slope
+        \draw[thick, red] (1.65,1) -- (3.34,1);
+        \draw[thick, blue] (3.34,2) -- (3.34,1);
+
+        %braces
+        \draw[decorate,decoration={brace,amplitude=5pt},thick] (3.54,2) -- (3.54,1);
+        \node at (4.1,1.53) {$\Delta x$};
+        \draw[decorate,decoration={brace,amplitude=5pt},thick] (3.35,0.8) -- (1.65,0.8);
+        \node at (2.5,0.4) {$\Delta y$};
+    \end{tikzpicture}
+\end{center}
 
 
 \end{document}

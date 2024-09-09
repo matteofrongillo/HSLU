@@ -61,6 +61,8 @@
     \phantom{}
 }
 
+\newcommand{\difference}{\,\backslash\,}
+
 % === TEXT ===
 \title{\textbf{Maths refresher course \\ HSLU, Semester 1}}
 \author{Matteo Frongillo}
@@ -800,10 +802,18 @@ Let $a,b,c \in \mathbb{R}$, then
             ylabel = $y$,
             grid = both,
             xmin=-3.5, xmax=3.5,
-            ymin=-.5, ymax=10,
+            ymin=-1, ymax=10,
             domain=-3.5:3.5
         ]
         \addplot[color=blue, thick] {x^2};
+        \draw[fill,red,thick] (-3,9) circle (2pt);
+        \draw[fill,red,thick] (-2,4) circle (2pt);
+        \draw[fill,red,thick] (-1,1) circle (2pt);
+        \draw[fill,red,thick] (-0,0) circle (2pt);
+        \node[red, below] at (0,0) {$(V_x, V_y)$};
+        \draw[fill,red,thick] (1,1) circle (2pt);
+        \draw[fill,red,thick] (2,4) circle (2pt);
+        \draw[fill,red,thick] (3,9) circle (2pt);
         \end{axis}
     \end{tikzpicture}
 \end{wrapfigure}
@@ -848,9 +858,15 @@ sostitute the $x$ inside the given funcion $f(x)$.
 \newpage
 \section{Powers with $\mathbb{Z}$ and $\mathbb{R}$ exponents}
 Let $\alpha \in \mathbb{R}$ and $n \in \mathbb{N}$, then:
-
 \figbox{$\alpha^{\frac{1}{n}}=\sqrt[n]{\alpha}$}
 
+Let $m,n \in \mathbb{Z}$, then
+\figbox{$\alpha^{\frac{m}{n}}=\left(\alpha^\frac{1}{n}\right)^m$}
+
+Let $a,c \in \mathbb{Z}$,\ $b,c \in \mathbb{Z}^*$ and $\lambda \in \mathbb{R} \difference \mathbb{Z}$. Then, we can approssimate $\lambda$
+by a fraction:
+
+\figbox{$\frac{a}{b}<\lambda<\frac{c}{d}$}
 
 
 

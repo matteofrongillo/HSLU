@@ -732,7 +732,7 @@ Vertical lines cannot be written as a function.
 Let $m,x_A,y_A \in \mathbb{R}$ and $A(x_A, y_A)$, then
 \figbox{$y-y_A=m(x-x_A)$}
 
-e.g. Find the line with $m=-1$ and $A(2,-1)$.
+e.g.: Find the line with $m=-1$ and $A(2,-1)$.
 \[
     y-1=-1(x+2) \Rightarrow y=-x+1
 \]
@@ -759,8 +759,56 @@ e.g. Find the line with $m=-1$ and $A(2,-1)$.
     \end{tikzpicture}
 \end{center}
 
+\subsection{General equation in a cartesian diagram}
+\figbox{$ax+by+c=0$}
 
+\underline{Remarks}:
+\begin{itemize}
+    \item All the lines can be described with this kind of equation;
+    \item When $b=0$, $a \neq 0$, then $ax=-c \Rightarrow x=\frac{-c}{a} \in \mathbb{R}$;
+    \item When $b \neq 0$, then $y=-\frac{a}{b}x -\frac{c}{b}$,
+        where $m=-\frac{a}{b}$ and $q=-\frac{c}{b}$.
+\end{itemize}
 
+\newpage
+\section{Vertical parabolas}
+\subsection{Function of parabolas}
+Let $a,b,c \in \mathbb{R}$, then
+\figbox{$a^2+bx+c=0$}
+
+\begin{center}
+    \begin{tabular}{c|c}
+        x & y \\ \hline
+        -3 & 9 \\
+        -2 & 4 \\
+        -1 & 1 \\
+        0 & 0 \\
+        1 & 1 \\
+        2 & 4 \\
+        3 & 9  
+    \end{tabular}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            grid = both,
+            xmin=-3.5, xmax=3.5,
+            ymin=-.5, ymax=10,
+            domain=-3.5:3.5
+        ]
+        \addplot[color=blue, thick] {x^2};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Concavity of a parabola}
+We have three cases:
+\begin{itemize}
+    \item $a>0$, concave up;
+    \item $a=0$, not a parabola;
+    \item $a<0$, concave down.
+\end{itemize}
 
 
 

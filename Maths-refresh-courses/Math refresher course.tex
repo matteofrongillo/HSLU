@@ -22,6 +22,7 @@
 \usepackage{subcaption}
 \usepackage[T1]{fontenc}
 \usepackage{pgfplots}
+\usepackage{esvect}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -410,9 +411,9 @@ Any expression made of terms is composed of several factors.
 \begin{itemize}
     \item $(a+b)^2=a^2+2ab+b^2$ (difference of two squares);
     \item $(a-b)^2=a^2-2ab+b^2$ (square of a binomial);
-    \item $(a-b)(a+b)=a^2-b^2$ (square of a binomial);
+    \item $(a-b)(a+b)=a^2-b^2$ (difference of squares);
     \item $(a-b)(a^2+b^2+ab)=a^3-b^3$ (difference of two cubes);
-    \item $(a+b)(a^2+b^2-ab)=a^3+a^3$ (sum of two cubes).
+    \item $(a+b)(a^2+b^2-ab)=a^3+a^3$ (sum of cubes).
 \end{itemize}
 
 \underline{Remark}: notable products are useful to factorize expressions when we don't know a common factor.
@@ -625,7 +626,7 @@ Let $f(x)$ be a polynomial and $g(x)$ a monomial such that $g(x) \neq 0$. Consid
 \underline{Tip}: When the sum of the coefficients is equal to 0, then the polynomial is always divisible by $x-1$.
 
 \section{Second degree polynomials}
-Let $a,b,c \in \mathbb{R}$, then
+Let $a,b,c \in \mathbb{R}$, with $a \neq 0$, then
 \figbox{$ax^2+bx+c=0$}
 
 The three possible outcomes we can have when solving this 2nd-degree polynomial are:
@@ -980,7 +981,7 @@ Let $\forall k \in \mathbb{Z},\ \forall \theta \in \mathbb{R}$, then:
     
         % Draw the angle theta
         \draw[thick, blue] (0,0) -- (0.866,0.5) node[right] {$P(x,y)$};
-        \draw[dashed, blue] (0,0) -- (0.866,-0.5) node[right] {\ $P'(x',y)$};
+        \draw[dashed, blue] (0,0) -- (0.866,-0.5) node[right] {\ $P'(x,y')$};
     
         % Draw dashed lines to indicate the projections on the axes
         \draw[dashed] (0.866,-0.5) -- (0.866,0.5) -- (0,0.5);
@@ -1027,7 +1028,7 @@ Because we are inside a circle of radius 1:
 
 \subsubsection{Property 2}
 Because we have a 90$^\circ$ angle, we can use Pythagoras: 
-\figbox{$\overline{OH}^{\,2}+\overline{PH}^{\,2}=\overline{OP}^{\,2}$}
+\figbox{$\vv{OH}^{\,2}+\vv{PH}^{\,2}=\vv{OP}^{\,2}$}
 
 Then, we can compute that:
 \figbox{$\sin^2(\theta) + \cos^2(\theta) = 1 \qquad \forall\, \theta \in \mathbb{R}$}

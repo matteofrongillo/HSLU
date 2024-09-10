@@ -868,9 +868,180 @@ by a fraction:
 
 \figbox{$\frac{a}{b}<\lambda<\frac{c}{d}$}
 
+\newpage
+\part{Lesson 7}
+\section{Concept of functions}
+Let's take any two sets $A\left\{a,b,c,d,e,f,g\right\}$ and $B\left\{a_1,b_1,c_1,d_1,e_1,f_1,g_1\right\}$.
+
+\figbox{ \hspace*{-1cm}
+    \begin{minipage}{0.12\textwidth}
+        \vspace*{-0.4cm}
+        \begin{align*}
+            f: \mathbb{R} &\longmapsto \mathbb{R} \\
+            x &\longmapsto mx+q
+        \end{align*}
+    \end{minipage}
+}
+
+A function is a relation between the sets $A$ and $B$, according to which we
+associate to each element of $A$ one and only one element of $B$:
+
+\figbox{
+    \begin{tikzpicture}
+        %sets A and B
+        \draw (0,0) ellipse (1 and 2);
+        \draw (5,0) ellipse (1 and 2);
+        \node at (-1.5,2.3) {$f:A$};
+        \node at (6,2.3) {$B$};
+        \draw[->] (-0.8,2.3) -- (5.7,2.3);
+        
+        %set A
+        \node at (0,-1.5) {$\bullet$};
+        \node at (0,-1) {$\bullet$};
+        \node at (0,-0.5) {$\bullet$};
+        \node at (0,0) {$\bullet$};
+        \node at (0,0.5) {$\bullet$};
+        \node at (0,1) {$\bullet$};
+        \node at (0,1.5) {$\bullet$};
+        
+        %set B
+        \node at (5,-1.5) {$\bullet$};
+        \node at (5,-1) {$\bullet$};
+        \node at (5,-0.5) {$\bullet$};
+        \node at (5,0) {$\bullet$};
+        \node at (5,0.5) {$\bullet$};
+        \node at (5,1) {$\bullet$};
+        \node at (5,1.5) {$\bullet$};
+        
+        %arrows
+        \draw[->] (0.2,-1.5) -- (4.8,-1);
+        \draw[->] (0.2,-1) -- (4.8,-0.5);
+        \draw[->] (0.2,-0.5) -- (4.8,0);
+        \draw[->] (0.2,0) -- (4.8,-1.5);
+        \draw[->] (0.2,0.5) -- (4.8,0.5);
+        \draw[->] (0.2,1) -- (4.8,1.5);
+        \draw[->] (0.2,1.5) -- (4.8,1);
+
+        %spacer
+        \node at (0,2.6) {\phantom{}};
+        \node at (0,-2.2) {\phantom{}};
+    \end{tikzpicture}
+}
+
+Each point in set $B$ is reached by at least one arrow. However, it is
+possible for more than two elements of $A$ to point to the same element of $B$.
+
+\section{Trigonometry}
+Trigonometric functions can be extended to angles beyond 0 and 90$^\circ$
+using the unit circle. For an angle $\theta$ in the unit circle:
+\figbox{$\sin \theta = y\ \ |\ \cos \theta = x\ \ |\ \tan \theta = \frac{y}{x}$}
+
+\subsection{Conversion table of degrees and radiants}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Angles (in Degrees)} & \rule{0pt}{15pt} $0^\circ$ & $30^\circ$ & $45^\circ$ & $60^\circ$ & $90^\circ$ & $180^\circ$ & $270^\circ$ & $360^\circ$ \\
+        \hline
+        \textbf{Angles (in Radians)} & \rule{0pt}{15pt} $0$ & $\pi/6$ & $\pi/4$ & $\pi/3$ & $\pi/2$ & $\pi$ & $3\pi/2$ & $2\pi$ \\
+        \hline
+        $\sin(\theta)$ & \rule{0pt}{15pt} 0 & $1/2$ & $\sqrt{2}/2$ & $\sqrt{3}/2$ & 1 & 0 & $-1$ & 0 \\
+        \hline
+        $\cos(\theta)$ & \rule{0pt}{15pt} 1 & $\sqrt{3}/2$ & $\sqrt{2}/2$ & $1/2$ & 0 & $-1$ & 0 & 1 \\
+        \hline
+        $\tan(\theta)$ & \rule{0pt}{15pt} 0 & $\sqrt{3}/3$ & 1 & $\sqrt{3}$ & $\infty$ & 0 & $\infty$ & 0 \\
+        \hline
+    \end{tabular}
+\end{center}
+\phantom{}
+
+\underline{Remark}:
+
+\begin{center}
+    $\cos(360^{\circ}+\theta) = \cos(\theta) \qquad | \qquad
+    \sin(360^{\circ}+\theta) = \sin(\theta)$
+\end{center}
 
 
+\underline{Remark}:
+Let $\forall k \in \mathbb{Z},\ \forall \theta \in \mathbb{R}$, then:
+\figbox{$\cos(\theta + k\cdot360^{\circ})=\cos(\theta)$}
 
+\newpage
+\subsection{Trigonometric funcions in the unit circle}
+\begin{center}
+    \begin{tikzpicture}[scale=3.75]
+        \definecolor{darkgreen}{rgb}{0.0, 0.7, 0.0}
+        % Draw the x and y axes
+        \draw[thick, ->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+        \draw[thick, ->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+    
+        % Draw the unit circle
+        \draw (0,0) circle (1);
+    
+        % Draw the angle theta
+        \draw[thick, blue] (0,0) -- (0.866,0.5) node[right] {$P(x,y)$};
+        \draw[dashed, blue] (0,0) -- (0.866,-0.5) node[right] {\ $P'(x',y)$};
+    
+        % Draw dashed lines to indicate the projections on the axes
+        \draw[dashed] (0.866,-0.5) -- (0.866,0.5) -- (0,0.5);
+    
+        % Label the angle theta
+        \draw (0.3,0) arc (0:30:0.3);
+        \node at (0.35,0.10) {$\theta$};
+    
+        % Label the origin
+        \node at (-0.06, -0.06) {$O$};
+    
+        % Draw the projections on the axes
+        \draw[thick, red] (0,0) -- (0.866, 0) node[midway, below] {$\cos \theta$};
+        \draw[thick, darkgreen] (0,0) -- (0, 0.5) node[midway, left] {$\sin \theta$};
+    
+        % Additional labels and lines
+        \node at (1.075, 0.05) {1};
+        \node at (-0.05, 1.1) {1};
+        \node at (-1.075, 0.05) {-1};
+        \node at (-0.05, -1.1) {-1};
+    
+        % Labels for each quadrant
+        \node at (1, 1) {I};
+        \node at (-1, 1) {II};
+        \node at (-1, -1) {III};
+        \node at (1, -1) {IV};
+
+        %others
+        \draw (0.866,0) rectangle (0.816,0.05);
+        \node[below] at (0.93,0) {$H$};
+
+        %braces
+        \draw[decorate,decoration={brace,amplitude=5pt},thick] (1.65,0.5) -- (1.65,-0.5);
+        \node at (1.9,0) {$\Delta y = 1$};
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Property 1}
+Because we are inside a circle of radius 1:
+\begin{itemize}
+    \item $-1 \leq \cos(\theta) \leq 1$;
+    \item $-1 \leq \sin(\theta) \leq 1$.
+\end{itemize}
+
+\subsubsection{Property 2}
+Because we have a 90$^\circ$ angle, we can use Pitagora: 
+\figbox{$\overline{OH}^{\,2}+\overline{PH}^{\,2}=\overline{OP}^{\,2}$}
+
+Then, we can compute that:
+\figbox{$\sin(\theta)^2 + \cos(\theta)^2 = 1 \qquad \forall\, \theta \in \mathbb{R}$}
+
+\subsubsection{Example with 45$^{\circ}$}
+When $\theta=45^{\circ}$, then $\sin(\theta)=\cos(\theta) \Rightarrow 2\cos(\theta)=1
+\Rightarrow \cos(\theta)=\sqrt{\frac{1}{2}} \Rightarrow \sin(\theta)=\cos(\theta)=\frac{\sqrt{2}}{2}$
+
+\subsection{Tangent}
+A tangent of an angle is exactly the slope of a line:
+\figbox{$m = \frac{\Delta y}{\Delta x} = \tan(\theta)=\frac{\sin(\theta)}{\cos(\theta)}$}
+
+\underline{Remark}: the tangent is not defined when the angle is 90$^{\circ}$
+or 180$^{\circ}$, that is when we have a vertical line.
 
 \end{document}
 

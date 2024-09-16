@@ -63,6 +63,9 @@
 }
 
 \newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\prf}{\underline{Proof}: }
 
 % === TEXT ===
 \title{\textbf{Maths refresher course \\ HSLU, Semester 1}}
@@ -74,30 +77,97 @@
 \tableofcontents
 \pagebreak
 
+\part{Week 1}
+\section{The set theory}
+\subsection{Definition of a set}
+A set is a collection of objects or elements.
 
+\rem{The collection of all sets is not a set.}
 
+\subsection{Logical symbols}
+\subsubsection{Definition}
+Braces and the definition symbol ``$:=$'' are used to define a set giving all its elements:
+\figbox{$A:=\left\{a,b,c,d,e\right\}$}
 
+\subsubsection{Equal}
+In this case, the equal symbol means that the set $A$ is equal to the set $B$:
+\figbox{$A=B$}
 
+\subsubsection{Belongs to}
+The symbols $\in$ and $\ni$ describe an element which is part of the set:
+\figbox{$a \in A \Longleftrightarrow A \ni a$}
 
+\subsubsection{Does not belong to}
+The symbols $\notin$ mean that an element does not belong to the set:
+\figbox{$f \notin A$}
 
+\subsubsection{Inclusion and contains}
+The symbols $\subset$ and $\supset$ mean that a set has another set included in its set:
+\figbox{$\mathbb{N} \subset \mathbb{Z} \Longleftrightarrow \mathbb{Z} \supset \mathbb{N}$}
 
+\subsubsection{For all/any}
+The symbol $\forall$ means that we are considering any type of element:
+\figbox{$\forall x \in \mathbb{R},\ x>0$}
 
+In this case, we've defined a new set.
 
+\newpage
+\subsubsection{Implication}
+The symbol $\Rightarrow$ means that by setting a rule, we imply an event or an action:
+\figbox{if $x=1 \Longrightarrow x \in \mathbb{N}$, but if $x \in \mathbb{N}$ we do not know if $x=1$}
 
+The symbol $\Leftarrow$ is called inference (it is inferred).
 
+\subsubsection{If and only if}
+The symbol $\Leftrightarrow$ means that two events happen simultaneously (double implication):
+\figbox{$x \in \mathbb{N},\ x \neq 0 \Longleftrightarrow x \in \mathbb{N}^*$}
 
+\prf{Let’s prove that $2x=10 \Longleftrightarrow x=5$}
+\begin{center}
+    \begin{align*}
+        2x&=10 \Rightarrow x=5\\
+        \frac{2x}{2}&=\frac{10}{2}\\
+        x&=5
+    \end{align*}
+\end{center}
 
+\newpage
+\subsection{Numerical sets}
+\begin{itemize}
+    \item $\mathbb{N} :=$ Natural numbers (including 0);
+    \item $\mathbb{Z} :=$ Integer numbers;
+    \item $\mathbb{Q} :=$ Rational numbers;
+    \item $\mathbb{R} := \text{Real numbers} := \mathbb{Q} \cup \left\{\text{irrational numbers}\right\}.$
+\end{itemize}
 
+\nots{The ``$^*$'' symbol means that the set does not include 0.}
 
+\subsubsection{Inclusion of sets}
+\figbox{$\mathbb{N} \subset  \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$}
 
+$
+    B := \left\{\pi, 1,-1,0\right\}; \\
+    C := \left\{\pi, 1\right\}; \\
+    D := \left\{\pi\right\}.
+$
 
+Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\subset C,\ 0 \in B,\ 0 \notin C$.
 
-
-
-
-
-
-
-
+\section{The real line}
+\vspace*{.5cm}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (0,0) -- (6,0);
+        \draw[<-] (-6,0) -- (0,0);
+        \node at (0,.5) {$\mathbb{R}$};
+        
+        \foreach \x/\label in {-5/{$-\pi$}, -4/{$-e$}, -3/{$-\sqrt{2}$}, -2/{$-1$}, -1/{$-\frac{1}{2}$}, 0/{$0$}, 1/{$\frac{1}{2}$}, 2/{$1$}, 3/{$\sqrt{2}$}, 4/{$e$}, 5/{$\pi$}} {
+            \draw (\x,0.1) -- (\x,-0.1) node[below] {\label};
+        }
+        \node[below] at (-6,-0.1) {$-\infty$};
+        \node[below] at (6,-0.1) {$+\infty$};
+    \end{tikzpicture}
+\end{center}
 
 \end{document}
+                                                                                

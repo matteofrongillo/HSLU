@@ -38,7 +38,7 @@
     colorlinks=true,
     linkcolor=black,
     urlcolor=blue,
-    pdftitle={Math refresher course}
+    pdftitle={Mathematics 1A}
 }
 
 \newcommand{\figbox}[1]{ 
@@ -66,9 +66,10 @@
 \newcommand{\rem}{\underline{Remark}: }
 \newcommand{\nots}{\underline{Notation}: }
 \newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
 
 % === TEXT ===
-\title{\textbf{Maths refresher course \\ HSLU, Semester 1}}
+\title{\textbf{Mathematics 1A \\ HSLU, Semester 1}}
 \author{Matteo Frongillo}
 
 \begin{document}
@@ -116,22 +117,29 @@ In this case, we've defined a new set.
 The symbol $\Rightarrow$ means that by setting a rule, we imply an event or an action:
 \figbox{if $x=1 \Longrightarrow x \in \mathbb{N}$, but if $x \in \mathbb{N}$ we do not know if $x=1$}
 
-The symbol $\Leftarrow$ is called inference (it is inferred).
+With the implication, it is \underline{sufficient} to claim action "A" in order to claim action "B".
+
+\subsubsection{Inference}
+The symbol $\Leftarrow$ means that by having an event or an action, we have a rule.
+\figbox{$x \in \mathbb{R}^+ \Longleftarrow x > 0$}
+
+With the inference, it is \underline{necessary} to have claim the action ``A'' in order to have claim the action ``B''
+
 
 \subsubsection{If and only if}
 The symbol $\Leftrightarrow$ means that two events happen simultaneously (double implication):
 \figbox{$x \in \mathbb{N},\ x \neq 0 \Longleftrightarrow x \in \mathbb{N}^*$}
 
-\prf{Let’s prove that $2x=10 \Longleftrightarrow x=5$}
-\begin{center}
-    \begin{align*}
-        2x&=10 \Rightarrow x=5\\
-        \frac{2x}{2}&=\frac{10}{2}\\
-        x&=5
-    \end{align*}
-\end{center}
+\exs{}
 
-\newpage
+$x=2 \Longleftrightarrow x^2-4x+4=0$
+
+\prf{}
+
+$x=2 \Rightarrow (x-2)=0 \Rightarrow (x-2)^2=0\cdot(x-2) \Rightarrow x^2-4x+4=0$
+
+This happens \textbf{because} $x=2$
+
 \subsection{Numerical sets}
 \begin{itemize}
     \item $\mathbb{N} :=$ Natural numbers (including 0);
@@ -153,7 +161,7 @@ $
 
 Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\subset C,\ 0 \in B,\ 0 \notin C$.
 
-\section{The real line}
+\subsection{The real line}
 \vspace*{.5cm}
 \begin{center}
     \begin{tikzpicture}
@@ -169,5 +177,67 @@ Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\sub
     \end{tikzpicture}
 \end{center}
 
+\section{Intervals}
+\subsection{Examples}
+\begin{center}
+    \begin{tikzpicture}
+        %number line
+        \draw[-] (-4,0) -- (3,0);
+        \draw[thick] (-3,-0.2) -- (-3,0.2);
+        \draw[thick] (2,-0.2) -- (2,0.2);
+        
+        %interval
+        \draw[thick] (-3,-1) -- (2,-1);
+        \draw[thick] (-3,0) -- (-3,-1);
+        \draw[thick] (2,0) -- (2,-1);
+        \filldraw[black] (-3,-1) circle (2pt);
+        \filldraw[black] (2,-1) circle (2pt);
+        
+        %points
+        \node[above] at (-3,0.2) {a};
+        \node[above] at (2,0.2) {b};
+        
+        %arrow
+        \draw[->] (3,0) -- (3.5,0);
+
+        %area
+        \filldraw [fill=red, draw=black, opacity=0.3] (-3,0) rectangle (2,-1);
+    \end{tikzpicture}
+\end{center}
+
+2) $\forall x \in \mathbb{R},\ x \in\ ]-2,-1]\ \cup\ ] \frac{3}{2}, +\infty[$
+
+\begin{center}
+\begin{tikzpicture}
+    %number line
+    \draw[-] (-3,0) -- (4,0);
+    \draw[thick] (-2,-1) -- (-2,0.2);
+    \draw[thick] (1,-1) -- (1,0.2);
+    \draw[thick] (1.5,-0.95) -- (1.5,0.2);
+    
+    %intervals
+    \draw[thick] (-2,-1) -- (1,-1);
+    \filldraw[black] (-2,-1) circle (2pt);
+    \filldraw[black] (1,-1) circle (2pt);
+    \draw[thick] (1.55,-1) -- (4,-1);
+    \draw[thick, dashed] (4,-1) -- (4.5,-1);
+    \draw[thick] (1.5,-1) circle (2pt);
+    
+    %points
+    \node[above] at (-2,0.2) {-2};
+    \node[above] at (1,0.2) {1};
+    \node[above] at (1.5,0.2) {\(\frac{3}{2}\)};
+    
+    %arrow
+    \draw[->] (4,0) -- (4.5,0);
+
+    %area
+    \filldraw [fill=red, draw=black, opacity=0.3] (-2,0) rectangle (1,-1);
+    \filldraw [fill=red, draw=black, opacity=0.3] (1.5,0) rectangle (4.5,-1);
+\end{tikzpicture}
+\end{center}
+\vspace*{.5cm}
+\nots{The union of two or more intervals where $x \in \mathbb{R}$
+is denoted by the symbol $\cup$.}
+
 \end{document}
-                                                                                

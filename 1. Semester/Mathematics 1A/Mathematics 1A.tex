@@ -67,6 +67,7 @@
 \newcommand{\nots}{\underline{Notation}: }
 \newcommand{\prf}{\underline{Proof}: }
 \newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
 \newcommand{\sht}{\ |\ }
 
 % === TEXT ===
@@ -163,7 +164,7 @@ $
 Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\subset C,\ 0 \in B,\ 0 \notin C$.
 
 \newpage
-\section{Intervals}
+\section{Intervals in the real line}
 Intervals describe what happens between two or more elements.
 
 \subsection{Examples}
@@ -179,7 +180,7 @@ We have 4 cases:
 \nots{$a$ and $b$ are often called the ``end points'' of the interval;\\}
 
 \subsubsection{Graphical examples}
-1) $\forall x \in \mathbb{R},\ x \in \left[a,b\right]$
+$\forall x \in \mathbb{R},\ x \in \left[a,b\right]$
 \begin{center}
     \begin{tikzpicture}
         %number line
@@ -205,41 +206,6 @@ We have 4 cases:
         \filldraw [fill=red, draw=black, opacity=0.3] (-3,0) rectangle (2,-1);
     \end{tikzpicture}
 \end{center}
-
-2) $\forall x \in \mathbb{R},\ x \in\ \left[a,b\right]\ \cup\ \left] c, +\infty\right[$
-
-\begin{center}
-\begin{tikzpicture}
-    %number line
-    \draw[-] (-3,0) -- (4,0);
-    \draw[thick] (-2,-1) -- (-2,0.2);
-    \draw[thick] (1,-1) -- (1,0.2);
-    \draw[thick] (1.5,-0.95) -- (1.5,0.2);
-    
-    %intervals
-    \draw[thick] (-2,-1) -- (1,-1);
-    \filldraw[black] (-2,-1) circle (2pt);
-    \filldraw[black] (1,-1) circle (2pt);
-    \draw[thick] (1.55,-1) -- (4,-1);
-    \draw[thick, dashed] (4,-1) -- (4.5,-1);
-    \draw[thick] (1.5,-1) circle (2pt);
-    
-    %points
-    \node[above] at (-2,0.2) {a};
-    \node[above] at (1,0.2) {b};
-    \node[above] at (1.5,0.2) {c};
-    
-    %arrow
-    \draw[->] (4,0) -- (4.5,0);
-
-    %area
-    \filldraw [fill=red, draw=black, opacity=0.3] (-2,0) rectangle (1,-1);
-    \filldraw [fill=red, draw=black, opacity=0.3] (1.5,0) rectangle (4.5,-1);
-\end{tikzpicture}
-\end{center}
-\vspace*{.5cm}
-\nots{The union of two or more intervals where $x \in \mathbb{R}$
-is denoted by the symbol $\cup$.}
 
 \section{The extended line}
 In the real line $\mathbb{R}$ we add $\pm \infty$.
@@ -267,7 +233,6 @@ In the real line $\mathbb{R}$ we add $\pm \infty$.
 \subsection{Properties}
 \figbox{$\forall x \in \mathbb{R} \ \sht \ \infty > x \ \sht \ -\infty < 0$}
 
-\newpage
 \subsection{Operation in the extended line}
 If $a,b \in \mathbb{R}$, then $a+b,\; a-b,\; a\cdot b,\; \frac{a}{b} \text{ (with } b\neq 0 )$ stay the same
 
@@ -310,6 +275,235 @@ Let $\forall a \in \mathbb{R}$:
     \end{cases}$
     \item $\frac{\infty}{\infty}:=$ undefined.
 \end{itemize}
+
+\section{Intervals including $\pm \infty$}
+Intervals describe what happens between two or more elements, including $\pm \infty$.
+\subsection{Examples}
+\subsubsection{Interval sets}
+Let $a \in \mathbb{R}$, then:
+\begin{itemize}
+    \item $(-\infty,a)=\left\{\forall x \in \mathbb{R} \sht x < a\right\}$;
+    \item $(a, +\infty)=\left\{\forall x \in \mathbb{R} \sht x > a\right\}$;
+    \item $(-\infty, a]=\left\{\forall x \in \mathbb{R} \sht x \leq a\right\}$;
+    \item $[a,+\infty]=\left\{\forall x \in \mathbb{R} \sht x \geq a\right\}$;
+    \item $(-\infty,+\infty)=\mathbb{R}$;
+    \item $[-\infty,+\infty]=\overline{\mathbb{R}}$.
+\end{itemize}
+
+\subsubsection{Graphical examples}
+$\forall x \in \mathbb{R},\ x \in\ \left[a,b\right]\ \cup\ \left] c, +\infty\right[$
+
+\begin{center}
+\begin{tikzpicture}
+    %number line
+    \draw[-] (-3,0) -- (4,0);
+    \draw[thick] (-2,-1) -- (-2,0.2);
+    \draw[thick] (1,-1) -- (1,0.2);
+    \draw[thick] (1.5,-0.95) -- (1.5,0.2);
+    
+    %intervals
+    \draw[thick] (-2,-1) -- (1,-1);
+    \filldraw[black] (-2,-1) circle (2pt);
+    \filldraw[black] (1,-1) circle (2pt);
+    \draw[thick] (1.55,-1) -- (4,-1);
+    \draw[thick, dashed] (4,-1) -- (4.5,-1);
+    \draw[thick] (1.5,-1) circle (2pt);
+    
+    %points
+    \node[above] at (-2,0.2) {a};
+    \node[above] at (1,0.2) {b};
+    \node[above] at (1.5,0.2) {c};
+    
+    %arrow
+    \draw[->] (4,0) -- (4.5,0);
+
+    %area
+    \filldraw [fill=red, draw=black, opacity=0.3] (-2,0) rectangle (1,-1);
+    \filldraw [fill=red, draw=black, opacity=0.3] (1.5,0) rectangle (4.5,-1);
+\end{tikzpicture}
+\end{center}
+\vspace*{.5cm}
+\nots{The union of two or more intervals where $x \in \mathbb{R}$
+is denoted by the symbol $\cup$.}
+
+\newpage
+\section{Union and Intersection}
+\subsection{Logical symbols AND, OR and NOT}
+\begin{itemize}
+    \item $\land$ = AND;
+    \item $\lor$ = OR;
+    \item $\lnot$ = NOT.
+\end{itemize}
+
+\subsection{Universe symbol}
+The symbol $\bigcup :=$ Universe describes a big set which contains all sets involved
+in our discussions (not always).
+
+Let $A,B$ be two sets $\left[A \subset \bigcup,\ B \subset \bigcup\right]$. Then:
+\begin{itemize}
+    \item $A \cup B =$ union of $A$ and $B \Longrightarrow \left\{\forall x \in \bigcup \sht x \in A \lor x \in B\right\}$;
+    \item $A \cap B =$ intersection between $A$ and $B \Longrightarrow \left\{\forall x \in \bigcup \sht x \in A \land x \in B\right\}$.
+\end{itemize}
+
+\subsection{\color{red}{Venn diagram}}
+\subsubsection{Union $A \cup B$}
+\figbox{
+    \begin{tikzpicture}[scale=2]
+        \draw[thick, fill=blue!20] (2, 2) circle (1.5);
+        \draw[thick, fill=blue!20] (4, 2) circle (1.5);
+        
+        \begin{scope}
+            \clip (2, 2) circle (1.5);
+            \fill[white] (4, 2) circle (1.5);
+            \clip (2, 2) circle (1.5);
+            \fill[blue!20] (4, 2) circle (1.5);
+        \end{scope}
+
+        \draw[thick] (2, 2) circle (1.5);
+        \draw[thick] (4, 2) circle (1.5);
+        
+        \node at (2, 3.7) {A};
+        \node at (4, 3.7) {B};
+        
+        \node at (3, 2) {\(A \cup B\)};
+        
+        \node at (3, 0.35) {};
+
+        \node[overlay] at (0.2,3.75) {\(\bigcup\)};
+    \end{tikzpicture}
+}
+
+\subsubsection{Intersection $A \cap B$}
+\figbox{
+    \begin{tikzpicture}[scale=2]
+        
+        \draw[thick] (2, 2) circle (1.5);
+        \draw[thick] (4, 2) circle (1.5);
+        \begin{scope}
+            \clip (2, 2) circle (1.5);
+            \fill[blue!20] (4, 2) circle (1.5);
+        \end{scope}
+        
+        \node at (2, 3.7) {A};
+        \node at (4, 3.7) {B};
+        
+        \node at (1.5, 2) {\(A \cap \bar{B}\)};
+        \node at (4.5, 2) {\(\bar{A} \cap B\)};
+        \node at (3, 2) {\(A \cap B\)};
+        
+        \node at (3, 0.35) {};
+
+        \node[overlay] at (0.2,3.75) {\(\bigcup\)};
+    \end{tikzpicture}
+}
+
+\newpage
+\subsubsection{The complementary element $\overline{A}$}
+$1-A = \overline{A}$
+
+\begin{figure}[ht!]
+    \begin{center}
+            \begin{tikzpicture}[scale=1.75]
+                
+                \fill[red!20] (0, 0) rectangle (6, 3);
+                \draw[thick] (0, 0) rectangle (6, 3);
+        
+                \fill[white] (4, 1.5) circle (1.2);
+                \draw[thick] (4, 1.5) circle (1.2);
+                
+                \node at (1.5, 1.5) {\(A\)};
+                \node at (4.05, 1.5) {\(\bar{A}\)};
+                            
+                \node[overlay] at (-0.2,2.75) {\(\bigcup\)};
+            \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+\subsubsection{Difference between sets}
+$A \difference B = \left\{\forall x \in \bigcup \sht x \in A,\ x \notin B\right\}$
+
+COLORARE TUTTO A PARTE $A \cup B$!!
+\figbox{        
+    \begin{tikzpicture}[scale=2]
+        \draw[thick, fill=blue!20] (2, 2) circle (1.5);
+        \draw[thick, fill=blue!20] (4, 2) circle (1.5);
+        \draw[thick] (4, 2) circle (1.5);
+            
+        \begin{scope}
+            \clip (2, 2) circle (1.5);
+            \fill[white] (4, 2) circle (1.5);
+        \end{scope}
+        
+        \node at (2, 3.7) {A};
+        \node at (4, 3.7) {B};
+        
+        \node at (1.5, 2) {\(A \cap \bar{B}\)};
+        \node at (4.5, 2) {\(\bar{A} \cap B\)};
+        \node at (3, 2) {\(A \cap B\)};
+        
+        \node at (3, 0.35) {};
+
+        \node[overlay] at (0.2,3.75) {\(\bigcup\)};
+    \end{tikzpicture}
+}
+
+\newpage
+\subsubsection{Empty set $\emptyset$}
+$\emptyset :=$ the set containing zero elements:
+$A \cup B = \emptyset$
+
+\defs{$A \bigtriangleup B = (A \difference B) \cup (B \difference A)$}
+
+\section{The absolute value function}
+The absolute value is an operator which turns positive the sign of the result of the function.
+
+Let $x \in \mathbb{R}$, then:
+\figbox{$|x|=\begin{cases}
+    x \text{\quad if} &x \geq 0\\
+    x \text{\quad if} &-x \leq 0
+\end{cases}$}
+
+\subsection{Graph of absolute value functions}
+Let's plot the function $y=|x|$:
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            domain=-3:3,
+            samples=1500,
+            xmin=-3.5, xmax=3.5,
+            ymin=-1, ymax=3,
+            grid=major,
+            width=17cm, height=10cm
+        ]
+            \addplot[blue, thick] {abs(x)};
+            \node[red] at (2.75,.75) {\huge $\mathbb{R}^2$};
+            \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+\subsection{Properties}
+Let $a,b \in \mathbb{R}$, then:
+\begin{itemize}
+    \item $|a\cdot b|=|a| \cdot |b|$;
+    \item $|\frac{a}{b}|= \frac{|a|}{|b|} \quad$ for $b \neq 0$;
+    \item $|a\pm b| \neq |a|\pm |b|$.
+\end{itemize}
+
+\subsection{Triangolar inequalities}
+Let $a,b \in \mathbb{R}$, then:
+\figbox{\begin{minipage}{0.135\textwidth}
+    \begin{center}
+        $|a|+|b| \geq |a+b|$\\
+        $|a|-|b| \leq |a-b|$ 
+    \end{center}
+\end{minipage}
+}
+
+
 
 
 

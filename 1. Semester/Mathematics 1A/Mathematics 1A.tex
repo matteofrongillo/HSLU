@@ -21,7 +21,6 @@
 \usepackage{wrapfig}
 \usepackage{subcaption}
 \usepackage[T1]{fontenc}
-\usepackage{pgfplots}
 \usepackage{esvect}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
@@ -68,6 +67,7 @@
 \newcommand{\prf}{\underline{Proof}: }
 \newcommand{\exs}{\underline{Example}: }
 \newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
 \newcommand{\sht}{\ |\ }
 
 % === TEXT ===
@@ -114,34 +114,6 @@ The symbol $\forall$ means that we are considering any type of element:
 
 In this case, we've defined a new set.
 
-\newpage
-\subsubsection{Implication}
-The symbol $\Rightarrow$ means that by setting a rule, we imply an event or an action:
-\figbox{if $x=1 \Longrightarrow x \in \mathbb{N}$, but if $x \in \mathbb{N}$ we do not know if $x=1$}
-
-With the implication, it is \underline{sufficient} to claim action "A" in order to claim action "B".
-
-\subsubsection{Inference}
-The symbol $\Leftarrow$ means that by having an event or an action, we have a rule.
-\figbox{$x \in \mathbb{R}^+ \Longleftarrow x > 0$}
-
-With the inference, it is \underline{necessary} to have claim the action ``A'' in order to have claim the action ``B''
-
-
-\subsubsection{If and only if}
-The symbol $\Leftrightarrow$ means that two events happen simultaneously (double implication):
-\figbox{$x \in \mathbb{N},\ x \neq 0 \Longleftrightarrow x \in \mathbb{N}^*$}
-
-\exs{}
-
-$x=2 \Longleftrightarrow x^2-4x+4=0$
-
-\prf{}
-
-$x=2 \Rightarrow (x-2)=0 \Rightarrow (x-2)^2=0\cdot(x-2) \Rightarrow x^2-4x+4=0$
-
-This happens \textbf{because} $x=2$
-
 \subsection{Numerical sets}
 \begin{itemize}
     \item $\mathbb{N} :=$ Natural numbers (including 0);
@@ -163,7 +135,6 @@ $
 
 Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\subset C,\ 0 \in B,\ 0 \notin C$.
 
-\newpage
 \section{Intervals in the real line}
 Intervals describe what happens between two or more elements.
 
@@ -207,6 +178,7 @@ $\forall x \in \mathbb{R},\ x \in \left[a,b\right]$
     \end{tikzpicture}
 \end{center}
 
+\newpage
 \section{The extended line}
 In the real line $\mathbb{R}$ we add $\pm \infty$.
 
@@ -326,29 +298,68 @@ $\forall x \in \mathbb{R},\ x \in\ \left[a,b\right]\ \cup\ \left] c, +\infty\rig
 \nots{The union of two or more intervals where $x \in \mathbb{R}$
 is denoted by the symbol $\cup$.}
 
-\newpage
-\section{Union and Intersection}
-\subsection{Logical symbols AND, OR and NOT}
-\begin{itemize}
-    \item $\land$ = AND;
-    \item $\lor$ = OR;
-    \item $\lnot$ = NOT.
-\end{itemize}
+\section{Propositional logic}
+Propositional logic is a branch of mathematics that deals with propositions and logical operations.
 
+\subsection{Logical connectives}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline \rule{0pt}{15pt}
+        A & B & $\lnot B$ & $A \land B$ & $A \lor B$ & $A \Rightarrow B$ & $A \Leftrightarrow B$ \\
+        \hline \rule{0pt}{15pt} T & T & F & T & T & T & T \\
+        \hline \rule{0pt}{15pt} T & F & T & F & T & F & F \\
+        \hline \rule{0pt}{15pt} F & T & F & F & T & T & F \\
+        \hline \rule{0pt}{15pt} F & F & T & F & F & T & T \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Logical conjunction $\land$}
+Given two statements $P$ and $Q$, $P \land Q$ is true if both $P$ and $Q$ are true.
+
+Let $P=(x>0)$ and $Q=(y>0)$, then:
+\figbox{$P \land Q = (x > 0 \land y > 0)$}
+
+\subsubsection{Logical disjunction $\lor$}
+Given two statements $P$ and $Q$, $P \lor Q$ is true if at least one of $P$ or $Q$ is true.
+
+Let $P=(x=0)$ and $Q=(y \neq 0)$, then:
+\figbox{$P \lor Q = (x = 0 \lor y \neq 0)$}
+
+\subsubsection{Logical negation $\lnot$}
+The negation of a statement $P$, denoted as $\lnot P$, is true if $P$ is false, and false if $P$ is true.
+
+Let $P=(x \geq 5)$, then:
+\figbox{$\lnot P = (x < 5)$}
+
+\subsubsection{Implication $\Rightarrow$}
+The symbol $\Rightarrow$ indicates that if statement $P$ is true, then statement $Q$ must also be true (i.e., $P$ implies $Q$).\\
+\wrn{It does not require that $Q$ implies $P$.}
+
+\figbox{$P=(x=1) \Rightarrow Q = (x \in \mathbb{N})$}
+
+\subsubsection{Inference $\Leftarrow$}
+The symbol $\Leftarrow$ means that a conclusion or result implies the truth of an earlier statement.\\
+If $Q$ is true, then $P$ must be true.
+
+\figbox{$Q = (x > 0) \Leftarrow P = (x \in \mathbb{R}^+)$}
+
+\subsubsection{If and only if $\Leftrightarrow$}
+The symbol $\Leftrightarrow$ indicates that two statements $P$ and $Q$ are logically equivalent, meaning $P$ is true if and only if $Q$ is true.
+\figbox{$P = (x \in \mathbb{N},\ x \neq 0) \Longleftrightarrow Q = (x \in \mathbb{N}^*)$}
+
+\section{Union $\cup$ and Intersection $\cap$}
 \subsection{Universe symbol}
 The symbol $\bigcup :=$ Universe describes a big set which contains all sets involved
 in our discussions (not always).
 
-Let $A,B$ be two sets $\left[A \subset \bigcup,\ B \subset \bigcup\right]$. Then:
-\begin{itemize}
-    \item $A \cup B =$ union of $A$ and $B \Longrightarrow \left\{\forall x \in \bigcup \sht x \in A \lor x \in B\right\}$;
-    \item $A \cap B =$ intersection between $A$ and $B \Longrightarrow \left\{\forall x \in \bigcup \sht x \in A \land x \in B\right\}$.
-\end{itemize}
-
-\subsection{\color{red}{Venn diagram}}
+\subsection{Venn diagram}
 \subsubsection{Union $A \cup B$}
+If $A$ and $B$ are sets, then their union is:
+\figbox{$A \cup U = \left\{\forall x \in \bigcup \sht x \in A \lor x \in B\right\}$}
+\vspace*{-.53cm}
 \figbox{
-    \begin{tikzpicture}[scale=2]
+    \begin{tikzpicture}[scale=1.75]
         \draw[thick, fill=blue!20] (2, 2) circle (1.5);
         \draw[thick, fill=blue!20] (4, 2) circle (1.5);
         
@@ -373,9 +384,13 @@ Let $A,B$ be two sets $\left[A \subset \bigcup,\ B \subset \bigcup\right]$. Then
     \end{tikzpicture}
 }
 
+\newpage
 \subsubsection{Intersection $A \cap B$}
+If $A$ and $B$ are sets, then their intersection is:
+\figbox{$A \cap B = \left\{\forall x \in \bigcup \sht x \in A \land x \in B\right\}$}
+
 \figbox{
-    \begin{tikzpicture}[scale=2]
+    \begin{tikzpicture}[scale=1.75]
         
         \draw[thick] (2, 2) circle (1.5);
         \draw[thick] (4, 2) circle (1.5);
@@ -397,9 +412,9 @@ Let $A,B$ be two sets $\left[A \subset \bigcup,\ B \subset \bigcup\right]$. Then
     \end{tikzpicture}
 }
 
-\newpage
-\subsubsection{The complementary element $\overline{A}$}
-$1-A = \overline{A}$
+\subsubsection{Complement $\bar{A}$}
+If $A$ is a set, its complement is:
+\figbox{$\bar{A}=\left\{\forall x \in \bigcup \sht x \notin A\right\}$}
 
 \begin{figure}[ht!]
     \begin{center}
@@ -411,22 +426,22 @@ $1-A = \overline{A}$
                 \fill[white] (4, 1.5) circle (1.2);
                 \draw[thick] (4, 1.5) circle (1.2);
                 
-                \node at (1.5, 1.5) {\(A\)};
-                \node at (4.05, 1.5) {\(\bar{A}\)};
-                            
+                \node at (1.5, 1.5) {\(\bar{A}\)};
+                \node at (4.05, 1.5) {\(A\)};
+
                 \node[overlay] at (-0.2,2.75) {\(\bigcup\)};
             \end{tikzpicture}
     \end{center}
 \end{figure}
 
-\subsubsection{Difference between sets}
-$A \difference B = \left\{\forall x \in \bigcup \sht x \in A,\ x \notin B\right\}$
+\newpage
+\subsubsection{Difference between sets $\difference$}
+If $A$ and $B$ are sets, then their difference is:
+\figbox{$A \difference B = \left\{\forall x \in \bigcup \sht x \in A,\ x \notin B\right\}$}
 
-COLORARE TUTTO A PARTE $A \cup B$!!
 \figbox{        
-    \begin{tikzpicture}[scale=2]
+    \begin{tikzpicture}[scale=1.75]
         \draw[thick, fill=blue!20] (2, 2) circle (1.5);
-        \draw[thick, fill=blue!20] (4, 2) circle (1.5);
         \draw[thick] (4, 2) circle (1.5);
             
         \begin{scope}
@@ -437,8 +452,8 @@ COLORARE TUTTO A PARTE $A \cup B$!!
         \node at (2, 3.7) {A};
         \node at (4, 3.7) {B};
         
-        \node at (1.5, 2) {\(A \cap \bar{B}\)};
-        \node at (4.5, 2) {\(\bar{A} \cap B\)};
+        \node at (1.5, 2) {\(A \difference B\)};
+        \node at (4.5, 2) {\(B \difference A\)};
         \node at (3, 2) {\(A \cap B\)};
         
         \node at (3, 0.35) {};
@@ -447,20 +462,63 @@ COLORARE TUTTO A PARTE $A \cup B$!!
     \end{tikzpicture}
 }
 
-\newpage
-\subsubsection{Empty set $\emptyset$}
-$\emptyset :=$ the set containing zero elements:
-$A \cup B = \emptyset$
+\subsubsection{Symmetrical difference $\bigtriangleup$}
+If $A$ and $B$ are sets, then their symmetrical difference is:
+\figbox{$A \bigtriangleup B = (A \setminus B) \cup (B \setminus A)$}
+\figbox{
+    \begin{tikzpicture}[scale=1.75]
+        \draw[fill=blue!20] (2, 2) circle (1.5);
+        \draw[fill=blue!20] (4, 2) circle (1.5);
+        
+        \draw[thick] (2, 2) circle (1.5);
+        \draw[thick] (4, 2) circle (1.5);
+        
+        \begin{scope}
+            \clip (2, 2) circle (1.5);
+            \fill[white] (4, 2) circle (1.5);
+        \end{scope}
+        
+        \node at (2, 3.7) {A};
+        \node at (4, 3.7) {B};
+        
+        \node at (1.5, 2) {\(A \setminus B\)};
+        \node at (4.5, 2) {\(B \setminus A\)};
+        \node at (3, 2) {\(A \cap B\)};
+    \end{tikzpicture}
+}
 
-\defs{$A \bigtriangleup B = (A \difference B) \cup (B \difference A)$}
+\newpage
+\subsubsection{Disjoined sets (Empty sets) $\emptyset$}
+$\emptyset :=$ the set containing zero elements:
+\figbox{$A \cap B = \emptyset$}
+
+\begin{figure}[ht!]
+    \begin{center}
+            \begin{tikzpicture}[scale=1.75]
+                
+                \draw[thick] (0, 0) rectangle (6, 3);
+        
+                \fill[blue!20] (1.5, 1.5) circle (1.2);
+                \draw[thick] (1.5, 1.5) circle (1.2);
+                \fill[red!20] (4.5, 1.5) circle (1.2);
+                \draw[thick] (4.5, 1.5) circle (1.2);
+                
+                \node at (1.5, 1.5) {\(A\)};
+                \node at (4.5, 1.5) {\(B\)};
+                            
+                \node[overlay] at (-0.2,2.75) {\(\bigcup\)};
+            \end{tikzpicture}
+    \end{center}
+\end{figure}
 
 \section{The absolute value function}
-The absolute value is an operator which turns positive the sign of the result of the function.
+The absolute value is an operator that returns the positive value of a
+number, regardless of its original sign.
 
 Let $x \in \mathbb{R}$, then:
 \figbox{$|x|=\begin{cases}
-    x \text{\quad if} &x \geq 0\\
-    x \text{\quad if} &-x \leq 0
+    x \text{ if} &x \geq 0\\
+    x \text{ if} &-x < 0
 \end{cases}$}
 
 \subsection{Graph of absolute value functions}
@@ -489,11 +547,11 @@ Let's plot the function $y=|x|$:
 Let $a,b \in \mathbb{R}$, then:
 \begin{itemize}
     \item $|a\cdot b|=|a| \cdot |b|$;
-    \item $|\frac{a}{b}|= \frac{|a|}{|b|} \quad$ for $b \neq 0$;
+    \item $|\frac{a}{b}|= \frac{|a|}{|b|} $ for $b \neq 0$;
     \item $|a\pm b| \neq |a|\pm |b|$.
 \end{itemize}
 
-\subsection{Triangolar inequalities}
+\subsection{Triangular inequalities}
 Let $a,b \in \mathbb{R}$, then:
 \figbox{\begin{minipage}{0.135\textwidth}
     \begin{center}
@@ -503,6 +561,8 @@ Let $a,b \in \mathbb{R}$, then:
 \end{minipage}
 }
 
+\newpage
+\part{Week 2}
 
 
 

@@ -67,6 +67,7 @@
 \newcommand{\nots}{\underline{Notation}: }
 \newcommand{\prf}{\underline{Proof}: }
 \newcommand{\exs}{\underline{Example}: }
+\newcommand{\sht}{\ |\ }
 
 % === TEXT ===
 \title{\textbf{Mathematics 1A \\ HSLU, Semester 1}}
@@ -161,24 +162,24 @@ $
 
 Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\subset C,\ 0 \in B,\ 0 \notin C$.
 
-\subsection{The real line}
-\vspace*{.5cm}
-\begin{center}
-    \begin{tikzpicture}
-        \draw[->] (0,0) -- (6,0);
-        \draw[<-] (-6,0) -- (0,0);
-        \node at (0,.5) {$\mathbb{R}$};
-        
-        \foreach \x/\label in {-5/{$-\pi$}, -4/{$-e$}, -3/{$-\sqrt{2}$}, -2/{$-1$}, -1/{$-\frac{1}{2}$}, 0/{$0$}, 1/{$\frac{1}{2}$}, 2/{$1$}, 3/{$\sqrt{2}$}, 4/{$e$}, 5/{$\pi$}} {
-            \draw (\x,0.1) -- (\x,-0.1) node[below] {\label};
-        }
-        \node[below] at (-6,-0.1) {$-\infty$};
-        \node[below] at (6,-0.1) {$+\infty$};
-    \end{tikzpicture}
-\end{center}
-
+\newpage
 \section{Intervals}
+Intervals describe what happens between two or more elements.
+
 \subsection{Examples}
+\subsubsection{Interval sets}
+We have 4 cases:
+\begin{itemize}
+    \item $(a,b) = \left\{\forall x \in \mathbb{R} \sht a<x<b\right\}$;
+    \item $\left[a,b\right) = \left\{\forall x \in \mathbb{R} \sht a\leq x<b\right\}$;
+    \item $\left(a,b\right] = \left\{\forall x \in \mathbb{R} \sht a<x\leq b\right\}$;
+    \item $\left[a,b\right] = \left\{\forall x \in \mathbb{R} \sht a\leq x\leq b\right\}$.
+\end{itemize}
+
+\nots{$a$ and $b$ are often called the ``end points'' of the interval;\\}
+
+\subsubsection{Graphical examples}
+1) $\forall x \in \mathbb{R},\ x \in \left[a,b\right]$
 \begin{center}
     \begin{tikzpicture}
         %number line
@@ -205,7 +206,7 @@ Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\sub
     \end{tikzpicture}
 \end{center}
 
-2) $\forall x \in \mathbb{R},\ x \in\ ]-2,-1]\ \cup\ ] \frac{3}{2}, +\infty[$
+2) $\forall x \in \mathbb{R},\ x \in\ \left[a,b\right]\ \cup\ \left] c, +\infty\right[$
 
 \begin{center}
 \begin{tikzpicture}
@@ -224,9 +225,9 @@ Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\sub
     \draw[thick] (1.5,-1) circle (2pt);
     
     %points
-    \node[above] at (-2,0.2) {-2};
-    \node[above] at (1,0.2) {1};
-    \node[above] at (1.5,0.2) {\(\frac{3}{2}\)};
+    \node[above] at (-2,0.2) {a};
+    \node[above] at (1,0.2) {b};
+    \node[above] at (1.5,0.2) {c};
     
     %arrow
     \draw[->] (4,0) -- (4.5,0);
@@ -239,5 +240,77 @@ Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\sub
 \vspace*{.5cm}
 \nots{The union of two or more intervals where $x \in \mathbb{R}$
 is denoted by the symbol $\cup$.}
+
+\section{The extended line}
+In the real line $\mathbb{R}$ we add $\pm \infty$.
+
+\paragraph{Real line:} $(-\infty, +\infty) = \mathbb{R}$ 
+
+\paragraph{Extended real line:} $\left[-\infty, +\infty\right] = \overline{\mathbb{R}}$
+
+\vspace*{.5cm}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (0,0) -- (6,0);
+        \draw[<-] (-6,0) -- (0,0);
+
+        \foreach \x/\label in {-5/{$-\pi$}, -4/{$-e$}, -3/{$-\sqrt{2}$}, -2/{$-1$}, -1/{$-\frac{1}{2}$}, 0/{$0$}, 1/{$\frac{1}{2}$}, 2/{$1$}, 3/{$\sqrt{2}$}, 4/{$e$}, 5/{$\pi$}} {
+            \draw (\x,0.1) -- (\x,-0.1) node[below] {\label};
+        }
+        \node[below] at (-6,-0.1) {$-\infty$};
+        \node[below] at (6,-0.1) {$+\infty$};
+    \end{tikzpicture}
+\end{center}
+
+\rem{$\pm \infty \notin \mathbb{R}$}
+
+\subsection{Properties}
+\figbox{$\forall x \in \mathbb{R} \ \sht \ \infty > x \ \sht \ -\infty < 0$}
+
+\newpage
+\subsection{Operation in the extended line}
+If $a,b \in \mathbb{R}$, then $a+b,\; a-b,\; a\cdot b,\; \frac{a}{b} \text{ (with } b\neq 0 )$ stay the same
+
+\subsubsection{Additions}
+Let $\forall a \in \mathbb{R}$:
+\begin{itemize}
+    \item $a+\infty := \infty$;
+    \item $a-\infty := -\infty$;
+    \item $+\infty + \infty := +\infty$;
+    \item $-\infty - \infty := -\infty$;
+    \item $+\infty - \infty :=$ undefined.
+\end{itemize}
+
+\subsubsection{Moltiplications}
+Let $\forall a \in \mathbb{R}$:
+\begin{itemize}
+    \item $+\infty \cdot +\infty := +\infty$;
+    \item $-\infty \cdot +\infty := -\infty$;
+    \item $-\infty \cdot (-\infty) := \infty$;
+    \item $a \cdot \infty := \begin{cases}
+        a > 0 &+\infty\\
+        a < 0 &-\infty\\
+        a = 0 & \text{undefined}
+    \end{cases}$
+    \item $a \cdot (-\infty):= \begin{cases}
+        a > 0 &-\infty\\
+        a < 0 &+\infty\\
+        a = 0 &\text{undefined}
+    \end{cases}$
+    \item $\frac{a}{+\infty}=\frac{a}{-\infty} := 0$;
+    \item $\frac{+\infty}{a}:= \begin{cases}
+        a > 0 &+\infty\\
+        a < 0 &-\infty\\
+        a = 0 &+\infty
+    \end{cases}$
+    \item $\frac{-\infty}{a}:= \begin{cases}
+        a > 0 &-\infty\\
+        a < 0 &+\infty\\
+        a = 0 &-\infty
+    \end{cases}$
+    \item $\frac{\infty}{\infty}:=$ undefined.
+\end{itemize}
+
+
 
 \end{document}

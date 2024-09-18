@@ -1,0 +1,170 @@
+\documentclass{article}
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{babel}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{esvect}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.17}
+
+\geometry{
+    a4paper,
+    total={170mm, 257mm},
+    left=20mm,
+    top=20mm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={System engineering in EES}
+}
+
+\newcommand{\figbox}[1]{ 
+    \begin{figure*}[ht!]        
+        \begin{center}            
+            \fbox{#1}        
+        \end{center}    
+    \end{figure*}
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\newcommand{\cfig}[1]{%
+  \begin{figure*}[ht!]%
+    \centering%
+    #1%
+  \end{figure*}%
+}
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+
+
+% === TEXT ===
+\title{\textbf{Systems Engineering in\\Environmental and Energie Systems\\ HSLU, Semester 1}}
+\author{Matteo Frongillo}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\part{Week 1}
+
+\section{Waste to energy (WtE)}
+The waste to energy systems provide to turn our wastes to usable energy
+
+\subsection{Incineration plants}
+...
+
+\subsubsection{Municipal solid waste}
+\begin{itemize}
+    \item Volume reduction of waste (90\%);
+    \item Energy production: waste has the same...
+\end{itemize}
+
+\subsubsection{4-key Components of an incineration plant}
+\begin{enumerate}
+    \item Waste handling system:
+    \item Combustion chamber:
+    \item Air pollution control system:
+    \item Energy recovery system:
+\end{enumerate}
+
+\subsubsection{Types of wastes that can be converted into energy}
+\begin{itemize}
+    \item Municipal wastes;
+    \item Wood wastes;
+    \item Agricultural wastes;
+    \item Industrial wastes;
+    \item Animal wastes.
+\end{itemize}
+
+\subsection{Current status of waste to energy}
+IMMAGINE
+
+\subsubsection{Waste production per person in CH}
+In Switzerland, people produce 700kg of waste per person per year.
+
+\subsection{Waste hierarchy}
+The hierarchy helps us rethink our relationship with waste based on
+five priorities ranked in terms of what is best for the environment:
+
+\begin{enumerate}
+    \item Produc prevention;
+    \item Preparing for re-use;
+    \item Recycle;
+    \item Recovery;
+    \item Waste disposal.
+\end{enumerate}
+
+\subsection{Advantages and disadvantages of the Swiss system}
+\subsubsection{Advantages}
+...
+
+\subsubsection{Disadvantages}
+...
+
+\section{System thinking}
+\subsection{Benefits}
+Rigorous way of integrating: people, purposes, process and performance and:
+\begin{itemize}
+    \item ...
+\end{itemize}
+
+\subsection{Feedback loops}
+...
+
+\section{Case study part 1}
+...
+
+\part{Week 2}
+\section{Situation analysis and system thinking}
+
+
+
+
+
+
+
+
+\end{document}

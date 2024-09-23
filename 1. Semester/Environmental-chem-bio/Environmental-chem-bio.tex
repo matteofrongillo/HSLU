@@ -76,6 +76,7 @@
 \newcommand{\defs}{\underline{Definition}: }
 \newcommand{\wrn}{\underline{Warning}: }
 \newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1}\phantom{}\\}
 
 
 % === TEXT ===
@@ -89,22 +90,6 @@
 \pagebreak
 
 \part*{Preamble (Week 0)}
-\section{Agenda}
-\subsection{Environmental concepts and definitions}
-\begin{itemize}
-    \item Definition of Environment and the exchange of materials and energy;
-    \item Definition of Environmental chemistry;
-    \item Definition of Environmental biology;
-    \item Environmental chemistry, biology and related fiels.
-\end{itemize}
-
-\subsection{Chemical processes in the environment}
-\begin{itemize}
-    \item Chemical structure and environmental behavior;
-    \item Partitioning of organic substances in the environment;
-    \item Chemical transformations under environmental conditions.
-\end{itemize}
-
 \section{Learning objectives}
 We should be able to:
 \begin{itemize}
@@ -118,7 +103,49 @@ We should be able to:
         the provided values.
 \end{itemize}
 
+\newpage
 \section{Introduction SW 0}
+\subsection{Definitions}
+\subsubsection{Environmental Chemistry}
+Environmental chemistry is the discipline that describes the \textbf{origin,
+transport, reactions, effects and fate} of chemical species in the
+hydro-, atmo-, geo-, bio- and anthrosphere.
+
+\cfig{\includegraphics*[width=.9\textwidth]{media/env-chemistry.png}}
+
+\subsubsection{Enviromental Biology}
+Environmental biology is the study of \textbf{the relationships between
+living organisms and their environment}, including the impacts of
+human activities.
+
+\begin{center}
+    \vspace*{0.25cm}
+    \begin{tikzpicture}
+        \draw[fill=yellow!50, draw=black, thick] (0,0) rectangle (3,1.5);
+        \draw[fill=yellow!50, draw=black, thick] (3,0.35) -- (3.3,0.75) -- (3,1.15);
+        \node at (1.5,0.75) {\textbf{Biotic Factors}};
+        
+        \draw[fill=green!30, draw=black, thick] 
+          (4,0) rectangle (8,1.5);
+        \node at (6,0.95) {\textbf{Environment}};
+        \node at (6,0.55) {(Biotic and Abiotic)};
+        
+        \draw[fill=cyan!30, draw=black, thick] (9,0) rectangle (12,1.5);
+        \draw[fill=cyan!30, draw=black, thick] (9,0.35) -- (8.7,0.75) -- (9,1.1);
+        \node at (10.5,0.75) {\textbf{Abiotic Factors}};
+    \end{tikzpicture}
+\end{center}
+
+In an ecosystem, biotic factors include all living organisms and
+microorganisms. These organisms interact through predation, competition,
+and sysmbiosis, forming a complex web of life.\\
+Abiotic factors, lie water, sunlight, temperature, pH levels, and
+minerals, influence the biotic components.
+
+Human activities, such as the introduction of radioactive wastes, can
+disrupt the balance by altering the chemistry of the environment and
+harming living organisms.
+
 \subsection{Chemical structure and Environmental behavior}
 We consider two groups of properties of chemicals:
 \subsubsection{Physical properties}
@@ -129,7 +156,7 @@ We consider two groups of properties of chemicals:
     \item Partition coefficients (e.g. K$_{OW}$).
 \end{itemize}
 
-These properties describe \textbf{Dispersion} in different compartiments $\Rightarrow$ Mobility and Toxicity.
+These properties describe \textbf{Dispersion} in different compartments $\Rightarrow$ Mobility and Toxicity.
 
 \subsubsection{Chemical properties $\rightarrow$ Reactivity}
 \begin{itemize}
@@ -141,26 +168,41 @@ These properties describe \textbf{Dispersion} in different compartiments $\Right
 These properties describe \textbf{Transformation} of products $\Rightarrow$ Degradation
 
 \subsection{Partitioning of organic substances in the environment}
-It explains how easily a chemical can spread in the environment:
+The partitioning is the passage of an organic substance from one environmental
+compartment to another.\\ It's a physical process and does not involve a chemical reaction:
+
+
+\setlength{\intextsep}{0pt}%
+\begin{wrapfigure}{r}{.55\textwidth}
+    \vspace*{1.5cm}
+    \includegraphics[width=.55\textwidth]{media/partitioning.png}
+\end{wrapfigure}
+
+\phantom{}
+
 \begin{enumerate}
-    \item air $\leftrightarrow$ water:
+    \item air $\longleftrightarrow$ water:
         \begin{itemize}
-            \item vapor pressure (``evaporation rate'');
-            \item water solubility.
+            \item volatility / vapor pressure;
+            \item water solubility;
+        \end{itemize}
+    \item water $\longleftrightarrow$ soil:
+        \begin{itemize}
+            \item adsorption (sticking to particles);
+            \item water solubility;
+        \end{itemize}
+    \item soil $\longleftrightarrow$ air:
+        \begin{itemize}
+            \item adsorption;
+            \item volatility / vapor pressure;
+        \end{itemize}
+    \item all phases $\longleftrightarrow$ biota:
+        \begin{itemize}
+            \item lipophilicity (fat solubility).
         \end{itemize}
 \end{enumerate}
-
-1. air ↔ water:
-• vapor pressure (“evaporation rate”)
-• water solubility
-2. water ↔ soil:
-• adsorption (“sticking to particles”)
-• water solubility
-3. soil ↔ air:
-• adsorption
-• vapor pressure
-4. all phases ↔ biota:
-• fat solubility (“lipophilicity”)
+\wrapfill
+\vspace*{-3cm}
 
 \subsection{Chemical transformations under environmental conditions}
 There are two fundamental pathways:
@@ -168,91 +210,149 @@ There are two fundamental pathways:
 \subsubsection{Abiotic}
 In compartments Air, Water, Soil $\rightarrow$ \textbf{Energy source: temperature, light}
 \begin{enumerate}
-    \item Hydrolysis;
-    \item Oxidation;
-    \item Reduction;
-    \item Photochemical reactions.
+    \item Hydrolysis: water breaks down a compound;
+    \item Oxidation: process where a substance loses electrons, often involving oxygen;
+    \item Reduction: process where a substance gains electrons, often involving the breakdown of pollutant in low-oxygen conditions;
+    \item Photochemical reactions: reaction driven by sunlight, where light energy breaks down chemicals.
 \end{enumerate}
 
 \subsubsection{Biotic}
 In organisms $\rightarrow$ \textbf{Catalyst: enzymes}
 \begin{enumerate}
-    \item Oxidation;
-    \item Reduction;
-    \item Hydrolysis;
-    \item Secundary reactions.
+    \item Oxidation: enzymes help break down organic molecules within organisms;
+    \item Reduction: in organisms, reduction reactions often involve energy production, such as anaerobic environments;
+    \item Hydrolysis: enzymes within organisms facilitate hydrolysis to break down larger molecules, like proteins or carbohydrates;
+    \item Secundary reactions: additional reactions that happen following primary processes.
 \end{enumerate}
+
+\subsection{Biological transformations}
+\subsubsection{Abiotic transformations}
+\begin{itemize}
+    \item These occur in the non-living components of the environment.\\
+        Energy for these transformations often comes from higher
+        temperatures or sunlight;
+    \item Photochemical reactions are particularly important in
+        atmosphere, driven by sunlight. They can lead to the breakdown
+        of pollutant, through some compounds like PCBs (polychlorinated biphenyls)
+        are resistant to degradation, causing persistance in the environment.
+\end{itemize}
+
+\subsubsection{Biotic transformations}
+\begin{itemize}
+    \item These occur within living organisms and are often enzyme-driven;
+    \item Persistent pollutants like PCBs, biotic transformations tend
+        to be slow, leading to accumulation in organisms. This results
+        in \textbf{bioaccumulation} up the foodchain.
+\end{itemize}
 
 \newpage
 \part{Week 1}
-\section{Agenda}
-\begin{enumerate}
-    \item \textbf{Overview of the Anthrosphere and Environmental Impact}
-        \begin{itemize}
-            \item Anthrosphere: definition and impact;
-            \item Pollutants and hazardous waste;
-            \item Anthrosphere: primary source of pollutants;
-            \item Pollutants overview;
-            \item Point sources vs. Nonpoint sources;
-        \end{itemize}
-    \item \textbf{Earth system and pollution dynamics}:
-        \begin{itemize}
-            \item Earth system and chemicals;
-            \item 5-key aspects of pollutants;
-        \end{itemize}
-    \item \textbf{Important pollutant categories}
-        \begin{enumerate}[label=\arabic*.]
-            \item Heavy metals;
-            \item Greenhouse gases;
-            \item Particulate matter (PM);
-            \item Persistent organic pollutants (POPs);
-            \item Chlorofluorocarbons (CFCs);
-            \item Polycyclic aromatic hydrocarbons (VOCs);
-            \item Environmentally persistent pharmaceutical pollutants (EPPPs);
-            \item Plastics.
-        \end{enumerate}
-\end{enumerate}
+\section{Learning objectives}
+We should be able to:
+\begin{itemize}
+    \item provide for at least 5 of the 8 primary sources of pollutants;
+    \item apply the 5-key aspects of a pollutant to predict its behaviour in the environemnt;
+    \item discuss how pollutants move through different environmental compartments;
+    \item briefly describe with one example the pollutant categories;
+    \item recognize the pollutant classes by their Lewis structure;
+    \item compare and contrast the similarities and differences among various pollutant categories,
+        including their sources, chemical properties, environmental impact, and persistence.
+\end{itemize}
 
 \newpage
-\section{Anthrosphere}
-Definition:
+\section{Anthrosphere and Environmental impact}
+\pph{Definition:}
+The anthrosphere is the part of the environment that's \textbf{made
+or operated by humans}. The anthrosphere is where \textbf{pollutants are made} and
+from which they are released with profound effect on all other environmental spheres.
 
-Impact:
+It also strongly affected by pollutants, e.g. acid rains, which cause deterioration of
+stone structures and corrosion of metal components.
+
+\pph{Impact:}
+It is essential to view the anthrosphere as a distinct environmental sphere,
+when considering environmental chemistry and sustainability. Just a look around
+us shows the dwellings, buildings, roads, factories, power lines, and numerous
+other things constructed and operated by human as a visible evidence of the
+existence of the anthrosphere of Earth.
 
 \subsection{Human primary sources}
 \cfig{\includegraphics*[width=.8\textwidth]{media/anthrosphere.png}}
 \begin{enumerate}
-    \item Industrial activities:
-    \item Transportation:
-    \item Agriculture:
-    \item Energy production:
-    \item Urban development:
-    \item Deforestation and Land Use changes:
-    \item Household activities:
-    \item Waterwaste and Sewage:
+    \item Industrial activities: factories, mining and processing plants release air,
+        water, and soil pollutants (SO$_2$, NO$_x$, PM, VOCs), including
+        chemicals and heavy metals (Hg);
+    \item Transportation: vehicles and ships emit harmful gases (CO$_2$, CO, NO$_x$),
+        and particulate matter, contibuting to air pollution and climate change;
+    \item Agriculture: farming activities generate pollutants such as pesticides (Glyphosate, Atrazin),
+        fertilizers (NH$_3$), and methane (CH$_3$), leading to water contamination
+        and greenhouse gas emissions;
+    \item Energy production: burning fossil fuels for energy emits CO$_2$, SO$_2$,
+        and other pollutants, driving air pollution and global warming;
+    \item Urban development: construction and waste management in cities produce dust,
+        noise, and runoff pollution, impacting air and water quality;
+    \item Deforestation and Land Use changes: clearing forests releases CO$_2$ and
+        causes soil erosion, contributing to climate change, habitat and biodiversity loss;
+    \item Household activities: residential heating, cooking, and consumer products
+        emit indoor and outdoor air pollutants like VOCs and particulate matter;
+    \item Waterwaste and Sewage: inadequate treatment of sewage and industrial wastewater
+        pollutes water bodies with pathogens, nutrients (PO$_4^{3-}$), chemicals and heavy metals.
 \end{enumerate}
 
 \section{Pollutants and hazardous}
 \subsection{Pollutants}
-...
+A pollutant is a substance or energy introduced into the environment that
+has undesired effects, or adversely affects the useflness of a resource.
+
+A pollutant may cause long- or short-therm damage by changing the growth
+rate or plants or animal species, or by interfering with human amenities,
+comfort, health, or property values.
 
 \subsection{Hazardous waste}
-...
+Hazardous waste is a waste that is dangerous or potentially harmful to our
+health or the environment. Hazardous wastes can be liquids, solids, gases, or sludges.
+
+They can be discarded commercial products, like cleaning fluids or pesticides,
+ore the by-products of manufacturing processes.
 
 \subsection{Pollution overview}
 \cfig{\includegraphics*[width=.8\textwidth]{media/pollution-overview.png}}
 
 \textbf{Air pollution and climate changes}:
-...
+\begin{enumerate}
+    \item Coal-fired power plants emit pollutants like sulfur dioxide (SO$_2$)
+        and nitrogen oxides (NO$_x$) into the atmosphere, contributing to acid rain and acid deposition;
+    \item Cars and highways emit NO$_x$ leading to photochemical smog and
+        further contributing to air pollution;
+    \item Emission of carbon dioxide (CO$_2$) from these sources contribute to
+        global warming;
+    \item Chlorofluorocarbons (CFCs) lead to ozone depletion.
+\end{enumerate}
 
 \textbf{Water pollution and Ecosystem impact}:
-...
+\begin{enumerate}
+    \item Toxic runoff from mines and farmland introduces harmful substances into lakes,
+        rivers, and oceans, causing algal blooms and leading to oxygen depletion
+        in aquatic ecosystems;
+    \item Nitrogen (N) and phosphorus (P) from fertilizers in agricultural runoff also
+        contribute to eutrophication in water bodies, exacerbating algal blooms;
+    \item Wastewater effluent, plastics, and petroleum seepage from oil swlls pollute lakes,
+        oceans, and groundwater, leading to groundwater contamination and ocean acidification;
+    \item Oil spills, toxic runoff, and plastic pollution are shown to be harming ocean life.
+\end{enumerate}
 
 \textbf{Land degradation}:
-...
+\begin{enumerate}
+    \item Logging and mining activities result in erosion, causing sediment loading in nearby water bodies;
+    \item Fracking (hydraulic fracturing) is depicted as a source of petroleum seepage into groundwater.
+\end{enumerate}
 
 \textbf{Forests and Farmland}:
-...
+\begin{enumerate}
+    \item The farmland in the diagram shows surface runoff of nitrogen and phosphorus
+        into surrounding water systems, further contibuting to water pollution
+        and ecological damate.
+\end{enumerate}
 
 \section{Point sources vs. Nonpoint sources}
 \cfig{\includegraphics*[width=.8\textwidth]{media/Point-and-nonpoint.png}}

@@ -563,6 +563,227 @@ Let $a,b \in \mathbb{R}$, then:
 
 \newpage
 \part{Week 2}
+\section{Concept of functions}
+Let's take any two sets $A\left\{a,b,c,d,e,f,g\right\}$ and $B\left\{a_1,b_1,c_1,d_1,e_1,f_1,g_1\right\}$.
+
+\figbox{ \hspace*{-1cm}
+    \begin{minipage}{0.12\textwidth}
+        \vspace*{-0.4cm}
+        \begin{align*}
+            f: A &\rightarrow B \\
+            a &\longmapsto f(a)
+        \end{align*}
+    \end{minipage}
+}
+
+A function is a relation between the sets $A$ and $B$, according to which we
+associate to each element of $A$ one and only one element of $B$:
+
+\figbox{
+    \begin{tikzpicture}
+
+        %formula
+        \node at (2.1,3.5) {$\forall x \in A\ \exists!\ y \in B \sht (x,y) \in f$};
+        \draw (-0.2,3.2) rectangle (4.4,3.9);
+
+        %sets A and B
+        \draw (0,0) ellipse (1 and 2);
+        \draw (5,0) ellipse (1 and 2);
+        \node at (-1.5,2.3) {$f:A$};
+        \node at (6,2.3) {$B$};
+        \draw[->] (-0.8,2.3) -- (5.7,2.3);
+        
+        %set A
+        \node at (0,-1.5) {$\bullet$};
+        \node[left] at (-0.05,-1.5) {$g$};
+        \node at (0,-1) {$\bullet$};
+        \node[left] at (-0.05,-1) {$f$};
+        \node at (0,-0.5) {$\bullet$};
+        \node[left] at (-0.05,-0.5) {$e$};
+        \node at (0,0) {$\bullet$};
+        \node[left] at (-0.05,0) {$d$};
+        \node at (0,0.5) {$\bullet$};
+        \node[left] at (-0.05,0.5) {$c$};
+        \node at (0,1) {$\bullet$};
+        \node[left] at (-0.05,1) {$b$};
+        \node at (0,1.5) {$\bullet$};
+        \node[left] at (-0.05,1.5) {$a$};
+        
+        %set B
+        \node at (5,-1.5) {$\bullet$};
+        \node[right] at (5.05,-1.5) {$g_1$};
+        \node at (5,-1) {$\bullet$};
+        \node[right] at (5.05,-1) {$f_1$};
+        \node at (5,-0.5) {$\bullet$};
+        \node[right] at (5.05,-0.5) {$e_1$};
+        \node at (5,0) {$\bullet$};
+        \node[right] at (5.05,0) {$d_1$};
+        \node at (5,0.5) {$\bullet$};
+        \node[right] at (5.05,0.5) {$c_1$};
+        \node at (5,1) {$\bullet$};
+        \node[right] at (5.05,1) {$b_1$};
+        \node at (5,1.5) {$\bullet$};
+        \node[right] at (5.05,1.5) {$a_1$};
+        
+        %arrows
+        \draw[->] (0.2,-1.5) -- (4.8,-1);
+        \draw[->] (0.2,-1) -- (4.8,-0.5);
+        \draw[->] (0.2,-0.5) -- (4.8,0);
+        \draw[->] (0.2,0) -- (4.8,0);
+        \draw[->] (0.2,0.5) -- (4.8,0.5);
+        \draw[->] (0.2,1) -- (4.8,1.5);
+        \draw[->] (0.2,1.5) -- (4.8,1);
+
+        %spacer
+        \node at (0,4.05) {\phantom{}};
+        \node at (0,2.6) {\phantom{}};
+        \node at (0,-2.2) {\phantom{}};
+    \end{tikzpicture}
+}
+
+\nots{$f(a)=b_1,\ f(b)=a_1,\ f(c)=c_1,\ f(d)=d_1,$ ...}
+
+Each point in set $A$ is associated with one element of $B$. However, it is
+possible for more than two elements of $A$ to point to the same element of $B$.
+
+\figbox{The set $A$ is called \textit{domain} of $f$. The set $B$ is called the \textit{codomain} of $f$.}
+
+\subsection{Image (Range)}
+Let $f: X \rightarrow Y$ be a function. The image of $f$ is defined as:
+\figbox{\text{Im($f$)}$=\{y \in Y \sht y=f(x),\ x \in X\}$}
+
+Easily, the image is the set containing all the elements of the set $B$ associated
+with the elements of the set $A$.
+
+\newpage
+\section{Linear function}
+\subsection{Cartesian diagram}
+\begin{center}
+    \begin{tikzpicture}
+        \definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
+
+        \draw[thick][->] (-2,0) -- (5,0);
+        \draw[thick][->] (0,-2) -- (0,5);
+        \node at (5,-.5) {x-axis};
+        \node at (-.7,5) {y-axis};
+        \draw[fill, thick] (3,0) circle (2pt);
+        \node[below] at (3,0) {x=3};
+        \draw[fill, thick] (0,3) circle (2pt);
+        \node[left] at (-.1,3) {y=3};
+        \draw[blue, thick] (3,0) -- (3,3);
+        \draw[blue,thick] (0,3) -- (3,3);
+        \draw[fill, blue, thick] (3,3) circle (2pt);
+        \node[blue, above] at (3,3) {P(3,3)};
+        \node[below] at (-0.2,0) {0};
+        
+        \draw[darkgreen, thick] (-2,-1) -- (4,5);
+        \draw[fill, darkgreen, thick] (0,1) circle (2pt);
+        \node[darkgreen, left] at (-0.1,1) {(y,q)};
+
+        \draw[red, thick, <->] (2,0) arc[start angle=0,end angle=65.5,radius=2];
+        \node[red] at (2,1.2) {$\theta$};
+
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Straight line}
+Let A and B be any two distinct points, then there is one and only one
+line passing through A and B.
+
+\subsection{Slope-intercept equation}
+Let $m,q \in \mathbb{R}$, then
+\figbox{$y=mx+q$}
+
+\begin{itemize}
+    \item $m$: slope;
+    \item $q$: vertical intercept.
+\end{itemize}
+
+\subsubsection{Slope}
+The slope of a line can be calculated with the equation
+\figbox{$m=\frac{y_B-y_A}{x_B-x_A}=\frac{\Delta y}{\Delta x} = \tan{(\theta)}$}
+
+We have three different slope outcomes:
+\begin{itemize}
+    \item $m>0$, the line is increasing;
+    \item $m=0$, the line is stable;
+    \item $m<0$, the line is decreasing. 
+\end{itemize}
+
+\wrn{This works only if $x_B \neq x_A$.}
+
+\subsubsection{Drawing}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick] (0,0) -- (5,3);
+        \draw[fill, thick, red] (1.65,1) circle (2pt);
+        \node[above, red] at (1.65,1) {A};
+        \draw[fill, thick, blue] (3.35,2) circle (2pt);
+        \node [above, blue] at (3.35, 2) {B};
+
+        %slope
+        \draw[thick, red] (1.65,1) -- (3.34,1);
+        \draw[thick, blue] (3.34,2) -- (3.34,1);
+
+        %braces
+        \draw[decorate,decoration={brace,amplitude=5pt},thick] (3.54,2) -- (3.54,1);
+        \node at (4.1,1.53) {$\Delta x$};
+        \draw[decorate,decoration={brace,amplitude=5pt},thick] (3.35,0.8) -- (1.65,0.8);
+        \node at (2.5,0.4) {$\Delta y$};
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Vertical lines}
+The more the value of m increases, the closer the line will get to the vertical,
+without ever reaching it.
+
+Let $c \in \mathbb{R}$, then $x=c$.
+
+Vertical lines cannot be written as a function.
+
+\section{Equation of a line}
+Let $m,x_A,y_A \in \mathbb{R}$ and $A(x_A, y_A)$, then
+\figbox{$y-y_A=m(x-x_A)$}
+
+e.g.: Find the line with $m=-1$ and $A(2,-1)$.
+\[
+    y-1=-1(x+2) \Rightarrow y=-x+1
+\]
+\hspace{.75cm} Points: $A(2,-1);\ B(0,1)$
+
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+                axis lines = middle,
+                xlabel = $x$,
+                ylabel = $y$,
+                grid = both,
+                xmin=-3, xmax=3,
+                ymin=-3, ymax=3,
+                domain=-3:3
+            ]
+            \addplot[color=blue, thick] {-x + 1};
+            \draw[fill, red, thick] (2,-1) circle (2pt);
+            \node[right,red] at (2,-.9) {A};
+            \draw[fill,red,thick] (0,1) circle (2pt);
+            \node[right,red] at (0,1.1) {B};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection{General equation in a cartesian diagram}
+\figbox{$ax+by+c=0$}
+
+\rem{\begin{itemize}
+    \item All the lines can be described with this kind of equation;
+    \item When $b=0$, $a \neq 0$, then $ax=-c \Rightarrow x=\frac{-c}{a} \in \mathbb{R}$;
+    \item When $b \neq 0$, then $y=-\frac{a}{b}x -\frac{c}{b}$,
+        where $m=-\frac{a}{b}$ and $q=-\frac{c}{b}$.
+\end{itemize}}
+
+
+
 
 
 

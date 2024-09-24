@@ -69,6 +69,7 @@
 \newcommand{\defs}{\underline{Definition}: }
 \newcommand{\wrn}{\underline{Warning}: }
 \newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
 
 % === TEXT ===
 \title{\textbf{Mathematics 1A \\ HSLU, Semester 1}}
@@ -781,6 +782,55 @@ e.g.: Find the line with $m=-1$ and $A(2,-1)$.
     \item When $b \neq 0$, then $y=-\frac{a}{b}x -\frac{c}{b}$,
         where $m=-\frac{a}{b}$ and $q=-\frac{c}{b}$.
 \end{itemize}}
+
+\newpage
+\section{Increasing and decreasing functions}
+Let $f:[a,b] \longrightarrow \mathbb{R}$
+
+\nots{if your replace $[a,b]$ with $\mathbb{R}$, you obtain the definition in the whote $\mathbb{R}$.}
+
+\subsection{Increasing functions}
+\begin{itemize}
+    \item $f$ is increasing if $\forall x_1,x_2 \in [a,b] \sht x_2>x_1$, then $f(x_2)\geq f(x_1)$;
+    \item $f$ is strictly increasing if $\forall x_1,x_2 \in [a,b] \sht x_2>x_1$, then $f(x_2)>f(x_1)$.
+\end{itemize}
+
+\subsection{Decreasing functions}
+\begin{itemize}
+    \item $f$ is decreasing if $\forall x_1,x_2 \in [a,b] \sht x_2>x_1$, then $f(x_2)\leq f(x_1)$;
+    \item $f$ is strictly decreasing if $\forall x_1,x_2 \in [a,b] \sht x_2>x_1$, then $f(x_2)<f(x_1)$.
+\end{itemize}
+
+\section{Inverse function}
+Let's take any two sets $A$ and $B$.
+
+A function $f: A \rightarrow B$ is invertible if there exists another
+function $f^{-1}: B \rightarrow A$, called the inverse function, such that:
+
+\figbox{\begin{minipage}{3.6cm}
+    $\forall x \in A,\ f^{-1}(f(x)) = x$ \vspace*{-.25cm}\\
+    $\forall y \in B,\ f(f^{-1}(y)) = y$
+\end{minipage}}
+
+\wrn{A function is invertible if and only if it is bijective.}
+
+\subsection{Facts about inverse functions}
+\pph{1)}
+Let $f:D\rightarrow \mathbb{R}$
+
+$f$ is invertible in $D$ when:
+\begin{itemize}
+    \item $f$ is strictly increasing;
+    \item $f$ is strictly decreasing.
+\end{itemize}
+
+\pph{2)}
+Let $f:D \rightarrow \mathbb{R}$
+
+$f$ is invertible when $f^{-1}:$ Im$(f) \rightarrow D$.
+
+
+
 
 
 

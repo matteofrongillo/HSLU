@@ -829,6 +829,207 @@ Let $f:D \rightarrow \mathbb{R}$
 
 $f$ is invertible when $f^{-1}:$ Im$(f) \rightarrow D$.
 
+\newpage
+\part{Week 3}
+\section{Polynomial function}
+\subsection{Expressions, terms and factors}
+\subsubsection{Expressions}
+An expression is any formula containing numbers, variables, operations, and
+brackets.
+\figbox{$y=ax^2+bx\cdot c$}
+
+\subsubsection{Terms}
+A term is any part of the expression separated by ``$+$'' or ``$-$''.
+\figbox{$y = \underbrace{ax^2}_{term} + \underbrace{bx \cdot c}_{term}$}
+
+\subsubsection{Factors}
+Each term can be split into a product of factors.
+\figbox{$x \cdot y \cdot (a-b) \cdot 24 = x \cdot y \cdot (a-b) \cdot 2 \cdot 2 \cdot 2 \cdot 3$}
+
+\underline{Notice}: the process of splitting a term into several factors is called ``factorization''.\\
+\phantom{} \hspace{1cm} The goal of a factorization is to factorize an expression as much as possible.
+
+\section{Common factor}
+Any expression made of terms is composed of several factors.
+\figbox{$x^2+x^3+x= x(x+x^2+1),\ \forall x \in \mathbb{R}$}
+
+\section{Notable products}
+\begin{itemize}
+    \item $(a+b)^2=a^2+2ab+b^2$ (square of a binomial);
+    \item $(a-b)^2=a^2-2ab+b^2$ (square of a binomial);
+    \item $(a-b)(a+b)=a^2-b^2$ (difference of squares);
+    \item $(a+b)(a^2-ab+b^2)=a^3+a^3$ (sum of cubes);
+    \item $(a-b)(a^2+ab+b^3)=a^3-b^3$ (difference of cubes).
+\end{itemize}
+
+\underline{Remark}: notable products are useful to factorize expressions when we don't know a common factor.
+
+\section{Classification of polynomials}
+Polynomials can be classified using two criteria: 
+\begin{enumerate}
+    \item the number of terms;
+    \item the degree of the polynomial.
+\end{enumerate}
+\begin{equation*}
+    \begin{aligned}
+        &\begin{array}{|c|c|l|c|}
+        \hline \text { Number of Terms } & \text { Name } & \text { Example } & \text { Comment } \\
+        \hline \text { One } & \text { Monomial } & ax^2 & \text { Mono means ``one'' in Greek } \\
+        \hline \text { Two } & \text { Binomial } & ax^2-b x & \text { Bi means ``two'' in Latin } \\
+        \hline \text { Three } & \text { Trinomial } & ax^2-b x+c & \text { Tri means ``three'' in Greek } \\
+        \hline \text { Four or more } & \text { Polynomial } & a x^3-b x^2+c x-d & \text { Poly means ``many'' in Greek } \\
+        \hline
+        \end{array}
+    \end{aligned}
+\end{equation*}
+
+\subsection{Definition}
+Let $n \in \mathbb{N^*}$, then a polynomial is the sum or difference of n-monomials. 
+
+\subsection{Degree}
+The degree of a polynomial is the largest exponent of its monomials.
+
+\subsubsection{Monomials}
+The degree of a monomial is the sum of all the exponents of all the variables.
+
+$p(x)=x^2+1 \rightarrow$ the degree is 2.\\
+$\forall x \in \mathbb{R},\ p(0)=0^2+1=1 \rightarrow$ 1 is a polynomial with degree 0.
+
+\subsubsection{Polynomials}
+The degree of a polynomial is the highest of all the degrees of all the
+monomials which compose the polynomial.
+
+$p(x)=x^3+1+x^5+x^21 \rightarrow \deg(p(x))=21$\\
+$q(x)=12 \underbrace{abcd}_{\deg=4} - 31x^3+2xy \rightarrow \deg(q(x))=4$ 
+
+\underline{Notation}: Let $f(x)=ax^2+bx+c$, $a$ and $b$ are called coefficient.\\
+The coefficient of the monomial with highest coefficient is called \textbf{leading coefficient}.
+
+\section{Symmetrical functions}
+Let $y = kx^n$, then we plot:
+\subsection{$n$ odd}
+\figbox{$f(-x)=-f(x), \quad \forall x \in \mathbb{R}$}
+
+\subsubsection{Graph examples}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                domain=-2:2,
+                samples=100,
+                axis lines=middle,
+                xlabel=$x$, ylabel={$y$},
+            ]
+            \addplot[color=blue, thick]{(x/2)^3};
+            \end{axis}
+        \end{tikzpicture}
+        \caption*{$k > 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                domain=-2:2,
+                samples=100,
+                axis lines=middle,
+                xlabel=$x$, ylabel={$y$},
+            ]
+            \addplot[color=red, thick]{-(x/2)^3};
+            \end{axis}
+        \end{tikzpicture}
+        \caption*{$k < 0$}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+\subsection{$n$ even}
+\figbox{$f(-x)=f(x), \quad \forall x \in \mathbb{R}$}
+
+\subsubsection{Graph examples}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                domain=-2:2,
+                samples=100,
+                axis lines=middle,
+                xlabel=$x$, ylabel={$y$},
+            ]
+            \addplot[color=blue, thick]{(x/2)^2};
+            \end{axis}
+        \end{tikzpicture}
+        \caption*{$k > 0$ \\ Concave up}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                domain=-2:2,
+                samples=100,
+                axis lines=middle,
+                xlabel=$x$, ylabel={$y$},
+            ]
+            \addplot[color=red, thick]{-(x/2)^2};
+            \end{axis}
+        \end{tikzpicture}
+        \caption*{$k < 0$\\Concave down}
+    \end{subfigure}
+\end{figure}
+
+\defs{\begin{itemize}
+    \item a function $y=f(x)$ is called \textbf{odd} if it is symmetric with
+    respect to the origin;
+    \item a function $y=f(x)$ is called \textbf{even} if it is symmetric
+    with respect to the y-axis.
+\end{itemize}}
+
+\subsection{General case}
+Let $y=p(x)$, where $p(x)$ is any polynomial with real coefficients:
+\figbox{$p(x)=a_n \cdot x^n + a_{n-1} \cdot x^{n-2} + a_{n-2} \cdot x^{n-1} + \dots + a_{2} \cdot x^{2} + a_{1} \cdot x^{1} + a_{0} \cdot x$}
+
+where:
+\begin{itemize}
+    \item $n \in \mathbb{N}$;
+    \item $n=\deg(p(x))$;
+    \item $a_n=$ leading coefficient.
+\end{itemize}
+
+\figbox{\Large $\displaystyle p(x)=\sum^{n}_{i=0} a_i \cdot x^i$}
+
+\subsection{Symmetry of a polynomial}
+Let $y=p(x)$ be a polynomial function, then:
+\pph{1)}
+$y=p(x)$ is odd iff all the degrees of all the terms of
+$p(x)$ are odd;
+
+\pph{2)}
+$y=p(x)$ is even iff all the degrees of all the terms of
+$p(x)$ are even;
+
+\pph{3)}
+$y=p(x)$ has mixed degrees, $p(x)$ is neither odd nor even.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

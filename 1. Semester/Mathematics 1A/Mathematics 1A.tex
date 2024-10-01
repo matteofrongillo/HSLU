@@ -22,6 +22,7 @@
 \usepackage{subcaption}
 \usepackage[T1]{fontenc}
 \usepackage{esvect}
+\usepackage{siunitx}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -72,6 +73,7 @@
 \newcommand{\sht}{\ |\ }
 \newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
 \newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
 
 % === TEXT ===
 \title{\textbf{Mathematics 1A \\ HSLU, Semester 1}}
@@ -833,14 +835,14 @@ $f$ is invertible when $f^{-1}:$ Im$(f) \rightarrow D$.
 
 \newpage
 \part{Week 3}
-\section{Polynomial function}
+\section{Expressions and factorization}
 \subsection{Expressions, terms and factors}
 \subsubsection{Expressions}
 An expression is any formula containing numbers, variables, operations, and
 brackets.
 \figbox{$y=ax^2+bx\cdot c$}
 
-\subsubsection{Terms}
+\subsection{Terms}
 A term is any part of the expression separated by ``$+$'' or ``$-$''.
 \figbox{$y = \underbrace{ax^2}_{term} + \underbrace{bx \cdot c}_{term}$}
 
@@ -851,11 +853,11 @@ Each term can be split into a product of factors.
 \underline{Notice}: the process of splitting a term into several factors is called ``factorization''.\\
 \phantom{} \hspace{1cm} The goal of a factorization is to factorize an expression as much as possible.
 
-\section{Common factor}
+\subsubsection{Common factor}
 Any expression made of terms is composed of several factors.
 \figbox{$x^2+x^3+x= x(x+x^2+1),\ \forall x \in \mathbb{R}$}
 
-\section{Notable products}
+\subsection{Notable producs}
 \begin{itemize}
     \item $(a+b)^2=a^2+2ab+b^2$ (square of a binomial);
     \item $(a-b)^2=a^2-2ab+b^2$ (square of a binomial);
@@ -866,50 +868,30 @@ Any expression made of terms is composed of several factors.
 
 \underline{Remark}: notable products are useful to factorize expressions when we don't know a common factor.
 
+\newpage
+\section{Polynomial function}
+Let $n \in \mathbb{N^*}$, then a polynomial is the sum or difference of n-monomials. 
+
 \section{Classification of polynomials}
 Polynomials can be classified using two criteria: 
 \begin{enumerate}
-    \item the number of terms;
-    \item the degree of the polynomial.
+    \item the number of \textbf{terms};
+    \item the \textbf{degree} of the polynomial.
 \end{enumerate}
-\begin{equation*}
-    \begin{aligned}
+\begin{center}
+    $\begin{aligned}
         &\begin{array}{|c|c|l|c|}
-        \hline \text { Number of Terms } & \text { Name } & \text { Example } & \text { Comment } \\
-        \hline \text { One } & \text { Monomial } & ax^2 & \text { Mono means ``one'' in Greek } \\
-        \hline \text { Two } & \text { Binomial } & ax^2-b x & \text { Bi means ``two'' in Latin } \\
-        \hline \text { Three } & \text { Trinomial } & ax^2-b x+c & \text { Tri means ``three'' in Greek } \\
-        \hline \text { Four or more } & \text { Polynomial } & a x^3-b x^2+c x-d & \text { Poly means ``many'' in Greek } \\
+        \hline \rule{0pt}{13pt} \text { Number of Terms } & \text { Name } & \text { Example } & \text { Degree } \\
+        \hline \rule{0pt}{13pt} \text { One } & \text { Monomial } & ax^2 & \text { 1 } \\
+        \hline \rule{0pt}{13pt} \text { Two } & \text { Binomial } & ax^2-b x & \text { 2 } \\
+        \hline \rule{0pt}{13pt} \text { Three } & \text { Trinomial } & ax^2-b x+c & \text { 3 } \\
+        \hline \rule{0pt}{13pt} \text { Four or more } & \text { Polynomial } & a_n x^n-a_1 x^{n-1}+a_2x^{n-2}\cdots a_0& \text { n-degree } \\
         \hline
         \end{array}
-    \end{aligned}
-\end{equation*}
-
-\subsection{Definition}
-Let $n \in \mathbb{N^*}$, then a polynomial is the sum or difference of n-monomials. 
-
-\subsection{Degree}
-The degree of a polynomial is the largest exponent of its monomials.
-
-\subsubsection{Monomials}
-The degree of a monomial is the sum of all the exponents of all the variables.
-
-$p(x)=x^2+1 \rightarrow$ the degree is 2.
-
-$\forall x \in \mathbb{R},\ p(0)=0^2+1=1 \rightarrow$ A constant term, like 1, is a polynomial with degree 0.
-
-\subsubsection{Polynomials}
-The degree of a polynomial is the highest of all the degrees of all the
-monomials which compose the polynomial.
-
-$p(x)=x^3+1+x^5+x^21 \rightarrow \deg(p(x))=21$\\
-
-Let $a,b,c,d,x,y$ be variables, then:
-
-$q(a,b,c,d,x,y)=12 \underbrace{abcd}_{\deg=4} - 31x^3+2xy \rightarrow \deg(q(x))=4$ 
-
-\underline{Notation}: Let $f(x)=ax^2+bx+c$,\ $a$, $b$ and $c$ are called coefficients.\\
-The coefficient of the monomial with highest degree is called \textbf{leading coefficient}.
+    \end{aligned}$
+\end{center}
+\vspace*{.3cm}
+\rem{The degree of a polynomial is the largest exponent of its monomials.}
 
 \section{Symmetrical functions}
 Let $y = kx^n$, then we plot:
@@ -1116,9 +1098,153 @@ When we have the same degree either in the numerator and in the denominator:
 \defs{\textbf{horizontal asymptote} appears when $x$ approaches to $\infty$,
 which implies that $y$ approaches to a number $A$ different from $\pm \infty$}
 
+\newpage
+\section{Exponential and logarithm functions}
+The relationship between exponentials and logarithms is based on the following formula:
+\figbox{$\dm a^{\log_a(x)} = x \Longleftrightarrow \log_a(a^x) = x$}
 
+\subsection{Exponentials}
+\subsubsection{Euler's number}
+Euler's number is defined by the limit:
+\figbox{$\dm e = \lim_{x \to \infty} {\left(1+\dfrac{1}{n}\right)}^n \approx 2.718\cdots$}
 
+Alternatively, it can be expressed as:
+\figbox{$\dm e = \sum_{n=0}^\infty \frac{1}{n!} $}
 
+\subsection{Logarithms}
+\subsubsection{Natural logarithm}
+The inverse function of the Euler's exponential function:
+\figbox{$\dm f(x)=e^x \Longleftrightarrow h(x)=\ln(x)$}
+
+\rem{the domain of $\ln(x)$ is D$_n:\ \forall x \in \mathbb{R}^{*}_{+}$}
+
+\subsubsection{Logarithms with arbitrary bases}
+The inverse function of any arbitrary exponential function:
+\figbox{$\dm f(x)=n^x \Longleftrightarrow h(x)=\log_{n}(x)$}
+
+Alternatively, it can be expressed as:
+\figbox{$\dm \log_a (x) = \frac{\ln(x)}{\ln(a)}$}
+
+\subsubsection{Common logarithm}
+The common logarithm uses base 10:
+\figbox{$\dm \log_{10}(x)=\frac{\ln(x)}{\ln(10)}$}
+
+\newpage
+\part{Week 4}
+\section{Trigonometry}
+\subsection{Conversion table of degrees and radians}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Angles (in Degrees)} & \rule{0pt}{15pt} $0^\circ$ & $30^\circ$ & $45^\circ$ & $60^\circ$ & $90^\circ$ & $180^\circ$ & $270^\circ$ & $360^\circ$ \\
+        \hline
+        \textbf{Angles (in Radians)} & \rule{0pt}{15pt} $0^{\rad}$ & $\pi/6^{\rad}$ & $\pi/4^{\rad}$ & $\pi/3^{\rad}$ & $\pi/2^{\rad}$ & $\pi^{\rad}$ & $3\pi/2^{\rad}$ & $2\pi^{\rad}$ \\
+        \hline
+        $\sin(\theta)$ & \rule{0pt}{15pt} 0 & $1/2$ & $\sqrt{2}/2$ & $\sqrt{3}/2$ & 1 & 0 & $-1$ & 0 \\
+        \hline
+        $\cos(\theta)$ & \rule{0pt}{15pt} 1 & $\sqrt{3}/2$ & $\sqrt{2}/2$ & $1/2$ & 0 & $-1$ & 0 & 1 \\
+        \hline
+        $\tan(\theta)$ & \rule{0pt}{15pt} 0 & $\sqrt{3}/3$ & 1 & $\sqrt{3}$ & $\infty$ & 0 & $\infty$ & 0 \\
+        \hline
+    \end{tabular}
+\end{center}
+\phantom{}
+
+\underline{Remark}:
+
+\begin{center}
+    $\dm \cos(2\pi+\theta) = \cos(\theta) \qquad | \qquad
+    \sin(2\pi+\theta) = \sin(\theta)$
+\end{center}
+
+\underline{Remark}:
+Let $\forall k \in \mathbb{Z},\ \forall \theta \in \mathbb{R}$, then:
+\figbox{$\cos(\theta + 2\pi k)=\cos(\theta)$}
+
+\subsection{Trigonometric functions in the unit circle}
+\begin{center}
+    \begin{tikzpicture}[scale=3.75]
+        \definecolor{darkgreen}{rgb}{0.0, 0.7, 0.0}
+        %axes
+        \draw[thick, ->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+        \draw[thick, ->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+        \node at (-0.06, -0.06) {$O$};
+        \draw (0,0) circle (1);
+    
+        %theta angle
+        \draw[thick, blue] (0,0) -- (0.866,0.5) node[right] {$P(x,y)$};
+        \draw[dashed, blue] (0,0) -- (0.866,-0.5) node[right] {\ $P'(x,y')$};
+        \draw[<->] (0.3,0) arc (0:30:0.3);
+        \node at (0.35,0.10) {$\theta$};
+
+        %dash
+        \draw[dashed] (0.866,0.5) -- (0,0.5);
+        \draw[dashed] (0.866,0) -- (0.866,-0.5);
+
+        %projections
+        \draw[thick, red] (0,0) -- (0.866, 0) node[midway, below] {$\cos \theta$};
+        \draw[thick, darkgreen] (0.866,0) -- (0.866, 0.5) node[midway, left] {$\sin \theta$};
+    
+        %labels
+        \node at (1.075, 0.05) {1};
+        \node at (-0.05, 1.1) {1};
+        \node at (-1.075, 0.05) {-1};
+        \node at (-0.05, -1.1) {-1};
+        \node at (1, 1) {I};
+        \node at (-1, 1) {II};
+        \node at (-1, -1) {III};
+        \node at (1, -1) {IV};
+
+        %others
+        \draw (0.866,0) rectangle (0.816,0.05);
+        \node[below] at (0.93,0) {$H$};
+    \end{tikzpicture}
+\end{center}
+\vspace*{.5cm}
+\rem{the circle has center in the origin $O$, radius $= 1$ and function $x^2+y^2=1$}
+
+Trigonometric functions can be extended to angles beyond 0 and 90$^\circ$
+using the unit circle. For an angle $\theta$ in the unit circle:
+\figbox{$\dm \sin \theta := y\ \ |\ \cos \theta := x\ \ |\ \tan \theta := \frac{y}{x}$}
+
+\subsubsection{Property 1}
+Because we are inside a circle of radius 1:
+\begin{itemize}
+    \item $-1 \leq \cos(\theta) \leq 1$;
+    \item $-1 \leq \sin(\theta) \leq 1$.
+\end{itemize}
+
+\subsubsection{Property 2}
+Because we have a 90$^\circ$ angle, we can use Pythagoras: 
+\figbox{$\vv{OH}^{\,2}+\vv{PH}^{\,2}=\vv{OP}^{\,2}$}
+
+Let $\dm \forall \theta \in \mathbb{R}$, then we can compute that:
+\figbox{$\dm \sin^2(\theta) + \cos^2(\theta) = 1$}
+
+\subsubsection{Example with $\dfrac{\pi}{4}$}
+When $\dm \theta=\frac{\pi}{4}$, then $\dm \sin(\theta)=\cos(\theta) \Rightarrow 2\cos^2(\theta)=1
+\Rightarrow \cos(\theta)=\sqrt{\frac{1}{2}} \Rightarrow \sin(\theta)=\cos(\theta)=\frac{\sqrt{2}}{2}$
+
+\subsection{Tangent}
+A tangent of an angle is exactly the slope of a line:
+\figbox{$\dm m = \frac{\Delta y}{\Delta x} = \tan(\theta)=\frac{\sin(\theta)}{\cos(\theta)}$}
+
+\underline{Remark}: the tangent is not defined when the angle is $\dfrac{\pi}{2}$
+or $\dfrac{3\pi}{2}$, that is when we have a vertical line.
+
+\subsection{Trigonometric functions}
+\figbox{
+    \begin{minipage}{6.5cm}
+        \hspace*{-.2cm}
+        $\begin{array}{rcl} \vspace*{.15cm}
+            y\ =&\!\! \cos(x), \quad &x\rad \in \mathbb{R}\\ \vspace*{.15cm}
+
+            y\ =&\!\! \sin(x), \quad &x\rad \in \mathbb{R}\\ 
+
+            y\ =&\!\! \tan(x), \quad &x\rad \in \mathbb{R} \difference \left\{\dfrac{\pi}{2} + k\pi \sht k \in \mathbb{Z}\right\} 
+        \end{array}$
+    \end{minipage}
+}   
 
 
 

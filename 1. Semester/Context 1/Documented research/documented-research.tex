@@ -1,0 +1,165 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{lipsum}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{babel}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{esvect}
+\usepackage{xcolor}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.17}
+
+\geometry{
+    a4paper,
+    total={170mm, 257mm},
+    left=20mm,
+    top=20mm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Context 1}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\figbox}[1]{ 
+    \begin{figure*}[ht!]        
+        \begin{center}            
+            \fbox{#1}        
+        \end{center}    
+    \end{figure*}
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
+
+\titleformat{\chapter}[block]{\bfseries\Large}{\thechapter.}{1em}{}
+
+\bibliographystyle{plain}
+
+%========= TEXT ===========
+
+\begin{document}
+
+\begin{titlepage}
+    \includegraphics[width=0.4\textwidth]{media/hslu-svg-logo.png}
+
+    \vspace*{-.4cm}
+    {\huge \textbf{Project Context 1}}
+
+    {\Large Review 2}
+
+    \vspace*{3cm}
+    \begin{center}
+        {\Huge \textbf{My$_{\text{celium}}$Tent}}
+
+        \vspace*{.1cm}
+        \textbf{\large The biodegradable tent}
+
+%        \vspace*{.5cm}
+%        \includegraphics*[width=.35\textwidth]{media/mytent_logo.png}
+    \end{center}
+
+    \vfill
+    {\Large \textbf{Team 31}}\\
+    {\large \vspace*{.01cm}
+        Althaus Simon\\
+        \vspace*{.01cm}
+        Berner Nic\\
+        \vspace*{.01cm}   
+        Frongillo Matteo\\
+        \vspace*{.01cm}
+        McCarthy Benjamin\\
+        \vspace*{.01cm}
+        Nyamdorj Narandavaa\\
+        \vspace*{.01cm}
+    }
+    
+    \vspace{.75cm}
+    {\large
+    Author: Matteo Frongillo\\
+    Horw, 14 October 2024
+    }
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\section{Annotated research}
+\subsection{Mycelium}
+\subsubsection{What is mycelium}
+\subsubsection{Why mycelium}
+\subsubsection{Technical informations}
+
+\subsection{Marketing}
+\subsubsection{Worldwide}
+\subsubsection{In Europe}
+\subsubsection{In Switzerland}
+\subsubsection{Marketing strategies}
+
+\subsection{Structure}
+\subsubsection{Tent structure}
+\subsubsection{Setup}
+
+\subsection{Safety}
+\subsubsection{Mycelium safety}
+\subsubsection{Tent safety}
+
+\subsection{Environment}
+\subsubsection{Biodegradation}
+\subsubsection{Recycle}
+
+
+
+\end{document}

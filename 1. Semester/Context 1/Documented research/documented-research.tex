@@ -27,6 +27,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{esvect}
 \usepackage{xcolor}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{refs.bib}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -85,8 +87,6 @@
 
 \titleformat{\chapter}[block]{\bfseries\Large}{\thechapter.}{1em}{}
 
-\bibliographystyle{plain}
-
 %========= TEXT ===========
 
 \begin{document}
@@ -144,6 +144,7 @@
 
 \subsection{Marketing}
 \subsubsection{Worldwide}
+\fullcite{web:arizton},
 \subsubsection{In Europe}
 \subsubsection{In Switzerland}
 \subsubsection{Marketing strategies}
@@ -160,6 +161,5 @@
 \subsubsection{Biodegradation}
 \subsubsection{Recycle}
 
-
-
+\newpage
 \end{document}

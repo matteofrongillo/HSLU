@@ -27,7 +27,9 @@
 \usepackage[T1]{fontenc}
 \usepackage{esvect}
 \usepackage{xcolor}
-\usepackage[backend=biber]{biblatex}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[backend=bibtex]{biblatex}
 \addbibresource{refs.bib}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
@@ -92,7 +94,10 @@
 \begin{document}
 
 \begin{titlepage}
-    \includegraphics[width=0.4\textwidth]{media/hslu-svg-logo.png}
+    \begin{flushleft}
+        \includegraphics[width=.3\textwidth]{media/hslu-logo-2.png}\\
+        \hspace*{.16cm}\includegraphics[width=0.4\textwidth]{media/hslu-svg-logo.png}
+    \end{flushleft}
 
     \vspace*{-.4cm}
     {\huge \textbf{Project Context 1}}
@@ -144,7 +149,9 @@
 
 \subsection{Marketing}
 \subsubsection{Worldwide}
-\fullcite{web:arizton},
+
+\fullcite{web:arizton}
+
 \subsubsection{In Europe}
 \subsubsection{In Switzerland}
 \subsubsection{Marketing strategies}
@@ -161,5 +168,8 @@
 \subsubsection{Biodegradation}
 \subsubsection{Recycle}
 
+
 \newpage
+\printbibliography
+
 \end{document}

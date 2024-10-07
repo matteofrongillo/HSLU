@@ -63,6 +63,14 @@
     \phantom{}
 }
 
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+    \begingroup
+    \pgfmathparse{rad(atan(#1))}%
+    \endgroup
+}
+\makeatother
+
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
 \newcommand{\nots}{\underline{Notation}: }
@@ -85,13 +93,59 @@
 \tableofcontents
 \pagebreak
 
-\part{Week 1}
+\part{Logic}
+\section{Propositional logic}
+Propositional logic is a branch of mathematics that deals with propositions and logical operations.
+
+\subsection{Logical connectives}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline \rule{0pt}{13pt}
+        A & B & $\lnot B$ & $A \land B$ & $A \lor B$ & $A \Rightarrow B$ & $A \Leftrightarrow B$ \\
+        \hline \rule{0pt}{13pt} T & T & F & T & T & T & T \\
+        \hline \rule{0pt}{13pt} T & F & T & F & T & F & F \\
+        \hline \rule{0pt}{13pt} F & T & F & F & T & T & F \\
+        \hline \rule{0pt}{13pt} F & F & T & F & F & T & T \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Logical conjunction $\land$}
+Given two statements $P$ and $Q$, $P \land Q$ is true if both $P$ and $Q$ are true.
+
+Let $P=(x>0)$ and $Q=(y>0)$, then:
+\figbox{$P \land Q = (x > 0 \land y > 0)$}
+
+\subsubsection{Logical disjunction $\lor$}
+Given two statements $P$ and $Q$, $P \lor Q$ is true if at least one of $P$ or $Q$ is true.
+
+Let $P=(x=0)$ and $Q=(y \neq 0)$, then:
+\figbox{$P \lor Q = (x = 0 \lor y \neq 0)$}
+
+\subsubsection{Logical negation $\lnot$}
+The negation of a statement $P$, denoted as $\lnot P$, is true if $P$ is false, and false if $P$ is true.
+
+Let $P=(x \geq 5)$, then:
+\figbox{$\lnot P = (x < 5)$}
+
+\subsubsection{Implication $\Rightarrow$}
+The symbol $\Rightarrow$ indicates that if statement $P$ is true, then statement $Q$ must also be true (i.e., $P$ implies $Q$).\\
+\wrn{It does not require that $Q$ implies $P$.}
+
+\figbox{$P=(x=1) \Rightarrow Q = (x \in \mathbb{N})$}
+
+\subsubsection{Inference $\Leftarrow$}
+The symbol $\Leftarrow$ means that a conclusion or result implies the truth of an earlier statement.\\
+If $Q$ is true, then $P$ must be true.
+
+\figbox{$Q = (x > 0) \Leftarrow P = (x \in \mathbb{R}^+)$}
+
+\subsubsection{If and only if $\Leftrightarrow$}
+The symbol $\Leftrightarrow$ indicates that two statements $P$ and $Q$ are logically equivalent, meaning $P$ is true if and only if $Q$ is true.
+\figbox{$P = (x \in \mathbb{N},\ x \neq 0) \Longleftrightarrow Q = (x \in \mathbb{N}^*)$}
+
+\part{Set Theory}
 \section{The set theory}
-\subsection{Definition of a set}
-A set is a collection of objects or elements.
-
-\rem{The collection of all sets is not a set.}
-
 \subsection{Logical symbols}
 \subsubsection{Definition}
 Braces and the definition symbol ``$:=$'' are used to define a set giving all its elements:
@@ -139,219 +193,6 @@ $
 $
 
 Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\subset C,\ 0 \in B,\ 0 \notin C$.
-
-\section{Intervals in the real line}
-Intervals describe what happens between two or more elements.
-
-\subsection{Examples}
-\subsubsection{Interval sets}
-We have 4 cases:
-\begin{itemize}
-    \item $(a,b) = \left\{\forall x \in \mathbb{R} \sht a<x<b\right\}$;
-    \item $\left[a,b\right) = \left\{\forall x \in \mathbb{R} \sht a\leq x<b\right\}$;
-    \item $\left(a,b\right] = \left\{\forall x \in \mathbb{R} \sht a<x\leq b\right\}$;
-    \item $\left[a,b\right] = \left\{\forall x \in \mathbb{R} \sht a\leq x\leq b\right\}$.
-\end{itemize}
-
-\nots{$a$ and $b$ are often called the ``end points'' of the interval;\\}
-
-\subsubsection{Graphical examples}
-$\forall x \in \mathbb{R},\ x \in \left[a,b\right]$
-\begin{center}
-    \begin{tikzpicture}
-        %number line
-        \draw[-] (-4,0) -- (3,0);
-        \draw[thick] (-3,-0.2) -- (-3,0.2);
-        \draw[thick] (2,-0.2) -- (2,0.2);
-        
-        %interval
-        \draw[thick] (-3,-1) -- (2,-1);
-        \draw[thick] (-3,0) -- (-3,-1);
-        \draw[thick] (2,0) -- (2,-1);
-        \filldraw[black] (-3,-1) circle (2pt);
-        \filldraw[black] (2,-1) circle (2pt);
-        
-        %points
-        \node[above] at (-3,0.2) {a};
-        \node[above] at (2,0.2) {b};
-        
-        %arrow
-        \draw[->] (3,0) -- (3.5,0);
-
-        %area
-        \filldraw [fill=red, draw=black, opacity=0.3] (-3,0) rectangle (2,-1);
-    \end{tikzpicture}
-\end{center}
-
-\newpage
-\section{The extended line}
-In the real line $\mathbb{R}$ we add $\pm \infty$.
-
-\paragraph{Real line:} $(-\infty, +\infty) = \mathbb{R}$ 
-
-\paragraph{Extended real line:} $\left[-\infty, +\infty\right] = \overline{\mathbb{R}}$
-
-\vspace*{.5cm}
-\begin{center}
-    \begin{tikzpicture}
-        \draw[->] (0,0) -- (6,0);
-        \draw[<-] (-6,0) -- (0,0);
-
-        \foreach \x/\label in {-5/{$-\pi$}, -4/{$-e$}, -3/{$-\sqrt{2}$}, -2/{$-1$}, -1/{$-\dfrac{1}{2}$}, 0/{$0$}, 1/{$\dfrac{1}{2}$}, 2/{$1$}, 3/{$\sqrt{2}$}, 4/{$e$}, 5/{$\pi$}} {
-            \draw (\x,0.1) -- (\x,-0.1) node[below] {\label};
-        }
-        \node[below] at (-6,-0.1) {$-\infty$};
-        \node[below] at (6,-0.1) {$+\infty$};
-    \end{tikzpicture}
-\end{center}
-
-\rem{$\pm \infty \notin \mathbb{R}$}
-
-\subsection{Properties}
-\figbox{$\forall x \in \mathbb{R} \ \sht \ \infty > x \ \sht \ -\infty < 0$}
-
-\subsection{Operation in the extended line}
-If $a,b \in \mathbb{R}$, then $a+b,\; a-b,\; a\cdot b,\; \dfrac{a}{b} \text{ (with } b\neq 0 )$ stay the same
-
-\subsubsection{Additions}
-Let $\forall a \in \mathbb{R}$:
-\begin{itemize}
-    \item $a+\infty := \infty$;
-    \item $a-\infty := -\infty$;
-    \item $+\infty + \infty := +\infty$;
-    \item $-\infty - \infty := -\infty$;
-    \item $+\infty - \infty :=$ undefined.
-\end{itemize}
-
-\subsubsection{Moltiplications}
-Let $\forall a \in \mathbb{R}$:
-\begin{itemize}
-    \item $+\infty \cdot +\infty := +\infty$;
-    \item $-\infty \cdot +\infty := -\infty$;
-    \item $-\infty \cdot (-\infty) := \infty$;
-    \item $a \cdot \infty := \begin{cases}
-        a > 0 &+\infty\\
-        a < 0 &-\infty\\
-        a = 0 & \text{undefined}
-    \end{cases}$
-    \item $a \cdot (-\infty):= \begin{cases}
-        a > 0 &-\infty\\
-        a < 0 &+\infty\\
-        a = 0 &\text{undefined}
-    \end{cases}$
-    \item $\dfrac{a}{+\infty}=\dfrac{a}{-\infty} := 0$;
-    \item $\dfrac{+\infty}{a}:= \begin{cases}
-        a > 0 &+\infty\\
-        a < 0 &-\infty\\
-        a = 0 &+\infty
-    \end{cases}$
-    \item $\dfrac{-\infty}{a}:= \begin{cases}
-        a > 0 &-\infty\\
-        a < 0 &+\infty\\
-        a = 0 &-\infty
-    \end{cases}$
-    \item $\dfrac{\infty}{\infty}:=$ undefined.
-\end{itemize}
-
-\section{Intervals including $\pm \infty$}
-Intervals describe what happens between two or more elements, including $\pm \infty$.
-\subsection{Examples}
-\subsubsection{Interval sets}
-Let $a \in \mathbb{R}$, then:
-\begin{itemize}
-    \item $(-\infty,a)=\left\{\forall x \in \mathbb{R} \sht x < a\right\}$;
-    \item $(a, +\infty)=\left\{\forall x \in \mathbb{R} \sht x > a\right\}$;
-    \item $(-\infty, a]=\left\{\forall x \in \mathbb{R} \sht x \leq a\right\}$;
-    \item $[a,+\infty]=\left\{\forall x \in \mathbb{R} \sht x \geq a\right\}$;
-    \item $(-\infty,+\infty)=\mathbb{R}$;
-    \item $[-\infty,+\infty]=\overline{\mathbb{R}}$.
-\end{itemize}
-
-\subsubsection{Graphical examples}
-$\forall x \in \mathbb{R},\ x \in\ \left[a,b\right]\ \cup\ \left] c, +\infty\right[$
-
-\begin{center}
-\begin{tikzpicture}
-    %number line
-    \draw[-] (-3,0) -- (4,0);
-    \draw[thick] (-2,-1) -- (-2,0.2);
-    \draw[thick] (1,-1) -- (1,0.2);
-    \draw[thick] (1.5,-0.95) -- (1.5,0.2);
-    
-    %intervals
-    \draw[thick] (-2,-1) -- (1,-1);
-    \filldraw[black] (-2,-1) circle (2pt);
-    \filldraw[black] (1,-1) circle (2pt);
-    \draw[thick] (1.55,-1) -- (4,-1);
-    \draw[thick, dashed] (4,-1) -- (4.5,-1);
-    \draw[thick] (1.5,-1) circle (2pt);
-    
-    %points
-    \node[above] at (-2,0.2) {a};
-    \node[above] at (1,0.2) {b};
-    \node[above] at (1.5,0.2) {c};
-    
-    %arrow
-    \draw[->] (4,0) -- (4.5,0);
-
-    %area
-    \filldraw [fill=red, draw=black, opacity=0.3] (-2,0) rectangle (1,-1);
-    \filldraw [fill=red, draw=black, opacity=0.3] (1.5,0) rectangle (4.5,-1);
-\end{tikzpicture}
-\end{center}
-\vspace*{.5cm}
-\nots{The union of two or more intervals where $x \in \mathbb{R}$
-is denoted by the symbol $\cup$.}
-
-\section{Propositional logic}
-Propositional logic is a branch of mathematics that deals with propositions and logical operations.
-
-\subsection{Logical connectives}
-\begin{center}
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-        \hline \rule{0pt}{15pt}
-        A & B & $\lnot B$ & $A \land B$ & $A \lor B$ & $A \Rightarrow B$ & $A \Leftrightarrow B$ \\
-        \hline \rule{0pt}{15pt} T & T & F & T & T & T & T \\
-        \hline \rule{0pt}{15pt} T & F & T & F & T & F & F \\
-        \hline \rule{0pt}{15pt} F & T & F & F & T & T & F \\
-        \hline \rule{0pt}{15pt} F & F & T & F & F & T & T \\
-        \hline
-    \end{tabular}
-\end{center}
-
-\subsubsection{Logical conjunction $\land$}
-Given two statements $P$ and $Q$, $P \land Q$ is true if both $P$ and $Q$ are true.
-
-Let $P=(x>0)$ and $Q=(y>0)$, then:
-\figbox{$P \land Q = (x > 0 \land y > 0)$}
-
-\subsubsection{Logical disjunction $\lor$}
-Given two statements $P$ and $Q$, $P \lor Q$ is true if at least one of $P$ or $Q$ is true.
-
-Let $P=(x=0)$ and $Q=(y \neq 0)$, then:
-\figbox{$P \lor Q = (x = 0 \lor y \neq 0)$}
-
-\subsubsection{Logical negation $\lnot$}
-The negation of a statement $P$, denoted as $\lnot P$, is true if $P$ is false, and false if $P$ is true.
-
-Let $P=(x \geq 5)$, then:
-\figbox{$\lnot P = (x < 5)$}
-
-\subsubsection{Implication $\Rightarrow$}
-The symbol $\Rightarrow$ indicates that if statement $P$ is true, then statement $Q$ must also be true (i.e., $P$ implies $Q$).\\
-\wrn{It does not require that $Q$ implies $P$.}
-
-\figbox{$P=(x=1) \Rightarrow Q = (x \in \mathbb{N})$}
-
-\subsubsection{Inference $\Leftarrow$}
-The symbol $\Leftarrow$ means that a conclusion or result implies the truth of an earlier statement.\\
-If $Q$ is true, then $P$ must be true.
-
-\figbox{$Q = (x > 0) \Leftarrow P = (x \in \mathbb{R}^+)$}
-
-\subsubsection{If and only if $\Leftrightarrow$}
-The symbol $\Leftrightarrow$ indicates that two statements $P$ and $Q$ are logically equivalent, meaning $P$ is true if and only if $Q$ is true.
-\figbox{$P = (x \in \mathbb{N},\ x \neq 0) \Longleftrightarrow Q = (x \in \mathbb{N}^*)$}
 
 \section{Union $\cup$ and Intersection $\cap$}
 \subsection{Universe symbol}
@@ -516,6 +357,170 @@ $\emptyset :=$ the set containing zero elements:
     \end{center}
 \end{figure}
 
+\newpage
+\part{Algebra}
+\section{Intervals in the real line}
+Intervals describe what happens between two or more elements.
+
+\subsection{Examples}
+\subsubsection{Interval sets}
+We have 4 cases:
+\begin{itemize}
+    \item $(a,b) = \left\{\forall x \in \mathbb{R} \sht a<x<b\right\}$;
+    \item $\left[a,b\right) = \left\{\forall x \in \mathbb{R} \sht a\leq x<b\right\}$;
+    \item $\left(a,b\right] = \left\{\forall x \in \mathbb{R} \sht a<x\leq b\right\}$;
+    \item $\left[a,b\right] = \left\{\forall x \in \mathbb{R} \sht a\leq x\leq b\right\}$.
+\end{itemize}
+
+\nots{$a$ and $b$ are often called the ``end points'' of the interval;\\}
+
+\subsubsection{Graphical examples}
+$\forall x \in \mathbb{R},\ x \in \left[a,b\right]$
+\begin{center}
+    \begin{tikzpicture}
+        %number line
+        \draw[-] (-4,0) -- (3,0);
+        \draw[thick] (-3,-0.2) -- (-3,0.2);
+        \draw[thick] (2,-0.2) -- (2,0.2);
+        
+        %interval
+        \draw[thick] (-3,-1) -- (2,-1);
+        \draw[thick] (-3,0) -- (-3,-1);
+        \draw[thick] (2,0) -- (2,-1);
+        \filldraw[black] (-3,-1) circle (2pt);
+        \filldraw[black] (2,-1) circle (2pt);
+        
+        %points
+        \node[above] at (-3,0.2) {a};
+        \node[above] at (2,0.2) {b};
+        
+        %arrow
+        \draw[->] (3,0) -- (3.5,0);
+
+        %area
+        \filldraw [fill=red, draw=black, opacity=0.3] (-3,0) rectangle (2,-1);
+    \end{tikzpicture}
+\end{center}
+
+\section{The extended line}
+In the real line $\mathbb{R}$ we add $\pm \infty$.
+
+\paragraph{Real line:} $(-\infty, +\infty) = \mathbb{R}$ 
+
+\paragraph{Extended real line:} $\left[-\infty, +\infty\right] = \overline{\mathbb{R}}$
+
+\vspace*{.5cm}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (0,0) -- (6,0);
+        \draw[<-] (-6,0) -- (0,0);
+
+        \foreach \x/\label in {-5/{$-\pi$}, -4/{$-e$}, -3/{$-\sqrt{2}$}, -2/{$-1$}, -1/{$-\dfrac{1}{2}$}, 0/{$0$}, 1/{$\dfrac{1}{2}$}, 2/{$1$}, 3/{$\sqrt{2}$}, 4/{$e$}, 5/{$\pi$}} {
+            \draw (\x,0.1) -- (\x,-0.1) node[below] {\label};
+        }
+        \node[below] at (-6,-0.1) {$-\infty$};
+        \node[below] at (6,-0.1) {$+\infty$};
+    \end{tikzpicture}
+\end{center}
+
+\rem{$\pm \infty \notin \mathbb{R}$}
+
+\subsection{Properties}
+\figbox{$\forall x \in \mathbb{R} \ \sht \ \infty > x \ \sht \ -\infty < 0$}
+
+\subsection{Operation in the extended line}
+If $a,b \in \mathbb{R}$, then $a+b,\; a-b,\; a\cdot b,\; \dfrac{a}{b} \text{ (with } b\neq 0 )$ stay the same
+
+\subsubsection{Additions}
+Let $\forall a \in \mathbb{R}$:
+\begin{itemize}
+    \item $a+\infty := \infty$;
+    \item $a-\infty := -\infty$;
+    \item $+\infty + \infty := +\infty$;
+    \item $-\infty - \infty := -\infty$;
+    \item $+\infty - \infty :=$ undefined.
+\end{itemize}
+
+\subsubsection{Moltiplications}
+Let $\forall a \in \mathbb{R}$:
+\begin{itemize}
+    \item $+\infty \cdot +\infty := +\infty$;
+    \item $-\infty \cdot +\infty := -\infty$;
+    \item $-\infty \cdot (-\infty) := \infty$;
+    \item $a \cdot \infty := \begin{cases}
+        a > 0 &+\infty\\
+        a < 0 &-\infty\\
+        a = 0 & \text{undefined}
+    \end{cases}$
+    \item $a \cdot (-\infty):= \begin{cases}
+        a > 0 &-\infty\\
+        a < 0 &+\infty\\
+        a = 0 &\text{undefined}
+    \end{cases}$
+    \item $\dfrac{a}{+\infty}=\dfrac{a}{-\infty} := 0$;
+    \item $\dfrac{+\infty}{a}:= \begin{cases}
+        a > 0 &+\infty\\
+        a < 0 &-\infty\\
+        a = 0 &+\infty
+    \end{cases}$
+    \item $\dfrac{-\infty}{a}:= \begin{cases}
+        a > 0 &-\infty\\
+        a < 0 &+\infty\\
+        a = 0 &-\infty
+    \end{cases}$
+    \item $\dfrac{\infty}{\infty}:=$ undefined.
+\end{itemize}
+
+\section{Intervals including $\pm \infty$}
+Intervals describe what happens between two or more elements, including $\pm \infty$.
+\subsection{Examples}
+\subsubsection{Interval sets}
+Let $a \in \mathbb{R}$, then:
+\begin{itemize}
+    \item $(-\infty,a)=\left\{\forall x \in \mathbb{R} \sht x < a\right\}$;
+    \item $(a, +\infty)=\left\{\forall x \in \mathbb{R} \sht x > a\right\}$;
+    \item $(-\infty, a]=\left\{\forall x \in \mathbb{R} \sht x \leq a\right\}$;
+    \item $[a,+\infty]=\left\{\forall x \in \mathbb{R} \sht x \geq a\right\}$;
+    \item $(-\infty,+\infty)=\mathbb{R}$;
+    \item $[-\infty,+\infty]=\overline{\mathbb{R}}$.
+\end{itemize}
+
+\subsubsection{Graphical examples}
+$\forall x \in \mathbb{R},\ x \in\ \left[a,b\right]\ \cup\ \left] c, +\infty\right[$
+
+\begin{center}
+\begin{tikzpicture}
+    %number line
+    \draw[-] (-3,0) -- (4,0);
+    \draw[thick] (-2,-1) -- (-2,0.2);
+    \draw[thick] (1,-1) -- (1,0.2);
+    \draw[thick] (1.5,-0.95) -- (1.5,0.2);
+    
+    %intervals
+    \draw[thick] (-2,-1) -- (1,-1);
+    \filldraw[black] (-2,-1) circle (2pt);
+    \filldraw[black] (1,-1) circle (2pt);
+    \draw[thick] (1.55,-1) -- (4,-1);
+    \draw[thick, dashed] (4,-1) -- (4.5,-1);
+    \draw[thick] (1.5,-1) circle (2pt);
+    
+    %points
+    \node[above] at (-2,0.2) {a};
+    \node[above] at (1,0.2) {b};
+    \node[above] at (1.5,0.2) {c};
+    
+    %arrow
+    \draw[->] (4,0) -- (4.5,0);
+
+    %area
+    \filldraw [fill=red, draw=black, opacity=0.3] (-2,0) rectangle (1,-1);
+    \filldraw [fill=red, draw=black, opacity=0.3] (1.5,0) rectangle (4.5,-1);
+\end{tikzpicture}
+\end{center}
+\vspace*{.5cm}
+\nots{The union of two or more intervals where $x \in \mathbb{R}$
+is denoted by the symbol $\cup$.}
+
 \section{The absolute value function}
 The absolute value is an operator that returns the positive value of a
 number, regardless of its original sign.
@@ -556,6 +561,7 @@ Let $a,b \in \mathbb{R}$, then:
     \item $|a\pm b| \neq |a|\pm |b|$.
 \end{itemize}
 
+\newpage
 \subsection{Triangular inequalities}
 Let $a,b \in \mathbb{R}$, then:
 \figbox{\begin{minipage}{0.135\textwidth}
@@ -566,8 +572,6 @@ Let $a,b \in \mathbb{R}$, then:
 \end{minipage}
 }
 
-\newpage
-\part{Week 2}
 \section{Concept of functions}
 Let's take any two sets $A\left\{a,b,c,d,e,f,g\right\}$ and $B\left\{a_1,b_1,c_1,d_1,e_1,f_1,g_1\right\}$.
 
@@ -834,7 +838,6 @@ Let $f:D \rightarrow \mathbb{R}$
 $f$ is invertible when $f^{-1}:$ Im$(f) \rightarrow D$.
 
 \newpage
-\part{Week 3}
 \section{Expressions and factorization}
 \subsection{Expressions, terms and factors}
 \subsubsection{Expressions}
@@ -1104,6 +1107,11 @@ The relationship between exponentials and logarithms is based on the following f
 \figbox{$\dm a^{\log_a(x)} = x \Longleftrightarrow \log_a(a^x) = x$}
 
 \subsection{Exponentials}
+\subsubsection{General equation}
+Let $\alpha \in \mathbb{R}^*_+$,\ $x \in \mathbb{R}$, and $a>1$, then:
+
+\figbox{$y=\alpha \cdot a^x$}
+
 \subsubsection{Euler's number}
 Euler's number is defined by the limit:
 \figbox{$\dm e = \lim_{x \to \infty} {\left(1+\dfrac{1}{n}\right)}^n \approx 2.718\cdots$}
@@ -1130,7 +1138,29 @@ The common logarithm uses base 10:
 \figbox{$\dm \log_{10}(x)=\frac{\ln(x)}{\ln(10)}$}
 
 \newpage
-\part{Week 4}
+\subsection{Exponential growth}
+\figbox{$N(t)=N_0\cdot e^{kt}$}
+
+\section{Composite functions}
+Let $y=f(x)$ and $z=g(y)$ be two functions, then:
+
+\figbox{$z=g(f(x))$}
+
+\subsection{Examples}
+\pph{1)}
+Let $f(x)=x^2+4x$ and $g(y)=y^2+\cos(y)$ be two functions, then:
+
+\[g(f(x))=\left(x^2+4x\right)^2+\cos(x^2+4x)\]
+
+\pph{2)}
+Let $f(x)=x^3,\ h(x)=\arctan(x)$ and $g(x)=\ln(x)$ be functions, then:
+
+\[
+  g(h(f(x)))=\ln(\arctan(x^3))
+\]
+
+\newpage
+\part{Trigonometry}
 \section{Trigonometry}
 \subsection{Conversion table of degrees and radians}
 \begin{center}
@@ -1207,23 +1237,19 @@ Trigonometric functions can be extended to angles beyond 0 and 90$^\circ$
 using the unit circle. For an angle $\theta$ in the unit circle:
 \figbox{$\dm \sin \theta := y\ \ |\ \cos \theta := x\ \ |\ \tan \theta := \frac{y}{x}$}
 
-\subsubsection{Property 1}
+\subsubsection{Property 1 -- Domain and range}
 Because we are inside a circle of radius 1:
 \begin{itemize}
     \item $-1 \leq \cos(\theta) \leq 1$;
     \item $-1 \leq \sin(\theta) \leq 1$.
 \end{itemize}
 
-\subsubsection{Property 2}
+\subsubsection{Property 2 -- Trigonometric identity}
 Because we have a 90$^\circ$ angle, we can use Pythagoras: 
 \figbox{$\vv{OH}^{\,2}+\vv{PH}^{\,2}=\vv{OP}^{\,2}$}
 
-Let $\dm \forall \theta \in \mathbb{R}$, then we can compute that:
+Let $\dm \forall \theta \in \mathbb{R}$, then we can compute the following trigonometric identity:
 \figbox{$\dm \sin^2(\theta) + \cos^2(\theta) = 1$}
-
-\subsubsection{Example with $\pi/4$}
-When $\dm \theta=\frac{\pi}{4}$, then $\dm \sin(\theta)=\cos(\theta) \Rightarrow 2\cos^2(\theta)=1
-\Rightarrow \cos(\theta)=\sqrt{\frac{1}{2}} \Rightarrow \sin(\theta)=\cos(\theta)=\frac{\sqrt{2}}{2}$
 
 \subsection{Tangent}
 A tangent of an angle is exactly the slope of a line:
@@ -1232,7 +1258,7 @@ A tangent of an angle is exactly the slope of a line:
 \underline{Remark}: the tangent is not defined when the angle is $\dfrac{\pi}{2}$
 or $\dfrac{3\pi}{2}$, that is when we have a vertical line.
 
-\subsection{Trigonometric functions}
+\subsection{Domain of trigonometric functions}
 \figbox{
     \begin{minipage}{6.5cm}
         \hspace*{-.2cm}
@@ -1246,9 +1272,148 @@ or $\dfrac{3\pi}{2}$, that is when we have a vertical line.
     \end{minipage}
 }   
 
+\newpage
+\subsection{Inverse trigonometric functions}
+\wrn{in order to be invertible, a function should be either always
+strictly increasing or always strictly decreasing.}
 
+\subsubsection{Arccosine}
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = center,
+            xmin=-1.5, xmax=4,
+            ymin=-1.5, ymax=4,
+            xlabel = $x$,
+            ylabel = $y$,
+            xtick={-1,0,1,2,3},
+            ytick={-1,0,1,2,3},
+            trig format plots=rad,
+            legend pos=north east,
+        ]
+        % Grafico di y = cos(x) per x in [0, π]
+        \addplot[
+            domain=0:pi,
+            samples=100,
+            color=blue,
+        ]
+        {cos(x)};
+        \addlegendentry{$y = \cos(x)$}
+        
+        % Grafico della retta y = x
+        \addplot[
+            domain=0:pi,
+            samples=100,
+            color=red,
+        ]
+        {x};
+        \addlegendentry{$y = x$}
+        
+        % Grafico di y = arccos(x) per x in [-1, 1]
+        \addplot[
+            domain=-1:1,
+            samples=100,
+            color=darkgreen,
+        ]
+        {acos(x)};
+        \addlegendentry{$y = \arccos(x)$}
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
 
+\subsubsection{Arcsine}
+The domain of the arcsine is $\forall x \in \left[-1,1\right]$ and
+the range is $\dm \forall x \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
 
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = center,
+            xmin=-1.5, xmax=1.5,
+            ymin=-1.5, ymax=1.5,
+            xlabel = $x$,
+            ylabel = $y$,
+            xtick={-1, -0.5, 0, 0.5, 1},
+            ytick={-1, -0.5, 0, 0.5, 1},
+            trig format plots=rad,
+            legend pos=south east,
+        ]
+        % Grafico di y = \sin(x) per x in [-1, 1]
+        \addplot[
+            domain=-1:1,
+            samples=100,
+            color=blue,
+        ]
+        {sin(x)};
+        \addlegendentry{$y = \sin(x)$}
+        
+        % Grafico della retta y = x
+        \addplot[
+            domain=-1:1,
+            samples=100,
+            color=red,
+        ]
+        {x};
+        \addlegendentry{$y = x$}
+        
+        % Grafico di y = \arcsin(x) per x in [-1, 1]
+        \addplot[
+            domain=-1:1,
+            samples=100,
+            color=darkgreen,
+        ]
+        {asin(x)};
+        \addlegendentry{$y = \arcsin(x)$}
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Arctan}
+The domain is $\forall x \in \mathbb{R}$ and the range is
+$\dm \forall x \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = center,
+            xmin=-pi/2+0.1, xmax=pi/2-0.1,
+            ymin=-3, ymax=3,
+            xlabel = $x$,
+            ylabel = $y$,
+            xtick={-1, -0.5, 0, 0.5, 1},
+            ytick={-1, -0.5, 0, 0.5, 1},
+            trig format plots=rad,
+            legend pos=south east,
+        ]
+        \addplot[
+            domain=-6:6,
+            samples=100,
+            color=blue,
+        ]
+        {tan(x)};
+        \addlegendentry{$y = \tan(x)$}
+        
+        \addplot[
+            domain=-6:6,
+            samples=100,
+            color=red,
+        ]
+        {x};
+        \addlegendentry{$y = x$}
+        
+        \addplot[
+            domain=-6:6,
+            samples=100,
+            color=darkgreen,
+        ]
+        {atan(x)};
+        \addlegendentry{$y = \arctan(x)$}
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
 
 
 \end{document}

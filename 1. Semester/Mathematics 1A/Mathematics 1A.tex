@@ -71,6 +71,10 @@
 }
 \makeatother
 
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
 \newcommand{\nots}{\underline{Notation}: }
@@ -101,7 +105,7 @@ Propositional logic is a branch of mathematics that deals with propositions and 
 \begin{center}
     \begin{tabular}{|c|c|c|c|c|c|c|}
         \hline \rule{0pt}{13pt}
-        A & B & $\lnot B$ & $A \land B$ & $A \lor B$ & $A \Rightarrow B$ & $A \Leftrightarrow B$ \\
+        A & B & $\lnot B$ & $A \land B$ & $A \lor B$ & $A \implies B$ & $A \Leftrightarrow B$ \\
         \hline \rule{0pt}{13pt} T & T & F & T & T & T & T \\
         \hline \rule{0pt}{13pt} T & F & T & F & T & F & F \\
         \hline \rule{0pt}{13pt} F & T & F & F & T & T & F \\
@@ -128,17 +132,17 @@ The negation of a statement $P$, denoted as $\lnot P$, is true if $P$ is false, 
 Let $P=(x \geq 5)$, then:
 \figbox{$\lnot P = (x < 5)$}
 
-\subsubsection{Implication $\Rightarrow$}
-The symbol $\Rightarrow$ indicates that if statement $P$ is true, then statement $Q$ must also be true (i.e., $P$ implies $Q$).\\
+\subsubsection{Implication $\implies$}
+The symbol $\implies$ indicates that if statement $P$ is true, then statement $Q$ must also be true (i.e., $P$ implies $Q$).\\
 \wrn{It does not require that $Q$ implies $P$.}
 
-\figbox{$P=(x=1) \Rightarrow Q = (x \in \mathbb{N})$}
+\figbox{$P=(x=1) \implies Q = (x \in \mathbb{N})$}
 
-\subsubsection{Inference $\Leftarrow$}
+\subsubsection{Inference $\Longleftarrow$}
 The symbol $\Leftarrow$ means that a conclusion or result implies the truth of an earlier statement.\\
 If $Q$ is true, then $P$ must be true.
 
-\figbox{$Q = (x > 0) \Leftarrow P = (x \in \mathbb{R}^+)$}
+\figbox{$Q = (x > 0) \Longleftarrow P = (x \in \mathbb{R}^+)$}
 
 \subsubsection{If and only if $\Leftrightarrow$}
 The symbol $\Leftrightarrow$ indicates that two statements $P$ and $Q$ are logically equivalent, meaning $P$ is true if and only if $Q$ is true.
@@ -579,7 +583,7 @@ Let's take any two sets $A\left\{a,b,c,d,e,f,g\right\}$ and $B\left\{a_1,b_1,c_1
     \begin{minipage}{0.12\textwidth}
         \vspace*{-0.4cm}
         \begin{align*}
-            f: A &\rightarrow B \\
+            f: A &\implies B \\
             a &\longmapsto f(a)
         \end{align*}
     \end{minipage}
@@ -658,7 +662,7 @@ possible for more than two elements of $A$ to point to the same element of $B$.
 \figbox{The set $A$ is called \textit{domain} of $f$. The set $B$ is called the \textit{codomain} of $f$.}
 
 \subsection{Image (Range)}
-Let $f: X \rightarrow Y$ be a function. The image of $f$ is defined as:
+Let $f: X \implies Y$ be a function. The image of $f$ is defined as:
 \figbox{\text{Im($f$)}$=\{y \in Y \sht y=f(x),\ x \in X\}$}
 
 Easily, the image is the set containing all the elements of the set $B$ associated
@@ -756,7 +760,7 @@ Let $m,x_A,y_A \in \mathbb{R}$ and $A(x_A, y_A)$, then
 
 e.g.: Find the line with $m=-1$ and $A(2,-1)$.
 \[
-    y-1=-1(x+2) \Rightarrow y=-x+1
+    y-1=-1(x+2) \implies y=-x+1
 \]
 \hspace{.75cm} Points: $A(2,-1);\ B(0,1)$
 
@@ -786,7 +790,7 @@ e.g.: Find the line with $m=-1$ and $A(2,-1)$.
 
 \rem{\begin{itemize}
     \item All the lines can be described with this kind of equation;
-    \item When $b=0$, $a \neq 0$, then $ax=-c \Rightarrow x=\dfrac{-c}{a} \in \mathbb{R}$;
+    \item When $b=0$, $a \neq 0$, then $ax=-c \implies x=\dfrac{-c}{a} \in \mathbb{R}$;
     \item When $b \neq 0$, then $y=-\dfrac{a}{b}x -\dfrac{c}{b}$,
         where $m=-\dfrac{a}{b}$ and $q=-\dfrac{c}{b}$.
 \end{itemize}}
@@ -812,8 +816,8 @@ Let $f:[a,b] \longrightarrow \mathbb{R}$
 \section{Inverse function}
 Let's take any two sets $A$ and $B$.
 
-A function $f: A \rightarrow B$ is invertible if there exists another
-function $f^{-1}: B \rightarrow A$, called the inverse function, such that:
+A function $f: A \implies B$ is invertible if there exists another
+function $f^{-1}: B \implies A$, called the inverse function, such that:
 
 \figbox{\begin{minipage}{3.6cm}
     $\forall x \in A,\ f^{-1}(f(x)) = x$ \vspace*{-.25cm}\\
@@ -824,7 +828,7 @@ function $f^{-1}: B \rightarrow A$, called the inverse function, such that:
 
 \subsection{Facts about inverse functions}
 \pph{1)}
-Let $f:D\rightarrow \mathbb{R}$
+Let $f:D\implies \mathbb{R}$
 
 $f$ is invertible in $D$ when:
 \begin{itemize}
@@ -833,9 +837,9 @@ $f$ is invertible in $D$ when:
 \end{itemize}
 
 \pph{2)}
-Let $f:D \rightarrow \mathbb{R}$
+Let $f:D \implies \mathbb{R}$
 
-$f$ is invertible when $f^{-1}:$ Im$(f) \rightarrow D$.
+$f$ is invertible when $f^{-1}:$ Im$(f) \implies D$.
 
 \newpage
 \section{Expressions and factorization}
@@ -1073,7 +1077,7 @@ Let $n \in \mathbb{N},\ m \in \mathbb{N},\ 2<n<m$, then:
 
 \figbox{$\ln(x) < x < x^n < x^m < n^x < m^x < x^x$}
 
-In these cases, we always have $x \rightarrow +\infty \Rightarrow p(x)\rightarrow +\infty$
+In these cases, we always have $x \implies +\infty \implies p(x)\implies +\infty$
 
 \subsubsection{Approaching to -$\infty$}
 Let $\lambda > 2$ and odd,\ $k > 2$ and even.
@@ -1414,6 +1418,57 @@ $\dm \forall x \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
         \end{axis}
     \end{tikzpicture}
 \end{center}
+
+\newpage
+\part{Calculus \rom{1}}
+\subsection{Concept of limit of a real function}
+\subsubsection{Definition}
+Let $f:\mathcal{D} \to \mathbb{R}$ be a function and $c$ a point, the limit
+$\dm L=\lim_{x\to c}f(x)$ with $x$ tending to $c$ exists only if in a given
+$\epsilon >0$ arbitrarily small, exists another $\delta >0$ such that:
+
+
+\figbox{$0<|x-c|<\delta \implies |f(x)-L|<\epsilon$}
+
+\subsubsection{Graphic interpretation}
+\vspace*{.3cm}
+\begin{center}
+    \begin{tikzpicture}[
+        scale=1.2,
+        declare function={
+            func(\x) = \x*\x / 10 + 1;
+            LimX=4.25;
+            Epsilon=0.7;
+            Delta=0.5;
+            LimY={func(LimX)};
+            Width=7.5;
+            Height=5;
+        }
+    ]
+        \draw[->] (0, -0.25) -- (0, Height) node[right] {\(y\)};
+        \draw[->] (-0.25, 0) -- (Width, 0) node[above] {\(x\)};
+    
+        \draw[-, dashed] (LimX, 0) -- (LimX, LimY);
+        \draw[-, dashed] (0, LimY) node[left] {\(L\)} -- (LimX, LimY);
+    
+        \draw[-] (0, {LimY + Epsilon}) node[left] {\(L + \epsilon\)} -- (Width, {LimY + Epsilon});
+        \draw[-] (0, {LimY - Epsilon}) node[left] {\(L - \epsilon\)} -- (Width, {LimY - Epsilon});
+    
+        \draw[-] ({LimX - Delta}, 0) node[below] {\Large \(\scriptstyle c - \delta\)} -- ({LimX - Delta}, Height);
+        \draw[-] ({LimX + Delta}, 0) node[below] {\Large \(\scriptstyle c + \delta\)} -- ({LimX + Delta}, Height);
+    
+        \fill [green, opacity=0.2] (0,{LimY - Epsilon}) rectangle (Width, {LimY + Epsilon});
+        \fill [red, opacity=0.2] ({LimX - Delta}, 0) rectangle ({LimX + Delta}, Height);
+    
+        \draw[domain=-0.25:6, smooth, variable=\x, blue, thick] plot ({\x}, {func(\x)});
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Limit value at finite point}
+
+
+
+
 
 
 \end{document}

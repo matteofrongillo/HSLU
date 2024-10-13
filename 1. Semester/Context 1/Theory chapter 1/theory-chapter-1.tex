@@ -1,0 +1,198 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{lipsum}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{esvect}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{refs.bib}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.17}
+
+\geometry{
+    a4paper,
+    total={170mm, 257mm},   
+    left=20mm,
+    top=20mm
+}   
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Team 31_EAP Semester Performance 1 HS24}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\figbox}[1]{ 
+    \begin{figure*}[ht!]        
+        \begin{center}            
+            \fbox{#1}        
+        \end{center}    
+    \end{figure*}
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
+
+\titleformat{\chapter}[block]{\bfseries\Large}{\thechapter.}{1em}{}
+
+%========= TEXT ===========
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{flushleft}
+        \hspace*{.01cm}
+        \includegraphics[width=.3\textwidth]{media/hslu-logo-2.png}
+
+        \vspace*{.01cm}
+        \hspace*{.16cm}\includegraphics[width=0.4\textwidth]{media/hslu-svg-logo.png}
+    \end{flushleft}
+
+    \vspace*{-.4cm}
+    {\huge \textbf{EAP Semester Performance 1}}
+
+    {\Large Herbstsemester 2024}
+
+    \vspace*{3cm}
+    \begin{center}
+        {\Huge \textbf{My$_{\text{celium}}$Tent}}
+
+        \vspace*{.1cm}
+        \textbf{\large The biodegradable tent}
+
+%        \vspace*{.5cm}
+%        \includegraphics*[width=.35\textwidth]{media/mytent_logo.png}
+    \end{center}
+
+    \vfill
+    {\Large \textbf{Team 31}}\\
+    {\large \vspace*{.01cm}
+        Althaus Simon\\
+        \vspace*{.01cm}
+        Berner Nic\\
+        \vspace*{.01cm}   
+        Frongillo Matteo\\
+        \vspace*{.01cm}
+        McCarthy Benjamin\\
+        \vspace*{.01cm}
+        Nyamdorj Narandavaa\\
+        \vspace*{.01cm}
+    }
+    
+    \vspace{1cm}
+    {\large Horw, 14th October 2024}
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\section{Theory chapter}
+\subsection{Mycelium}
+{\small Research by Berner Nic}
+
+\subsubsection{What is mycelium}
+
+\fullcite{what-is}
+
+\subsubsection{Potential of mycelium}
+
+\subsection{Marketing}
+{\small Research by Nyamdorj Narandavaa}
+
+\subsubsection{Worldwide market}
+
+\subsubsection{American market}
+
+\subsubsection{European market}
+
+\subsubsection{Swiss market}
+
+\subsection{Technical and Structural aspect}
+{\small Research by Althaus Simon}
+
+\subsubsection{Technical aspect}
+
+\subsubsection{Structural aspect}
+
+\subsection{Safety}
+{\small Research by Frongillo Matteo}
+
+\subsubsection{Mycelium safety}
+
+\subsubsection{Tent safety}
+
+\subsection{Environment}
+{\small Research by McCarthy Benjamin}
+
+\subsubsection{Properties of mycelium-bound composites}
+
+\subsubsection{Biodegradation}
+
+\newpage
+\setlength{\bibitemsep}{1.2\baselineskip}
+\printbibliography
+\vfill
+
+\section*{Declarations}
+\begin{itemize}
+    \item \textit{DeepL} has been used as a spell-checker;\\
+        \url{https://www.deepl.com/}
+    \item \textit{ChatGPT 4o} has been used as the APA 7 citation corrector.\\
+        \url{https://chatgpt.com/}
+\end{itemize}
+
+\end{document}

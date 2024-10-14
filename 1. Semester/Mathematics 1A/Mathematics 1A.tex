@@ -1420,7 +1420,49 @@ $\dm \forall x \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
 \end{center}
 
 \newpage
+\subsection{Harmonic oscillation}
+Let $A,B > 0$, then the function is oscillating harmonically with $t$ around $D$:
+
+\figbox{$y = D + A\cdot \sin(Bt + \varphi)$}
+
+\begin{center}
+    \begin{tikzpicture}[scale=1]
+
+        \def\amplitude{1.5}
+        \def\wavelength{6}
+        \def\periods{2}
+        \def\totalwidth{\textwidth}
+        \def\scalefactor{\totalwidth / (\periods * \wavelength)}
+    
+        \draw[thick, ->] (-0.5, 0) -- (\periods*\wavelength + 0.5, 0) node[anchor=south] {distance or time};
+        \draw[thick, ->] (0, -\amplitude-0.5) -- (0, \amplitude+0.5) node[anchor=east] {displacement};
+        
+        \draw[dashed] (0, \amplitude) -- (\periods*\wavelength, \amplitude) node[anchor=west] {$A$};
+        \draw[dashed] (0, -\amplitude) -- (\periods*\wavelength, -\amplitude) node[anchor=west] {$-A$};
+        
+        \draw[thick, red, domain=0:\periods*\wavelength, samples=200, variable=\x] plot (\x, {\amplitude*sin(360*\x/\wavelength)});
+                
+        \draw[<->] (-.8, 0) -- (-.8, \amplitude) node[midway,left] {Amplitude};
+        \draw[<->] (-.8, -\amplitude) -- (-.8, 0);
+        
+        \draw[dashed] (\wavelength/4, \amplitude) -- (\wavelength/4, 0);
+        \node at (\wavelength/4, \amplitude + 0.2) {crest};
+        \draw[dashed] (\wavelength*3/4, -\amplitude) -- (\wavelength*3/4, 0);
+        \node at (\wavelength*3/4, -\amplitude - 0.2) {trough};
+        
+        \draw[<->] (0, -\amplitude-1) -- (\wavelength, -\amplitude-1) 
+            node[midway, below] {wavelength $\lambda$};
+        \draw[dashed] (\wavelength, -\amplitude-1) -- (\wavelength, 0);
+    
+        \draw[<->] (\wavelength, -\amplitude-1) -- (2*\wavelength, -\amplitude-1) 
+            node[midway, below] {wavelength $\lambda$};
+    
+    \end{tikzpicture}
+\end{center}
+
+\newpage
 \part{Calculus \rom{1}}
+\section{Limits}
 \subsection{Concept of limit of a real function}
 \subsubsection{Definition}
 Let $f:\mathcal{D} \to \mathbb{R}$ be a function and $c$ a point, the limit
@@ -1464,7 +1506,282 @@ $\epsilon >0$ arbitrarily small, exists another $\delta >0$ such that:
     \end{tikzpicture}
 \end{center}
 
-\subsection{Limit value at finite point}
+\subsection{Limit Value at a finite point}
+The notion of the ``limit of $f(x)$ as $x$ approaches a (finite) point
+$a \in \mathbb{R}$'' is only meaningful if the point $a$ can be
+approximated by points from the domain of definition of $f$. We can
+precisely formulate this concept with the notion of an ``accumulation point''.
+
+\figbox{\minipage[]{\textwidth}
+\textbf{Definition} \\
+Given a set $A \subset \mathbb{R}$ and a real number
+$a \in \mathbb{R}$, the real number $a$ is called an
+\textit{accumulation point} of the set $A$ if every open interval
+of the form $(a - \delta, a + \delta)$ with $\delta > 0$ contains
+infinitely many points of $A$.
+\endminipage}
+
+In the above definition, it is not required that $a$ lies in $A$.
+Often, we will consider functions whose domains are unions of
+intervals of the form:
+
+\figbox{$(b, a) \cup (a, c)$}
+
+For example, consider the function defined by $f(x) = \frac{1}{x}$, defined
+on $(-\infty, 0) \cup (0, \infty)$. The point $0$ is an accumulation point of
+the domain of definition of $\frac{1}{x}$.
+
+\figbox{\minipage[]{\textwidth}
+\textbf{Definition} \\
+Given a real function $f$, an accumulation point $x_0$ of
+$\mathcal{D}_f$, and $L \in \mathbb{R} = \mathbb{R} \cup \{\pm \infty\}$,
+we say that the function $f$ has the limit $L$ as $x \to x_0$ if
+$f(x)$ gets arbitrarily close to $L$, provided $x$ is sufficiently
+close to (but never equal to) $x_0$.
+\endminipage}
+
+\subsection{One-sided limits}
+Often, one considers limits where $x$ approaches $x_0$ from only one
+direction, either from the right or from the left. In these cases,
+we refer to a right-sided or left-sided limit and use the following
+notations:
+
+\figbox{$\dm \lim_{x \to x_0^+} f(x) \quad \text{or} \quad \lim_{x \to x_0, x > x_0} f(x) \quad \text{or} \quad \lim_{x \to x_0} f(x)$}
+
+for a right-sided limit, and:
+
+\figbox{$\dm \lim_{x \to x_0^-} f(x) \quad \text{or} \quad \lim_{x \to x_0, x < x_0} f(x) \quad \text{or} \quad \lim_{x \to x_0} f(x)$}
+
+for a left-sided limit.
+
+$\dm \lim_{x \to a}$ can indicate a limit as $x$ approaches an
+arbitrary point (e.g., $a = x_0$ for $x_0 \in \mathbb{R}$), as well
+as a one-sided limit ($a = x_0^+$ or $a = x_0^-$ for $x_0 \in \mathbb{R}$),
+or a limit at infinity ($a = \pm \infty$).
+
+\subsubsection{Graph example}
+\begin{center}
+    \begin{tikzpicture}[scale=1.5]
+        \draw[->] (-0.5, 0) -- (3, 0) node[anchor=north] {$x$};
+        \draw[->] (0, -0.5) -- (0, 2.5) node[anchor=east] {$f(x)$};
+        
+        \draw[domain=0:1, samples=100, thick, blue] plot (\x, {\x*\x}) node[anchor=south west] {};
+        
+        \draw[domain=1:2.5, samples=100, thick, blue] plot (\x, {(\x-2)*(\x-2)+1});
+        
+        \filldraw[blue] (1,1) circle (1pt);
+        \node[anchor=south] at (1, 1.05) {1};
+        
+        \draw[dashed] (1, 0) -- (1, 1);
+        \draw[dashed] (0, 1) -- (1, 1);
+        
+        \node[anchor=north east] at (0, 0) {0};
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Continuity of a function}
+\figbox{\minipage[]{\textwidth-2.3cm}
+\textbf{Definition} \textit{Continuity of a real function} \\
+Given a real function $f : D \rightarrow C$, the function is continuous
+at the point $x = c$ where $c \in D$ if:
+\[
+    \dm \lim_{x \to c} f(x) = f(c)
+\]
+
+and therefore, if the limit exists and is equal to the value of the
+function at that point.
+\endminipage}
+
+In other words, the function is continuous at the point if the limit
+exists (from both the left and right, coinciding) and the value of
+the function at that point is equivalent to the value of the limit.
+
+\begin{center}
+    \begin{tikzpicture}[scale=1.5]
+
+        \draw[->] (-3, 0) -- (3, 0) node[anchor=north] {$x$};
+        \draw[->] (0, -2) -- (0, 2) node[anchor=south] {\large $f'(|x|)$} node[anchor=north east] {$y$};
+    
+        \draw[thick, blue] (-3, -1) -- (0, -1);
+        \draw[thick, blue] (0, 1) -- (3, 1);
+        
+        \draw[thick, blue, fill=white] (0,1) circle (1pt);
+        \draw[thick, blue, fill=white] (0,-1) circle (1pt);
+        
+        \node[anchor=north west] at (3, 1) {1};
+        \node[anchor=south west] at (-3, -1) {-1};
+        \node[anchor=north east] at (0, 0) {0};
+
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Continuity in short}
+\begin{itemize}
+    \item A function is said to be continuous at a point if the limit at that point exists and is equal to the value of the function at that point;
+    \item A function is said to be continuous on a subinterval of the domain if it is continuous at all points in that subinterval;
+    \item A function is said to be continuous if it is continuous at all points in its interval.
+\end{itemize}
+
+\newpage
+\section{Derivatives}
+\subsection{Definition of derivate}
+The derivate of a real function $f(x)$ is defined as:
+
+\figbox{$\dm f'(x) = \lim_{\Delta x \to 0^\pm} \frac{f(x+\Delta x)-f(x)}{\Delta x}$}
+
+if the limit exists.
+
+\defs{$f'(a)$, if it exists, is calld derivative of $f(x)$ at $x=a$.\\
+\hspace*{1.65cm} It corresponds to the slope of the tangent line at $x=a$ to the function $y=f(x)$}
+
+\subsubsection{Existence of the derivative}
+The derivative exists if and only if:
+\figbox{$\dm \lim_{\Delta x \to {\color{red}{0^+}}} \frac{f(x+\Delta x)-f(x)}{\Delta x} = \lim_{\Delta x \to {\color{red}{0^-}}} \frac{f(x+\Delta x)-f(x)}{\Delta x}$}
+
+\subsection{Geometric meaning of the derivative}
+\begin{minipage}{0.5\textwidth}
+    \begin{tikzpicture}[
+        scale=2,
+        declare function={
+            func(\x) = \x*sin(\x r);
+            Width=3;
+            Height=2;
+            Ax=0.75;
+            Bx=2.25;
+            SlopeMargin=0.25;
+            M=(func(Bx) - func(Ax)) / (Bx - Ax);
+            Q=func(Ax) - M * Ax;
+            slopeFunc(\x)=\x * M + Q;
+        }
+    ]
+        \draw[domain=-0.5:3, smooth, variable=\x, blue, very thick] plot ({\x}, {func(\x)});
+        
+        \draw[->] (0, -0.25) -- (0, Height) node[right] {\(y\)};
+        \draw[->] (-0.25, 0) -- (Width, 0) node[above] {\(x\)};
+
+        \draw[-] (Ax, {func(Ax)}) -- node[below] {\(\Delta x\)} (Bx, {func(Ax)});
+        \draw[-] (Bx, {func(Ax)}) -- node[right] {\(\Delta y\)} (Bx, {func(Bx)});
+        
+        \filldraw [red, thick] ({Ax - SlopeMargin}, {slopeFunc(Ax - SlopeMargin)}) -- ({Bx + SlopeMargin}, {slopeFunc(Bx + SlopeMargin)});
+        
+        \filldraw (Ax,{func(Ax)}) circle (1pt) node[above left] {\(A\)};
+        \filldraw (Bx,{func(Bx)}) circle (1pt) node[above] {\(B\)};
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    The secant of a function \(f(x)\) between a point \(A\) and \(B\) is given by:\\
+    \begin{center}
+        \fbox{$\dm \frac{\Delta y}{\Delta x} = \frac{f(B)-f(A)}{B-A}$}
+    \end{center} \phantom{}\\
+
+    The closer we bring \(A\) and \(B\), the smaller \(\Delta x\) becomes.
+    As \(\Delta x\) decreases, the slope of the secant becomes more representative
+    of the rate of change of \(f\) in the interval \([A;B]\). \\
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+    When the \(\Delta x\) of the slope becomes infinitesimally small, we obtain the exact slope at a point (instantaneous).
+    This slope is represented by the tangent line:\\
+
+    \begin{center}
+        \fbox{$\dm \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x}$}
+    \end{center}
+
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \begin{tikzpicture}[
+        scale=2,
+        declare function={
+            func(\x) = (\x+0.6)*sin((\x+0.6) r)-0.5;
+            Width=3;
+            Height=2;
+            Ax=1.5;
+            slope = -0.19697;
+        }
+    ]
+        \draw[domain=-0.5:2.5, smooth, variable=\x, blue, very thick] plot ({\x}, {func(\x)});
+        
+        \draw[->] (0, -0.25) -- (0, Height) node[right] {\(y\)};
+        \draw[->] (-0.25, 0) -- (Width, 0) node[above] {\(x\)};
+
+        \draw[domain=0.5:2.5, smooth, variable=\x, red, very thick] plot ({\x}, {slope * \x + func(Ax) - slope * Ax});
+        
+        \filldraw (Ax,{func(Ax)}) circle (1pt) node[above] {\(A\)};
+    \end{tikzpicture}
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+\begin{tikzpicture}[
+    scale=2,
+    declare function={
+        func(\x) = \x*sin(\x r);
+        Width=3;
+        Height=2;
+        Ax=0.75;
+        Bx=1.8;
+        SlopeMargin=0.25;
+        M=(func(Bx) - func(Ax)) / (Bx - Ax);
+        Q=func(Ax) - M * Ax;
+        slopeFunc(\x)=\x * M + Q;
+    }
+]
+    \draw[domain=-0.5:3, smooth, variable=\x, blue, very thick] plot ({\x}, {func(\x)});
+    
+    \draw[->] (0, -0.25) -- (0, Height) node[right] {\(y\)};
+    \draw[->] (-0.25, 0) -- (Width, 0) node[above] {\(x\)};
+
+    \draw[-] (Ax, {func(Ax)}) -- node[below] {\(\Delta x\)} (Bx, {func(Ax)});
+    \draw[-] (Bx, {func(Ax)}) -- node[right] {\(\Delta y\)} (Bx, {func(Bx)});
+    
+    \filldraw [red, thick] ({Ax - SlopeMargin}, {slopeFunc(Ax - SlopeMargin)}) -- ({Bx + SlopeMargin}, {slopeFunc(Bx + SlopeMargin)});
+
+    \filldraw (Ax,{func(Ax)}) circle (1pt) node[above left] {\(a\)};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+The derivative of a function \(f(x)\) is therefore another function, \(f'(x)\), which
+represents the rate of change of \(f(x)\) at every point. In other words, \(f'(x)\)
+represents the slope of the tangent at each \(x\) of \(f(x)\).
+This is precisely represented by the definition of the derivative, which is the slope
+\(\frac{\Delta y}{\Delta x}\) calculated with the limit of \(\Delta x \to 0\).
+\end{minipage}
+
+\newpage
+\subsection{Equation of the tangent line}
+When $f'(x)$ is defined, $p = \left(x, f(x)\right)$, and $p \in$ tangent line, then:
+\figbox{$\dm y - f(x) = f'(x) \cdot (x-a)$}
+
+\subsection{Bernoulli -- de l'Hôpital Theorem}
+Bernulli -- de l'Hôpital theorem is applicable only if the function
+results in an indeterminate form.
+
+\subsubsection{The 7 indeterminate forms}
+
+The seven indeterminate forms are
+\begin{center}
+    \[
+        \frac{0}{0}, \quad
+        \frac{\infty}{\infty}, \quad
+        0 \cdot \infty, \quad
+        \infty - \infty, \quad
+        0^0, \quad
+        \infty^0, \quad
+        1^\infty
+    \]
+\end{center}
+
+\subsubsection{Statement of the theorem}
+
+Let us consider two real functions \(f(x)\) and \(g(x)\) that are differentiable
+in a neighborhood of \(x_0\in\mathbb{R}\) (not necessarily at \(x_0\)).
+Without loss of generality, if we have a limit:
+\[ \lim_{x \to x_0} \frac{f(x)}{g(x)} \]
+where \(\dm \frac{f(x_0)}{g(x_0)}\) results in an indeterminate form, then:
+
+\figbox{$\dm \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f'(x)}{g'(x)}$}
+
+if the limit exists.
+
 
 
 

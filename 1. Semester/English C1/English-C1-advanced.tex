@@ -1,0 +1,193 @@
+\documentclass{article}
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{babel}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{esvect}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.17}
+
+\geometry{
+    a4paper,
+    total={170mm, 257mm},
+    left=20mm,
+    top=20mm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={System engineering in EES}
+}
+
+\newcommand{\figbox}[1]{ 
+    \begin{figure*}[ht!]        
+        \begin{center}            
+            \fbox{#1}        
+        \end{center}    
+    \end{figure*}
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\newcommand{\cfig}[1]{%
+  \begin{figure*}[ht!]%
+    \centering%
+    #1%
+  \end{figure*}%
+}
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+
+% === TEXT ===
+\title{\textbf{English C1 Advanced\\ HSLU, Semester 1}}
+\author{Matteo Frongillo}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Course overview}
+\subsection{Exam overview}
+\begin{itemize}
+    \item Use of English and Reading: \textbf{MEP (30\%)};
+    \item Writing: \textbf{MEP (30 \%)};
+    \item Listening: \textbf{Semester performance (20\%)};
+    \item Speaking: \textbf{Semester performance (20\%)}.
+\end{itemize}
+
+
+\newpage
+\section{Past tenses}
+
+\subsection{Simple tenses}
+\subsubsection{Past simple}
+Past simple is used for:
+\begin{itemize}
+    \item Finished past event at a specific past point in time. 
+\end{itemize}
+
+\subsection{Continuous tenses}
+Are focused on ongoing actions at past or present time.
+
+\subsubsection{Past continuous}
+Past continuous is used to:
+\begin{itemize}
+    \item Express something was ongoing at a specific past point;
+    \item Focus on an ongoing action in the past that is ``crossed''
+        by another past action.
+\end{itemize}
+
+\subsection{Perfect tenses}
+Most often an action stretching over time that started in the past
+and continues either up until now (present perfect) or up until a
+past point (past perfect)
+
+\subsubsection{Past perfect simple}
+Past perfect simple is used to:
+\begin{itemize}
+    \item Express something happened before another past time;
+    \item Compare two past events.
+\end{itemize}
+
+\subsection{Perfect and continuous tenses}
+\subsubsection{Past perfect continuous}
+Past perfect continuous is used for:
+\begin{itemize}
+    \item Past actions in progress up until another past point;
+    \item Past actions in progress that are interrupted or unfinished.
+\end{itemize}
+
+\section{Passive forms}
+Passive is used to say what happened to the subject.
+
+Passive sentences are formed with ``to be'' in the appropriate tense
++ the past participle (+ed).
+
+\subsection{Impersonal passive}
+\subsubsection{Form}
+When we use one of these verbs:
+
+believe, claim, report, say, think, understand, know, consider,
+estimate, expect, be rumoured, be reputed, allege;
+
+we have to structure the sentence as follow:\\
+
+\begin{flushleft}
+    \begin{tabular}{|m{0cm}>{\centering\arraybackslash}m{1cm}|>{\centering\arraybackslash}m{4.5cm}|>{\centering\arraybackslash}m{6cm}|>{\centering\arraybackslash}m{2cm}|}
+        \hline \rule{0pt}{15pt}
+        & It + & \textbf{"be"} + (required tense) & \textbf{reporting verb} + (past participle) & that... \\ 
+        \hline
+    \end{tabular}
+\end{flushleft} \phantom{}
+
+\begin{flushleft}
+    \begin{tabular}{|>{\centering\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{5.5cm}|>{\centering\arraybackslash}m{4cm}|}
+        \hline
+        subject + & \textbf{"be"} + (required tense) & \textbf{reporting verb} + (past participle) & main verb (to-infinitive $\rightarrow$ present or past) \\ 
+        \hline
+    \end{tabular}
+\end{flushleft}
+
+\section{Linking words}
+
+\section{Inversion}
+After certain words and phrases the \textbf{word order is inverted}.
+This kind of inversion is mainly found in formal speech and writing.
+
+\subsection{Application of the inversion}
+\subsubsection{Negation adverbs}
+The negative adverbs \textbf{never (before/again), rarely, seldom,
+barely/hardly/scarcely...when/before, no sooner...than, nowhere,
+little (with a negative meaning)}.
+
+\subsubsection{Negation}
+
+
+\section{Formal letters}
+
+\section{Reported speech}
+
+
+\end{document}

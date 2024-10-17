@@ -1,0 +1,18 @@
+{
+    "John": {
+        "Age": 48,
+        "Gender": "m",
+        "Profession": "Carpenter"
+    },
+    "James": {
+        "Age": 25,
+        "Gender": "m",
+        "Profession": "Student"
+    },
+    "Peter": {
+        "Age": 35,
+        "Gender": "m",
+        "Profession": "Electrician",
+        "Family": {}
+    }
+}

@@ -1728,7 +1728,7 @@ if the limit exists.
 \defs{$f'(a)$, if it exists, is calld derivative of $f(x)$ at $x=a$.\\
 \hspace*{1.65cm} It corresponds to the slope of the tangent line at $x=a$ to the function $y=f(x)$}
 
-\subsubsection{Simplified definition}
+\subsubsection{Simplified definition (Exponentiation rule)}
 Let $\forall \alpha \in \mathbb{R}$, then:
 \figbox{$\dm f(x)=x^{\, \alpha} \Rightarrow f'(x)=\alpha \cdot x^{\, \alpha-1}$}
 
@@ -1852,7 +1852,6 @@ This is precisely represented by the definition of the derivative, which is the 
 \(\frac{\Delta y}{\Delta x}\) calculated with the limit of \(\Delta x \to 0\).
 \end{minipage}
 
-\newpage
 \subsection{Bernoulli -- de l'Hôpital Theorem}
 Bernulli -- de l'Hôpital theorem is applicable only if the function
 results in an indeterminate form.
@@ -1874,15 +1873,66 @@ The seven indeterminate forms are
 
 \subsubsection{Statement of the theorem}
 
-Let us consider two real functions \(f(x)\) and \(g(x)\) that are differentiable
-in a neighborhood of \(x_0\in\mathbb{R}\) (not necessarily at \(x_0\)).
-Without loss of generality, if we have a limit:
-\[ \lim_{x \to x_0} \frac{f(x)}{g(x)} \]
-where \(\dm \frac{f(x_0)}{g(x_0)}\) results in an indeterminate form, then:
+Let us consider two real functions $f(x)$ and $g(x)$ that are differentiable
+in a neighborhood of \(x_0\in\mathbb{R}\) (not necessarily at $x_0$).
+
+If $\dm \lim_{x \to x_0} \frac{f(x_0)}{g(x_0)}$ results in an indeterminate form, then:
 
 \figbox{$\dm \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f'(x)}{g'(x)}$}
 
 if the limit exists.
+
+\subsection{Derivation rules}
+\subsubsection{Linearity}
+\figbox{$\dm \frac{d}{dx}\left(c \cdot f(x)\right) = c\cdot \frac{d}{dx}\left(f(x)\right)$}
+
+\subsubsection{Sum and subtraction}
+\figbox{$\dm f'(x) \pm g'(x) = \frac{d}{dx}(f(x) \pm g(x))$}
+
+\subsubsection{Multiplication}
+\figbox{$\dm \frac{d}{dx}\left(f(x) \cdot g(x)\right) = f'(x)\cdot g(x) + f(x)\cdot g'(x)$}
+
+\subsubsection{Difference}
+\figbox{$\dm \frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{f'(x)\cdot g(x) - f(x)\cdot g(x)}{\left(g(x)\right)^2}$}
+
+\subsubsection{Exponential}
+\figbox{$\dm \frac{d}{dx}\left(a^x\right) = a^x\cdot \ln(a),\quad \forall a > 0$}
+
+\subsubsection{Composite function (Chain rule)}
+\figbox{$\dm \frac{d}{dx}\left(f(g(x))\right) = f'(g(x))\cdot g'(x)$}
+
+\subsubsection{Trigonometric functions}
+\begin{center}
+    \begin{tikzpicture}[node distance=3cm, auto]
+        \node (cos) at (0, 1.5) {\Large$\cos$};
+        \node (sin) at (2.5, 0) {\Large$\sin$};
+        \node (neg_cos) at (0, -1.5) {\Large$-\cos$};
+        \node (neg_sin) at (-2.5, 0) {\Large$-\sin$};
+    
+        \draw[<-, thick] (cos) to[bend left] node[midway, above right] {$\dfrac{d}{dx}$} (sin);
+        \draw[<-, thick] (sin) to[bend left] node[midway, below right] {$\dfrac{d}{dx}$} (neg_cos);
+        \draw[<-, thick] (neg_cos) to[bend left] node[midway, below left] {$\dfrac{d}{dx}$} (neg_sin);
+        \draw[<-, thick] (neg_sin) to[bend left] node[midway, above left] {$\dfrac{d}{dx}$} (cos);
+    \end{tikzpicture}
+\end{center}
+
+
+\newpage
+\subsection{Physical application}
+\subsubsection{Velocity}
+\pph{Linear uniform motion}
+\figbox{$v(t) = c \in \mathbb{R}$}
+
+\subsubsection{Acceleration}
+\pph{Average acceleration $a_{av}$}
+\figbox{$\dm a_{av} := \frac{v(t_f)-v(t_i)}{t_f-t_i}$}
+
+\pph{Instant acceleration $a(t)$}
+\figbox{$\dm a(t) := v'(t) = \lim_{t \to 0} \frac{v(t + h)-v(t)}{\Delta t}$}
+
+\pph{Uniformly accelerated motion}
+\figbox{$a(t) = c \in \mathbb{R}$}
+
 
 
 

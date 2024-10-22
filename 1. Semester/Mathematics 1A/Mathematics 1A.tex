@@ -1883,7 +1883,10 @@ If $\dm \lim_{x \to x_0} \frac{f(x_0)}{g(x_0)}$ results in an indeterminate form
 if the limit exists.
 
 \subsection{Derivation rules}
+Let $y=f(x)$ and $y=g(x)$ be two derivable functions, then:
+
 \subsubsection{Linearity}
+Let $c \in \mathbb{R}$, then:
 \figbox{$\dm \frac{d}{dx}\left(c \cdot f(x)\right) = c\cdot \frac{d}{dx}\left(f(x)\right)$}
 
 \subsubsection{Sum and subtraction}
@@ -1896,13 +1899,15 @@ if the limit exists.
 \figbox{$\dm \frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{f'(x)\cdot g(x) - f(x)\cdot g(x)}{\left(g(x)\right)^2}$}
 
 \subsubsection{Exponential}
-\figbox{$\dm \frac{d}{dx}\left(a^x\right) = a^x\cdot \ln(a),\quad \forall a > 0$}
+Let $a > 0$, then:
+\figbox{$\dm \frac{d}{dx}\left(a^x\right) = a^x\cdot \ln(a)$}
 
 \subsubsection{Composite function (Chain rule)}
 \figbox{$\dm \frac{d}{dx}\left(f(g(x))\right) = f'(g(x))\cdot g'(x)$}
 
 \subsubsection{Trigonometric functions}
-\begin{center}
+\setlength{\intextsep}{0pt}%
+\begin{wrapfigure}{l}{.42\textwidth}
     \begin{tikzpicture}[node distance=3cm, auto]
         \node (cos) at (0, 1.5) {\Large$\cos$};
         \node (sin) at (2.5, 0) {\Large$\sin$};
@@ -1914,24 +1919,67 @@ if the limit exists.
         \draw[<-, thick] (neg_cos) to[bend left] node[midway, below left] {$\dfrac{d}{dx}$} (neg_sin);
         \draw[<-, thick] (neg_sin) to[bend left] node[midway, above left] {$\dfrac{d}{dx}$} (cos);
     \end{tikzpicture}
-\end{center}
+    \vspace{-2.6cm}
+\end{wrapfigure}
 
+\phantom{}
+
+\vspace*{-.3cm}
+\fbox{\hspace*{-.7cm}
+  \begin{minipage}{0.28\textwidth}\vspace*{-.35cm}
+    \[
+      (\sec x)' = \sec x \tan x 
+    \]
+    \[
+      (\tan x)' = \frac{1}{\cos^2(x)}
+    \]
+    \[
+      (\arcsin x)' = \frac{1}{\sqrt{1 - x^2}}
+    \]
+    \[
+      (\arctan x)' = \frac{1}{1 + x^2}
+    \]
+  \end{minipage}%
+  \begin{minipage}{0.27\textwidth}\vspace*{-.35cm}
+    \[
+      (\csc x)' = -\csc x \cot x
+    \]
+    \[
+      (\cot x)' = \frac{-1}{\sin^2(x)}
+    \]
+    \[
+      (\arccos x)' = \frac{-1}{\sqrt{1 - x^2}}
+    \]
+    \[
+      (\text{arccot } x)' = \frac{-1}{1 + x^2}
+    \]
+  \end{minipage}
+}
+\wrapfill
 
 \newpage
+\subsection{Particular cases}
+\begin{enumerate}
+    \item \[f(x) = g(x)^\alpha \Longrightarrow f'(x)=\alpha \cdot g'(x) \cdot g(x)^{\alpha -1}
+    \\ \text{i.g.: } \left(x^2+1\right)^4 \Longrightarrow 8x \cdot \left(x^2+1\right)^3\]
+    \item \[f(x) = e^{g(x)} \Longrightarrow f'(x)=g'(x)\cdot e^{g(x)}\]
+    \item \[f(x) = \frac{1}{g(x)} \Longrightarrow f'(x)=\frac{-g'(x)}{\left(g(x)\right)^2}\]
+\end{enumerate}
+
 \subsection{Physical application}
-\subsubsection{Velocity}
 \pph{Linear uniform motion}
 \figbox{$v(t) = c \in \mathbb{R}$}
 
-\subsubsection{Acceleration}
+\pph{Uniformly accelerated motion}
+\figbox{$a(t) = c \in \mathbb{R}$}
+
 \pph{Average acceleration $a_{av}$}
 \figbox{$\dm a_{av} := \frac{v(t_f)-v(t_i)}{t_f-t_i}$}
 
 \pph{Instant acceleration $a(t)$}
 \figbox{$\dm a(t) := v'(t) = \lim_{t \to 0} \frac{v(t + h)-v(t)}{\Delta t}$}
 
-\pph{Uniformly accelerated motion}
-\figbox{$a(t) = c \in \mathbb{R}$}
+
 
 
 

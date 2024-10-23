@@ -1,0 +1,22 @@
+{
+    "Sensor1": {
+        "temp": 25.0,
+        "hum": 40
+    },
+    "Sensor2": {
+        "temp": 30.5,
+        "hum": 50
+    },
+    "Sensor3": {
+        "temp": 27.8,
+        "hum": 45
+    },
+    "Sensor4": {
+        "temp": 22.1,
+        "hum": 55
+    },
+    "Sensor5": {
+        "temp": 35.6,
+        "hum": 60
+    }
+}

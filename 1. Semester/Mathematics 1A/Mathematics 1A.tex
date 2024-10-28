@@ -1887,27 +1887,29 @@ Let $y=f(x)$ and $y=g(x)$ be two derivable functions, then:
 
 \subsubsection{Linearity}
 Let $c \in \mathbb{R}$, then:
-\figbox{$\dm \frac{d}{dx}\left(c \cdot f(x)\right) = c\cdot \frac{d}{dx}\left(f(x)\right)$}
+\figbox{$\dm \frac{d}{dx}\left[c \cdot f(x)\right] = c\cdot \frac{d}{dx}\left[f(x)\right]$}
 
 \subsubsection{Sum and subtraction}
-\figbox{$\dm f'(x) \pm g'(x) = \frac{d}{dx}(f(x) \pm g(x))$}
+\figbox{$\dm f'(x) \pm g'(x) = \frac{d}{dx}\left[f(x) \pm g(x)\right]$}
 
 \subsubsection{Multiplication}
-\figbox{$\dm \frac{d}{dx}\left(f(x) \cdot g(x)\right) = f'(x)\cdot g(x) + f(x)\cdot g'(x)$}
+\figbox{$\dm \frac{d}{dx}\left[f(x) \cdot g(x)\right] = f'(x)\cdot g(x) + f(x)\cdot g'(x)$}
 
 \subsubsection{Difference}
-\figbox{$\dm \frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{f'(x)\cdot g(x) - f(x)\cdot g(x)}{\left(g(x)\right)^2}$}
+\figbox{$\dm \frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)\cdot g(x) - f(x)\cdot g(x)}{\left(g(x)\right)^2}$}
 
 \subsubsection{Exponential}
 Let $a > 0$, then:
-\figbox{$\dm \frac{d}{dx}\left(a^x\right) = a^x\cdot \ln(a)$}
+\figbox{$\dm \frac{d}{dx}\left[a^x\right] = a^x\cdot \ln(a)$}
 
 \subsubsection{Composite function (Chain rule)}
-\figbox{$\dm \frac{d}{dx}\left(f(g(x))\right) = f'(g(x))\cdot g'(x)$}
+\figbox{$\dm \frac{d}{dx}\left[f(g(x))\right] = f'(g(x))\cdot g'(x)$}
+
+\subsubsection{Inverse function}
+\figbox{$\dm \frac{d}{dx}\left[f^{-1}(x)\right] = \frac{1}{f'(f^{-1}(x))}$}
 
 \subsubsection{Trigonometric functions}
-\setlength{\intextsep}{0pt}%
-\begin{wrapfigure}{l}{.42\textwidth}
+\begin{center}
     \begin{tikzpicture}[node distance=3cm, auto]
         \node (cos) at (0, 1.5) {\Large$\cos$};
         \node (sin) at (2.5, 0) {\Large$\sin$};
@@ -1919,45 +1921,39 @@ Let $a > 0$, then:
         \draw[<-, thick] (neg_cos) to[bend left] node[midway, below left] {$\dfrac{d}{dx}$} (neg_sin);
         \draw[<-, thick] (neg_sin) to[bend left] node[midway, above left] {$\dfrac{d}{dx}$} (cos);
     \end{tikzpicture}
-    \vspace{-2.6cm}
-\end{wrapfigure}
+    
+    \fbox{\hspace*{-.7cm}
+      \begin{minipage}{0.28\textwidth}\vspace*{-.35cm}
+        \[
+          (\sec x)' = \sec x \tan x 
+        \]
+        \[
+          (\tan x)' = \frac{1}{\cos^2(x)}
+        \]
+        \[
+          (\arcsin x)' = \frac{1}{\sqrt{1 - x^2}}
+        \]
+        \[
+          (\arctan x)' = \frac{1}{1 + x^2}
+        \]
+      \end{minipage}%
+      \begin{minipage}{0.27\textwidth}\vspace*{-.35cm}
+        \[
+          (\csc x)' = -\csc x \cot x
+        \]
+        \[
+          (\cot x)' = \frac{-1}{\sin^2(x)}
+        \]
+        \[
+          (\arccos x)' = \frac{-1}{\sqrt{1 - x^2}}
+        \]
+        \[
+          (\text{arccot } x)' = \frac{-1}{1 + x^2}
+        \]
+      \end{minipage}
+    }
+\end{center}
 
-\phantom{}
-
-\vspace*{-.3cm}
-\fbox{\hspace*{-.7cm}
-  \begin{minipage}{0.28\textwidth}\vspace*{-.35cm}
-    \[
-      (\sec x)' = \sec x \tan x 
-    \]
-    \[
-      (\tan x)' = \frac{1}{\cos^2(x)}
-    \]
-    \[
-      (\arcsin x)' = \frac{1}{\sqrt{1 - x^2}}
-    \]
-    \[
-      (\arctan x)' = \frac{1}{1 + x^2}
-    \]
-  \end{minipage}%
-  \begin{minipage}{0.27\textwidth}\vspace*{-.35cm}
-    \[
-      (\csc x)' = -\csc x \cot x
-    \]
-    \[
-      (\cot x)' = \frac{-1}{\sin^2(x)}
-    \]
-    \[
-      (\arccos x)' = \frac{-1}{\sqrt{1 - x^2}}
-    \]
-    \[
-      (\text{arccot } x)' = \frac{-1}{1 + x^2}
-    \]
-  \end{minipage}
-}
-\wrapfill
-
-\newpage
 \subsection{Particular cases}
 \begin{enumerate}
     \item \[f(x) = g(x)^\alpha \Longrightarrow f'(x)=\alpha \cdot g'(x) \cdot g(x)^{\alpha -1}
@@ -1978,6 +1974,36 @@ Let $a > 0$, then:
 
 \pph{Instant acceleration $a(t)$}
 \figbox{$\dm a(t) := v'(t) = \lim_{t \to 0} \frac{v(t + h)-v(t)}{\Delta t}$}
+
+\newpage
+\subsection{Linearization}
+\subsubsection{The linearization principle}
+In a very small neighborhood of a point $a$, we can assume that the
+function in that point is linear.
+
+
+
+\subsubsection{Tangent line approximation}
+In this case, assuming that the function is linear, we can use the
+tangent line equation:
+\figbox{$\dm f(x) = f(a)+f'(a)\cdot (x-a)$}
+
+\subsubsection{Error function}
+The error of the approximation is given by the substraction between
+the exact function and the linearization:
+\figbox{$E(x) = f(x)-f(a)-f'(a)\cdot(x-a)$}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

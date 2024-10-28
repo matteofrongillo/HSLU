@@ -22,9 +22,11 @@
 \usepackage{subcaption}
 \usepackage[T1]{fontenc}
 \usepackage{esvect}
+\usepackage{multirow}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
+\usepgfplotslibrary{statistics}
 
 \geometry{
     a4paper,
@@ -140,8 +142,121 @@ agricultural practices.
 Detail the materials used and the step-by-step procedure followed in the experiment.
 
 \subsection{Results}
-Present the data collected in tabular form and include any relevant calculations.
+\subsubsection{Preliminary parameters}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Results of preliminary parameters}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Sample name} & \textbf{pH} & \textbf{Color} & \textbf{Texture} & \textbf{Odor} & \textbf{Foreign objects} & \textbf{Moisture fist test}\\
+        \hline
+        Fresh & 9 & Light brown & Coarse & Smells ammonia & -- & 30\% humidity\\
+        \hline                                                                   
+        \multirow{2}{*}{Finished} & \multirow{2}{*}{8} & \multirow{2}{*}{Dark brown} & \multirow{2}{*}{Fine} & \multirow{2}{*}{Smells ammonia} & Sticks and & \multirow{2}{*}{20\% humidity} \\
+                                  &   &            &      &                & plastic particles & \\
+        \hline
+        Standard & 7 & Darkest brown & Clumpy & Smells earthy & -- & 30\% humidity\\
+        \hline
+    \end{tabular}
+\end{table*}
 
+\subsubsection{Fresh compost}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Results of raw unit weight in three different samples of fresh compost}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Sample} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Average}\\
+        \hline
+        {\textbf{Mass of the empty}} & \multicolumn{4}{c|}{\multirow{2}{*}{168.24}}\\
+        \textbf{cylinder in [g]} & \multicolumn{4}{c|}{}\\
+        \hline
+        \textbf{Mass of the filled} & \multirow{2}{*}{120.88} & \multirow{2}{*}{112.20} & \multirow{2}{*}{108.71} & \multirow{2}{*}{113.93}\\
+        \textbf{cylinder [L]} & & & &\\
+        \hline
+        \textbf{Volume of the} & \multirow{2}{*}{340} & \multirow{2}{*}{330} & \multirow{2}{*}{390} & \multirow{2}{*}{353.33}\\
+        \textbf{sample in [mL]} & & & &\\
+        \hline
+        \textbf{Result in [kg/L]} & 0.356 & 0.34 & 0.279 & 0.325\\
+        \hline
+        \textbf{Result in [kg/m$^3$]} & 356 & 340 & 279 & 325\\
+        \hline
+    \end{tabular}
+\end{table*}
+
+\newpage
+\subsubsection{Finished compost}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Results of raw unit weight in three different samples of finished compost}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Sample} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Average}\\
+        \hline
+        {\textbf{Mass of the empty}} & \multicolumn{4}{c|}{\multirow{2}{*}{168.24}}\\
+        \textbf{cylinder in [g]} & \multicolumn{4}{c|}{}\\
+        \hline
+        \textbf{Mass of the filled} & \multirow{2}{*}{214.54} & \multirow{2}{*}{202.91} & \multirow{2}{*}{202.68} & \multirow{2}{*}{206.71}\\
+        \textbf{cylinder [L]} & & & &\\
+        \hline
+        \textbf{Volume of the} & \multirow{2}{*}{375} & \multirow{2}{*}{370} & \multirow{2}{*}{380} & \multirow{2}{*}{375}\\
+        \textbf{sample in [mL]} & & & &\\
+        \hline
+        \textbf{Result in [kg/L]} & 0.572 & 0.548 & 0.533 & 0.551\\
+        \hline
+        \textbf{Result in [kg/m$^3$]} & 572 & 548 & 533 & 551\\
+        \hline
+    \end{tabular}
+\end{table*}
+
+\subsubsection{Standard compost}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Results of raw unit weight in three different samples of standard compost}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Sample} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Average}\\
+        \hline
+        {\textbf{Mass of the empty}} & \multicolumn{4}{c|}{\multirow{2}{*}{168.24}}\\
+        \textbf{cylinder in [g]} & \multicolumn{4}{c|}{}\\
+        \hline
+        \textbf{Mass of the filled} & \multirow{2}{*}{222.95} & \multirow{2}{*}{228.44} & \multirow{2}{*}{212.74} & \multirow{2}{*}{221.38}\\
+        \textbf{cylinder [L]} & & & &\\
+        \hline
+        \textbf{Volume of the} & \multirow{2}{*}{355} & \multirow{2}{*}{370} & \multirow{2}{*}{360} & \multirow{2}{*}{361.67}\\
+        \textbf{sample in [mL]} & & & &\\
+        \hline
+        \textbf{Result in [kg/L]} & 0.628 & 0.617 & 0.591 & 0.612\\
+        \hline
+        \textbf{Result in [kg/m$^3$]} & 628 & 617 & 591 & 612\\
+        \hline
+    \end{tabular}
+\end{table*}
+
+\subsection{Experiment results}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Experiment results}
+    \begin{tabular}{|c|l|l|l|l|l|l|}
+        \hline
+        \textbf{Group 4} & \textbf{E0} & \textbf{E0} & \textbf{E25} & \textbf{E25} & \textbf{E50} & \textbf{E50} \\
+        \hline
+        n$^{\circ}$ germinated seeds & 12 & 13 & 11 & 12 & 11 & 10\\
+        \hline
+        weight (g) & 1.672 & 1.882 & 0.997 & 1.294 & 1.058 & 1.105\\
+        \hline
+    \end{tabular}
+\end{table*}
+
+\vspace*{2cm}
+\cfig{\includegraphics[width=.9\textwidth]{media/plants-results.png}}
+
+\newpage
 \subsection{Discussion}
 Interpret the results, discussing and answering the questions.
 
@@ -197,6 +312,10 @@ Summarize the key findings and their implications.
 \subsection{References}
 List any sources or references used for understanding the experiment.
 
+\newpage
+\listoftables
+
+\listoffigures
 
 
 

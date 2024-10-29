@@ -1978,10 +1978,8 @@ Let $a > 0$, then:
 \newpage
 \subsection{Linearization}
 \subsubsection{The linearization principle}
-In a very small neighborhood of a point $a$, we can assume that the
-function in that point is linear.
-
-
+In a very small neighborhood around a point $a$, we can assume that
+the function is linear at that point.
 
 \subsubsection{Tangent line approximation}
 In this case, assuming that the function is linear, we can use the
@@ -1989,13 +1987,134 @@ tangent line equation:
 \figbox{$\dm f(x) = f(a)+f'(a)\cdot (x-a)$}
 
 \subsubsection{Error function}
-The error of the approximation is given by the substraction between
+The error of the approximation is given by the difference between
 the exact function and the linearization:
-\figbox{$E(x) = f(x)-f(a)-f'(a)\cdot(x-a)$}
+\figbox{$E(x) = d(f(x) \mid f_{\text{lin}}(x)) = f(x)-f(a)-f'(a)\cdot(x-a)$}
 
+\subsection{Monotonicity}
+\subsubsection{Definition of monotonicity}
+A real function $f$ defined on an interval $I \subset \mathcal{D}_f$ is denoted as:
+\begin{itemize}
+    \item \textit{strictly monotonically increasing} on $I$, if $f(x_2) > f(x_1)$ applies for all $x_1, x_2 \in I$ with $x_2 > x_1$;
+    \item \textit{monotonically increasing} on $I$, if $f(x_2) \geq f(x_1)$ applies for all $x_1, x_2 \in I$ with $x_2 > x_1$;
+    \item \textit{strictly monotonically decreasing} on $I$, if $f(x_2) < f(x_1)$ applies for all $x_1, x_2 \in I$ with $x_2 > x_1$;
+    \item \textit{monotonically decreasing} on $I$, if $f(x_2) \leq f(x_1)$ applies for all $x_1, x_2 \in I$ with $x_2 > x_1$.
+\end{itemize}
 
+\subsubsection{Monotonicity criterion}
+Let the function $f$ be differentiable on the interval $I$:
+\begin{itemize}
+    \item If $f'(x) > 0$ (resp. $\geq 0$) for all $x \in I$, then $f$ is strictly monotonically increasing (resp. monotonically increasing) on $I$.
+    \item If $f'(x) < 0$ (resp. $\leq 0$) for all $x \in I$, then $f$ is strictly monotonically decreasing (resp. monotonically decreasing) on $I$.
+    \item If $f'(x) = 0$ for all $x \in I$, then $f$ is constant on $I$.
+\end{itemize}
 
+\subsubsection{Monotonicity table}
+Let $f(x)$ be differentiable, $f'(x)<0$ if $a<x<b$,\ $a,b,c \in \mathcal{D}_f$, and $a,b,c$ are critical points, then:
+\\
+\begin{center}
+    \begin{tikzpicture}
+        \node at (0, 1) {$f'(x)$};
+        \node at (1, 1) {$+$};
+        \node at (2, 1) {$-$};
+        \node at (3, 1) {$+$};
+        \node at (4, 1) {$-$};
+        
+        \node at (0, 0) {$f(x)$};
+        \node at (1, 0) {$\nearrow$};
+        \node at (2, 0) {$\searrow$};
+        \node at (3, 0) {$\nearrow$};
+        \node at (4, 0) {$\searrow$};
+        
+        \draw (0.5, 1.5) -- (4.5, 1.5);
+        \draw (0.5, -0.5) -- (4.5, -0.5);
+        \draw (0.5, 1.5) -- (0.5, -0.5);
+        \draw (4.5, 1.5) -- (4.5, -0.5);
+        \draw (0.5, 0.5) -- (4.5, 0.5);
 
+        \draw (1.5, 1.5) -- (1.5, -0.5);
+        \draw (2.5, 1.5) -- (2.5, -0.5);
+        \draw (3.5, 1.5) -- (3.5, -0.5);
+        
+        \node at (1.5, -.8) {a};
+        \node at (2.5, -.75) {b};
+        \node at (3.5, -.8) {c};
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Critical point}
+Let $y_f(x)$ be a function, then we say that $x \in \mathcal{D}_f$ is
+a critical point in $f'(x)=0$
+
+\wrn{many critical points are local extrema, some aren't.}
+
+\newpage
+\subsubsection{Darboux theorem}
+Let $f$ be differentiable on an interval $I$:
+\begin{enumerate}
+    \item find the critical points $f'(a,b)=0,\ a<b$;
+    \item take a random point \textbf{between the critical points} in $c \sht a<c<b$;
+    \item compute $f'(c)$.
+\end{enumerate}
+
+\figbox{
+    \begin{minipage}{.36\textwidth}
+        \begin{center}
+            If $f'(c)>0$, then $f'(x) > 0,\ \forall x \in \left(a,b\right)$
+            
+            \vspace*{.1cm}
+            If $f'(c)<0$, then $f'(x) < 0,\ \forall x \in \left(a,b\right)$
+        \end{center}
+    \end{minipage}
+}
+
+\subsection{Minimum and maximum}
+Let a real function $f$ and a point $x_0 \in \mathcal{D}_f$ be given.
+
+\begin{center}
+    \begin{tikzpicture}[scale=1.4]
+        \draw[->] (-3.5, 0) -- (3.5, 0) node[right] {$x$};
+        \draw[->] (0, -1.5) -- (0, 2.5) node[above] {$y$};
+    
+        \draw[thick, blue, domain=-3:3, smooth, samples=200] plot (\x, {2*(0.5*\x - 1)*(0.5*\x - 1)*(0.5*\x + 1)*(0.5*\x + 1) - 1});
+    
+        \fill (0, 1) circle (1.5pt) node[below right] {};
+        \draw[dashed] (0, 1) -- (-4, 1) node[left] {local maximum};
+    
+        \fill (-2, -1) circle (1.5pt) node[below left] {};
+        \fill (2, -1) circle (1.5pt) node[below right] {};
+        \draw[dashed] (2, -1) -- (-4, -1) node[left] {global minimum};
+
+        \fill (3, 2.125) circle (1.5pt) node[right] {};
+        \fill (-3, 2.125) circle (1.5pt) node[right] {};
+        \draw[dashed] (3, 2.125) -- (-4, 2.125) node[left] {global maximum};
+    
+        \draw (-3, 0) -- (-3, -0.1) node[below] {$-a$};
+        \draw (3, 0) -- (3, -0.1) node[below] {$a$};
+        
+        \node at (0,-1.85) {\textbf{Local and global extrema of a function in the interval [-a,a]}};
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Local extrema}
+\pph{Local maximum}
+The function $f$ has a \textbf{local maximum point} at point $x_0$ if
+there is an open neighborhood $U(x_o)$ such that:
+\figbox{$f(x) \leq f(x_0),\ \forall x \in U(x_0) \cap \mathcal{D}_f$}
+
+\pph{Local minimum}
+The function $f$ has a \textbf{local minimum point} at point $x_0$ if
+there is an open neighborhood $U(x_o)$ such that:
+\figbox{$f(x) \geq f(x_0),\ \forall x \in U(x_0) \cap \mathcal{D}_f$}
+
+\subsubsection{Global extrema}
+\pph{Global maximum}
+The function $f$ has a \textbf{global maximum} at point $x_0$ if:
+\figbox{$f(x) \leq f(x_0),\ \forall x \in \mathcal{D}_f$}
+
+\pph{Global minimum}
+The function $f$ has a \textbf{global minimum} at point $x_0$ if:
+\figbox{$f(x) \geq f(x_0),\ \forall x \in \mathcal{D}_f$}
 
 
 

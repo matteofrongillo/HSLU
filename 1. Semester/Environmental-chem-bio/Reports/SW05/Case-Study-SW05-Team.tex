@@ -6,7 +6,6 @@
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{geometry}
-\usepackage{babel}
 \usepackage{enumitem}
 \usepackage{parskip}
 \usepackage{chemfig}
@@ -27,7 +26,17 @@
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
 \usepgfplotslibrary{statistics}
+\definecolor{darkgray}{rgb}{0.2, 0.2, 0.2}
 
+% === BIBLIOGRAPHY ===
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[style=apa, backend=biber, doi=true, url=true]{biblatex}
+\addbibresource{ref.bib}
+\DeclareFieldFormat[article]{volume}{\textbf{#1}}
+\DeclareFieldFormat[article]{journaltitle}{\textit{#1}}
+% ====================
+ 
 \geometry{
     a4paper,
     total={170mm, 257mm},
@@ -80,12 +89,13 @@
 \newcommand{\sht}{\ |\ }
 \newcommand{\pph}[1]{\paragraph{#1}\phantom{}\\}
 
-
 % === TEXT ===
 \title{\textbf{Practical 1 \\ Environmental chemistry and biology \\ HSLU, Semester 1}}
 \author{Matteo Frongillo}
 
 \begin{document}
+
+\hypersetup{citecolor=black}
 
 \begin{minipage}{0.7\textwidth}
     \vspace*{-.8cm} \hspace*{-0.3cm}
@@ -131,16 +141,58 @@
 
 \section{Composting parameters and plant tolerance test}
 \subsection{Introduction}
-With this laboratory we will look at the effect of different types of
-compost and how it affects the growth of plants. 
-
-Understanding the chemical and physical reactions that occur between
-composite materials and plants is essential to developing sustainable
-agricultural practices.
+This experiment focuses on understanding how different types of compost affect plant
+growth. It aims to explore the chemical and physical interactions between compost and
+plant systems. Gaining a better understanding of these processes is essential for
+improving sustainable farming methods, making nutrients more available to plants, and
+managing resources effectively in agriculture.
 
 \subsection{Materials and methods}
-Detail the materials used and the step-by-step procedure followed in the experiment.
+For this experiment, six gardening pots, three buckets containing different types of 
+compost, a containment box, and a sieve were provided.
 
+A scale and a measuring cylinder were used to determine the mass of the compost types
+(fresh, standard, and finished). The initial and final temperatures at the bottom of each
+pot were measured using a probe thermometer. Subsequently, pH measurements were conducted on each type of compost, with the samples
+dissolved in distilled water in a small beaker. Next, the composts were placed into different pots and divided into three distinct
+groups: 50\% finished and 25\% finished compost, 50\% fresh and 25\% fresh compost, and
+standard soil.
+
+Finally, 15 seeds were carefully placed in each pot, and their growth and development
+were closely monitored.
+\vspace*{.6cm}
+
+\begin{figure}[ht!]
+    \begin{minipage}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=.5\textwidth]{media/pot-temp.jpeg}
+        \caption{Pot temperature}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=.5\textwidth]{media/ph-mix.jpeg}
+        \caption{Compost dissolution}
+    \end{minipage}%
+\end{figure}
+\vspace*{1cm}
+
+\begin{figure}[ht!]
+    \begin{minipage}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{media/ph-results.jpeg}
+        \caption{Compost pH results}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{media/pots.jpeg}
+        \caption{Triplet of compost inside the pots}
+    \end{minipage}
+\end{figure}
+\vspace*{.5cm}
+
+\newpage
 \subsection{Results}
 \subsubsection{Preliminary parameters}
 We collected three samples: Fresh, Finished, and Standard, and 
@@ -260,6 +312,7 @@ unit weight across the different samples.
     \end{tabular}
 \end{table*}
 
+\newpage
 \subsection{Experiment results}
 \renewcommand{\arraystretch}{1.5}
 \begin{table*}[ht!]
@@ -291,33 +344,39 @@ Interpret the results, discussing and answering the questions.
         results based on the laboratory experiment.
 
         \textbf{R:\\}
-            Raw unit weight measures the mass of fresh compost per volume, while
-            bulk density includes porosity and moisture. Bulk density is essential for
-            assessing aeration and microbial activity, impacting compost structure and
-            decomposition efficiency.
+        Raw unit weight is the density given by the division of the mass of the compost
+        over the volume of the compost. The bulk unit is the density given by the division
+        of the mass of the compost over the volume of the container.
 
     \item How can the pH affect the compost?
     
         \textbf{R:\\}
-            pH affects microbial activitiy in composing. Optimal pH (6-8) enhances microbial
-            efficiency, while extreme pH values (near 1 or 14) slow down decomposition and
-            affect nutrient availability.
+        The more acidic the soil is, the more inactive the bacteria are, and this bring
+        plants to not grow properly. Vice versa for the basicity.\\
+        Compost microorganisms operate best under neutral to acidic conditions, with pH's
+        in the range of 5.5 to 8. During the initial stages of decomposition, organic
+        acids are formed. The acidic conditions are favourable for growth of fungi and
+        breakdown of lignin and cellulose \parencite{cornell}.
 
     \item What is the impact of immature compost on plant growth, and how can this be
         assessed in the lab?
 
         \textbf{R:\\}
-            Immature compst harms plant growth due to high microbial activity, which
-            depletes oxygen and releases toxic substances. In the lab, plant tolerance tests
-            measure the compost's effect on germination and growth.
+        Plants will not grow properly if the nitrogen cycle is not working. Indeed, it is
+        generally accepted that compost produced with substrates rich in nitrogen will
+        have a better fertilizing effect, compared to other compost whose substrates are
+        mainly woody. Likewise, immature compost will have a repressive effect on seed
+        germination and plant growth \parencite{tamakloe2021}.\\
+        In the lab, we can do the germination test and for immature compost you have
+        standard growth.
 
     \item How do you calculate the bulk density of compost, and why is this measurement
         important in the composting process?
 
         \textbf{R:\\}
-            Bulk density is calculated as $\frac{\text{mass}}{\text{volume}}$. It is crucial for
-            determining porosity, air flow and moisture retention, directly affecting
-            microbial activity and compost quality.
+        Divide the mass of the compost by the volume of the container. Bulk density
+        provides an overall indication for the physical and aeration conditions of a
+        composting mass \parencite{bulk_density}.
 
     \item What would be the environmental impact if fresh compost is added in the
         plantations/agriculture or when the recommended percentage of compost mixture
@@ -332,13 +391,24 @@ Interpret the results, discussing and answering the questions.
 \subsection{Conclusion}
 Summarize the key findings and their implications.
 
-\subsection{References}
-List any sources or references used for understanding the experiment.
-
 \newpage
+\setlength{\bibitemsep}{1.2\baselineskip}
+
+\printbibliography
+
 \listoftables
 
 \listoffigures
+
+\section*{Declarations about AI tools}
+\begin{itemize}
+    \item ``\textit{ChatGPT-4 with canvas}'' was used as a tool to enhance vocabulary.\\
+        {\color{darkgray!95}{\textit{All original sentences come from our individual thoughts and were refined with
+        the support of this tool.}}}\\
+        \url{https://chatgpt.com/}
+    \item ``DeepL'' was used as a translator.\\
+        \url{https://www.deepl.com}
+\end{itemize}
 
 
 

@@ -22,6 +22,10 @@
 \usepackage[T1]{fontenc}
 \usepackage{esvect}
 \usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{caption}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -79,6 +83,30 @@
   \end{figure*}%
 }
 
+% === LIST OF EQUATIONS ===
+\newcounter{myequation}
+\renewcommand{\themyequation}{\arabic{myequation}}
+
+\newlistof{myequations}{loe}{\Large List of Equations}
+\newcommand{\addequationtotoc}[1]{\addcontentsline{loe}{myequations}{\protect\numberline{\themyequation}#1}}
+
+\renewcommand{\cftmyequationspresnum}{}
+\renewcommand{\cftmyequationsaftersnum}{\hspace{1em}}
+\setlength{\cftmyequationsnumwidth}{2em}
+\cftsetindents{myequations}{1.5em}{2.3em}
+
+\newcommand{\capeq}[2]{
+    \begin{equation*}
+        #1
+    \end{equation*}
+    \stepcounter{myequation}
+    \begin{center}
+        \noindent{\themyequation:} #2
+    \end{center}
+    \addequationtotoc{#2}
+}
+% =========================
+
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
 \newcommand{\nots}{\underline{Notation}: }
@@ -88,6 +116,7 @@
 \newcommand{\wrn}{\underline{Warning}: }
 \newcommand{\sht}{\ |\ }
 \newcommand{\pph}[1]{\paragraph{#1}\phantom{}\\}
+
 
 % === TEXT ===
 \title{\textbf{Practical 1 \\ Environmental chemistry and biology \\ HSLU, Semester 1}}
@@ -139,15 +168,14 @@
 \tableofcontents
 \pagebreak
 
-\section{Composting parameters and plant tolerance test}
-\subsection{Introduction}
+\section{Introduction}
 This experiment focuses on understanding how different types of compost affect plant
 growth. It aims to explore the chemical and physical interactions between compost and
 plant systems. Gaining a better understanding of these processes is essential for
 improving sustainable farming methods, making nutrients more available to plants, and
 managing resources effectively in agriculture.
 
-\subsection{Materials and methods}
+\section{Materials and methods}
 For this experiment, six gardening pots, three buckets containing different types of 
 compost, a containment box, and a sieve were provided.
 
@@ -162,6 +190,7 @@ Finally, 15 seeds were carefully placed in each pot, and their growth and develo
 were closely monitored.
 \vspace*{.6cm}
 
+\subsection{Pictures of proceedings}
 \begin{figure}[ht!]
     \begin{minipage}[b]{0.5\textwidth}
         \centering
@@ -193,8 +222,8 @@ were closely monitored.
 \vspace*{.5cm}
 
 \newpage
-\subsection{Results}
-\subsubsection{Preliminary parameters}
+\section{Results}
+\subsection{Preliminary parameters}
 We collected three samples: Fresh, Finished, and Standard, and 
 valuated them based on several characteristics, including pH, color,
 texture, odor, foreign objects, and moisture content. Each sample had
@@ -209,10 +238,11 @@ distinct features, which helped us assess their condition and quality.
         \hline
         \textbf{Sample name} & \textbf{pH} & \textbf{Color} & \textbf{Texture} & \textbf{Odor} & \textbf{Foreign objects} & \textbf{Moisture fist test}\\
         \hline
-        Fresh & 9 & Light brown & Coarse & Smells ammonia & -- & 30\% humidity\\
-        \hline                                                                   
+        \multirow{2}{*}{Fresh} & \multirow{2}{*}{9} & \multirow{2}{*}{Light brown} & \multirow{2}{*}{Coarse} & \multirow{2}{*}{Smells ammonia} & Large roots & \multirow{2}{*}{30\% humidity} \\
+        & & & & & and plastics & \\
+        \hline                                                                  
         \multirow{2}{*}{Finished} & \multirow{2}{*}{8} & \multirow{2}{*}{Dark brown} & \multirow{2}{*}{Fine} & \multirow{2}{*}{Smells ammonia} & Sticks and & \multirow{2}{*}{20\% humidity} \\
-                                  &   &            &      &                & plastic particles & \\
+        & & & & & plastic particles & \\
         \hline
         Standard & 7 & Darkest brown & Clumpy & Smells earthy & -- & 30\% humidity\\
         \hline
@@ -220,7 +250,7 @@ distinct features, which helped us assess their condition and quality.
 \end{table*}
 \phantom{} \vspace*{-.2cm}
 
-\subsubsection{Fresh, Finished and Standard compost}
+\subsection{Fresh, Finished and Standard compost}
 Three samples were collected, and their raw unit weight was evaluated.
 The mass of the empty cylinder was measured in grams, with a value of
 168.24 g. The mass of the filled cylinder for each sample was then
@@ -228,13 +258,12 @@ measured, obtaining values in liters. The volume of each sample was
 also measured in milliliters. Using these measurements, the density
 results were calculated in both [kg/L] and [kg/m$^3$] using the formulas:
 
-$\displaystyle \text{Density} \left[kg/L\right] = \frac{\text{Mass of filled cylinder}\ [g] - \text{Mass of empty cylinder}\ [g]}{\text{Volume of sample}\ [mL]}$
+\[\text{Density} \left[kg/L\right] = \frac{\text{Mass of filled cylinder}\ [g] - \text{Mass of empty cylinder}\ [g]}{\text{Volume of sample}\ [mL]}\]
 
-$\displaystyle \text{Density} \left[kg/m^3\right] = \text{Density} \left[kg/L\right] \cdot 1000 \left[L/m^3\right]$
+\[\text{Density} \left[kg/m^3\right] = \text{Density} \left[kg/L\right] \cdot 1000 \left[L/m^3\right]\]
 
 The average values provided insight into the consistency of the raw
 unit weight across the different samples.
-
 
 \subsubsection{Fresh compost}
 \renewcommand{\arraystretch}{1.5}
@@ -318,27 +347,76 @@ unit weight across the different samples.
 \begin{table*}[ht!]
     \centering \vspace{.3cm}
     \caption{Experiment results}
-    \begin{tabular}{|c|l|l|l|l|l|l|}
+    \begin{tabular}{|l|c|c|c|c|c|c|}
         \hline
         \textbf{Group 4} & \textbf{E0} & \textbf{E0} & \textbf{E25} & \textbf{E25} & \textbf{E50} & \textbf{E50} \\
         \hline
+        mean compost density (kg/L) & \multicolumn{2}{c|}{0.325} & \multicolumn{2}{c|}{0.382} & \multicolumn{2}{c|}{0.438}\\
+        \hline
         n$^{\circ}$ germinated seeds & 12 & 13 & 11 & 12 & 11 & 10\\
         \hline
-        weight (g) & 1.672 & 1.882 & 0.997 & 1.294 & 1.058 & 1.105\\
+        plants weight (g) & 1.672 & 1.882 & 0.997 & 1.294 & 1.058 & 1.105\\
         \hline
     \end{tabular}
 \end{table*}
 
-\vspace*{2cm}
-\cfig{\includegraphics[width=.9\textwidth]{media/plants-results.png}}
+\vspace*{.7cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.9\textwidth]{media/plants-results.png}
+    \caption{Growth status 2 weeks after insemination}
+\end{figure}
+
+\subsubsection{Relative yield}
+To calculate the relative yield $FM(r)$ at 25\% and 50\% using the data from the table,
+we can use this formula:
+
+\vspace{.5cm}
+\figbox{$\displaystyle FM(r) \% = \frac{FM \%}{E0\%} \times 100$}
+
+\pph{Average $FM_{E0}$}
+The average is calculated based on this formula:
+\[\overline{x} = \frac{1}{n} \sum_{i=1}^{n} x_i\]
+
+It follows:
+\[FM_{E0\%} = \frac{1.672g + 1.882g}{2} = \frac{3.554g}{2} = 1.777g\]
+
+\pph{Calculation of the relative yields}
+\begin{enumerate}
+    \item \textbf{E25}:
+        \capeq{
+            FM(r)\ 25\% = \frac{0.997}{1.777} \times 100 = 56.1\%
+        }{
+            Yield of the first E25\% pot
+        }
+
+        \capeq{
+            FM(r)\ 25\% = \frac{1.294}{1.777} \times 100 = 72.8\%
+        }{
+            Yield of the second E25\% pot
+        }
+  
+    \item \textbf{E50}:
+        \capeq{
+            FM_1(r)\ 50\% = \frac{1.058}{1.777} \times 100 = 59.5\%
+        }{
+            Yield of the first E50\% pot
+        }
+
+        \capeq{
+            FM_2(r)\ 50\% = \frac{1.105}{1.777} \times 100 = 62.2\%
+        }{
+            Yield of the second E50\% pot
+        }
+\end{enumerate}
 
 \newpage
-\subsection{Discussion}
+\section{Discussion}
 Interpret the results, discussing and answering the questions.
 
-\subsubsection{Results discussion}
+\subsection{Results discussion}
 
-\subsubsection{Questions}
+\subsection{Questions}
 \begin{enumerate}
     \item What is the difference between raw unit weight and bulk density? Discuss your
         results based on the laboratory experiment.
@@ -400,6 +478,8 @@ Summarize the key findings and their implications.
 
 \listoffigures
 
+\listofmyequations
+
 \section*{Declarations about AI tools}
 \begin{itemize}
     \item ``\textit{ChatGPT-4 with canvas}'' was used as a tool to enhance vocabulary.\\
@@ -409,7 +489,6 @@ Summarize the key findings and their implications.
     \item ``DeepL'' was used as a translator.\\
         \url{https://www.deepl.com}
 \end{itemize}
-
 
 
 

@@ -95,16 +95,20 @@
 \setlength{\cftmyequationsnumwidth}{2em}
 \cftsetindents{myequations}{1.5em}{2.3em}
 
-\newcommand{\capeq}[2]{
+\newcommand{\capeq}[3]{
+    \refstepcounter{myequation}
     \begin{equation*}
         #1
     \end{equation*}
-    \stepcounter{myequation}
+    \label{#2}
     \begin{center}
-        \noindent{\themyequation:} #2
+        \vspace*{-.4cm}
+        \noindent{Equation \themyequation:} #3
     \end{center}
-    \addequationtotoc{#2}
+    \addequationtotoc{#3}
 }
+
+\newcommand{\refeq}[1]{\hyperref[#1]{[Equation~\ref*{#1}]}}
 % =========================
 
 \newcommand{\difference}{\,\backslash\,}
@@ -116,7 +120,6 @@
 \newcommand{\wrn}{\underline{Warning}: }
 \newcommand{\sht}{\ |\ }
 \newcommand{\pph}[1]{\paragraph{#1}\phantom{}\\}
-
 
 % === TEXT ===
 \title{\textbf{Practical 1 \\ Environmental chemistry and biology \\ HSLU, Semester 1}}
@@ -188,9 +191,9 @@ standard soil.
 
 Finally, 15 seeds were carefully placed in each pot, and their growth and development
 were closely monitored.
-\vspace*{.6cm}
 
 \subsection{Pictures of proceedings}
+\vspace*{.5cm}
 \begin{figure}[ht!]
     \begin{minipage}[b]{0.5\textwidth}
         \centering
@@ -229,6 +232,7 @@ valuated them based on several characteristics, including pH, color,
 texture, odor, foreign objects, and moisture content. Each sample had
 distinct features, which helped us assess their condition and quality. 
 
+\subsubsection{Preliminary parameters table}
 \renewcommand{\arraystretch}{1.5}
 \begin{table*}[ht!]
     \centering \vspace{.3cm}
@@ -236,7 +240,7 @@ distinct features, which helped us assess their condition and quality.
     \hspace*{-.3cm}
     \begin{tabular}{|c|c|c|c|c|c|c|}
         \hline
-        \textbf{Sample name} & \textbf{pH} & \textbf{Color} & \textbf{Texture} & \textbf{Odor} & \textbf{Foreign objects} & \textbf{Moisture fist test}\\
+        \textbf{Sample} & \textbf{pH} & \textbf{Color} & \textbf{Texture} & \textbf{Odor} & \textbf{Foreign objects} & \textbf{Moisture fist test}\\
         \hline
         \multirow{2}{*}{Fresh} & \multirow{2}{*}{9} & \multirow{2}{*}{Light brown} & \multirow{2}{*}{Coarse} & \multirow{2}{*}{Smells ammonia} & Large roots & \multirow{2}{*}{30\% humidity} \\
         & & & & & and plastics & \\
@@ -250,6 +254,31 @@ distinct features, which helped us assess their condition and quality.
 \end{table*}
 \phantom{} \vspace*{-.2cm}
 
+\subsubsection{Compost temperature}
+The temperature of different composts was measured so that an
+assessment could be made of how favorable germination was within the
+compost. For the measurements, the probe thermometer was allowed to
+rest inside the compost for 5 minutes, and the initial and final
+temperatures were recorded.
+
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Compost temperature}
+    \hspace*{-.3cm}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Sample} & \textbf{Initial} [$^\circ$C] & \textbf{Final} [$^\circ$C] & \textbf{Mean temp.} [$^\circ$C]\\
+        \hline
+        Fresh & 23.8 & 23.7 & 23.75 \\
+        \hline
+        Finished & 23.2 & 23.0 & 23.1\\
+        \hline
+        Standard & \multicolumn{3}{c|}{23.5}\\
+        \hline
+    \end{tabular}
+\end{table*}
+
+\vspace*{.5cm}
 \subsection{Fresh, Finished and Standard compost}
 Three samples were collected, and their raw unit weight was evaluated.
 The mass of the empty cylinder was measured in grams, with a value of
@@ -258,13 +287,14 @@ measured, obtaining values in liters. The volume of each sample was
 also measured in milliliters. Using these measurements, the density
 results were calculated in both [kg/L] and [kg/m$^3$] using the formulas:
 
-\[\text{Density} \left[kg/L\right] = \frac{\text{Mass of filled cylinder}\ [g] - \text{Mass of empty cylinder}\ [g]}{\text{Volume of sample}\ [mL]}\]
+\capeq{\text{Density} \left[kg/L\right] = \frac{\text{Mass of filled cylinder}\ [g] - \text{Mass of empty cylinder}\ [g]}{\text{Volume of sample}\ [mL]}}{eq:density1}{Density formula in $[kg/L]$}
 
-\[\text{Density} \left[kg/m^3\right] = \text{Density} \left[kg/L\right] \cdot 1000 \left[L/m^3\right]\]
+\capeq{\text{Density} \left[kg/m^3\right] = \text{Density} \left[kg/L\right] \cdot 1000 \left[L/m^3\right]}{eq:density2}{Density formula in $[kg/m^3]$}
 
 The average values provided insight into the consistency of the raw
 unit weight across the different samples.
 
+\newpage
 \subsubsection{Fresh compost}
 \renewcommand{\arraystretch}{1.5}
 \begin{table*}[ht!]
@@ -290,7 +320,6 @@ unit weight across the different samples.
     \end{tabular}
 \end{table*}
 
-\newpage
 \subsubsection{Finished compost}
 \renewcommand{\arraystretch}{1.5}
 \begin{table*}[ht!]
@@ -367,54 +396,329 @@ unit weight across the different samples.
     \caption{Growth status 2 weeks after insemination}
 \end{figure}
 
-\subsubsection{Relative yield}
+\vspace*{.5cm}
+From the comparison of the different treatments, it is observed that compost E0 promoted
+both germination and plant growth in terms of biomass, with superior results compared to
+E25 and E50. The figure clearly shows that the plants treated with E0 are more developed
+compared to the other treatments. Treatments E25 and E50, with increasing percentages of
+finished compost, show limited growth.
+
+\subsection{Statistical formulas}
+For statistical analysis, the formulas mentioned below are used:
+\begin{itemize}
+    \item \textbf{Arithmetic mean} ($\overline{x}$):
+    \capeq{\overline{x} = \frac{1}{n} \sum_{i=1}^{n} x_i}{eq:mean}{Arithmetic mean formula}
+
+    \underline{Please note}: since the class consists of two data points,
+        the \textbf{median} corresponds to the arithmetic mean. 
+    \item \textbf{Variance} ($\sigma^2$):
+    \capeq{\sigma^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \overline{x})^2}{eq:variance}{Variance formula}
+    \item \textbf{Standard deviation} ($\sigma$):
+    \capeq{\sigma = \sqrt{\sigma^2}}{eq:stdev}{Standard deviation formula}
+\end{itemize}
+
+\newpage
+\subsection{Statistical analysis for germinated seeds}
+\subsubsection{Analysis for E0}
+\pph{Data set}
+The E0 group class consists of the data [12,13] for the number of sprouted seeds,
+respectively [1.672g, 1.882g] for their mass.
+
+\pph{Arithmetic mean and median}
+\capeq{\overline{x}_{E0} = \frac{12+13}{2} = 12.5}{eq:e0_mean}{Arithmetic mean and median of germinated E0}
+
+\capeq{\overline{m}_{E0} = \frac{1.672g + 1.882g}{2} = 1.78g}{eq:e0_mass}{Arithmetic mean and median of E0 plants mass}
+
+\pph{Variance and standard deviation}
+\capeq{\sigma_{x,E0} = \sqrt{\frac{(12-12.5)^2 + (13-12.5)^2}{2-1}} = \sqrt{0.5} \approx 0.707}{eq:e0_dev}{Standard deviation of germinated E0}
+
+\capeq{\sigma_{m,E0} = \sqrt{\frac{(1.672g - 1.777g)^2 + (1.882g - 1.777g)^2}{2-1}} \approx 0.148g}{eq:e0_mass_dev}{Standard deviation of E0 plants mass}
+
+\subsubsection{Analysis for E25}
+\pph{Data set}
+The E25 group class consists of the data [11,12] for the number of sprouted seeds,
+respectively [0.997g, 1.294g] for their mass.
+
+\pph{Arithmetic mean and median}
+\capeq{\overline{x}_{E25} = \frac{11+12}{2} = 11.5}{eq:e25_mean}{Arithmetic mean and median of E25}
+
+\capeq{\overline{m}_{E25} = \frac{0.997g + 1.294g}{2} = 1.15g}{eq:e25_mass}{Arithmetic mean and median of E25 plants mass}
+
+\pph{Variance and standard deviation}
+\capeq{\sigma_{x,E25} = \sqrt{\frac{(11-11.5)^2 + (12-11.5)^2}{2-1}} = \sqrt{0.5} \approx 0.707}{eq:e25_dev}{Standard deviation of E25}
+
+\capeq{\sigma_{m,E25} = \sqrt{\frac{(0.997g-1.146g)^2 + (1.294g-1.146g)^2}{2-1}} \approx 0.210g}{eq:e25_mass_dev}{Standard deviation of E25 plants mass}
+
+\subsubsection{Analysis for E50}
+\pph{Data set}
+The E25 group class consists of the data [10,11] for the number of sprouted seeds,
+respectively [1.058g, 1.105g] for their mass.
+
+\pph{Arithmetic mean and median}
+\capeq{\overline{x}_{E50} = \frac{10+11}{2} = 10.5}{eq:e50_mean}{Arithmetic mean and median of E50}
+
+\capeq{\overline{m}_{E50} = \frac{1.058g + 1.105g}{2} = 1.08g}{eq:e50_mass}{Arithmetic mean and median of E50 plants mass}
+
+\pph{Variance and standard deviation}
+\capeq{\sigma_{x,E50} = \sqrt{\frac{(10-10.5)^2 + (11-10.5)^2}{2-1}} = \sqrt{0.5} \approx 0.707}{eq:e50_dev}{Standard deviation of E50}
+
+\capeq{\sigma_{m,E50} = \sqrt{\frac{(1.058g-1.082g)^2 + (1.105g-1.082g)^2}{2-1}} \approx 0.0333g}{eq:e25_mass_dev}{Standard deviation of E50 plants mass}
+
+\subsubsection{Summary table}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Statistical analysis by number of germinated seeds}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        & E0 & E25 & E50 & Overall mean\\
+        \hline
+        \textbf{mean and mediane} & 12.5 & 11.5 & 10.5 & 11.5\\
+        \hline
+        \textbf{standard deviation} & \multicolumn{4}{c|}{0.707}\\
+        \hline
+    \end{tabular}
+\end{table*}
+
+\vspace*{1cm}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Statistical analysis for the weight of germinated seeds}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        & E0 & E25 & E50 & Overall mean\\
+        \hline
+        \textbf{mean and median} [g] & 1.78 & 1.15 & 1.08 & 1.34\\
+        \hline
+        \textbf{standard deviation} [g] & 0.148 & 0.210 & 0.0333 & 0.131\\
+        \hline
+    \end{tabular}
+\end{table*}
+\vspace*{.5cm}
+
+\newpage
+\subsection{Relative yield}
 To calculate the relative yield $FM(r)$ at 25\% and 50\% using the data from the table,
 we can use this formula:
 
-\vspace{.5cm}
-\figbox{$\displaystyle FM(r) \% = \frac{FM \%}{E0\%} \times 100$}
+\capeq{FM(r) \% = \frac{FM \%}{E0\%} \cdot 100}{eq:yield}{Relative yield $FM(r)$}
 
-\pph{Average $FM_{E0}$}
-The average is calculated based on this formula:
-\[\overline{x} = \frac{1}{n} \sum_{i=1}^{n} x_i\]
+\subsubsection{Average $FM_{E0}$}
+To calculate the average, the arithmetic mean formula was used \refeq{eq:mean}:
 
-It follows:
-\[FM_{E0\%} = \frac{1.672g + 1.882g}{2} = \frac{3.554g}{2} = 1.777g\]
+\capeq{FM_{E0} = \frac{1.672g + 1.882g}{2} = \frac{3.554g}{2} = 1.777g}{eq:fm_e0}{Average $FM_{E0}$}
 
-\pph{Calculation of the relative yields}
+\subsubsection{Calculation of the relative yields}
 \begin{enumerate}
     \item \textbf{E25}:
-        \capeq{
-            FM(r)\ 25\% = \frac{0.997}{1.777} \times 100 = 56.1\%
-        }{
-            Yield of the first E25\% pot
-        }
+        \capeq{FM(r)\ 25\% = \frac{0.997}{1.777} \cdot 100 = 56.1\%}{eq:first-e25}{Yield of the first E25\% pot}
 
-        \capeq{
-            FM(r)\ 25\% = \frac{1.294}{1.777} \times 100 = 72.8\%
-        }{
-            Yield of the second E25\% pot
-        }
+        \capeq{FM(r)\ 25\% = \frac{1.294}{1.777} \cdot 100 = 72.8\%}{eq:second-e25}{Yield of the second E25\% pot}
   
     \item \textbf{E50}:
-        \capeq{
-            FM_1(r)\ 50\% = \frac{1.058}{1.777} \times 100 = 59.5\%
-        }{
-            Yield of the first E50\% pot
-        }
+        \capeq{FM_1(r)\ 50\% = \frac{1.058}{1.777} \cdot 100 = 59.5\%}{eq:first-e50}{Yield of the first E50\% pot}
 
-        \capeq{
-            FM_2(r)\ 50\% = \frac{1.105}{1.777} \times 100 = 62.2\%
-        }{
-            Yield of the second E50\% pot
-        }
+        \capeq{FM_2(r)\ 50\% = \frac{1.105}{1.777} \cdot 100 = 62.2\%}{eq:second-e50}{Yield of the second E50\% pot}
 \end{enumerate}
+
+\subsubsection{Summary table}
+\renewcommand{\arraystretch}{1.5}
+\begin{table*}[ht!]
+    \centering \vspace{.3cm}
+    \caption{Relative yields}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        & E25 & E50 & Overall mean\\
+        \hline
+        \textbf{FM(r) 25\%} & 56.1\% & 72.8\% & 64.5\%\\
+        \hline
+        \textbf{FM(r) 50\%} & 59.5\% & 62.2\% & 60.9\%\\
+        \hline
+    \end{tabular}
+\end{table*}
+\vspace*{.5cm}
+
+The FM (r) results indicate that E25 compost has a relative yield of
+64.5 percent compared to E0 reference compost, while E50 compost has
+a relative yield of 60.9 percent. These values indicate that composts
+with higher percentages of finished compost have a lower yield than
+standard compost, showing what even a small fraction of an average
+finished compost causes to the plants.
+
+\subsection{Graphical results}
+Data visualized through boxplots allow observing the distribution of
+data obtained from the experiment and evaluating the performance of
+different composts. The medians, quartiles and extremes of the data
+allow visualizing the effectiveness of each type of compost with
+respect to plant development.
+
+\newpage
+\subsubsection{Boxplot of germinated seeds}
+
+\vspace*{.5cm}
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=.8\textwidth,
+            height=0.5\textwidth,
+            boxplot/draw direction=y,
+            ylabel={Number of germinated seeds},
+            xlabel={Type of sample},
+            xtick={1, 2, 3, 4},
+            xticklabels={E0, E25, E50, Mean},
+        ]
+            \addplot+[
+                boxplot prepared={
+                    median=12.5,
+                    upper quartile=13,
+                    lower quartile=12,
+                    upper whisker=13,
+                    lower whisker=12
+                },
+            ] coordinates {};
+            
+            \addplot+[
+                boxplot prepared={
+                    median=11.5,
+                    upper quartile=12,
+                    lower quartile=11,
+                    upper whisker=12,
+                    lower whisker=11
+                },
+            ] coordinates {};
+            
+            \addplot+[
+                boxplot prepared={
+                    median=10.5,
+                    upper quartile=11,
+                    lower quartile=10,
+                    upper whisker=11,
+                    lower whisker=10
+                },
+            ] coordinates {};
+            
+            \addplot+[
+                boxplot prepared={
+                    median=11.5,
+                    upper quartile=12.5,
+                    lower quartile=10.5,
+                    upper whisker=13,
+                    lower whisker=10
+                },
+            ] coordinates {};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Boxplot of the germination of different composts}
+    \label{fig:boxplot_germinated}
+\end{figure}
+
+\vspace*{.5cm}
+The boxplot shows the number of germinated seeds for the different
+compost treatments: E0, E25, E50, and the ``mean'' group. It
+can be observed that the E0 treatment has the highest median, and the E50
+treatment has a lower median compared to the others, indicating a
+decrease in effectiveness for seed germination as compost maturity
+increases. The ``mean'' group displays the largest variability,
+highlighting significant differences between the compost treatments
+in terms of their ability to promote germination.
+
+\subsubsection{Boxplot of plant mass}
+\vspace*{.5cm}
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=.8\textwidth,
+            height=0.5\textwidth,
+            boxplot/draw direction=y,
+            ylabel={Plant mass [g]},
+            xlabel={Type of sample},
+            xtick={1, 2, 3, 4},
+            xticklabels={E0, E25, E50, Mean},
+        ]
+            \addplot+[
+                boxplot prepared={
+                    median=1.78,
+                    upper quartile=1.882,
+                    lower quartile=1.672,
+                    upper whisker=1.882,
+                    lower whisker=1.672
+                },
+            ] coordinates {};
+            
+            \addplot+[
+                boxplot prepared={
+                    median=1.15,
+                    upper quartile=1.294,
+                    lower quartile=0.997,
+                    upper whisker=1.294,
+                    lower whisker=0.997
+                },
+            ] coordinates {};
+            
+            \addplot+[
+                boxplot prepared={
+                    median=1.08,
+                    upper quartile=1.105,
+                    lower quartile=1.058,
+                    upper whisker=1.105,
+                    lower whisker=1.058
+                },
+            ] coordinates {};
+            
+            \addplot+[
+                boxplot prepared={
+                    median=1.34,
+                    upper quartile=1.78,
+                    lower quartile=1.08,
+                    upper whisker=1.882,
+                    lower whisker=0.997
+                },
+            ] coordinates {};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Boxplot of plant mass based on compost used}
+    \label{fig:boxplot_mass}
+\end{figure}
+
+\vspace*{.5cm}
+The boxplot shows the plant mass for different compost treatments:
+E0, E25, E50, and the overall group. It can be observed that the E0
+treatment yields the highest median plant mass, suggesting that this
+compost type is the most effective in promoting plant growth. The E50
+treatment has the lowest median, indicating reduced effectiveness in
+supporting plant growth with increasing compost maturity. The ``mean''
+group displays the largest variability, highlighting significant
+differences between treatments.
 
 \newpage
 \section{Discussion}
-Interpret the results, discussing and answering the questions.
-
 \subsection{Results discussion}
+\subsubsection{Compost}
+The different compost combinations (E0, E25, E50) significantly influenced plant
+germination. E0 provided the best conditions, likely due to an ideal nutrient balance and
+physical properties. E25 and E50 showed reduced germination, possibly due to greater
+chemical stability and less immediate nutrient availability.
+
+\subsubsection{Influence of pH and Nitrogen cycle}
+pH was an important factor in compost effectiveness. E0 had a balanced pH, favoring
+microbial growth and seed germination. In contrast, E25 and E50 may have had less suitable
+pH levels, affecting microbial activity and slowing nitrogen mineralization, reducing
+germination effectiveness.
+
+Finished compost in E25 and E50 may have increased denitrification, reducing available
+nitrogen. Combined with reduced microbial activity, this limited nutrient availability in
+early growth stages. E0 showed better biomass growth, indicating the importance of
+immediate nutrient availability.
+
+\subsubsection{Plants mass}
+E0 was the most effective for plant growth by weight, providing readily available
+nutrients. E50 showed reduced growth, suggesting that a higher proportion of finished
+compost limited nutrient availability needed for early plant development.
 
 \subsection{Questions}
 \begin{enumerate}
@@ -461,18 +765,35 @@ Interpret the results, discussing and answering the questions.
         is not followed?
 
         \textbf{R:\\}
-            Using fresh or excessive compost can release methane, impair growth through
-            nitrogen depletion, and cause nutrient leaching, leading to water contamination.
+        The addition of fresh compost may lead to suboptimal plant growth due to high
+        biological activity and temperature, which could create unfavorable conditions for
+        germination, compromising growth and plants and reduced yields. Deviation from the
+        recommended compost mixture could result in inconsistent results that would lead to
+        reduced germination and growth compared to standard compost \parencite{mladenov2018}.
 
 \end{enumerate}
 
 \subsection{Conclusion}
-Summarize the key findings and their implications.
+In this experiment, the effects of different types of compost (fresh, finished, and standard)
+on seed germination over a one-week period were investigated. The results indicated that
+fresh compost led to suboptimal seed growth due to its high biological activity and
+temperature, which created unfavorable conditions for germination. Finished compost
+produced moderate outcomes, showing some benefit to seed growth, but it was not as
+effective as standard compost. Indeed, standard compost demonstrated the best performance,
+supporting robust seed germination and growth, as it provided an optimal balance of
+nutrients and physical structure.
+
+These findings highlight the significance of compost maturity in promoting plant growth,
+with standard compost proving to be the most suitable option for enhancing seed
+germination and early development. The results also indicate that a balanced pH and
+immediate nutrient availability are crucial factors for successful plant growth. The use
+of finished compost, particularly in E25 and E50, led to increased denitrification and
+reduced microbial activity, limiting nitrogen availability and affecting plant development
+negatively. Therefore, compost maturity and nutrient availability must be carefully
+managed to optimize germination and early plant growth.
 
 \newpage
 \setlength{\bibitemsep}{1.2\baselineskip}
-
-\printbibliography
 
 \listoftables
 
@@ -489,6 +810,8 @@ Summarize the key findings and their implications.
     \item ``DeepL'' was used as a translator.\\
         \url{https://www.deepl.com}
 \end{itemize}
+
+\printbibliography
 
 
 

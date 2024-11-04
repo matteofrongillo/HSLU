@@ -1624,6 +1624,9 @@ the function at that point is equivalent to the value of the limit.
 
 \newpage
 \section{Derivatives}
+Assume that $y=f(x)$ is a differentiable function in some interval $(a,b)$,
+then we have defined the derivative function.
+
 \subsection{Derivative notations}
 \begin{table}[h]
     \centering
@@ -2116,9 +2119,94 @@ The function $f$ has a \textbf{global maximum} at point $x_0$ if:
 The function $f$ has a \textbf{global minimum} at point $x_0$ if:
 \figbox{$f(x) \geq f(x_0),\ \forall x \in \mathcal{D}_f$}
 
+\subsubsection{Extrema tricks}
+\begin{itemize}
+    \item If $f'(x_0) = 0$ and $f''(x_0) > 0$ are valid, $f$ has a local maximum in $x_0$;
+    \item If $f'(x_0) = 0$ and $f''(x_0) < 0$ are valid, $f$ has a local minimum in $x_0$.
+\end{itemize}
 
+\wrn{This method does not work because if $f''(x_0) = 0$, then we may have either a local maximum,\\ \hspace*{1.45cm} minimum or a stationary point.}
 
+\subsection{Higher derivatives}
+We define $y=f^{(n)}(x)$ as the derivate of $y=f^{(n-1)}(x)$.
 
+\rem{Derivates will be written with the Lagrange's notation and roman numbers, i.g.: $f''''(x) \to f^{\rom{4}}(x)$}
+
+\subsection{Concavity}
+\subsubsection{Definition of Concavity}
+The concavity of a function $f(x)$ describes the direction of its curvature, which can be
+upward when $f''(x) > 0$ or downward when $f''(x) < 0$.
+
+Additionally, the concavity can be increasing when near the concavity $f'(x) > 0$ and 
+decreasing when $f'(x) < 0$.
+
+\begin{minipage}{0.5\textwidth}
+    \begin{tikzpicture}[
+        scale=1.5,
+        declare function={
+            func(\x) = \x*\x*0.4;
+            Width=5;
+            Height=5;
+        }
+    ]
+
+        \draw[domain=0.25:2.25, smooth, variable=\x, blue, very thick] plot ({\x}, {func(\x - 2.5) + 2.75});
+        \draw[domain=2.75:4.75, smooth, variable=\x, blue, very thick] plot ({\x}, {func(\x - 2.5) + 2.75});
+        \draw[domain=0.25:2.25, smooth, variable=\x, blue, very thick] plot ({\x}, {-func(\x) + 2.25});
+        \draw[domain=2.75:4.75, smooth, variable=\x, blue, very thick] plot ({\x}, {-func(\x - 5) + 2.25});
+        
+        \node[right] at (0, Height) {\footnotesize Upward, decreasing};
+        \node[right] at ({Width / 2}, Height) {\footnotesize Upward, increasing};
+        \node[right] at (0, Height / 2 - 0.15) {\footnotesize Downward, decreasing};
+        \node[right] at ({Width / 2}, {Height / 2 - 0.15}) {\footnotesize Downward, increasing};
+        
+        \draw[->] ({Width / 2}, 0) -- ({Width / 2}, Height);
+        \draw[->] (0, {Height / 2}) -- (Width, {Height  / 2});
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \phantom{ } \\
+    \begin{itemize}
+        \item $f(x)$ is \textbf{concave upward} in an interval $I$ if all the tangents in $I$ are below the graph.
+        \item $f(x)$ is \textbf{concave downward} in an interval $I$ if all the tangents in $I$ are above the graph.
+    \end{itemize}
+    \hphantom{ } \\
+    \begin{itemize}
+        \item If $f''(x) > 0$ for all $x$ in an interval $I$, then $f(x)$ is concave upward in $I$.
+        \item If $f''(x) < 0$ for all $x$ in an interval $I$, then $f(x)$ is concave downward in $I$.
+    \end{itemize}
+\end{minipage}
+
+\subsection{Inflection point}
+An inflection point for $y=f(x)$ is a point $x_0 \in \mathcal{D}_f$ where the function is continuous and its concavity changes.
+
+For any inflection point, $f''(x) = 0$.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}[
+        scale=1.5,
+        declare function={
+            func(\x) = 0.1 * (\x)^3 - \x;
+            Width=5;
+            Height=5;
+        }
+    ]
+        
+        \draw[->] (-2.5, 0) -- (2.5, 0) node[right] {$x$};
+        \draw[->] (0, -1.75) -- (0, 1.75) node[above] {$y$};
+
+        \draw[domain=-2:2, smooth, variable=\x, blue, very thick] plot ({\x}, {func(\x)});
+
+        \fill[red] (0, {func(0)}) circle (1.5pt);
+        \node[above right] at (0, {func(0)}) {Inflection Point};
+
+        \node at (-1.7, 1.5) {\footnotesize Concave downward, decreasing};
+        \node at (1.7, -1.5) {\footnotesize Concave upward, decreasing};
+    \end{tikzpicture}
+\end{figure}
+
+\wrn{$f''(x_0) = 0 \not\Rightarrow x_0$ is an inflection point.}
 
 
 

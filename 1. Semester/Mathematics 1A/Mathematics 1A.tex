@@ -206,7 +206,7 @@ in our discussions (not always).
 \subsection{Venn diagram}
 \subsubsection{Union $A \cup B$}
 If $A$ and $B$ are sets, then their union is:
-\figbox{$A \cup U = \left\{\forall x \in \bigcup \sht x \in A \lor x \in B\right\}$}
+\figbox{$A \cup B = \left\{\forall x \in \bigcup \sht x \in A \lor x \in B\right\}$}
 \vspace*{-.53cm}
 \figbox{
     \begin{tikzpicture}[scale=1.75]
@@ -314,7 +314,7 @@ If $A$ and $B$ are sets, then their difference is:
 
 \subsubsection{Symmetrical difference $\bigtriangleup$}
 If $A$ and $B$ are sets, then their symmetrical difference is:
-\figbox{$A \bigtriangleup B = (A \setminus B) \cup (B \setminus A)$}
+\figbox{$A \bigtriangleup B = (A \difference B) \cup (B \difference A)$}
 \figbox{
     \begin{tikzpicture}[scale=1.75]
         \draw[fill=blue!20] (2, 2) circle (1.5);
@@ -331,8 +331,8 @@ If $A$ and $B$ are sets, then their symmetrical difference is:
         \node at (2, 3.7) {A};
         \node at (4, 3.7) {B};
         
-        \node at (1.5, 2) {\(A \setminus B\)};
-        \node at (4.5, 2) {\(B \setminus A\)};
+        \node at (1.5, 2) {\(A \difference B\)};
+        \node at (4.5, 2) {\(B \difference A\)};
         \node at (3, 2) {\(A \cap B\)};
     \end{tikzpicture}
 }
@@ -758,11 +758,11 @@ Vertical lines cannot be written as a function.
 Let $m,x_A,y_A \in \mathbb{R}$ and $A(x_A, y_A)$, then
 \figbox{$y-y_A=m(x-x_A)$}
 
-e.g.: Find the line with $m=-1$ and $A(2,-1)$.
+e.g.: Find the line with $m=-1$ and $A(1,0)$.
 \[
-    y-1=-1(x+2) \implies y=-x+1
+    y-0=-1(x-1) \implies y=-x+1
 \]
-\hspace{.75cm} Points: $A(2,-1);\ B(0,1)$
+\hspace{.75cm} Points: $A(1,0);\ B(0,1)$
 
 
 \begin{center}
@@ -777,8 +777,8 @@ e.g.: Find the line with $m=-1$ and $A(2,-1)$.
                 domain=-3:3
             ]
             \addplot[color=blue, thick] {-x + 1};
-            \draw[fill, red, thick] (2,-1) circle (2pt);
-            \node[right,red] at (2,-.9) {A};
+            \draw[fill, red, thick] (1,0) circle (2pt);
+            \node[right,red] at (1,.2) {A};
             \draw[fill,red,thick] (0,1) circle (2pt);
             \node[right,red] at (0,1.1) {B};
         \end{axis}
@@ -1118,7 +1118,7 @@ Let $\alpha \in \mathbb{R}^*_+$,\ $x \in \mathbb{R}$, and $a>1$, then:
 
 \subsubsection{Euler's number}
 Euler's number is defined by the limit:
-\figbox{$\dm e = \lim_{x \to \infty} {\left(1+\dfrac{1}{n}\right)}^n \approx 2.718\cdots$}
+\figbox{$\dm e = \lim_{n \to \infty} {\left(1+\dfrac{1}{n}\right)}^n \approx 2.718\cdots$}
 
 Alternatively, it can be expressed as:
 \figbox{$\dm e = \sum_{n=0}^\infty \frac{1}{n!} $}
@@ -1634,16 +1634,16 @@ then we have defined the derivative function.
     \begin{tabular}{|c|c|c|c>{\hspace*{-.8cm}}c|}
         \hline
         \begin{tabular}{c}
-            \textbf{Type of derivate}
+            \textbf{Type of derivative}
         \end{tabular} &
         \begin{tabular}{c}
-            \textbf{First derivate}
+            \textbf{First derivative}
         \end{tabular} &
         \begin{tabular}{c}
-            \textbf{Second derivate}
+            \textbf{Second derivative}
         \end{tabular} &
         \begin{tabular}{c}
-            \textbf{n-th derivate}
+            \textbf{n-th derivative}
         \end{tabular} &
         \begin{tabular}{c}
             \phantom{} \\
@@ -1721,8 +1721,8 @@ then we have defined the derivative function.
     \end{tabular}
 \end{table}
 
-\subsection{Definition of derivate}
-The derivate of a real function $f(x)$ is defined as:
+\subsection{Definition of derivative}
+The derivative of a real function $f(x)$ is defined as:
 
 \figbox{$\dm f'(x) = \lim_{\Delta x \to 0^\pm} \frac{f(x+\Delta x)-f(x)}{\Delta x}$}
 
@@ -1740,11 +1740,11 @@ The derivative exists if and only if:
 \figbox{$\dm \lim_{\Delta x \to {\color{red}{0^+}}} \frac{f(x+\Delta x)-f(x)}{\Delta x} = \lim_{\Delta x \to {\color{red}{0^-}}} \frac{f(x+\Delta x)-f(x)}{\Delta x}$}
 
 \rem{If a function is differentiable, then it is continuous:}
-\figbox{Differentiable $\Longrightarrow$ Continuos}
+\figbox{Differentiable $\Longrightarrow$ Continuous}
 
 \subsection{Equation of the tangent line}
 When $f'(x)$ is defined, $p = \left(x, f(x)\right)$, and $p \in$ tangent line, then:
-\figbox{$\dm y - f(x) = f'(x) \cdot (x-a)$}
+\figbox{$\dm y - f(a) = f'(a) \cdot (x-a)$}
 
 \newpage
 \subsection{Geometric meaning of the derivative}
@@ -2047,7 +2047,7 @@ Let $f(x)$ be differentiable, $f'(x)<0$ if $a<x<b$,\ $a,b,c \in \mathcal{D}_f$, 
 
 \subsubsection{Critical point}
 Let $y_f(x)$ be a function, then we say that $x \in \mathcal{D}_f$ is
-a critical point in $f'(x)=0$
+a critical point if $f'(x)=0$ or $f'(x)\uparrow$
 
 \wrn{many critical points are local extrema, some aren't.}
 
@@ -2121,16 +2121,16 @@ The function $f$ has a \textbf{global minimum} at point $x_0$ if:
 
 \subsubsection{Extrema tricks}
 \begin{itemize}
-    \item If $f'(x_0) = 0$ and $f''(x_0) > 0$ are valid, $f$ has a local maximum in $x_0$;
-    \item If $f'(x_0) = 0$ and $f''(x_0) < 0$ are valid, $f$ has a local minimum in $x_0$.
+    \item If $f'(x_0) = 0$ and $f''(x_0) < 0$ are valid, $f$ has a local maximum in $x_0$;
+    \item If $f'(x_0) = 0$ and $f''(x_0) > 0$ are valid, $f$ has a local minimum in $x_0$.
 \end{itemize}
 
 \wrn{This method does not work because if $f''(x_0) = 0$, then we may have either a local maximum,\\ \hspace*{1.45cm} minimum or a stationary point.}
 
 \subsection{Higher derivatives}
-We define $y=f^{(n)}(x)$ as the derivate of $y=f^{(n-1)}(x)$.
+We define $y=f^{(n)}(x)$ as the derivative of $y=f^{(n-1)}(x)$.
 
-\rem{Derivates will be written with the Lagrange's notation and roman numbers, i.g.: $f''''(x) \to f^{\rom{4}}(x)$}
+\rem{Derivatives will be written with the Lagrange's notation and roman numbers, i.g.: $f''''(x) \to f^{\rom{4}}(x)$}
 
 \subsection{Concavity}
 \subsubsection{Definition of Concavity}

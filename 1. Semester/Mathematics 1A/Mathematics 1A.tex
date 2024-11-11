@@ -1,5 +1,7 @@
 \documentclass{article}
 
+\usepackage{Mathematics1A}
+
 \usepackage[fleqn]{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
@@ -42,27 +44,6 @@
     pdftitle={Mathematics 1A}
 }
 
-\newcommand{\figbox}[1]{ 
-    \begin{figure*}[ht!]        
-        \begin{center}            
-            \fbox{#1}        
-        \end{center}    
-    \end{figure*}
-}
-
-\newcommand{\wrapfill}{
-    \par
-    \ifnum \value{WF@wrappedlines} > 0
-        \addtocounter{WF@wrappedlines}{-1}%
-        \null\vspace{
-            \arabic{WF@wrappedlines}
-            \baselineskip
-        }
-        \WFclear
-    \fi
-    \phantom{}
-}
-
 \makeatletter
 \pgfmathdeclarefunction{arctan}{1}{%
     \begingroup
@@ -70,22 +51,6 @@
     \endgroup
 }
 \makeatother
-
-\makeatletter
-\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
-\makeatother
-
-\newcommand{\difference}{\,\backslash\,}
-\newcommand{\rem}{\underline{Remark}: }
-\newcommand{\nots}{\underline{Notation}: }
-\newcommand{\prf}{\underline{Proof}: }
-\newcommand{\exs}{\underline{Example}: }
-\newcommand{\defs}{\underline{Definition}: }
-\newcommand{\wrn}{\underline{Warning}: }
-\newcommand{\sht}{\ |\ }
-\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
-\newcommand{\dm}{\displaystyle}
-\newcommand{\rad}{^{\mathrm{c}}}
 
 % === TEXT ===
 \title{\textbf{Mathematics 1A \\ HSLU, Semester 1}}
@@ -2227,6 +2192,188 @@ The radius of curvature is given by the following formula:
     \item $r_p =$ Radius of curvature
     \item $x_0 =$ Specific point
 \end{itemize}
+
+\newpage
+\part{Integrals}
+\begin{center}
+    \begin{tikzpicture}[scale=1.25]
+        \begin{axis}[
+          domain=-7.42478:8.28319,
+          samples=100,
+          axis x line=middle,
+          axis y line=middle,
+          xlabel={$x$},
+          ylabel={$y$},
+          xtick={-10,-8,...,10},
+          ytick={-7,-5,...,7},
+          ymin=-7, ymax=7,
+          xmin=-9, xmax=9,
+          legend pos=north west
+        ]
+          \addplot [
+            domain=-7.42478:8.28319,
+            samples=100,
+            fill=green,
+            fill opacity=0.3
+          ]
+          {max(0, sin(deg(x-2))*x)} \closedcycle;
+      
+          \addplot [
+            domain=-7.42478:8.28319,
+            samples=100,
+            fill=red,
+            fill opacity=0.3
+          ]
+          {min(0, sin(deg(x-2))*x)} \closedcycle;
+      
+          \addplot [
+            domain=-7.42478:8.28319,
+            samples=100,
+            thick,
+            color=blue
+          ]
+          {sin(deg(x-2))*x};
+
+          \node[right] at (-8.7,-5.25) {\footnotesize {\color{green!30}{$\blacksquare$}} Positive area};
+          \node[right] at (-8.7,-6.25) {\footnotesize {\color{red!30}{$\blacksquare$}} Negative area};
+          \draw (-8.7,-4.75) rectangle (-2.5,-6.75);
+
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\section{Definite integral}
+The definite integral can be considered as the Riemann integral, which can be defined
+with the infinitesimal sum of rectangles with a base tending to 0 and a height equal to a point
+within the base:
+\begin{center}
+    \begin{tikzpicture}[
+        scale=1.25,
+        declare function={
+            func(\x) = 0.1 * (\x - 2) * (\x - 2) + 2;
+            Width=7.5;
+            Height=5;
+            A = 1;
+            B = 7;
+            N = 7;
+            Delta = {(B-A) / N};
+        }
+    ]
+        \draw[->] (0, 0) -- (0, Height) node[right] {\(y\)};
+        \draw[->] (0, 0) -- (Width, 0) node[above] {\(x\)};
+
+        \pgfmathtruncatemacro\END{N-1}
+        \foreach \x in {0,1,...,\END} {
+            % rectangle
+            \fill [green, opacity=0.2]
+                ({A + Delta * \x}, 0) rectangle ({A + Delta * (\x+1)}, {func(A + Delta * (\x + 0.5))});
+            
+            \draw[-] ({A + Delta * \x}, 0)
+                -- ({A + Delta * \x}, {func(A + Delta * (\x + 0.5))});
+
+            \draw[-, dashed] ({A + Delta * (\x + 0.5)}, 0)
+                node[below] {\(x_{\x}^*\)}
+                -- ({A + Delta * (\x + 0.5)}, {func(A + Delta * (\x + 0.5))});
+
+            % line over rectangle
+            \draw[-] ({A + Delta * \x}, {func(A + Delta * (\x + 0.5))})
+                -- ({A + Delta * (\x+1)}, {func(A + Delta * (\x + 0.5))});
+        }
+
+        \draw[-, dashed, red, ultra thick] (A, 0) -- (A, {func(A)}) node[above, black] {\(a\)};
+        \draw[-, dashed, red, ultra thick] (B, 0) -- (B, {func(B)}) node[right, black] {\(b\)};
+
+        \draw[domain=0:Width, smooth, variable=\x, blue, ultra thick] plot ({\x}, {func(\x)});
+    \end{tikzpicture}
+\end{center}
+
+\wrn{there are functions that are not integrable in the Riemann sense, such as sgn$(x)$}
+
+\subsection{Definite integral cases}
+Let $f(x)$ be a continuous function in $\mathbb{R} \to \mathbb{R}$, then
+we have three possible cases:
+
+\subsubsection{1st case}
+When $a<b$:
+\figbox{$\integral[a][b][f(x)][x]$}
+
+\subsubsection{2nd case}
+When $a>b$:
+\figbox{$\integral[a][b][f(x)][x] = -\integral[b][a][f(x)][x]$}
+
+\subsubsection{3rd case}
+When $a=b,\ \forall a \in \mathbb{R}$:
+\figbox{$\integral[a][a][f(x)][x]=0$}
+
+\subsection{How to calculate definite integrals}
+\begin{wrapfigure}{l}{7.5cm}
+    \begin{tikzpicture}[x=4cm, y=4cm, >=Stealth, declare function={
+        func1(\x) = sin(3.14*\x/2 r);
+        func2(\x) = \x*\x;
+        a=0.25;
+        b=0.9;
+    }]
+        % area under func1 
+        \fill[cyan!30!white] plot[domain=a:b] (\x,{func1(\x)}) -- plot[domain=b:a] (\x,{0}) -- cycle;
+        
+        % area under func2
+        \fill[white] plot[domain=a:b] (\x,{func2(\x)}) -- plot[domain=b:a] (\x,{0}) -- cycle;
+        
+        % func1
+        \draw[blue, -, thick] plot[domain=-0.3:1.25] (\x,{func1(\x)});
+        
+        % func2
+        \draw[red, -, thick]  plot[domain=-0.5:1.2] (\x,{func2(\x)});
+
+        \draw[-, dashed] (a, 0) node[below] {\(a\)} -- (a, {func1(a)});
+        \draw[-, dashed] (b, 0) node[below] {\(b\)} -- (b, {func1(b)});
+
+        \draw[->] (-.5,0) -- (1.25, 0)
+            node[below left=4pt] {\(x\)};
+        \draw[->] (0,-.5) -- (0,1.5)
+            node[below left=4pt] {\(y\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+
+\phantom{}
+
+Given a function \(y=f(x)\) and \(y=g(x)\), the area enclosed by the two functions
+in the interval \(I=[a;b]\) is given by:
+
+\begin{center}
+    \fbox{$\dm A=\integral[a][b][f(x)-g(x)][x]$}
+\end{center} \phantom{}\\
+assuming that \(f(x)\geq g(x)\) when \(x\in I\).
+
+\vspace*{.1cm}
+If \(f(x)<g(x)\) for some \(x\in I\), this formula will not work.
+
+However, it is still possible to split the integral into multiple integrals at each point where \(f(x) - g(x)\) changes sign.
+To remove the sign constraint, we could say:
+
+\begin{center}
+    \fbox{$\dm A = \integral[a][b][|f(x)-g(x)|][x]$}
+\end{center} \phantom{}\\
+\wrapfill
+
+\vspace*{-4.5cm}
+\subsection{Sigma notaiton}
+\figbox{$\dm R_n = \sum_{i=0}^{n-1} \frac{1}{n} f(x_i) = \sum_{i=0}^{n-1} \frac{1}{n} f\left(1 + \frac{i}{n}\right) = \sum_{i=0}^{n-1} \frac{1}{n} \left(1 + \frac{i}{n}\right)^2$}
+
+\newpage
+\subsection{Riemann sum}
+Let $f: [a,b] \to \mathbb{R}$:
+\figbox{$\dm R_n := \sum_{i=0}^{n-1} f(x_i) \cdot \Delta x$}
+
+with:
+\begin{itemize}
+    \item $\Delta x = \dfrac{b-a}{n},\ n \in \mathbb{N}$
+    \item $x_i = a + i \cdot \Delta x$
+\end{itemize}
+
+\subsubsection{Theorem}
+\figbox{$\integral[a][b][f(x)][x] = \lim_{n \to +\infty} R_n$}
+
 
 
 

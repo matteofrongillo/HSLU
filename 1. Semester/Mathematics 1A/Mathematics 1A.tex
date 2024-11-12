@@ -1426,10 +1426,9 @@ Let $A,B > 0$, then the function is oscillating harmonically with $t$ around $D$
 \end{center}
 
 \newpage
-\part{Calculus \rom{1}}
-\section{Limits}
-\subsection{Concept of limit of a real function}
-\subsubsection{Definition}
+\part{Limits}
+\section{Concept of limit of a real function}
+\subsection{Definition}
 Let $f:\mathcal{D} \to \mathbb{R}$ be a function and $c$ a point, the limit
 $\dm L=\lim_{x\to c}f(x)$ with $x$ tending to $c$ exists only if in a given
 $\epsilon >0$ arbitrarily small, exists another $\delta >0$ such that:
@@ -1437,7 +1436,7 @@ $\epsilon >0$ arbitrarily small, exists another $\delta >0$ such that:
 
 \figbox{$0<|x-c|<\delta \implies |f(x)-L|<\epsilon$}
 
-\subsubsection{Graphic interpretation}
+\subsection{Graphic interpretation}
 \vspace*{.3cm}
 \begin{center}
     \begin{tikzpicture}[
@@ -1471,7 +1470,7 @@ $\epsilon >0$ arbitrarily small, exists another $\delta >0$ such that:
     \end{tikzpicture}
 \end{center}
 
-\subsection{Limit Value at a finite point}
+\section{Limit value at a finite point}
 The notion of the ``limit of $f(x)$ as $x$ approaches a (finite) point
 $a \in \mathbb{R}$'' is only meaningful if the point $a$ can be
 approximated by points from the domain of definition of $f$. We can
@@ -1544,7 +1543,7 @@ or a limit at infinity ($a = \pm \infty$).
     \end{tikzpicture}
 \end{center}
 
-\subsection{Continuity of a function}
+\section{Continuity of a function}
 \figbox{\minipage[]{\textwidth-2.3cm}
 \textbf{Definition} \textit{Continuity of a real function} \\
 Given a real function $f : D \rightarrow C$, the function is continuous
@@ -1580,7 +1579,7 @@ the function at that point is equivalent to the value of the limit.
     \end{tikzpicture}
 \end{center}
 
-\subsubsection{Continuity in short}
+\subsection{Continuity in short}
 \begin{itemize}
     \item A function is said to be continuous at a point if the limit at that point exists and is equal to the value of the function at that point;
     \item A function is said to be continuous on a subinterval of the domain if it is continuous at all points in that subinterval;
@@ -1588,14 +1587,14 @@ the function at that point is equivalent to the value of the limit.
 \end{itemize}
 
 \newpage
-\section{Derivatives}
+\part{Derivatives}
 Assume that $y=f(x)$ is a differentiable function in some interval $(a,b)$,
 then we have defined the derivative function.
 
-\subsection{Derivative notations}
+\section{Derivative notations}
 \begin{table}[h]
     \centering
-    \renewcommand{\arraystretch}{1.3}
+    \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{|c|c|c|c>{\hspace*{-.8cm}}c|}
         \hline
         \begin{tabular}{c}
@@ -1685,8 +1684,9 @@ then we have defined the derivative function.
         \hline
     \end{tabular}
 \end{table}
+\vspace*{-.3cm}
 
-\subsection{Definition of derivative}
+\section{Definition of derivative}
 The derivative of a real function $f(x)$ is defined as:
 
 \figbox{$\dm f'(x) = \lim_{\Delta x \to 0^\pm} \frac{f(x+\Delta x)-f(x)}{\Delta x}$}
@@ -1696,23 +1696,19 @@ if the limit exists.
 \defs{$f'(a)$, if it exists, is calld derivative of $f(x)$ at $x=a$.\\
 \hspace*{1.65cm} It corresponds to the slope of the tangent line at $x=a$ to the function $y=f(x)$}
 
-\subsubsection{Simplified definition (Exponentiation rule)}
+\subsection{Simplified definition (Exponentiation rule)}
 Let $\forall \alpha \in \mathbb{R}$, then:
 \figbox{$\dm f(x)=x^{\, \alpha} \Rightarrow f'(x)=\alpha \cdot x^{\, \alpha-1}$}
 
-\subsubsection{Existence of the derivative}
+\subsection{Existence of the derivative}
 The derivative exists if and only if:
 \figbox{$\dm \lim_{\Delta x \to {\color{red}{0^+}}} \frac{f(x+\Delta x)-f(x)}{\Delta x} = \lim_{\Delta x \to {\color{red}{0^-}}} \frac{f(x+\Delta x)-f(x)}{\Delta x}$}
 
 \rem{If a function is differentiable, then it is continuous:}
 \figbox{Differentiable $\Longrightarrow$ Continuous}
 
-\subsection{Equation of the tangent line}
-When $f'(x)$ is defined, $p = \left(x, f(x)\right)$, and $p \in$ tangent line, then:
-\figbox{$\dm y - f(a) = f'(a) \cdot (x-a)$}
-
 \newpage
-\subsection{Geometric meaning of the derivative}
+\section{Geometric meaning of the derivative}
 \begin{minipage}{0.5\textwidth}
     \begin{tikzpicture}[
         scale=2,
@@ -1820,29 +1816,24 @@ This is precisely represented by the definition of the derivative, which is the 
 \(\frac{\Delta y}{\Delta x}\) calculated with the limit of \(\Delta x \to 0\).
 \end{minipage}
 
-\subsection{Bernoulli -- de l'Hôpital Theorem}
-Bernulli -- de l'Hôpital theorem is applicable only if the function
+\subsection{Equation of the tangent line}
+When $f'(x)$ is defined, $p = \left(x, f(x)\right)$, and $p \in$ tangent line, then:
+\figbox{$\dm y - f(a) = f'(a) \cdot (x-a)$}
+
+\section{Bernoulli -- de l'Hôpital Theorem}
+Bernulli -- de l'Hôpital theorem is applicable \textbf{only if} the function
 results in an indeterminate form.
 
-\subsubsection{The 7 indeterminate forms}
+\subsection{The 7 indeterminate forms}
 
-The seven indeterminate forms are
-\begin{center}
-    \[
-        \frac{0}{0}, \quad
-        \frac{\infty}{\infty}, \quad
-        0 \cdot \infty, \quad
-        \infty - \infty, \quad
-        0^0, \quad
-        \infty^0, \quad
-        1^\infty
-    \]
-\end{center}
+The seven indeterminate forms are:
+\figbox{$\frac{0}{0}, \quad \frac{\infty}{\infty}, \quad 0 \cdot \infty, \quad
+        \infty - \infty, \quad 0^0, \quad \infty^0, \quad 1^\infty$}
 
-\subsubsection{Statement of the theorem}
-
+\newpage
+\subsection{Statement of the theorem}
 Let us consider two real functions $f(x)$ and $g(x)$ that are differentiable
-in a neighborhood of \(x_0\in\mathbb{R}\) (not necessarily at $x_0$).
+in a neighborhood of $x_0\in\mathbb{R}$ (not necessarily at $x_0$).
 
 If $\dm \lim_{x \to x_0} \frac{f(x_0)}{g(x_0)}$ results in an indeterminate form, then:
 
@@ -1850,7 +1841,8 @@ If $\dm \lim_{x \to x_0} \frac{f(x_0)}{g(x_0)}$ results in an indeterminate form
 
 if the limit exists.
 
-\subsection{Derivation rules}
+\section{Derivation rules}
+\subsection{Normal cases}
 Let $y=f(x)$ and $y=g(x)$ be two derivable functions, then:
 
 \subsubsection{Linearity}
@@ -1873,6 +1865,7 @@ Let $a > 0$, then:
 \subsubsection{Composite function (Chain rule)}
 \figbox{$\dm \frac{d}{dx}\left[f(g(x))\right] = f'(g(x))\cdot g'(x)$}
 
+\newpage
 \subsubsection{Inverse function}
 \figbox{$\dm \frac{d}{dx}\left[f^{-1}(x)\right] = \frac{1}{f'(f^{-1}(x))}$}
 
@@ -1931,36 +1924,31 @@ Let $a > 0$, then:
 \end{enumerate}
 
 \subsection{Physical application}
-\pph{Linear uniform motion}
-\figbox{$v(t) = c \in \mathbb{R}$}
 
-\pph{Uniformly accelerated motion}
-\figbox{$a(t) = c \in \mathbb{R}$}
-
-\pph{Average acceleration $a_{av}$}
+\subsubsection{Average acceleration $a_{av}$}
 \figbox{$\dm a_{av} := \frac{v(t_f)-v(t_i)}{t_f-t_i}$}
 
-\pph{Instant acceleration $a(t)$}
+\subsubsection{Instant acceleration $a(t)$}
 \figbox{$\dm a(t) := v'(t) = \lim_{t \to 0} \frac{v(t + h)-v(t)}{\Delta t}$}
 
 \newpage
-\subsection{Linearization}
-\subsubsection{The linearization principle}
+\section{Linearization}
+\subsection{The linearization principle}
 In a very small neighborhood around a point $a$, we can assume that
 the function is linear at that point.
 
-\subsubsection{Tangent line approximation}
+\subsection{Tangent line approximation}
 In this case, assuming that the function is linear, we can use the
 tangent line equation:
 \figbox{$\dm f(x) = f(a)+f'(a)\cdot (x-a)$}
 
-\subsubsection{Error function}
+\subsection{Error function}
 The error of the approximation is given by the difference between
 the exact function and the linearization:
 \figbox{$E(x) = d(f(x) \mid f_{\text{lin}}(x)) = f(x)-f(a)-f'(a)\cdot(x-a)$}
 
-\subsection{Monotonicity}
-\subsubsection{Definition of monotonicity}
+\section{Monotonicity}
+\subsection{Definition of monotonicity}
 A real function $f$ defined on an interval $I \subset \mathcal{D}_f$ is denoted as:
 \begin{itemize}
     \item \textit{strictly monotonically increasing} on $I$, if $f(x_2) > f(x_1)$ applies for all $x_1, x_2 \in I$ with $x_2 > x_1$;
@@ -2010,14 +1998,14 @@ Let $f(x)$ be differentiable, $f'(x)<0$ if $a<x<b$,\ $a,b,c \in \mathcal{D}_f$, 
     \end{tikzpicture}
 \end{center}
 
-\subsubsection{Critical point}
+\subsection{Critical point}
 Let $y_f(x)$ be a function, then we say that $x \in \mathcal{D}_f$ is
 a critical point if $f'(x)=0$ or $f'(x)\uparrow$
 
 \wrn{many critical points are local extrema, some aren't.}
 
 \newpage
-\subsubsection{Darboux theorem}
+\subsection{Darboux theorem}
 Let $f$ be differentiable on an interval $I$:
 \begin{enumerate}
     \item find the critical points $f'(a,b)=0,\ a<b$;
@@ -2036,11 +2024,11 @@ Let $f$ be differentiable on an interval $I$:
     \end{minipage}
 }
 
-\subsection{Minimum and maximum}
+\section{Minimum and maximum}
 Let a real function $f$ and a point $x_0 \in \mathcal{D}_f$ be given.
 
 \begin{center}
-    \begin{tikzpicture}[scale=1.4]
+    \begin{tikzpicture}[scale=1.125]
         \draw[->] (-3.5, 0) -- (3.5, 0) node[right] {$x$};
         \draw[->] (0, -1.5) -- (0, 2.5) node[above] {$y$};
     
@@ -2057,34 +2045,34 @@ Let a real function $f$ and a point $x_0 \in \mathcal{D}_f$ be given.
         \fill (-3, 2.125) circle (1.5pt) node[right] {};
         \draw[dashed] (3, 2.125) -- (-4, 2.125) node[left] {global maximum};
     
-        \draw (-3, 0) -- (-3, -0.1) node[below] {$-a$};
-        \draw (3, 0) -- (3, -0.1) node[below] {$a$};
+        \draw (-3, 0.1) -- (-3, -0.1) node[below] {$-a$};
+        \draw (3, 0.1) -- (3, -0.1) node[below] {$a$};
         
         \node at (0,-1.85) {\textbf{Local and global extrema of a function in the interval [-a,a]}};
     \end{tikzpicture}
 \end{center}
 
-\subsubsection{Local extrema}
-\pph{Local maximum}
+\subsection{Local extrema}
+\subsubsection{Local maximum}
 The function $f$ has a \textbf{local maximum point} at point $x_0$ if
 there is an open neighborhood $U(x_o)$ such that:
 \figbox{$f(x) \leq f(x_0),\ \forall x \in U(x_0) \cap \mathcal{D}_f$}
 
-\pph{Local minimum}
+\subsubsection{Local minimum}
 The function $f$ has a \textbf{local minimum point} at point $x_0$ if
 there is an open neighborhood $U(x_o)$ such that:
 \figbox{$f(x) \geq f(x_0),\ \forall x \in U(x_0) \cap \mathcal{D}_f$}
 
-\subsubsection{Global extrema}
-\pph{Global maximum}
+\subsection{Global extrema}
+\subsubsection{Global maximum}
 The function $f$ has a \textbf{global maximum} at point $x_0$ if:
 \figbox{$f(x) \leq f(x_0),\ \forall x \in \mathcal{D}_f$}
 
-\pph{Global minimum}
+\subsubsection{Global minimum}
 The function $f$ has a \textbf{global minimum} at point $x_0$ if:
 \figbox{$f(x) \geq f(x_0),\ \forall x \in \mathcal{D}_f$}
 
-\subsubsection{Extrema tricks}
+\subsection{Extrema tricks}
 \begin{itemize}
     \item If $f'(x_0) = 0$ and $f''(x_0) < 0$ are valid, $f$ has a local maximum in $x_0$;
     \item If $f'(x_0) = 0$ and $f''(x_0) > 0$ are valid, $f$ has a local minimum in $x_0$.
@@ -2092,7 +2080,7 @@ The function $f$ has a \textbf{global minimum} at point $x_0$ if:
 
 \wrn{This method does not work because if $f''(x_0) = 0$, then we may have either a local maximum,\\ \hspace*{1.45cm} minimum or a stationary point.}
 
-\subsection{Higher derivatives}
+\section{Higher derivatives}
 We define $y=f^{(n)}(x)$ as the derivative of $y=f^{(n-1)}(x)$.
 
 \rem{Derivatives will be written with the Lagrange's notation and roman numbers, i.g.: $f''''(x) \to f^{\rom{4}}(x)$}
@@ -2195,113 +2183,76 @@ The radius of curvature is given by the following formula:
 
 \newpage
 \part{Integrals}
+\section{Definite integral}
+Let $f(x)$ be a continuous function defined on an interval $[a, b]$.  
+The definite integral from $a$ to $b$ represents the net area under the curve of $f(x)$  
+between $x = a$ and $x = b$, considering areas above the x-axis as positive  
+and those below as negative.
 \begin{center}
-    \begin{tikzpicture}[scale=1.25]
+    \begin{tikzpicture}
         \begin{axis}[
-          domain=-7.42478:8.28319,
-          samples=100,
-          axis x line=middle,
-          axis y line=middle,
-          xlabel={$x$},
-          ylabel={$y$},
-          xtick={-10,-8,...,10},
-          ytick={-7,-5,...,7},
-          ymin=-7, ymax=7,
-          xmin=-9, xmax=9,
-          legend pos=north west
-        ]
-          \addplot [
+            domain=-7.42478:8.28319,
+            samples=100,
+            axis x line=middle,
+            axis y line=middle,
+            xlabel={$x$},
+            ylabel={$y$},
+            xtick={-10,-8,...,10},
+            ytick={-7,-5,...,7},
+            ymin=-7, ymax=7,
+            xmin=-9, xmax=9,
+            width=.8\textwidth,
+            height=9cm,
+            legend pos=north west
+            ]
+            \addplot [
             domain=-7.42478:8.28319,
             samples=100,
             fill=green,
             fill opacity=0.3
-          ]
-          {max(0, sin(deg(x-2))*x)} \closedcycle;
-      
-          \addplot [
+            ]
+            {max(0, sin(deg(x-2))*x)} \closedcycle;
+
+            \addplot [
             domain=-7.42478:8.28319,
             samples=100,
             fill=red,
             fill opacity=0.3
-          ]
-          {min(0, sin(deg(x-2))*x)} \closedcycle;
-      
-          \addplot [
+            ]
+            {min(0, sin(deg(x-2))*x)} \closedcycle;
+
+            \addplot [
             domain=-7.42478:8.28319,
             samples=100,
             thick,
             color=blue
-          ]
-          {sin(deg(x-2))*x};
+            ]
+            {sin(deg(x-2))*x};
 
-          \node[right] at (-8.7,-5.25) {\footnotesize {\color{green!30}{$\blacksquare$}} Positive area};
-          \node[right] at (-8.7,-6.25) {\footnotesize {\color{red!30}{$\blacksquare$}} Negative area};
-          \draw (-8.7,-4.75) rectangle (-2.5,-6.75);
+            \node[right] at (-8.7,-5.25) {{\color{green!30}{$\blacksquare$}} Positive area};
+            \node[right] at (-8.7,-6.25) {{\color{red!30}{$\blacksquare$}} Negative area};
+            \draw (-8.7,-4.75) rectangle (-4.5,-6.75);
 
+
+            \fill[blue] (-7.42478, 0) circle (2pt) node[below,blue] {\large \textbf{a}};
+            \fill[blue] (8.28319, 0) circle (2pt) node[above,blue] {\large \textbf{b}};
         \end{axis}
     \end{tikzpicture}
 \end{center}
-
-\section{Definite integral}
-The definite integral can be considered as the Riemann integral, which can be defined
-with the infinitesimal sum of rectangles with a base tending to 0 and a height equal to a point
-within the base:
-\begin{center}
-    \begin{tikzpicture}[
-        scale=1.25,
-        declare function={
-            func(\x) = 0.1 * (\x - 2) * (\x - 2) + 2;
-            Width=7.5;
-            Height=5;
-            A = 1;
-            B = 7;
-            N = 7;
-            Delta = {(B-A) / N};
-        }
-    ]
-        \draw[->] (0, 0) -- (0, Height) node[right] {\(y\)};
-        \draw[->] (0, 0) -- (Width, 0) node[above] {\(x\)};
-
-        \pgfmathtruncatemacro\END{N-1}
-        \foreach \x in {0,1,...,\END} {
-            % rectangle
-            \fill [green, opacity=0.2]
-                ({A + Delta * \x}, 0) rectangle ({A + Delta * (\x+1)}, {func(A + Delta * (\x + 0.5))});
-            
-            \draw[-] ({A + Delta * \x}, 0)
-                -- ({A + Delta * \x}, {func(A + Delta * (\x + 0.5))});
-
-            \draw[-, dashed] ({A + Delta * (\x + 0.5)}, 0)
-                node[below] {\(x_{\x}^*\)}
-                -- ({A + Delta * (\x + 0.5)}, {func(A + Delta * (\x + 0.5))});
-
-            % line over rectangle
-            \draw[-] ({A + Delta * \x}, {func(A + Delta * (\x + 0.5))})
-                -- ({A + Delta * (\x+1)}, {func(A + Delta * (\x + 0.5))});
-        }
-
-        \draw[-, dashed, red, ultra thick] (A, 0) -- (A, {func(A)}) node[above, black] {\(a\)};
-        \draw[-, dashed, red, ultra thick] (B, 0) -- (B, {func(B)}) node[right, black] {\(b\)};
-
-        \draw[domain=0:Width, smooth, variable=\x, blue, ultra thick] plot ({\x}, {func(\x)});
-    \end{tikzpicture}
-\end{center}
-
-\wrn{there are functions that are not integrable in the Riemann sense, such as sgn$(x)$}
 
 \subsection{Definite integral cases}
 Let $f(x)$ be a continuous function in $\mathbb{R} \to \mathbb{R}$, then
 we have three possible cases:
 
-\subsubsection{1st case}
+\subsubsection{First case}
 When $a<b$:
 \figbox{$\integral[a][b][f(x)][x]$}
 
-\subsubsection{2nd case}
+\subsubsection{Second case}
 When $a>b$:
 \figbox{$\integral[a][b][f(x)][x] = -\integral[b][a][f(x)][x]$}
 
-\subsubsection{3rd case}
+\subsubsection{Third case}
 When $a=b,\ \forall a \in \mathbb{R}$:
 \figbox{$\integral[a][a][f(x)][x]=0$}
 
@@ -2357,12 +2308,8 @@ To remove the sign constraint, we could say:
 \wrapfill
 
 \vspace*{-4.5cm}
-\subsection{Sigma notaiton}
-\figbox{$\dm R_n = \sum_{i=0}^{n-1} \frac{1}{n} f(x_i) = \sum_{i=0}^{n-1} \frac{1}{n} f\left(1 + \frac{i}{n}\right) = \sum_{i=0}^{n-1} \frac{1}{n} \left(1 + \frac{i}{n}\right)^2$}
-
-\newpage
 \subsection{Riemann sum}
-Let $f: [a,b] \to \mathbb{R}$:
+Let $f: [a,b] \to \mathbb{R}$, :
 \figbox{$\dm R_n := \sum_{i=0}^{n-1} f(x_i) \cdot \Delta x$}
 
 with:
@@ -2371,13 +2318,59 @@ with:
     \item $x_i = a + i \cdot \Delta x$
 \end{itemize}
 
-\subsubsection{Theorem}
+\wrn{there are functions that are not integrable in the Riemann sense, such as sgn$(x)$}
+
+\subsubsection{Statement of the theorem}
 \figbox{$\integral[a][b][f(x)][x] = \lim_{n \to +\infty} R_n$}
 
+\subsubsection{Sigma notaiton}
+\figbox{$\dm R_n = \sum_{i=0}^{n-1} \frac{1}{n} f(x_i) = \sum_{i=0}^{n-1} \frac{1}{n} f\left(1 + \frac{i}{n}\right) = \sum_{i=0}^{n-1} \frac{1}{n} \left(1 + \frac{i}{n}\right)^2$}
 
+\newpage
+\subsubsection{Graphic interpretation}
+The definite integral can be considered as the Riemann integral, which can be defined
+with the infinitesimal sum of rectangles with a base tending to 0 and a height equal to a point
+within the base:
+\begin{center}
+    \begin{tikzpicture}[
+        scale=1.25,
+        declare function={
+            func(\x) = 0.1 * (\x - 2) * (\x - 2) + 2;
+            Width=7.5;
+            Height=5;
+            A = 1;
+            B = 7;
+            N = 7;
+            Delta = {(B-A) / N};
+        }
+    ]
+        \draw[->] (0, 0) -- (0, Height) node[right] {\(y\)};
+        \draw[->] (0, 0) -- (Width, 0) node[above] {\(x\)};
 
+        \pgfmathtruncatemacro\END{N-1}
+        \foreach \x in {0,1,...,\END} {
+            % rectangle
+            \fill [green, opacity=0.2]
+                ({A + Delta * \x}, 0) rectangle ({A + Delta * (\x+1)}, {func(A + Delta * (\x + 0.5))});
+            
+            \draw[-] ({A + Delta * \x}, 0)
+                -- ({A + Delta * \x}, {func(A + Delta * (\x + 0.5))});
 
+            \draw[-, dashed] ({A + Delta * (\x + 0.5)}, 0)
+                node[below] {\(x_{\x}^*\)}
+                -- ({A + Delta * (\x + 0.5)}, {func(A + Delta * (\x + 0.5))});
 
+            % line over rectangle
+            \draw[-] ({A + Delta * \x}, {func(A + Delta * (\x + 0.5))})
+                -- ({A + Delta * (\x+1)}, {func(A + Delta * (\x + 0.5))});
+        }
+
+        \draw[-, dashed, red, ultra thick] (A, 0) -- (A, {func(A)}) node[above, black] {\(a\)};
+        \draw[-, dashed, red, ultra thick] (B, 0) -- (B, {func(B)}) node[right, black] {\(b\)};
+
+        \draw[domain=0:Width, smooth, variable=\x, blue, ultra thick] plot ({\x}, {func(\x)});
+    \end{tikzpicture}
+\end{center}
 
 
 

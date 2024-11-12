@@ -2246,7 +2246,7 @@ we have three possible cases:
 
 \subsubsection{First case}
 When $a<b$:
-\figbox{$\integral[a][b][f(x)][x]$}
+\figbox{$\integral[a][b][f(x)][x] = F(x)\Big|^b_a + C$}
 
 \subsubsection{Second case}
 When $a>b$:
@@ -2333,7 +2333,7 @@ with the infinitesimal sum of rectangles with a base tending to 0 and a height e
 within the base:
 \begin{center}
     \begin{tikzpicture}[
-        scale=1.25,
+        scale=1.15,
         declare function={
             func(\x) = 0.1 * (\x - 2) * (\x - 2) + 2;
             Width=7.5;
@@ -2371,6 +2371,48 @@ within the base:
         \draw[domain=0:Width, smooth, variable=\x, blue, ultra thick] plot ({\x}, {func(\x)});
     \end{tikzpicture}
 \end{center}
+
+\subsection{Integration rules}
+\subsubsection{Linearity}
+Let $\lambda \in \mathbb{R}$, then:
+\figbox{$\integral[][][\lambda f(x)][x] = \lambda \integral[][][f(x)][x]$} 
+
+\subsubsection{Sum and subtraction}
+\figbox{$\integral[][][[f(x) \pm g(x)]][x] = \integral[][][f(x)][x] \pm \integral[][][g(x)][x]$}
+
+\subsection{Integral with infinite bounds}
+\subsubsection{When upper bound is $+\infty$}
+\figbox{$\integral[a][\infty][f(x)][x] = \lim_{t \to \infty} \integral[a][t][f(x)][x]$}
+
+\subsubsection{When lower bound is $-\infty$}
+\figbox{$\integral[-\infty][b][f(x)][x] = \lim_{t \to -\infty} \integral[t][b][f(x)][x]$}
+
+\subsubsection{When bounds are $\infty$}
+\figbox{$\integral[-\infty][\infty][f(x)][x] = \lim_{t \to -\infty} \integral[t][a][f(x)][x] + \lim_{t \to \infty} \integral[a][t][f(x)][x]$}
+
+\newpage
+\section{Indefinite integral}
+We denote the \textbf{set} of all antiderivatives of a function $f$ as
+an \textit{indefinite integral} of $f$. This is written as:
+\begin{center}
+    $\integral[][][f(x)][x]$
+\end{center}
+
+with no integration limits specified.
+
+\subsection{Fundamental theorem of calculus}
+Let $F:[a,b] \to \mathbb{R}$ a continuous function, differentiable in $(a,b)$.\\
+Let $f(x)=F'(x)$ and $\forall C \in \mathbb{R}$, then:
+\figbox{$\integral[a][b][f'(x)][x] = f(b) - f(a)$}
+
+\rem{Since $F'(x) = f(x)$, we have infinite possible primitives, which are distinguished by the constant $C$.}
+
+\subsection{Second fundamental theorem of differential and integral calculus}
+If $f:[a,b] \to \mathbb{R}$ is continuous and $x_0 \in [a,b]$,
+then $\forall x \in [a,b]$:
+\figbox{$F_0 (x) = \integral[x][x_0][f(t)][t]$}
+
+
 
 
 

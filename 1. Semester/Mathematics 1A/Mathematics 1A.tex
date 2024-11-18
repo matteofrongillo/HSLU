@@ -2412,6 +2412,85 @@ If $f:[a,b] \to \mathbb{R}$ is continuous and $x_0 \in [a,b]$,
 then $\forall x \in [a,b]$:
 \figbox{$F_0 (x) = \integral[x][x_0][f(t)][t]$}
 
+\subsection{Special cases}
+\subsubsection{Trigonometric functions}
+\begin{center}
+    \begin{tikzpicture}[node distance=3cm, auto]
+        \node (cos) at (0, 1.5) {\Large$\cos$};
+        \node (sin) at (2.5, 0) {\Large$\sin$};
+        \node (neg_cos) at (0, -1.5) {\Large$-\cos$};
+        \node (neg_sin) at (-2.5, 0) {\Large$-\sin$};
+    
+        \draw[->, thick] (cos) to[bend left] node[midway, above right] {$F(x)$} (sin);
+        \draw[->, thick] (sin) to[bend left] node[midway, below right] {$F(x)$} (neg_cos);
+        \draw[->, thick] (neg_cos) to[bend left] node[midway, below left] {$F(x)$} (neg_sin);
+        \draw[->, thick] (neg_sin) to[bend left] node[midway, above left] {$F(x)$} (cos);
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Other rules}
+\begin{center}
+    \fbox{\hspace*{-.35cm}
+    \begin{minipage}{0.28\textwidth}\vspace*{-.35cm}
+      \[
+        \begin{aligned}
+          &\integral[][][x^\alpha][x] = \frac{1}{\alpha + 1} \cdot x^{\alpha+1} + C \\
+          &\integral[][][e^x][x] = e^x + C
+        \end{aligned}
+      \]
+    \end{minipage}%
+    \hspace*{.75cm}
+    \begin{minipage}{0.27\textwidth}\vspace*{-.35cm}
+      \[
+        \begin{aligned}
+          &\integral[][][x^{-1}][x] = \integral[][][\frac{1}{x}][x] = \ln\left|x\right| + C \\
+          &\integral[][][\frac{1}{1+x^2}][x] = \arctan(x) + C
+        \end{aligned}
+      \]
+    \end{minipage}
+    \hspace*{.35cm}
+    }   
+\end{center}
+
+\newpage
+\section{Integration by parts}
+Let $f(x)$ and $g(x)$ be two functions, then:
+\figbox{$\integral[][][f(x)g'(x)][x] = f(x)g(x) - \integral[][][f'(x)g(x)][x]$}
+
+\subsection{Particular cases}
+\begin{enumerate}
+    \item 
+    \[
+    \frac{d}{dx} \left(e^{h(x)}\right) = h'(x) \cdot e^{h(x)} 
+    \quad \Longrightarrow \quad 
+    \integral[][][h'(x)\cdot e^{h(x)}][x] = e^{h(x)} + C
+    \]
+
+    \item 
+    \[
+    \frac{d}{dx} \left(\ln(\pm f(x))\right) = \frac{f'(x)}{f(x)}
+    \quad \Longrightarrow \quad 
+    \integral[][][\frac{f'(x)}{f(x)}][x] = \ln\left|f(x)\right|
+    \]
+\end{enumerate}
+
+\section{Integration with substitution rule}
+\subsection{Indefinite integrals}
+According to the chain rule, we have:
+\[\frac{d}{dx}\left[F(g(x))\right] = F'(g(x))\cdot g'(x)=f(g(x))g'(x)\]
+
+If $g'(x)$ is continuous:
+\[\integral[][][f(g(x))g'(x)][x] = F(g(x)) + C\]
+
+Now let:
+\[u = g(x)\ \Longrightarrow\ du = g'(x)\ dx\]
+
+With this we obtain:
+\figbox{$\integral[][][f(g(x))g'(x)][x] = \integral[][][f(u)][u]$}
+
+\subsection{Definite integrals}
+The corresponding formula for definite integrals is:
+\figbox{$\integral[a][b][f(g(x))g'(x)][x] = \integral[g(a)][g(b)][f(u)][u]$}
 
 
 

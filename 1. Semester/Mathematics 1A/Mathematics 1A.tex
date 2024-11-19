@@ -2429,6 +2429,7 @@ then $\forall x \in [a,b]$:
 \end{center}
 
 \subsubsection{Other rules}
+\vspace*{.5cm}
 \begin{center}
     \fbox{\hspace*{-.35cm}
     \begin{minipage}{0.28\textwidth}\vspace*{-.35cm}
@@ -2453,27 +2454,6 @@ then $\forall x \in [a,b]$:
 \end{center}
 
 \newpage
-\section{Integration by parts}
-Let $f(x)$ and $g(x)$ be two functions, then:
-\figbox{$\integral[][][f(x)g'(x)][x] = f(x)g(x) - \integral[][][f'(x)g(x)][x]$}
-
-\subsection{Particular cases}
-\begin{enumerate}
-    \item 
-    \[
-    \frac{d}{dx} \left(e^{h(x)}\right) = h'(x) \cdot e^{h(x)} 
-    \quad \Longrightarrow \quad 
-    \integral[][][h'(x)\cdot e^{h(x)}][x] = e^{h(x)} + C
-    \]
-
-    \item 
-    \[
-    \frac{d}{dx} \left(\ln(\pm f(x))\right) = \frac{f'(x)}{f(x)}
-    \quad \Longrightarrow \quad 
-    \integral[][][\frac{f'(x)}{f(x)}][x] = \ln\left|f(x)\right|
-    \]
-\end{enumerate}
-
 \section{Integration with substitution rule}
 \subsection{Indefinite integrals}
 According to the chain rule, we have:
@@ -2491,6 +2471,39 @@ With this we obtain:
 \subsection{Definite integrals}
 The corresponding formula for definite integrals is:
 \figbox{$\integral[a][b][f(g(x))g'(x)][x] = \integral[g(a)][g(b)][f(u)][u]$}
+
+\section{Integration by parts}
+\subsection{Indefinite integrals}
+Let $f(x)$ and $g(x)$ be two functions. Integration by parts descends from the product rule of differential calculus:
+\[(f(x)\cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)\]
+
+By integrating both sides:
+\[f(x)g(x) = \integral[][][(f(x)g(x))'][x] = \integral[][][f'(x)g(x)][x] + \integral[][][f(x)g'(x)][x]\]
+
+Rearranging this equation leads to the formula of integration by parts:
+\figbox{$\integral[][][f(x)g'(x)][x] = f(x)g(x) - \integral[][][f'(x)g(x)][x]$}
+
+\newpage
+\subsection{Definite integrals}
+The corresponding formula for definite integrals is:
+\figbox{$\integral[a][b][f(x)g'(x)][x]=\left[f(x)g(x)\right]^b_a - \integral[a][b][f'(x)g(x)][x]$}
+
+\subsection{Particular cases}
+\begin{enumerate}
+    \item 
+    \[
+    \frac{d}{dx} \left(e^{h(x)}\right) = h'(x) \cdot e^{h(x)} 
+    \quad \Longrightarrow \quad 
+    \integral[][][h'(x)\cdot e^{h(x)}][x] = e^{h(x)} + C
+    \]
+
+    \item 
+    \[
+    \frac{d}{dx} \left(\ln(\pm f(x))\right) = \frac{f'(x)}{f(x)}
+    \quad \Longrightarrow \quad 
+    \integral[][][\frac{f'(x)}{f(x)}][x] = \ln\left|f(x)\right|
+    \]
+\end{enumerate}
 
 
 

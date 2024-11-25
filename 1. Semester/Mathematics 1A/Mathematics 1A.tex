@@ -2256,58 +2256,6 @@ When $a>b$:
 When $a=b,\ \forall a \in \mathbb{R}$:
 \figbox{$\integral[a][a][f(x)][x]=0$}
 
-\subsection{How to calculate definite integrals}
-\begin{wrapfigure}{l}{7.5cm}
-    \begin{tikzpicture}[x=4cm, y=4cm, >=Stealth, declare function={
-        func1(\x) = sin(3.14*\x/2 r);
-        func2(\x) = \x*\x;
-        a=0.25;
-        b=0.9;
-    }]
-        % area under func1 
-        \fill[cyan!30!white] plot[domain=a:b] (\x,{func1(\x)}) -- plot[domain=b:a] (\x,{0}) -- cycle;
-        
-        % area under func2
-        \fill[white] plot[domain=a:b] (\x,{func2(\x)}) -- plot[domain=b:a] (\x,{0}) -- cycle;
-        
-        % func1
-        \draw[blue, -, thick] plot[domain=-0.3:1.25] (\x,{func1(\x)});
-        
-        % func2
-        \draw[red, -, thick]  plot[domain=-0.5:1.2] (\x,{func2(\x)});
-
-        \draw[-, dashed] (a, 0) node[below] {\(a\)} -- (a, {func1(a)});
-        \draw[-, dashed] (b, 0) node[below] {\(b\)} -- (b, {func1(b)});
-
-        \draw[->] (-.5,0) -- (1.25, 0)
-            node[below left=4pt] {\(x\)};
-        \draw[->] (0,-.5) -- (0,1.5)
-            node[below left=4pt] {\(y\)};
-    \end{tikzpicture}
-\end{wrapfigure}
-
-\phantom{}
-
-Given a function \(y=f(x)\) and \(y=g(x)\), the area enclosed by the two functions
-in the interval \(I=[a;b]\) is given by:
-
-\begin{center}
-    \fbox{$\dm A=\integral[a][b][f(x)-g(x)][x]$}
-\end{center} \phantom{}\\
-assuming that \(f(x)\geq g(x)\) when \(x\in I\).
-
-\vspace*{.1cm}
-If \(f(x)<g(x)\) for some \(x\in I\), this formula will not work.
-
-However, it is still possible to split the integral into multiple integrals at each point where \(f(x) - g(x)\) changes sign.
-To remove the sign constraint, we could say:
-
-\begin{center}
-    \fbox{$\dm A = \integral[a][b][|f(x)-g(x)|][x]$}
-\end{center} \phantom{}\\
-\wrapfill
-
-\vspace*{-4.5cm}
 \subsection{Riemann sum}
 Let $f: [a,b] \to \mathbb{R}$, :
 \figbox{$\dm R_n := \sum_{i=0}^{n-1} f(x_i) \cdot \Delta x$}
@@ -2326,7 +2274,6 @@ with:
 \subsubsection{Sigma notaiton}
 \figbox{$\dm R_n = \sum_{i=0}^{n-1} \frac{1}{n} f(x_i) = \sum_{i=0}^{n-1} \frac{1}{n} f\left(1 + \frac{i}{n}\right) = \sum_{i=0}^{n-1} \frac{1}{n} \left(1 + \frac{i}{n}\right)^2$}
 
-\newpage
 \subsubsection{Graphic interpretation}
 The definite integral can be considered as the Riemann integral, which can be defined
 with the infinitesimal sum of rectangles with a base tending to 0 and a height equal to a point
@@ -2372,6 +2319,7 @@ within the base:
     \end{tikzpicture}
 \end{center}
 
+\newpage
 \subsection{Integration rules}
 \subsubsection{Linearity}
 Let $\lambda \in \mathbb{R}$, then:
@@ -2504,6 +2452,116 @@ The corresponding formula for definite integrals is:
     \integral[][][\frac{f'(x)}{f(x)}][x] = \ln\left|f(x)\right|
     \]
 \end{enumerate}
+
+\section{Areas with integrals}
+\subsection{Area between two curves}
+\begin{wrapfigure}{l}{7.5cm}
+    \begin{tikzpicture}[x=4cm, y=4cm, >=Stealth, declare function={
+        func1(\x) = sin(3.14*\x/2 r);
+        func2(\x) = \x*\x;
+        a=0.25;
+        b=0.9;
+    }]
+        % area under func1 
+        \fill[cyan!30!white] plot[domain=a:b] (\x,{func1(\x)}) -- plot[domain=b:a] (\x,{0}) -- cycle;
+        
+        % area under func2
+        \fill[white] plot[domain=a:b] (\x,{func2(\x)}) -- plot[domain=b:a] (\x,{0}) -- cycle;
+        
+        % func1
+        \draw[blue, -, thick] plot[domain=-0.3:1.25] (\x,{func1(\x)});
+        
+        % func2
+        \draw[red, -, thick]  plot[domain=-0.5:1.2] (\x,{func2(\x)});
+
+        \draw[-, dashed] (a, 0) node[below] {\(a\)} -- (a, {func1(a)});
+        \draw[-, dashed] (b, 0) node[below] {\(b\)} -- (b, {func1(b)});
+
+        \draw[->] (-.5,0) -- (1.25, 0)
+            node[below left=4pt] {\(x\)};
+        \draw[->] (0,-.5) -- (0,1.5)
+            node[below left=4pt] {\(y\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+
+\phantom{}
+
+\subsubsection{Case 1}
+Given a function \(y=f(x)\) and \(y=g(x)\), the area enclosed by the two functions
+in the interval \(I=[a;b]\) is given by:
+
+\begin{center}
+    \fbox{$A = \integral[a][b][|f(x)-g(x)|][x]$}
+\end{center}
+\wrapfill
+
+\newpage
+\begin{wrapfigure}{r}{6cm}
+    \begin{tikzpicture}[scale = 0.7, x=4cm, y=4cm, >=Stealth, declare function={
+        func1(\x) = \x > -1 ? -0.3 * ln(\x + 1) : 0; % Define func1 only for x > -1
+        func2(\x) = sin(5*\x r);
+        x1 = -0.96365;
+        x2 = -0.70284;
+        x3 = 0;
+        x4 = 0.6588;
+    }, samples=200] % Increase samples for smoother curves
+        % Fill areas between points of intersection
+        \fill[cyan!30!white] plot[domain=x1:x2] (\x,{func1(\x)}) --
+                                plot[domain=x2:x1] (\x,{func2(\x)}) -- cycle;
+    
+        \fill[green!30!white] plot[domain=x2:x3] (\x,{func1(\x)}) --
+                                plot[domain=x3:x2] (\x,{func2(\x)}) -- cycle;
+    
+        \fill[cyan!30!white] plot[domain=x3:x4] (\x,{func1(\x)}) --
+                                plot[domain=x4:x3] (\x,{func2(\x)}) -- cycle;
+    
+        % Draw func1
+        \draw[blue, -, thick] plot[domain=-0.99:0.6588] (\x,{func1(\x)}); % Start at -0.99 to avoid ln(0)
+        
+        % Draw func2
+        \draw[red, -, thick]  plot[domain=-1:0.6588] (\x,{func2(\x)});
+    
+        % Draw vertical dashed lines at intersection points
+        \draw[-, dashed] (x1, 0) node[below] {\(a\)} -- (x1, {func1(x1)});
+        \draw[-, dashed] (x2, 0) node[below] {\(b\)} -- (x2, {func1(x2)});
+        \draw[-, dashed] (x3, 0) node[below right=1pt] {\(c\)} -- (x3, {func1(x3)});
+        \draw[-, dashed] (x4, 0) node[above] {\(d\)} -- (x4, {func1(x4)});
+    
+        % Draw axes
+        \draw[->] (-1.2,0) -- (1, 0)
+            node[above left=4pt] {\(x\)};
+        \draw[->] (0,-1.2) -- (0,1.2)
+            node[below left=4pt] {\(y\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+
+\phantom{}
+
+\subsubsection{Case 2}
+Given a function \(y=f(x)\) and \(y=g(x)\), the area enclosed by the two functions
+in the interval \(I=[a;d]\) is given by:
+
+\begin{center}
+    \fbox{$A = \integral[a][b][f(x)-g(x)][x] + \integral[b][c][g(x)-f(x)][x] + \integral[c][d][f(x)-g(x)][x]$}
+\end{center}
+\wrapfill
+
+\vspace*{-3cm}
+\subsection{Arc length}
+Let a plane curve be given by $f(x)$ with $a\leq x \leq b$. Then the
+arc length between $]a,f(a)[$ and $]b, f(b)[$ is:
+\figbox{$s = \integral[a][b][\sqrt{1+\left[f'(x)\right]^2}][x]$}
+
+\newpage
+
+
+
+
+
+
+
+
+
 
 
 

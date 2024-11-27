@@ -2453,7 +2453,7 @@ The corresponding formula for definite integrals is:
     \]
 \end{enumerate}
 
-\section{Areas with integrals}
+\section{Area calculation}
 \subsection{Area between two curves}
 \begin{wrapfigure}{l}{7.5cm}
     \begin{tikzpicture}[x=4cm, y=4cm, >=Stealth, declare function={
@@ -2538,13 +2538,59 @@ in the interval \(I=[a;c]\) is given by:
 \wrapfill
 
 \vspace*{-3cm}
-\subsection{Arc length}
+\section{Arc length}
 Let a plane curve be defined by a differentiable function $f(x)$ whose
 derivative $f'(x)$ is continuous over the interval $a \leq x \leq b$.
 Then, the arc length between the points $\left(a, f(a)\right)$ and $\left(b, f(b)\right)$ is:
 \figbox{$s = \integral[a][b][\sqrt{1+\left[f'(x)\right]^2}][x]$}
 
+\section{Volume calculation}
+\subsection{Means of slicing}
+
+$\Delta V_i = b_i h_i \Delta x$, Volume$= \sum_{i = 1}^{N} \Delta V_i$ with $N \in \mathbb{N}$
+
 \newpage
+\subsection{Revolution around the x-axis}
+Let a plane curve be given by an equation $y=f(x)$ with $f$ continuous
+in the interval $[a,b]$. If the curve rotates around the x-axis, we can
+determine his volume:
+\figbox{$V = \pi \integral[a][b][[f(x)]^2][x]$}
+
+\begin{tikzpicture}[scale=1.5]
+
+    \draw[->] (-0.5,0) -- (6,0) node[below right] {$x$};
+    \draw[->] (0,-0.5) -- (0,3) node[above left] {$y$};
+    
+    \draw[domain=0:5, smooth, samples=100, thick, blue] plot (\x,{0.1*\x*\x - 0.4*\x + 1.5}) node[right] {$y = f(x)$};
+    
+    \draw[thick] (1,0) -- (1,{0.1*1*1 - 0.4*1 + 1.5});
+    \draw[thick] (5,0) -- (5,{0.1*5*5 - 0.4*5 + 1.5});
+    
+    \node[below] at (1,0) {$a$};
+    \node[below] at (5,0) {$b$};
+    
+    \fill[gray!30] (2.8,0) rectangle (3.8,{0.1*3.3*3.3 - 0.4*3.3 + 1.5});
+    \draw[dashed] (2.8,0) -- (2.8,{0.1*2.8*2.8 - 0.4*2.8 + 1.5});
+    \draw[dashed] (3.8,0) -- (3.8,{0.1*3.8*3.8 - 0.4*3.8 + 1.5});
+    
+    \draw[<->] (2.8,-0.2) -- (3.8,-0.2) node[midway, below] {$\Delta x$};
+    
+    \node[below] at (2.8,0) {$x_i$};
+    \node[below] at (3.8,0) {$x_{i+1}$};
+    
+    \draw[->, thick] (5.5,0.2) arc[start angle=20, end angle=-220, radius=0.4];
+    \node[right] at (5.8,-0.1) {};
+\end{tikzpicture}
+
+\subsection{Revolution around the y-axis}
+Let a plane curve be given by an equation $x=f^{-1}(x)$ with $f^{-1}$ continuous
+in the interval $[f(a),f(b)]$. If the curve rotates around the y-axis, we can
+determine its volume:
+\figbox{$V = \pi \integral[f(a)][f(b)][[f^{-1}(x)]^2][x]$}
+
+
+
+
 
 
 

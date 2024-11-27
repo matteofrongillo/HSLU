@@ -26,6 +26,7 @@
 \usepackage{float}
 \usepackage{tocloft}
 \usepackage{caption}
+\usepackage{colortbl}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -169,17 +170,52 @@
 \pagebreak
 
 \section{Introduction}
-TODO
+Water hardness is an essential parameter that reflects the concentration of calcium (\(\text{Ca}^{2+}\)) and magnesium (\(\text{Mg}^{2+}\)) ions in water. It significantly influences daily activities, such as washing and cooking, as well as industrial operations that rely on water as a key resource. 
+
+This experiment focuses on comparing the hardness of two water sources (tap water and bottled water). The titration method, using EDTA as a chelating agent, was employed to quantify water hardness. Additionally, pH measurements were used to assess the chemical behavior of both water types during the titration process.
+
+By analyzing the collected data and interpreting the results through graphical and statistical methods, the study aims to highlight the differences between the two water sources, their practical implications, and their potential impact on household, industrial, and health-related applications.
+
+\subsection{Water hardness}
+Water hardness is a critical parameter that affects numerous daily activities, from washing
+clothes and dishes to industrial processes and agricultural practices. Understanding the
+hardness of water is essential for optimizing soap usage, preventing scale formation in
+pipes and boilers, and ensuring the efficient operation of various water-using appliances
+
+\vspace*{.5cm}
+\begin{table}[h!]
+    \centering
+    \caption{Classification of water hardness}
+    \begin{tabular}{@{}lclcl@{}}
+    \toprule
+    \textbf{$^\circ$fH} & & \textbf{mmol/L} & & \textbf{Hardness}\\
+    \midrule
+    0 -- 7 & & 0 -- 0.7 & & Very soft\\ 
+    7 -- 15 & & 0.7 -- 1.5 & & Soft\\ 
+    15 -- 25 & & 1.5 -- 2.5 & & Moderately hard\\ 
+    25 -- 32 & & 2.5 -- 3.2 & & Fairly hard\\ 
+    32 -- 42 & & 3.2 -- 4.2 & & Hard\\ 
+    $\leq$ 42 & & $\leq$ 4.2 & & Very hard\\
+    \bottomrule
+    \end{tabular}
+    \label{tab:water-hardness}
+\end{table}
 
 \section{Materials and methods}
 \subsection{List of materials}
+\begin{minipage}[t]{0.48\textwidth}
 \begin{itemize}
     \item Water sample (bottled water and tap water)
     \item 0.01[M] EDTA solution (standard solution)
-    \item Indicator buffer tablets (Ammonia [NH$_3$] tablets)
+    \item Indicator buffer tablets (Ammonia tablets)
     \item Pipette (10 mL)
     \item Burette (25 mL)
     \item Conical flask (100 mL)
+\end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{itemize}
     \item Distilled water
     \item White tile (to observe the color change)
     \item Magnetic stirrer
@@ -187,584 +223,605 @@ TODO
     \item 8 flasks of 100 ml
     \item pH meter
 \end{itemize}
+\end{minipage}
 
-\subsection{Procedure}
-For this experiment, six gardening pots, three buckets containing different types of 
-compost, a containment box, and a sieve were provided.
+\subsection{Procedure}\label{sub:procedure}
+At the beginning of the lab process, we measured 75 ml of tap water
+and filled 3 beakers with the same volume. Indicator buffer tablets
+(Ammonia [NH$_3$] tablets) were then added to the beakers with water and
+mixed until they dissolved. A volume of 50 ml of EDTA solution was
+then inserted into the burette, and the presence of air bubbles was
+checked to prevent errors in the titration process.
 
-A scale and a measuring cylinder were used to determine the mass of the compost types
-(fresh, standard, and finished). The initial and final temperatures at the bottom of each
-pot were measured using a probe thermometer. Subsequently, pH measurements were conducted on each type of compost, with the samples
-dissolved in distilled water in a small beaker. Next, the composts were placed into different pots and divided into three distinct
-groups: 50\% finished and 25\% finished compost, 50\% fresh and 25\% fresh compost, and
-standard soil.
+To begin the titration, we ensured that everything was set up correctly.
+We prepared tables to note down our readings, a white tile to observe
+the color change, a magnetic stirrer to mix during titration, and a
+pH reader to measure the pH level at regular intervals
+(normally after each 1 ml).
 
-Finally, 15 seeds were carefully placed in each pot, and their growth and development
-were closely monitored.
+With everything set up, we began letting the EDTA solution into the
+ammonia and water mixture in drops to achieve precise readings. We
+observed the color changes as well as recorded the pH level at
+regular intervals to determine when the endpoint of the titration was
+reached.
 
+The experiment was also repeated with a bottled water and ammonia
+solution following the same process. The initial pH level was
+measured, and the color change during the titration was monitored as
+EDTA solution was gradually added. The goal was to record the changes
+in color and pH at different stages.
+
+The data collected during the experiments would later be used to
+determine the water hardness for each test and to evaluate it through
+statistical analysis. Care was taken to avoid parallax error to
+ensure accurate measurements.
+
+\newpage
 \subsection{Pictures of proceedings}
+\begin{minipage}[t]{\textwidth}
+    \begin{minipage}[t]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{media/ph-measuring.jpeg}
+        \captionof{figure}{pH measurement}
+        \label{fig:ph_measuring}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.36\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{media/titration_steps.png}
+        \captionof{figure}{Titration procedure}
+        \label{fig:titration_procedure}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.28\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{media/tetration-process.jpeg}
+        \captionof{figure}{Moment of titration}
+        \label{fig:moment_titration}
+    \end{minipage}
+\end{minipage}
 
-\newpage
+\vspace{0.7cm}
+
+\begin{minipage}[t]{\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{media/tap-with-ammonia.jpeg}
+    \captionof{figure}{Solution of tap water and ammonia}
+    \label{fig:solution_tap_ammonia}
+\end{minipage}
+
 \section{Results}
-\subsection{Preliminary parameters}
-We collected three samples: Fresh, Finished, and Standard, and 
-valuated them based on several characteristics, including pH, color,
-texture, odor, foreign objects, and moisture content. Each sample had
-distinct features, which helped us assess their condition and quality. 
+\subsection{Experiment parameters}
+The parameters of the experiment provide an overview of what data were useful so that
+water hardness could be calculated.
 
-\subsubsection{Preliminary parameters table}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Results of preliminary parameters}
-    \hspace*{-.3cm}
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-        \hline
-        \textbf{Sample} & \textbf{pH} & \textbf{Color} & \textbf{Texture} & \textbf{Odor} & \textbf{Foreign objects} & \textbf{Moisture fist test}\\
-        \hline
-        \multirow{2}{*}{Fresh} & \multirow{2}{*}{9} & \multirow{2}{*}{Light brown} & \multirow{2}{*}{Coarse} & \multirow{2}{*}{Smells ammonia} & Large roots & \multirow{2}{*}{30\% humidity} \\
-        & & & & & and plastics & \\
-        \hline                                                                  
-        \multirow{2}{*}{Finished} & \multirow{2}{*}{8} & \multirow{2}{*}{Dark brown} & \multirow{2}{*}{Fine} & \multirow{2}{*}{Smells ammonia} & Sticks and & \multirow{2}{*}{20\% humidity} \\
-        & & & & & plastic particles & \\
-        \hline
-        Standard & 7 & Darkest brown & Clumpy & Smells earthy & -- & 30\% humidity\\
-        \hline
-    \end{tabular}
-\end{table*}
-\phantom{} \vspace*{-.2cm}
+\subsubsection{Initial values}
+The initial values of water and ammonia samples, at 0 mL EDTA, are as follows:
+\vspace*{.3cm}
+\begin{table}[h!]
+    \caption{Initial values}
+    \centering
+        \begin{tabular}{@{}lccccc@{}}
+            \toprule
+            \textbf{Type} & \textbf{mL} & \textbf{pH Sample 1} & \textbf{pH Sample 2} & \textbf{pH Sample 3} & \textbf{pH Average}\\ \midrule
+            Tap & 0 & 7.0 & 7.1 & 7.0 & 7.03\\
+            Bottled & 0 & 7.4 & 7.5 & N.D. & 7.45\\ \bottomrule
+        \end{tabular}
+    \label{tab:initial-values}
+\end{table}
 
-\subsubsection{Compost temperature}
-The temperature of different composts was measured so that an
-assessment could be made of how favorable germination was within the
-compost. For the measurements, the probe thermometer was allowed to
-rest inside the compost for 5 minutes, and the initial and final
-temperatures were recorded.
+\subsubsection{Titration parameters}
+Measurements were made on two different types of water (tap and bottle) three times each,
+and then the initial and final parameters of each sample were marked so that the water
+hardness for each milliliter of EDTA could be easily calculated.
 
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Compost temperature}
-    \hspace*{-.3cm}
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        \textbf{Sample} & \textbf{Initial} [$^\circ$C] & \textbf{Final} [$^\circ$C] & \textbf{Mean temp.} [$^\circ$C]\\
-        \hline
-        Fresh & 23.8 & 23.7 & 23.75 \\
-        \hline
-        Finished & 23.2 & 23.0 & 23.1\\
-        \hline
-        Standard & \multicolumn{3}{c|}{23.5}\\
-        \hline
-    \end{tabular}
-\end{table*}
+\subsubsection{pH parameters}
+Just as the parameters were computed for the titration calculation, pH measurements were
+also made under the same circumstances. Having known the amount of EDTA poured into the
+solution of water and ammonia, it was possible to correctly identify the amount of solvent
+needed to allow the fluid to change color, consequently facilitating the calculation of
+water hardness.
 
+\subsection{Formulas}
+\subsubsection{Water hardness}
+The formula for calculating water hardness, expressed in $^\circ$fH, takes into account the
+volume of water inside the beaker, the molarity of the EDTA solution and its volume used,
+and finally the total volume of the sample:
+\capeq{\text{Hardness (mg/L CaCO}_3) = \frac{M_{\text{EDTA}} \times V_{\text{EDTA}} \times 1000 \times 100}{V_{\text{sample}}}}{eq:water_hardness}{Water hardness}
+
+\subsubsection{Mean}
+Tables to be completed require calculating an average value of repeated experiments on the
+same type of water. For this, the following formula is used:
+\capeq{\overline{x} = \frac{1}{n} \sum_{i=1}^{n} x_i}{eq:mean}{Arithmetic mean formula}
+
+\subsubsection{pH drop}
+To enhance the graphical visualization of pH variations, the average pH values were
+transformed
+using the following formula:
+\capeq{T(\text{pH}) = \exp(\text{pH} - 7)}{eq:exp-ph}{pH drop formula}
+
+\subsection{Visible results}
+The results image shows the final colorations of the samples after titration.
+The yellow exhausted color is clearly visible.
 \vspace*{.5cm}
-\subsection{Fresh, Finished and Standard compost}
-Three samples were collected, and their raw unit weight was evaluated.
-The mass of the empty cylinder was measured in grams, with a value of
-168.24 g. The mass of the filled cylinder for each sample was then
-measured, obtaining values in liters. The volume of each sample was
-also measured in milliliters. Using these measurements, the density
-results were calculated in both [kg/L] and [kg/m$^3$] using the formulas:
-
-\capeq{\text{Density} \left[kg/L\right] = \frac{\text{Mass of filled cylinder}\ [g] - \text{Mass of empty cylinder}\ [g]}{\text{Volume of sample}\ [mL]}}{eq:density1}{Density formula in $[kg/L]$}
-
-\capeq{\text{Density} \left[kg/m^3\right] = \text{Density} \left[kg/L\right] \cdot 1000 \left[L/m^3\right]}{eq:density2}{Density formula in $[kg/m^3]$}
-
-The average values provided insight into the consistency of the raw
-unit weight across the different samples.
+\cfig{
+    \includegraphics[width=.8\textwidth]{media/final-results.jpeg}
+    \label{fig:final-results}
+    \caption{Beakers with final solutions}
+}
 
 \newpage
-\subsubsection{Fresh compost}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Results of raw unit weight in three different samples of fresh compost}
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        \textbf{Sample} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Average}\\
-        \hline
-        {\textbf{Mass of the empty}} & \multicolumn{4}{c|}{\multirow{2}{*}{168.24}}\\
-        \textbf{cylinder in [g]} & \multicolumn{4}{c|}{}\\
-        \hline
-        \textbf{Mass of the filled} & \multirow{2}{*}{120.88} & \multirow{2}{*}{112.20} & \multirow{2}{*}{108.71} & \multirow{2}{*}{113.93}\\
-        \textbf{cylinder [g]} & & & &\\
-        \hline
-        \textbf{Volume of the} & \multirow{2}{*}{340} & \multirow{2}{*}{330} & \multirow{2}{*}{390} & \multirow{2}{*}{353.33}\\
-        \textbf{sample in [mL]} & & & &\\
-        \hline
-        \textbf{Result in [kg/L]} & 0.356 & 0.34 & 0.279 & 0.325\\
-        \hline
-        \textbf{Result in [kg/m$^3$]} & 356 & 340 & 279 & 325\\
-        \hline
+\subsection{pH results}\label{sub:pH_results}
+\subsubsection{Tap water}
+The experiment with tap water was conducted up to 15mL EDTA until the desired final color (dirty yellow) was achieved, which generally indicates the end of the test.
+The final results were then recorded:
+\vspace*{.5cm}
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+    \caption{Tap water pH measurements}
+    \centering
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \textbf{mL} & \textbf{pH Sample 1} & \textbf{pH Sample 2} & \textbf{pH Sample 3} & \textbf{pH Average} & \textbf{T(\text{pH})}\\ \midrule
+        0  & 7.0 & 7.1 & 7.0 & 7.03 & 1.03\\
+        1  & 7.0 & 7.0 & 7.0 & 7.00 & 1.00\\
+        2  & 6.8 & 6.8 & 6.8 & 6.80 & 0.819\\
+        3  & 6.7 & 6.6 & 6.6 & 6.63 & 0.691\\
+        4  & 6.5 & 6.6 & 6.5 & 6.55 & 0.638\\
+        5  & 6.5 & 6.4 & 6.3 & 6.40 & 0.549\\
+        6  & 6.3 & 6.1 & 6.1 & 6.17 & 0.436\\
+        7  & 6.1 & 5.8 & 5.9 & 5.93 & 0.343\\
+        8  & 6.0 & 5.6 & 5.7 & 5.77 & 0.292\\
+        9  & 5.8 & 5.5 & 5.5 & 5.60 & 0.247\\
+        10 & 5.6 & 5.4 & 5.5 & 5.50 & 0.223\\
+        11 & 5.4 & 5.4 & 5.4 & 5.40 & 0.202\\
+        12 & 5.4 & 5.3 & 5.3 & 5.33 & 0.188\\
+        13 & 5.3 & 5.3 & 5.3 & 5.30 & 0.183\\
+        14 & 5.3 & 5.3 & 5.3 & 5.30 & 0.183\\
+        15 & 5.3 & 5.3 & 5.2 & 5.27 & 0.177\\ \bottomrule
     \end{tabular}
-\end{table*}
+    \label{tab:ph-measurements}
+\end{table}
+\pph{Graphical rappresentation}
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+    \begin{semilogxaxis}[
+        width=0.9\textwidth,
+        height=0.5\textwidth,
+        xlabel={mL (log scale)},
+        ylabel={pH drop},
+        ymin=0, ymax=1.2,
+        xmin=0.075, xmax=20,
+        grid=major,
+        legend pos=south west,
+        legend style={font=\small},
+        legend cell align={left},
+    ]
 
-\subsubsection{Finished compost}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Results of raw unit weight in three different samples of finished compost}
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        \textbf{Sample} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Average}\\
-        \hline
-        {\textbf{Mass of the empty}} & \multicolumn{4}{c|}{\multirow{2}{*}{168.24}}\\
-        \textbf{cylinder in [g]} & \multicolumn{4}{c|}{}\\
-        \hline
-        \textbf{Mass of the filled} & \multirow{2}{*}{214.54} & \multirow{2}{*}{202.91} & \multirow{2}{*}{202.68} & \multirow{2}{*}{206.71}\\
-        \textbf{cylinder [g]} & & & &\\
-        \hline
-        \textbf{Volume of the} & \multirow{2}{*}{375} & \multirow{2}{*}{370} & \multirow{2}{*}{380} & \multirow{2}{*}{375}\\
-        \textbf{sample in [mL]} & & & &\\
-        \hline
-        \textbf{Result in [kg/L]} & 0.572 & 0.548 & 0.533 & 0.551\\
-        \hline
-        \textbf{Result in [kg/m$^3$]} & 572 & 548 & 533 & 551\\
-        \hline
-    \end{tabular}
-\end{table*}
+    \addplot[
+        domain=0.1:15,
+        samples=500,
+        thick,
+        color=black
+    ] {1.05345 * exp(-0.1624 * x) + 0.0434};
+    \addlegendentry{$y = 1.05e^{-0.16x} + 0.04$}
 
-\subsubsection{Standard compost}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Results of raw unit weight in three different samples of standard compost}
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        \textbf{Sample} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Average}\\
-        \hline
-        {\textbf{Mass of the empty}} & \multicolumn{4}{c|}{\multirow{2}{*}{168.24}}\\
-        \textbf{cylinder in [g]} & \multicolumn{4}{c|}{}\\
-        \hline
-        \textbf{Mass of the filled} & \multirow{2}{*}{222.95} & \multirow{2}{*}{228.44} & \multirow{2}{*}{212.74} & \multirow{2}{*}{221.38}\\
-        \textbf{cylinder [g]} & & & &\\
-        \hline
-        \textbf{Volume of the} & \multirow{2}{*}{355} & \multirow{2}{*}{370} & \multirow{2}{*}{360} & \multirow{2}{*}{361.67}\\
-        \textbf{sample in [mL]} & & & &\\
-        \hline
-        \textbf{Result in [kg/L]} & 0.628 & 0.617 & 0.591 & 0.612\\
-        \hline
-        \textbf{Result in [kg/m$^3$]} & 628 & 617 & 591 & 612\\
-        \hline
-    \end{tabular}
-\end{table*}
+    \addplot[only marks, mark=*, color=blue] coordinates {
+        (0.1,1.0305) (1,1.0000) (2,0.8187) (3,0.6907) (4,0.6376)
+        (5,0.5488) (6,0.4360) (7,0.3430) (8,0.2923) (9,0.2466) 
+        (10,0.2231) (11,0.2019) (12,0.1882) (13,0.1827) (14,0.1827) (15,0.1773)        
+    };
+    \addlegendentry{Data points}
+    
+    \addplot[
+        only marks,
+        mark=*,
+        mark options={color=red},
+    ] coordinates {(6.5, 0.411127416057)};
+    \node[above right] at (axis cs:6.5, 0.411127416057) {$I_1(6.5, 0.41)$};
+    \addlegendentry{Log inflection point}
+    
+    \end{semilogxaxis}
+    \end{tikzpicture}
+    \caption{Graph of pH drop for tap water}
+    \label{fig:tap_ph}
+\end{figure}
+\vspace*{.25cm}
+
+The graph, given by the function $y = 1.05e^{-0.16x} + 0.04$,
+shows an exponential decrease $T$(pH) as EDTA is added.
+
+The logarithmic scale for volume highlights the gradual decrease at
+low levels of EDTA and the inflection point ($I_1$), where the solvent's color
+changes noticeably.
+Initially, the pH decreases slightly (from 7.0 to 6.8), as the amount of EDTA is
+insufficient to fully bind the hardness ions. With more EDTA, the pH
+drops more significantly.
+
+\subsubsection{Bottled water}
+The experiment with bottled water was conducted up to 25mL EDTA. The pH values were measured for two samples, and their average was calculated as shown below:
+\vspace*{.5cm}
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+    \caption{Bottled water pH measurements}
+    \hspace*{-1.5cm}
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption*{(0 -- 13 mL)}
+        \begin{tabular}{@{}ccccc@{}}
+            \toprule
+            \textbf{mL} & \textbf{pH Sample 1} & \textbf{pH Sample 2} & \textbf{pH Average} & \textbf{T(pH)}\\ \midrule
+            0  & 7.4 & 7.5 & 7.45 & 1.568\\
+            1  & 7.3 & 7.4 & 7.35 & 1.419\\
+            2  & 7.2 & 7.3 & 7.25 & 1.284\\
+            3  & 7.2 & 7.3 & 7.25 & 1.284\\
+            4  & 7.1 & 7.2 & 7.15 & 1.162\\
+            5  & 7.0 & 7.1 & 7.05 & 1.051\\
+            6  & 7.0 & 7.0 & 7.00 & 1.000\\
+            7  & 7.0 & 6.9 & 6.95 & 0.951\\
+            8  & 6.9 & 6.8 & 6.85 & 0.861\\
+            9  & 6.9 & 6.7 & 6.80 & 0.819\\
+            10 & 6.8 & 6.65 & 6.73 & 0.763\\
+            11 & 6.7 & 6.6 & 6.65 & 0.705\\
+            12 & 6.7 & 6.55 & 6.63 & 0.691\\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption*{(14 -- 25 mL)}
+        \begin{tabular}{@{}cccc@{}}
+            \toprule
+            \textbf{pH Sample 1} & \textbf{pH Sample 2} & \textbf{pH Average} & \textbf{T(pH)}\\ \midrule
+            6.6 & 6.5 & 6.55 & 0.638\\
+            6.5 & 6.4 & 6.45 & 0.577\\
+            6.5 & 6.3 & 6.40 & 0.549\\
+            6.4 & 6.2 & 6.30 & 0.497\\
+            6.3 & 6.2 & 6.25 & 0.472\\
+            6.2 & 6.1 & 6.15 & 0.427\\
+            6.1 & 5.9 & 6.00 & 0.368\\
+            6.1 & 5.9 & 6.00 & 0.368\\
+            6.0 & 5.8 & 5.90 & 0.333\\
+            5.9 & 5.7 & 5.80 & 0.301\\
+            5.8 & 5.7 & 5.75 & 0.287\\
+            5.8 & 5.6 & 5.70 & 0.273\\
+            5.7 & 5.6 & 5.65 & 0.259\\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+    \label{tab:ph-measurements-bottled}
+\end{table}
+\vspace*{.25cm}
+
+\pph{Graphical representation}
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+    \begin{semilogxaxis}[
+        width=0.9\textwidth,
+        height=0.5\textwidth,
+        xlabel={mL (log scale)},
+        ylabel={pH drop},
+        ymin=0, ymax=1.5,
+        xmin=0.9, xmax=30,
+        grid=major,
+        legend pos=south west,
+        legend style={font=\small},
+        legend cell align={left},
+    ]
+
+    \addplot[
+        domain=1:25,
+        samples=500,
+        thick,
+        color=black
+    ] {1.58 * exp(-0.07 * x) - 0.05};
+    \addlegendentry{$y= 1.58e^{-0.07x} - 0.05$}
+
+    \addplot[only marks, mark=*, color=blue] coordinates {
+        (0,1.5683) (1,1.4191) (2,1.2840) (3,1.2840) (4,1.1618) 
+        (5,1.0513) (6,1.0000) (7,0.9512) (8,0.8607) (9,0.8187) 
+        (10,0.7634) (11,0.7047) (12,0.6907) (13,0.6376) (14,0.5769) 
+        (15,0.5488) (16,0.4966) (17,0.4724) (18,0.4274) (19,0.3679) 
+        (20,0.3679) (21,0.3329) (22,0.3012) (23,0.2865) (24,0.2725) 
+        (25,0.2592)        
+    };
+    \addlegendentry{Data points}
+
+    \addplot[
+        only marks,
+        mark=*,
+        mark options={color=red},
+    ] coordinates {(19, 0.367874072854)};
+    \node[below left] at (axis cs:19, 0.367874072854) {$I_2(19, 0.37)$};
+    \addlegendentry{Log inflection point}
+
+    \end{semilogxaxis}
+    \end{tikzpicture}
+    \caption{Graph of pH drop for bottled water}
+    \label{fig:bottled_ph}
+\end{figure}
+\vspace*{.25cm}
+
+The graph, given by the function $y = 1.58e^{-0.07x} - 0.05$,
+as per the intuition given by the experiment done previously, also shows an exponential
+decrease in $T$(pH) with the addition of EDTA.
+
+The logarithmic scale for volume was used again to show the gradual decrease at EDTA
+levels and the inflection point ($I_2$), where the color of the solvent changes noticeably.
+In this experiment, the pH has a more abrupt change around an amount of
+19mL EDTA poured into the solution of bottled water and ammonia.
 
 \newpage
-\subsection{Experiment results}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Experiment results}
-    \begin{tabular}{|l|c|c|c|c|c|c|}
-        \hline
-        \textbf{Group 4} & \textbf{E0} & \textbf{E0} & \textbf{E25} & \textbf{E25} & \textbf{E50} & \textbf{E50} \\
-        \hline
-        mean compost density (kg/L) & \multicolumn{2}{c|}{0.325} & \multicolumn{2}{c|}{0.382} & \multicolumn{2}{c|}{0.438}\\
-        \hline
-        n$^{\circ}$ germinated seeds & 12 & 13 & 11 & 12 & 11 & 10\\
-        \hline
-        plants weight (g) & 1.672 & 1.882 & 0.997 & 1.294 & 1.058 & 1.105\\
-        \hline
-    \end{tabular}
-\end{table*}
-
-\vspace*{.5cm}
-From the comparison of the different treatments, it is observed that compost E0 promoted
-both germination and plant growth in terms of biomass, with superior results compared to
-E25 and E50. The figure clearly shows that the plants treated with E0 are more developed
-compared to the other treatments. Treatments E25 and E50, with increasing percentages of
-finished compost, show limited growth.
-
-\subsection{Statistical formulas}
-For statistical analysis, the formulas mentioned below are used:
+\section{Water hardness results}
+\subsection{Legend and formulas}
+\subsubsection{Legend}
 \begin{itemize}
-    \item \textbf{Arithmetic mean} ($\overline{x}$):
-    \capeq{\overline{x} = \frac{1}{n} \sum_{i=1}^{n} x_i}{eq:mean}{Arithmetic mean formula}
-
-    \underline{Please note}: since the class consists of two data points,
-        the \textbf{median} corresponds to the arithmetic mean. 
-    \item \textbf{Variance} ($\sigma^2$):
-    \capeq{\sigma^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \overline{x})^2}{eq:variance}{Variance formula}
-    \item \textbf{Standard deviation} ($\sigma$):
-    \capeq{\sigma = \sqrt{\sigma^2}}{eq:stdev}{Standard deviation formula}
+    \item \textbf{ID}: Sample number of the water solution
+    \item $\mathbf{V_{s,i}}$: Initial volume of the water sample (mL)
+    \item $\mathbf{V_{b,i}}$: Initial volume of EDTA inside the burette (mL)
+    \item $\mathbf{V_{b,f}}$: Final volume of EDTA inside the burette (mL)
+    \item $\mathbf{\Delta V}$: Volume of EDTA used (mL)
+    \item $\mathbf{V_{s,f}}$: Final volume of the water and EDTA sample (mL)
 \end{itemize}
 
-\newpage
-\subsection{Statistical analysis for germinated seeds}
-\subsubsection{Analysis for E0}
-\pph{Data set}
-The E0 group class consists of the data [12,13] for the number of sprouted seeds,
-respectively [1.672g, 1.882g] for their mass.
+\subsubsection{Formulas}
+The following formulas were used to complete the tables and to calculate water hardness:
+\begin{itemize}
+    \item \textbf{Volume of EDTA used}
+        \capeq{\Delta V = V_{b,f} - V_{b,i}}{eq:V_EDTA}{Volume of EDTA used}
+    \item \textbf{Final volume of water + EDTA sample}
+    \capeq{V_{s,f} = V_{s,i} + \Delta V}{eq:V_tot}{Total sample volume}
+    \item \textbf{Hardness conversion}\\
+    The conversion of water hardness from mg/L CaCO$_3$ to $^\circ$fH was done on the basis of \refeq{eq:water_hardness}:
+    \capeq{\text{Hardness} \left(^\circ\text{fH}\right) = \text{Hardness (mg/L CaCO}_3) \cdot 10^{-1}\ \phantom{}^\circ\text{fH}\cdot\text{L/mg}}{eq:fH_formula}{Water hardness in $^\circ$fH}
+    \item \textbf{Standard deviation}
+    \capeq{\sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \overline{x})^2}}{eq:std}{Standard deviation formula}
+\end{itemize}
 
-\pph{Arithmetic mean and median}
-\capeq{\overline{x}_{E0} = \frac{12+13}{2} = 12.5}{eq:e0_mean}{Arithmetic mean and median of germinated E0}
+\subsection{Tap water}
+As emphasized in the chapter \ref{sub:procedure}, the following table shows the initial and
+final values of the experiment, highlighting at what $\Delta V$ the solution of water and
+ammonia changed color. The $\Delta V$ values represent on the graph the logarithmic inflection
+points ($I_1, I_2$), previously identified and commented on in the chapter \ref{sub:pH_results}.
 
-\capeq{\overline{m}_{E0} = \frac{1.672g + 1.882g}{2} = 1.78g}{eq:e0_mass}{Arithmetic mean and median of E0 plants mass}
-
-\pph{Variance and standard deviation}
-\capeq{\sigma_{x,E0} = \sqrt{\frac{(12-12.5)^2 + (13-12.5)^2}{2-1}} = \sqrt{0.5} \approx 0.707}{eq:e0_dev}{Standard deviation of germinated E0}
-
-\capeq{\sigma_{m,E0} = \sqrt{\frac{(1.672g - 1.777g)^2 + (1.882g - 1.777g)^2}{2-1}} \approx 0.148g}{eq:e0_mass_dev}{Standard deviation of E0 plants mass}
-
-\subsubsection{Analysis for E25}
-\pph{Data set}
-The E25 group class consists of the data [11,12] for the number of sprouted seeds,
-respectively [0.997g, 1.294g] for their mass.
-
-\pph{Arithmetic mean and median}
-\capeq{\overline{x}_{E25} = \frac{11+12}{2} = 11.5}{eq:e25_mean}{Arithmetic mean and median of E25}
-
-\capeq{\overline{m}_{E25} = \frac{0.997g + 1.294g}{2} = 1.15g}{eq:e25_mass}{Arithmetic mean and median of E25 plants mass}
-
-\pph{Variance and standard deviation}
-\capeq{\sigma_{x,E25} = \sqrt{\frac{(11-11.5)^2 + (12-11.5)^2}{2-1}} = \sqrt{0.5} \approx 0.707}{eq:e25_dev}{Standard deviation of E25}
-
-\capeq{\sigma_{m,E25} = \sqrt{\frac{(0.997g-1.146g)^2 + (1.294g-1.146g)^2}{2-1}} \approx 0.210g}{eq:e25_mass_dev}{Standard deviation of E25 plants mass}
-
-\subsubsection{Analysis for E50}
-\pph{Data set}
-The E50 group class consists of the data [10,11] for the number of sprouted seeds,
-respectively [1.058g, 1.105g] for their mass.
-
-\pph{Arithmetic mean and median}
-\capeq{\overline{x}_{E50} = \frac{10+11}{2} = 10.5}{eq:e50_mean}{Arithmetic mean and median of E50}
-
-\capeq{\overline{m}_{E50} = \frac{1.058g + 1.105g}{2} = 1.08g}{eq:e50_mass}{Arithmetic mean and median of E50 plants mass}
-
-\pph{Variance and standard deviation}
-\capeq{\sigma_{x,E50} = \sqrt{\frac{(10-10.5)^2 + (11-10.5)^2}{2-1}} = \sqrt{0.5} \approx 0.707}{eq:e50_dev}{Standard deviation of E50}
-
-\capeq{\sigma_{m,E50} = \sqrt{\frac{(1.058g-1.082g)^2 + (1.105g-1.082g)^2}{2-1}} \approx 0.0333g}{eq:e25_mass_dev}{Standard deviation of E50 plants mass}
-
-\subsubsection{Summary table}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Statistical analysis by number of germinated seeds}
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        & E0 & E25 & E50 & Overall mean\\
-        \hline
-        \textbf{mean and mediane} & 12.5 & 11.5 & 10.5 & 11.5\\
-        \hline
-        \textbf{standard deviation} & \multicolumn{4}{c|}{0.707}\\
-        \hline
-    \end{tabular}
-\end{table*}
-
-\vspace*{1cm}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Statistical analysis for the weight of germinated seeds}
-    \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        & E0 & E25 & E50 & Overall mean\\
-        \hline
-        \textbf{mean and median} [g] & 1.78 & 1.15 & 1.08 & 1.34\\
-        \hline
-        \textbf{standard deviation} [g] & 0.148 & 0.210 & 0.0333 & 0.131\\
-        \hline
-    \end{tabular}
-\end{table*}
-\vspace*{.5cm}
-
-\newpage
-\subsection{Relative yield}
-To calculate the relative yield $FM(r)$ at 25\% and 50\% using the data from the table,
-we can use this formula:
-
-\capeq{FM(r) \% = \frac{FM \%}{E0\%} \cdot 100}{eq:yield}{Relative yield $FM(r)$}
-
-\subsubsection{Average $FM_{E0}$}
-To calculate the average, the arithmetic mean formula was used \refeq{eq:mean}:
-
-\capeq{FM_{E0} = \frac{1.672g + 1.882g}{2} = \frac{3.554g}{2} = 1.777g}{eq:fm_e0}{Average $FM_{E0}$}
-
-\subsubsection{Calculation of the relative yields}
-\begin{enumerate}
-    \item \textbf{E25}:
-        \capeq{FM(r)\ 25\% = \frac{0.997}{1.777} \cdot 100 = 56.1\%}{eq:first-e25}{Yield of the first E25\% pot}
-
-        \capeq{FM(r)\ 25\% = \frac{1.294}{1.777} \cdot 100 = 72.8\%}{eq:second-e25}{Yield of the second E25\% pot}
-  
-    \item \textbf{E50}:
-        \capeq{FM_1(r)\ 50\% = \frac{1.058}{1.777} \cdot 100 = 59.5\%}{eq:first-e50}{Yield of the first E50\% pot}
-
-        \capeq{FM_2(r)\ 50\% = \frac{1.105}{1.777} \cdot 100 = 62.2\%}{eq:second-e50}{Yield of the second E50\% pot}
-\end{enumerate}
-
-\subsubsection{Summary table}
-\renewcommand{\arraystretch}{1.5}
-\begin{table*}[ht!]
-    \centering \vspace{.3cm}
-    \caption{Relative yields}
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        & E25 & E50 & Overall mean\\
-        \hline
-        \textbf{FM(r) 25\%} & 56.1\% & 72.8\% & 64.5\%\\
-        \hline
-        \textbf{FM(r) 50\%} & 59.5\% & 62.2\% & 60.9\%\\
-        \hline
-    \end{tabular}
-\end{table*}
-\vspace*{.5cm}
-
-The FM (r) results indicate that E25 compost has a relative yield of
-64.5 percent compared to E0 reference compost, while E50 compost has
-a relative yield of 60.9 percent. These values indicate that composts
-with higher percentages of finished compost have a lower yield than
-standard compost, showing what even a small fraction of an average
-finished compost causes to the plants.
-
-\subsection{Graphical results}
-Data visualized through boxplots allow observing the distribution of
-data obtained from the experiment and evaluating the performance of
-different composts. The medians, quartiles and extremes of the data
-allow visualizing the effectiveness of each type of compost with
-respect to plant development.
-
-\newpage
-\subsubsection{Boxplot of germinated seeds}
-
-\vspace*{.5cm}
-
-\begin{figure}[h!]
+\subsubsection{Data set}
+\begin{table}[h!]
+    \caption{Tap water hardness}
     \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=.8\textwidth,
-            height=0.5\textwidth,
-            boxplot/draw direction=y,
-            ylabel={Number of germinated seeds},
-            xlabel={Type of sample},
-            xtick={1, 2, 3, 4},
-            xticklabels={E0, E25, E50, Mean},
-        ]
-            \addplot+[
-                boxplot prepared={
-                    median=12.5,
-                    upper quartile=13,
-                    lower quartile=12,
-                    upper whisker=13,
-                    lower whisker=12
-                },
-            ] coordinates {};
-            
-            \addplot+[
-                boxplot prepared={
-                    median=11.5,
-                    upper quartile=12,
-                    lower quartile=11,
-                    upper whisker=12,
-                    lower whisker=11
-                },
-            ] coordinates {};
-            
-            \addplot+[
-                boxplot prepared={
-                    median=10.5,
-                    upper quartile=11,
-                    lower quartile=10,
-                    upper whisker=11,
-                    lower whisker=10
-                },
-            ] coordinates {};
-            
-            \addplot+[
-                boxplot prepared={
-                    median=11.5,
-                    upper quartile=12.5,
-                    lower quartile=10.5,
-                    upper whisker=13,
-                    lower whisker=10
-                },
-            ] coordinates {};
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Boxplot of the germination of different composts}
-    \label{fig:boxplot_germinated}
-\end{figure}
-
-\vspace*{.5cm}
-The boxplot shows the number of germinated seeds for the different
-compost treatments: E0, E25, E50, and the ``mean'' group. It
-can be observed that the E0 treatment has the highest median, and the E50
-treatment has a lower median compared to the others, indicating a
-decrease in effectiveness for seed germination as compost maturity
-increases. The ``mean'' group displays the largest variability,
-highlighting significant differences between the compost treatments
-in terms of their ability to promote germination.
-
-\subsubsection{Boxplot of plant mass}
-\vspace*{.5cm}
-
-\begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=.8\textwidth,
-            height=0.5\textwidth,
-            boxplot/draw direction=y,
-            ylabel={Plant mass [g]},
-            xlabel={Type of sample},
-            xtick={1, 2, 3, 4},
-            xticklabels={E0, E25, E50, Mean},
-        ]
-            \addplot+[
-                boxplot prepared={
-                    median=1.78,
-                    upper quartile=1.882,
-                    lower quartile=1.672,
-                    upper whisker=1.882,
-                    lower whisker=1.672
-                },
-            ] coordinates {};
-            
-            \addplot+[
-                boxplot prepared={
-                    median=1.15,
-                    upper quartile=1.294,
-                    lower quartile=0.997,
-                    upper whisker=1.294,
-                    lower whisker=0.997
-                },
-            ] coordinates {};
-            
-            \addplot+[
-                boxplot prepared={
-                    median=1.08,
-                    upper quartile=1.105,
-                    lower quartile=1.058,
-                    upper whisker=1.105,
-                    lower whisker=1.058
-                },
-            ] coordinates {};
-            
-            \addplot+[
-                boxplot prepared={
-                    median=1.34,
-                    upper quartile=1.78,
-                    lower quartile=1.08,
-                    upper whisker=1.882,
-                    lower whisker=0.997
-                },
-            ] coordinates {};
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Boxplot of plant mass based on compost used}
-    \label{fig:boxplot_mass}
-\end{figure}
-
-\vspace*{.5cm}
-The boxplot shows the plant mass for different compost treatments:
-E0, E25, E50, and the overall group. It can be observed that the E0
-treatment yields the highest median plant mass, suggesting that this
-compost type is the most effective in promoting plant growth. The E50
-treatment has the lowest median, indicating reduced effectiveness in
-supporting plant growth with increasing compost maturity. The ``mean''
-group displays the largest variability, highlighting significant
-differences between treatments.
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \textbf{ID} & $\mathbf{V_{s,i}}$ & $\mathbf{V_{b,i}}$ & $\mathbf{V_{b,f}}$ & $\mathbf{\Delta V}$ & $\mathbf{V_{s,f}}$ \\
+        \midrule
+        Tap 1 & 75 & 50 & 40 & 10 & 85\\ 
+        Tap 2 & 75 & 50 & 42 & 8  & 83\\ 
+        Tap 3 & 75 & 50 & 43 & 7  & 82\\ 
+        \bottomrule
+    \end{tabular}
+    \label{tab:tap-hardness}
+\end{table}
 
 \newpage
+\subsubsection{Hardness calculation}
+Using the formula \refeq{eq:water_hardness} and \refeq{eq:fH_formula}:
+\capeq{\text{Tap 1} \left(^\circ\text{fH}\right) = \frac{0.01 [M] \cdot 10 \text{mL} \cdot 1000 \cdot 100}{10\cdot 85 \text{mL}} \approx 11.76 ^\circ\text{fH}}{eq:tap_hardness_1}{Hardness of Tap 1}
+
+\capeq{\text{Tap 2} \left(^\circ\text{fH}\right) = \frac{0.01 [M] \cdot 8 \text{mL} \cdot 1000 \cdot 100}{10\cdot 83 \text{mL}} \approx 9.64 ^\circ\text{fH}}{eq:tap_hardness_2}{Hardness of Tap 2}
+
+\capeq{\text{Tap 3} \left(^\circ\text{fH}\right) = \frac{0.01 [M] \cdot 7 \text{mL} \cdot 1000 \cdot 100}{10\cdot 83 \text{mL}} \approx 8.54 ^\circ\text{fH}}{eq:tap_hardness_3}{Hardness of Tap 3}
+
+\subsubsection{Statistical analysis}
+Using the measured water hardness values, statistical analyses were performed.
+The following calculations were carried out:
+
+\pph{Median calculation}
+The median is the middle value of the ordered dataset:
+\[
+\text{Ordered set: } \{8.54^\circ\text{fH}, \, 9.64^\circ\text{fH}, \, 11.76^\circ\text{fH}\}
+\]
+\[
+\text{Median} = 9.64^\circ\text{fH}
+\]
+
+\pph{Standard deviation calculation}
+According to the formula \refeq{eq:std}:
+\capeq{\sigma_{tap} = \sqrt{\frac{(8.54 - 9.98)^2 + (9.64 - 9.98)^2 + (11.76 - 9.98)^2}{3-1}} \approx \sqrt{2.68} \approx 1.64^\circ\text{fH}}{eq_tap_sdt}{Tap water standard deviation}
+
+\pph{Water hardness table}
+\begin{table}[h!]
+    \caption{Tap water hardness measurements with deviations}
+    \centering
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \textbf{Sample} & \textbf{Hardness} & $\mathbf{x_i - \overline{x}}$ \\
+        & \textbf{($^\circ$fH)} & \textbf{($^\circ$fH)} \\
+        \midrule
+        Tap 1 & 11.76 & +1.78 \\
+        Tap 2 & 9.64  & -0.34 \\
+        Tap 3 & 8.54  & -1.44 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:tap-water-deviation}
+\end{table}
+
+\subsection{Bottled water}
+Just as just computed for tap water samples, data will be processed for bottled water samples.
+
+\subsubsection{Data set}
+\begin{table}[h!]
+    \caption{Bottled water hardness}
+    \centering
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \textbf{ID} & $\mathbf{V_{s,i}}$ & $\mathbf{V_{b,i}}$ & $\mathbf{V_{b,f}}$ & $\mathbf{\Delta V}$ & $\mathbf{V_{s,f}}$ \\
+        \midrule
+        Bottled 1 & 75 & 50 & 30 & 20 & 95\\ 
+        Bottled 2 & 75 & 50 & 32 & 18  & 93\\ 
+        \bottomrule
+    \end{tabular}
+    \label{tab:bottled-hardness}
+\end{table}
+\vspace*{.25cm}
+
+\subsubsection{Hardness calculation}
+Using the formula \refeq{eq:water_hardness} and \refeq{eq:fH_formula}:
+\capeq{\text{Bottled 1} \left(^\circ\text{fH}\right) = \frac{0.01 [M] \cdot 20 \text{mL} \cdot 1000 \cdot 100}{10 \cdot 95 \text{mL}} \approx 21.05 ^\circ\text{fH}}{eq:bottled_hardness_1}{Hardness of Bottled 1}
+
+\capeq{\text{Bottled 2} \left(^\circ\text{fH}\right) = \frac{0.01 [M] \cdot 18 \text{mL} \cdot 1000 \cdot 100}{10 \cdot 93 \text{mL}} \approx 19.35 ^\circ\text{fH}}{eq:bottled_hardness_2}{Hardness of Bottled 2}
+
+\subsubsection{Statistical analysis}
+Using the measured water hardness values, statistical analyses were performed.
+The following calculations were carried out:
+
+\pph{Median calculation}
+The median is the middle value of the ordered dataset:
+\[
+\text{Ordered set: } \{19.35^\circ\text{fH}, \, 21.05^\circ\text{fH}\}
+\]
+\[
+\text{Median} = \frac{19.35 + 21.05}{2} \approx 20.20^\circ\text{fH}
+\]
+
+\pph{Standard deviation calculation}
+According to the formula \refeq{eq:std}:
+\capeq{\sigma_{\text{bottled}} = \sqrt{\frac{(19.35 - 20.20)^2 + (21.05 - 20.20)^2}{2-1}} \approx \sqrt{1.45} \approx 1.20^\circ\text{fH}}{eq_bottled_sdt}{Bottled water standard deviation}
+
+\pph{Water hardness table}
+\begin{table}[h!]
+    \caption{Bottled water hardness measurements with deviations}
+    \centering
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \textbf{Sample} & \textbf{Hardness} & $\mathbf{x_i - \overline{x}}$ \\
+        & \textbf{($^\circ$fH)} & \textbf{($^\circ$fH)} \\
+        \midrule
+        Bottled 1 & 21.05 & +0.85 \\
+        Bottled 2 & 19.35 & -0.85 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:bottled-water-deviation}
+\end{table}
+
 \section{Discussion}
-\subsection{Results discussion}
-\subsubsection{Compost}
-The different compost combinations (E0, E25, E50) significantly influenced plant
-germination. E0 provided the best conditions, likely due to an ideal nutrient balance and
-physical properties. E25 and E50 showed reduced germination, possibly due to greater
-chemical stability and less immediate nutrient availability.
+The comparison between the tap water and bottled water results highlights significant differences in their chemical composition, specifically in terms of water hardness. These differences are attributable to the source and treatment processes for each type of water.
 
-\subsubsection{Influence of pH and Nitrogen cycle}
-pH was an important factor in compost effectiveness. E0 had a balanced pH, favoring
-microbial growth and seed germination. In contrast, E25 and E50 may have had less suitable
-pH levels, affecting microbial activity and slowing nitrogen mineralization, reducing
-germination effectiveness.
+\subsection{Tap water analysis}
+The tap water samples exhibited a lower overall hardness, with values ranging between \(8.54^\circ\text{fH}\) and \(11.76^\circ\text{fH}\). The statistical analysis revealed a median value of \(9.64^\circ\text{fH}\) and a standard deviation of \(1.64^\circ\text{fH}\), indicating a moderate variability among the samples. The lower hardness can be linked to municipal water treatment processes, which often include softening steps to reduce scale formation in pipelines and appliances.
 
-Finished compost in E25 and E50 may have increased denitrification, reducing available
-nitrogen. Combined with reduced microbial activity, this limited nutrient availability in
-early growth stages. E0 showed better biomass growth, indicating the importance of
-immediate nutrient availability.
+The graph of pH drop for tap water (Figure \ref{fig:tap_ph}) showed a clear exponential decrease as EDTA was added, with a notable inflection point (\(I_1(6.5, 0.41)\)). This point represents the volume of EDTA required to chelate a significant proportion of hardness ions (\(\text{Ca}^{2+}\) and \(\text{Mg}^{2+}\)). The gradual pH decline suggests a relatively low concentration of these ions, consistent with the observed hardness levels.
 
-\subsubsection{Plants mass}
-E0 was the most effective for plant growth by weight, providing readily available
-nutrients. E50 showed reduced growth, suggesting that a higher proportion of finished
-compost limited nutrient availability needed for early plant development.
+\subsection{Bottled water analysis}
+In contrast, the bottled water samples showed a higher hardness, with values of \(19.35^\circ\text{fH}\) and \(21.05^\circ\text{fH}\). The median hardness was calculated as \(20.20^\circ\text{fH}\), and the standard deviation was \(1.20^\circ\text{fH}\), indicating slightly less variability compared to tap water. The elevated hardness levels suggest that the bottled water source was less treated or derived from a mineral-rich spring, where higher concentrations of \(\text{Ca}^{2+}\) and \(\text{Mg}^{2+}\) are naturally present.
+
+The corresponding pH drop graph (Figure \ref{fig:bottled_ph}) also demonstrated an exponential decline, but with a more abrupt change at the inflection point (\(I_2(19, 0.37)\)). This sharper decrease implies a higher buffering capacity due to the greater presence of hardness ions. The results align with the classification of water hardness, where bottled water falls into the ``moderately hard'' to ``fairly hard'' range.
+
+\subsection{Implications of findings}
+The differences in water hardness between tap and bottled water have practical implications. Tap water's lower hardness is advantageous for household and industrial use, minimizing scale formation and reducing soap consumption. However, bottled water's higher mineral content may offer health benefits, as it provides essential minerals like calcium and magnesium. These findings highlight the importance of choosing the appropriate water source based on its intended use.
+
+From a methodological perspective, the use of EDTA titration proved to be a reliable technique for determining water hardness. The precision of measurements, as evidenced by the low standard deviations, underscores the effectiveness of the experimental setup. Additionally, the use of statistical analysis provided a comprehensive understanding of the data distribution and variability.
+
+\subsection{Limitations and future recommendations}
+While the experiments yielded accurate results, some limitations should be acknowledged. The small sample size (three tap water samples and two bottled water samples) may not fully represent the variability of each water source. Future studies could include a larger number of samples from diverse locations to enhance the generalizability of the findings.
+
+Moreover, the analysis focused solely on calcium and magnesium ions as contributors to hardness. Investigating the presence of other ions, such as iron or manganese, could provide a more complete picture of water quality. Expanding the scope of the analysis to include other parameters, such as alkalinity and conductivity, would further enrich the understanding of water chemistry.
 
 \subsection{Questions}
 \begin{enumerate}
-    \item What is the difference between raw unit weight and bulk density? Discuss your
-        results based on the laboratory experiment.
+    \item Compare the results of Bottled water vs tap water used for different
+        samples. How are the results compared to the water quality from the
+        municipality in Horw?
 
         \textbf{R:\\}
-        Raw unit weight is the density given by the division of the mass of the compost
-        over the volume of the compost. The bulk unit is the density given by the division
-        of the mass of the compost over the volume of the container.
+        Bottled water likely shows greater variability in both pH and hardness due to treatment. Tap water, have close pH as the Horw municipality.
 
-    \item How can the pH affect the compost?
+        Notable deviations in tap or bottled water from Horw’s baseline may indicate differences in sourcing, treatment, or branding focus.
+
+    \item Based on the Table \ref{tab:water-hardness}, compare your results and discuss.
     
         \textbf{R:\\}
-        The more acidic the soil is, the more inactive the bacteria are, and this bring
-        plants to not grow properly. Vice versa for the basicity.\\
-        Compost microorganisms operate best under neutral to acidic conditions, with pH's
-        in the range of 5.5 to 8. During the initial stages of decomposition, organic
-        acids are formed. The acidic conditions are favourable for growth of fungi and
-        breakdown of lignin and cellulose \parencite{cornell}.
+        \textbf{Tap water}:\\
+        Aligned closely with Horw’s municipal water but slightly softer, indicating
+        potential treatment or a different water source within the same municipality.
 
-    \item What is the impact of immature compost on plant growth, and how can this be
-        assessed in the lab?
+        \textbf{Bottled wated}:\\
+        Its higher hardness (19.5 fH) reflects a significant difference from both tap
+        (9.5) and Horw municipal water (11.4). The elevated mineral content might cater to
+        consumers seeking health benefits but could lead to more scaling in appliances.
 
-        \textbf{R:\\}
-        Plants will not grow properly if the nitrogen cycle is not working. Indeed, it is
-        generally accepted that compost produced with substrates rich in nitrogen will
-        have a better fertilizing effect, compared to other compost whose substrates are
-        mainly woody. Likewise, immature compost will have a repressive effect on seed
-        germination and plant growth \parencite{tamakloe2021}.
-        \\
-        In the lab, we can do the germination test and for immature compost you have
-        standard growth.
+        \textbf{Overall}:\\
+        The results demonstrate that bottled water can vary significantly in mineral
+        composition and hardness, while municipal and tap water are usually consistent
+        and designed for practicality and balance.
 
-    \item How do you calculate the bulk density of compost, and why is this measurement
-        important in the composting process?
+
+    \item Why hard water is formed and how can be avoided?
 
         \textbf{R:\\}
-        Divide the mass of the compost by the volume of the container. Bulk density
-        provides an overall indication for the physical and aeration conditions of a
-        composting mass \parencite{bulk_density}.
+        Hard water forms when water flows through mineral-rich rocks, such as limestone
+        dissolving calcium and magnesium ions. It can be avoided by using water softening
+        systems, such as ion exchange resins or reverse osmosis, to remove or reduce these
+        minerals before use.
 
-    \item What would be the environmental impact if fresh compost is added in the
-        plantations/agriculture or when the recommended percentage of compost mixture
-        is not followed?
+    \item Discussion about titration involving EDTA.
 
         \textbf{R:\\}
-        The addition of fresh compost may lead to suboptimal plant growth due to high
-        biological activity and temperature, which could create unfavorable conditions for
-        germination, compromising growth and plants and reduced yields. Deviation from the
-        recommended compost mixture could result in inconsistent results that would lead to
-        reduced germination and growth compared to standard compost \parencite{mladenov2018}.
+        \textbf{Before equivalence point}:
+        \begin{itemize}
+            \item The solution contains a significant amount of free calcium and magnesium ions. These ions form complexes with EDTA as it is added;
+            \item A buffer (commonly ammonium chloride and ammonia) maintains the pH at around 10, ensuring that EDTA can effectively bind to the metal ions. The pH remains relatively stable.      
+        \end{itemize}
 
+        \textbf{At equivalence point}:
+        \begin{itemize}
+            \item All the calcium and magnesium ions have reacted with EDTA. The pH might exhibit a slight inflection point but remains near 10 because of the buffering action.
+        \end{itemize}
+
+        \textbf{After equivalence point}:
+        \begin{itemize}
+            \item Excess EDTA is added. Since EDTA itself doesn’t significantly affect the pH, the solution remains buffered at approximately pH 10. A minor pH increase may occur if the buffer capacity is exceeded.
+        \end{itemize}
+
+    \item What is the significance of measuring water hardness?
+
+        \textbf{R:\\}
+        Measuring water hardness is essential to assess its suitability for domestic,
+        industrial, and agricultural use. Hard water in drinking supplies can cause
+        scaling in pipes and appliances, reducing efficiency, but it also provides
+        essential minerals like calcium and magnesium, beneficial for health. Extremely
+        hard water may impact taste and lead to excessive scaling, while very soft water
+        can be corrosive. Environmentally, hard water can affect aquatic ecosystems by
+        altering pH and mineral balance, impacting plant and animal life.
+    
+    \item Discussion about statistical analyses:
+    
+    \textbf{R:\\}
+    The difference in hardness between bottled and tap water is $19.5 - 9.5 =10.0 ^\circ$fH,
+    indicating bottled water has higher mineral content.
+    \begin{itemize}
+        \item \textbf{Tap water}:\\
+        The average hardness of 9.5 °fH classifies it as ``soft'' water. This is beneficial for reducing scaling in appliances and improving cleaning efficiency but may lack the mineral content present in harder water.
+
+        \item \textbf{Bottled water}:\\
+        With an average hardness of 19.5 °fH, falls into the ``moderately hard'' category. This is typical for mineral waters marketed for added health benefits due to higher levels of calcium and magnesium.
+
+        \item \textbf{Implications}:
+        \begin{itemize}
+            \item For health: Bottled water may provide more essential minerals, though excessive hardness can affect taste;
+            \item For use: Tap water's lower hardness makes it more practical for household and industrial use, avoiding issues like scaling.
+        \end{itemize}
+    \end{itemize}
 \end{enumerate}
 
 \subsection{Conclusion}
-In this experiment, the effects of different types of compost (fresh, finished, and standard)
-on seed germination over a one-week period were investigated. The results indicated that
-fresh compost led to suboptimal seed growth due to its high biological activity and
-temperature, which created unfavorable conditions for germination. Finished compost
-produced moderate outcomes, showing some benefit to seed growth, but it was not as
-effective as standard compost. Indeed, standard compost demonstrated the best performance,
-supporting robust seed germination and growth, as it provided an optimal balance of
-nutrients and physical structure.
+The experimental analysis of water hardness has provided significant insights into the chemical properties of tap and bottled water. Tap water was observed to have a lower hardness, with a median value of \(9.64^\circ\text{fH}\) and a standard deviation of \(1.64^\circ\text{fH}\), which is indicative of consistent softening practices in municipal water treatment. This lower hardness reduces scale formation, optimizes the use of cleaning agents, and ensures compatibility with industrial processes, making tap water ideal for household and utility purposes.
 
-These findings highlight the significance of compost maturity in promoting plant growth,
-with standard compost proving to be the most suitable option for enhancing seed
-germination and early development. The results also indicate that a balanced pH and
-immediate nutrient availability are crucial factors for successful plant growth. The use
-of finished compost, particularly in E25 and E50, led to increased denitrification and
-reduced microbial activity, limiting nitrogen availability and affecting plant development
-negatively. Therefore, compost maturity and nutrient availability must be carefully
-managed to optimize germination and early plant growth.
+On the other hand, bottled water displayed a higher hardness, with values centered around \(20.20^\circ\text{fH}\) and a standard deviation of \(1.20^\circ\text{fH}\). The higher mineral content, particularly calcium and magnesium ions, suggests that bottled water often originates from natural springs or sources with minimal treatment. While this makes bottled water less ideal for some industrial applications, it may enhance its appeal for drinking purposes due to the potential health benefits of its mineral composition.
+
+These results emphasize the importance of understanding water hardness when selecting a water source for specific applications. For instance, tap water's lower hardness is advantageous for reducing energy consumption in heating systems and prolonging the lifespan of appliances by minimizing scale formation. Conversely, bottled water's higher mineral content can be beneficial for dietary supplementation, especially in regions where calcium and magnesium deficiencies are prevalent.
+
+In summary, the distinction between tap and bottled water is evident not only in their hardness levels but also in their behavior during titration and pH analysis. These findings serve as a foundation for further exploration into water quality and its implications for both domestic and industrial uses. By extending the scope of such investigations, it is possible to develop more tailored approaches to water treatment and usage, ultimately contributing to improved efficiency, sustainability, and public health outcomes.
 
 \newpage
 \setlength{\bibitemsep}{1.2\baselineskip}
@@ -784,9 +841,6 @@ managed to optimize germination and early plant growth.
     \item ``DeepL'' was used as a translator.\\
         \url{https://www.deepl.com}
 \end{itemize}
-
-\printbibliography
-
 
 
 

@@ -2546,8 +2546,22 @@ Then, the arc length between the points $\left(a, f(a)\right)$ and $\left(b, f(b
 
 \section{Volume calculation}
 \subsection{Means of slicing}
+\subsubsection{Pyramid slicing}
+We slice the pyramid horizontally so that the pyramid will look like
+many parallelotopes one over the other with side $a$ and volume $s^2 \cdot \Delta h$,
+with $\Delta h \to 0$, in order to have infinitely may parallelotopes.
 
-$\Delta V_i = b_i h_i \Delta x$, Volume$= \sum_{i = 1}^{N} \Delta V_i$ with $N \in \mathbb{N}$
+Computing the pyramid for n-slices:
+\figbox{$\dm V =  \sum_{i=0}^{n-1} s_i^2 \cdot \Delta h = \integral[0][a][s^2][h]$}
+
+Since we don't know how to solve an integral in two varables yet,
+we need to transform $s$ into a function of $h$:
+\figbox{$h:s = \text{proportion of } (h:s) \Longrightarrow s = h \cdot (h:s)$}
+
+With this step we can write the volume with a single variable:
+\figbox{$\integral[0][h(a)][\left(h \cdot (h:s)\right)^2][h]$}
+
+\rem{It's always better to keep d$h$ as a unique variable.}
 
 \newpage
 \subsection{Revolution around the x-axis}
@@ -2587,7 +2601,6 @@ Let a plane curve be given by an equation $x=f^{-1}(x)$ with $f^{-1}$ continuous
 in the interval $[f(a),f(b)]$. If the curve rotates around the y-axis, we can
 determine its volume:
 \figbox{$V = \pi \integral[f(a)][f(b)][[f^{-1}(x)]^2][x]$}
-
 
 
 

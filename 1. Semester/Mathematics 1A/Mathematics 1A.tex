@@ -2611,7 +2611,7 @@ determine its volume:
             (0,4) -- 
             (0,3) -- cycle;       
     
-        \draw[->] (-3,0) -- (3,0) node[below right] {$x$};
+        \draw[->] (-3,0) -- (3,0) node[below] {$x$};
         \draw[->] (0,-0.5) -- (0,6.5) node[above left] {$y$};
         
         \draw[domain=1:5, smooth, samples=100, thick, red] plot ({0.1*\x*\x - 0.4*\x + 1.5},\x) node[above] {$y = f^{-1}(x)$};
@@ -2639,11 +2639,43 @@ determine its volume:
     \end{tikzpicture}
 \end{center}
 
+\newpage
+\section{Center of gravity}
+\subsection{Surface of a homogeneous plane}
+Consider a surface in the $xy$-plane, bounded above by a continuous
+curve $y=f(x)$ and below by another continuous curve $y=g(x)$, within
+the interval $a \leq x \leq b$.
+
+First, we compute the area between the two functions:
+\figbox{$A=\integral[a][b][(f(x)-g(x))][x]$}
 
 
+The coordinates of its center of gravity $S=(S_x, S_y)$ are then
+defined by:
+\figbox{\minipage[]{.4\textwidth}
+\circled{x}
+{\setlength{\mathindent}{1.3cm}
+    \[S_x = \frac{1}{A} \integral[a][b][x(f(x)-g(x))][x]\]
+}
+\phantom{}
 
+\circled{y}
+{\setlength{\mathindent}{.9cm}
+    \[S_y = \frac{1}{A} \integral[a][b][\frac{1}{2}\left([f(x)^2] - [g(x)]^2\right)][x]\]
+}
+\endminipage}
 
+\subsection{Mass points}
+The total gravity center of two homogeneous surfaces with the partial
+gravity centers $S_1 = (x_1;y_1)$ and $S_2 = (x_2,y_2)$ and areas given
+by $A_1$ and $A_2$ is $S = (x,y)$, with:
+\figbox{\minipage[]{.2\textwidth}
+$x = \dfrac{x_1 \cdot A_1 + x_2 \cdot A_2}{A_1 + A_2}$
+\phantom{}
+\vspace*{.5cm}
 
+$y = \dfrac{y_1 \cdot A_1 + y_2 \cdot A_2}{A_1 + A_2}$
+\endminipage}
 
 
 

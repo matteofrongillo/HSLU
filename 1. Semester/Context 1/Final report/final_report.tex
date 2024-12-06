@@ -32,6 +32,7 @@
 \usepackage{colortbl}
 \usepackage{fontspec}
 \usepackage{tabularx}
+\usepackage{pdflscape}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -314,15 +315,15 @@ the \myc\ minimizes environmental impact.
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=.8\textwidth]{media/final_mockup.png}
-        \label{fig:final_mockup}
         \caption{Final mock-up}
+        \label{fig:final_mockup}
     \end{minipage}%
     \hfill
     \begin{minipage}{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{media/compact_myc.png}
-        \label{fig:compact_myc}
         \caption{Compact mycelium}
+        \label{fig:compact_myc}
     \end{minipage}
 \end{figure}
 
@@ -330,8 +331,8 @@ the \myc\ minimizes environmental impact.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=\textwidth]{media/tent_plane.png}
-    \label{fig:tent_plan}
     \caption{Technical drawing of the mock-up}
+    \label{fig:tent_plan}
 \end{figure}
 
 \section{Testing}
@@ -355,29 +356,73 @@ corresponding links to the requirements catalogue, which can be found in the app
 \begin{table}[ht!]
     \caption{Verification tests}
     \label{tab:verification}
-    \begin{tabularx}{\textwidth}{|p{2.5cm}|p{3.5cm}|p{6cm}|X|}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}X|}
     \hline
     \textbf{Function} & \textbf{Requirement} & \textbf{Test procedure} & \textbf{Expected Result} \\
     \hline
-    Hydrostatic head (1 / 12) & 
+    Hydrostatic head (1/12) & 
     The tent should have a minimum hydrostatic head of 1500 mm & 
     The hydrostatic head is determined by a water pressure test. The material is subjected to increasing water pressure. This continues until the material allows water to pass through. When the third drop has penetrated to the inside, the test ends. &
-    The height of the water column at the point of water passage is above 1500 mm. \textcolor{newgreen}{$\Rightarrow$\textit{Fulfilled}} \\
+    The height of the water column at the point of water passage is above 1500 mm. \textcolor{newgreen}{$\Rightarrow$\textbf{Fulfilled}} \\
     \hline
     Wind resistance (9) &
     The tent should be able to withstand a wind force of 50 km/h (Beaufort scale 6). &
     The tent is set up on a meadow and tested with a wind generator simulating a wind speed of 50 km/h for 30 minutes. Inside, it contains a sleeping bag, sleeping mat, and backpack with a total weight of 8 kg. The meadow has a minimum soil moisture of 40\%, reflecting conditions after rainfall. This worst-case scenario eliminates the need for additional tests, as drier conditions improve results. &
-    The tent remains in place for half an hour. \textcolor{newgreen}{$\Rightarrow$\textit{Fulfilled}} \\
+    The tent remains in place for half an hour. \textcolor{newgreen}{$\Rightarrow$\textbf{Fulfilled}} \\
     \hline
     Air circulation (1) &
     It is not only the waterproofness that determines whether it stays dry inside the tent. The geometry of the tent must allow the humidity to be transported outside. &
     A humidifier is placed in the tent and switched on for 8 hours. It is set to release 50 ml of water per hour, which is roughly equivalent to a human being breathing. At the same time, the wind generator is set to 20 km/h to simulate a realistic wind situation on a large field. &
-    No water collects on the tent floor after 8 hours: \textcolor{newgreen}{$\Rightarrow$\textit{Fulfilled}} \\
+    No water collects on the tent floor after 8 hours: \textcolor{newgreen}{$\Rightarrow$\textbf{Fulfilled}} \\
     \hline
     \end{tabularx}
 \end{table}
 
 \subsubsection{Validation}
+This subchapter outlines the validation process, which involves three key tests
+(\autopageref{validation}) to determine whether the correct product has been developed
+and whether it fulfills customer requirements as specified in the requirements catalog.
+The aspects evaluated include the operability, sustainability, and durability of the tent
+during a festival. As all requirements are mandatory, each test must be successfully
+validated to ensure compliance.
+
+\begin{table}[ht!]
+    \caption{Validation tests}
+    \label{tab:validation}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}X|}
+    \hline
+    \textbf{Function} & \textbf{Requirement} & \textbf{Test procedure} & \textbf{Expected Result} \\
+    \hline
+    Operability (4/11) & 
+    The set-up of the tent should be self-explanatory and fully constructed in 10 minutes. & 
+    20 subjects aged between 18 and 35, who have no physical impairments and no previous experience of setting up tents, each get 10 minutes to completely set up the tent. The only aid they are given is a construction manual, with a visual and written demonstration of the set-up process. &
+    All 20 subjects are expected to fully set up the tent within the given timeframe. $\Rightarrow$\textcolor{newgreen}{\textbf{Fulfilled}} \\
+    \hline
+    Sustainability (7) &
+    80\% of the mass of the tent should be recyclable. &
+    The mass of the recyclable parts of the tent are added and compared to the tent’s complete mass to determine the percentage of the recyclable material. &
+    Due to insufficient details on the density of mycelium-based leather only an assumption can be made. However, considering the fact, that the only non-recyclable components are the herrings, it is expected that more than 80\% of the total mass of the tent is recyclable. $\Rightarrow$\textcolor{newgreen}{\textbf{Fulfilled}} \\
+    \hline
+    Durability during a Festival (1) &
+    The tent should keep the customers and their belongings dry and clean. &
+    During a five-day festival, the tent will be put to normal use by a subject in a simulation of the unexpected incidents or weather changes than can appear during a festival. The test will be conducted during a period, when rain is guaranteed. Therefore, if a festival concludes with no rainfall, the test shall be repeated at a different festival. This process will be repeated until rainfall has occurred. &
+    The tent is expected to withstand the five day festival and keep the belongings and the subject themself dry and clean. $\Rightarrow$\textcolor{newgreen}{\textbf{Fulfilled}} \\
+    \hline
+    \end{tabularx}
+\end{table}
+
+The use of the fully developed mycelium-based material is crucial for the tests outlined
+in This subchapter discusses the verification process during the testing phase.
+The purpose of this process is to ensure that the product has been developed correctly
+and meets the predefined requirements. Three of the most significant tests are outlined
+in Error: Reference source not found, with the numbers in brackets indicating the
+corresponding links to the requirements catalogue, which can be found in the appendix.
+Therefore, these tests cannot be conducted using a mock-up, as it does not accurately
+represent the properties and behaviour of the material in its final form. Instead, they
+must be carried out using the first prototype, which incorporates the fully developed
+material. This approach ensures that the material performance, durability, and
+sustainability can be assessed in real-world conditions, providing reliable data for
+further development and refinement of the product.
 
 \subsection{Discussion}
 Regarding the verification tests, the primary source of uncertainty lies in the water
@@ -422,6 +467,7 @@ product to ensure its functionality and durability. Given the significance of th
 and the potential of the proposed solution, continuation of this project is strongly
 recommended.
 
+\newpage
 \section{List of tables and figures}
 \listoftables
 
@@ -437,7 +483,18 @@ recommended.
 \setlength{\bibitemsep}{1.2\baselineskip}
 \printbibliography[heading=none]
 
-\section{Appendix}
+\newpage
+\thispagestyle{empty}
+\begin{landscape}
+    \section{Appendix}
+    \begin{table}[ht!]
+        \centering
+        \caption{Appendix table}
+        \label{tab:appendix}
+        \includegraphics[width=1.5\textwidth]{media/appendix.png}
+    \end{table}
+\end{landscape}
+
 
 \end{document}
 

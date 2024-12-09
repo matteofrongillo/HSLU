@@ -79,13 +79,12 @@
 }
 
 \newcommand{\cfig}[3]{
-    \begin{figure}[ht!]
-        \centering
-        \chemfig{#1}
-        \label{#2}
-        \caption{#3}
-    \end{figure}
+    \centering
+    \chemfig{#1}
+    \captionof{figure}{#3}
+    \label{#2}
 }
+
 
 % === LIST OF EQUATIONS ===
 \newcounter{myequation}
@@ -178,43 +177,109 @@ The purpose of this experiment is to understand the analysis and quantification 
 \section{Materials and Methods}
 \subsection{Materials}
 \begin{itemize}
-    \item Gas chromatograph (Agilent Technologies GC 6890N)
-    \item Mass spectrometer (Agilent MSD 5973)
-    \item Supelco SLB-5 ms column (30 m $\times$ 250 $\mu$m $\times$ 0.25 $\mu$m)
+    \item Gas chromatograph -- Mass spectrometer
     \item Helium (carrier gas)
     \item Standard PAH kit
-    \item Acetonitrile (solvent)
-    \item Pipettes and vials
+    \item Chloroform (solvent)
+    \item Vials
+    \item Pipettes
 \end{itemize}
 
-\subsection{LMW and HMW PAHs}
-\cfig{[:0]*6(=-*6(-=-=-)=-=-)}{ch:naphtalene}{Naphtalene}
-
-\cfig{}{}{}
-
 \subsection{Experimental Procedure}
-\begin{enumerate}
-    \item \textbf{Sample Preparation:} Prepare dilutions from a 10 $\mu$g/mL stock solution using the formula \(C_1V_1 = C_2V_2\) to achieve concentrations of 1 $\mu$g/mL, 0.1 $\mu$g/mL, and 0.01 $\mu$g/mL.
-    \item \textbf{GC-MS Setup:} Set the column temperature program to start at \SI{70}{\degreeCelsius}, increase at \SI{5}{\degreeCelsius}/min to \SI{350}{\degreeCelsius}, and hold for 5 minutes.
-    \item \textbf{Injection:} Inject 1 $\mu$L of each dilution into the GC-MS system in split mode.
-    \item \textbf{Data Acquisition:} Record chromatograms, noting retention times, peak areas, and mass spectra for each PAH.
-    \item \textbf{Calibration Curve:} Use the standard solutions to construct a calibration curve by plotting peak area against concentration.
-\end{enumerate}
+\subsection{Preparation of diluted solutions for a calibration curve}
+\subsubsection{Legend}
+\begin{itemize}
+    \item $\mathbf{C_i}$: Initial stock concentration ($\mu$g/mL)
+    \item $\mathbf{C_t}$: Target concentration ($\mu$g/mL)
+    \item $\mathbf{V_s}$: Volume of stock solution required (mL)
+    \item $\mathbf{V_t}$: Target volume (mL)
+    \item $\mathbf{V_c}$: Volume of chloroform required (mL)
+\end{itemize}
 
-\section{Results}
-\subsection{Calibration Data}
+\subsubsection{Formulas}
+\begin{itemize}
+    \item Amount of volume of stock solution required $\mathbf{V_s}$:
+    \capeq{V_s = \frac{C_t \cdot V_t}{C_i}}{eq:vol_stock}{Stock solution volume}
+    \item Volume of chloroform required $\mathbf{V_c}$:
+    \capeq{V_c = V_t - V_s}{eq:vol_solvent}{Solvent volume}
+\end{itemize}
+
+\subsubsection{Ratios}
 \begin{table}[H]
     \centering
-    \caption{Calibration data for Chrysene}
-    \begin{tabular}{@{}cccc@{}}
+    \caption{Diluted solution ratios}
+    \begin{tabular}{@{}lcllcl@{}}
         \toprule
-        \textbf{Concentration (ng/mL)} & \textbf{Peak Area} & \textbf{Retention Time (min)} & \textbf{m/z Fragments}\\
+        \textbf{Dilution} & $\mathbf{C_i}$ & $\mathbf{C_t}$ & $\mathbf{V_s}$ & $\mathbf{V_t}$ & $\mathbf{V_c}$\\
         \midrule
-        1000 & 1025 & 8.5 & 228\\
-        100  & 520 & 8.5 & 228\\
-        50   & 260 & 8.5 & 228\\
-        10   & 105 & 8.5 & 228\\
-        5    & 50  & 8.5 & 228\\
+        1:10 & 10 & 1 & 0.1 & 1 & 0.9\\
+        1:100 & 10 & 0.1 & 0.01 & 1 & 0.99\\
+        1:1000 & 10 & 0.01 & 0.001 & 1 & 0.999\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:ratios}
+\end{table}
+
+\section{Results}
+\subsection{PAHs detected}
+\subsubsection{LMW PAHs}
+
+\noindent
+\begin{minipage}{0.32\textwidth}
+\cfig{[:0]*6(=-*6(-=-=-)=-=-)}{ch:naphtalene}{Naphtalene}
+\end{minipage}%
+\begin{minipage}{0.32\textwidth}
+\cfig{[:0]*6(=-*6(-=-=(-[:112]-[:180]-[:249 ])-)=-=-)}{ch:acenaphthene}{Acenaphthene}
+\end{minipage}%
+\begin{minipage}{0.32\textwidth}
+\cfig{[:0]*6(=-*6(-=-=(-[:112]=[:180]-[:249 ])-)=-=-)}{ch:acenaphthylene}{Acenaphthylene}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent
+\begin{minipage}{0.32\textwidth}
+\cfig{*6(=-(*5(-(*6(-=-=-=))----))=-=-)}{ch:fluorene}{Fluorene}
+\end{minipage}%
+\begin{minipage}{0.32\textwidth}
+\cfig{*6(=-(*6(-(*6(-=-=--))=-=-))=-=-)}{ch:phenanthrene}{Phenanthrene}
+\end{minipage}%
+\begin{minipage}{0.32\textwidth}
+\cfig{*6(=-(*6(-=(*6(-=-=--))-=--))=-=-)}{ch:anthracene}{Anthracene}
+\end{minipage}
+
+\subsubsection{HMW PAHs}
+
+\noindent
+\begin{minipage}{0.32\textwidth}
+\cfig{*6(-=(*6(-=-(*6(-(*6(-=-=--))=-=--))=--))-=-=)}{ch:chrysene}{Chrysene}
+\end{minipage}%
+\begin{minipage}{0.32\textwidth}
+\cfig{*6(-=(*6(-=-=(-[:112]([:120]*6(-=-=-=))-[:180]-[:249])--))-=-=)}{ch:fluoranthene}{Fluoranthene}
+\end{minipage}%
+\begin{minipage}{0.32\textwidth}
+\cfig{*6(=-(*6(-=-=--))=(*6(--=---))-(*6(=-=-=-))--)}{ch:pyrene}{Pyrene}
+\end{minipage}
+
+\subsubsection{Data sheet}
+\begin{table}[H]
+    \centering
+    \caption{Compounds data}
+    \begin{tabular}{@{}llllll@{}}
+        \toprule
+        \textbf{Nr.} & \textbf{Compound} & \textbf{Concentration} & \textbf{Retention} & \textbf{Peak area} & \textbf{m/z}\\
+        & \textbf{name} & \textbf{(ng/mL)} & \textbf{time} & & \textbf{fragments}\\
+        \midrule
+        1 & \nameref{ch:naphtalene} & & 4.62 & 938975 & 128\\
+        2 & \nameref{ch:acenaphthylene} & & 7.78 & 1093694 & 152\\
+        3 & \nameref{ch:acenaphthene} & & 8.18 & 1306917 & 154\\
+        4 & \nameref{ch:fluorene} & & 9.35 & 1134899 & 166\\
+        5 & \nameref{ch:anthracene} & & 11.58 & 1115451 & 178\\
+        6 & \nameref{ch:phenanthrene} & & 11.71 & N.D. & 178\\
+        7 & \nameref{ch:pyrene} & & 14.46 & 1358324 & 202\\
+        8 & \nameref{ch:fluoranthene} & & 15.00 & 1533223 & 202\\
+        9 & \nameref{ch:chrysene} (1) & & 18.08 & 133907 & 114\\
+        10 & \nameref{ch:chrysene} (2) & & 18.21 & 992122 & 228\\
         \bottomrule
     \end{tabular}
     \label{tab:calibration-data}
@@ -241,6 +306,8 @@ This experiment provided a hands-on understanding of GC-MS analysis for PAHs, hi
 \listoffigures
 
 \listoftables
+
+\listofmyequations
 
 \printbibliography
 

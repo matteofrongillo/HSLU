@@ -2666,15 +2666,26 @@ defined by:
 \endminipage}
 
 \subsection{Mass points}
-The total gravity center of two homogeneous surfaces with the partial
-gravity centers $S_1 = (x_1;y_1)$ and $S_2 = (x_2,y_2)$ and areas given
-by $A_1$ and $A_2$ is $S = (x,y)$, with:
+\subsubsection{For one surface}
+The total center of gravity (centroid) of two homogeneous surfaces,
+with partial centers $S_1 = (x_1, y_1)$ and $S_2 = (x_2, y_2)$ and
+areas $A_1$ and $A_2$, is $S = (x, y)$, where $x$ and $y$ are:
 \figbox{\minipage[]{.2\textwidth}
 $x = \dfrac{x_1 \cdot A_1 + x_2 \cdot A_2}{A_1 + A_2}$
 \phantom{}
 \vspace*{.5cm}
 
 $y = \dfrac{y_1 \cdot A_1 + y_2 \cdot A_2}{A_1 + A_2}$
+\endminipage}
+
+\subsubsection{For n-surfaces}
+The $xy$-coordinates are given by:
+\figbox{\minipage[]{.375\textwidth}
+    $\dm x = \frac{x_1 \cdot (A_1 + ... + A_n) \cdot A_n}{A_1 + ... + A_n} = \frac{\dm \sum_{i=1}^{n} x_i A_i}{\dm \sum_{i=1}^{n} A_i}$
+    \phantom{}
+    \vspace*{.5cm}
+
+    $\dm y = \frac{x_1 \cdot (A_1 + ... + A_n) \cdot A_n}{A_1 + ... + A_n} = \frac{\dm \sum_{i=1}^{n} x_i A_i}{\dm \sum_{i=1}^{n} A_i}$
 \endminipage}
 
 

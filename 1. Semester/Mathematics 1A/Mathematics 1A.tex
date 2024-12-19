@@ -1431,7 +1431,7 @@ Let $A,B > 0$, then the function is oscillating harmonically with $t$ around $D$
 \subsection{Definition}
 Let $f:\mathcal{D} \to \mathbb{R}$ be a function and $c$ a point, the limit
 $\dm L=\lim_{x\to c}f(x)$ with $x$ tending to $c$ exists only if in a given
-$\epsilon >0$ arbitrarily small, exists another $\delta >0$ such that:
+$\epsilon >0$ arbitrarily small, there exists another $\delta >0$ such that:
 
 
 \figbox{$0<|x-c|<\delta \implies |f(x)-L|<\epsilon$}
@@ -1693,7 +1693,7 @@ The derivative of a real function $f(x)$ is defined as:
 
 if the limit exists.
 
-\defs{$f'(a)$, if it exists, is calld derivative of $f(x)$ at $x=a$.\\
+\defs{$f'(a)$, if it exists, is called derivative of $f(x)$ at $x=a$.\\
 \hspace*{1.65cm} It corresponds to the slope of the tangent line at $x=a$ to the function $y=f(x)$}
 
 \subsection{Simplified definition (Exponentiation rule)}
@@ -1821,7 +1821,7 @@ When $f'(x)$ is defined, $p = \left(x, f(x)\right)$, and $p \in$ tangent line, t
 \figbox{$\dm y - f(a) = f'(a) \cdot (x-a)$}
 
 \section{Bernoulli -- de l'Hôpital Theorem}
-Bernulli -- de l'Hôpital theorem is applicable \textbf{only if} the function
+Bernoulli -- de l'Hôpital theorem is applicable \textbf{only if} the function
 results in an indeterminate form.
 
 \subsection{The 7 indeterminate forms}
@@ -1835,7 +1835,7 @@ The seven indeterminate forms are:
 Let us consider two real functions $f(x)$ and $g(x)$ that are differentiable
 in a neighborhood of $x_0\in\mathbb{R}$ (not necessarily at $x_0$).
 
-If $\dm \lim_{x \to x_0} \frac{f(x_0)}{g(x_0)}$ results in an indeterminate form, then:
+If $\dm \lim_{x \to x_0} \frac{f(x)}{g(x)}$ results in an indeterminate form, then:
 
 \figbox{$\dm \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f'(x)}{g'(x)}$}
 
@@ -1855,8 +1855,8 @@ Let $c \in \mathbb{R}$, then:
 \subsubsection{Multiplication}
 \figbox{$\dm \frac{d}{dx}\left[f(x) \cdot g(x)\right] = f'(x)\cdot g(x) + f(x)\cdot g'(x)$}
 
-\subsubsection{Difference}
-\figbox{$\dm \frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)\cdot g(x) - f(x)\cdot g(x)}{\left(g(x)\right)^2}$}
+\subsubsection{Quotient}
+\figbox{$\dm \frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)\cdot g(x) - f(x)\cdot g'(x)}{\left(g(x)\right)^2}$}
 
 \subsubsection{Exponential}
 Let $a > 0$, then:
@@ -2266,7 +2266,7 @@ with:
     \item $x_i = a + i \cdot \Delta x$
 \end{itemize}
 
-\wrn{there are functions that are not integrable in the Riemann sense, such as sgn$(x)$}
+\wrn{there are functions that are not integrable in the Riemann sense, such as the Dirichlet function}
 
 \subsubsection{Statement of the theorem}
 \figbox{$\integral[a][b][f(x)][x] = \lim_{n \to +\infty} R_n$}
@@ -2400,6 +2400,8 @@ then $\forall x \in [a,b]$:
     \hspace*{.35cm}
     }   
 \end{center}
+
+\wrn{The first formula is valid only for $\alpha \neq 1$}
 
 \newpage
 \section{Integration with substitution rule}

@@ -2,6 +2,7 @@
 
 \usepackage{Mathematics1A}
 
+\usepackage[utf8]{inputenc}
 \usepackage[fleqn]{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
@@ -51,6 +52,8 @@
     \endgroup
 }
 \makeatother
+
+\let\emptyset\varnothing
 
 % === TEXT ===
 \title{\textbf{Mathematics 1A \\ HSLU, Semester 1}}
@@ -109,8 +112,8 @@ If $Q$ is true, then $P$ must be true.
 
 \figbox{$Q = (x > 0) \Longleftarrow P = (x \in \mathbb{R}^+)$}
 
-\subsubsection{If and only if $\Leftrightarrow$}
-The symbol $\Leftrightarrow$ indicates that two statements $P$ and $Q$ are logically equivalent, meaning $P$ is true if and only if $Q$ is true.
+\subsubsection{If and only if $\Longleftrightarrow$}
+The symbol $\Longleftrightarrow$ indicates that two statements $P$ and $Q$ are logically equivalent, meaning $P$ is true if and only if $Q$ is true.
 \figbox{$P = (x \in \mathbb{N},\ x \neq 0) \Longleftrightarrow Q = (x \in \mathbb{N}^*)$}
 
 \part{Set Theory}
@@ -163,15 +166,15 @@ $
 
 Then we write some examples: $\pi \in B,\ D \subset B,\ C \subset B,\ B \not\subset C,\ 0 \in B,\ 0 \notin C$.
 
-\section{Union $\cup$ and Intersection $\cap$}
+\section{Abstract algebra}
 \subsection{Universe symbol}
-The symbol $\bigcup :=$ Universe describes a big set which contains all sets involved
+The symbol $\mathcal{U} :=$ Universe describes a big set which contains all sets involved
 in our discussions (not always).
 
 \subsection{Venn diagram}
 \subsubsection{Union $A \cup B$}
 If $A$ and $B$ are sets, then their union is:
-\figbox{$A \cup B = \left\{\forall x \in \bigcup \sht x \in A \lor x \in B\right\}$}
+\figbox{$A \cup B = \left\{\forall x \in \mathcal{U} \sht x \in A \lor x \in B\right\}$}
 \vspace*{-.53cm}
 \figbox{
     \begin{tikzpicture}[scale=1.75]
@@ -195,14 +198,14 @@ If $A$ and $B$ are sets, then their union is:
         
         \node at (3, 0.35) {};
 
-        \node[overlay] at (0.2,3.75) {\(\bigcup\)};
+        \node[overlay] at (0.2,3.75) {\(\mathcal{U}\)};
     \end{tikzpicture}
 }
 
 \newpage
 \subsubsection{Intersection $A \cap B$}
 If $A$ and $B$ are sets, then their intersection is:
-\figbox{$A \cap B = \left\{\forall x \in \bigcup \sht x \in A \land x \in B\right\}$}
+\figbox{$A \cap B = \left\{\forall x \in \mathcal{U} \sht x \in A \land x \in B\right\}$}
 
 \figbox{
     \begin{tikzpicture}[scale=1.75]
@@ -223,13 +226,13 @@ If $A$ and $B$ are sets, then their intersection is:
         
         \node at (3, 0.35) {};
 
-        \node[overlay] at (0.2,3.75) {\(\bigcup\)};
+        \node[overlay] at (0.2,3.75) {\(\mathcal{U}\)};
     \end{tikzpicture}
 }
 
 \subsubsection{Complement $\bar{A}$}
 If $A$ is a set, its complement is:
-\figbox{$\bar{A}=\left\{\forall x \in \bigcup \sht x \notin A\right\}$}
+\figbox{$\bar{A}=\left\{\forall x \in \mathcal{U} \sht x \notin A\right\}$}
 
 \begin{figure}[ht!]
     \begin{center}
@@ -244,7 +247,7 @@ If $A$ is a set, its complement is:
                 \node at (1.5, 1.5) {\(\bar{A}\)};
                 \node at (4.05, 1.5) {\(A\)};
 
-                \node[overlay] at (-0.2,2.75) {\(\bigcup\)};
+                \node[overlay] at (-0.2,2.75) {\(\mathcal{U}\)};
             \end{tikzpicture}
     \end{center}
 \end{figure}
@@ -252,7 +255,7 @@ If $A$ is a set, its complement is:
 \newpage
 \subsubsection{Difference between sets $\difference$}
 If $A$ and $B$ are sets, then their difference is:
-\figbox{$A \difference B = \left\{\forall x \in \bigcup \sht x \in A,\ x \notin B\right\}$}
+\figbox{$A \difference B = \left\{\forall x \in \mathcal{U} \sht x \in A,\ x \notin B\right\}$}
 
 \figbox{        
     \begin{tikzpicture}[scale=1.75]
@@ -273,7 +276,7 @@ If $A$ and $B$ are sets, then their difference is:
         
         \node at (3, 0.35) {};
 
-        \node[overlay] at (0.2,3.75) {\(\bigcup\)};
+        \node[overlay] at (0.2,3.75) {\(\mathcal{U}\)};
     \end{tikzpicture}
 }
 
@@ -299,6 +302,8 @@ If $A$ and $B$ are sets, then their symmetrical difference is:
         \node at (1.5, 2) {\(A \difference B\)};
         \node at (4.5, 2) {\(B \difference A\)};
         \node at (3, 2) {\(A \cap B\)};
+
+        \node[overlay] at (0.2,3.75) {\(\mathcal{U}\)};
     \end{tikzpicture}
 }
 
@@ -321,7 +326,7 @@ $\emptyset :=$ the set containing zero elements:
                 \node at (1.5, 1.5) {\(A\)};
                 \node at (4.5, 1.5) {\(B\)};
                             
-                \node[overlay] at (-0.2,2.75) {\(\bigcup\)};
+                \node[overlay] at (-0.2,2.75) {\(\mathcal{U}\)};
             \end{tikzpicture}
     \end{center}
 \end{figure}

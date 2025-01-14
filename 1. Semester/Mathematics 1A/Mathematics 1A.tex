@@ -1273,6 +1273,7 @@ the range is $\dm \forall y \in \left[\pi, 0\right]$
             domain=0:pi,
             samples=100,
             color=blue,
+            thick
         ]
         {cos(x)};
         \addlegendentry{$y = \cos(x)$}
@@ -1282,6 +1283,7 @@ the range is $\dm \forall y \in \left[\pi, 0\right]$
             domain=0:pi,
             samples=100,
             color=red,
+            thick
         ]
         {x};
         \addlegendentry{$y = x$}
@@ -1291,6 +1293,7 @@ the range is $\dm \forall y \in \left[\pi, 0\right]$
             domain=-1:1,
             samples=100,
             color=darkgreen,
+            thick
         ]
         {acos(x)};
         \addlegendentry{$y = \arccos(x)$}
@@ -1321,6 +1324,7 @@ the range is $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
             domain=-1:1,
             samples=100,
             color=blue,
+            thick
         ]
         {sin(x)};
         \addlegendentry{$y = \sin(x)$}
@@ -1330,6 +1334,7 @@ the range is $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
             domain=-1:1,
             samples=100,
             color=red,
+            thick
         ]
         {x};
         \addlegendentry{$y = x$}
@@ -1339,6 +1344,7 @@ the range is $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
             domain=-1:1,
             samples=100,
             color=darkgreen,
+            thick
         ]
         {asin(x)};
         \addlegendentry{$y = \arcsin(x)$}
@@ -1353,44 +1359,45 @@ $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
 
 \begin{center}
     \begin{tikzpicture}
-        \begin{axis}[
-            axis lines = center,
-            xmin=-pi/2+0.1, xmax=pi/2-0.1,
-            ymin=-3, ymax=3,
-            xlabel = $x$,
-            ylabel = $y$,
-            xtick={-1, -0.5, 0, 0.5, 1},
-            ytick={-1, -0.5, 0, 0.5, 1},
-            trig format plots=rad,
-            legend pos=south east,
-        ]
-        \addplot[
-            domain=-6:6,
-            samples=100,
-            color=blue,
-        ]
-        {tan(x)};
-        \addlegendentry{$y = \tan(x)$}
-        
-        \addplot[
-            domain=-6:6,
-            samples=100,
-            color=red,
-        ]
-        {x};
-        \addlegendentry{$y = x$}
-        
-        \addplot[
-            domain=-6:6,
-            samples=100,
-            color=darkgreen,
-        ]
-        {atan(x)};
-        \addlegendentry{$y = \arctan(x)$}
-        
-        \end{axis}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = {$x$},
+        ylabel = {$y$},
+        xmin = -6.5, xmax = 6.5,
+        ymin = -4,   ymax = 4,
+        xtick = {-6, -4, -2, 0, 2, 4, 6},
+        ytick = {-4, -2, 0, 2, 4},
+        legend pos = south east,
+        trig format plots = rad,
+    ]
+    
+    \addplot[
+        domain = -pi/2+0.01:pi/2-0.01,
+        color = red,
+        thick
+    ]
+    {tan(x)};
+    \addlegendentry{$y = \tan(x)$}
+    
+    \addplot[
+        domain = -6:6,
+        color = blue,
+        thick
+    ]
+    {atan(x)};
+    \addlegendentry{$y = \arctan(x)$}
+    
+    \addplot[
+        domain = -6:6,
+        color = green!50!black,
+        thick
+    ]
+    {x};
+    \addlegendentry{$y = x$}
+    
+    \end{axis}
     \end{tikzpicture}
-\end{center}
+\end{center}    
 
 \newpage
 \subsection{Harmonic oscillation}

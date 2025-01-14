@@ -1310,18 +1310,18 @@ the range is $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
     \begin{tikzpicture}
         \begin{axis}[
             axis lines = center,
-            xmin=-1.5, xmax=1.5,
-            ymin=-1.5, ymax=1.5,
+            xmin=-2, xmax=2,
+            ymin=-2, ymax=2,
             xlabel = $x$,
             ylabel = $y$,
-            xtick={-1, -0.5, 0, 0.5, 1},
-            ytick={-1, -0.5, 0, 0.5, 1},
+            xtick={-2,-1.5,...,2},
+            ytick={-2,-1.5,...,2},
             trig format plots=rad,
             legend pos=south east,
         ]
         % Grafico di y = \sin(x) per x in [-1, 1]
         \addplot[
-            domain=-1:1,
+            domain=-pi/2:pi/2,
             samples=100,
             color=blue,
             thick
@@ -1331,7 +1331,7 @@ the range is $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
         
         % Grafico della retta y = x
         \addplot[
-            domain=-1:1,
+            domain=-pi/2:pi/2,
             samples=100,
             color=red,
             thick
@@ -1372,8 +1372,8 @@ $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
     ]
     
     \addplot[
-        domain = -pi/2+0.01:pi/2-0.01,
-        color = red,
+        domain = -pi/2:pi/2,
+        color = blue,
         thick
     ]
     {tan(x)};
@@ -1381,19 +1381,19 @@ $\dm \forall y \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$
     
     \addplot[
         domain = -6:6,
-        color = blue,
-        thick
-    ]
-    {atan(x)};
-    \addlegendentry{$y = \arctan(x)$}
-    
-    \addplot[
-        domain = -6:6,
-        color = green!50!black,
+        color = red,
         thick
     ]
     {x};
     \addlegendentry{$y = x$}
+
+    \addplot[
+        domain = -6:6,
+        color = darkgreen,
+        thick
+    ]
+    {atan(x)};
+    \addlegendentry{$y = \arctan(x)$}
     
     \end{axis}
     \end{tikzpicture}

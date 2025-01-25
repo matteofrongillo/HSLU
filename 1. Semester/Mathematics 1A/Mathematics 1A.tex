@@ -2338,10 +2338,10 @@ within the base:
 \subsection{Integration rules}
 \subsubsection{Linearity}
 Let $\lambda \in \mathbb{R}$, then:
-\figbox{$\integral[][][\lambda f(x)][x] = \lambda \integral[][][f(x)][x]$} 
+\figbox{$\integral[\lambda f(x)][x] = \lambda \integral[f(x)][x]$} 
 
 \subsubsection{Sum and subtraction}
-\figbox{$\integral[][][[f(x) \pm g(x)]][x] = \integral[][][f(x)][x] \pm \integral[][][g(x)][x]$}
+\figbox{$\integral[[f(x) \pm g(x)]][x] = \integral[f(x)][x] \pm \integral[g(x)][x]$}
 
 \subsection{Integral with infinite bounds}
 \subsubsection{When upper bound is $+\infty$}
@@ -2358,7 +2358,7 @@ Let $\lambda \in \mathbb{R}$, then:
 We denote the \textbf{set} of all antiderivatives of a function $f$ as
 an \textit{indefinite integral} of $f$. This is written as:
 \begin{center}
-    $\integral[][][f(x)][x]$
+    $\integral[f(x)][x]$
 \end{center}
 
 with no integration limits specified.
@@ -2398,8 +2398,8 @@ then $\forall x \in [a,b]$:
     \begin{minipage}{0.28\textwidth}\vspace*{-.35cm}
       \[
         \begin{aligned}
-          &\integral[][][x^\alpha][x] = \frac{1}{\alpha + 1} \cdot x^{\alpha+1} + C \\
-          &\integral[][][e^x][x] = e^x + C
+          &\integral[x^\alpha][x] = \frac{1}{\alpha + 1} \cdot x^{\alpha+1} + C \\\\
+          &\integral[e^x][x] = e^x + C
         \end{aligned}
       \]
     \end{minipage}%
@@ -2407,8 +2407,8 @@ then $\forall x \in [a,b]$:
     \begin{minipage}{0.27\textwidth}\vspace*{-.35cm}
       \[
         \begin{aligned}
-          &\integral[][][x^{-1}][x] = \integral[][][\frac{1}{x}][x] = \ln\left|x\right| + C \\
-          &\integral[][][\frac{1}{1+x^2}][x] = \arctan(x) + C
+          &\integral[x^{-1}][x] = \integral[\frac{1}{x}][x] = \ln\left|x\right| + C \\\\
+          &\integral[\frac{1}{1+x^2}][x] = \arctan(x) + C
         \end{aligned}
       \]
     \end{minipage}
@@ -2425,13 +2425,13 @@ According to the chain rule, we have:
 \[\frac{d}{dx}\left[F(g(x))\right] = F'(g(x))\cdot g'(x)=f(g(x))g'(x)\]
 
 If $g'(x)$ is continuous:
-\[\integral[][][f(g(x))g'(x)][x] = F(g(x)) + C\]
+\[\integral[f(g(x))g'(x)][x] = F(g(x)) + C\]
 
 Now let:
 \[u = g(x)\ \Longrightarrow\ du = g'(x)\ dx\]
 
 With this we obtain:
-\figbox{$\integral[][][f(g(x))g'(x)][x] = \integral[][][f(u)][u]$}
+\figbox{$\integral[f(g(x))g'(x)][x] = \integral[f(u)][u]$}
 
 \subsection{Definite integrals}
 The corresponding formula for definite integrals is:
@@ -2443,10 +2443,10 @@ Let $f(x)$ and $g(x)$ be two functions. Integration by parts descends from the p
 \[(f(x)\cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)\]
 
 By integrating both sides:
-\[f(x)g(x) = \integral[][][(f(x)g(x))'][x] = \integral[][][f'(x)g(x)][x] + \integral[][][f(x)g'(x)][x]\]
+\[f(x)g(x) = \integral[(f(x)g(x))'][x] = \integral[f'(x)g(x)][x] + \integral[f(x)g'(x)][x]\]
 
 Rearranging this equation leads to the formula of integration by parts:
-\figbox{$\integral[][][f(x)g'(x)][x] = f(x)g(x) - \integral[][][f'(x)g(x)][x]$}
+\figbox{$\integral[f(x)g'(x)][x] = f(x)g(x) - \integral[f'(x)g(x)][x]$}
 
 \newpage
 \subsection{Definite integrals}
@@ -2459,14 +2459,14 @@ The corresponding formula for definite integrals is:
     \[
     \frac{d}{dx} \left(e^{h(x)}\right) = h'(x) \cdot e^{h(x)} 
     \quad \Longrightarrow \quad 
-    \integral[][][h'(x)\cdot e^{h(x)}][x] = e^{h(x)} + C
+    \integral[h'(x)\cdot e^{h(x)}][x] = e^{h(x)} + C
     \]
 
     \item 
     \[
     \frac{d}{dx} \left(\ln(\pm f(x))\right) = \frac{f'(x)}{f(x)}
     \quad \Longrightarrow \quad 
-    \integral[][][\frac{f'(x)}{f(x)}][x] = \ln\left|f(x)\right| + C
+    \integral[\frac{f'(x)}{f(x)}][x] = \ln\left|f(x)\right| + C
     \]
 \end{enumerate}
 

@@ -1,0 +1,35 @@
+\documentclass{article}
+
+\usepackage{Mathematics}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Mathematics 2A}
+}
+
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+    \begingroup
+    \pgfmathparse{rad(atan(#1))}%
+    \endgroup
+}
+\makeatother
+
+\let\emptyset\varnothing
+
+% === TEXT ===
+\title{\textbf{Mathematics 2A \\ HSLU, Semester 2}}
+\author{Matteo Frongillo}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\part{Soon \ldots{}}
+
+\end{document}

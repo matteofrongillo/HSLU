@@ -782,7 +782,7 @@ Guidelines defines minimum cost parameters that should be included in LCOE calcu
     \begin{itemize}[label=$\circ$]
         \item Turbine cost (incl. blades, tower and transformer);
         \item Civil works (incl. construction costs for site preparation, foundation construction);
-        \item Grid connection costs (incl. transformers, substations, connection to transmissio network);
+        \item Grid connection costs (incl. transformers, substations, connection to transmission network);
         \item Other capital costs (e.g.: construction of buildings, project consultancy costs, ...).
     \end{itemize}
 \end{itemize}
@@ -852,7 +852,303 @@ Share of different cost components varies by country and project:
 ...
 
 \newpage
+\part{Wind power and ecotechnology}
+\section{Wind power generalities}
+\setlength{\intextsep}{0pt}%
+\begin{wrapfigure}{r}{0.45\textwidth}
+    \includegraphics[width=.45\textwidth]{media/windpower.png}
+    \vspace{-2.7cm}
+\end{wrapfigure}
 
+\phantom{}
+\vspace*{-.8cm}
+\subsubsection{How does a wind turbine work?}
+
+There is a wind vane \circled{1} at the top of each turbine: this tells the turbine the speed and direction the wind is blowing.
+
+The turbine then rotates on the tower to face into the wind, and the blades \circled{2} rotate on their axis to create maximum resistance against the wind.
+
+The wind starts turning the blades which are connected to a hub and a low-speed shaft \circled{3}.
+
+The low-speed shaft spins at the same speed as the blades (7-12 revolutions per minute). But we need a much faster rotational speed for the generator to produce electricity.
+
+That’s why most wind turbines have a gearbox \circled{4}, which multiplies the rotational speed of the low-speed shaft by over 100 times to the high-speed shaft \circled{5}, which rotates up to 1,500 revolutions per minute.
+
+This is connected to a generator \circled{6}, which converts the kinetic energy into electricity.
+
+Turbines that do not have a gearbox are connected directly from the hub to the generator \circled{6} through their axis (this is called ``direct-drive'').
+\wrapfill
+
+\vspace*{1cm}
+
+\setlength{\intextsep}{0pt}%
+\begin{wrapfigure}{l}{0.45\textwidth}
+    \includegraphics[width=.45\textwidth]{media/power_curve.png}
+    \vspace{-2.7cm}
+\end{wrapfigure}
+
+\phantom{}
+\vspace*{-1.1cm}
+\subsubsection{Power curve}
+\begin{itemize}
+    \item Wind turbine electrical power output as a function of mean wind speed at hub height;
+    \item Different operating regimes across the wind speed range:
+    \begin{itemize}[label=$\circ$]
+        \item cut-in wind speed: minimum wind speed at which the turbine will deliver power;
+        \item rated wind speed: above this value the wind turbine will produce its rated power;
+        \item cut-out wind speed: above this value the wind turbine will stop converting wind to electricity.
+    \end{itemize}
+\end{itemize}
+\wrapfill
+
+\subsubsection{Wind to electricity conversion chain}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{media/conversion_chain.png}
+\end{center}
+
+\subsubsection{Wind turbine technical characteristics}
+\begin{center}
+    \includegraphics[width=\textwidth]{media/tech_char.png}
+\end{center}
+
+\subsubsection{Wind-wave statistical distribution}
+\begin{center}
+    \includegraphics[width=\textwidth]{media/c_powercalc.inc.png}
+\end{center}
+\pph{Rayleigh distribution}
+\figbox{$p(H) = \dfrac{2H}{\left(H_{\text{rms}}\right)^2\exp\left(-\left(\dfrac{H}{H_{\text{rms}}}\right)^2\right)}$}
+
+\pph{Root-mean-square height}
+\figbox{$\dm H_{\text{rms}} = \sqrt{\dm \sum \dfrac{\dm H_i^2}{N}}$}
+
+\pph{Cumulative probability distribution}
+\figbox{$\dm P(H)=\integral[0][H][p(H)][H] = 1-\exp{\left(\dfrac{H}{H_{\text{rms}}}\right)^2}$}
+
+\newpage
+\section{Wind energy technology}
+\subsection{Overview of wind energy conversion}
+...
+
+\subsection{Modern wind turbines}
+\setlength{\intextsep}{0pt}%
+\begin{wrapfigure}{r}{0.45\textwidth}
+    \includegraphics[width=.45\textwidth]{media/hawt.png}
+    \vspace{-2.7cm}
+\end{wrapfigure}
+
+\phantom{}
+\vspace*{-.8cm}
+\subsubsection{Horizontal axis wind turbines (HAWT)}
+\begin{itemize}
+    \item Axis of rotation (almost) horizontal;
+    \item Rotor in front of the tower as seen from the wind (upwind);
+    \item 3-bladed rotor more efficient that other configurations;
+    \item Yaw control;
+    \item Pitch control;
+    \item Variable speed;
+    \item Capable of supporting greed;
+\end{itemize}
+
+\subsubsection{Subsystems and components}
+\begin{itemize}
+    \item \textbf{Rotor:} blades, hub, pitch system;
+    \item \textbf{Nacelle:}
+    \begin{itemize}[label=$\circ$]
+        \item \textbf{Drive train:}
+    \end{itemize}
+\end{itemize}
+
+\wrapfill
+
+\newpage
+\subsubsection{Components of fixed-bottom offshore wind turbine}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/components.png}
+\end{center}
+
+\setlength{\intextsep}{0pt}%
+\begin{wrapfigure}{r}{0.65\textwidth}
+    \includegraphics[width=.65\textwidth]{media/basic_operation_modes.png}
+    \vspace{-2.7cm}
+\end{wrapfigure}
+
+\phantom{}
+\vspace*{-.8cm}
+\subsubsection{Basic operation modes}
+\begin{itemize}
+    \item Off/standby;
+    \item Idling;
+    \item Start up;
+    \item Low, mid, high-power;
+    \item Maximum power;
+    \item Shut down (high wind speed, large vibrations);
+    \item Parked
+\end{itemize}
+\wrapfill
+
+\subsubsection{Operation under site-specific conditions}
+\begin{itemize}
+    \item Power regulation to avoid large grid unbalance: curtailment, shut-down due to storms;
+    \item Avoid environmental impacts: reduced operation during bird migration season, noise or shadow restrictions;
+    \item Protect turbine components under harsh environments.
+\end{itemize}
+
+\setlength{\intextsep}{0pt}%
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \includegraphics[width=.5\textwidth]{media/turbine_output.png}
+    \vspace{-5cm}
+\end{wrapfigure}
+
+\phantom{}
+\vspace*{-.8cm}
+\subsubsection{Basic operation modes}
+\begin{itemize}
+    \item $P_{\text{wind}} = \dm \frac{1}{2}\rho Au^3$
+    \item $P_{\text{max}} = \dm \frac{1}{2}\rho Au^3c_p$
+    \item $c_p \simeq 0.59$
+\end{itemize}
+\wrapfill
+
+\subsubsection{Calculate annual energy production}
+Annual energy production (e.g., during 8760 h) of a wind
+turbine, assuming that is all the time available to produce
+energy E [kWh/year], is given by:
+\\
+\figbox{$E=8760\integral[0][\infty][P(u)f(u)][u]$}
+
+where:
+\begin{itemize}
+    \item $P(u)$: wind turbine power output [kWh] as a function of $u$;
+    \item $f(u)$: probability density function of wind speed [s/m];
+    \item $u$: wind speed [m/s].
+\end{itemize}
+
+Equivalent hours per year $h_{eq}$ is given by:
+\figbox{$\dm h_{eq} = \frac{E}{P_n}$}
+
+where $P_n$ is the rated power of the wind turbine.
+
+\section{Basics of wind energy conversion}
+
+
+\newpage
+\section{Wind farms}
+\underline{A wind farm or wind power plant is an array of wind turbines with a
+common connection point to the grid.}
+
+\subsection{Range of flow scales relevant to wind farms}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/flow_range.png}
+\end{center}
+
+\subsection{Components for connection to the grid in an offshore wind farm}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/farm_components.png}
+\end{center}
+
+\subsection{Impacts on power systems}
+Larger wind farms can influence power systems:
+\begin{itemize}
+    \item Upgrades to transmission and distribution infrastructure might be needed;
+    \item Power quality might be influenced by distorsion to voltage and increase of harmonics;
+    \item Grid stability may need require novel practices to balance demand and production.
+\end{itemize}
+
+
+
+\newpage
+\section{Wind resource}
+\subsection{Global wind patterns}
+...
+
+\subsection{Wind climate}
+...
+
+\subsubsection{Wind profile in the atmospheric boundary layer}
+Wind shear influences resource assessment and wind turbine design because
+it influences the energy production and the wind turbine structural loads.
+
+Models of mean wind speed $u$ as a function of height $z$:
+\pph{Power law}
+\figbox{$\dm u(z) = U_r \left(\frac{z}{z_r}\right)^{\alpha}$}
+
+where:
+\begin{itemize}
+    \item $U_r$: wind speed measured at height $z_r$;
+    \item $\alpha$: flow over flat terrain (tipically $0.14$).\\
+        This variable is sensitive to sourface roughness, height, and atmospheric stability.
+\end{itemize}
+
+\pph{Logarithmic law (without considering stability)}
+\figbox{$\dm u(z) = \frac{U^*}{k}\ln\left(\frac{z}{z_0}\right)$}
+
+where:
+\begin{itemize}
+    \item $U^*$: friction velocity (it depends on air density and terrain roughness);
+    \item $k = 0.4$ (von K\'arm\'an's constant)
+    \item $z_0$: surface roughness length (for very smooth surfaces, $z_0 = 0.01$ mm)
+\end{itemize}
+
+\subsubsection{Terrain roughness}
+Size and distribution of roughness elements:
+\begin{itemize}
+    \item vegetation;
+    \item buildings;
+    \item soil surface.
+\end{itemize}
+
+Standard roughness classes:
+\begin{itemize}
+    \item 0: water areas, sea fjords, and lakes \tra $z_0 = 0.2$ mm;
+    \item 1: open areas with few windbreaks \tra $z_0 = 30$ mm;
+    \item 2: farm land with scattered trees and small buildings \tra $z_0 = 100$ mm;
+    \item 3: urban areas, forest, farm land with many windbreaks \tra $z_0 = 400$ mm.
+\end{itemize}
+
+\newpage
+\subsubsection{Standard wind classes}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline & \begin{tabular}{c} 
+        \textbf{I} \\
+        \textbf{High}
+        \end{tabular} & \begin{tabular}{c} 
+        \textbf{II} \\
+        \textbf{Medium}
+        \end{tabular} & \begin{tabular}{c} 
+        \textbf{III} \\
+        \textbf{Low}
+        \end{tabular} & \begin{tabular}{c} 
+        \textbf{IV} \\
+        \textbf{Very low}
+        \end{tabular} \\
+        \hline Reference wind speed & 50 & 42.4 & 37.5 & 30 \\
+        \hline \begin{tabular}{c} 
+        \textbf{Annual average wind speed} \\
+        \textbf{(Max)}
+        \end{tabular} & $\mathbf{1 0}$ & $\mathbf{8 . 5}$ & $\mathbf{7 . 5}$ & $\mathbf{6}$ \\
+        \hline 50-year return gust & 70 & 59.5 & 52.5 & 42 \\
+        \hline 1-year return gust & 52.5 & 44.6 & 39.4 & 31.5 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Importance of site specific wind characteristics}
+\subsubsection{Wind turbine design}
+
+
+
+
+
+
+
+
+\newpage
+\section{Wind project development}
+
+\section{Wind in the electricity mix}
+
+\section{Social acceptance}
 
 
 

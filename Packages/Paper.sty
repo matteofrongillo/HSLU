@@ -67,6 +67,14 @@
 
 % ============= NEW COMMANDS =============
 
+% PDFTITLE IN THE PREAMBLE!!!
+\newcommand{\pdftitle}[1]{\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={#1}
+}}
+
 \newcommand{\figbox}[1]{ 
     \begin{figure*}[ht!]        
         \begin{center}            
@@ -113,10 +121,3 @@
 \makeatletter
 \newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 \makeatother
-
-\newcommand{\pdftitle}[1]{\hypersetup{
-  colorlinks=true,
-  linkcolor=black,
-  urlcolor=blue,
-  pdftitle={#1}
-}}

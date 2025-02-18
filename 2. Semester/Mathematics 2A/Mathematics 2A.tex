@@ -15,6 +15,35 @@
 \tableofcontents
 \pagebreak
 
-\part{Soon \ldots{}}
+\section{First order differential equations}
+Let $f(x)$ be a given function of $x$. The solutions of the differential equation
+\[y' = f(x)\]
+is the indefinite integral
+\[\integral[f(x)][x]\]
+
+\subsection{Setting up a general differential equation}
+Let 
+\begin{equation*}
+    \begin{cases}
+        \dfrac{\mathrm{d}y}{\mathrm{d}t} = a - y\\
+        y(0) = 0
+    \end{cases}
+\end{equation*}
+
+General solution:
+\figbox{$y(t) = a + Ce^{-t}$}
+
+Particular solution:
+\[
+    y(0)=0=a+Ce^{-0} = a+C\\
+    C = -a
+\]
+\figbox{$y=a-ae^{-t}$}
+
+
+
+
+
+
 
 \end{document}

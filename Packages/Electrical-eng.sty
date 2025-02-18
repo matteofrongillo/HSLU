@@ -1,0 +1,139 @@
+\ProvidesPackage{Electrical-eng}[2025/02/17 LaTeX functions]
+
+% ============= PACKAGES =============
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{babel}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{esvect}
+\usepackage{siunitx}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.17}
+\definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
+
+% ============= GEOMETRY =============
+
+\geometry{
+    a4paper,
+    total={170mm, 257mm},
+    left=20mm,
+    top=20mm
+}
+
+% ============= RENEW COMMANDS =============
+
+\makeatletter
+\renewcommand{\author}[1]{%
+  \def\@author{%
+    #1\\\\
+    \parbox{\textwidth}{%
+      \noindent
+      \begin{minipage}[t]{0.15\textwidth}
+        Last update:
+      \end{minipage}%
+      \begin{minipage}[t]{0.70\textwidth}
+        \centering
+        \today
+      \end{minipage}%
+      \begin{minipage}[t]{0.15\textwidth}
+      \end{minipage}%
+    }
+  }%
+}
+\makeatother
+
+\let\emptyset\varnothing
+
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+    \begingroup
+    \pgfmathparse{rad(atan(#1))}%
+    \endgroup
+}
+\makeatother
+
+% ============= NEW COMMANDS =============
+
+\newcommand{\figbox}[1]{ 
+    \begin{figure*}[ht!]        
+        \begin{center}            
+            \fbox{#1}        
+        \end{center}    
+    \end{figure*}
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\ExplSyntaxOn
+\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
+{
+    \IfNoValueTF { #4 }
+    {
+        \IfNoValueTF { #3 }
+        { \displaystyle \int #1\,d#2 }
+        { \text{Either\,\,2\,\,or\,\,4\,\,arguments\,\,must\,\,be\,\,passed} }
+    }
+    {
+        \displaystyle \int\limits\c_math_subscript_token{#1}^{#2} #3 \,d#4
+        % In Expl Syntax characters as '_' or ':' are used as letters in command names
+        % hence the \c_math_subscript_token{#1} rather than _{#1}
+    }
+}
+\ExplSyntaxOff
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\pdftitle}[1]{\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={#1}
+}}
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}

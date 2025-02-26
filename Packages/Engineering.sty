@@ -27,6 +27,7 @@
 \usepackage{esvect}
 \usepackage{siunitx}
 \usepackage{mathtools}
+\usepackage{varwidth}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -78,7 +79,7 @@
 \newcommand{\figbox}[1]{ 
     \begin{figure*}[ht!]        
         \begin{center}            
-            \fbox{#1}        
+            \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}}        
         \end{center}    
     \end{figure*}
 }
@@ -130,6 +131,7 @@
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
 \newcommand{\nots}{\underline{Notation}: }
+\newcommand{\note}{\underline{Note}: }
 \newcommand{\prf}{\underline{Proof}: }
 \newcommand{\exs}{\underline{Example}: }
 \newcommand{\defs}{\underline{Definition}: }

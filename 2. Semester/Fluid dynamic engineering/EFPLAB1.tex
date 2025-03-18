@@ -214,6 +214,99 @@ where:
     \item $T$: temperature $\left[K\right]$.
 \end{itemize}
 
+\newpage
+\section{Mass conservation}
+
+
+\newpage
+
+\section{Energy conservation}
+\[
+	\frac{dE}{dt}=
+	\underbrace{\sum P + \sum \dot{Q}}_{
+		\substack{
+			\begin{tabular}{@{}c@{}}
+				\text{Energy flow} \\ \text{across system boundary}
+			\end{tabular}
+		}}
+        + \underbrace{\sum_{in} \left[\dot{m}^{\swarrow} \cdot \left(h^{\swarrow} + \frac{v^{2\swarrow}}{2}+g\cdot z^{\swarrow}\right)\right]}_{
+			\substack{
+				\begin{tabular}{@{}c@{}}
+					\text{Energy}\\ \text{transfer mass}
+				\end{tabular}}}
+		-\underbrace{\sum_{out}\left[\dot{m}^{\nearrow}\cdot \left(h^{\nearrow}+\frac{v^{2\nearrow}}{2}+g\cdot z^{\nearrow}\right)\right]}_{
+			\substack{
+				\begin{tabular}{@{}c@{}}
+					\text{Energy transfer} \\ \text{escaping mass}
+				\end{tabular}}} 
+\]  
+
+where:
+
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}
+    \item $E$: total energy of the system;
+    \item $P$: power;
+    \item $\dot{Q}$: heat flow;
+    \item $\dot{m}$: mass flow entering/leaving the system;
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}
+    \item $h$: enthalpy of the entering/leaving mass flow;
+    \item $v$: velocity of the entering/leaving mass flow;
+    \item $z$: height of the entering/leaving mass flow.
+\end{itemize}
+\end{minipage}
+
+\subsection{Bernoulli equations}
+\subsubsection{Energy conservation}
+\figbox{$0 = \dsum{in}{} \left[\dot{m}^{\swarrow} \cdot \left(h^{\swarrow} + \frac{v^{2\swarrow}}{2}+g\cdot z^{\swarrow}\right)\right]
+-\dsum{out}{} \left[\dot{m}^{\nearrow}\cdot \left(h^{\nearrow}+\frac{v^{2\nearrow}}{2}+g\cdot z^{\nearrow}\right)\right]$}
+
+\subsubsection{...}
+
+
+
+\newpage
+\subsection{1st law of thermodynamics: General energy conservation equation}
+
+In the case of stationary flow:
+... ... ...
+
+
+
+\subsection{Examples of Bernoulli equation}
+\subsubsection{Horizontal streamtube}
+Since the pipe is horizontal, $z_1 = z_2$, and since point \circled{2} is a stagnation point,
+we have $\dfrac{v_2^2}{2} = 0$, then the specific form of Bernoulli can be simplified to:
+\figbox{$p_1+g\cdot\dfrac{v_1^2}{2} = p_2$}
+
+\subsubsection{Flow out of a tank}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{media/torricelli.png}
+\end{center}
+
+Setting the reference point at the top of the tank, we have $z_1 = 0$ and $z_2 = z$,
+which brings the velocity at the top of the tank to be zero, so $\dfrac{v_1^2}{2} = 0$.
+Since $p_1=p_2=p_{atm}$, the specific form of Bernoulli can be simplified to:
+\figbox{$g\cdot z = \dfrac{v_2^2}{2} \Longrightarrow v_2 = \sqrt{2gz}$}
+
+The difference between the pressure $p_2$ at the exit of the tank and the atmospheric pressure $p_{atm}$
+changes because of the contraction number $\alpha$:
+\figbox{$\alpha = \dfrac{A_2^*}{A_2} ... ...$}
+
+\subsection{Hydrostatic equation}
+The hydrostatic equation is a special case of the Bernoulli equation, where the velocity is zero:
+\figbox{$p_2 = p_1 + \rho g z_1$}
+
+\newpage
+\section{Energy grade line diagram}
+
+
+
+
 
 
 

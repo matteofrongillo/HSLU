@@ -436,6 +436,227 @@ where:
     \includegraphics[width=.45\textwidth]{media/inductor_ex2_graph.png}
 \end{center}
 
+\newpage
+\section{Alternating current (AC)}
+\subsection{Generation of alternating current / voltage}
+\efigbox{U = -N\cdot \dfrac{\Delta \Phi}{\Delta t}}
+
+where:
+\begin{itemize}
+    \item $U$: voltage [V];
+    \item $N$: number of turns;
+    \item $\Phi$: magnetic flux [Wb].
+\end{itemize}
+
+\subsection{Comparison of AC and DC}
+\begin{figure}[htbp]
+    \centering
+    % DC Voltage: constant line
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.45\textwidth,
+            height=6cm,
+            xlabel={Time [s]},
+            ylabel={Voltage [V]},
+            xmin=0, xmax=10,
+            ymin=-5, ymax=5,
+            title={DC Voltage},
+            axis x line=center,
+            axis y line=left
+        ]
+            \addplot [blue, thick, domain=0:10] {3};
+        \end{axis}
+    \end{tikzpicture}
+    \hspace{1cm}
+    % AC Voltage: sinusoidal function
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.45\textwidth,
+            height=6cm,
+            xlabel={Time [s]},
+            ylabel={Voltage [V]},
+            xmin=0, xmax=10,
+            ymin=-5, ymax=5,
+            title={AC Voltage},
+            axis x line=center,
+            axis y line=left
+        ]
+            \addplot [red, thick, samples=200, domain=0:10] {3*sin(deg(2*pi*x/5))};
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+\begin{minipage}
+    {0.5\textwidth}
+    \begin{center}
+        \begin{flushleft}
+            \subsubsection{Advantages of AC}
+        \end{flushleft}
+        \begin{itemize}
+            \item Simple voltage transformation;
+            \item Efficient trransmission;
+            \item Easier generation;
+            \item Compatibility with electric motors.
+        \end{itemize}
+    \end{center}
+\end{minipage}
+\begin{minipage}
+    {0.5\textwidth}
+    \begin{center}
+        \begin{flushleft}
+            \subsubsection{Disadvantages of AC}
+        \end{flushleft}
+        \begin{itemize}
+            \item Complexity in storage;
+            \item Higher risk of shock;
+            \item Complex circuits;
+            \item Higher rectification costs.
+        \end{itemize}
+    \end{center}
+\end{minipage}
+
+\subsection{Phasors}
+\begin{center}
+    \begin{tikzpicture}[>=stealth,scale=1.2]
+    
+        \coordinate (O) at (0,0);
+        \coordinate (Z) at (3,2);
+        
+        \draw[->] (-0.5,0) -- (4.2,0) node[right] {$\mathrm{Re}\,(x)$};
+        \draw[->] (0,-0.5) -- (0,3.2) node[right] {$\mathrm{Im}\,(y)$};
+        
+        \draw[dotted] (Z) -- (3,0);
+        \draw[dotted] (Z) -- (0,2);
+      
+        \fill (Z) circle(1.5pt);
+        \node[above right] at (Z) {$z = x + yi$};
+      
+        \draw[->,thick,blue] (O) -- (Z);
+      
+        \draw[->,thick,orange]
+          (O) -- ++(3*0.95,2*0.95)
+          node[midway,above,sloped] {$r$};
+      
+        \node[below left] at (O) {$O$};
+      
+        \begin{scope}
+          \def\rArc{0.8}
+          \draw[red,->] (\rArc,0) arc (0:{atan2(2,3)}:\rArc);
+        \end{scope}
+        \node[red, below left] at (0.75,0.35) {$\varphi$};
+    \end{tikzpicture}
+\end{center}
+
+\efigbox{z = x + yi = r\angle \varphi}
+
+\newpage
+\subsection{Oscillation as a function of the angle}
+Sinusoidal voltage has an instantaneous value $u(t)$ or $u$ for every
+time $t$.
+
+After a period of time $T$, the curve repeats itself.
+
+\efigbox{u(t) = \widehat{U} \sin(\omega \cdot t)}
+
+\subsection{Zero phase angle $\varphi$}
+\efigbox{u(t) = \widehat{U} \sin(\omega \cdot t + \varphi_u)}
+
+\subsubsection{Phase shift $\Delta\varphi$ between two signals}
+\efigbox{u(t) = \widehat{U} \sin(\omega \cdot t + \varphi_u)\\\\
+        i(t) = \widehat{I} \sin(\omega \cdot t + \varphi_i)}
+
+The phase shift between two signals is the difference between the
+their zero phase signals:
+\efigbox{\Delta\varphi = \varphi_u - \varphi_i}
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+          axis lines=middle,
+          xlabel={$t$},
+          xmin=-5, xmax=5,
+          ymin=-1.1, ymax=1.1,
+          xtick={-4,-2,0,2,4},
+          ytick={-1,0,1},
+          grid=both
+        ]
+            \addplot[blue,thick,samples=200] {cos(deg(pi/2*(x+3)))};
+            \addplot[red,thick,samples=200] {0.8*cos(deg(pi/2*(x+2)))};
+            \draw[<->] (-3,0)--(-3,1) node[midway,left] {$\hat U$};
+            \draw[<->] (-2,0)--(-2,0.8) node[midway,left] {$\hat I$};
+            \draw[<->] (0,-1.1)--(4,-1.1) node[midway,below] {$T$};
+            \draw[<->] (0,0)--(-1,0) node[midway,above] {$\varphi_u$};
+            \draw[<->] (0,0)--(-2,0) node[midway,below] {$\varphi_i$};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Power in a sinusoidal signal and effective value}
+\subsubsection{Instantaneous power}
+The instantaneous power $p(t)$ is the actual power at a specific time
+$t$ and is the product of the voltage $u(t)$ and the current $i(t)$
+at that moment:
+
+\efigbox{p(t) = u(t) \cdot i(t) = \dfrac{u(t)^2}{R} = i(t)^2\cdot R}
+
+The active power $P$ corresponds to the mean value of the instantaneous
+powerr $p(t)$ averaged over a period $T$:
+\efigbox{P = \dfrac{1}{T}\integral[0][T][p(t)][t]}
+
+\newpage
+\subsubsection{Effective value}
+The effective value $U_{\text{eff}}$ of a sinusoidal signal is the
+voltage that would generate the same power in a resistor as the
+sinusoidal signal:
+\efigbox{U_{\text{eff}} = \sqrt{\dfrac{1}{T}\integral[0][T][u(t)^2][t]} = \dfrac{\widehat{U}}{\sqrt{2}}}
+
+The same can be applied to the effective value $I_{\text{eff}}$:
+\efigbox{I_{\text{eff}} = \dfrac{\widehat{I}}{\sqrt{2}}}
+
+\subsection{Relationship between current and voltage on a capacitor}
+\begin{center}
+    \includegraphics[width=.3\textwidth]{media/capacitor_i_u.png}
+\end{center}
+
+\efigbox{i = C\cdot \dfrac{\Delta u}{\Delta t}}
+
+\subsection{Capacitive reactance $X_c$}
+\begin{center}
+    \includegraphics[width=.3\textwidth]{media/capacitive_reactance.png}
+\end{center}
+
+\efigbox{X_c = \dfrac{1}{\omega \cdot C}}
+where:
+\begin{itemize}
+    \item $X_c$: capacitive reactance [Ohm];
+    \item $\omega$: angular frequency [rad/s];
+    \item $C$: capacitance [F = As/V].
+\end{itemize}
+
+\newpage
+\subsection{Relationship between current and voltage on an ideal inductor}
+\begin{center}
+    \includegraphics[width=.3\textwidth]{media/ideal_inductor.png}
+\end{center}
+
+\efigbox{u = L\cdot \dfrac{\Delta i}{\Delta t}}
+
+\subsection{Inductive reactance $X_L$}
+\begin{center}
+    \includegraphics[width=.3\textwidth]{media/linear_capacitive_reactance.png}
+\end{center}
+
+\efigbox{X_L = \omega \cdot L}
+
+where:
+\begin{itemize}
+    \item $X_L$: inductive reactance [Ohm];
+    \item $L$: inductance [H];
+    \item $\omega$: angular frequency [rad/s];
+\end{itemize}
+
+
+
 
 
 

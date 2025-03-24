@@ -15,35 +15,220 @@
 \tableofcontents
 \pagebreak
 
-\section{First order differential equations}
-Let $f(x)$ be a given function of $x$. The solutions of the differential equation
-\[y' = f(x)\]
-is the indefinite integral
-\[\integral[f(x)][x]\]
+\part{Differential Equations Theory}
 
-\subsection{Setting up a general differential equation}
-Let 
-\begin{equation*}
-    \begin{cases}
-        \dfrac{\mathrm{d}y}{\mathrm{d}t} = a - y\\
-        y(0) = 0
-    \end{cases}
-\end{equation*}
+\section{Introduction}
+A \textbf{differential equation} is an equation in which derivatives of an unknown function appear. For example, consider the simple differential equation
+\figbox{$\dfrac{dH}{dG}=H$}
+\rem{This equation asserts that the instantaneous rate of change of \(H\) with respect to \(G\) equals \(H\) itself. Its general solution is \(H(G)=\mathcal{C}e^G\) with \(\mathcal{C}\) an arbitrary constant.}
 
-General solution:
-\figbox{$y(t) = a + Ce^{-t}$}
-
-Particular solution:
+\section{Separation of Variables}
+For a separable differential equation of the form
 \[
-    y(0)=0=a+Ce^{-0} = a+C\\
-    C = -a
+\frac{dy}{dx}=f(x)\,g(y),
 \]
-\figbox{$y=a-ae^{-t}$}
+we rewrite it as
+\[
+\frac{dy}{g(y)}=f(x)\,dx.
+\]
+\figbox{$\displaystyle \int\frac{dy}{g(y)}=\int f(x)\,dx$}
+\rem{After integration, one typically obtains an implicit solution that can be solved (if possible) for \(y\).}
+\wrn{Ensure that \(g(y)\neq 0\) on the interval of interest.}
 
+\section{Linear Differential Equations}
+A first-order linear differential equation can be written in the standard form
+\[
+y'+p(x)y=q(x).
+\]
+Its general solution is given by
+\[
+y=y_h+y_p,
+\]
+where \(y_h\) is the general solution of the homogeneous part
+\[
+y'+p(x)y=0,
+\]
+and \(y_p\) is any particular solution of the full inhomogeneous equation.
+\figbox{$\dm y_h=A\exp\left({-\int p(x)dx}\right)$}
+\rem{The principle of superposition applies to the homogeneous equation; that is, any linear combination of solutions is again a solution.}
 
+\section{Exponential Growth and Decay}
+Many natural processes obey the simple law
+\[
+\frac{dP}{dt}=kP.
+\]
+Its general solution is
+\[
+P(t)=P(0)e^{kt}.
+\]
+\figbox{$P(t)=P_0e^{kt}$}
+\rem{This model applies not only to population growth but also to radioactive decay (with \(k<0\)).}
 
+\section{Graphical Representation: Slope Fields}
+A slope field (or direction field) helps visualize the behavior of solutions of a differential equation by drawing, at selected points \((x,y)\), short line segments whose slope is given by the value of \(f(x,y)\) in
+\[
+y'=f(x,y).
+\]
+For example, for the differential equation
+\[
+y'=y,
+\]
+the slope at each point is simply the \(y\)-value. The following TikZ figure illustrates a portion of this slope field.
 
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+  \draw[->] (-3,0) -- (3,0) node[right] {\(x\)};
+  \draw[->] (0,-2) -- (0,2) node[above] {\(y\)};
+  % Draw sample slope segments for y' = y
+  \foreach \x in {-2,-1,...,2} {
+    \foreach \y in {-1.5,-0.5,...,1.5} {
+      \pgfmathsetmacro{\slope}{\y}
+      \pgfmathsetmacro{\dx}{0.2}
+      \pgfmathsetmacro{\dy}{\slope*0.2}
+      \draw (\x-\dx,\y-\dy) -- (\x+\dx,\y+\dy);
+    }
+  }
+\end{tikzpicture}
+\end{center}
+\rem{For \(y'=y\), the slope at each point equals its \(y\)-coordinate. Thus, solution curves such as \(y=\mathcal{C}e^x\) naturally emerge from the field.}
 
+\part{Mathematical Formulary}
 
+\section{Lines and Linear Functions}
+\subsection{Slope and Equation of a Line}
+\figbox{$m=\displaystyle \frac{y_2-y_1}{x_2-x_1}$}
+\figbox{$y-y_1=m(x-x_1)$}
+\figbox{$y=mx+b$}
+\rem{These formulas describe the fundamental properties of straight lines in the Cartesian plane.}
+
+\section{Exponents and Logarithms}
+\subsection{Working with Exponents}
+\figbox{$a^x\cdot a^t=a^{x+t}$}
+\figbox{$\displaystyle \frac{a^x}{a^t}=a^{x-t}$}
+\figbox{$(a^x)^t=a^{xt}$}
+\subsection{Definition of the Natural Logarithm}
+\figbox{\(y=\ln x\Longleftrightarrow e^y=x\)}
+\rem{For instance, \(\ln 1=0\) because \(e^0=1\).}
+\subsection{Logarithmic Identities}
+\figbox{\(\ln(AB)=\ln A+\ln B\)}
+\figbox{\(\ln\left(\frac{A}{B}\right)=\ln A-\ln B\)}
+\figbox{\(\ln A^p=p\ln A\)}
+
+\section{Distances and Midpoint Formulas}
+\subsection{Distance Formula}
+\figbox{\(D=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\)}
+\subsection{Midpoint Formula}
+\figbox{\(\left(\frac{x_1+x_2}{2},\,\frac{y_1+y_2}{2}\right)\)}
+
+\section{Quadratic Equations}
+\figbox{\(ax^2+bx+c=0\quad\Rightarrow\quad x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)}
+
+\section{Factoring Special Polynomials}
+\figbox{\(x^2-y^2=(x+y)(x-y)\)}
+\figbox{\(x^3+y^3=(x+y)(x^2-xy+y^2)\)}
+\figbox{\(x^3-y^3=(x-y)(x^2+xy+y^2)\)}
+
+\section{Conic Sections}
+\subsection{Circles}
+\figbox{\((x-h)^2+(y-k)^2=r^2\)}
+\subsection{Ellipses}
+\figbox{\(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)}
+\subsection{Hyperbolas}
+\figbox{\(\frac{x^2}{a^2}-\frac{y^2}{b^2}=1\)}
+\rem{The asymptotes of a hyperbola are given by \(y=\pm\frac{b}{a}x\).}
+
+\section{Geometric Formulas}
+\subsection{Conversion Between Radians and Degrees}
+\figbox{\(\pi\text{ radians}=180^\circ\)}
+\subsection{Circle Geometry}
+\figbox{\(A=\pi r^2,\quad C=2\pi r\)}
+\subsection{Sector of a Circle}
+\figbox{\(A=\frac{1}{2}r^2\vartheta,\quad s=r\vartheta\) \(\vartheta\) in radians.}
+\subsection{Volumes and Surface Areas of Solids}
+\begin{itemize}
+  \item Sphere: \(V=\frac{4}{3}\pi r^3,\quad A=4\pi r^2\).
+  \item Cylinder: \(V=\pi r^2h\).
+  \item Cone: \(V=\frac{1}{3}\pi r^2h\).
+\end{itemize}
+
+\section{Trigonometric Functions and Identities}
+\subsection{Definitions}
+For a right triangle with hypotenuse \(r\) and legs \(x\) and \(y\):
+\figbox{\(\sin\vartheta=\frac{y}{r},\quad \cos\vartheta=\frac{x}{r},\quad \tan\vartheta=\frac{y}{x}\)}
+\subsection{Fundamental Identity}
+\figbox{\(\sin^2\vartheta+\cos^2\vartheta=1\)}
+\subsection{Angle Sum and Difference Formulas}
+\figbox{\(\sin(A\pm B)=\sin A\cos B\pm \cos A\sin B\)}
+\figbox{\(\cos(A\pm B)=\cos A\cos B\mp \sin A\sin B\)}
+\subsection{Double Angle Formulas}
+\figbox{\(\sin(2A)=2\sin A\cos A\)}
+\figbox{\(\cos(2A)=2\cos^2A-1=1-2\sin^2A\)}
+
+\section{Binomial Expansions}
+The binomial expansion for \((x+y)^n\) is given by
+\figbox{\((x+y)^n=x^n+n\,x^{n-1}y+\frac{n(n-1)}{2!}x^{n-2}y^2+\cdots+y^n\)}
+\rem{For \((x-y)^n\), the signs alternate accordingly.}
+
+\section{Differentiation Rules}
+\begin{enumerate}
+  \item \((f(x)\pm g(x))' = f'(x)\pm g'(x)\).
+  \item \((k\,f(x))' = k\,f'(x)\).
+  \item \((f(x)g(x))' = f'(x)g(x)+f(x)g'(x)\).
+  \item \(\left(\frac{f(x)}{g(x)}\right)'=\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^2}\).
+  \item \((f(g(x)))' = f'(g(x))\cdot g'(x)\).
+  \item \(\frac{d}{dx}(x^n)=nx^{n-1}\).
+  \item \(\frac{d}{dx}(e^x)=e^x\).
+  \item \(\frac{d}{dx}(a^x)=a^x\ln a,\quad a>0\).
+  \item \(\frac{d}{dx}(\ln x)=\frac{1}{x}\).
+  \item \(\frac{d}{dx}(\sin x)=\cos x\).
+  \item \(\frac{d}{dx}(\cos x)=-\sin x\).
+  \item \(\frac{d}{dx}(\tan x)=\frac{1}{\cos^2 x}\).
+  \item \(\frac{d}{dx}(\arcsin x)=\frac{1}{\sqrt{1-x^2}}\).
+  \item \(\frac{d}{dx}(\arctan x)=\frac{1}{1+x^2}\).
+\end{enumerate}
+
+\section{Integration Rules}
+\begin{enumerate}
+  \item \(\displaystyle \int (f(x)\pm g(x))\,dx=\int f(x)\,dx\pm\int g(x)\,dx\).
+  \item \(\displaystyle \int k\,f(x)\,dx=k\int f(x)\,dx\).
+  \item \(\displaystyle \int f(g(x))g'(x)\,dx=\int f(w)\,dw,\quad w=g(x)\).
+  \item \(\displaystyle \int u(x)v'(x)\,dx = u(x)v(x)-\int u'(x)v(x)\,dx.\)
+\end{enumerate}
+
+\section{Taylor Series Expansions}
+The Taylor series of \(f(x)\) about \(x=a\) is
+\[
+f(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\frac{f'''(a)}{3!}(x-a)^3+\cdots.
+\]
+Important examples include:
+\begin{align*}
+e^x &= 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots,\\[1ex]
+\cos x &= 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots,\\[1ex]
+\sin x &= x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots,\\[1ex]
+\frac{1}{1-x} &= 1+x+x^2+x^3+\cdots\quad(|x|<1),\\[1ex]
+(1+x)^p &= 1+px+\frac{p(p-1)}{2!}x^2+\frac{p(p-1)(p-2)}{3!}x^3+\cdots.
+\end{align*}
+
+\section{Complex Numbers and Euler's Formula}
+A complex number \(z\) is written as
+\[
+z=x+yj,\quad x,y\in\mathbb{R}.
+\]
+Its magnitude is
+\[
+|z|=\sqrt{x^2+y^2},
+\]
+and its conjugate is
+\[
+\bar{z}=x-yj.
+\]
+Euler's formula states that
+\[
+e^{jt}=\cos t+j\sin t,
+\]
+so any complex number can be written in polar form as
+\[
+z=re^{j\varphi},\quad r\ge0,\; -\pi<\varphi\le \pi.
+\]
 
 \end{document}

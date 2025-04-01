@@ -60,7 +60,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[style=apa, backend=biber, doi=true, url=true]{biblatex}
-\addbibresource{ref.bib}
+\IfFileExists{ref.bib}{\addbibresource{ref.bib}}{}
 \DeclareFieldFormat[article]{volume}{\textbf{#1}}
 \DeclareFieldFormat[article]{journaltitle}{\textit{#1}}
 % ====================

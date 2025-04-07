@@ -45,6 +45,7 @@
 
 % ============= RENEW COMMANDS =============
 
+% Title redefined
 \makeatletter
 \renewcommand{\author}[1]{%
   \def\@author{%
@@ -65,8 +66,11 @@
 }
 \makeatother
 
+
+% Empty set redefined
 \let\emptyset\varnothing
 
+% Arctan redefined
 \makeatletter
 \pgfmathdeclarefunction{arctan}{1}{%
     \begingroup

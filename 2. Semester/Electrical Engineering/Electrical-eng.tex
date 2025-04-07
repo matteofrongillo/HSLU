@@ -655,6 +655,212 @@ where:
     \item $\omega$: angular frequency [rad/s];
 \end{itemize}
 
+\newpage
+\subsection{Vectors properties}
+\subsubsection{Multiply}
+The magnitude (es. the radius $r$ in polar representation) is
+multiplied and the angle is added:
+\efigbox{r_c = r_a\cdot r_b\\ \varphi_c = \varphi_a + \varphi_b}
+
+\subsubsection{Divide}
+The magnitude is devided and the angle is subtracted:
+\efigbox{r_c = \dfrac{r_a}{r_b}\\ \varphi_c = \varphi_a - \varphi_b}
+
+\subsection{Impedance $Z$}
+The impedance is the ratio of voltage and current phasor. It's a complex number.
+
+\efigbox{Z = \dfrac{u(t)}{i(t)}\\\\
+        \left|Z\right| = \dfrac{\left|u(t)\right|}{\left|i(t)\right|}\\\\
+        \angle Z = \angle u(t) - \angle i(t) = \Delta \varphi}
+
+Therefore, the impedance corresponds to the AC resistance with phase shift:
+\efigbox{\underline{Z} = \dfrac{\underline{U}}{\underline{I}} = \dfrac{U\angle \varphi_u}{I\angle \varphi_i} = Z\angle(\varphi_u - \varphi_i) = Z\angle\varphi_Z}
+
+where:
+
+\begin{minipage}{0.5\textwidth}
+    \begin{itemize}
+            \item $Z$: impedance [Ohm];
+            \item $\underline{U}$: voltage phasor [V];
+            \item $\underline{I}$: current phasor [A];
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \begin{itemize}
+            \item $\varphi_u$: phase angle of the voltage [rad];
+            \item $\varphi_i$: phase angle of the current [rad];
+            \item $\varphi_Z$: phase angle of the impedance [rad].
+    \end{itemize}
+\end{minipage}
+
+\subsubsection{Types of impendance}
+The angle of the impedance $\varphi_Z$ indicates the type of impedance:
+\begin{itemize}
+    \item $\varphi_Z > 0^{\circ} \rightarrow$ voltage is ahead of current;
+    \item $\varphi_Z = 0^{\circ} \rightarrow$ voltage and current are in phase;
+    \item $\varphi_Z < 0^{\circ} \rightarrow$ current is ahead of voltage.
+\end{itemize}
+
+\vfill
+\begin{center}
+    \begin{tikzpicture}[line cap=round, line join=round, font=\bfseries]
+        \fill[yellow!30] (0,0) rectangle (6,2);
+        \fill[purple!30] (0,0) rectangle (6,-2);
+    
+        \draw[-Latex, thick, green!40!black] (0,0) -- (6,0) node[right] {pure ohmic};
+        \draw[-Latex, thick, brown] (0,0) -- (0,2) node[above] {pure inductive};
+        \draw[-Latex, thick, violet] (0,0) -- (0,-2) node[below] {pure capacitive};
+    
+        \node[anchor=west, black] at (0.15, 1) {inductive or ohmic-inductive};
+        \node[anchor=west, black] at (0.15, -1) {capacitive or ohmic-capacitive};
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Graphical representation}
+\begin{center}
+    \begin{tikzpicture}[scale=1.5]
+        % axis
+        \draw[-Latex] (-2,0) -- (3,0) node[right] {$\mathrm{Re}\,(x)$};
+        \draw[-Latex] (0,-2) -- (0,2.2) node[right] {$\mathrm{Im}\,(y)$};
+        
+        % circles
+        \draw[red] (0,0) circle(1);
+        \draw[blue] (0,0) circle(1.7);
+
+        % vectors
+        \draw[-Latex,very thick,blue] (0,0) -- (1.7,0) node at (1.3,-0.2) {$u(t)$};
+        \draw[-Latex,very thick,red] (0,0) -- (0.8660254,0.5) node at (0.3,0.45) {$i(t)$};
+
+        \draw[-Latex,thick] (0.8660254,0.5) -- (2.2,1.2701705922172) node at (1.8,1.25) {$Z$};
+        \draw[-Latex,thick] (1.7,0) -- (2.2,0) node at (1.85,-0.2) {$R$};
+        \draw[-Latex,thick] (2.2,0) -- (2.2,1.2701705922172) node[midway,right] {$X_L$};
+
+        % angle
+        \draw[Latex-Latex,thick,darkgreen] (1.225,0) arc (0:30:1.225) node at (1.4,0.35) {$\Delta\varphi$};
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Admittance $Y$}
+The reciprocal of the impedance $Z$ is the admittance $Y$ and thus the ratio
+of the current and voltage phasor. The admittance therefore corresponds to
+the AC conductance with phase shift:
+
+\efigbox{\underline{Y} = \dfrac{\underline{I}}{\underline{U}} = \dfrac{I\angle \varphi_i}{U\angle \varphi_u} = Z\angle(\varphi_i - \varphi_u) = Z\angle\varphi_Y\\\\
+        \left|\underline{Y}\right| = \dfrac{1}{\left|\underline{Z}\right|}\Longrightarrow \varphi_Y = -\varphi_Z}
+
+\subsection{Current and voltage relations}
+\subsubsection{Resistor $R$}
+\pph{Current-voltage relationship for instantaneous values}
+\efigbox{u_R(t) = R\cdot i_R(t)}
+
+\pph{Impedance = Ohmic resistance}
+\efigbox{R=\frac{U_R}{I_R}\angle 0^{\circ}}
+
+\begin{center}
+    \includegraphics[width=.6\textwidth]{media/ohmic_resistance.png}
+\end{center}
+
+\subsubsection{Capacitor $C$}
+\pph{Current-voltage relationship for instantaneous values}
+\efigbox{i_C(t) = C\cdot \dfrac{du_C(t)}{dt}}
+
+\pph{Impendance = Capacitive reactance}
+\efigbox{X_C = \dfrac{U_C}{I_C} = \dfrac{1}{\omega\cdot C}\angle -90^{\circ}}
+
+\begin{figure*}[ht!]
+    \begin{center}
+        \includegraphics[width=.6\textwidth]{media/capacitive_reactance_Graph.png}
+        \caption*{Current leads the voltage by 90 degrees}
+    \end{center}
+\end{figure*}
+
+\subsubsection{Inductor $L$}
+\pph{Current-voltage relationship for instantaneous values}
+\efigbox{u(t) = L\cdot \dfrac{di(t)}{dt}}
+
+\pph{Impendance = Inductive reactance}
+\efigbox{X_L = \dfrac{U_L}{I_L} = \omega \cdot L\angle +90^{\circ}}
+
+\begin{figure*}[ht!]
+    \begin{center}
+        \includegraphics[width=.6\textwidth]{media/inductive_reactance.png}
+        \caption*{Current lags the voltage by 90 degrees}
+    \end{center}
+\end{figure*}
+
+\subsection{Impendance and admittance phasor with R, C and L}
+\begin{center}
+    \includegraphics[width=\textwidth]{media/impedance_admittance.png}
+\end{center}
+
+\subsubsection{Series connection}
+\pph{Resistances}
+\begin{center}
+    \includegraphics[width=.5\textwidth]{media/series_resistances.png}
+\end{center}
+
+\efigbox{R_{\text{equi}} = \dfrac{U}{I} = \dfrac{U_{R1}+U_{R2}+U_{R3}}{I} = R_1 + R_2 + R_3}
+
+\pph{Impedances}
+\begin{center}
+    \includegraphics[width=.5\textwidth]{media/series_impedances.png}
+\end{center}
+
+\efigbox{Z_{\text{equi}} = \dfrac{\underline{U}}{\underline{I}} = \dfrac{U_{R1}\angle0^{\circ} + U_{C1}\angle-90^{\circ} + U_{L1}\angle+90^{\circ}}{I\angle0^{\circ}} = \underline{Z_1} + \underline{Z_2} + \underline{Z_3}}
+
+\newpage
+Adding voltages in series connection means adding impedances:
+
+$\underline{U_R} = \underline{Z_R} \cdot \underline{I} = R\cdot\angle\varphi_i\\\\
+\underline{U_L} = \underline{Z_L} \cdot \underline{I} = X_L\angle 90^{\circ} \cdot\angle\varphi_i\\\\
+\underline{U_C} = \underline{Z_C} \cdot \underline{I} = X_C\angle -90^{\circ} \cdot\angle\varphi_i$
+
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/voltage_impedance.png}
+\end{center}
+
+\efigbox{Z_{\text{eq}} = Z_1 + Z_2 + Z_3}
+
+\subsubsection{Parallel connection}
+\pph{Resistances}
+\begin{center}
+    \includegraphics[width=.5\textwidth]{media/parallel_resistances.png}
+\end{center}
+\efigbox{R_{text{equi}} = \dfrac{U}{I} = \dfrac{1}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}} = \dfrac{1}{G_1 + G_2 + G_3}}
+
+\pph{Impedances}
+\begin{center}
+    \includegraphics[width=.5\textwidth]{media/parallel_impedances.png}
+\end{center}
+\efigbox{Z_{\text{equi}} = \dfrac{\underline{U}}{\underline{I}} = \dfrac{U}{I\angle0^{\circ}} = \dfrac{1}{\dfrac{1}{\underline{Z_1}} + \dfrac{1}{\underline{Z_2}} + \dfrac{1}{\underline{Z_3}}} = \dfrac{1}{\underline{Y_1} + \underline{Y_2} + \underline{Y_3}}}
+
+\newpage
+Adding currents in parallel connection means adding admittances:
+
+$\underline{I_R} = \dfrac{\underline{U_R}}{\underline{Z_R}} = \dfrac{U}{R}\cdot\angle\varphi_u\\\\\\
+\underline{I_L} = \dfrac{\underline{U_L}}{\underline{Z_L}} = \dfrac{U}{X_L}\angle\varphi_u -90^{\circ}\\\\\\
+\underline{I_C} = \dfrac{\underline{U_C}}{\underline{Z_C}} = \dfrac{U}{X_C}\angle\varphi_u +90^{\circ}$
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/current_admittance.png}
+\end{center}
+\efigbox{\underline{Z_{\text{eq}}} = \dfrac{1}{\underline{Y_1} + \underline{Y_2} + \underline{Y_3}}}
+
+\subsection{AC newtwork analysis}
+AC network analysis is similar to DC network analysis but calculated with phasors.
+
+\subsubsection{Kirchhoff's current law (KCL)}
+\efigbox{\underline{I_1} + \underline{I_2} + ... + \underline{I_n} = \dsum{k=1}{n} \underline{I_k} = 0}
+
+\subsubsection{Kirchhoff's voltage law (KVL)}
+\efigbox{\underline{U_1} + \underline{U_2} + ... + \underline{U_n} = \dsum{k=1}{n} \underline{U_k} = 0}
+
+\subsubsection{Voltage and current phasor relationship for circuit elements}
+\efigbox{\underline{U} = \underline{Z}_{\text{Element-type}} \cdot \underline{I}}
+
+
+
+
+
 
 
 

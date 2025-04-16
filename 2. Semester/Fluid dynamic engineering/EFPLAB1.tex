@@ -305,6 +305,97 @@ The hydrostatic equation is a special case of the Bernoulli equation, where the 
 \section{Energy grade line diagram}
 
 
+\newpage
+\section{Pipe flows}
+\subsection{Horizontal pipe flow}
+For the velocity profile of a horizontal pipe flow, the mean velocity and the height
+of the pipe are constant, hence losses are only due to friction:
+\figbox{$e_v = \dfrac{\Delta p}{\rho} = \dfrac{p_2-p_1}{\rho} = \zeta \dfrac{v^2}{2}$}
+
+\subsection{Laminar pipe flow}
+\subsubsection{Velocity profile}
+For the velocity profile of a laminar pipe flow, the mean velocity $v_m$ is exactly
+half of the maximum velocity $v_{max}$ at the center of the pipe axis ($r=0$):
+\figbox{$v(r) = \dfrac{p_1 - p_2}{3\eta\cdot l} \cdot (R^2 - r^2)$}
+where:
+\begin{itemize}
+    \item $R$: radius of the pipe;
+    \item $r$: distance from the center of the pipe;
+    \item $\eta$: dynamic viscosity;
+    \item $l$: length of the pipe.
+\end{itemize}
+
+The pressure loss of a laminar pipe is described by the Hagen-Poiseuille equation, which
+is a function that can be calculated setting the center of the pipe as the reference point:
+\begin{equation*}
+\begin{aligned}
+        &v_{\text{max}} = \dfrac{p_1 - p_2}{4\eta\cdot l} \cdot (R^2 - 0) \\
+        &v_m = \dfrac{v_{\text{max}}}{2} = \dfrac{p_1 - p_2}{8\eta\cdot l} \cdot R^2\\
+        &v_m = \dfrac{p_1 - p_2}{32\eta\cdot l} \cdot d^2
+\end{aligned}
+\end{equation*}
+\figbox{$\Delta p = 32v_m \cdot \eta \cdot \dfrac{l}{d^2}$}
+
+\subsubsection{Pressure loss}
+Flow losses in pipeline systems consist of pressure losses in straight pipes, curved pipes,
+and in fittings:
+\figbox{$\Delta p = \lambda \cdot \dfrac{l}{d} \cdot \rho \cdot \dfrac{v_m^2}{2}$}
+
+The resistance coefficient $\lambda$ also incorporates the characteristics of the flow.
+If the flow is \textbf{laminar}, surface roughness effects plays no role, as the strong
+influence of viscous forces in the fluid smooths out these effects:
+\begin{equation*}
+    \begin{aligned}
+        &\lambda \cdot \dfrac{l}{d} \cdot \rho \cdot \dfrac{v_m^2}{2} = 32v_m \cdot \eta \cdot \dfrac{l}{d^2}\\
+        &\lambda = \dfrac{64\cdot \eta}{v_m \cdot d \cdot \rho} = \dfrac{64\nu}{v_m\cdot d}\\
+    \end{aligned}
+\end{equation*}
+\vspace*{-0.15cm}
+\figbox{$\lambda = \dfrac{64}{Re}$}
+
+\newpage
+\subsection{Influence of surface roughness on pipe flows}
+\subsubsection{$\delta > k$}
+picture 1
+
+\subsubsection{$\delta << k$}
+\begin{center}
+    \includegraphics[width=.5\textwidth]{media/roughness_turbolent.png}
+\end{center}
+
+\subsubsection{$\delta \approx  k$}
+picture 3
+
+\newpage
+\subsection{Moody diagram}
+Moody diagram is a graph that shows the relationship between the Reynolds number
+and the friction factor $\lambda$ for different types of flow (laminar, transitional, and turbulent).
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/Moody-Diagramm_en.png}
+\end{center}
+
+\vspace*{0.5cm}
+\begin{itemize}
+    \item Laminar part: $\Delta p_v \sim v$ and constant line of $\dfrac{64}{Re}$;
+    \item Transitional part: $\Delta p_v \sim v^x$ ($x$ is between 1 and 2) and $\delta \approx k$;
+    \item Turbulent part: $\Delta p_v \sim v^2$ and $\delta >> k$.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

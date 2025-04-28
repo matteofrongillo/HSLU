@@ -871,14 +871,137 @@ AC network analysis is similar to DC network analysis but calculated with phasor
 \end{landscape}
 \clearpage  
 
+\newpage
+\subsection{Power in electrical circuits}
+\subsubsection{Devices}
+\pph{Passive (load)}
+For electrical loads, the product of current $I$ and voltage $U$ is
+\textbf{positive}. Electrical power is absorbed and converted into
+another form of energy (e.g. heat)
 
+\pph{Active (power sources)}
+For electrical sources, the product of current $I$ and voltage $U$ is
+\textbf{negative}. Energy is converted from another form of energy into
+electrical power and supplied to the network.
 
+\pph{Power in eletrical circuits}
+The conservation of energy also applies in the electrical circuit.
 
+\subsubsection{Instantaneous power}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{media/instant_power.png}
+\end{center}
+\efigbox{p(t) = u(t) \cdot i(t) = \dfrac{u(t)^2}{R} = i(t)^2\cdot R}
 
+\subsubsection{Effective power}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{media/effective_power.png}
+\end{center}
+\efigbox{P = \dfrac{1}{T}\integral[0][T][p(t)][t] = \dfrac{U_{\text{eff}}^2}{R} = I_{\text{eff}}^2\cdot R}
 
+\subsubsection{Real power on R}
+\pph{When whe have $\varphi = 0^{\circ}$}
+\efigbox{P = U \cdot I}
+<w
+\pph{When we have $\varphi = \pm90^{\circ}$}
+With $\varphi = +90^{\circ}$, the circuit works as a perfect inductor.
 
+With $\varphi = -90^{\circ}$, the circuit works as a perfect capacitor.
 
+Since the sum of the areas underneath the power curve is zero, the
+average power is zero:
+\efigbox{P = 0}
 
+\subsubsection{Instantaneous power $p(t)$ with phase shift ($Q$)}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{media/instant_power_phaseshift.png}
+\end{center}
+A phase shift $\varphi$ between voltage and current leads to positive
+and negative instantaneous power. The amount of power that is absorbed,
+stored and released during a period is called \textbf{reactive power} $Q$.
+
+The unit of reactive power is called volt-ampere reactive (var).
+
+The active power $P$ is now lower by the proportion of the oscillating
+reactive power.
+
+\subsubsection{Real power with $0^{\circ} < \varphi < 90^{\circ}$}
+\efigbox{p(t) = U\cdot I \cdot \cos(\varphi) - U \cdot I \cdot \cos(2\omega t + \varphi)\\\\
+        p(t) = \text{average power}\ P + \text{apparent power}\ S
+}
+
+where:
+
+$S$: apparent power [VA] = $U\cdot I$\\
+
+\subsubsection{Power factor, performance factor, and power triangle}
+\pph{Power factor}
+The ratio of the real power $P$ to the apparent power $S$ corresponds
+to the $\cos\varphi$ and is called the \textbf{power factor}.
+
+\efigbox{\cos\varphi = \dfrac{P}{S}}
+
+\pph{Performance factor}
+The performance factor $\lambda$ is the absolute value of the ratio
+of the ratio of the real power $P$ to the apparent power $S$:
+
+\efigbox{\lambda = \left|\dfrac{P}{S}\right| = \left|\cos\varphi\right|}
+
+\newpage
+\pph{Power triangle}
+The real power $P$, the reactive power $Q$, and the apparent power $S$
+form a rectangular triangle with the angle $\varphi$, called \textbf{power triangle}
+
+\begin{center}
+    \begin{tikzpicture}[thick]
+        \coordinate (O) at (0,0);
+        \coordinate (P) at (4,0);
+        \coordinate (S) at (4,3);
+      
+        \draw[-Latex, line width=1pt, green!50!black]
+          (O) -- (P)
+          node[below right, text=green!50!black]{\bfseries P (Real Power)};
+      
+        \draw[-Latex, line width=1pt, purple]
+          (P) -- (S)
+          node[midway, right, text=purple]{\bfseries Q (Reactive Power)};
+      
+        \draw[-Latex, line width=1pt, orange]
+          (O) -- (S)
+          node[midway, left, text=orange]{\bfseries S (Apparent Power)$\quad$};
+      
+        \draw[line width=1pt]
+          (P) ++(-0.25,0) -- ++(0,0.25) -- ++(0.25,0);
+      
+        \pic[
+          draw,
+          angle radius=10mm,
+          "$\varphi$"
+        ] {angle = P--O--S};
+    \end{tikzpicture}
+\end{center}
+
+\subsubsection{Apparent power $S$ [VA]}
+\efigbox{S = U\cdot I\\\\
+        S = \sqrt{P^2 + Q^2}}
+
+\subsubsection{Average power $P$ [W]}
+\efigbox{P = U\cdot I \cdot \cos\varphi\\\\
+        P = S\cdot \cos\varphi}
+
+\subsubsection{Reactive power $Q$ [var]}
+\efigbox{Q = U\cdot I \cdot \sin\varphi\\\\
+        Q = S\cdot \sin\varphi}
+
+\subsection{Work $W$ and energy $E$}
+The power integrated over time results in the work performed $W$.
+The ability to perform work is referred to as energy $E$.
+
+\subsubsection{Real energy}
+\efigbox{W_W = P\cdot t}
+
+\subsubsection{Reactive energy}
+\efigbox{W_B = Q\cdot t}
 
 
 

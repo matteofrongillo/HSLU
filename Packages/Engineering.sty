@@ -155,3 +155,18 @@
 \newcommand{\rad}{^{\mathrm{c}}}
 \newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
 \newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
+
+\newlength{\phasewidth}
+\newcommand{\phase}[1]{%
+    \mathrel{%
+        \settowidth{\phasewidth}{$#1$}%
+        \begin{tikzpicture}[baseline=(M.base),inner sep=0pt]
+            \coordinate (O) at (-0.7em,0);
+            \coordinate (A) at ($(O)+(\phasewidth+0.7em,0)$);
+            \coordinate (B) at ($(O)+(0.35em,0.5em)$); 
+            \draw (O) -- (A);
+            \draw (O) -- (B);
+            \node (M) at ($ (O)!0.57!(A) $)[above, yshift=.5pt]{$#1$};
+        \end{tikzpicture}%
+    }%
+}

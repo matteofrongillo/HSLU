@@ -381,25 +381,119 @@ and the friction factor $\lambda$ for different types of flow (laminar, transiti
     \item Turbulent part: $\Delta p_v \sim v^2$ and $\delta >> k$.
 \end{itemize}
 
+\subsection{Curved pipe flow}
+\subsubsection{Pressure--curvature equation}
+\figbox{$\dfrac{dp}{dn} = -\rho \cdot \dfrac{v^2}{R}$}
 
+where:
+\begin{itemize}
+    \item $dp$: pressure difference;
+    \item $dn$: distance along the pipe;
+    \item $\rho$: density of the fluid;
+    \item $v$: velocity of the fluid;
+    \item $R$: radius of curvature.
+\end{itemize}
 
+\newpage
+\section{Linear momentum theorem}
+\subsection{Newton's laws}
+\subsubsection{First axiom}
+Newton's first axiom (or law of inertia) states that a body at rest will remain at rest
+and a body in motion will remain in motion with the same speed and in the same direction
+unless acted upon by an unbalanced force.
 
+\figbox{$\dm \sum_{i} \vec{F}_i = \vec{F}_{\text{res}} = 0 \longleftrightarrow \vec{a} = \dfrac{d\vec{v}}{dt} = 0 \longleftrightarrow \vec{v} =$ constant}
 
+\subsubsection{Second axiom}
+Newton's second axiom (or law of acceleration) states that the acceleration of an object
+is directly proportional to the net force acting on it and inversely proportional to its mass.
+\figbox{$\dm \vec{F}_{\text{res}} = m\cdot \vec{a} = m\cdot \dfrac{d\vec{v}}{dt}$}
 
+\subsubsection{Third axiom}
+Newton's third axiom (or law of action and reaction) states that for every action,
+there is an equal and opposite reaction. This means that for every force exerted by one body
+on another, there is an equal and opposite force exerted by the second body on the first.
+\figbox{$\dm \vec{F}_{A\rightarrow B} = -\vec{F}_{B\rightarrow A}$}
 
+\subsubsection{Linear momentum}
+A moving mass has a linear momentum $\vec{I}$:
+\figbox{$\vec{I} = m\cdot \vec{v}$ [Ns]}
 
+Since the flow is stationary, the equation is not time-dependent.
 
+\subsubsection{Momentum flux}
+The change in motion is a change in linear momentum over time and, according to Newton's
+second law, is proportional to a resultant force:
+\figbox{$\dm \vec{F}_{\text{res}} = \dfrac{d\dot{\vec{I}}}{dt} = \vec{I} = \dfrac{d(m\cdot \vec{v})}{dt}$}
 
+Hence:
+\figbox{$\dm \dot{\vec{I}} = \dot{m}\cdot \vec{a}$}
 
+\newpage
+\subsubsection{System of forces}
+The temporal change of the momentum of a system of forces is equal to the sum of the
+forces acting from outside on the system boundary:
+\figbox{$\dm \dot{I}_{\text{out}} - \dot{I}_{\text{in}} = \sum F_{\text{ext}}$}
 
+expanded to:
+\figbox{$\dm \dot{I}_{\text{out}} - \dot{I}_{\text{in}} = \vec{F}_{\text{res}} = \dot{m}_2\cdot \vec{v}_2 - \dot{m}_1\cdot \vec{v}_1 = \dot{m}\left(\vec{v}_2 - \vec{v}_1\right)$}
 
+\subsubsection{Momentum in cartesian coordinates}
+\figbox{$\dm \circled{x}\quad \dot{I}_{\text{out},x} - \dot{I}_{\text{in},x} = \sum F_{\text{ext},x}\\\\
+        \circled{y}\quad\! \dot{I}_{\text{out},y} - \dot{I}_{\text{in},y} = \sum F_{\text{ext},y}\\\\
+        \circled{z}\quad \dot{I}_{\text{out},z} - \dot{I}_{\text{in},z} = \sum F_{\text{ext},z}$
+}
 
+\subsection{Application of the linear momentum equation}
+\subsubsection{Momentum on x-direction: wall shear stress}
+We look at the body force on the pipe wall. The shear stress $\tau_w$ is the
+force per unit area acting on the wall of the pipe:
+\figbox{$\tau_w = \dfrac{dv}{dn} \cdot \eta$}
 
+where:
+\begin{itemize}
+    \item $\tau_w$: shear stress;
+    \item $dv$: velocity difference;
+    \item $dn$: distance from the wall;
+    \item $\eta$: dynamic viscosity.
+\end{itemize}
 
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/Wandreibung.png}
+\end{center}
 
+\figbox{$\left|F_{K,x}\right| = \left|(p_{\text{in}} - p_\text{out}) \cdot A\right| = \left|\tau_w \cdot A\cdot l\right|$}
 
+where:
 
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}
+    \item $F_{K,x}$: force acting on the wall;
+    \item $p_{\text{in}}$: pressure at the inlet of the pipe;
+    \item $p_\text{out}$: pressure at the outlet of the pipe;
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}
+    \item $A$: area of the pipe $= \frac{\pi R^2}{4}$;
+    \item $\tau_w$: shear stress;
+    \item $l$: length of the pipe;
+\end{itemize}
+\end{minipage}
 
+\newpage
+\subsubsection{Momentum on y-direction}
+\figbox{$\Delta\dot{I} = 0 = -m\cdot g + F_{\text{res}}\\\\ F_{\text{res}} = m\cdot g$}
+
+example ...
+
+\subsection{Pelton turbine}
+TODO
+
+\subsubsection{Momentum on x-direction}
+\figbox{$\dm \dot{I}_{\text{out},x} - \dot{I}_{\text{in},x} = \sum F_{\text{ext},x} = -\dot{m}\cdot v - \dot{m}\cdot v = -F_{\text{ext},x}\\\\
+        F_{\text{ext},x} = Z\cdot\dot{m}\cdot v$}
 
 
 

@@ -56,11 +56,11 @@ homogeneous conductor, direct current):
 \subsubsection{Specific conductivity}
 
 \newpage
-\section{Gravitational fields}
-\subsection{Between bodies}
+\section{Fields}
+\subsection{Gravitational field between bodies}
 \efigbox{F_1 = F_2 = G\dfrac{m_1m_2}{d^2}}
 
-\subsection{Between particles}
+\subsection{Electric field between particles}
 \subsubsection{Coulomb's law}
 It calculates the amount of force between two electrically charged
 particles at rest:
@@ -131,7 +131,7 @@ where:
 \subsubsection{Energy in a capacitor}
 If a capacitor is discharged with a constant current, the voltage decreases linearly:
 
-\efigbox{\int_{0}^{t_{\text{empty}}}U(t)\cdot I\,dt = I\cdot U_0 = \frac{I\cdot U_0 \cdot t_{\text{empty}}}{2}}
+\efigbox{\int_{0}^{t_{\text{empty}}}U(t)\cdot I\,dt = \frac{I\cdot U_0 \cdot t_{\text{empty}}}{2}}
 
 Or, simplified:
 \efigbox{W=\frac{1}{2}C\cdot U_0^2}
@@ -187,7 +187,7 @@ and the discharging current is:
 
 \newpage
 \subsection{Transitional phase}
-\efigbox{f(t)=A+\Delta\cdot \left(1-e^{t/\tau}\right) = A+(B-A)\cdot (1-e^{1/\tau})}
+\efigbox{f(t)=A+\Delta\cdot \left(1-e^{-t/\tau}\right) = A+(B-A)\cdot (1-e^{1/\tau})}
 
 \section{Additional Topics}
 \subsection{Energy Stored in a Capacitor}
@@ -224,7 +224,7 @@ Note that the voltage across an ideal capacitor cannot change instantaneously.
     \item The strength of the field at any point is inversely proportional to the distance of the point from the wire.
 \end{enumerate}
 
-\subsection{Definitions and formuals}
+\subsection{Definitions and formulas}
 \subsubsection{Magnetomotive force}
 \efigbox{\theta = N\cdot I}
 
@@ -745,7 +745,7 @@ The reciprocal of the impedance $Z$ is the admittance $Y$ and thus the ratio
 of the current and voltage phasor. The admittance therefore corresponds to
 the AC conductance with phase shift:
 
-\efigbox{\underline{Y} = \dfrac{\underline{I}}{\underline{U}} = \dfrac{I\angle \varphi_i}{U\angle \varphi_u} = Z\angle(\varphi_i - \varphi_u) = Z\angle\varphi_Y\\\\
+\efigbox{\underline{Y} = \dfrac{\underline{I}}{\underline{U}} = \dfrac{I\angle \varphi_i}{U\angle \varphi_u} = Y\angle(\varphi_i - \varphi_u) = Y\angle\varphi_Y\\\\
         \left|\underline{Y}\right| = \dfrac{1}{\left|\underline{Z}\right|}\Longrightarrow \varphi_Y = -\varphi_Z}
 
 \subsection{Current and voltage relations}
@@ -902,7 +902,7 @@ The conservation of energy also applies in the electrical circuit.
 \subsubsection{Real power on R}
 \pph{When whe have $\varphi = 0^{\circ}$}
 \efigbox{P = U \cdot I}
-<w
+
 \pph{When we have $\varphi = \pm90^{\circ}$}
 With $\varphi = +90^{\circ}$, the circuit works as a perfect inductor.
 
@@ -927,7 +927,7 @@ reactive power.
 
 \subsubsection{Real power with $0^{\circ} < \varphi < 90^{\circ}$}
 \efigbox{p(t) = U\cdot I \cdot \cos(\varphi) - U \cdot I \cdot \cos(2\omega t + \varphi)\\\\
-        p(t) = \text{average power}\ P + \text{apparent power}\ S
+        p(t) = \text{average power}\ P - \text{apparent power}\ S
 }
 
 where:

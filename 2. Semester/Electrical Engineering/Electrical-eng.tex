@@ -1003,6 +1003,310 @@ The ability to perform work is referred to as energy $E$.
 \subsubsection{Reactive energy}
 \efigbox{W_B = Q\cdot t}
 
+\subsubsection{AC-Generator}
+\efigbox{U = -N\cdot \dfrac{\Delta \phi}{\Delta t}}
+
+\newpage
+\subsubsection{Power transport}
+\begin{center}
+    \includegraphics[width=.95\textwidth]{media/power_transport.png}
+\end{center}
+
+\begin{center}
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \textbf{Producer}\\[1ex]
+        $\dm P_{pro} = U_G\cdot I$
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \textbf{Transmission}\\[1ex]
+        $\dm P_{t} = (R_1+R_2)\cdot I^2$
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \textbf{Customer}\\[1ex]
+        $\dm P_{cus} = U_C\cdot I$
+    \end{minipage}
+\end{center}
+\vspace*{.5cm}
+
+\efigbox{\eta = \dfrac{P_{cus}}{P_{pro}} = \dfrac{P_{pro} - P_{t}}{P_{pro}} = 1 - \dfrac{P_t}{P_{pro}}}
+
+The loss in the line decreases with the square of the transmission voltage.
+
+\section{Three-phase system}
+\subsection{Voltage in a generator}
+\begin{center}
+    \includegraphics[width=.9\textwidth]{media/generator.png}
+\end{center}
+\begin{itemize}
+    \item Three coils with an angular distance of $120^{\circ}$;
+    \item The rotating magnet has a constant angular velocity $\omega$;
+    \item Three induced voltages $U$, $W$, $V$ across terminals of the coils;
+    \item $U$, $W$, $V$ have the same frequency $f$ and amplitude $\widehat{U}$ but $120^{\circ}$ shifted.
+\end{itemize}
+
+\vspace*{.5cm}
+\begin{minipage}{0.6\textwidth}
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[>=Latex, thick, scale=1.15]
+                \coordinate (O) at (0,0);
+                \fill[green!60!black] (O) circle (2pt);
+                \node[green!60!black, left=2pt] at (O) {$N$};
+
+                \draw[->, thick] (O) -- ++(  0:2cm) node[below left] {$U_{N1}$};
+                \draw[->, thick, red] (O) -- ++(-120:2cm) node[midway, left] {$U_{N2}$};
+                \draw[->, thick, blue] (O) -- ++(120:2cm) node[midway, left] {$U_{N3}$};
+
+                \draw[blue, thick]
+                    (O) ++(0:0.6cm) arc[start angle=0, end angle=120, radius=0.6cm];
+                \node[blue] at ($(O)+(60:1cm)$) {$120^\circ$};
+
+                \draw[red, thick]
+                    (O) ++(0:0.6cm) arc[start angle=0, end angle=-120, radius=0.6cm];
+                \node[red] at ($(O)+(-60:0.9cm)$) {$-120^\circ$};
+            \end{tikzpicture}
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[>=Latex, thick]
+                \coordinate (N) at (0,0);
+                \coordinate (A) at (2cm,0);
+                \coordinate (B) at (1cm,1.732cm);
+
+                \fill[green!60!black] (N) circle(3pt);
+                \node[green!60!black, left=2pt] at (N) {$N$};
+
+                \draw[->] (N) -- (A) node[midway, below] {$U_{N1}$};
+
+                \draw[->, blue] (A) -- (B) node[midway, sloped, above] {$U_{N3}$};
+
+                \draw[->, red] (B) -- (N) node[midway, sloped, above] {$U_{N2}$};
+            \end{tikzpicture}
+        \end{center}
+    \end{minipage}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \begin{center}
+        \begin{tabular}{@{}l@{}}
+            $\underline{U}_{N1}=U_S\angle0^\circ$\\[1ex]
+            {\color{red}$\underline{U}_{N2}=U_S\angle-120^\circ$}\\[1ex]
+            {\color{blue}$\underline{U}_{N3}=U_S\angle+120^\circ$}\\[2.5ex]
+            \fbox{$\underline{U}_{N1} + \textcolor{red}{\underline{U}_{N2}} + \textcolor{blue}{\underline{U}_{N3}} = 0$}
+        \end{tabular}
+    \end{center}
+\end{minipage}
+
+\subsection{Wye connection with symmetrical load}
+If a connection of each phase is brought together at a common point (star point), the sum
+of the incoming currents is always zero:
+
+\begin{center}
+    \includegraphics[width=.9\textwidth]{media/wye.png}
+\end{center}
+
+\figbox{Advantage of wye connection: three transission lines instead of six.}
+
+\subsubsection{Current balance}
+\begin{center}
+    \includegraphics[width=.725\textwidth]{media/balance.png}
+\end{center}
+
+\subsection{Line voltage}
+The line voltage is the difference between two phase voltages:
+
+\begin{minipage}{0.3\textwidth}
+    \begin{center}
+        \begin{tikzpicture}[>=Latex, thick, scale=1.15]
+            \coordinate (O) at (0,0);
+            \fill[green!60!black] (O) circle (3pt);
+            \node[green!60!black, left=2pt] at (O) {$N$};
+
+            \draw[->, thick] (O) -- ++(0:2cm) node[below right] {$U_{N1}$};
+            \draw[->, thick, red] (O) -- ++(-120:2cm) node[below] {$U_{N2}$};
+            \draw[->, thick, blue] (O) -- ++(120:2cm) node[above] {$U_{N3}$};
+            \draw[<-, thick, dashed, cyan] (0:2cm) -- ++(150:3.46410cm) node[midway, above right] {$U_{31}$};
+            \draw[->, thick, dashed, brown!130] (0:2cm) -- ++(-150:3.46410cm) node[midway, below right] {$U_{12}$};
+            \draw[->, thick, dashed, purple!80] (-120:2cm) -- ++(90:3.46410cm) node[midway, left] {$U_{23}$};
+
+            \draw[blue, thick]
+                (O) ++(0:0.6cm) arc[start angle=0, end angle=120, radius=0.6cm];
+            \draw[red, thick]
+                (O) ++(0:0.6cm) arc[start angle=0, end angle=-120, radius=0.6cm];
+        \end{tikzpicture}
+    \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.7\textwidth}
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+        \hspace*{-1.85cm}\textbf{Phase voltage}\\[1ex]
+            \fbox{\begin{tabular}{@{}l@{}}
+                $U_{N1} = U_s\sin(\omega \cdot t + 0^\circ)$\\[1ex]
+                $U_{N2} = U_s\sin(\omega \cdot t - 120^\circ)$\\[1ex]
+                $U_{N3} = U_s\sin(\omega \cdot t + 120^\circ)$
+            \end{tabular}}
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+        \hspace*{-3.75cm}\textbf{Line voltage}\\[1ex]
+            \fbox{\begin{tabular}{@{}l@{}}
+                ${\color{brown!130}U_{12}} = U_{N2} - U_{N1} = \sqrt{3}\cdot U_S\sin(\omega \cdot t - 150^\circ)$\\[1ex]
+                ${\color{purple!80}U_{23}} = U_{N3} - U_{N2} = \sqrt{3}\cdot U_S\sin(\omega \cdot t + 90^\circ)$\\[1ex]
+                ${\color{cyan}U_{31}} = U_{N1} - U_{N3} = \sqrt{3}\cdot U_S\sin(\omega \cdot t - 30^\circ)$
+            \end{tabular}}
+        \end{center}
+    \end{minipage}
+\end{minipage}
+
+\figbox{Advantage of line voltage: the three phase system provides two voltages}
+
+\newpage
+\pph{Graphical representation}
+\begin{tikzpicture}
+    \begin{axis}[
+        domain=0:2*pi,
+        samples=200,
+        trig format=rad,
+        axis x line=bottom,
+        axis y line=left,
+        width=\textwidth,
+        height=.3\textheight,
+        xmin=0, xmax=7,
+        ymin=-2, ymax=2,
+        grid=both,
+        grid style={gray!30},
+        legend cell align=left,
+        legend pos=south west,
+        clip=false,
+    ]
+
+    \addplot[very thick] {sin(x + pi/180)} node [below right] {$U_{1N}$};
+    \addplot[blue, very thick] {sin(x + 2*pi/3)} node [right] {$U_{2N}$};
+    \addplot[red, very thick] {sin(x - 2*pi/3)} node [right] {$U_{3N}$};
+
+    \addplot[cyan, very thick, dashed] {sin(x + pi/180) - sin(x + 2*pi/3)} node at (2*pi, -.95) [below right] {$U_{31}$};
+    \addplot[purple!80, very thick, dashed] {sin(x + 2*pi/3) - sin(x - 2*pi/3)} node [right] {$U_{23}$};
+    \addplot[brown!130, very thick, dashed] {sin(x - 2*pi/3) - sin(x + pi/180)} node at (2*pi, -0.8) [above right] {$U_{12}$};
+
+    \addplot[green!60!black, very thick] {0} node [above right] {$N$};
+    \end{axis}
+\end{tikzpicture}
+
+\vspace*{.5cm}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/phasor_diagram.png}
+\end{center}
+
+\subsection{Wye (Y) and Delta ($\Delta$) circuits}
+\begin{center}
+    \includegraphics[width=\textwidth]{media/wye_and_delta.png}
+\end{center}
+
+\newpage
+\subsubsection{Y-Circuit}
+\begin{center}
+    \includegraphics[width=.75\textwidth]{media/y_circuit.png}
+\end{center}
+
+\pph{Balanced wye connection}
+\figbox{$\underline{Z_1} = \underline{Z_2} = \underline{Z_3}$\\\\
+        $I=I_S$\\\\
+        $\left|\underline{I_1}\right| = \left|\underline{I_2}\right| = \left|\underline{I_3}\right|$}
+
+where:
+\begin{itemize}
+    \item $\underline{Z_1}$, $\underline{Z_2}$, $\underline{Z_3}$: impedances of the three phases;
+    \item $I$: current in the line ($I_1, I_2, I_3$);
+    \item $I_S$: current in the star point ($I_{Z1}, I_{Z2}, I_{Z3}$).
+\end{itemize}
+
+\figbox{$U = \sqrt{3}U_S$}
+
+where:
+\begin{itemize}
+    \item $U$: line voltage;
+    \item $U_S$: phase voltage.
+\end{itemize}
+
+\pph{Apparent power in one impedance}
+\efigbox{S_1 = U_{1N} \cdot I_1\\\\
+        S_2 = U_{2N} \cdot I_2\\\\
+        S_3 = u_{3N} \cdot I_3}
+
+\pph{Total apparent power}
+\efigbox{S_{\text{total}} = 3\cdot U_S \cdot I = \sqrt{3}\cdot U \cdot I}
+
+\subsubsection{Balanced delta connection}
+\begin{center}
+    \includegraphics[width=.75\textwidth]{media/delta_connection.png}
+\end{center}
+
+\pph{Balanced delta connection}
+\figbox{$\underline{Z_{12}} = \underline{Z_{23}} = \underline{Z_{31}}$\\\\
+        $I=\sqrt{3}\cdot I_S$\\\\
+        $\left|\underline{I_{12}}\right| = \left|\underline{I_{23}}\right| = \left|\underline{I_{31}}\right| = \dfrac{I_1}{\sqrt{3}} = \dfrac{I_2}{\sqrt{3}} = \dfrac{I_3}{\sqrt{3}}$}
+
+where:
+\begin{itemize}
+    \item $\underline{Z_12}$, $\underline{Z_23}$, $\underline{Z_31}$: impedances of the three phases;
+    \item $I$: current in the line ($I_1, I_2, I_3$);
+    \item $I_S$: current in the star point ($I_{12}, I_{23}, I_{31}$).
+\end{itemize}
+
+\efigbox{U = \sqrt{3}\cdot U_S}
+where:
+\begin{itemize}
+    \item $U$: line voltage ($U_{12}, U_{23}, U_{31}$);
+    \item $U_S$: phase voltage ($U_{1N}, U_{2N}, U_{3N}$).
+\end{itemize}
+
+\pph{Apparent power in one impedance}
+\efigbox{S_{12} = U_{12} \cdot I_{12} = \sqrt{3}\cdot U_{1N} \cdot \dfrac{I_1}{\sqrt{3}}\\\\
+        S_{23} = U_{23} \cdot I_{23} = \sqrt{3}\cdot U_{2N} \cdot \dfrac{I_2}{\sqrt{3}}\\\\
+        S_{31} = U_{31} \cdot I_{31} = \sqrt{3}\cdot U_{3N} \cdot \dfrac{I_3}{\sqrt{3}}}
+
+\pph{Total apparent power}
+\vspace*{-.5cm}
+\efigbox{S_{\text{total}} = 3\cdot U_S \cdot I = \sqrt{3}\cdot U \cdot I}
+
+\newpage
+\subsection{Balanced operation -- Power calculation}
+\subsubsection{Apparent power (AV)}
+\efigbox{S = 3\cdot U_S \cdot I = \sqrt{3}\cdot U \cdot I = \dfrac{P}{\cos\varphi} = \dfrac{Q}{\sin\varphi} = \sqrt{P^2 + Q^2}}
+
+\subsubsection{Average power (W)}
+\efigbox{P = S\cdot \cos\varphi = \sqrt{S^2 - Q^2} = \sqrt{3}\cdot U \cdot I \cdot \cos\varphi}
+
+\subsubsection{Reactive power (var)}
+\efigbox{Q = S\cdot \sin\varphi = \sqrt{S^2 - P^2} = \sqrt{3}\cdot U \cdot I \cdot \sin\varphi}
+
+\subsubsection{Average power of resistive loads (W)}
+\efigbox{P_Y = 3\cdot \dfrac{U_S^2}{R} = \dfrac{\left(\sqrt{3}\cdot U_S\right)^2}{R} = \dfrac{U^2}{R}\\\\
+        P_{\Delta} = 3\cdot \dfrac{\left(\sqrt{3}\cdot U_S\right)^2}{R} = 3\cdot \dfrac{U^2}{R}}
+
+\efigbox{P_Y = P_{\Delta}}
+
+\newpage
+\subsubsection{Summary of the advantages of three-phase system}
+\begin{itemize}
+    \item Three transmission lines instead of six;
+    \item The three phase system provides two voltages;
+    \item Motors can be easily built with three-phase systems;
+    \item with symmetrical operation, the sum of the instantaneous powers is constant.
+\end{itemize}
+
+
+
 
 
 \end{document}

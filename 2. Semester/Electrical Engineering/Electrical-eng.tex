@@ -1296,6 +1296,32 @@ where:
 
 \efigbox{P_Y = P_{\Delta}}
 
+\subsection{Three-phase motors}
+\begin{center}
+    \includegraphics[width=\textwidth]{media/motor.png}
+\end{center}
+
+\figbox{Advantage of three-phase motors: motors can be easily built with three-phase systems.}
+
+\newpage
+\subsection{Symmetrical operation \textrightarrow constant power}
+\subsubsection{Instantaneous power}
+\efigbox{p(t) = \dfrac{\left(\widehat{U}\cdot \sin\left(\omega t - \varphi\right)\right)^2}{R} = \dfrac{\widehat{U}^2}{2}\cdot \left[1-\cos\left(2\left(\omega t - \varphi\right)\right)\right]}
+
+\subsubsection{Sum of the three instantaneous powers}
+\efigbox{p_{L1}(t) + p_{L2}(t) + p_{L3}(t) = 
+        \dfrac{\widehat{U}²}{2R} \cdot \left[\underbrace{3-\cos(2(\omega t)) - \cos(2(\omega t - 120^\circ)) - \cos(2(\omega t + 120^\circ))}_{= 0}\right] = 3\cdot \dfrac{\widehat{U}^2}{2R} = 3\cdot \dfrac{U^2}{R}}
+
+\figbox{Advantage of symmetrical operation: the sum of the instantaneous powers is constant.}
+
+
+
+
+
+
+
+
+
 \newpage
 \subsubsection{Summary of the advantages of three-phase system}
 \begin{itemize}

@@ -495,6 +495,213 @@ TODO
 \figbox{$\dm \dot{I}_{\text{out},x} - \dot{I}_{\text{in},x} = \sum F_{\text{ext},x} = -\dot{m}\cdot v - \dot{m}\cdot v = -F_{\text{ext},x}\\\\
         F_{\text{ext},x} = Z\cdot\dot{m}\cdot v$}
 
+\section{Angular moment equation}
+Let's suppose that a mass $m$ is rotating around a point $O$ with an angular velocity $\omega$.
+The angular momentum $D$ of the mass $m$ is given by:
+\figbox{$D = m\cdot v \cdot r = m \cdot r^2 \cdot \omega$}
+
+where:
+\begin{itemize}
+    \item $D$: angular momentum [Nm$\cdot$s];
+    \item $r$: distance from the point $O$ [m];
+    \item $\omega$: angular velocity [rad/s];
+    \item $m\cdot v$: momentum [kg$\cdot$m/s];
+    \item $m\cdot r^2$: mass moment of inertia [kg$\cdot$m$^2$].
+\end{itemize}
+
+\vspace*{.5cm}
+\begin{table}[ht!]
+    \centering
+    \caption{Comparison between translation and rotation parameters.}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{tabular}{l|l}
+        \hline
+        Translation & Rotation \\
+        \hline
+        Location: $\vec{x}$ [m] & Angle: $\vec{\varphi}$ [rad] \\
+        Velocity: $\vec{v} = \dfrac{d\vec{x}}{dt}$ [m/s] & Angular velocity: $\vec{\omega} = \dfrac{d\vec{\varphi}}{dt}$ [rad/s] \\
+        Mass: $m$ [kg] & Mass moment of inertia: $J = m\cdot r^2$ [kg$\cdot$m$^2$] \\
+        Momentum: $\vec{I} = m\cdot \vec{v}$ [Ns] & Angular momentum: $D = J\cdot\omega = m\cdot r^2 \cdot \omega$ [Ns$\cdot$m] \\
+        Momentum flux: $\dot{\vec{I}} = \dot{m}\cdot\vec{v}$ [N] & Ang. momentum flux: $\dot{\vec{D}}=\dfrac{d\vec{D}}{dt}$ [Nm] \\
+        Momentum eq.: $\dsum{}{} \dot{\vec{I}}_{out} - \dsum{}{} \dot{\vec{I}}_{in} = \dsum{}{} \vec{F}_{ext}$ & Ang. momentum eq.: $\dsum{}{} \dot{\vec{D}}_{out} - \dsum{}{} \dot{\vec{D}}_{in} = \dsum{}{} \vec{M}_{ext}$ [Nm] \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\newpage
+\subsection{Application to horizontal lawn sprinkler}
+\begin{minipage}{.5\textwidth}
+    \begin{center}
+        \includegraphics[width=.85\textwidth]{media/sprinkler.png}
+    \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{.5\textwidth}
+    \begin{center}
+        \fbox{\shortstack{
+            $\dm \dot{\vec{D}}_{out} - \dot{\vec{D}}_{in} = \sum M_{out}$\\[1ex]
+            $-2\dot{m}\cdot\omega \cdot r - 0 = -M_{Fr}$
+        }}\\[2ex]
+    \end{center}
+    $M_{Fr} :=$ Mech. friction moment of the shaft bearing.\\
+    $M_{Fr} = 2\dot{m}\cdot \omega \cdot r$
+\end{minipage}
+
+\subsubsection{Formulation in absolute coordinates}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->, thick, blue] (0,0) -- (5,0) node[midway, above] {$\omega$};
+        \draw[->, thick, red] (0,-.5) -- (2.5,-.5) node[midway, below] {$v$};
+        \draw[->, thick, darkgreen] (5,-.5) -- (2.5,-.5) node[midway, below] {$u$};
+    \end{tikzpicture}
+\end{center}
+
+$\Longrightarrow M_{\text{Fr, abs}} = 2\dot{m} \cdot v \cdot r$
+Analysing the system in absolute coordinates, we have:
+??????
+
+\subsection{Application to flow expansion}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/flow_expansion.png}
+\end{center}
+
+\textbf{Analysing in the c case:}
+\begin{enumerate}
+    \item mass conservation: $\dot{m}_1 = \dot{m}_2 \Rightarrow v_1A_1 = v_2A_2 \Rightarrow v_2=\dfrac{v_1A_1}{A_2}$
+    \item energy conservation \circled{1}\textrightarrow\circled{2}:\\
+        $\frac{p_1}{\rho}+\frac{v_1^2}{2}+gz_1 = \frac{p_2}{\rho}+\frac{v_2^2}{2}+e_v$\\[1ex]
+        $p_1-p_2 = \rho\left(\frac{v_2^2 - v_1^2}{2} + e_v\right);\quad e_v = \zeta\cdot\frac{v_1^2}{2}$\\[1ex]
+        $p_1-p_2 = \rho\frac{v_1^2}{2}\left(\left(\frac{A_1}{A_2}\right)^2-1+\zeta\right)$
+    \item momentum equation in x-direction:\\
+        $\dot{I}_{out} - \dot{I}_{in} = \sum F_{ext,x} \rightarrow F_P + F_{Fr} (=0) + F_g (=0) + F_{BF} (=0) = F_P$\\
+        $p_1 - p_2 = \rho\cdot v_1^2\cdot \frac{A_1}{A_2}\cdot\left(\frac{A_1}{A_2}-1\right)$
+\end{enumerate}
+
+\textbf{Analysing momentum equation}
+
+for $A_2 > A_1 \Longrightarrow p_2 > p_1\quad;\quad 0<\zeta<1$
+
+for $A_2 = A_1 \Longrightarrow p_2 = p_1\quad;\quad \zeta=0$
+
+for $A_2 \to \infty \Longrightarrow p_2 = p_1\quad;\quad \zeta=1$
+
+for $A_2 = 2A_1 \Longrightarrow p_2 - p_1$ becomes maximal.
+
+Hence, since we isolated $p_1 - p_2$ in both energy conservation and momentum equation:
+
+$p_1-p_2 = \rho\frac{v_1^2}{2}\left(\left(\frac{A_1}{A_2}\right)^2-1+\zeta\right) = \rho\cdot v_1^2\cdot \frac{A_1}{A_2}\cdot\left(\frac{A_1}{A_2}-1\right)$
+
+\begin{itemize}
+    \item With $\frac{A_2}{A_1} = 0.5$:\\[1.5ex]
+        $2\cdot 0.5(0.5-1) = 0.25-1+\zeta \Rightarrow \zeta = 0.$ [-]\\[1.5ex]
+    \item With $\frac{A_2}{A_1} = 0.25$:\\[1.5ex]
+        $2\cdot 0.25(0.25-1) = 0.125-1+\zeta \Rightarrow \zeta = 0.5625$ [-]\\[1.5ex]
+    \item With $\frac{A_2}{A_1} = 0.75$:\\[1.5ex]
+        $2\cdot 0.75(0.75-1) = 0.375-1+\zeta \Rightarrow \zeta = 0.0625$ [-]\\[1.5ex]
+\end{itemize}
+
+\pph{Graphical representation}
+\begin{center}
+    \begin{tikzpicture}
+      %
+      % Left axis (Δp)
+      \begin{axis}[
+        name=left,
+        width=\textwidth, height=10cm,
+        xmin=0, xmax=1,  ymin=0, ymax=1,
+        axis x line=bottom,
+        axis y line=left,
+        every axis x line/.append style={-stealth},
+        every axis y line/.append style={-stealth},
+        xlabel={$A_1/A_2$},
+        ylabel={$\displaystyle\Delta p\;(p_1-p_2)$},
+        xtick={0,0.25,0.5,0.75,1},
+        ytick={0},            % only label y=0 on left
+        clip=false,
+      ]
+        % guide lines
+        \draw[gray,dashed] (axis cs:0,0.25) -- (axis cs:1,0.25);
+        \draw[gray,dashed] (axis cs:0,0.50) -- (axis cs:1,0.50);
+        \draw[gray,dashed] (axis cs:0,0.75) -- (axis cs:1,0.75);
+        \draw[gray,dashed] (axis cs:0.5,0) -- (axis cs:0.5,0.5625);
+    
+        % shaded area under black parabola
+        \addplot [
+          domain=0:1,
+          samples=200,
+          fill=black!10, 
+        ] ({x},{-2.25*(x-0.5)^2+0.5625}) \closedcycle;
+    
+        % black dashed parabola
+        \addplot [
+          domain=0:1,
+          samples=200,
+          black,dashed,
+          very thick,
+        ] { -2.25*(x-0.5)^2 + 0.5625 };
+    
+        % blue dashed zeta‐curve
+        \addplot [
+          domain=0:1,
+          samples=200,
+          blue,dashed,
+          thick,
+        ] { (1 - x)^2 };
+    
+        % marked sample points on zeta‐curve
+        \addplot [blue, only marks, mark=*, mark size=2pt] 
+          coordinates {
+            (0.25,0.5625) (0.5,0.25) (0.75,0.0625)
+          };
+    
+        % point labels
+        \node[blue, above right] at (axis cs:0.25,0.5625) {0.5625};
+        \node[blue, above right] at (axis cs:0.5,0.25) {0.25};
+        \node[blue, above right] at (axis cs:0.75,0.0625) {0.0625};
+      \end{axis}
+    
+      %
+      % Right axis (ζ)
+      \begin{axis}[
+        at={(left.north east)},
+        anchor=north east,
+        width=10cm, height=10cm,
+        xmin=0, xmax=1,  ymin=0, ymax=1,
+        axis x line=none,
+        axis y line={right, blue},
+        every axis y line/.append style={-stealth,blue},
+        ytick={0,0.25,0.5,0.75,1},
+        yticklabels={0,0.25,0.5,0.75,1},
+        ylabel={$\zeta\;[-]$},
+        ylabel style={blue, rotate=270},
+      ]\end{axis}
+    
+    \end{tikzpicture}
+\end{center}
+
+\newpage
+\subsubsection{Energy diagram}
+\begin{center}
+    \includegraphics[width=\textwidth]{media/energy_diagramm_angular.png}
+\end{center}
+
+\subsection{Second application of the angular momentum equation}
+\subsubsection{Mixing losses}
+\begin{center}
+    \includegraphics[width=.75\textwidth]{media/mixing_losses.png}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

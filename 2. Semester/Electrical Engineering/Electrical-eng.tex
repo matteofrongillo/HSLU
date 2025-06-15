@@ -1007,6 +1007,25 @@ The ability to perform work is referred to as energy $E$.
 \efigbox{U = -N\cdot \dfrac{\Delta \phi}{\Delta t}}
 
 \newpage
+\subsection{Classification of circuit behavior}
+
+\begin{table}[h]
+  \centering
+  \caption{Impedance, Phase Shift, and Power Signatures}
+  \begin{tabular}{l | l | c | c | c}
+    \hline
+    \textbf{Circuit type}            & $\mathbf{Z}$            & \textbf{Phase shift $\varphi$ (V→I)} & \textbf{Real power $P$} & \textbf{Reactive power $Q$} \\
+    \hline
+    Purely resistive    & $Z = R$                  & $0^\circ$             & $>0$         & $0$            \\
+    Purely inductive    & $Z = jX_L$               & $+90^\circ$           & $0$          & $>0$           \\
+    Purely capacitive   & $Z = -jX_C$              & $-90^\circ$           & $0$          & $<0$           \\
+    Resistive--inductive & $Z = R + jX_L\ (X_L>0)$  & $0 < \varphi < +90^\circ$  & $>0$ & $>0$           \\
+    Resistive--capacitive& $Z = R - jX_C\ (X_C>0)$  & $-90^\circ < \varphi < 0$  & $>0$ & $<0$           \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\newpage
 \subsubsection{Power transport}
 \begin{center}
     \includegraphics[width=.95\textwidth]{media/power_transport.png}
@@ -1304,7 +1323,7 @@ where:
 \figbox{Advantage of three-phase motors: motors can be easily built with three-phase systems.}
 
 \newpage
-\subsection{Symmetrical operation \textrightarrow constant power}
+\subsection{Symmetrical operation \textrightarrow\ constant power}
 \subsubsection{Instantaneous power}
 \efigbox{p(t) = \dfrac{\left(\widehat{U}\cdot \sin\left(\omega t - \varphi\right)\right)^2}{R} = \dfrac{\widehat{U}^2}{2}\cdot \left[1-\cos\left(2\left(\omega t - \varphi\right)\right)\right]}
 

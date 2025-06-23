@@ -16,8 +16,10 @@
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{Matteo Frongillo}
-\chead{EFPLab1 Cheat Sheet}
+\chead{\nouppercase{\leftmark}}
 \rhead{\thepage}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 
 % === CUSTOM BOX COMMANDS ===
 \definecolor{BoxBG}{HTML}{F0F8FF}
@@ -45,8 +47,8 @@
 }
 
 \newtcolorbox{formula}[1]{
-  colback=green!10!white,
-  colframe=green!50!black,
+  colback=red!10!white,
+  colframe=red!90!black!75,
   fonttitle=\bfseries,
   left=1mm,right=1mm,top=1mm,bottom=1mm,
   boxrule=0.8pt,
@@ -73,8 +75,7 @@
 % === DOCUMENT ===
 \begin{document}
 \begin{multicols}{2}
-\setlength{\columnseprule}{0.4pt}
-\setlength{\columnsep}{10pt}
+\setlength{\columnsep}{1pt}
 
 % === CONTENT ===
 \section{Fluids as energy carriers}
@@ -192,7 +193,11 @@
 
 \vfill
 \phantom{}
-\columnbreak
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
 
 \section{Mass conservation}
 \subsection{Continuity equation / Mass conservation}
@@ -221,9 +226,27 @@
 \section{Energy conservation}
 \subsection{Fluid mechanical energy conservation}
 \begin{theorybox}{Derivation of the Bernoulli equation}
+\vspace*{-0.3cm}
     \begin{equation}
         \dot{m}_1 \left(\dfrac{p_1}{\rho} + \dfrac{v_1^2}{2} + gz_1\right) = \dot{m}_2 \left(\dfrac{p_2}{\rho} + \dfrac{v_2^2}{2} + gz_2\right)
     \end{equation}
+
+    This derivation is based on the assumption that the system has:
+    
+    \begin{minipage}[t]{0.48\linewidth}
+        \begin{itemize}
+            \item steady flow
+            \item ideal fluid
+            \item adiabatic process
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \begin{itemize}
+            \item no work in or out of the system
+            \item 1D streamline flow
+        \end{itemize}
+    \end{minipage}
 \subsubsection{Energy flow}
 \vspace*{-0.5cm}
     \begin{align}
@@ -244,13 +267,208 @@
             }
         }
     \end{align}
+
+    \vspace*{-0.5cm}
+    \subsubsection{Outflow formula according to Torricelli}
+    \begin{equation}
+        gz_1 = \frac{v_2^2}{2} \Longrightarrow v_2 = \sqrt{2g\Delta z}
+    \end{equation}
+\end{theorybox}
+
+\newcolumn
+
+\subsection{Bernoulli equation}
+\begin{formula}{Specific energy equation}
+    \includegraphics[width=\textwidth]{media/Bernoulli.png}
+    \vspace*{-0.3cm}
+    \begin{equation}
+        \dfrac{p_1}{\rho} + \dfrac{v_1^2}{2} + gz_1 = \dfrac{p_2}{\rho} + \dfrac{v_2^2}{2} + gz_2 = {\rm const.} \left[\dfrac{J}{kg}\right]
+    \end{equation}
+
+    \subsubsection{Alternative forms}
+    \textbf{Pressure equation}
+    \begin{equation}
+        p_1 + \dfrac{\rho v_1^2}{2} + \rho g z_1 = p_2 + \dfrac{\rho v_2^2}{2} + \rho g z_2 = {\rm const.} \left[Pa\right]
+    \end{equation}
+
+    \textbf{Height equation}
+    \begin{equation}
+        \dfrac{p_1}{\rho g} + \dfrac{v_1^2}{2g} + z_1 = \dfrac{p_2}{\rho g} + \dfrac{v_2^2}{2g} + z_2 = {\rm const.} \left[m\right]
+    \end{equation}
+\end{formula}
+
+\begin{theorybox}{True energy equation}
+    The Bernoulli equation states that the sum of these energies is constant along a streamline.
+    \subsubsection{Pressure energy}
+    \begin{equation}
+        E_p = m\cdot \frac{p}{\rho} \left[J\right]
+    \end{equation}
+
+    \subsubsection{Kinetic energy}
+    \begin{equation}
+        E_{\rm kin} = m\cdot \frac{v^2}{2} \left[J\right]
+    \end{equation}
+
+    \subsubsection{Potential energy}
+    \begin{equation}
+        E_{\rm pot} = m\cdot g\cdot z \left[J\right]
+    \end{equation}
+
+\subsubsection{Energy conservation}
+\vspace*{-0.5cm}
+\begin{align}
+    E_{p,1} + E_{\rm kin,1} + E_{\rm pot,1} &= E_{p,2} + E_{\rm kin,2} + E_{\rm pot,2} \notag \\[1.5ex]
+    m\left(\dfrac{p_1}{\rho}+\dfrac{v_1^2}{2}+gz_1\right) &= m\left(\dfrac{p_2}{\rho}+\dfrac{v_2^2}{2}+gz_2\right)
+\end{align}
+\end{theorybox}
+
+\subsection{Hydrostatics}
+\begin{formula}{Fundamental law of hydrostatics}
+    \begin{equation}
+        p = p_0 + \rho g h = {\rm const.} \left[\rm Pa\right]
+    \end{equation}
+    derived from:
+    \begin{equation}
+        p = p_0 + \dfrac{F_g}{A} = p_0 + \dfrac{mg}{A} = p_0 + \dfrac{\rho hAg}{A}
+    \end{equation}
+\end{formula}
+
+\vfill
+\phantom{}
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+\subsection{Venturi effect experiment}
+\begin{examplebox}{Venturi effect}
+    \begin{theorybox}{Height - pressure difference at $\dot{V} = 6$ l/s}
+        \includegraphics[width=\textwidth]{media/venturi.png}
+    \end{theorybox}
+
+
+    \begin{formula}{Relative static pressure $p_{\rm rel}$}
+        \includegraphics[width=\textwidth]{media/venturi_relative.png}
+        \vspace*{-0.3cm}
+        \begin{equation}
+            p_{\rm rel} = p_{\rm hydro} = \rho g \left(h-h_{\rm ref}\right)
+        \end{equation}
+    \end{formula}
+    \begin{formula}{Dynamic pressure $p_{\rm dyn}$}
+        \includegraphics[width=\textwidth]{media/venturi_dyn.png}
+        \vspace*{-0.3cm}
+        \begin{equation}
+            p_{\rm dyn} = \rho\dfrac{v^2}{2}
+        \end{equation}
+    \end{formula}
+    \begin{formula}{Dynamic pressure $v$}
+        \includegraphics[width=\textwidth]{media/venturi_velocity.png}
+        \vspace*{-0.3cm}
+        \begin{equation}
+            v=\dfrac{\dot{V}}{A}
+        \end{equation}
+    \end{formula}
+    \begin{formula}{Pressure difference $\Delta p$}
+        \includegraphics[width=\textwidth]{media/venturi_pressure.png}
+        \vspace*{-0.3cm}
+        \begin{equation}
+           \Delta p = p_{\rm NoFric} - p_{\rm real} \Longrightarrow p_V \sim v^2
+        \end{equation}
+    \end{formula}
+\end{examplebox}
+
+\vfill
+\columnbreak
+\begin{examplebox}{Venturi effect}
+    \begin{theorybox}{Measurament points}
+        \includegraphics[width=\textwidth]{media/venturi_points.png}
+    \end{theorybox}
+        \begin{theorybox}{Measurament shear flow}
+        \includegraphics[width=\textwidth]{media/venturi_flow.png}
+    \end{theorybox}
+\end{examplebox}
+
+\subsection{Contraction coefficient}
+\begin{theorybox}{Outflow contraction coefficient $\alpha$}
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{media/contraction.png}
+    \end{center}
+    \begin{equation}
+        \alpha = \dfrac{A_{\rm actual}}{A_{\rm opening}} = \dfrac{\pi}{2 + \pi} \approx 0.611 [-]
+    \end{equation}
+\end{theorybox}
+
+\subsection{Energy line diagram}
+\begin{theorybox}{Ideal fluid energy line diagram}
+    \includegraphics[width=\textwidth]{media/EGL_Duese_EN.PNG}
+\end{theorybox}
+
+\begin{theorybox}{Extended energy line diagram}
+    \includegraphics[width=\textwidth]{media/04_energyLineDiagram_vGB.png}
+\end{theorybox}
+
+\vfill
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+\subsection{Extended Bernoulli equation}
+\begin{formula}{Extension of the Bernoulli equation}
+    \vspace*{-0.4cm}
+    \begin{equation}
+        \dfrac{p_1}{\rho} + \dfrac{v_1^2}{2} + gz_1 + e_A = \dfrac{p_2}{\rho} + \dfrac{v_2^2}{2} + gz_2 + e_V \left[\frac{J}{kg}\right]
+    \end{equation}
+\end{formula}
+
+\subsubsection{Additional terms}
+\begin{theorybox}{Work term $e_A$}
+    If energy is added to the fluid along a streamline from point 1 to point 2
+    (eg. a pump), the total energy at point 2 becomes higher than at point 1.\\
+
+    \textbf{Sign convention}\\
+    $e_A > 0$:work is done on the fluid\\
+    \textrightarrow\ energy is added to the fluid (eg. pump);\\
+
+    $e_A < 0$: work is done by the fluid\\
+    \textrightarrow\ energy is extracted from the fluid (eg. turbine).
+\end{theorybox}
+
+\begin{theorybox}{Loss term $e_V$}
+    The effects of a viscous fluid along a stramline from point 1 to point 2 are taken into
+    account by the loss term $e_V$.
 \end{theorybox}
 
 
 
 \vfill
-\columnbreak
+\phantom{}
+\newcolumn
+
 ciao
 
+\vfill
+\phantom{}
 \end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

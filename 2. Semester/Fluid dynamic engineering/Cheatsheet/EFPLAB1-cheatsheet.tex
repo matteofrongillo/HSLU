@@ -596,6 +596,7 @@
 \begin{theorybox}{Pipe flows}
     \subsubsection{Laminar pipe flow}
     The pressure loss of a laminar pipe flow is described by the Hagen-Poiseuille:
+    \vspace*{-0.1cm}
     \begin{align}
         &v(r) = \frac{p_1 - p_2}{4\eta \cdot l}\left(R^2 - r^2\right)\\
         &v_m = \frac{v_{\rm max}}{2} = \frac{p_1 - p_2}{8\eta \cdot l}\cdot R^2 \notag \\
@@ -603,29 +604,24 @@
         &\Delta p = 32\eta \cdot v_m\cdot \frac{l}{d^2}
     \end{align}
 
+    \vspace*{-0.1cm}
     \subsubsection{Turbolent flow / Pressure lost in pipelines}
     Flow losses in pipeline systems consist of pressure losses in straight
     or curved pipes as well as in fittings.
     \begin{equation}
         \Delta p = \lambda \cdot \frac{l}{d} \cdot \rho \cdot \frac{v_m^2}{2}
     \end{equation}
-    where:
-    \\
-    \begin{minipage}[t]{0.45\linewidth}
-        $\lambda$: resistance coeff. [-] \\
-        $l$: pipe length [m]
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[t]{0.55\linewidth}
-        $d$: pipe diameter [m] \\
-        $v_m$: mean flow velocity [m/s]
-    \end{minipage}
-    \\[2ex]
-    \textbf{Resistance coefficient} $\mathbf{\lambda}$
+    \subsubsection{Resistance coefficient $\lambda$}
+    \vspace*{-0.5cm}
     \begin{align}
         &\lambda \cdot \frac{l}{d} \cdot \rho \cdot \frac{v_m^2}{2} = 32\eta \cdot v_m \cdot \frac{l}{d^2} \notag \\[1.5ex]
-        &\lambda = \frac{64\eta}{v_m \cdot d \cdot \rho} \notag = \frac{64}{Re}
+        &\lambda = \frac{64\eta}{v_m \cdot d \cdot \rho} = \frac{64}{Re}
     \end{align}
+
+    \subsubsection{Loss coefficient $\zeta$ of a pipe}
+    \begin{equation}
+        \zeta = \frac{l}{d}\cdot \lambda
+    \end{equation}
 
 \end{theorybox}
 
@@ -664,9 +660,8 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     The frictional losses $\Delta p_v$ in a diffuser are given by:
     \begin{align}
         \Delta p_v &= \frac{\zeta\rho v_1^2}{2}\\
-        p_2 - p_1 &= \Delta p_B - \Delta p_v
+        \Delta p_{v,\rm ideal} &= \rho \frac{v_2^2-v_1^2}{2}
     \end{align}
-    where $\Delta p_B$ is the Bernoulli pressure (frictionless).
 \end{theorybox}
 \vfill
 \phantom{}
@@ -678,25 +673,192 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 \begin{theorybox}{Pipe fittings}
     The diffuser efficiency $\eta_D$ according to Bernoulli:
     \begin{equation}
-        \eta_D = \frac{p_2 - p_1}{\Delta p_B} = 1 - \zeta \frac{1}{1 - \left(\frac{A_1}{A_2}\right)^2}
+        \eta_D = \frac{p_2 - p_1}{\Delta p_B} = 1 - \zeta \frac{1}{1 - \left(\frac{A_1}{A_2}\right)^2} = \frac{c_p}{c_{p,\rm ideal}}
     \end{equation}
 
     The various coefficients are stated as:
     \begin{align}
-        &c_p = \frac{2\left(p_2 - p_1\right)}{\rho v_1^2} = \eta_D \cdot c_{p,id}\\
-        &c_{p,id} = 1 - \left(\frac{A_1}{A_2}\right)^2\\
-        &\zeta_1 = c_{p,id} - c_p
+        c_p &= \frac{2\left(p_2 - p_1\right)}{\rho v_1^2} = \eta_D \cdot c_{p,\rm ideal}\\
+        c_{p,\rm ideal} &= 1 - \left(\frac{A_1}{A_2}\right)^2\\
+        \zeta_1 &= c_{p,\rm ideal} - c_p
     \end{align}
 
-    The opening angle of the diffuser can be calculated as:
+    The opening angle of a diffuser can be calculated as:
     \begin{align}
-        \tan(\theta) = \frac{d_2 - d_1}{2L}\\
-        \varphi = 2\theta
+        \tan(\theta) &= \frac{d_2 - d_1}{2L}\\
+        \varphi &= 2\theta
     \end{align}
     The optimal angle $\varphi_{\rm opt}$ is between 6-20 degrees.
 
-    \subsubsection{Inlets and outlets}
+    \subsubsection{Inlets}
+    When a stationary fluid is introduced from a large container into a
+    pipe, losses occur due to acceleration and the formation of
+    separation bubbles.
+    \begin{itemize}
+        \item sharp edge: $0.45 < \zeta < 0.50$
+        \item broken edge: $\zeta = 0.20$
+    \end{itemize}
+
+    \subsubsection{Outlets}
+    For an outlet into a large basin, the entire kinetic energy is
+    converted into static pressure loss, meaning $\zeta = 1$ can be assumed.
+
+    \subsubsection{Valves and fittings}
+    $\zeta$-values are specified by different manufacturer.
 \end{theorybox}
+
+\section{Linear momentum theorem}
+\begin{formula}{Linear momentum}
+    \begin{equation}
+        \vec{I} = m\cdot \vec{v} \left[Ns\right]
+    \end{equation}
+\end{formula}
+
+\subsection{Linear momentum balance}
+\begin{theorybox}{Momentum flux}
+    The change in motion is a change in linear momentum over time:
+    \begin{equation}
+        \vec{F}_{\rm res} = \frac{d\vec{I}}{dt} = \dot{\vec{I}}  = \frac{d\left(m\cdot \vec{v}\right)}{dt}
+    \end{equation}
+
+    at constant mass:
+    \begin{equation}
+        \dot{\vec{I}} = m\cdot \vec{a} = \dot{m}\cdot \vec{v}
+    \end{equation}
+\end{theorybox}
+
+\vfill
+\columnbreak
+
+\subsection{System of forces}
+\begin{theorybox}{Force balance}
+    The sum of all external forces on a control volume is the difference of momentum flow:
+    \begin{equation}
+        \vec{F}_{\rm res} = \sum_{i} \vec{F}_i = \dot{\vec{I}}_{\rm out} - \dot{\vec{I}}_{\rm in}
+        \vspace*{-0.3cm}
+    \end{equation}
+
+    expanded to:
+    \begin{equation}
+        \dot{\vec{I}}_{\rm out} - \dot{\vec{I}}_{\rm in} = \dot{m}\left(\vec{v}_2 - \vec{v}_1\right) = \rho\cdot \dot{V}\cdot \left(\vec{v}_2 - \vec{v}_1\right)
+    \end{equation}
+
+    where:
+    \vspace*{-0.3cm}
+    \begin{align}
+        m_1 &= \rho_1\cdot \dot{V}_1\cdot \Delta t = \rho_1\cdot v_1\cdot A_1\cdot \Delta t \notag\\
+        m_2 &= \rho_2\cdot \dot{V}_2\cdot \Delta t = \rho_2\cdot v_2\cdot A_2\cdot \Delta t \\
+        \vec{I}_{\rm in} = \vec{I}_1 &= m_1\cdot \vec{v}_1 = \rho_1\cdot v_1\cdot A_1\cdot \Delta t\cdot \vec{v}_1 \notag \\
+        \vec{I}_{\rm out} = \vec{I}_2 &= m_2\cdot \vec{v}_2 = \rho_2\cdot v_2\cdot A_2\cdot \Delta t\cdot \vec{v}_2
+    \end{align}
+
+    \subsubsection{Momentum as vector}
+    \vspace*{-0.3cm}
+    \begin{align}
+        \dot{\vec{I}}_{xyz} = \left(\dot{I}_x \dot{I}_y \dot{I}_z\right) \notag \\
+        \dot{I} = \sqrt{\dot{I}_x^2 + \dot{I}_y^2 + \dot{I}_z^2}
+    \end{align}
+
+    The external forces can consist of pressure forces $F_P$, body forces (support forces) $F_B$, gravitational forces $F_G$, and frictional forces $F_F$:
+    \begin{equation}
+        \vec{F}_{\rm res} = \sum_{i} \vec{F}_i = \vec{F}_P + \vec{F}_B + \vec{F}_G + \vec{F}_F
+    \end{equation}
+\end{theorybox}
+
+\subsection{Control volume}
+\begin{examplebox}{Linear momentum calculation steps}
+    \begin{enumerate}[label=\Roman*:]
+        \item Step:\ \ Select a suitable \textbf{coordinate system} and draw it
+            in a sketch of the flow problem;
+        \item Step:\ \ Select \textbf{control volume} sensibly and draw it in the sketch.
+            The balance boundary should be set so that the external forces
+            on its surface are knwon;
+        \item Step:\ \ Draw in the \textbf{forces} $\vec{F}_P, \vec{F}_B, \vec{F}_G, \vec{F}_F$
+            acting on the CV from the outside and calculate them from the known quantities.
+        \item Step:\ \ Calculate the \textbf{linear momentum fluxes} at the
+            outlet and inlet and insert them as the resulting force (eq. 72)
+        \item Step:\ \ Dissolve the momentum balance equations according to the
+            \textbf{sought quantity} or its components and calculate them.
+        \item Step:\ \ If necessary, calculate the \textbf{magnitude} and the \textbf{direction} (eq. 75)
+    \end{enumerate}
+
+    \includegraphics[width=\textwidth]{media/CV1.png}
+\end{examplebox}
+\vfill
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+\begin{examplebox}{Linear momentum calculation steps}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{media/Impuls_Kruemmer.png}
+    \end{center}
+
+    \subsubsection{Plates}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{media/platte_bewegt.png}
+    \end{center}
+\end{examplebox}
+
+\subsection{Momentum on x-direction}
+\begin{theorybox}{Wall shear stress}
+    The shear stress $\tau_w$ is the force per unit area acting on the
+    pipe's walls:
+    \begin{equation}
+        \tau_w = \frac{dv}{dn}\cdot \eta
+    \end{equation}
+    where:
+    \begin{itemize}
+        \item $dv$ is the velocity difference;
+        \item $dn$ is the distance from the wall
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.85\textwidth]{media/Wandreibung.png}
+    \end{center}
+    \begin{equation}
+        \left|F_{K,x}\right| = \left|A\left(p_{\rm in} - p_{\rm out}\right)\right| = \left|\tau_w \cdot A \cdot l\right|
+    \end{equation}
+\end{theorybox}
+
+\subsection{Pelton turbine}
+\begin{theorybox}{Pelton bucket}
+    \begin{center}
+        \includegraphics[width=.85\textwidth]{media/pelton.png}
+    \end{center}
+\end{theorybox}
+
+\vfill
+\columnbreak
+\begin{theorybox}{Pelton bucket}
+    \subsubsection{Velocities}
+    \begin{itemize}
+        \item {\color{red} $v_1$: absolute velocity} [m/s]
+        \item {\color{blue} $u$: radial velocity} [m/s]
+        \item {\color{darkgreen!80!black} $w_1$: relative velocity (turbine POV)} [m/s]
+    \end{itemize}
+    \begin{align}
+        v_{\rm nozzle} &= \sqrt{2g\Delta h} = \sqrt{\frac{2\Delta p}{\rho}} \notag \\
+        w_1 = v_{\rm nozzle} - u &= \sqrt{\frac{2\Delta p}{\rho}} - D_{\rm wheel}\cdot \pi \cdot n_{\rm wheel} \\
+        u &= \frac{v_{\rm nozzle}}{2}
+    \end{align}
+
+    \subsubsection{Rotational speed}
+    \begin{equation}
+        k_u = \frac{u}{v_{\rm nozzle}}
+    \end{equation}
+
+    \subsubsection{Hydraulic power}
+    \begin{equation}
+        P_{\rm hyd} \approx \rho\cdot g\cdot H\cdot \dot{V} \approx \Delta p\cdot \dot{V} \left[W\right]
+    \end{equation}
+\end{theorybox}
+
+\subsection{Borda-Carnot diffuser}
+
+
+
+
 
 
 
@@ -705,6 +867,13 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 
 
 \end{multicols}
+
+
+
+
+
+
+
 
 
 

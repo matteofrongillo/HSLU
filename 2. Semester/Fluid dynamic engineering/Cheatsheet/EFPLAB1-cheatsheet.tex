@@ -78,6 +78,19 @@
 \setlength{\columnsep}{1pt}
 
 % === CONTENT ===
+\section*{Preambule}
+\begin{theorybox}{Theory box}
+    Lorem ipsum dolor sit amet.
+\end{theorybox}
+
+\begin{formula}{Formula box}
+    Lorem ipsum dolor sit amet.
+\end{formula}
+
+\begin{examplebox}{Lab/examples box}
+    Lorem ipsum dolor sit amet.
+\end{examplebox}
+
 \section{Fluids as energy carriers}
 \subsection{Fluid state variables and properties}
 
@@ -130,6 +143,10 @@
     \end{itemize}
 \end{theorybox}
 
+\vfill
+\phantom{}
+\columnbreak
+
 \subsection{Laminar and turbulent flow}
 \begin{formula}{Reynolds number}
     \begin{equation}
@@ -149,9 +166,6 @@
     \end{itemize}
     \end{examplebox}
 \end{formula}
-
-\vfill
-\columnbreak
 
 \subsection{Pressure and velocity}
 \begin{theorybox}{Pressure}
@@ -275,7 +289,7 @@
     \end{equation}
 \end{theorybox}
 
-\newcolumn
+\columnbreak
 
 \subsection{Bernoulli equation}
 \begin{formula}{Specific energy equation}
@@ -343,10 +357,8 @@
 
 \subsection{Venturi effect experiment}
 \begin{examplebox}{Venturi effect}
-    \begin{theorybox}{Height - pressure difference at $\dot{V} = 6$ l/s}
-        \includegraphics[width=\textwidth]{media/venturi.png}
-    \end{theorybox}
-
+    \textbf{Height -- pressure difference at $\dot{V} = 6$ l/s}\\[1ex]
+    \includegraphics[width=\textwidth]{media/venturi.png}
 
     \begin{formula}{Relative static pressure $p_{\rm rel}$}
         \includegraphics[width=\textwidth]{media/venturi_relative.png}
@@ -381,12 +393,11 @@
 \vfill
 \columnbreak
 \begin{examplebox}{Venturi effect}
-    \begin{theorybox}{Measurament points}
-        \includegraphics[width=\textwidth]{media/venturi_points.png}
-    \end{theorybox}
-        \begin{theorybox}{Measurament shear flow}
-        \includegraphics[width=\textwidth]{media/venturi_flow.png}
-    \end{theorybox}
+    \textbf{Measurament points}\\[1ex]
+    \includegraphics[width=\textwidth]{media/venturi_points.png}
+
+    \textbf{Measurament shear flow}\\[1ex]
+    \includegraphics[width=\textwidth]{media/venturi_flow.png}
 \end{examplebox}
 
 \subsection{Contraction coefficient}
@@ -418,36 +429,101 @@
 \subsection{Extended Bernoulli equation}
 \begin{formula}{Extension of the Bernoulli equation}
     \vspace*{-0.4cm}
-    \begin{equation}
-        \dfrac{p_1}{\rho} + \dfrac{v_1^2}{2} + gz_1 + e_A = \dfrac{p_2}{\rho} + \dfrac{v_2^2}{2} + gz_2 + e_V \left[\frac{J}{kg}\right]
-    \end{equation}
+    \begin{align}
+        &\dfrac{p_1}{\rho} + \dfrac{v_1^2}{2} + gz_1 + e_A = \dfrac{p_2}{\rho} + \dfrac{v_2^2}{2} + gz_2 + e_V \left[\frac{J}{kg}\right] \notag \\
+        &E_{p,1} + K_1 + U_1 + E_A = E_{p,2} + K_2 + U_2 + E_V \left[J\right]
+    \end{align}
 \end{formula}
 
 \subsubsection{Additional terms}
 \begin{theorybox}{Work term $e_A$}
+    \begin{equation}
+        e_A = \frac{p_A}{\rho} = gz_A = \frac{E_A}{m} = \frac{P_A}{\dot{m}} \left[\frac{J}{kg}\right]
+    \end{equation}
+    where:\\
+    \begin{minipage}[t]{0.48\linewidth}
+        $e_A$: work term [J/kg] \\
+        $p_A$: pressure diff [Pa] \\
+        $z_A$: height difference [m]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        $E_A$: energy difference [J] \\
+        $P_A$: power difference [W]
+    \end{minipage}\\[1.5ex]
+
     If energy is added to the fluid along a streamline from point 1 to point 2
     (eg. a pump), the total energy at point 2 becomes higher than at point 1.\\
 
     \textbf{Sign convention}\\
-    $e_A > 0$:work is done on the fluid\\
+    $\mathbf{e_A > 0}$: work is done on the fluid\\
     \textrightarrow\ energy is added to the fluid (eg. pump);\\
 
-    $e_A < 0$: work is done by the fluid\\
+    $\mathbf{e_A < 0}$: work is done by the fluid\\
     \textrightarrow\ energy is extracted from the fluid (eg. turbine).
+
+    \begin{formula}{Pump and turbine work $Y$}
+        In the pressure equation, the pressure $p_A$ increase (or decrease with a turbine) can
+        be read directly at the working term, hence:
+        \begin{equation}
+            e_A = \frac{E_A}{m} = Y = H\cdot g = \frac{p_A}{\rho} \left[\frac{J}{kg}\right]
+        \end{equation}
+
+        The hydraulic power $P_{\rm hyd}$ is then given by:
+        \begin{equation}
+            P_{\rm hyd} = \dot{m}\cdot Y = \dot{V}\cdot \rho\cdot Y = \rho\cdot \dot{V} \cdot g \cdot H \left[W\right]
+        \end{equation}
+    \end{formula}
 \end{theorybox}
 
-\begin{theorybox}{Loss term $e_V$}
+\begin{theorybox}{Specific loss term $e_V$}
+    \begin{equation}
+        e_V = \frac{p_V}{\rho} = gz_V = \frac{E_V}{m} = \frac{P_V}{\dot{m}} \left[\frac{J}{kg}\right]
+    \end{equation}
+    where:\\
+    \begin{minipage}[t]{0.48\linewidth}
+        $e_V$: loss term [J/kg] \\
+        $p_V$: pressure diff [Pa] \\
+        $z_V$: height loss [m]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        $E_V$: energy loss [J] \\
+        $P_V$: power loss [W]
+    \end{minipage}\\[1.5ex]
+
     The effects of a viscous fluid along a stramline from point 1 to point 2 are taken into
-    account by the loss term $e_V$.
+    account by $e_V$.
+
+    \begin{formula}{Pressure loss $\Delta p_V$}
+        \vspace*{-0.48cm}
+        \begin{equation}
+            \Delta p_V = e_V \cdot \rho = \frac{E_V\cdot \rho}{m} = g\cdot z_V \cdot \rho = \zeta\cdot \rho \cdot \frac{v^2}{2} \left[Pa\right]
+        \end{equation}
+    \end{formula}
 \end{theorybox}
-
-
 
 \vfill
-\phantom{}
-\newcolumn
+\columnbreak
 
-ciao
+\subsection{Loss behavior in turbolent flows}
+\begin{formula}{Zeta value}
+    \begin{equation}
+        \zeta = \frac{2\cdot \Delta p_V}{\rho\cdot v^2}
+    \end{equation}
+\end{formula}
+
+\begin{theorybox}{Total pressure loss}
+    If multiple losses occur in a system due to sequentially connected hydraulic components,
+    the ttal loss $\Delta p_{V,\rm tot}$ is given by the sum of the individual losses:
+    \vspace*{-0.3cm}
+    \begin{align}
+        \Delta p_{V,\rm tot} &= \sum_{i} \Delta p_{V,i} = \sum_{i} \zeta_i\cdot \rho\cdot \frac{v^2_i}{2} \left[Pa\right]\\
+        \Delta p_{V,\rm tot} &= \rho \cdot \frac{v^2}{2} \cdot \sum_{i} \zeta_i = \rho\cdot \frac{v^2}{2} \cdot \zeta_{\rm tot} \left[Pa\right]
+    \end{align} 
+\end{theorybox}
+
+
 
 \vfill
 \phantom{}

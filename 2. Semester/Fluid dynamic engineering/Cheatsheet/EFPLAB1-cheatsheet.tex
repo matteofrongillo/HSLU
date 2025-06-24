@@ -78,7 +78,7 @@
 \setlength{\columnsep}{1pt}
 
 % === CONTENT ===
-\section*{Preambule}
+\section{Preambule}
 \begin{theorybox}{Theory box}
     Lorem ipsum dolor sit amet.
 \end{theorybox}
@@ -170,15 +170,15 @@
 \subsection{Pressure and velocity}
 \begin{theorybox}{Pressure}
     \subsubsection{Total pressure}
-    In addition to the static pressure $p_{\rm stat}$, there is also the
+    Added to the static pressure $p_{\rm stat}$, there is also the
     dynamic pressure $p_{\rm dyn}$ and the total pressure $p_{\rm tot}$:
     \begin{equation}
-        p_{\rm tot} = p_{\rm stat} + p_{\rm dyn}
+        p_{\rm tot} = p_{\rm stat} + p_{\rm dyn} = \rho\left(gh + \frac{v^2}{2}\right)
     \end{equation}
 
     \subsubsection{Absolute pressure}
     Absolute pressure $p_{\rm abs}$ refers to the pressure in a vacuum
-    $p_{\rm vaacum}=0 Pa$ while relative pressure $p_{\rm rel}$ can refer to
+    $p_{\rm vaacum}=0$ Pa while relative pressure $p_{\rm rel}$ can refer to
     any chosen reference pressure $p_{\rm ref}$.
     \begin{equation}
         p_{\rm abs} = p_{\rm rel} - p_{\rm ref}
@@ -466,7 +466,7 @@
         In the pressure equation, the pressure $p_A$ increase (or decrease with a turbine) can
         be read directly at the working term, hence:
         \begin{equation}
-            e_A = \frac{E_A}{m} = Y = H\cdot g = \frac{p_A}{\rho} \left[\frac{J}{kg}\right]
+            e_w = Y = \frac{W_A}{\dot{m}} = \frac{E_A}{m} = H\cdot g = \frac{p_A}{\rho} \left[\frac{J}{kg}\right]
         \end{equation}
 
         The hydraulic power $P_{\rm hyd}$ is then given by:
@@ -523,12 +523,180 @@
     \end{align} 
 \end{theorybox}
 
+\begin{theorybox}{Pressure head (prevalenza)}
+    The pressure head $H$ is the (energy) height corresponding to its
+    specific potential energy $e_A$:
+    \begin{equation}
+        H = \frac{e_A}{g} = \frac{\Delta p_A}{\rho\cdot g} \left[m\right]
+    \end{equation}
+\end{theorybox}
 
+\begin{examplebox}{U-Tube manometer}
+    \includegraphics[width=\textwidth]{media/venturi_ex.png}
+    \begin{equation}
+        h = \frac{\rho \left(v_ 2^2 - v_1^2\right)}{2g\left(\rho_{\rm Hg} - \rho_w\right)}
+    \end{equation}
+\end{examplebox}
+
+\subsection{Efficiency}
+\begin{theorybox}{Efficiency factor $\eta$}
+    \begin{align}
+        \eta &= \frac{P_{\rm out}}{P_{\rm in}} = \frac{\rm Benefit}{\rm Effort}\\[2ex]
+        \eta_{\rm hyd} &= \frac{P_{\rm real}}{P_{\rm ideal}} = \frac{\dot{m} \cdot e_{\rm real}}{\dot{m} \cdot e_{\rm ideal}} = \frac{e_A - e_V}{e_A} \notag\\
+        \eta_{\rm hyd} &= \left(= \frac{\Delta e_k + \Delta e_{\rm pot} + \Delta e_p}{e_A}\right)
+    \end{align}
+
+    \subsubsection{Volumetric efficiency $\eta_{\rm vol}$}
+    \begin{equation}
+        \eta_{\rm vol} = \frac{\dot{m}_{\rm real}}{\dot{m}_{\rm ideal}} = \frac{\dot{V}_{\rm real}}{\dot{V}_{\rm ideal}}
+    \end{equation}
+\end{theorybox}
 
 \vfill
 \phantom{}
 \end{multicols}
 
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+\begin{theorybox}{Efficiency factor $\eta$}
+    \subsubsection{Efficiency of a pump-driven system}
+    \begin{equation}
+        \eta_{\rm pump} = \frac{P_{\rm hyd}}{P_{\rm mech}} = \frac{\dot{m} \cdot Y}{M\cdot \omega}
+    \end{equation}
+    
+    \begin{equation}
+        \eta_{\rm tot} = \underbrace{{\eta_{\rm el} \cdot \eta_{\rm mech} \cdot \eta_{\rm vol}}}_{\rm Pump} \cdot \eta_{\rm hyd}^{\rm system}
+    \end{equation}
+
+    In the case of an eletrically driven pump, the effective power transferred to the fluid is thus:
+    \begin{equation}
+        P_{\rm eff} = P_{\rm el} \cdot \eta_{\rm tot}
+    \end{equation}
+
+    \subsubsection{Efficiency of a turbine-driven system}
+    \begin{equation}
+        \eta_{\rm turbine} = \frac{P_{\rm mech}}{P_{\rm hyd}} = \eta_{\rm mech} \cdot \eta_{\rm hyd}
+    \end{equation}
+    
+    \begin{equation}
+        \eta_{\rm tot} = \eta_{\rm turbine} \cdot \eta_{\rm el} = \eta_{\rm mech} \cdot \eta_{\rm hyd} \cdot \eta_{\rm el}
+    \end{equation}
+\end{theorybox}
+
+\section{Pipe flows}
+\subsection{Flow characteristics}
+\begin{formula}{Reynolds number in pipes}
+    \begin{equation}
+        Re = \frac{v_m \cdot d}{\nu}
+    \end{equation}
+\end{formula}
+
+\begin{theorybox}{Pipe flows}
+    \subsubsection{Laminar pipe flow}
+    The pressure loss of a laminar pipe flow is described by the Hagen-Poiseuille:
+    \begin{align}
+        &v(r) = \frac{p_1 - p_2}{4\eta \cdot l}\left(R^2 - r^2\right)\\
+        &v_m = \frac{v_{\rm max}}{2} = \frac{p_1 - p_2}{8\eta \cdot l}\cdot R^2 \notag \\
+        &v_m = \frac{p_1 - p_2}{32\eta \cdot l}\cdot d^2 \notag \\
+        &\Delta p = 32\eta \cdot v_m\cdot \frac{l}{d^2}
+    \end{align}
+
+    \subsubsection{Turbolent flow / Pressure lost in pipelines}
+    Flow losses in pipeline systems consist of pressure losses in straight
+    or curved pipes as well as in fittings.
+    \begin{equation}
+        \Delta p = \lambda \cdot \frac{l}{d} \cdot \rho \cdot \frac{v_m^2}{2}
+    \end{equation}
+    where:
+    \\
+    \begin{minipage}[t]{0.45\linewidth}
+        $\lambda$: resistance coeff. [-] \\
+        $l$: pipe length [m]
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.55\linewidth}
+        $d$: pipe diameter [m] \\
+        $v_m$: mean flow velocity [m/s]
+    \end{minipage}
+    \\[2ex]
+    \textbf{Resistance coefficient} $\mathbf{\lambda}$
+    \begin{align}
+        &\lambda \cdot \frac{l}{d} \cdot \rho \cdot \frac{v_m^2}{2} = 32\eta \cdot v_m \cdot \frac{l}{d^2} \notag \\[1.5ex]
+        &\lambda = \frac{64\eta}{v_m \cdot d \cdot \rho} \notag = \frac{64}{Re}
+    \end{align}
+
+\end{theorybox}
+
+\vfill
+\columnbreak
+
+\subsection{Straight pipes}
+\subsubsection{Moody diagram}
+The resistance coefficient $\lambda$ depends on the flow characteristics
+(quantified by the Reynolds number $Re$) and the relative wall roughness.
+
+\includegraphics[width=\columnwidth]{media/Moody-Diagramm_en.png}
+
+\begin{theorybox}{Pipe fittings}
+    In pipeline systems, a portion of the pressure losses is caused by fittings:
+    \begin{equation}
+        \Delta p = \zeta \cdot \rho \cdot \frac{v_m^2}{2}
+    \end{equation}
+
+    \subsubsection{Elbows}
+    \begin{center}
+        \includegraphics[width=.8\textwidth]{media/Sekundärströmung-Rohrkrümmer.jpg}
+    \end{center}
+    \begin{align}
+        \Delta p = \zeta \cdot \rho \cdot\frac{v^2}{2}\\
+        \zeta = f_{Re} \cdot \zeta_u
+    \end{align}
+    where (given from individual diagrams):
+    \begin{itemize}
+        \item $\zeta_u$ is the geometric resistance coefficient;
+        \item $f_{Re}$ is the Reynolds correction factor.
+    \end{itemize}
+    
+    \subsubsection{Diffuser}
+    A diffuser is a section in a pipeline with a continuous increase in cross-sectional area.\\\\
+    The frictional losses $\Delta p_v$ in a diffuser are given by:
+    \begin{align}
+        \Delta p_v &= \frac{\zeta\rho v_1^2}{2}\\
+        p_2 - p_1 &= \Delta p_B - \Delta p_v
+    \end{align}
+    where $\Delta p_B$ is the Bernoulli pressure (frictionless).
+\end{theorybox}
+\vfill
+\phantom{}
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+\begin{theorybox}{Pipe fittings}
+    The diffuser efficiency $\eta_D$ according to Bernoulli:
+    \begin{equation}
+        \eta_D = \frac{p_2 - p_1}{\Delta p_B} = 1 - \zeta \frac{1}{1 - \left(\frac{A_1}{A_2}\right)^2}
+    \end{equation}
+
+    The various coefficients are stated as:
+    \begin{align}
+        &c_p = \frac{2\left(p_2 - p_1\right)}{\rho v_1^2} = \eta_D \cdot c_{p,id}\\
+        &c_{p,id} = 1 - \left(\frac{A_1}{A_2}\right)^2\\
+        &\zeta_1 = c_{p,id} - c_p
+    \end{align}
+
+    The opening angle of the diffuser can be calculated as:
+    \begin{align}
+        \tan(\theta) = \frac{d_2 - d_1}{2L}\\
+        \varphi = 2\theta
+    \end{align}
+    The optimal angle $\varphi_{\rm opt}$ is between 6-20 degrees.
+
+    \subsubsection{Inlets and outlets}
+\end{theorybox}
 
 
 
@@ -536,11 +704,7 @@
 
 
 
-
-
-
-
-
+\end{multicols}
 
 
 

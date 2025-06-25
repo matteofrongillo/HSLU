@@ -178,10 +178,10 @@
 
     \subsubsection{Absolute pressure}
     Absolute pressure $p_{\rm abs}$ refers to the pressure in a vacuum
-    $p_{\rm vaacum}=0$ Pa while relative pressure $p_{\rm rel}$ can refer to
+    $p_{\rm vaacum}=0$ Pa, while relative pressure $p_{\rm rel}$ can refer to
     any chosen reference pressure $p_{\rm ref}$.
     \begin{equation}
-        p_{\rm abs} = p_{\rm rel} - p_{\rm ref}
+        p_{\rm rel} = p_{\rm abs} - p_{\rm ref} \Longleftrightarrow p_{\rm abs} = p_{\rm rel} + p_{\rm ref} \geq 0
     \end{equation}
 
     \subsubsection{Velocity}
@@ -767,7 +767,7 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 
 \subsection{Control volume}
 \begin{examplebox}{Linear momentum calculation steps}
-    \begin{enumerate}[label=\Roman*:]
+    \begin{enumerate}[label=\Roman*]
         \item Step:\ \ Select a suitable \textbf{coordinate system} and draw it
             in a sketch of the flow problem;
         \item Step:\ \ Select \textbf{control volume} sensibly and draw it in the sketch.
@@ -855,10 +855,118 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 \end{theorybox}
 
 \subsection{Borda-Carnot diffuser}
+\begin{examplebox}{Borda-Carnot diffuser}
+    \includegraphics[width=\textwidth]{media/bordaCarnot.png}
 
+    The continuity equation (eq 12, 13, 14) can be applied for the pipe expansion.
 
+    \subsubsection{Pressure difference}
+    \vspace*{-0.3cm}
+    \begin{align}
+        \sum F_x &= p_1A_1 - p_2A_2 = \dot{m}\left(v_2-v_1\right) \\
+        p_1 - p_2 &= \rho \cdot v_2 \cdot \left(v_2 - v_1\right) = \rho \cdot v_2^2 \left(1-\frac{v_1}{v_2}\right) \notag \\
+        &= \rho \cdot v_2^2\cdot\left(1-\frac{A_1}{A_2}\right) = \rho\cdot v_1^2 \cdot \frac{A_1^2}{A_2^2}\cdot \left(1-\frac{A_2}{A_1}\right)\notag
+    \end{align}
 
+    \begin{equation}
+        p_1 - p_2 = \rho \cdot v_1^2\cdot \frac{A_1}{A_2}\cdot \left(\frac{A_1}{A_2}-1\right)
+    \end{equation}
 
+    \subsubsection{Maximum pressure}
+    The maximum possible pressure increase can be archieved with an
+    area ratio of $A_1 / A_2 = 0.5$. Thus:
+    \begin{equation} 
+        \left(p_2 - p_1\right)_{\rm max} = \frac{\rho\cdot v_1^2}{4}
+    \end{equation}
+\end{examplebox}
+\vfill
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+\begin{examplebox}{Borda-Carnot diffuser}
+    \subsubsection{Pressure loss}
+    \begin{equation}
+        \Delta p_V = \frac{\rho}{2}\left(v_1 - v_2\right)^2
+    \end{equation}
+
+    \subsubsection{Flow losses}
+    \vspace{-0.3cm}
+    \begin{align}
+        \frac{p_1}{\rho} + \frac{v_1^2}{2} = \frac{p_2}{\rho} + \frac{v_2^2}{2} + e_V \notag \\
+        e_V = \frac{v_1^2}{2} \cdot \left(\frac{A_1}{A_2}-1\right)^2 = \frac{v_1^2}{2}\cdot \zeta
+    \end{align}
+    Hence:
+    \begin{equation}
+        \zeta = \left(\frac{A_1}{A_2}-1\right)^2
+    \end{equation}
+\end{examplebox}
+
+\section{Angular momentum theorem}
+\begin{theorybox}{Angular momentum equation}
+    \subsection{Moment of inertia}
+    Considering the moment of inertia as a scalar quantity of a point mass
+    instead of a tensor:
+    \begin{equation}
+        J_{\rm PM} = r^2\cdot m = \int_m r^2\ dm \left[kg\ m^2\right]
+    \end{equation}
+
+    \subsubsection{Angular momentum $D$}
+    The angular momentum $D$ of a mass $m$ is rotating around a point $O$ with an
+    angular velocity $\omega$ is:
+    \begin{equation}
+        D = m\cdot v\cdot r = m\cdot r^2 \cdot \omega \left[Nm\cdot s\right]
+    \end{equation}
+
+    \subsection{Angular momentum flux balance}
+    The sum of all ext. torques on a CV is equal
+    to the difference of the in/out angular momentum flux:
+    \vspace*{-0.3cm}
+    \begin{align}
+        \vec{M}_{\rm res} = \sum_i \vec{M}_i = \dot{\vec{D}}_{\rm out} - \dot{\vec{D}}_{\rm in}\\
+        \dot{\vec{D}} = \vec{r} \times \dot{\vec{I}} = \vec{r} \times \left(\dot{m}\cdot \vec{v}\right)
+    \end{align}
+
+    \subsubsection{Angular momentum as vector}
+    As (eq. 75), the angular momentum is a vector.
+\end{theorybox}
+
+\subsection{Angular momentum application}
+\begin{examplebox}{Pelton turbine}
+    \includegraphics[width=\textwidth]{media/peltonlaufrad_drall_en.png}
+\end{examplebox}
+\vfill
+\columnbreak
+
+\begin{examplebox}{Pelton turbine}
+        \begin{enumerate}[label=\Roman*]
+        \item Step:\ \ xy-coordinates and CV
+        \item Step:\ \ Relevant forces $\vec{F}_P,\vec{F}_G,\vec{F}_F,\vec{F}_B$
+            \begin{equation}
+                M_{\rm res,z} = M_{B,z}
+            \end{equation}
+        \item Step:\ \ Angular momentum flux calculations:
+            \begin{equation}
+                \dot{D}_{{\rm out},z} - \dot{D}_{{\rm in},z} = M_{B,z} = -r\cdot \dot{m} \cdot v_1
+            \end{equation}
+    \end{enumerate}
+
+    \subsubsection{Delivered power}
+    \begin{align}
+        P&=\omega\cdot M_{B,z} = \underbrace{r\cdot \frac{v_1}{2}}_{r\cdot u}\cdot \underbrace{r\cdot\dot{m}\cdot v_1}_{M_{B,z}} \notag \\
+        &= r^2\cdot\dot{m}\cdot\frac{v_1^2}{2} = r^2\cdot \rho \cdot \frac{v_1^3}{2}\cdot A_{\rm jet}
+    \end{align}
+\end{examplebox}
+
+\begin{examplebox}{Lawn sprinkler}
+    \includegraphics[width=\textwidth]{media/rasensprenger_orig.png}
+    
+\end{examplebox}
+
+\subsection{Formulas cheat sheet}
+\includegraphics[width=\columnwidth]{media/angular_formulas.png}
 
 
 
@@ -867,11 +975,6 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 
 
 \end{multicols}
-
-
-
-
-
 
 
 

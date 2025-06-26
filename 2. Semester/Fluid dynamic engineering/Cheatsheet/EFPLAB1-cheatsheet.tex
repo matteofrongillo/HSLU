@@ -355,39 +355,35 @@
 \begin{multicols}{2}
 \setlength{\columnsep}{1pt}
 
-\subsection{Venturi effect experiment}
 \begin{examplebox}{Venturi effect}
-    \textbf{Height -- pressure difference at $\dot{V} = 6$ l/s}\\[1ex]
+    \subsection{Venturi effect experiment}
+    \subsubsection{Height -- pressure difference at $\dot{V} = 6$ l/s}
     \includegraphics[width=\textwidth]{media/venturi.png}
 
-    \begin{formula}{Relative static pressure $p_{\rm rel}$}
-        \includegraphics[width=\textwidth]{media/venturi_relative.png}
-        \vspace*{-0.3cm}
-        \begin{equation}
-            p_{\rm rel} = p_{\rm hydro} = \rho g \left(h-h_{\rm ref}\right)
-        \end{equation}
-    \end{formula}
-    \begin{formula}{Dynamic pressure $p_{\rm dyn}$}
-        \includegraphics[width=\textwidth]{media/venturi_dyn.png}
-        \vspace*{-0.3cm}
-        \begin{equation}
-            p_{\rm dyn} = \rho\dfrac{v^2}{2}
-        \end{equation}
-    \end{formula}
-    \begin{formula}{Dynamic pressure $v$}
-        \includegraphics[width=\textwidth]{media/venturi_velocity.png}
-        \vspace*{-0.3cm}
-        \begin{equation}
-            v=\dfrac{\dot{V}}{A}
-        \end{equation}
-    \end{formula}
-    \begin{formula}{Pressure difference $\Delta p$}
-        \includegraphics[width=\textwidth]{media/venturi_pressure.png}
-        \vspace*{-0.3cm}
-        \begin{equation}
-           \Delta p = p_{\rm NoFric} - p_{\rm real} \Longrightarrow p_V \sim v^2
-        \end{equation}
-    \end{formula}
+    \subsubsection{Relative static pressure $p_{\rm rel}$}
+    \includegraphics[width=\textwidth]{media/venturi_relative.png}
+    \vspace*{-0.3cm}
+    \begin{equation}
+        p_{\rm rel} = p_{\rm hydro} = \rho g \left(h-h_{\rm ref}\right)
+    \end{equation}
+    \subsubsection{Dynamic pressure $p_{\rm dyn}$}
+    \includegraphics[width=\textwidth]{media/venturi_dyn.png}
+    \vspace*{-0.3cm}
+    \begin{equation}
+        p_{\rm dyn} = \rho\dfrac{v^2}{2}
+    \end{equation}
+    \subsubsection{Dynamic pressure $v$}
+    \includegraphics[width=\textwidth]{media/venturi_velocity.png}
+    \vspace*{-0.3cm}
+    \begin{equation}
+        v=\dfrac{\dot{V}}{A}
+    \end{equation}
+    \subsubsection{Pressure difference $\Delta p$}
+    \includegraphics[width=\textwidth]{media/venturi_pressure.png}
+    \vspace*{-0.3cm}
+    \begin{equation}
+        \Delta p = p_{\rm NoFric} - p_{\rm real} \Longrightarrow p_V \sim v^2
+    \end{equation}
 \end{examplebox}
 
 \vfill
@@ -399,6 +395,12 @@
     \textbf{Measurament shear flow}\\[1ex]
     \includegraphics[width=\textwidth]{media/venturi_flow.png}
 \end{examplebox}
+
+\begin{formula}{Just to not forget}
+    \begin{equation}
+        A_{\rm pipe} = D^2 \pi = \frac{r^2\pi}{4} \Longleftrightarrow D = 2\sqrt{\frac{A}{\pi}}
+    \end{equation}
+\end{formula}
 
 \subsection{Contraction coefficient}
 \begin{theorybox}{Outflow contraction coefficient $\alpha$}
@@ -562,27 +564,25 @@
 
 \begin{theorybox}{Efficiency factor $\eta$}
     \subsubsection{Efficiency of a pump-driven system}
-    \begin{equation}
-        \eta_{\rm pump} = \frac{P_{\rm hyd}}{P_{\rm mech}} = \frac{\dot{m} \cdot Y}{M\cdot \omega}
-    \end{equation}
-    
-    \begin{equation}
+    \vspace{-0.3cm}
+    \begin{gather}
+        \eta_{\rm pump} = \frac{P_{\rm hyd}}{P_{\rm mech}} = \frac{\dot{m} \cdot Y}{M\cdot \omega}\\
         \eta_{\rm tot} = \underbrace{{\eta_{\rm el} \cdot \eta_{\rm mech} \cdot \eta_{\rm vol}}}_{\rm Pump} \cdot \eta_{\rm hyd}^{\rm system}
-    \end{equation}
+    \end{gather}
 
     In the case of an eletrically driven pump, the effective power transferred to the fluid is thus:
+    \vspace*{-0.15cm}
     \begin{equation}
-        P_{\rm eff} = P_{\rm el} \cdot \eta_{\rm tot}
+        P_{\rm eff} = P_{\rm el} \cdot \eta_{\rm tot} \Longleftrightarrow P_{\rm el} = \frac{P_{\rm pump}}{\eta_{\rm pump}}
+    \vspace*{-0.15cm}
     \end{equation}
 
     \subsubsection{Efficiency of a turbine-driven system}
-    \begin{equation}
-        \eta_{\rm turbine} = \frac{P_{\rm mech}}{P_{\rm hyd}} = \eta_{\rm mech} \cdot \eta_{\rm hyd}
-    \end{equation}
-    
-    \begin{equation}
+    \vspace{-0.3cm}
+    \begin{gather}
+        \eta_{\rm turbine} = \frac{P_{\rm mech}}{P_{\rm hyd}} = \eta_{\rm mech} \cdot \eta_{\rm hyd}\\
         \eta_{\rm tot} = \eta_{\rm turbine} \cdot \eta_{\rm el} = \eta_{\rm mech} \cdot \eta_{\rm hyd} \cdot \eta_{\rm el}
-    \end{equation}
+    \end{gather}
 \end{theorybox}
 
 \section{Pipe flows}
@@ -638,7 +638,7 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 \begin{theorybox}{Pipe fittings}
     In pipeline systems, a portion of the pressure losses is caused by fittings:
     \begin{equation}
-        \Delta p = \zeta \cdot \rho \cdot \frac{v_m^2}{2}
+        \Delta p = e_v \cdot \rho = \zeta \cdot \rho \cdot \frac{v_m^2}{2}
     \end{equation}
 
     \subsubsection{Elbows}
@@ -791,14 +791,13 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 \begin{multicols}{2}
 \setlength{\columnsep}{1pt}
 \begin{examplebox}{Linear momentum calculation steps}
-    \begin{center}
-        \includegraphics[width=0.8\textwidth]{media/Impuls_Kruemmer.png}
-    \end{center}
-
     \subsubsection{Plates}
     \begin{center}
         \includegraphics[width=0.8\textwidth]{media/platte_bewegt.png}
     \end{center}
+    \begin{equation}
+        F_{kx} = \dot{m}\cdot v = \rho A v^2
+    \end{equation}
 \end{examplebox}
 
 \subsection{Momentum on x-direction}
@@ -807,6 +806,7 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     pipe's walls:
     \begin{equation}
         \tau_w = \frac{dv}{dn}\cdot \eta
+        \vspace*{-0.3cm}
     \end{equation}
     where:
     \begin{itemize}
@@ -826,11 +826,6 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     \begin{center}
         \includegraphics[width=.85\textwidth]{media/pelton.png}
     \end{center}
-\end{theorybox}
-
-\vfill
-\columnbreak
-\begin{theorybox}{Pelton bucket}
     \subsubsection{Velocities}
     \begin{itemize}
         \item {\color{red} $v_1$: absolute velocity} [m/s]
@@ -842,17 +837,26 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
         w_1 = v_{\rm nozzle} - u &= \sqrt{\frac{2\Delta p}{\rho}} - D_{\rm wheel}\cdot \pi \cdot n_{\rm wheel} \\
         u &= \frac{v_{\rm nozzle}}{2}
     \end{align}
+\end{theorybox}
 
+\vfill
+\columnbreak
+\begin{theorybox}{Pelton bucket}
     \subsubsection{Rotational speed}
     \begin{equation}
         k_u = \frac{u}{v_{\rm nozzle}}
     \end{equation}
-
     \subsubsection{Hydraulic power}
     \begin{equation}
         P_{\rm hyd} \approx \rho\cdot g\cdot H\cdot \dot{V} \approx \Delta p\cdot \dot{V} \left[W\right]
     \end{equation}
 \end{theorybox}
+
+\begin{formula}{Laminar pipe velocity (section 5)}
+    \begin{equation}
+        v(r) = \frac{\Delta p\cdot R^2}{4\eta \cdot l}\left(1-\left(\frac{r}{R}\right)^2\right)
+    \end{equation}
+\end{formula}
 
 \subsection{Borda-Carnot diffuser}
 \begin{examplebox}{Borda-Carnot diffuser}
@@ -878,15 +882,6 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     \begin{equation} 
         \left(p_2 - p_1\right)_{\rm max} = \frac{\rho\cdot v_1^2}{4}
     \end{equation}
-\end{examplebox}
-\vfill
-\end{multicols}
-
-\newpage
-\begin{multicols}{2}
-\setlength{\columnsep}{1pt}
-
-\begin{examplebox}{Borda-Carnot diffuser}
     \subsubsection{Pressure loss in ideal diffusers}
     \begin{equation}
         \Delta p_{V,\rm id} = \frac{\rho}{2}\left(v_1 - v_2\right)^2 = \frac{\rho\cdot v_1^2}{2}\left(1-\frac{A_1^2}{A_2^2}\right)
@@ -896,7 +891,15 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     \begin{equation}
         \Delta p_V = \Delta p_{V,\rm id} - \zeta\frac{\rho \cdot v_m^2}{2} = \frac{\rho\cdot v_1^2}{2}\left(1-\frac{A_1^2}{A_2^2}-\zeta\right)
     \end{equation}
+\end{examplebox}
+\vfill
+\end{multicols}
 
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+\begin{examplebox}{Borda-Carnot diffuser}
     \subsubsection{Flow losses}
     \vspace{-0.5cm}
     \begin{align}
@@ -909,11 +912,17 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     \end{equation}
 \end{examplebox}
 
-\begin{formula}{Laminar pipe velocity (section 5)}
-    \begin{equation}
-        v(r) = \frac{\Delta p\cdot R^2}{4\eta \cdot l}\left(1-\left(\frac{r}{R}\right)^2\right)
-    \end{equation}
-\end{formula}
+\subsection{Analyze of momentum equation}
+\begin{theorybox}{Momentum equation}
+    for $A_2 > A_1 \Longrightarrow p_2 > p_1;\qquad 0 < \zeta < 1$\\[1ex]
+    for $A_2 = A_1 \Longrightarrow p_2 = p_1;\qquad \zeta = 0$\\[1ex]
+    for $A_2 \to \infty \Longrightarrow p_2 = p_1;\qquad \zeta = 1$\\[1ex]
+    for $A_2 = 2A_1 \Longrightarrow p_2 - p_1$ becomes maximal\\[3ex]
+    Assuming $r=A_2/A_1$, we know $\zeta = \left(1-r\right)^2:$\\[1ex]
+    if $r = 0.5 \Longrightarrow \zeta = 0.5$\\[1ex]
+    if $r = 0.25 \Longrightarrow \zeta = 0.5625$\\[1ex]
+    if $r = 0.75 \Longrightarrow \zeta = 0.0625$
+\end{theorybox}
 
 \section{Angular momentum theorem}
 \begin{theorybox}{Angular momentum equation}

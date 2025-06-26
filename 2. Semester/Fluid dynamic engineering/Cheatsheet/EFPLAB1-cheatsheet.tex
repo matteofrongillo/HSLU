@@ -887,13 +887,18 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 \setlength{\columnsep}{1pt}
 
 \begin{examplebox}{Borda-Carnot diffuser}
-    \subsubsection{Pressure loss}
+    \subsubsection{Pressure loss in ideal diffusers}
     \begin{equation}
-        \Delta p_V = \frac{\rho}{2}\left(v_1 - v_2\right)^2
+        \Delta p_{V,\rm id} = \frac{\rho}{2}\left(v_1 - v_2\right)^2 = \frac{\rho\cdot v_1^2}{2}\left(1-\frac{A_1^2}{A_2^2}\right)
+    \end{equation}
+
+    \subsubsection{Pressure loss in real diffusers}
+    \begin{equation}
+        \Delta p_V = \Delta p_{V,\rm id} - \zeta\frac{\rho \cdot v_m^2}{2} = \frac{\rho\cdot v_1^2}{2}\left(1-\frac{A_1^2}{A_2^2}-\zeta\right)
     \end{equation}
 
     \subsubsection{Flow losses}
-    \vspace{-0.3cm}
+    \vspace{-0.5cm}
     \begin{align}
         \frac{p_1}{\rho} + \frac{v_1^2}{2} = \frac{p_2}{\rho} + \frac{v_2^2}{2} + e_V \notag \\
         e_V = \frac{v_1^2}{2} \cdot \left(\frac{A_1}{A_2}-1\right)^2 = \frac{v_1^2}{2}\cdot \zeta
@@ -903,6 +908,12 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
         \zeta = \left(\frac{A_1}{A_2}-1\right)^2
     \end{equation}
 \end{examplebox}
+
+\begin{formula}{Laminar pipe velocity (section 5)}
+    \begin{equation}
+        v(r) = \frac{\Delta p\cdot R^2}{4\eta \cdot l}\left(1-\left(\frac{r}{R}\right)^2\right)
+    \end{equation}
+\end{formula}
 
 \section{Angular momentum theorem}
 \begin{theorybox}{Angular momentum equation}
@@ -932,15 +943,13 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     \subsubsection{Angular momentum as vector}
     As (eq. 75), the angular momentum is a vector.
 \end{theorybox}
-
-\subsection{Angular momentum application}
-\begin{examplebox}{Pelton turbine}
-    \includegraphics[width=\textwidth]{media/peltonlaufrad_drall_en.png}
-\end{examplebox}
 \vfill
 \columnbreak
 
+\subsection{Angular momentum application}
 \begin{examplebox}{Pelton turbine}
+        \includegraphics[width=\textwidth]{media/peltonlaufrad_drall_en.png}
+
         \begin{enumerate}[label=\Roman*]
         \item Step:\ \ xy-coordinates and CV
         \item Step:\ \ Relevant forces $\vec{F}_P,\vec{F}_G,\vec{F}_F,\vec{F}_B$
@@ -954,6 +963,7 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
     \end{enumerate}
 
     \subsubsection{Delivered power}
+    \vspace*{-0.3cm}
     \begin{align}
         P&=\omega\cdot M_{B,z} = \underbrace{r\cdot \frac{v_1}{2}}_{r\cdot u}\cdot \underbrace{r\cdot\dot{m}\cdot v_1}_{M_{B,z}} \notag \\
         &= r^2\cdot\dot{m}\cdot\frac{v_1^2}{2} = r^2\cdot \rho \cdot \frac{v_1^3}{2}\cdot A_{\rm jet}
@@ -962,21 +972,26 @@ The resistance coefficient $\lambda$ depends on the flow characteristics
 
 \begin{examplebox}{Lawn sprinkler}
     \includegraphics[width=\textwidth]{media/rasensprenger_orig.png}
-    
+    \subsubsection{Tangential (flat) jet exit}
+    \vspace*{-0.3cm}
+    \begin{gather}
+        \dot{\vec{D}}_{{\rm out},z} - \dot{\vec{D}}_{{\rm in},z} = M_{B,z} \notag \\
+        \dot{\vec{D}}_{{\rm out},z} = -2r\cdot \dot{m}\cdot v_1 = -2r\cdot \dot{m}\cdot \left(w_u - u\right)\\
+        \dot{\vec{D}}_{{\rm in},z} = 0
+    \end{gather}
+
+    \subsubsection{Deflection $\alpha$ in plane, tilt $\beta$ out of plane}
+    \vspace*{-0.3cm}
+    \begin{gather}
+        w_{xy} = \cos\beta w_1, \quad w_z = \sin\beta w_1 \\
+        w_u = \cos\alpha w_{xy} = \cos\alpha\cos\beta w_1 \quad v_u = w_u - u
+    \end{gather}
 \end{examplebox}
-
-\subsection{Formulas cheat sheet}
-\includegraphics[width=\columnwidth]{media/angular_formulas.png}
-
-
-
-
-
-
-
 \end{multicols}
 
-
+\newpage
+\thispagestyle{empty}
+\includegraphics[width=\textwidth]{media/angular_formulas.png}
 
 
 

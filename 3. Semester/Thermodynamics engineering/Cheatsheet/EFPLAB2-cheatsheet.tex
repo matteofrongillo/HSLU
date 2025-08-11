@@ -1,0 +1,108 @@
+\documentclass{article}
+
+\usepackage{Engineering}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{etoolbox}
+\usepackage{tabularx}
+
+% === METADATA ===
+\pdftitle{EFPLab2 Cheatsheet}
+
+% === HEADER/FOOTER ===
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Matteo Frongillo}
+\chead{\nouppercase{\leftmark}}
+\rhead{\thepage}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+% === CUSTOM BOX COMMANDS ===
+\definecolor{BoxBG}{HTML}{F0F8FF}
+\definecolor{BoxBorder}{HTML}{3B83BD}
+
+\newtcolorbox{theorybox}[1]{
+  colback=BoxBG,
+  colframe=BoxBorder,
+  fonttitle=\bfseries,
+  left=1mm,right=1mm,top=1mm,bottom=1mm,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  title={\begingroup\intheoryboxtitletrue #1\endgroup\intheoryboxtitlefalse}
+}
+
+\newtcolorbox{examplebox}[1]{
+  colback=gray!10!white,
+  colframe=gray!80!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  left=1mm,right=1mm,top=1mm,bottom=1mm,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  title={#1}
+}
+
+\newtcolorbox{formula}[1]{
+  colback=red!10!white,
+  colframe=red!90!black!75,
+  fonttitle=\bfseries,
+  left=1mm,right=1mm,top=1mm,bottom=1mm,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  title={#1}
+}
+
+% === SECTION TITLE FORMATTING ===
+\newif\ifintheoryboxtitle
+\intheoryboxtitlefalse
+
+\titleformat{\section}
+  {\ifintheoryboxtitle\color{white}\else\color{BoxBorder}\fi\Large\bfseries}
+  {\thesection}{0.5em}{}
+
+\titleformat{\subsection}
+  {\ifintheoryboxtitle\color{white}\else\color{BoxBorder}\fi\bfseries}
+  {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\ifintheoryboxtitle\color{white}\else\color{BoxBorder}\fi\small\bfseries}
+  {\thesubsubsection}{0.5em}{}
+
+% === DOCUMENT ===
+\begin{document}
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+% === CONTENT ===
+\section{Preambule}
+\begin{theorybox}{Theory box}
+    Lorem ipsum dolor sit amet.
+\end{theorybox}
+
+\begin{formula}{Formula box}
+    Lorem ipsum dolor sit amet.
+\end{formula}
+
+\begin{examplebox}{Lab/examples box}
+    Lorem ipsum dolor sit amet.
+\end{examplebox}
+
+\section{Left side}
+
+\vfill
+\phantom{}
+\columnbreak
+
+\section{Right side}
+
+
+\vfill
+\phantom{}
+\end{multicols}
+
+
+\end{document}

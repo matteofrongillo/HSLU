@@ -3,6 +3,12 @@
 \usepackage{Engineering}
 \pdftitle{Materials Lab}
 
+% === GLOSSARY ===
+\acsetup{
+    list/display = all,
+}
+\input{glossary.tex}
+
 % === TEXT ===
 \title{\textbf{Materials Lab \\ HSLU, Semester 3}}
 \author{Matteo Frongillo}
@@ -15,7 +21,7 @@
 \hfill
 \section*{Exam}
 10 pages individual summary, printed/written on paper (pictures allowed). Calculator, ruler, electrochemical series.
-\pagebreak
+\newpage
 
 \part{Physical metallurgy}
 \section{Material classes, structural models, basic concepts}
@@ -56,13 +62,14 @@ In general, metals have:
 \end{itemize}
 
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{media/fccbcchcp.png}
+  \includegraphics[width=0.71\textwidth]{media/fccbcchcp.png}
 \end{center}
 
 \begin{minipage}[t]{0.33\textwidth}
   \pph{FCC (Face-centered cubic)}
   \begin{itemize}
-    \item Packing efficiency: 74\%
+    \item Packing efficiency:\\[0.1cm]
+      $\phi = \dfrac{\pi}{\sqrt{18}} \approx 74\%$
     \item Has many slip systems (12)
     \item Closest packed direction
   \end{itemize}
@@ -70,7 +77,8 @@ In general, metals have:
 \begin{minipage}[t]{0.33\textwidth}
   \pph{BCC (Body-centered cubic)}
   \begin{itemize}
-    \item Packing efficiency: 68\%
+    \item Packing efficiency:\\[0.1cm]
+      $\phi = \dfrac{\sqrt{3\pi}}{8} \approx 68\%$
     \item Has many slip systems (6)
     \item Not closest packed direction
     \item Cottrell atmosphere
@@ -80,13 +88,14 @@ In general, metals have:
   \pph{HCP (Hexagonal close-packed)}
   \vspace*{-0.45cm}
   \begin{itemize}
-    \item Packing efficiency: 74\%
+    \item Packing efficiency:\\[0.1cm]
+      $\phi = \dfrac{\pi}{\sqrt{18}} \approx 74\%$
     \item Very few slip systems (3)
     \item Closest packed direction
   \end{itemize}
 \end{minipage}
 
-\figbox{$\text{Packing efficiency} = \dfrac{\text{Volume occupied by atoms in unit cell}}{\text{Total volume of unit cell}} \cdot 100\%$}
+\figbox{$\text{Packing efficiency}\, \left(\phi\right) = \dfrac{\text{Volume occupied by atoms in unit cell}}{\text{Total volume of unit cell}}$}
 \newpage
 
 \subsection{Structural model of ceramics}
@@ -373,13 +382,277 @@ An alloy is a metallic material of at least 2 types of atoms:
   \end{itemize}
 \end{itemize}
 
-\newpage
 \section{Most important metal structures and crystal lattice defects}
+\subsection{Lattice defects}
+Lattice defects are irregularities in the crystal structure:
+\begin{itemize}
+  \item \textbf{0-dimensional defects} (point defects)
+  \item \textbf{1-dimensional defects} (line defects)
+  \item \textbf{2-dimensional defects} (surface defects)
+  \item \textbf{3-dimensional defects} (volume defects)
+\end{itemize}
+
+\subsubsection{0-dimensional defect}
+0-dimensional defects include vacancies (missing atoms) and impurity atoms (foreign atoms in the lattice).
+
+The approximate atomic size is 0.1nm.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{media/lattice_0d.png}
+  \caption*{Point defects: vacancy, interstitial atom, substitutional atom}
+\end{figure*}
+
+\newpage
+\subsubsection{1-dimensional defect}
+1-dimensional defects are dislocations (line defects) in the crystal structure.
+
+Edge dislocations insert an extra half-plane of atoms in the crystal,
+distorting the nearby planes of atoms.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{media/lattice_1d.png}
+  \caption*{Line defects: edge dislocation, screw dislocation}
+\end{figure*}
+
+\subsubsection{2-dimensional defect}
+2-dimensional defects are grain boundaries (surface defects) in polycrystalline materials:
+\begin{itemize}
+  \item Crystal growth starts at multiple locations within the molten metal.
+  \item Finally, the growing grains merge to form the microstructure of the solid metal.
+\end{itemize}
+
+The approximate atomic size is 10 to 100 $\mu$m.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{media/lattice_2d.png}
+  \caption*{Crystallization from a melt:\\(1) homogeneous melt, (2) nucleation of crystals, (3) crystal growth surrounded by residual melt, (4) fully solidified polycrystalline structure with grain boundaries}
+\end{figure*}
+
+\subsubsection{3-dimensional defect}
+3-dimensional defects are precipitates, inclusions, voids, cracks (volume defects) in the crystal structure.
+
+The size is very small (nanometers)
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.55\textwidth]{media/lattice_3d.png}
+  \caption*{Coherent Ni$_3$Al precipitates (white) in a Ni solid solution crystal (black)}
+\end{figure*}
+
+\newpage
+\begin{wrapfigure}{l}{0.55\textwidth}
+  \section{Elastic and plastic deformation}
+  \subsection{Elastic deformation}
+  \subsubsection{Atomic energy-distance model}
+  The atomic energy-distance model describes the interaction between two atoms.
+
+  The coefficient of thermal expansion $\alpha$ is inversely proportional to:
+  \begin{itemize}
+    \item Young's modulus $E$ (in case of springs, the force)
+    \item Bonding energy
+    \item Melting temperature
+  \end{itemize}
+\end{wrapfigure}
+
+\phantom{}
+
+\begin{figure*}[ht!]
+  \begin{flushright}
+    \includegraphics[width=0.4\textwidth]{media/atomic_energy_distance.png}
+  \end{flushright}
+\end{figure*}
+\wrapfill
+
+\vspace*{-8.6cm}
+
+\subsection{Elastic constants of isotropic materials}
+\subsubsection{Elastic stress, strain, and Young's modulus}
+Letting the load be unidirectional and in x-direction, then:
+\figbox{$\varepsilon_x = \dfrac{1}{E}\cdot \sigma_x\ \Longleftrightarrow\ \sigma_x = E \cdot \varepsilon_x$}
+
+\subsubsection{Poisson's ratio $\nu$}
+When a material is stretched in one direction (x-direction), it tends to contract in the other two directions (y- and z-directions).
+
+The ratio of the transverse strain to the axial strain is called Poisson's ratio:
+\figbox{$\nu = -\dfrac{\varepsilon_y}{\varepsilon_x} = -\dfrac{\varepsilon_z}{\varepsilon_x}$}
+
+\subsubsection{Relationship between the 3 isotropic elastic constants $G$}
+For isotropic materials, the following relationships hold:
+\figbox{$G = \dfrac{E}{2(1+\nu)} = \dfrac{\sigma_x}{2\varepsilon_x(1+\nu)}$}
+
+\subsection{Plastic deformation in metals}
+The plastic deformation has as characteristics to be permanent and non-reversible.
+
+\subsubsection{At room temperature}
+\begin{itemize}
+  \item Dislocations move on densely packed slip planes in densely packed directions
+  \item Smaller slip distances require less external force or energy
+\end{itemize}
+
+\underline{Note}: There are exceptions. For example, metals with relatively low stacking
+fault energy show:
+\begin{itemize}
+  \item Twin formation (e.g. nitinol)
+  \item Partial dislocations pairs with stacking faults in between (e.g. Ni, Cu)
+\end{itemize}
+
+\subsubsection{At high temperatures}
+The metal creeps, leading to diffusion of atoms, especially at grain boundaries.
+
+\newpage
+\subsection{Dislocation Slip Model}
+The dislocation slip model describes the plastic deformation of metals by dislocation motion.
+
+\subsubsection{Simplified model}
+The simplified dislocation slip model is sufficient for practical understanding of plastic deformation:
+\begin{itemize}
+  \item Inserted half-plane, the end of which forms the dislocation line
+  \item Dislocation moves on densely packed slip planes
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{media/simplified_dislocation_slip_model.png}
+  \caption*{Edge dislocation motion under shear stress}
+\end{figure*}
+
+\subsection{Slip systems}
+\subsubsection{Slip systems in FCC metals (Miller indices)}
+FCC metals have 12 close-packed slip systems, making them soft and highly ductile (e.g. Au, Ag, Cu, Al, $\alpha$-Fe)
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{media/FBB_miller.png}
+\end{figure*}
+
+\subsubsection{Slip systems in HCP metals (Miller indices)}
+HCP metals are closely packed but deform on only one slip plane with 3 slip systems, resulting in limited ductility
+(e.g. Ti, Zn, Mg). 
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.35\textwidth]{media/HCP_miller.png}
+\end{figure*}
+
+\newpage
+\subsubsection{Slip systems in BCC metals (Miller indices)}
+BCC metals have 48 slip systems but are less closely packed, leading to higher strength
+and lower ductility (e.g. $\alpha$-Fe, Cr, W, Mo, Ta, Nb)
+
+\begin{minipage}[t]{0.6\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{media/BCC_miller_major.png}
+  \textbf{12 major slip systems:} 6 $\left\{110\right\}$ slip planes\\
+  \textbf{2 slip directions:} $1/2 \langle 111 \rangle$ each
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{media/BCC_miller_minor.png}
+  \textbf{36 minor slip systems:}\\
+  12x $1/2 \langle111\rangle \left\{112\right\}$
+
+  24x $1/2 \langle111\rangle \left\{123\right\}$
+\end{minipage}
+
+\begin{wrapfigure}{r}{0.2\textwidth}
+  \centering
+  \includegraphics[width=0.5\linewidth]{media/schmids_law.png}
+\end{wrapfigure}
+
+\phantom{}
+
+\subsection{Schmid's law of critical resolved shear stress}
+The Schmid's law states that slip begins in a crystalline material when the resolved shear
+stress on a slip system reaches a critical value.
+\begin{itemize}
+  \item PLastic deformation occurs only on closely packed slip planes where the applied
+    shear stress exceeds a critical value
+  \item Under uniaxial loading, the maximum shear stress acts on slip planes inclined
+    at 45$^\circ$ to the load axis
+\end{itemize}
+\wrapfill
+
+\vspace*{-3cm}
+
+\subsection{Correlation between metals crystal structure and ductility}
+
+\renewcommand{\arraystretch}{1.3} % spacing
+\begin{tabularx}{\textwidth}{|c|X|l|X|X|}
+\hline
+\textbf{Metal} & \textbf{Ductility} & \textbf{Packing structure} & \textbf{Slip systems} & \textbf{Slip system orientation} \\
+\hline
+\textbf{FCC} &
+Highest ductility among metals &
+Closest-packed (74\%) &
+4 slip planes $\rightarrow$ 12 slip systems &
+Very high probability of favorable orientation (Schmid's law) \\
+\hline
+\textbf{BCC} &
+Lower ductility than FCC, but still generally good &
+Less closely packed (68\%) &
+Many slip planes and slip systems &
+Strength often higher than FCC metals \\
+\hline
+\textbf{HCP} &
+Limited ductility under normal conditions &
+Closest-packed (74\%) &
+Only 1 slip plane $\rightarrow$ 3 slip systems &
+Low probability of favorable orientation ($-45^\circ$ to load axis) \\
+\hline
+\end{tabularx}
+
+\newpage
+\subsection{Particulatiries in BCC metals}
+\subsubsection{Cottrell atmospheres and Dislocation pinning}
+\begin{itemize}
+  \item In $\alpha-$iron with a BCC structure (ferrite), the octahedral sites for interstitial atoms such as carbon or nitrogen are much smaller than in $\gamma-$iron with an FCC structure (austenite)
+  \item As a result, carbon atoms in ferrite preferentially diffuse into the distortion fields near dislocation lines, where more space is available, forming so-called \textbf{Cottrell atmospheres}
+  \item {\color{red}These atmospheres are responsible for the pronounced upper yield point (R$_\text{eH}$) observed in tensile tests of many BCC metals, as well as for the brittle fracture behavior at low temperature in impact tests}
+  \item During plastic deformation, dislocations must first break free from the Cottrell atmosphere. This process is especially difficult at low temperatures or high strain rates, leading to strong dislocation pinning
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{media/cottrell_atmospheres.png}
+  \caption*\\\vspace*{-0.25cm}{Carbon atoms occupy small octahedral sites (left), preferentially diffuse to dislocation regions (center), which forms Cottrell atmospheres that pin dislocations (right)}
+\end{figure*}
+
+\section{Strengthening mechanisms}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 \newpage
-\include{appendix.tex}
+\appendix
+\printacronyms[name=Glossary, heading=section]
 
 \end{document}

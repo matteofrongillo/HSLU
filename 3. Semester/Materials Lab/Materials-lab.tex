@@ -9,6 +9,10 @@
 }
 \input{glossary.tex}
 
+% === NOMENCLATURE ===
+\makenomenclature
+\renewcommand{\nomname}{}
+
 % === TEXT ===
 \title{\textbf{Materials Lab \\ HSLU, Semester 3}}
 \author{Matteo Frongillo}
@@ -618,27 +622,349 @@ Low probability of favorable orientation ($-45^\circ$ to load axis) \\
 \end{figure*}
 
 \section{Strengthening mechanisms}
+\subsubsection{Metals mechanisms}
+Lattice defects act as deliberate obstacles that impede the motion of dislocations.
+
+\begin{tabularx}{\textwidth}{|c|p{6.5cm}|X|p{3cm}|}
+\hline \textbf{Dim} & \textbf{Lattice Defect} & \textbf{Strengthening Mechanism} & \textbf{Increase in 0.2\% Yield Strength} \\
+\hline 0-D & \textbf{Substitution / Interstitial atoms} with concentration of $c$ in the solid solution crystal & Solid solution hardening & $\Delta \mathrm{R}_{\mathrm{p} 0.2} \sim \mathrm{c}^{1 / 2}$ \\
+\hline 1-D & \textbf{Dislocations} (dislocation density $N$) & Strain (cold-work) hardening & $\Delta \mathrm{R}_{\mathrm{p} 0.2} \sim \mathrm{~N}^{1 / 2}$ \\
+\hline 2-D & \textbf{Grain boundaries} defining an average grain size of $d$ & Grain boundary hardening\hfill {\color{red}strength and ductility still good} & $\Delta \mathrm{R}_{\mathrm{p} 0.2} \sim \mathrm{~d}^{-1 / 2}$ \\
+\hline 3-D & \textbf Coherent \textbf{precepitates} with a size of $D$ (also: semi-coherent and incoherent precipitates and dispersion particles) & Precipitation hardening & $\Delta \mathrm{R}_{\mathrm{p} 0.2} \sim \mathrm{D}^{1 / 2}$ \\
+\hline
+\end{tabularx}
+
+\subsubsection{0-dimensional: Solid-solution hardening}
+\begin{itemize}
+  \item Impurity atoms in a solid solution create lattice distortion fields that impede dislocation motion
+  \item Interstitial atmos cause stronger lattice distortions than substitutional atoms, leading to a greater strengthening effect
+  \item A larger atomic radius mismatch and higher impurity concentration both increase the strengthening effect
+  \item \textbf{Result}: increased strength but reduced ductility
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.4\textwidth]{media/0d_strength.png}
+  \caption*{Edge dislocation in a crystal lattice with a substitutional impurity atom}
+\end{figure*}
+
+\newpage
+SSH application fields:
+\begin{itemize}
+  \item Al-Mn and Al-Mg alloys (5000 and 3000) for:
+  \begin{itemize}
+    \item Automotive sheet metal
+    \item Airplane outer skin
+    \item Beverage cans
+    \item Sandwich honeycomb structures in lightweight structures
+  \end{itemize}
+  \item Structural and stainless steels
+  \item Gold jewerly (Au with Ag, Cu, Ni, Pt, Pd, \dots)
+\end{itemize}
+
+\section{TODO}
+
+\newpage
+\part{Strength and Ductility}
+\section{Properties of material}
+\begin{center}
+  \begin{tabular}{|c|p{5cm}|p{7cm}|}
+    \hline
+    \textbf{Property} & \textbf{Context} & \textbf{Characteristic values}\\
+    \hline
+    Mechanical & Withstanding static or dynamic loads/forces/stress & Young's modulus, static strength, hardness, fatigue strength, creep strength, toughness, ductility\\
+    \hline
+    Technological & Material processing & Formability, welding suitability, castability, hardenability\\
+    \hline
+    Physical & Various functional properties & Electrical and thermal conductivity, transparency, magnetizability, refraction index, \ldots\\
+    \hline
+    Chemical & Resistance to normal or harsh environments & Resistance against corrsion, UV light or oxidizing agents, food safety, biocompatibility, toxicity\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Failure hypotesis and Material testing methods (examples)}
+\begin{center}
+  \begin{tabular}{|p{7cm}|l|}
+    \hline
+    \textbf{Failure hypothesis} & \textbf{Material testing methods}\\
+    \hline
+    Failure of metals due the plastic deformation (dislocation slip) under static stress & Tensile test, compression test, bending test, torsion test\\
+    \hline
+    Failure due the crack formation and crack growth under dynamic oscillating stress & Fatigue tests (HCG, LCF)\\
+    \hline
+    Failure due the crack growth under sudden impact (crack growth under constant load) & Impact notch toughness test (Fractures mechanics)\\
+    \hline
+    Failure due the plastic deformation at high temperatures (diffusion, especially along the grain boundaries) under static stress & Creep test (or relaxation test)\\
+    \hline
+  \end{tabular}
+\end{center}
 
 
+\section{Tensile test}
+\subsection{Engineering Stress and Stress conditions}
+\subsubsection{Engineering stress $\sigma$}
+Engineering stress is the force $F$ acting on the original cross-sectional
+area $S_0$:
+\figbox{$\dm \sigma = \frac{F}{S_0}$}
 
+\subsubsection{Normal stress}
+The normal stress, similar to $\sigma$, is the force $F_N$ that acts
+perpendicularly to $S_0$:
+\figbox{$\dm \sigma = \frac{F_N}{S_0}$}
 
+\newpage
+\subsubsection{Shear stress}
+Shear stress is the force $F_Q$ parallel to the original surface $S_0$:
+\figbox{$\dm \tau = \frac{F_Q}{S_0}$}
 
+\subsubsection{Engineering strain $\varepsilon$}
+Engineering strain is the ratio of the change in length to the
+original length of a material under load:
+\figbox{$\dm \varepsilon = \frac{\Delta L}{L_0} = \frac{L_1 - L_0}{L_0}$}
 
+\subsubsection{Hooke's law}
+Within the elastic limit of a material, the deformation (strain) is directly proportional
+to the applied stress:
+\figbox{$\dm \sigma = E\cdot \varepsilon$}
 
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/tensile_test.png}
+  \caption*{Tensile test with of a BCC metal without the upper yield point R$_\text{eH}$}
+\end{figure*}
 
+\subsection{Elastic characteristics of some metals}
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Metal & Poisson's ratio $\nu$ & Young's modulus $E$ [N/mm$^2$] & Shear modulus $G$ [N/mm$^2$]\\
+    \hline
+    Mg & 0.28 & 44'300 & 17'200\\
+    \hline
+    Al & 0.34 & 70'600 & 26'500\\
+    \hline
+    Ti & 0.36 & 111'800 & 40'200\\
+    \hline
+    $\alpha-$Fe & 0.25 & 206'000 & 82'400\\
+    \hline
+    Steel & 0.28 & 206'000 & 80'440\\
+    \hline
+    Cu & 0.35 & 122'530 & 45'130\\
+    \hline
+    Brass & 0.41 & 103'000 & 36'490\\
+    \hline
+    Zn & 0.25 & 130'010 & 41'200\\
+    \hline
+  \end{tabular}
+\end{center}
 
+\newpage
+\subsection{Typical stress-strain behavior of metals}
+If the applied force is too big:
+\begin{itemize}
+  \item Starting of Dislocation slip
+  \item Plastic deformation
+\end{itemize}
 
+\subsubsection{Yield Strength}
+\begin{itemize}
+  \item Upper Yield point R$_\text{eH}$: ferritic structural steels (BCC)
+  \item 0.2\% Yield Stress R$_{\text{p}0.2}$: most other metals and alloy
+\end{itemize}
 
+\subsubsection{Graphical representation}
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/stress-strain_behavior.png}
+\end{figure*}
+\begin{minipage}[t]{.5\textwidth}
+  \centering
+  Without the maximum yield point:
+  \begin{itemize}
+    \item $\sigma_{\max} =$ R$_{\text{p0.2}}$ (0.2\% yield stress)
+  \end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{.5\textwidth}
+  \centering
+  With the maximum yield point:
+  \begin{itemize}
+    \item $\sigma_{\max} =$ R$_{\text{m}}$
+    \item Upper yield point R$_\text{eH}$
+  \end{itemize}
+\end{minipage}
 
+\subsection{Young's modulus and Characteristic Strength Values}
+\subsubsection{Young's modulus $E$}
+The Young's modulus $E$ is measured as the slope in the linear-elastic range:
+\figbox{$\dm E = \frac{\Delta \sigma}{\Delta \varepsilon}$ in [N/mm$^2$ ; (MPa)] or [kN/mm$^2$ ; (GPa)]}
 
+\subsubsection{Yield stress $R$}
+Yield stress $R$ is the stress, expressed in MPa, at which plastic deformation begins:
+\begin{itemize}
+  \item 0.2\% Yield stress $R_{\text{p}0.2}$ corresponds to the stress at a plastic strain of $\varepsilon_\mathrm{p} = 0.2\%$
+  \item Upper yield point R$_\text{eH}$ corresponds to the maximum stress observed at the onset of yielding, mainly in ferritic structural steels
+\end{itemize} 
 
+\subsubsection{Tensile strength R$_\text{m}$}
+It corresponds to the stress at the maximum of the stress-strain curve
 
+\newpage
+\subsubsection{Graphical representation}
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.5\textwidth]{media/stress-strain_graph.png}
+  \caption*{Note: representation not scaled; the elastic region is drawn much too flat}
+\end{figure*}
 
+\subsection{Characteristic Ductility values}
+\subsubsection{Fracture Strain $A$}
+Plastic strain at fracture is defined with respect to the initial specimen length $L_0$
+(e.g.: $ L_0 = 50$mm is reported as $A_{50\text{mm}}$)
 
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.7\textwidth]{media/plastic_strain_at_fracture.png}
+  \caption*{Plastic strain at fracture: $\dm A = \frac{L_1 - L_0}{L_0} = \varepsilon_{\text{p, fracture}}$}
+\end{figure*}
 
+\subsubsection{Uniform Strain $A_g$}
+$A_g$ corresponds to the plastic strain at maximum load before necking begins.
+It is very important for metal forming.
 
+\subsubsection{Contraction at fracture $Z$}
+It is the reduction of the cross-sectional area after fracture:
+\figbox{$\dm Z=\frac{\Delta S}{S_0}=\frac{\left(S_1 - S_0\right)}{S_0}$}
 
+\newpage
+\begin{wrapfigure}{r}{0.4\textwidth}
+  \centering
+  \includegraphics[width=.4\textwidth]{media/stress-strain_real-samples.png}
+\end{wrapfigure}
 
+\phantom{}
+
+\subsection{True Stress and True Strain}
+\subsubsection{True stress $\sigma*$}
+True stress is the force related to the \textbf{true} cross-section
+(which is constantly contracting):
+\figbox{$\dm \sigma^* = \sigma\left(1+\varepsilon\right)$}
+
+\subsubsection{Ture strain $\varepsilon*$}
+True strain is the change in length relative to the \textbf{true}
+length (which is constantly extending):
+\figbox{$\dm \varepsilon^* = \ln\left(1+\epsilon\right)$}
+\wrapfill
+
+\vspace*{-6cm}
+\subsection{Polymers Tensile test}
+\begin{itemize}
+  \item Characteristic values depend on test speed and temperature (0.125-500 mm/min).
+  \item Creep occurs already at room temperature: creep tests and isochronus stress-strain diagrams are really relevant
+  \item At high temperature and low strain rate: strength values and Young's modulus decrease, while characteristic strain values increase
+  \item Characteristic values differ from materials:
+  \begin{itemize}
+    \item Secant modulus $E$ (determinated between $\varepsilon =$ 0.05\% and 0.25\%)
+    \item Yield stress $\sigma_y$ and yield strain $\varepsilon_y$
+    \item Fracture stress $\sigma_b$ and fracture strain $\varepsilon_b$
+  \end{itemize}
+\end{itemize}
+
+\subsection{Summary of tensile test}
+\begin{itemize}
+  \item Stress-strain behavior is determined on a specimen (rod, round, flat). Standard: DIN EN EN ISO 6892
+  \item Force and elongation are measured and converted into stress $\sigma$ and strain $\varepsilon$
+  \item The resistance of a material to plastic deformation or fracture is referred to as its \textbf{strength}
+\end{itemize}
+
+From the stress-strain curve, the following characteristic values can be identified:
+\subsubsection{Characteristic stress values}
+\begin{itemize}
+  \item 0.2\% Yield Strength R$_\text{p0.2}$ (for ferritic structural steels: Upper Yield Point $R_\text{eH}$):
+    defines the onset of plastic deformation. This is the most important value for construction and design
+  \item Tensile strength R$_\mathrm{m}$: characterizes the resistance to fracture
+\end{itemize}
+
+\subsubsection{Characteristic strain values}
+\begin{itemize}
+  \item Fracture strain $A$
+  \item Uniform strain $A_g$
+  \item Contraction at fracture $Z$
+  \item $r-$ and $n-$values (relevant in metal forming) 
+\end{itemize}
+
+\subsubsection{Elastic range}
+\begin{itemize}
+  \item Young's modulus $E$ (Hooke's law, elastic slope)
+  \item Poisson's ratio $\nu$
+\end{itemize}
+
+\newpage
+\section{Other quasi-static mechanical tests}
+\subsection{Bending test}
+\subsubsection{Flexural strength (bend strength) $\sigma_b$}
+The bend strength is the peripheral edge stress $\sigma_b$ in the
+fracture point:
+\figbox{$\dm \sigma_b = \frac{3FL}{2bh^2} = \frac{3F(L-L_1)}{2bh^2}$}
+
+The Young's modulus $E$ is then calculated as:
+\figbox{$\dm E = \frac{L^3\cdot F}{4bh^3\cdot f}$}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/bending-test.png}
+\end{figure*}
+
+\subsection{Torsion test}
+\begin{itemize}
+  \item Less significant than tensile or bending tests
+  \item Peripheral edge shear stress $\tau_R$ at fracture = torsion strength $\tau_{R, B}$
+  \item A plastic shear strain at the peripheral edge of 0.4\% corresponds to a plastic strain of 0.2\% in tensile tests
+  \item The 0.4\% torsion strength $\tau_{R,0.4} > R_\text{p0.2}$ from tensile tests 
+  \item \fbox{$\tau_{R,0.4} \simeq 0.58\cdot R_\text{p0.2}$}
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.7\textwidth]{media/torsion-test.png}
+\end{figure*}
+
+\newpage
+\subsection{Creep and Relaxation Tests (High temperatures)}
+\begin{itemize}
+  \item Creep occurs under constant stress; relaxation occurs under constant strain
+  \item At room temperature, the static strength of metals is generally not time-dependent.
+    Exceptions include: pure aluminum, and very strong metal such as tin and lead
+  \item At elevated temperatures, strength becomes time-dependent and also influenced by test speed.
+    Under constant load, strain does not remain constant but changes with load and time
+  \item Materials with good creep resistance include ferritic and austenitic steels, cast steels, and nickel alloys.
+    These are used above 400$^\circ$C in applications such as steam boilers, steam turbines, chemical reactors, industrial furnaces, gas turbines, and aircraft engines
+  \item Creep and relaxation tests are essential for evaluating heat-resistant materials,
+    alongside tensile and fatigue tests at elevated temperatures. 
+\end{itemize}
+
+\subsubsection{Creep test}
+The creep test is easier to perform than the relaxation test, since it applies a constant
+load and the resulting strain is easily measurable.
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.5\textwidth]{media/creep-test.png}
+\end{figure*}
+
+\subsection{Isochronus $\sigma-\varepsilon-$Diagram for Polymers}
+\begin{itemize}
+  \item In creep tests, strain increases under constant stress (for many polymers this occurs even at room temperature)
+  \item Multiple creep curves can be combined into an isochronus $\sigma-\varepsilon-$diagram
+  \item For different temperatures, a separate diagram is created for each temperature
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.45\textwidth]{media/isochronus-diagram.png}
+\end{figure*}
+
+\figbox{$\dm E_c\left(\sigma, t_2, T\right) = \frac{\sigma_1}{\varepsilon\left(\sigma_1, t_2, T\right)}$}
 
 
 
@@ -654,5 +980,11 @@ Low probability of favorable orientation ($-45^\circ$ to load axis) \\
 \newpage
 \appendix
 \printacronyms[name=Glossary, heading=section]
+\newpage
+\include{nomenclature.tex}
+\section{Nomenclature}
+\vspace*{-1cm}
+% makeindex Materials-lab.nlo -s nomencl.ist -o Materials-lab.nls
+\printnomenclature
 
 \end{document}

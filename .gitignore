@@ -26,6 +26,11 @@
 *.gls
 *.ist
 
+# Nomenclatures
+*.ilg
+*.nlo
+*.nls
+
 # Lilypond
 tmp*.pdf
 

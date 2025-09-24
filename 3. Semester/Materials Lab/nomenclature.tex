@@ -1,0 +1,24 @@
+\renewcommand\nomgroup[1]{%
+  \item[\bfseries
+  \ifstrequal{#1}{M}{Elastic moduli}{%
+  \ifstrequal{#1}{S}{Strength measures}{%
+  \ifstrequal{#1}{D}{Ductility measures}{%
+  \ifstrequal{#1}{R}{Ratios}{}}}}%
+]}
+
+% Elastic moduli
+\nomenclature[M01]{$E$}{Young's modulus}
+\nomenclature[M02]{$G$}{Shear modulus}
+
+% Strength measures
+\nomenclature[S01]{$R_{\text{p}0.2}$}{0.2\% yield strength}
+\nomenclature[S02]{$R_\text{eH}$}{Upper yield point}
+\nomenclature[S03]{$R_\text{m}$}{Tensile strength}
+
+% Ductility measures
+\nomenclature[D01]{$A_\text{g}$}{Uniform strain}
+\nomenclature[D02]{$A$}{Fracture strain}
+\nomenclature[D03]{$A_n$}{Elongation measured with \ensuremath{\dm L_0 = n\sqrt{S_0}}}
+
+% Ratios
+\nomenclature[R01]{$\nu$}{Poisson's ratio}

@@ -1,83 +1,6 @@
 \documentclass{article}
 
-\usepackage[fleqn]{amsmath}
-\usepackage{amssymb}
-\usepackage{hyperref}
-\usepackage{url}
-\usepackage{graphicx}
-\usepackage{geometry}
-\usepackage{babel}
-\usepackage{enumitem}
-\usepackage{parskip}
-\usepackage{chemfig}
-\usepackage{pdfpages}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usepackage{fancybox}
-\usepackage{makecell}
-\usepackage{pgfplots}
-\usepackage{soul}
-\usepackage{ulem}
-\usepackage{wrapfig}
-\usepackage{subcaption}
-\usepackage[T1]{fontenc}
-\usepackage{esvect}
-\usetikzlibrary{arrows}
-\usetikzlibrary{decorations.pathreplacing}
-\pgfplotsset{compat=1.17}
-
-\geometry{
-    a4paper,
-    total={170mm, 257mm},
-    left=20mm,
-    top=20mm
-}
-
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=blue,
-    pdftitle={Basis of Sustainable Environmental Systems}
-}
-
-\newcommand{\figbox}[1]{ 
-    \begin{figure*}[ht!]        
-        \begin{center}            
-            \fbox{#1}        
-        \end{center}    
-    \end{figure*}
-}
-
-\newcommand{\wrapfill}{
-    \par
-    \ifnum \value{WF@wrappedlines} > 0
-        \addtocounter{WF@wrappedlines}{-1}%
-        \null\vspace{
-            \arabic{WF@wrappedlines}
-            \baselineskip
-        }
-        \WFclear
-    \fi
-    \phantom{}
-}
-
-\newcommand{\cfig}[1]{%
-  \begin{figure*}[ht!]%
-    \centering%
-    #1%
-  \end{figure*}%
-}
-
-\newcommand{\difference}{\,\backslash\,}
-\newcommand{\rem}{\underline{Remark}: }
-\newcommand{\nots}{\underline{Notation}: }
-\newcommand{\prf}{\underline{Proof}: }
-\newcommand{\exs}{\underline{Example}: }
-\newcommand{\defs}{\underline{Definition}: }
-\newcommand{\wrn}{\underline{Warning}: }
-\newcommand{\sht}{\ |\ }
-\newcommand{\pph}[1]{\paragraph{#1}\phantom{}\\}
-
+\usepackage{Engineering}
 
 % === TEXT ===
 \title{\textbf{Basis of Sustainable Environmental Systems \\ HSLU, Semester 3}}
@@ -190,6 +113,82 @@ What it is needed?
 Same as Wet Scrubber, but with water
 
 \subsection{Electrostatic precipitator (ESP)}
+
+\newpage
+\section{Biological separation}
+\subsection{Bioremediation}
+\begin{itemize}
+    \item Miicroorganisms degrade hazardous substances
+    \item Useful for oil spills, soil remediation
+\end{itemize}
+
+\subsection{Activated Sludge Process}
+\begin{itemize}
+    \item Aerobic digestion of organic matter
+    \item Common in sewage treatment
+    \item A parameter to monitor is the BOD (Biochemical Oxygen Demand) and COD (Chemical Oxygen Demand)
+    \item Nitrification and Denitrification
+\end{itemize}
+
+\subsection{Constructed Wetlands}
+\begin{itemize}
+    \item Mimics natural wetlands to treat wastewater
+    \item Sustainable and low-maintenance
+    \item Three types
+    \item It takes 1-4 weeks to treat the water
+\end{itemize}
+
+\part{Ecological sanitation}
+\dots
+
+\section{Some principles of Sanitation}
+
+\section{Objectives of ecological sanitation}
+\begin{itemize}
+    \item Provide affordable, hygenically safe, and desirable sanitary facilites
+    \item Reduce the health risks related to sanitation, contaminated water an waste
+    \item Prevent the pollution of surface and groundwater; precenti the degradation of soil fertility
+    \item Optimise the management of nutrients and water resources
+\end{itemize}
+
+\section{Principle of treatments and recycling}
+
+\section{Wastewater management}
+\subsection{Issues with current wastewater management (Linear End-of-Pipe Technology)}
+\subsubsection{Poor treatment or uncontrolled discharge}
+
+\subsubsection{High water use}
+
+\subsubsection{Costly systems}
+
+\subsubsection{Unequal service}
+
+\subsubsection{Resource loss}
+
+\subsubsection{Sewage sludge issues}
+
+\subsection{Benefits of Material Flow Cycle (Instead of Disposal)}
+\subsubsection{Better health}
+
+\subsubsection{Resource recovery}
+
+\subsubsection{Soil and crop benefits}
+
+\subsubsection{Resource efficiency}
+
+\subsubsection{Smarter systems}
+
+\subsubsection{Holistic approach}
+
+\section{Separation of substances}
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{media/separation_of_substances.png}
+\end{figure*}
+
+
+
+
 
 
 

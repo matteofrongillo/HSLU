@@ -1,24 +1,55 @@
+\setlength{\nomlabelwidth}{2cm} % width of the symbol column
+\renewcommand{\nomlabel}[1]{\makebox[\nomlabelwidth][l]{#1}}
+
+% vertical spacing between items
+\setlength{\nomitemsep}{0.5\baselineskip}
+
+% group titles
 \renewcommand\nomgroup[1]{%
   \item[\bfseries
-  \ifstrequal{#1}{M}{Elastic moduli}{%
-  \ifstrequal{#1}{S}{Strength measures}{%
-  \ifstrequal{#1}{D}{Ductility measures}{%
-  \ifstrequal{#1}{R}{Ratios}{}}}}%
-]}
-
-% Elastic moduli
-\nomenclature[M01]{$E$}{Young's modulus}
-\nomenclature[M02]{$G$}{Shear modulus}
-
-% Strength measures
-\nomenclature[S01]{$R_{\text{p}0.2}$}{0.2\% yield strength}
-\nomenclature[S02]{$R_\text{eH}$}{Upper yield point}
-\nomenclature[S03]{$R_\text{m}$}{Tensile strength}
+    \ifstrequal{#1}{M}{Elastic moduli}{%
+    \ifstrequal{#1}{S}{Strength measures}{%
+    \ifstrequal{#1}{D}{Ductility measures}{%
+    \ifstrequal{#1}{R}{Ratios}{%
+    \ifstrequal{#1}{T}{Transformations and Processes abbreviations}{}}}}}%
+  ]\addvspace{0.7\baselineskip}%
+}
 
 % Ductility measures
-\nomenclature[D01]{$A_\text{g}$}{Uniform strain}
-\nomenclature[D02]{$A$}{Fracture strain}
-\nomenclature[D03]{$A_n$}{Elongation measured with \ensuremath{\dm L_0 = n\sqrt{S_0}}}
+\nomenclature[D]{$A_\text{g}$}{Uniform strain}
+\nomenclature[D]{$A$}{Fracture strain}
+\nomenclature[D]{$A_n$}{Elongation measured with \ensuremath{\dm L_0 = n\sqrt{S_0}}}
+\nomenclature[D]{$Z$}{Contraction at fracture (elongation at break, in \%)}
+\nomenclature[D]{$KV$}{Notch impact energy, in J, indicator of toughness}
+
+% Elastic moduli
+\nomenclature[M]{$E$}{Young's modulus \textrightarrow\ 210 GPa for steel}
+\nomenclature[M]{$G$}{Shear modulus}
 
 % Ratios
-\nomenclature[R01]{$\nu$}{Poisson's ratio}
+\nomenclature[R]{$\nu$}{Poisson's ratio}
+\nomenclature[R]{PREN}{Pitting Resistance Equivalent Number = \%Cr + 3.3\%Mo + 16\%N}
+
+% Strength measures
+\nomenclature[S]{$R_{\text{p}0.2}$}{0.2\% yield strength}
+\nomenclature[S]{$R_\text{eH}$}{Upper yield point}
+\nomenclature[S]{$R_\text{m}$}{Tensile strength}
+\nomenclature[S]{HV}{Vickers hardness}
+
+% Transformation / Process abbreviations
+\nomenclature[T]{OBC}{Oxygen-Blown Converter}
+\nomenclature[T]{EF}{Electric Furnace}
+\nomenclature[T]{OHF}{Open Hearth Furnace}
+\nomenclature[T]{QT}{Quenching and Tempering}
+\nomenclature[T]{EKD}{Iron-Iron Carbide Phase Diagram}
+\nomenclature[T]{ZTU/CCT}{Continuous Cooling Transformation diagram}
+\nomenclature[T]{SHD}{Surface Hardening Depth}
+\nomenclature[T]{CHD}{Case Hardening Depth}
+\nomenclature[T]{NHD}{Nitriding Hardness Depth}
+\nomenclature[T]{PM}{Powder Metallurgy}
+\nomenclature[T]{ESR}{Electro Slag Remelting}
+\nomenclature[T]{VAR}{Vacuum Arc Remelting}
+\nomenclature[T]{Q+T}{Quenching and Tempering}
+\nomenclature[T]{HSS}{High-Speed Steel}
+\nomenclature[T]{ETG}{Name of the steel grade according to the Swiss standard}
+\nomenclature[T]{DRI}{Direct Reduced Iron}

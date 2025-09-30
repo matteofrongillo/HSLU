@@ -11,7 +11,17 @@
 
 % === NOMENCLATURE ===
 \makenomenclature
-\renewcommand{\nomname}{}
+\renewcommand{\nomname}{Nomenclature}
+\renewcommand{\thenomenclature}{%
+  \section{\nomname}%
+  \list{}{%
+    \labelwidth\nomlabelwidth
+    \leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \itemsep\nomitemsep
+    \let\makelabel\nomlabel
+  }%
+}
 
 % === TEXT ===
 \title{\textbf{Materials Lab \\ HSLU, Semester 3}}
@@ -966,13 +976,257 @@ load and the resulting strain is easily measurable.
 
 \figbox{$\dm E_c\left(\sigma, t_2, T\right) = \frac{\sigma_1}{\varepsilon\left(\sigma_1, t_2, T\right)}$}
 
+\newpage
+\part{Steel - Technology and applications}
+Steel is a Carbon-iron alloy and is the most important construction material:
+\begin{itemize}
+  \item All Fe-C alloys with $\leq 2.1\%$ carbon (+ further alloying elements)
+  \item Very good properties, adjustable over a large range:
+  \begin{itemize}
+    \item Strength, ductility, toughness, formability, machining, weldability
+    \item Many possibilities of heat treatments (polymorphism of iron)
+  \end{itemize}
+  \item Innovation boost: about 75\% of all steels used today have been developed in the last 20 years
+  \item China dominates steel market ($>$50\% of world production)
+  \item Cost-effective (large variety of global suppliers, availability of raw materials)
+\end{itemize}
 
+\section{Steel technology}
+\subsection{Blast furnace and Pig iron}
+\begin{itemize}
+  \item Process: reduction of iron oxide with coke \chemfig{Fe_2O_3 + 3C \to 2Fe + 3CO}
+  \item Product: pig iron (3-5\% C, also contains Mn, Si, S, P)
+  \item Furnace dimensions: $\sim$30m tall, $\varnothing$10-14 m
+  \item Typical input/output per day:
+  \begin{itemize}
+    \item 16'000 t ore, 4'500 t coke, 14'000 t air
+    \item \textrightarrow\ 10'000 t pig iron, 3'000 t slag, 22'000 t exhaust gas
+  \end{itemize}
+\end{itemize}
 
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/pig_iron.png}
+\end{figure*}
 
+\subsection{Conversion to Crude Steel}
+\subsubsection{Oxygen-Blown Converter (OBC)}
+\begin{itemize}
+  \item Pig iron ($>$6\% C) reformed to crude steel ($<$2\% C)
+  \item Pure oxygen burns off the excess carbon and other impurities
+  \item Main process:
+  \begin{itemize}
+    \item Oxygen-blown converter (OBC, LD process)
+    \item Electric furnace (EF, arc furnace, often using scrap or direct reduced iron (DRI) as input)
+    \item (Historically: open-hearth furnace (OHF), now obsolete)
+  \end{itemize}
+  \item Continuous casting dominates ($>$30\% worldwide production)
+\end{itemize}
 
+\newpage
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/creation_crudesteel.png}
+  \caption*{Oxygen-blown converter (OBC) process}
+\end{figure*}
 
+\subsubsection{Electric Furnace (EF)}
+In Europe, about 39\% of crude steel is produced in electric furnaces (EF),
+while in the World, it is about 25.8\%.
 
+\subsection{Secondary metallurgy (Ladle metallurgy)}
+\subsubsection{Purifying and alloying of the crude steel}
+Procedure:
+\begin{itemize}
+  \item \textbf{Deoxidation}: decreasing soluble oxygen content during solidification, in order to avoid gas inclusions and splashes
+  \item \textbf{Removal of impurities}: Gases and solids are rinsed out with Argon
+  \item \textbf{Alloying}: Alloying wires, similar to tubes, are added to the ladle (usually via conveyor belt)
+  \item \textbf{Temperature adjustment}: Casting temperature is adjusted by adding scrap or iron granules
+  \item The ladle discharge is mostly continuous casting (strand casting, 88\% of the annual world production)
+\end{itemize}
 
+Special processes for archiving maximum purity:
+\begin{itemize}
+  \item Electroslag remelting (ESR)
+  \item Vacuum arc remelting (VAR)
+  \item Powder metallurgy (PM)
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.61\textwidth]{media/ladle_metallurgy.png}
+  \caption*{Ladle metallurgy process}
+\end{figure*}
+
+\newpage
+\subsubsection{Important alloying elements}
+\pph{Improvement of hardenability}
+The improvement of hardenability prevents the diffusion of Carbon during quenching.\\
+\textbf{Most important elements:} Mn, Cr, Ni, Mo, V, Si
+
+\pph{Fine grain}
+\textbf{Al, V, Ti, Nb} in small quantities as nucleation agents (nitrides) in fine-grained structural steels.\\
+\textbf{V} for grain refinement in QT steels, and \textbf{Co} for hindering grain growth in high-speed steels (HSS).
+
+\pph{Corrosion resistance}
+\textbf{Cr, Cu, Ni, Si, Mn} (all approx. $\lesssim 0.5-1\%$) to slow down the surface corrosion of steels in atmospheres and water.\\
+\textbf{Cr} ($>$12\%) and \textbf{Ni} for stainless steels (e.g. AISI 304, 316).\\
+\textbf{Mo} and \textbf{N} for pitting corrosion resistance in stainless steels.\\
+\textbf{Ti, Nb, Ta} against intercrystalline corrosion in stainless steels after welding.
+
+\pph{Wear and Heat resistance}
+Special carbide formers: \textbf{Cr} ($>$1\%), \textbf{Mo, V}\\
+Special nitride formers: \textbf{Al, V, Ti, Nb, Mo, Cr}\\
+
+\pph{Scale resistance}
+Against oxidation (scale formation), stable oxide layer against surface burn-off: \textbf{Cr, Al, Si}
+
+\subsubsection{Resume of alloying elements functions}
+\begin{center}
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Function} & \textbf{Alloying elements}\\
+    \hline
+    Hardenability & Mn, Cr, Ni, Mo, V, Si\\
+    \hline
+    Grain refinement & Al, V, Ti, Nb\\
+    \hline
+    Corrosion resistance & Cr ($>$12\%), Cu, Ni, Si, Mn, Mo, N ($\lesssim$0.5-1\%)\\
+    \hline
+    Wear/heat resistance & Cr ($>$1\%), Mo, V, Al, Ti, Nb, Mo\\
+    \hline
+    Scale resistance & Cr, Al, Si\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{Electroslag remelting process (ESR)}
+\pph{Principle}
+\begin{itemize}
+  \item Electric remelting furnace is used for refining semi-finished steel products after continuous casting
+  \item Steel is remelted through a layer of \textbf{reactive slag} under alternating current (AC)
+\end{itemize}
+
+\pph{Functions of the reactive slag}
+\begin{itemize}
+  \item Removes impurities (e.g. P, S, O, N, H), and non-metallic inclusions
+  \item Acts as refining and protective medium
+\end{itemize}
+
+\pph{Solidification}
+\begin{itemize}
+  \item Melt droplets pass through slag and solidify in a \textbf{water-cooled copper mold}
+  \item Rapid solidification procedures:
+  \begin{itemize}
+    \item Fine-grained structure
+    \item Homogeneously distributed carbides
+  \end{itemize}
+\end{itemize}
+
+\pph{Applications}
+\begin{itemize}
+  \item Production of \textbf{high-purity steels} for: Toolmaking, Medical technology, Watch and precision industries, Aerospace
+\end{itemize}
+
+\pph{Alternative method}
+\begin{itemize}
+  \item Powder metallurgy (PM) can archieve similar levels of purity
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/ESR.png}
+  \caption*{Electroslag remelting process (ESR)}
+\end{figure*}
+
+\subsection{Continuous casting}
+\begin{itemize}
+  \item \textbf{Slabs}: Semi-finished product for rolling sheets (coils), foils, plates
+  \item \textbf{Billets}: Semi-finished product for rolling wires, rods, profiles
+  \item Wires \textrightarrow\ screws, nails, spheres, smaller rods
+  \item Rods \textrightarrow\ shafts, axles, larger profiles
+  \item Cold drawing \textrightarrow\ good surface quality, high precision
+  \item ETG \textrightarrow\ high strength
+  \item Most steel ($>$90\%) is strand-cast
+\end{itemize}
+
+\subsection{Recycling and Green Steel}
+\begin{itemize}
+  \item Direct hydrogen reduction instead of blast furnace \textrightarrow\ Up to 95\% lower CO$_2$ emissions, but high costs
+  \item Hydrogen supply:
+  \begin{itemize}
+    \item H$_2$ produced by electrolysis of water
+    \item Powered with renewable electricity (wind, solar)
+  \end{itemize}
+  \item Iron ore reduction
+  \begin{itemize}
+    \item Iron ore directly reduced with \textbf{green hydrogen} (DRI) to forme sponge iron
+    \item By-product: \textbf{water vapor} instead of CO$_2$
+  \end{itemize}
+  \item Steel production
+  \begin{itemize}
+    \item Sponge iron charged to an \textbf{electric arc furnace} (EAF) to produce crude steel
+    \item Furnace operated with green electricity
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection{Summary of Steel Technology}
+\subsubsection{Blast furnace}
+\begin{itemize}
+  \item Iron ore reduced to \textbf{pig iron} in a blast furnace
+\end{itemize}
+
+\subsubsection{Crude steel production}
+\begin{itemize}
+  \item Pig iron refined to \textbf{crude steel} by reducing carbon content
+  \item Oxygen-Blown Converter (\textbf{OBC}): refining with oxygen
+  \item Electric Furnace (\textbf{EF}): melts scrap steel or direct-reduced iron (sponge iron) to crude steel
+\end{itemize}
+
+\subsubsection{Secondary metallurgy}
+\begin{itemize}
+  \item Crude steel further purified and adjusted to final composition in a ladle furnace
+  \item \textbf{Processes}:
+  \begin{itemize}
+    \item Deoxidation (chemical or vacuum)
+    \item Advanced purification (electroslag remelting (ESR), vacuum arc remelting (VAR), powder metallurgy (PM))
+    \item Alloying additions
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Semi-finished products}
+\begin{itemize}
+  \item Produced mainly by \textbf{continuous casting} (slabs, billets)
+  \item Formed into sheets, plates, wires, rods, pipes, and profiles by hot or cold rolling/drawing
+\end{itemize}
+
+\section{Microstructure formation}
+\subsection{Polymorphism of Iron}
+\subsubsection{$\delta$-iron}
+$\delta$-iron is a phase of iron with a BCC structure. It is stable above 1392$^\circ$C, and
+it's not ferromagnetic. Has a limited technical relevance.
+
+\subsubsection{$\gamma$-iron (austenite)}
+$\gamma$-iron, also called austenite, is a phase of iron with a FCC structure.
+It is stable between 911 - 1392$^\circ$C. It's not ferromagnetic, and is soluble up
+to 2\% C, 100x more than $\alpha$-iron. Its high solubility is due to larger interstitial
+sites and reduced lattice distorsion from carbon atoms.
+
+\subsubsection{$\alpha$-iron (ferrite)}
+$\alpha$-iron, also called ferrite, is a phase of iron with a BCC structure.
+It's stable below 911$^\circ$C. It's not ferromagnetic between 769-911$^\circ$C, but it
+becomes ferromagnetic below the \textbf{Curie temperature}, so $<$769$^\circ$C.
+It has very low carbon solubility, maximum 0.02\% C.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/iron_polymorphism.png}
+\end{figure*}
+
+\newpage
+\subsection{Phase transformations}
+\subsubsection{Microstructure formation of Steel (Slow Cooling)}
 
 
 
@@ -982,7 +1236,6 @@ load and the resulting strain is easily measurable.
 \printacronyms[name=Glossary, heading=section]
 \newpage
 \include{nomenclature.tex}
-\section{Nomenclature}
 \vspace*{-1cm}
 % makeindex Materials-lab.nlo -s nomencl.ist -o Materials-lab.nls
 \printnomenclature

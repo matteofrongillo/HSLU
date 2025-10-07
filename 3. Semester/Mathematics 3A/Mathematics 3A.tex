@@ -208,6 +208,36 @@ parabola $y^2 - z = 0$ in the $yz$ plane.
     \end{tikzpicture}
 \end{center}
 
+\newpage
+\part{Partial derivatives}
+For a multivariable function $f(x,y,...)$, the partial derivative to
+one variable measures the instantaneous rate of change of $f$ when
+that variable changes and the others are held constant:
+
+\figbox{$\dm \frac{\partial z}{\partial x} = f_x(x,y)$}
+
+If $z$ is a function of $x$ and $y$, we define:
+
+The rate of change of $z$ with respect to $x$, with $y$ fixed, at the
+point ($x,y$)=($a,b$) as
+\figbox{$\dm \frac{\partial z}{\partial x} \big|_{(x,y)=(a,b)} = \lim_{h\to0}\frac{Z\big|_{(x,y)=(a+h,b)} - Z \big|_{(x,y)=(a,b)}}{h}$}
+
+The rate of change of $z$ with respect to $y$, with $x$ fixed, at the
+point $(x,y)=(a,b)$ as
+\figbox{$\dm \frac{\partial z}{\partial x} \big|_{(x,y)=(a,b)} = \lim_{h\to0}\frac{Z\big|_{(x,y)=(a,b+h)} - Z \big|_{(x,y)=(a,b)}}{h}$}
+
+For the lectures, we will be using the formula with 2-steps difference ($\Delta z_a = (a+h,b)-(a-h,b)$):
+\figbox{$\dm \frac{\partial z}{\partial x} \big|_{(x,y)=(a,b)} = \frac{Z\big|_{(x,y)=(a+h,b)} - Z \big|_{(x,y)=(a-h,b)}}{2h}$\\\\
+        $\dm \frac{\partial z}{\partial y} \big|_{(x,y)=(a,b)} = \frac{Z\big|_{(x,y)=(a,b+h)} - Z \big|_{(x,y)=(a,b-h)}}{2h}$}
+
+
+
+
+
+
+
+
+
 
 
 \end{document}

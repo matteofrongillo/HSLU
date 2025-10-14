@@ -1306,10 +1306,10 @@ relate HV, HB, and HRC to ultimate tensile strength in MPa.
   \centering
   \begin{tabular}{|c|c|c|c|}
     \hline
-    \thead{\textbf{Tensile strength}\\\textbf{in MPa}} &
-    \thead{\textbf{Vickers hardness}\\\textbf{HV}} &
-    \thead{\textbf{Brinell hardness}\\\textbf{HB}} &
-    \thead{\textbf{Rockwell hardness}\\\textbf{HRC}} \\
+    \makecell{\textbf{Tensile strength}\\\textbf{in MPa}} &
+    \makecell{\textbf{Vickers hardness}\\\textbf{HV}} &
+    \makecell{\textbf{Brinell hardness}\\\textbf{HB}} &
+    \makecell{\textbf{Rockwell hardness}\\\textbf{HRC}} \\
     \hline
      & 900 & & 67.0 \\
     \hline
@@ -1455,10 +1455,10 @@ widely used to compare the toughness of structural steels and quenched-and-tempe
   \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{|c|c|c|c|}
     \hline
-    \thead{\textbf{Test temperature}\\\textbf{in $^\circ$C}} &
-    \thead{\textbf{Absorbed Notch}\\\textbf{Impact Energy $\geq$ 27 J}} &
-    \thead{\textbf{Absorbed Notch}\\\textbf{Impact Energy $\geq$ 40 J}} &
-    \thead{\textbf{Absorbed Notch}\\\textbf{Impact Energy $\geq$ 60 J}}\\
+    \makecell{\textbf{Test temperature}\\\textbf{in $^\circ$C}} &
+    \makecell{\textbf{Absorbed Notch}\\\textbf{Impact Energy $\geq$ 27 J}} &
+    \makecell{\textbf{Absorbed Notch}\\\textbf{Impact Energy $\geq$ 40 J}} &
+    \makecell{\textbf{Absorbed Notch}\\\textbf{Impact Energy $\geq$ 60 J}}\\
     \hline
     20 & JR & KR & LR \\
     \hline
@@ -1499,7 +1499,257 @@ Example: S235JO \textrightarrow\ S: Steel, 235: R$_m$, JO: at 0$^\circ$C
 \end{itemize}
 
 \newpage
-\part{...}
+\part{Aluminum - Wrought \& Cast Alloys}
+\pph{Opening exercise - Name 5 properties and 5 application of aluminum alloys}
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Property} & \textbf{Application}\\
+    \hline
+    Heat conductivity & Heat exchangers\\
+    \hline
+    Electrical conductivity & High voltage lines\\
+    \hline
+    Corrosion resistance ($<$ 10 pH only) & \makecell{Electronic appliance housing,\\ architecture}\\
+    \hline
+    Non-magnetic & Electronic appliance housing\\
+    \hline
+    Light-weight & Aerospace, automotive industry\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\section{Introduction}
+Not relevant for the exam
+
+\subsection{Background information about aluminum}
+\begin{itemize}
+  \item Relatively young metal, discovered about 100 years ago
+  \item More expensive than steel
+  \item Density $\rho$ = 2.7 g/cm$^3$
+  \item Highly malleable (FCC structure)
+  \item Electrical conductivity: 37.7 S$\cdot$m/mm$^2$
+  \item Young's modulus $E$: 70 GPa (lower than steel)
+  \item Melting point: 660$^\circ$C (lower for cast alloys)
+  \item Naturally passivated: resistant to water and weather within pH 4.5 -- 8.5
+  \item Food-safe
+  \item Poor corrosion resistance at pH $>$10 (alkaline environments such as dishwasher or concrete water)
+  \item Oversaturated 5xxx alloys and high-strength 2xxx and 7xxx alloys are prone to corrosion
+\end{itemize}
+
+\subsection{Aluminum production}
+\subsubsection{Bayer process}
+\begin{itemize}
+  \item Bauxite is crushed and dissolved in hot sodium hydroxide
+  \item Aluminum hydroxide (Al(OH)$_3$) precipitates from the solution
+  \item It is then calcinated (heated) to remove water, producing alumina (Al$_2$O$_3$)
+\end{itemize}
+
+\subsubsection{Smelting flux electrolysis (Hall-Héroult process)}
+\begin{itemize}
+  \item Alumina is dissolved in molten cryolite
+  \item Al electric current passes through, reducing Al$^{3+}$ to liquid aluminum at the cathode and releasing O$_2$ at the carbon anode
+\end{itemize}
+
+\section{Designation of alloys and conditional designations}
+\newpage
+\subsection{Numerical Designation System (DIN EN 573-1)}
+\begin{table}[ht!]
+  \centering
+  \begin{minipage}[t]{0.67\textwidth}
+    \centering
+    \begin{tabular}{|l|l|l|l|c|}
+      \hline 
+      \multicolumn{5}{|l|}{\color{blue}EN AW-: Wrought alloys} \\
+      \hline 
+      Nr. & \makecell[l]{Main alloying\\elements} & \thead{Strain-\\hardened} & {\color{red}\thead{Age-\\hardened}} & \thead{Type of\\hardening}\\
+      \hline 
+      1XXX & none, $>$99\% Al & \multirow{4}{*}{Yes (H)} & \multirow{4}{*}{No} & \multirow{4}{*}{\thead{Solid-solution hardened\\Cold-work hardened\\Fine-grain hardened}}\\ \cline{1-2}
+      3XXX & Mn & & & \\ \cline{1-2}
+      4XXX & Si & & & \\ \cline{1-2}
+      5XXX & Mg, ($>$3\% corrosion) & & & \\ \hline
+      2XXX & Cu & \multirow{4}{*}{in part} & \multirow{4}{*}{\color{red}Yes (T)} & \multirow{4}{*}{\thead{Precipitation\\hardened}} \\ \cline{1-2}
+      6XXX & $\mathrm{Mg}+\mathrm{Si}$ & & & \\ \cline{1-2}
+      7XXX & $\mathrm{Zn} +\mathrm{Mg}\ (+\mathrm{Cu}, \ldots)$ & & & \\ \cline{1-2}
+      8XXX & others ($\mathrm{Li}, \mathrm{Sc}, \mathrm{Fe}$) & & & \\ \hline
+    \end{tabular}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \multicolumn{2}{|l|}{\color{red}EN AW-: Cast alloys} \\
+      \hline
+      Nr. & \thead{Main alloying\\elements}\\
+      \hline
+      1XXX0 & $>$99\% Al\\
+      \hline
+      2XXX0 & Cu\\
+      \hline
+      \textbf{4XXX0} & \textbf{Si}\\
+      \hline
+      5XXX0 & Mg\\
+      \hline
+      7XXX0 & Zn\\
+      \hline
+      8XXX0 & Sn\\
+      \hline
+      9XXX0 & pre-alloys\\
+      \hline
+    \end{tabular}
+  \end{minipage}
+\end{table}
+
+\subsection{Condition Designation (DIN EN 515)}
+\begin{table}[ht!]
+  \begin{minipage}[t]{0.58\textwidth}
+    \centering
+    \begin{tabular}{|c|l|}
+      \hline
+      \textbf{Letter} & \textbf{Meaning}\\
+      \hline
+      F & Without post-treatment / as fabricated (e.g. cast)\\
+      \hline
+      O & Annealed\\
+      \hline
+      H & \textbf{Strain hardenend}\\
+      \hline
+      T & \textbf{Thermally treated}\\
+      \hline
+    \end{tabular}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.38\textwidth}
+    \centering
+    \begin{tabular}{|c|l|}
+      \hline
+      \textbf{Hxx} & \textbf{Meaning}\\
+      \hline
+      Hx1 & 1/8-hard\\
+      \hline
+      Hx2 & 1/4-hard\\
+      \hline
+      Hx4 & 1/2-hard\\
+      \hline
+      Hx6 & 3/4-hard\\
+      \hline
+      Hx8 & hard\\
+      \hline
+      Hx9 & extra hard (Hx8 + 14 MPa)\\
+      \hline
+    \end{tabular}    
+  \end{minipage}
+\end{table}
+
+\begin{table}[ht!]
+  \centering
+  \begin{tabular}{|c|l|l|l|l|}
+    \hline W & solution annealed & + quenched & (unstable) & \\
+    \hline T1 & hot-formed & + quenched & & + naturally aged\\
+    \hline T2 & hot-formed & + quenched & + cold-formed & + naturally aged\\
+    \hline \textbf{T3} & \textbf{solution annealed} & \textbf{+ quenched} & \textbf{+ cold-formed} & \textbf{+ naturally aged}\\
+    \hline \textbf{T4} & \textbf{solution annealed} & \textbf{+ quenched} & & \textbf{+ naturally aged}\\
+    \hline T5 & hot-formed & + quenched & & + artificially aged\\
+    \hline \textbf{T6} & \textbf{solution annealed} & \textbf{+ quenched} & & \textbf{+ artificially aged}\\
+    \hline \textbf{T7} & \textbf{solution annealed} & \textbf{+ quenched} & & \textbf{+ over-aged}\\
+    \hline \textbf{T8} & \textbf{solution annealed} & \textbf{+ quenched} & \textbf{+ cold-formed} & \textbf{+ artificially aged}\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+  \includegraphics[width=0.45\textwidth]{media/cold-working.png}
+\end{wrapfigure}
+
+\phantom{}
+
+\subsection{Cold-working H}
+In Hx$n$, where $n=[1,9]$, x:
+
+\begin{tabular}{|c|l|}
+  \hline \textbf{x} & \textbf{Meaning}\\
+  \hline x=1 & cold-worked\\
+  \hline x=2 & \makecell[l]{cold-worked and partially annealed\\for improved temperature resistance}\\
+  \hline x=3 & \makecell[l]{cold-worked and stabilization-annealed\\to prevent aging at room temperature}\\
+  \hline x=4 & cold-worked and varnished + blacked\\
+  \hline 
+\end{tabular}
+\wrapfill
+\vspace*{-10cm}
+
+\newpage
+\subsection{Precipitation hardening (Age hardening)}
+\subsubsection{Age hardening steps}
+\begin{enumerate}
+  \item \textbf{Solution annealing (W)}: dissolves existing precipitates in the alloy
+  \item \textbf{Quenching}: rapidly cools to form a supersaturated solid solution without precipitates
+  \item \textbf{Aging}: small, coherent precipitates form, strengthening the alloy
+\end{enumerate}
+
+\subsubsection{Aging types}
+\begin{table}[ht!]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline \textbf{Type} & \textbf{Temperature} & \textbf{Properties}\\
+    \hline Natural aging & Room temperature & Moderate strength, lower hardness, higher ductility\\
+    \hline Artificial aging & Elevated temperature (120-200$^\circ$C) & higher strength and hardness, lower ductility\\
+    \hline 
+  \end{tabular}
+\end{table}
+
+\subsubsection{Graph representation}
+T1 to T8 process paths are visible in section 14.2, table 14.2.3.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.9\textwidth]{media/aging.png}
+\end{figure}
+
+\subsection{Lattice coherency of precipitates}
+\begin{itemize}
+  \item \textbf{Coherent precipitates}: Lattice planes align perfectly, and elastic distortions extend deep into the surrounding crystal. These distortions act as strong barriers to dislocation movement, resulting in a significant increase in strength
+  \item \textbf{Semi-coherent precipitates}: Partial lattice mismatch causes dislocations at the interface, reducing elastic distortion and strength compared to coherent precipitates
+  \item \textbf{Incoherent precipitates}: Lattice planes are misaligned and incompatible with the matrix, producting little to no elastic distortion and minimal strengthening effect
+\end{itemize}
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.95\textwidth]{media/lattice_coherency.png}
+  \caption*{Coherent (left), Semi-coherent (middle), Incoherent (right)}
+\end{figure}
+
+\newpage
+\subsection{Precipitation hardening: Artificial aging}
+Material strength rises with the formation of coherent precipitates and reaches its
+maximum when tey are finely dispesed. Over-aging leads to loss of coherency and reduced
+strength.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/artificial_aging.png}
+  \caption*{Artificial aging of EN AW-2024 (similar to 6000 and 7000 alloys)}
+\end{figure}
+
+\subsection{Precipitates in aluminum alloys}
+\begin{itemize}
+  \item Precipitates are plate- or disc-shaped, observable under transmission electron microscopy (TEM)
+  \item Coherent GPII zones are metastable and maintain lattice alignment with the matrix
+  \item Fully stable precipitates become larger and incoherent, leading to over-aging and reduced strength
+\end{itemize}
+
+\subsubsection{Precipitation hardening in Aerospace}
+Process overview of a sheet metal ribs in the horizontal stabilizer of the PC-12 aircraft (EN AW-2024 / AlCu4Mg1)
+\begin{enumerate}
+  \item Solution annealing and quenching: material becomes soft
+  \item (Optional) Deep freezing for storage or transport to prevent premature aging
+  \item Cold forming using a hydrostatic press with a single-piece die
+  \item Natural aging at room temperature for approximately 4-5 days, final condition: EN AW-2024-T42
+  \item Surface treatment: chromating, priming, and painting.
+\end{enumerate}
+
+\newpage
+\section{Aluminum Wrought Alloys}
 
 
 \newpage

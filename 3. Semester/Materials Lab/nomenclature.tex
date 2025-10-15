@@ -7,13 +7,16 @@
 % group titles
 \renewcommand\nomgroup[1]{%
   \item[\bfseries
-    \ifstrequal{#1}{M}{Elastic moduli}{%
+    \ifstrequal{#1}{E}{Elastic moduli}{%
     \ifstrequal{#1}{S}{Strength measures}{%
     \ifstrequal{#1}{D}{Ductility measures}{%
     \ifstrequal{#1}{R}{Ratios}{%
-    \ifstrequal{#1}{T}{Transformations and Processes abbreviations}{}}}}}%
-  ]\addvspace{0.7\baselineskip}%
+    \ifstrequal{#1}{T}{Transformations and Processes abbreviations}{%
+    \ifstrequal{#1}{A}{Alloy series}{%
+    \ifstrequal{#1}{C}{Coatings and Surface Treatments}{}}}}}}}%
+    ]\addvspace{0.7\baselineskip}%
 }
+
 
 % Ductility measures
 \nomenclature[D]{$A_\text{g}$}{Uniform strain}
@@ -23,20 +26,20 @@
 \nomenclature[D]{$KV$}{Notch impact energy, in J, indicator of toughness}
 
 % Elastic moduli
-\nomenclature[M]{$E$}{Young's modulus \textrightarrow\ 210 GPa for steel}
-\nomenclature[M]{$G$}{Shear modulus}
+\nomenclature[E]{$E$}{Young's modulus \textrightarrow\ 70GPa for aluminum, 210 GPa for steel}
+\nomenclature[E]{$G$}{Shear modulus}
 
 % Ratios
 \nomenclature[R]{$\nu$}{Poisson's ratio}
 \nomenclature[R]{PREN}{Pitting Resistance Equivalent Number = \%Cr + 3.3\%Mo + 16\%N}
 
 % Strength measures
-\nomenclature[S]{$R_{\text{p}0.2}$}{0.2\% yield strength}
-\nomenclature[S]{$R_\text{eH}$}{Upper yield point}
-\nomenclature[S]{$R_\text{m}$}{Tensile strength}
-\nomenclature[S]{HV}{Vickers hardness}
-\nomenclature[S]{HB}{Brinell hardness}
-\nomenclature[S]{HRC}{Rockwell C hardness}
+\nomenclature[S1]{$R_{\text{p}0.2}$}{0.2\% yield strength}
+\nomenclature[S1]{$R_\text{eH}$}{Upper yield point}
+\nomenclature[S1]{$R_\text{m}$}{Tensile strength}
+\nomenclature[S1]{HV}{Vickers hardness}
+\nomenclature[S1]{HB}{Brinell hardness}
+\nomenclature[S1]{HRC}{Rockwell C hardness}
 
 % Transformation / Process abbreviations
 \nomenclature[T]{OBC}{Oxygen-Blown Converter}
@@ -54,3 +57,31 @@
 \nomenclature[T]{HSS}{High-Speed Steel}
 \nomenclature[T]{ETG}{Name of the steel grade according to the Swiss standard}
 \nomenclature[T]{DRI}{Direct Reduced Iron}
+\nomenclature[T]{AW}{Wrought Aluminum}
+\nomenclature[T]{AC}{Cast Aluminum}
+\nomenclature[T]{IC}{Intercrystalline corrosion}
+\nomenclature[T]{SCC}{Stress Corrosion Cracking}
+\nomenclature[T]{FSW}{Friction Stir Welding}
+\nomenclature[T]{HAZ}{Heat Affected Zone}
+
+% Alloy series
+\nomenclature[A]{1XXX}{Commercially pure aluminum (high conductivity, soft)}
+\nomenclature[A]{2XXX}{Al-Cu alloys (high strength, poor corrosion resistance)}
+\nomenclature[A]{3XXX}{Al-Mn alloys (good formability, non-heat-treatable)}
+\nomenclature[A]{4XXX}{Al-Si alloys (good castability, used in welding)}
+\nomenclature[A]{5XXX}{Al-Mg alloys (good weldability and corrosion resistance)}
+\nomenclature[A]{6XXX}{Al-Mg-Si alloys (medium strength, excellent formability)}
+\nomenclature[A]{7XXX}{Al-Zn-Mg alloys (very high strength, lower corrosion resistance)}
+
+% Surface Treatments and Coatings
+\nomenclature[C]{CAA}{Chromic Acid Anodizing}
+\nomenclature[C]{CCC}{Chromate Conversion Coating}
+\nomenclature[C]{Cr(VI)}{Hexavalent chromium (toxic, high corrosion resistance)}
+\nomenclature[C]{Cr(III)}{Trivalent chromium (eco-friendly)}
+\nomenclature[C]{GS}{Sulfuric Acid Anodizing (decorative)}
+\nomenclature[C]{GSX}{Sulfuric + Oxalic Acid Anodizing (protective, weat-resistant)}
+\nomenclature[C]{TSA}{Tartaric-Sulfuric Acid Anodizing (Cr-free, aerospace use)}
+\nomenclature[C]{PUR}{Polyurethane paint or vanish (top protective layer)}
+\nomenclature[C]{Zn-NI}{Zinc-Nickel galvanic coating for paint adhesion}
+\nomenclature[C]{Phosphating}{Chemical conversion coating for paint adhesion}
+\nomenclature[C]{Chromating}{Chemical conversion layer of chromates or chromites}

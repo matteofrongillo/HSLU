@@ -1739,7 +1739,7 @@ strength.
 \end{itemize}
 
 \subsubsection{Precipitation hardening in Aerospace}
-Process overview of a sheet metal ribs in the horizontal stabilizer of the PC-12 aircraft (EN AW-2024 / AlCu4Mg1)
+Process overview of a sheet metal ribs in the horizontal stabilizer of the PC-12 aircraft (EN AW-2024/AlCu4Mg1)
 \begin{enumerate}
   \item Solution annealing and quenching: material becomes soft
   \item (Optional) Deep freezing for storage or transport to prevent premature aging
@@ -1750,6 +1750,366 @@ Process overview of a sheet metal ribs in the horizontal stabilizer of the PC-12
 
 \newpage
 \section{Aluminum Wrought Alloys}
+\subsection{Pure Aluminum}
+\subsubsection{Properties}
+\begin{itemize}
+  \item \textbf{Excellent electrical conductivity}. Altough precious metals such as silver, gold, and copper conduct better, aluminum offers superior conductivity when considering both weight and cost
+  \item \textbf{High thermal conductivity}, making it ideal for heat dissipation applications
+  \item \textbf{Good corrosion resistance}, along with excellent formability and weldability
+  \item \textbf{Low inherent strength}, but can be strengthened through cold working and grain refinement
+  \item Certain grades are \textbf{highly suitable for surface finishing}, including chemical and electrolytic polishing and anodizing
+\end{itemize}
+
+\subsubsection{Applications}
+\begin{itemize}
+  \item Electrical engineering and electronics: used in power rails, bonding wires, conductive inks, and overhead high-voltage cables (often with a steel core for added strength)
+  \item Heat exchangers and heat sinks: utilized for efficient heat transfer; when in contact with copper, aluminum should be replaced with stainless steel to prevent galvanic corrosion
+  \item Corrosion-resistant cladding: applied as a protective lazer on high-strength aluminum sheets to improve corrosion resistance, commonly used in aircraft and automotive structures
+  \item Food industriy: used for foils (EN AW-1100), dishes, and coffee capsules due to excellent \textbf{formability, weldability, gas and odor tightness, and food safety}
+\end{itemize}
+
+\subsection{Wrought Alloys: System Al-Mn, (Al-Si)}
+\subsubsection{EN AW-3XXX}
+\begin{itemize}
+  \item Strengthened by \textbf{solid-solution} and \textbf{cold-work hardening}
+  \item \textbf{Stronger than pure aluminum}, yet remains easy to form, weld, and offers good corrosion resistance
+  \item \textbf{Typical applications}: chemical and storage tanks, kitchen and cooking equipment, heat exchangers and conductors (EN AW-3003), gas pipes, architectural components, and beverage can bodies (EN AW-3004)
+\end{itemize}
+
+\subsubsection{(EN AW-4XXX)}
+\begin{itemize}
+  \item Strengthened by \textbf{solid-solution} and \textbf{cold-work hardening}
+  \item Used mainly as \textbf{cast alloys} and \textbf{corrosion-resistant coatings}, such as EN AC-44200 (Al-Si12 eutectic alloy)
+  \item Commonly applied in 4XXX welding wires due to their low eutectic melting point
+\end{itemize}
+
+\subsection{Wrought Alloys: System Al-Mg}
+\subsubsection{EN AW-5XXX}
+\begin{itemize}
+  \item Strengtened by \textbf{solid-solution} and \textbf{cold-work hardening}
+  \item \textbf{Stronger than 3000-series alloy}
+  \item Excellent \textbf{weldability} and \textbf{corrosion resistance}
+  \item At higher magnesium content, incoherent precipitates form, making these alloys \textbf{unsuitable} for age hardening
+  \item Unlike high-strength precipitation-hardened aluminum alloys, strength loss in weld zones is minimal if the alloy is not supersaturated
+  \item \textbf{Typical applications}: Used for road signs, household appliances, ship components, cookware, food processing equipment, hydraulic lines, and fuel tanks (EN AW-5052).
+    Also applied in beverage can lids (EN AW-5182), pressure vessels, truck and trailed bodies, ship hulls,rocket parts, and railway wagons (EN AW-5083).
+    In aircraft contruction, alloys such as EN AW-5052 and EN AW-5086 in cold-worked (HXX) condition are used for sheets and pipes
+\end{itemize}
+
+\subsection{High-Strength Wrought Alloys}
+\subsubsection{For lightweight construction}
+\begin{itemize}
+  \item Over-saturated (and work-hardened) 5XXX Al-Mg alloys with more than 3\% Mg
+  \item Precipitation-hardened alloys (sometimes combined with cold-work hardening):\\
+    6XXX (Al-Mg-Si), 2XXX (Al-Cu), 7XXX (Al-Zn-Mg), (\textit{8XXX and special alloys, e.g. Al-Li, Al-Sc, Al-Fe})
+\end{itemize}
+
+\subsubsection{Over-Saturated 5XXX}
+Risk of Intercrystalline Corrosion (IC) and Stress Corrosion Cracking (SCC)!
+\begin{itemize}
+  \item Alloys with $<3$\% Mg form a \textbf{single-phase $\bm{\alpha}$ solid solution} of aluminum at room temperature
+  \item Alloys with $>3$\% Mg remain \textbf{homogeneous only after quenching}, forming a \textbf{super-saturated $\bm{\alpha}$ solid solution}
+  \item When exposed to temperature between 60$^\circ$C and 200$^\circ$C, these alloys revert to a \textbf{stable two-phase $\bm{\alpha + \beta}$ structure}
+  \item The \textbf{$\bm{\beta}$ intermetallic phase} (Al$_8$Mg$_5$) forms mainly along grain bonundaries, making the material \textbf{susceptible to IC and SCC}
+\end{itemize}
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.5\textwidth]{media/over-saturated_al.png}
+\end{figure}
+
+\pph{Real example of Super-Saturated 5XXX Rods}
+\begin{itemize}
+  \item Minimal surface corrosion in salt water below 60$^\circ$C
+  \item Over-saturated 5XXX alloys: Comparable strength to 6XXX-T6 (without T6 treatment), but prone to SCC and IC in chloride environments above 60$^\circ$ (e.g. sunlight exposure). The $\bm{\beta}$\textbf{-phase} at grain boudaries promotes corrosion; H3x stabilization is effective only up to 80$^\circ$C
+  \item Arid coastal climates: sald-laden winds and daily humidity cycles cause condensation and evaporation, increasing corrosion risk
+  \item $<$3\% Mg alloys: no SCC, but low strength, requiring heavy cold working, which itself raises corrosion susceptibility
+\end{itemize}
+
+\textbf{Compairson with 6XXX-T6}:
+\begin{itemize}
+  \item Achieves similar strength as over-saturated (and cold-worked) 5XXX alloys, with no SCC risk
+  \item Can still experience IC if Cu $>$ 0.1\%
+\end{itemize}
+
+\newpage
+\subsection{Precipitation-Hardenable Alloys: System Al-Mg-Si}
+Al-Mg-Si systems are suitable for everyday use
+
+\subsubsection{EN AW-6XXX}
+\begin{itemize}
+  \item \textbf{Precipitation hardening}: main alloying elements are magnesium and silicon
+  \item \textbf{Balanced performance}: excellent combination of strength and technological properties, including \textbf{formability, weldability, anodizability, machinability, and corrosion resistance}
+  \item \textbf{Typical applications}:
+  \begin{itemize}
+    \item \textbf{EN AW-6061}: bicycle and e-bike frames, tank wagons, and X-ray beam shaper parts
+    \item \textbf{EN AW-6062}: aerospace interion components, extruded profiles, cranes, and ore containers
+    \item \textbf{EN AW-6063}: architectural elements, doors, windows, consumer products (smatphones/laptop housings), and shop interiors
+  \end{itemize}
+  \item \textbf{EN AW-6026 and EN AW-6012}: offer \textbf{excellent machinability}, sometimes achieved by adding small amounts of lead
+  \item \textbf{EN AW-6101}: used for mechanically stable electrical conductors
+\end{itemize}
+
+\subsection{High-Strength Wrought Alloys: System Al-Cu}
+\subsubsection{EN AW-2XXX}
+EN AW-2024 is the most important alloy for aircraft sheets
+\begin{itemize}
+  \item Naturally aged (T3, T4): high fatigue strength
+  \item Artificially aged (T6): high static strength
+  \item \textbf{Poor weldability} (by melting), therefore \textbf{friction stir welding (FSW)} or \textbf{laser welding} is preferred
+  \item \textbf{Prone to corrosion}. Corrosion protection: Chromatization (CCC), primer, Dinitrol
+  \item Due to over-aging, hardened aluminum alloys generally \textbf{cannot be used above 100-180$^\circ$C}
+  \item EN AW-2124-T851, CCC, Primem, PUR: Solution annealing, water quenching, stress relief by controlled stretching, forming, and natural aging.
+\end{itemize}
+
+\subsection{High-Strength Wrought Alloys: System Al-Zn-Mg}
+\subsubsection{EN AW-7XXX}
+\begin{itemize}
+  \item \textbf{Precipitation-hardened}: main alloying elements are \textbf{zinc, magnesium, (copper)}
+  \item \textbf{Artificially aged}: \textbf{very hard strength}, but \textbf{poor corrosion resistance} and \textbf{not weldable by melting} (FSW is preferred due to lower heat and reduced heat-affected zones)
+  \item Typical applications:
+  \begin{itemize}
+    \item \textbf{EN AW-7005}: laptop and smartphone housings, baseball and golf clubs
+    \item \textbf{EN AW-7010}: climbing carabiners
+    \item \textbf{EN AW-7050}: upper wings and structural parts in commercial aircraft
+    \item \textbf{EN AW-7075}: aerospace components, ski poles, and other high-strength structures
+  \end{itemize}
+\end{itemize}
+
+\pph{Risk of stress corrosion cracking (SCC) and exfoliation corrosion:}
+\begin{itemize}
+  \item \textbf{Artificial aging, slightly over-aged (T7)}: typically 12-24h at 120$^\circ$C (formation of coherent precipitates), followed by 4-6h at 175$^\circ$C (conversion to semi-coherent precipitates), reducing lattice distortion and internal stress
+  \item \textbf{T6 and T8} are used for non-corrosive environments (no oxygen or moisture) or short service life application (e.g. racing)
+  \item \textbf{Maximum strength} due to coherent precipitates
+\end{itemize}
+
+\newpage
+\subsection{Mechanical Properties Overview}
+\begin{table}[ht!]
+  \centering
+  \begin{tabular}{|l|l|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
+    \hline \makecell[l]{Short name\\(Numerical)} & \makecell[l]{Short name\\(Chemical)} & Condition & \makecell{R$_\text{p0.2}$\\(MPa)} & \makecell{R$_\text{m}$\\(MPa)} & \makecell{A\\(\%)}\\
+    \hline \multirow{2}{*}{\textbf{EN AW-1100}} & \multirow{2}{*}{EN AW-Al99.0Cu} & $\circ$ & 35 & 90 & 40\\
+    \cline{3-6} & & \textbf{H19} & \textbf{160} & \textbf{180} & \textbf{1}\\
+    \hline \multirow{2}{*}{\textbf{EN AW-3004}} & \multirow{2}{*}{EN AW-AlMn1Mg1} & $\circ$ & 60 & 200 & 16\\
+    \cline{3-6} & & \textbf{H18} & \textbf{230} & \textbf{260} & \textbf{2}\\
+    \hline \multirow{2}{*}{\textbf{EN AW-5083}} & \multirow{2}{*}{EN AW-AlMg4.5Mn0.7} & F & 110 & 270 & 10\\
+    \cline{3-6} & & \textbf{H14} & \textbf{280} & \textbf{400} & \textbf{3}\\
+    \hline \multirow{4}{*}{\textbf{EN AW-2024}} & \multirow{4}{*}{EN AW-AlCu4Mg1} & $\circ$ & 140 & 220 & 13\\
+    \cline{3-6} & & \textbf{T4} & \textbf{275} & \textbf{425} & \textbf{14}\\
+    \cline{3-6} & & T6 & 315 & 425 & 4\\
+    \cline{3-6} & & T8 & 400 & 455 & 3\\
+    \hline \multirow{3}{*}{\textbf{EN AW-6061}} & \multirow{3}{*}{EN AW-AlMg1SiCu} & $\circ$ & 55 & 125 & 25\\
+    \cline{3-6} & & T4 & 145 & 240 & 22\\
+    \cline{3-6} & & \textbf{T6} & \textbf{275} & \textbf{310} & \textbf{12}\\
+    \hline \multirow{3}{*}{\textbf{EN AW-6082}} & \multirow{3}{*}{EN AW-AlSi1MgMn} & $\circ$ & 110 & 160 & 12\\
+    \cline{3-6} & & T4 & 110 & 205 & 12\\
+    \cline{3-6} & & \textbf{T6} & \textbf{260} & \textbf{310} & \textbf{8}\\
+    \hline \multirow{2}{*}{\textbf{EN AW-7075}} & \multirow{2}{*}{EN AW-AlZn5.5MgCu} & $\circ$ & 165 & 275 & 8\\
+    \cline{3-6} & & \textbf{T6} & \textbf{500} & \textbf{560} & \textbf{7}\\
+    \hline \textbf{EN AW-2195} & EN AW-AlCu4Li1 & \textbf{T8} & \textbf{548} & \textbf{586} & \textbf{8}\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{Aluminum Cast Alloys}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.9\textwidth]{media/T-Si_diagram.png}
+  \caption*{Al-Si phase diagram showing hypoeutectic, eutectic, and hypereutectic regions}
+\end{figure}
+
+\newpage
+\subsection{Eutectic Cast Alloys}
+\subsubsection{Properties}
+\begin{itemize}
+  \item \textbf{Easy to cast}: lowest melting temperature with a distinct melting point (no melting range)
+  \item Excellent flow behavior and low viscosity
+  \item Molds fill easily, allowing fine and detailed structures to be cast
+  \item Adding sodium (Na) or strontium (Sr) refined the eutectic structure and slightly shifts the eutectic point to higher silicon contents (13-14\%)
+  \item Adding titanium (Ti) or titanium boride (TiB$_2$) prevents the formation of undesirable silicon needles or plates in the eutectic microstructure
+\end{itemize}
+
+\subsubsection{Typical alloys}
+\begin{itemize}
+  \item \textbf{EN AC-44100} and \textbf{EN AC-44200} (both designed as EN AC-AlSi12) have a good corrosion resistance
+  \item \textbf{EN AC-44300} (EN AC-AlSi12(Fe)) contains approx. 1\% Fe
+  \item \textbf{EN AC-47000} (EN AC-AlSi12(Cu)) contains approx. 1\% Cu
+\end{itemize}
+
+\subsubsection{Typical applications}
+\begin{itemize}
+  \item Engine and pump housing, ribbed and thin-walled components, cylinder blocks and heads (upper part of the engine block)
+  \item Hot-dip coatings for steel, providing corrosion protections 
+\end{itemize}
+
+\subsection{Hypoeutectic Cast Alloys}
+\subsubsection{Properties}
+\begin{itemize}
+  \item Crystallization occurs within the two-phase region: liquid melt plus primary aluminum solid-solution crystals
+  \item Microstructure at room temperature: primary aluminum solid-solution crystals with residual eutectic
+  \item Samm additions of Mg, Cu, or Fe enable effective precipitation hardening of the primary aluminum solid-solution phase
+\end{itemize}
+
+\subsubsection{Applications}
+\begin{itemize}
+  \item Electric vehicle engine housing made of EN AC-46500 (EN AC-AlSi8Cu3)
+  \item Electric vehicle chassis components made EN AC-42000 (EN AC-AlSi8Mg) and EN AC-43500 (EN AC-AlSi10MgMn)
+\end{itemize}
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/hypoeutectic-AC.png}
+  \caption*{Coarse-grained eut. (Left), Lamellar needle-like eut. (Middle), Refined fine-grained eut. Sr/Na (Right)}
+\end{figure}
+
+\newpage
+\subsection{Hypereutectic Cast Alloys}
+\subsubsection{Properties}
+\begin{itemize}
+  \item Contain up to $\approx 25\%$ silicon (Si)
+  \item \textbf{Primary silicon crystal} provide excellent wear resistance even at high temperatures and reduce thermal expansion
+\end{itemize}
+
+\subsubsection{Applications}
+\begin{itemize}
+  \item Used in pistons for combustion engines (\textbf{piston alloys})
+  \item \textbf{EN AC-48000}: used for pistons in automotive engines, offers \textbf{high wear resistance and high strength} in the artificially aged T6 condition (R$_\text{p0.2} \approx 240$MPa, R$_\text{m} \approx 280$MPa)
+\end{itemize}
+
+\subsubsection{Recent developments}
+\begin{itemize}
+  \item In improved, near-eutectic Al-Si alloys, the formation of primary silicon crystals can be promoted by adding small amounts of aluminum phosphide as a nucleating agent
+  \item Primary Si crystals form, for instance, in the the near-eutectic alloy \textbf{EN AC-48000 (EN AC-AlSi12CuNiMg)}, which containg 10-13.5\% Si, about 1\% Cu, Mg, and Ni. 
+\end{itemize}
+
+\subsection{Cast alloys recap}
+\begin{table}[ht!]
+  \centering
+  \caption*{Comparison of hypoeutectic, eutectic, and hypereutectic Al-Si cast alloys}
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Alloy type} & \textbf{Main features} & \textbf{Advantages} & \textbf{Disadvantages}\\
+    \hline \textbf{Hypoeutectic} & Al-rich ($<12\%$ Si) & \makecell[l]{Good castability\\Good ductility\\Precipitation hardenable (Mg, Cu, Fe)\\Easy to machine} & \makecell[l]{Lower wear resistance\\Higher thermal expansion}\\
+    \hline \textbf{Eutectic} & \makecell[l]{Eutectic composition\\Approx. $12\%$ Si} & \makecell[l]{Excellent fluidity and castability\\Fine structure, easy mold filling\\Good corrosion resistance} & \makecell[l]{Moderate mechanical strength\\Can be brittle if unmodified}\\
+    \hline \textbf{Hypereutectic} & Si-rich ($12\% - 25\%$) & \makecell[l]{Very high wear resistance\\Low thermal expansion\\Good dimensional stability at high T} & \makecell[l]{Poor ductility\\Hard to machine\\Difficult to cast (segregation)}\\
+    \hline
+  \end{tabular}
+\end{table}
+
+In summary:
+\begin{itemize}
+  \item \textbf{Hypoeutectic alloys}: best mechanical balance and toughness
+  \item \textbf{Eutectic alloys}: best castability and corrosion resistance
+  \item \textbf{Hypereutectic alloys}: best wear resistance and thermal stability
+\end{itemize}
+
+\section{Surface technology - corrosion protection}
+\subsection{Natural Oxide Layer on Aluminum}
+\begin{itemize}
+  \item Aluminum has a strong affinity for oxygen, leading to the \textbf{immediate formation of a natural, compact layer of Al$_2$O$_3$}. This oxide layer is:
+  \begin{itemize}
+    \item \textbf{Ceramic and very hard}
+    \item \textbf{Corrosion-resistant}, as it is already oxidized (passivated)
+    \item \textbf{Chemically stable} within a pH range of 5 to 8
+    \item \textbf{Extremely thin}, only a few nanometers thick
+  \end{itemize}
+  \item The oxide layer can be strengthened (thickened) by:
+  \begin{itemize}
+    \item \textbf{Chemical processes} such as chromating, chromitizing, or water boiling
+    \item \textbf{Electrochemical processes} such as anodizing
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection{Chemical Conversion Coatings}
+\begin{itemize}
+  \item Removal of the natural oxide layer through \textbf{pickling or etching}
+  \item Conversion of aluminum into a layer of metal oxide, chromate, chromite, or phosphate using the corresponding acids
+  \item Produces a \textbf{very thin coating} (in the micrometer range, typically 0.1 - 5 g/m$^2$) that may contain microcracks
+  \item Common brands: Alodine (R), Bonder (R)
+  \item \textbf{Chromate Conversion Coating (CCC)} is based on chromium acid (Cr VI):
+  \begin{itemize}
+    \item Can be transparent, yellow, or blue
+    \item Serves as an adhesion layer for primers, varnishes, and paints
+    \item Future alternatives: Cr(VI)-free systems such as chromiting (Cr III) or chromous acid treatments
+  \end{itemize}
+  \item \textbf{Phosphating} (phosphoric acid-based):
+  \begin{itemize}
+    \item Acts as an adhesive primer for paint or varnish
+    \item Commonly used in the food industry
+  \end{itemize}
+\end{itemize}
+
+\subsection{Electrochemical Anodizing}
+\subsubsection{GS process}
+Uses direct current (DC) with sulfuric acid. Produces oxide layers up to 30 $\mu$m thick.
+Mainly \textbf{decorative}; color pigments (exchept white) can be introduced into the pores.
+
+\subsubsection{GSX process}
+Uses direct current (DC) with sulfuric and oxalic acids. Creates thicker layers up to 80-150 $\mu$m,
+offering \textbf{excellent wear protection}.
+
+\subsubsection{Chromic Acid Anodizing (CAA) process}
+Produces a \textbf{thin, flexible, and low-crack} oxide layer with \textbf{very high corrosion resistance}.
+Used only in \textbf{aerospace applications} due to the \textbf{carcinogenic Cr(VI)} solutions required.
+
+\subsubsection{Tartaric Sulfuric Acid Anoditing (TSA) process}
+Developed as a \textbf{safer and environmentally friendly} alternative to the carcinogenic CAA process.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.75\textwidth]{media/anodizing.png}
+\end{figure}
+
+
+\newpage
+\subsection{Porosity}
+\begin{itemize}
+  \item The anodized oxide layer is \textbf{porous}, consisting of open cylindrical pores extending from the surface down to a thin, dense \textbf{barrier layer}
+  \item These \textbf{open pores} can absorb dyes, lubricants, or sealing agents to improve appearance, wear resistance, and corrosion protection
+  \item After sealing (by hydration or chemical treatment), the pores become \textbf{closed}, preventing further penetration of contaminants or moisture
+  \item The controlled porosity is a key feature that makes anodized aluminum both functional and decorative
+\end{itemize}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/porosity.png}
+  \caption*{Closed pores (Left), Open pores (Right)}
+\end{figure}
+
+\subsection{High-Strength Aluminum Alloys in Aviation}
+Corrosion protection using a simple oxide layes is often insufficient:
+\begin{itemize}
+  \item High-strength aluminum alloys (2XXX, 7XXX) offer \textbf{poor corrosion resistance} when protected only by natural oxide layers or standard anodizing
+  \item \textbf{Multi-step surface treatment} is required:
+  \begin{itemize}
+    \item \textbf{Cleaning} (pickling or etching) to remove impurities and the natural oxide film
+    \item \textbf{Chromating or anodizing with Cr(VI)} (CCC or CAA): still permitted in aerospace applications, although \textbf{TSA} is preferred for health and environmental reasons
+    \item \textbf{Primer}: a diluted \textbf{epoxy coating}, typically green-yellow in color due to Cr(VI)
+    \item \textbf{Varnish/paint}: \textbf{polyurethane (PUR)} finish for enhanced protection and durability
+  \end{itemize}
+  \item Alloys of the 6XXX, 5XXX, 3XXX, and 1XXX series are \textbf{well-suited for GS anodizing} and are sometimes finished with \textbf{paint coating} for additional protection
+\end{itemize}
+
+\subsection{Recent alternatives (REACH, RoHS)}
+\subsubsection{CAA replacement}
+CAA is being replaced by TSA. The consequences of using TSA are many:
+\begin{itemize}
+  \item \textbf{Slightly reduced fatigue strength} and somewhat \textbf{lower corrosion resistance}
+  \item Requires \textbf{shorter maintenance intervals} due to increased risk of \textbf{fatigue crack} and \textbf{corrosion damage}
+\end{itemize}
+
+\subsubsection{Chromating alternatives}
+Instead of Cr(VI) and chromic acid, \textbf{chromitizing with Cr(III)} (chromous acid) is used
+
+\subsubsection{Primer alternatives}
+Experiments are ongoing with \textbf{Li- and Zn-based primers} to replace Cr(VI) compounds
+
+\subsubsection{Cadmium (Cd) replacements}
+On precipitation-hardened steels such as bolts and screws, \textbf{Zn-Ni galvanic coatings}
+are now applied instead of cadmium plating
+
+\newpage
+\part{...}
 
 
 \newpage

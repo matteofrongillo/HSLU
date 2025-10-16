@@ -235,6 +235,53 @@ For the lectures, we will be using the formula with 2-steps difference ($\Delta 
 Let $f(x,y)$ be our function and $P(a,b)$ a point, $P \in f$:
 \figbox{$\dm f(x,y) \approx f(a,b) + \frac{\partial}{\partial x} f(a,b)(x-a) + \frac{\partial}{\partial y} f(a,b)(y-b)$}
 
+\section{Gradient}
+The gradient of a function $z=f(x,y)$ is defined by:
+\figbox{$\dm \text{grad } f = \nabla f = f_x\overrightarrow{e_x} + f_y\overrightarrow{e_y} = \binom{f_x}{f_y}$\\\\
+        where $\dm f_x = \frac{\partial f}{\partial x}$ and $\dm f_y = \frac{\partial f}{\partial y}$}
+
+
+\newpage
+\subsection{Geometrical properties of the gradient vector $\nabla$ in the plane}
+If $f$ is differentiable at the point $(a,b)$ and $\nabla f \neq \overrightarrow{0}$,
+then the following holds:
+
+$\mathbf{\nabla f(a,b)}$:
+\begin{itemize}
+    \item is perpendicular to the contour line of $f$ through $(a,b)$
+    \item points in the direction of the maximum rate of change $f$
+\end{itemize}
+
+\textbf{The length $\mathbf{\left\lVert\nabla f(a,b)\right\rVert}$ of the gradient vector is}:
+\begin{itemize}
+    \item the maximum rate of change $f$ at this point
+    \item large when the contour lines are close together
+    \item small when the contour lines are far apart
+\end{itemize}
+
+\subsection{Gradient of a function of three variables}
+The gradient of a function $w = f(x,y,z)$ is defined by:
+\figbox{$\dm \text{grad } f = \nabla f = f_x\overrightarrow{e_x} + f_y\overrightarrow{e_y} + f_z\overrightarrow{e_z}= \begin{pmatrix} f_x\\f_y\\f_z\end{pmatrix}$\\[3ex]
+        where $\dm f_x = \frac{\partial f}{\partial x}$, $\dm f_y = \frac{\partial f}{\partial y}$, and $\dm f_z = \frac{\partial f}{\partial z}$}
+
+\subsection{Second-order partial derivatives of $z = f(x,y)$}
+A function $z=f(x,y)$ has two first-order partial derivatives, $f_x$ and $f_y$,
+and four second-order partial derivatives:
+\figbox{
+    \begin{gather*}
+        \hspace*{-0.75cm} 1.\quad \frac{\partial^2z}{\partial x^2} = f_{xx}(x,y)=(f_x)_x(x,y),\\\\
+        \hspace*{-0.75cm} 2.\quad \frac{\partial^2z}{\partial x \partial y} = f_{yx}(x,y)=(f_y)_x(x,y),\\\\
+        \hspace*{-0.75cm} 3.\quad \frac{\partial^2z}{\partial y \partial x} = f_{xy}(x,y)=(f_x)_y(x,y),\\\\
+        \hspace*{-0.75cm} 4.\quad \frac{\partial^2z}{\partial y^2} = f_{yy}(x,y)=(f_y)_y(x,y)
+    \end{gather*}
+}
+
+Usually, parenthesis are omitted, writing directly $f_{xy}$ instead of $(f_x)_y$, and $\dfrac{\partial^2 z}{\partial y \partial x}$
+instead of $\dfrac{\partial}{\partial y} \left(\dfrac{\partial z}{\partial x}\right)$.
+
+\subsection{Equality of mixed partial derivatives (Schwarz's Theorem)}
+If $f_{xy}$ and $f_{yx}$ are continuous at a point $(a,b)$ inside the domain, then:
+\figbox{$\dm f_{xy}(a,b) = f_{yx}(a,b)$}
 
 
 

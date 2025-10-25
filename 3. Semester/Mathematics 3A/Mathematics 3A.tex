@@ -283,9 +283,19 @@ instead of $\dfrac{\partial}{\partial y} \left(\dfrac{\partial z}{\partial x}\ri
 If $f_{xy}$ and $f_{yx}$ are continuous at a point $(a,b)$ inside the domain, then:
 \figbox{$\dm f_{xy}(a,b) = f_{yx}(a,b)$}
 
+\newpage
+\section{Directional derivatives in the plane}
+\subsection[Directional derivative of f at P(a,b) in the direction of u]
+{Directional derivative of $f$ at $P(a,b)$ in the direction of $\overrightarrow{u}$}
 
+If $\overrightarrow{e_u} = \overrightarrow{u} = u_1\overrightarrow{e_x} + u_2\overrightarrow{e_y}$
+is a unit vector $\left\lVert u \right\rVert = 1$, we define the
+directional derivative $\dfrac{\partial f}{\partial \overrightarrow{u}} = f_{\overrightarrow{u}}$ by
+\figbox{$\dm \frac{\partial f}{\partial \overrightarrow{u}}(a,b) = f_{\overrightarrow{u}}(a,b) = \lim_{h\to 0} \frac{f(a+hu_1, b+hu_2) - f(a,b)}{h}$}
 
-
-
+\subsection{Gradient and directional derivative}
+If $f$ is differentiable and $\overrightarrow{e_u} = u_1\overrightarrow{e_x} + u_2\overrightarrow{e_y}$
+is the unit vector in the direction of $\overrightarrow{u}$, then:
+\figbox{$\dm \frac{\partial f}{\partial \overrightarrow{u}}(a,b) = f_{\overrightarrow{u}}(a,b) = f_x(a,b)u_1 + f_y(a,b)u_2 = \nabla f(a,b)\cdot\overrightarrow{e_u}$}
 
 \end{document}

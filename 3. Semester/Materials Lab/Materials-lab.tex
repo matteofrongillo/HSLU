@@ -1224,10 +1224,33 @@ It's stable below 911$^\circ$C. It's not ferromagnetic between 769-911$^\circ$C,
 becomes ferromagnetic below the \textbf{Curie temperature}, so $<$769$^\circ$C.
 It has very low carbon solubility, maximum 0.02\% C.
 
+\newpage
+\subsection{Metastable iron - iron carbide phase diagram}
 \begin{figure*}[ht!]
   \centering
-  \includegraphics[width=\textwidth]{media/iron_polymorphism.png}
+  \includegraphics[width=\textwidth]{media/iron-castiron_diagram.png}
 \end{figure*}
+
+\subsubsection{Phase diagram explaination}
+The Fe-Fe$_3$C phase diagram shows the equilibrium between iron and cementite (Fe$_3$C) in
+steels and cast irons under slow cooling. It is called metastable because Fe$_3$C is not the
+most stable carbide (graphite is), but cementite forms under typical industrial conditions.
+
+{
+  \renewcommand{\arraystretch}{2}
+  \begin{table*}[ht!]
+    \centering
+    \begin{tabular}{|c|l|l|}
+      \hline \textbf{Symbol} & \textbf{Phase} & \textbf{Description}\\
+      \hline $\bm{\alpha}$ & Ferrite & \makecell[l]{BCC structure, very low carbon solubility\\($\leq$ 0.022 wt\% C at 727$^\circ$C), soft and ductile}\\
+      \hline $\bm{\gamma}$ & Austenite & \makecell[l]{FCC structure, higher carbon solubility\\($\leq$ 2.14 wt\% C at 1147$^\circ$C), though and formable}\\
+      \hline $\bm{\delta}$ & Delta ferrite & \makecell[l]{BCC form stable only\\at high temperatures ($>$ 1394$^\circ$C)}\\
+      \hline \textbf{Fe$_{\mathbf{3}}$C} & Cementite & \makecell[l]{Hard, brittle iron carbide\\with 6.70 wt\%}\\
+      \hline \textbf{L} & Liquid phase & Molten iron-carbon alloy\\
+      \hline 
+    \end{tabular}
+  \end{table*}
+}
 
 \newpage
 \subsection{Microstructure formation of Steel (Slow Cooling)}
@@ -1236,6 +1259,49 @@ It has very low carbon solubility, maximum 0.02\% C.
   \item L$_2$: eutectoid steel, 0.8\% C (e.g. cable of car wires before heat treatment)
   \item L$_3$: hypereutectoid steel, 1.4\% C (e.g. ball bearing spheres before hardening)
 \end{itemize}
+
+{
+  \renewcommand{\arraystretch}{2}
+  \begin{table*}[ht!]
+    \centering
+    \caption*{Summary of key reactions}
+    \begin{tabular}{|c|c|l|c|l|}
+      \hline \textbf{Type} & \thead{\textbf{Composition}\\\textbf{range wt\% C}} & \textbf{Reaction} & \textbf{Temperature} & \thead{\textbf{Resulting}\\\textbf{microstructure}}\\
+      \hline Eutectic & 4.3 & $L \to \gamma + \mathrm{Fe}_3\mathrm{C}$ & 1147$^\circ$C & \makecell[l]{Ledeburite (austenite\\+ cementite)}\\
+      \hline Hypoeutectic & $<$ 4.3 & $L \to\ \gamma + L_\text{eutectic} \to \gamma + \mathrm{Fe}_3\mathrm{C}$ & $<$ 1147$^\circ$C & \makecell[l]{Primary austenite\\+ ledeburite}\\
+      \hline Hypereutectic & $>$ 4.3 & $L \to\ \mathrm{Fe}_3\mathrm{C} + L_\text{eutectic} \to\ \mathrm{Fe}_3\mathrm{C} + \gamma$ & $<$ 1147$^\circ$C & \makecell[l]{Primary cementite\\+ ledeburite}\\
+      \hline Eutectoid & 0.8 & $\gamma \to \alpha + \mathrm{Fe}_3\mathrm{C}$ & 727$^\circ$C & \makecell[l]{Pearlite (ferrite\\+ cementite)}\\
+      \hline Hypoeutectoid & $<$ 0.8 & $\gamma \to \alpha_\text{primary} + \text{pearlite}$ & $<$ 727$^\circ$C & \makecell[l]{Primary ferrite\\+ pearlite}\\
+      \hline Hypereutectoid & $>$ 0.8 & $\gamma \to\ \mathrm{Fe}_3\mathrm{C}_\text{primary} + \text{pearlite}$ & $<$ 727$^\circ$C & \makecell[l]{Primary cementite\\+ pearlite}\\
+      \hline 
+    \end{tabular}
+  \end{table*}
+}
+
+\subsubsection{Hypoeutectoid steel L$_1$}
+Hypoeutectoid steels contain less than 0.8 wt\% carbon. During \textbf{slow cooling},
+they form a mixture of \textbf{ferrite and pearlite}. Ferrite appears first during
+solid-state transformation and is therefore called \textbf{primary ferrite} (proeutectoid).
+
+\pph{Properties}
+Soft, ductile steel with good weldability and formability, commonly used as structural steel.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.7\textwidth]{media/hypoeutectic_microstructure.png}
+  \caption*{Microstructure at room temperature of primary ferrite and pearlite}
+\end{figure*}
+
+\newpage
+\subsubsection{Eutectoid steel L$_2$}
+Eutectoid steel contains exactly 0.8 wt\% carbon, corresponding to the eutectoid composition
+in the Fe-Fe$_3$C phase diagram. At the eutectoid temperature (727$^\circ$C), \textbf{austenite ($\bm{\gamma}$)}
+transforms completely into \textbf{pearlite}, a finely layered mixture of
+\textbf{ferrite ($\bm{\alpha}$) and cementite (Fe$_\mathbf{3}$C)}.
+\begin{gather*}
+  \gamma \;\xrightarrow[727^{\circ}\text{C}]{}\; \alpha + \mathrm{Fe}_3\mathrm{C}
+\end{gather*}
+
 
 
 

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PET Bottle Sorting System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: linear-gradient(145deg, #1e2745, #16213e);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7),
+                        inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        
+        canvas {
+            background: linear-gradient(to bottom, #0f3460 0%, #162447 100%);
+            border-radius: 15px;
+            display: block;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #e94560 0%, #c23850 100%);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.6);
+        }
+        
+        button:disabled {
+            background: linear-gradient(135deg, #555 0%, #444 100%);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .status {
+            color: #4df3ff;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            min-height: 25px;
+            text-shadow: 0 0 10px rgba(77, 243, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="canvas" width="1000" height="700"></canvas>
+        <div class="controls">
+            <button id="startBtn">Start Sorting Process</button>
+            <div class="status" id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const startBtn = document.getElementById('startBtn');
+        const statusDiv = document.getElementById('status');
+        
+        let animationState = 'idle';
+        let bottle = { 
+            x: 0, 
+            y: 0, 
+            velocityY: 0,
+            velocityX: 0,
+            visible: false,
+            rotation: 0,
+            rotationSpeed: 0
+        };
+        let countdown = 5;
+        let trapdoorAngle = 0;
+        let belt1Moving = false;
+        let belt2Moving = false;
+        let belt1Offset = 0;
+        let belt2Offset = 0;
+        let currentState = 'A';
+        let detectionPulse = 0;
+        
+        // Enhanced physics constants
+        const GRAVITY = 0.45;
+        const BELT_SPEED = 3;
+        const FRICTION = 0.98;
+        
+        function drawGradientRect(x, y, w, h, color1, color2) {
+            const gradient = ctx.createLinearGradient(x, y, x, y + h);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(x, y, w, h);
+        }
+        
+        function drawGlow(x, y, radius, color) {
+            const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+            gradient.addColorStop(0, color);
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function drawBottle(x, y, rotation) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            
+            // Bottle glow
+            drawGlow(0, -10, 40, 'rgba(77, 166, 255, 0.3)');
+            
+            // Bottle body with gradient
+            const bodyGradient = ctx.createLinearGradient(-10, -25, 10, 5);
+            bodyGradient.addColorStop(0, '#6db8ff');
+            bodyGradient.addColorStop(0.5, '#4da6ff');
+            bodyGradient.addColorStop(1, '#3d96ef');
+            ctx.fillStyle = bodyGradient;
+            ctx.beginPath();
+            ctx.roundRect(-10, -25, 20, 30, 2);
+            ctx.fill();
+            
+            // Bottle shine
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.beginPath();
+            ctx.ellipse(-5, -15, 3, 8, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Bottle cap
+            const capGradient = ctx.createLinearGradient(-8, -30, 8, -25);
+            capGradient.addColorStop(0, '#0077dd');
+            capGradient.addColorStop(1, '#0055aa');
+            ctx.fillStyle = capGradient;
+            ctx.beginPath();
+            ctx.roundRect(-8, -30, 16, 5, 1);
+            ctx.fill();
+            
+            // Cap highlight
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.fillRect(-6, -29, 12, 1);
+            
+            // Bottle bottom
+            ctx.fillStyle = '#3d96ef';
+            ctx.beginPath();
+            ctx.ellipse(0, 5, 10, 3, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Bottom shadow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.beginPath();
+            ctx.ellipse(0, 6, 9, 2, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+        
+        function drawConveyorBelt(x, y, w, h, offset, direction) {
+            // Belt main body with gradient
+            drawGradientRect(x, y, w, h, '#3a3a3a', '#2a2a2a');
+            
+            // Belt edges
+            ctx.strokeStyle = '#1a1a1a';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x, y, w, h);
+            
+            // Clip to belt area to prevent lines from going outside
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(x, y, w, h);
+            ctx.clip();
+            
+            // Belt pattern with enhanced details
+            ctx.strokeStyle = '#555';
+            ctx.lineWidth = 3;
+            for (let i = -2; i < Math.ceil(w / 35) + 2; i++) {
+                let xPos = x + ((i * 35 + offset * direction) % (w + 35));
+                if (direction === -1) {
+                    xPos = x + w - ((i * 35 + offset) % (w + 35));
+                }
+                ctx.beginPath();
+                ctx.moveTo(xPos, y);
+                ctx.lineTo(xPos + 15, y);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(xPos, y + h);
+                ctx.lineTo(xPos + 15, y + h);
+                ctx.stroke();
+            }
+            
+            ctx.restore();
+        }
+        
+        function drawWheel(x, y, radius, rotation) {
+            // Wheel shadow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+            ctx.beginPath();
+            ctx.ellipse(x + 3, y + 3, radius, radius, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Wheel body
+            const wheelGradient = ctx.createRadialGradient(x - 5, y - 5, 5, x, y, radius);
+            wheelGradient.addColorStop(0, '#555');
+            wheelGradient.addColorStop(0.7, '#333');
+            wheelGradient.addColorStop(1, '#1a1a1a');
+            ctx.fillStyle = wheelGradient;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Wheel rim
+            ctx.strokeStyle = '#1a1a1a';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // Spokes
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            ctx.strokeStyle = '#444';
+            ctx.lineWidth = 2;
+            for (let i = 0; i < 6; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(radius - 5, 0);
+                ctx.stroke();
+                ctx.rotate(Math.PI / 3);
+            }
+            ctx.restore();
+            
+            // Center hub
+            const hubGradient = ctx.createRadialGradient(x, y, 0, x, y, 8);
+            hubGradient.addColorStop(0, '#666');
+            hubGradient.addColorStop(1, '#333');
+            ctx.fillStyle = hubGradient;
+            ctx.beginPath();
+            ctx.arc(x, y, 8, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function drawSystem() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw supplies box with enhanced styling
+            drawGradientRect(50, 200, 80, 80, '#3a4a5a', '#2a3a4a');
+            ctx.strokeStyle = '#5a7a9a';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(50, 200, 80, 80);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 14px Arial';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+            ctx.shadowBlur = 3;
+            ctx.fillText('Supplies', 58, 245);
+            ctx.shadowBlur = 0;
+            
+            // Draw camera system with enhanced design
+            drawGradientRect(350, 30, 100, 60, '#4a5a6a', '#3a4a5a');
+            ctx.strokeStyle = '#6a8aaa';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(350, 30, 100, 60);
+            
+            // Camera lens
+            ctx.fillStyle = '#1a2a3a';
+            ctx.beginPath();
+            ctx.arc(400, 60, 12, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#5a7a9a';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Lens highlight
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.beginPath();
+            ctx.arc(397, 57, 4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = '#4df3ff';
+            ctx.font = 'bold 12px Arial';
+            ctx.shadowColor = 'rgba(77, 243, 255, 0.8)';
+            ctx.shadowBlur = 5;
+            ctx.fillText('AI Camera', 360, 40);
+            ctx.fillText('PET -> "1"', 360, 82);
+            ctx.shadowBlur = 0;
+            
+            // Draw countdown with pulsing effect
+            if (animationState === 'detecting') {
+                detectionPulse += 0.1;
+                const pulseScale = 1 + Math.sin(detectionPulse) * 0.1;
+                ctx.save();
+                ctx.translate(495, 65);
+                ctx.scale(pulseScale, pulseScale);
+                ctx.fillStyle = '#ff4d6a';
+                ctx.font = 'bold 42px Arial';
+                ctx.shadowColor = 'rgba(255, 77, 106, 0.8)';
+                ctx.shadowBlur = 15;
+                ctx.fillText(countdown, -15, 0);
+                ctx.restore();
+                ctx.shadowBlur = 0;
+            }
+            
+            // Draw funnel with metallic look
+            ctx.beginPath();
+            ctx.moveTo(320, 90);
+            ctx.lineTo(380, 150);
+            ctx.lineTo(420, 150);
+            ctx.lineTo(480, 90);
+            ctx.closePath();
+            const funnelGradient = ctx.createLinearGradient(320, 90, 480, 150);
+            funnelGradient.addColorStop(0, '#6a7a8a');
+            funnelGradient.addColorStop(0.5, '#5a6a7a');
+            funnelGradient.addColorStop(1, '#4a5a6a');
+            ctx.fillStyle = funnelGradient;
+            ctx.fill();
+            ctx.strokeStyle = '#8a9aaa';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // Draw trapdoor with smooth animation
+            ctx.save();
+            ctx.translate(400, 150);
+            ctx.rotate(-trapdoorAngle);
+            drawGradientRect(-20, 0, 40, 10, '#5a6a7a', '#4a5a6a');
+            ctx.strokeStyle = '#7a8a9a';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(-20, 0, 40, 10);
+            ctx.restore();
+            
+            // State label A
+            if (currentState === 'A') {
+                ctx.fillStyle = '#ff4d6a';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(255, 77, 106, 0.8)';
+                ctx.shadowBlur = 10;
+                ctx.fillText('A', 400, 25);
+                ctx.shadowBlur = 0;
+            }
+            
+            // Draw first conveyor belt
+            drawConveyorBelt(200, 250, 400, 20, belt1Offset, 1);
+            
+            // Draw wheels for belt 1 with rotation
+            drawWheel(230, 290, 30, belt1Offset * 0.033);
+            drawWheel(570, 290, 30, belt1Offset * 0.033);
+            
+            // Arrow showing belt 1 direction with glow
+            if (belt1Moving) {
+                ctx.fillStyle = '#00ff88';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(0, 255, 136, 0.8)';
+                ctx.shadowBlur = 15;
+                ctx.fillText('→', 340, 242);
+                ctx.shadowBlur = 0;
+            }
+            
+            // State labels B and C
+            if (currentState === 'B') {
+                ctx.fillStyle = '#ff4d6a';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(255, 77, 106, 0.8)';
+                ctx.shadowBlur = 10;
+                ctx.fillText('B', 280, 242);
+                ctx.shadowBlur = 0;
+            }
+            if (currentState === 'C') {
+                ctx.fillStyle = '#ff4d6a';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(255, 77, 106, 0.8)';
+                ctx.shadowBlur = 10;
+                ctx.fillText('C', 580, 242);
+                ctx.shadowBlur = 0;
+            }
+            
+            // Draw second conveyor belt
+            drawConveyorBelt(350, 450, 550, 20, belt2Offset, -1);
+            
+            // Draw wheels for belt 2 with rotation
+            drawWheel(380, 490, 30, -belt2Offset * 0.033);
+            drawWheel(870, 490, 30, -belt2Offset * 0.033);
+            
+            // Arrow showing belt 2 direction with glow
+            if (belt2Moving) {
+                ctx.fillStyle = '#00ff88';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(0, 255, 136, 0.8)';
+                ctx.shadowBlur = 15;
+                ctx.fillText('←', 660, 442);
+                ctx.shadowBlur = 0;
+            }
+            
+            // State labels D and E
+            if (currentState === 'D') {
+                ctx.fillStyle = '#ff4d6a';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(255, 77, 106, 0.8)';
+                ctx.shadowBlur = 10;
+                ctx.fillText('D', 810, 442);
+                ctx.shadowBlur = 0;
+            }
+            if (currentState === 'E') {
+                ctx.fillStyle = '#ff4d6a';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(255, 77, 106, 0.8)';
+                ctx.shadowBlur = 10;
+                ctx.fillText('E', 520, 442);
+                ctx.shadowBlur = 0;
+            }
+            
+            // Draw PET box with enhanced styling
+            let petBoxColor1, petBoxColor2, petBoxStroke;
+            if (animationState === 'detecting') {
+                const isGreen = (countdown === 1)
+                    ? (Math.floor(Date.now() / 500) % 2) === 0 // blink every 0.5s when countdown == 1
+                    : (countdown % 2) === 1; // otherwise green on odd countdowns
+                if (isGreen) {
+                    petBoxColor1 = '#3a9d3a';
+                    petBoxColor2 = '#2a7d2a';
+                    petBoxStroke = '#5abd5a';
+                } else {
+                    // gray state
+                    petBoxColor1 = '#555555';
+                    petBoxColor2 = '#3d3d3d';
+                    petBoxStroke = '#7a7a7a';
+                }
+            } else if (animationState !== 'idle') {
+                // Fully green after detection
+                petBoxColor1 = '#3a9d3a';
+                petBoxColor2 = '#2a7d2a';
+                petBoxStroke = '#5abd5a';
+            } else {
+                // Gray before detection
+                petBoxColor1 = '#3a3a3a';
+                petBoxColor2 = '#2a2a2a';
+                petBoxStroke = '#5a5a5a';
+            }
+            drawGradientRect(280, 550, 100, 80, petBoxColor1, petBoxColor2);
+            ctx.strokeStyle = petBoxStroke;
+            ctx.lineWidth = 3;
+            ctx.strokeRect(280, 550, 100, 80);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 20px Arial';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+            ctx.shadowBlur = 3;
+            ctx.fillText('PET', 307, 595);
+            ctx.shadowBlur = 0;
+            
+            // State label F
+            if (currentState === 'F') {
+                ctx.fillStyle = '#ff4d6a';
+                ctx.font = 'bold 28px Arial';
+                ctx.shadowColor = 'rgba(255, 77, 106, 0.8)';
+                ctx.shadowBlur = 10;
+                ctx.fillText('F', 330, 540);
+                ctx.shadowBlur = 0;
+            }
+            
+            // Draw Metals box with metallic gradient
+            drawGradientRect(820, 550, 100, 80, '#9a9a9a', '#6a6a6a');
+            ctx.strokeStyle = '#bbb';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(820, 550, 100, 80);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 18px Arial';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+            ctx.shadowBlur = 3;
+            ctx.fillText('Metals', 840, 595);
+            ctx.shadowBlur = 0;
+            
+            // Draw detection result label with glow
+            if (animationState !== 'idle' && animationState !== 'detecting') {
+                ctx.fillStyle = '#ffff00';
+                ctx.font = 'bold 24px Arial';
+                ctx.shadowColor = 'rgba(255, 255, 0, 0.8)';
+                ctx.shadowBlur = 15;
+                ctx.fillText('"1"', 495, 195);
+                ctx.shadowBlur = 0;
+            }
+            
+            // Draw bottle with rotation
+            if (bottle.visible) {
+                drawBottle(bottle.x, bottle.y, bottle.rotation);
+            }
+        }
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        async function startAnimation() {
+            startBtn.disabled = true;
+            animationState = 'detecting';
+            
+            // State A: Bottle in funnel
+            currentState = 'A';
+            bottle.visible = true;
+            bottle.x = 400;
+            bottle.y = 120;
+            bottle.velocityY = 0;
+            bottle.velocityX = 0;
+            bottle.rotation = 0;
+            bottle.rotationSpeed = 0;
+            statusDiv.textContent = 'State A: Bottle detected in funnel';
+            drawSystem();
+            
+            // 5 second countdown
+            for (let i = 5; i >= 1; i--) {
+                countdown = i;
+                drawSystem();
+                await sleep(1000);
+            }
+            
+            statusDiv.textContent = 'Detection complete: PET = "1"';
+            drawSystem();
+            await sleep(1000); // brief pause so the detection message is readable
+            animationState = 'dropping';
+            
+            // Smooth trapdoor opening animation
+            for (let i = 0; i < 20; i++) {
+                trapdoorAngle = (Math.PI / 4) * (i / 20);
+                drawSystem();
+                await sleep(33);
+            }
+            
+            // State B: Bottle dropping to first belt
+            currentState = 'B';
+            statusDiv.textContent = 'State B: Trapdoor opens, bottle drops';
+            drawSystem();
+            
+            // Physics-based drop to first belt
+            bottle.velocityY = 0;
+            bottle.rotationSpeed = 0.05;
+            while (bottle.y < 235) {
+                bottle.velocityY += GRAVITY;
+                bottle.y += bottle.velocityY;
+                drawSystem();
+                await sleep(21);
+            }
+            
+            bottle.y = 235;
+            bottle.velocityY = 0;
+            bottle.rotation = 0;
+            await sleep(2000); // <--- pause so the State B text is readable
+            
+            // Close trapdoor
+            for (let i = 20; i >= 0; i--) {
+                trapdoorAngle = (Math.PI / 4) * (i / 20);
+                drawSystem();
+                await sleep(20);
+            }
+            trapdoorAngle = 0;
+            
+            // State C: Bottle on first belt, moving right
+            currentState = 'C';
+            belt1Moving = true;
+            statusDiv.textContent = 'State C: First belt moves right (PET = "1")';
+            drawSystem();
+            await sleep(1000); // <--- pause so the State C text is readable
+            
+            bottle.velocityX = BELT_SPEED;
+            while (bottle.x < 580) {
+                bottle.x += bottle.velocityX;
+                belt1Offset += BELT_SPEED;
+                drawSystem();
+                await sleep(21);
+            }
+            
+            belt1Moving = false;
+            
+            // State D: Bottle dropping to second belt
+            currentState = 'D';
+            statusDiv.textContent = 'State D: Bottle drops to second belt';
+            drawSystem();
+            
+            bottle.velocityY = 0;
+            bottle.velocityX = BELT_SPEED * 0.5;
+            bottle.rotationSpeed = 0.08;
+            await sleep(1000); // <--- pause so the State D text is readable
+
+            while (bottle.y < 435) {
+                bottle.velocityY += GRAVITY;
+                bottle.y += bottle.velocityY;
+                bottle.x += bottle.velocityX;
+                bottle.velocityX *= FRICTION;
+                bottle.rotation += bottle.rotationSpeed;
+                drawSystem();
+                await sleep(16);
+            }
+            
+            bottle.y = 435;
+            bottle.velocityY = 0;
+            bottle.rotation = 0;
+            
+            // State E: Bottle on second belt, moving left
+            currentState = 'E';
+            belt2Moving = true;
+            statusDiv.textContent = 'State E: Second belt moves left (PET = "1")';
+            drawSystem();
+            await sleep(1000); // <--- pause so the State E text is readable
+            
+            bottle.velocityX = -BELT_SPEED;
+            while (bottle.x > 330) {
+                bottle.x += bottle.velocityX;
+                belt2Offset += BELT_SPEED;
+                drawSystem();
+                await sleep(16);
+            }
+            
+            belt2Moving = false;
+            
+            // State F: Bottle in PET box
+            currentState = 'F';
+            statusDiv.textContent = 'State F: Bottle sorted into PET box';
+            drawSystem();
+            
+            // Physics-based drop into PET box
+            bottle.velocityY = 0;
+            bottle.rotationSpeed = 0.1;
+            while (bottle.y < 580) {
+                bottle.velocityY += GRAVITY;
+                bottle.y += bottle.velocityY;
+                bottle.rotation += bottle.rotationSpeed;
+                drawSystem();
+                await sleep(16);
+            }
+            
+            await sleep(1000);
+            statusDiv.textContent = '✓ Sorting complete!';
+            
+            // Reset after 2 seconds
+            await sleep(2000);
+            resetAnimation();
+        }
+        
+        function resetAnimation() {
+            animationState = 'idle';
+            currentState = 'A';
+            bottle.visible = false;
+            bottle.velocityY = 0;
+            bottle.velocityX = 0;
+            bottle.rotation = 0;
+            bottle.rotationSpeed = 0;
+            countdown = 5;
+            trapdoorAngle = 0;
+            belt1Moving = false;
+            belt2Moving = false;
+            belt1Offset = 0;
+            belt2Offset = 0;
+            detectionPulse = 0;
+            statusDiv.textContent = '';
+            drawSystem();
+            startBtn.disabled = false;
+        }
+        
+        startBtn.addEventListener('click', startAnimation);
+        
+        // Initial draw
+        drawSystem();
+    </script>
+</body>
+</html>

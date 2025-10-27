@@ -1302,7 +1302,239 @@ transforms completely into \textbf{pearlite}, a finely layered mixture of
   \gamma \;\xrightarrow[727^{\circ}\text{C}]{}\; \alpha + \mathrm{Fe}_3\mathrm{C}
 \end{gather*}
 
+\pph{Final microstructure at Room Temperature}
+The microstructure is 100\% pearlite, consisting of:
+\begin{itemize}
+  \item \textbf{Ferrite lamellae ($\bm{alpha}$)}: soft, ductile phase forming the light layers
+  \item \textbf{Cementite lamellae Fe$_\mathbf{3}$C}: hard, brittle phase forming the dark layers
+\end{itemize}
 
+The alternating lamellar structure provides a balance of strength and ductility,
+characteristic of unalloyed eutectic steel.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.7\textwidth]{media/eutectic_microstructure.png}
+  \caption*{Microstructure at room temperature of eutectoid steel after slow cooling}
+\end{figure*}
+
+\pph{Result}
+Eutectoid steel exhibits a uniform pearlitic structure, combining moderate hardness
+with good toughness. It serves as a base for many steels that are later
+hardened or tempered by heat treatment.
+
+\subsubsection{Hypereutectoid steel L$_3$}
+Hypereutectoid steels contain more than 0.8 wt\% carbon. During slow cooling,
+\textbf{cementite Fe$_\mathbf{3}$C} precipitates first at austenite grain boundaries.
+The remaining austenite transforms into \textbf{pearlite} at the eutectoid temperature.
+
+\begin{gather*}
+  \gamma \to \mathrm{Fe}_3\mathrm{C}_\text{grain boundary} + (\alpha + \mathrm{Fe}_3\mathrm{C})_\text{pearlite}
+\end{gather*}
+
+\pph{Final microstructure at Room Temperature}
+Final components:
+\begin{itemize}
+  \item \textbf{Grain boundary cementite} (proeutectoid cementite): hard and brittle. It forms before eutectoid reaction and outlines prior austenite grains
+  \item \textbf{Pearlite}: lamellar mixture of ferrite and cementite, formed from eutectoid reaction at 727$^\circ$C
+\end{itemize}
+
+Total structure: \textbf{grain boundary cementite + pearlite}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.7\textwidth]{media/hypereutectic_microstructure.png}
+  \caption*{Microstructure at room temperature of hypereutectoid steel after slow cooling}
+\end{figure*}
+
+\pph{Result}
+Hard and wear-resistant, suitable for applications requiring high surface
+hardness and fatigue strength (e.g. ball bearings, cutting tools).
+
+\newpage
+\subsection{Faster Cooling / Quenching}
+Fast cooling of steel changes the transformation behavior compared to
+equilibrium cooling. In such cases, the Continuous-Cooling Transformation (CCT) diagram is used.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/CCT_diagram.png}
+\end{figure*}
+
+Fast cooling:
+\begin{itemize}
+  \item Transformation temperatures shift to lower values
+  \item Pearlite become finer and forms over a wider temperature range instead of only at 727$^\circ$C
+  \item \textbf{Martensite and bainite can form}
+\end{itemize}
+
+\subsubsection{Difference between CCT and Iron-Iron Carbide Phase Diagram}
+{
+  \renewcommand{\arraystretch}{2}
+  \begin{table*}[ht!]
+    \centering
+    \begin{tabular}{|l|l|l|}
+      \hline \textbf{Diagram} & \textbf{Description} & \textbf{Use case}\\
+      \hline CCT diagram & \makecell[l]{Shows phase transformations\\under continuous cooling} & \makecell[l]{Required for realistic\\heat-treatment conditions} \\
+      \hline Fe-Fe$_3$C diagram & \makecell[l]{Shows equilibrium (slow-cooling)\\transformations} & \makecell[l]{Valid only for very\\slow cooling / equilibrium} \\
+      \hline
+    \end{tabular}
+  \end{table*}
+}
+
+\newpage
+\subsection{Martensite}
+\begin{itemize}
+  \item Very fast cooling (quenching) of austenite produces a martensitic transformation
+  \item Diffusion does not occur, so neither ferrite nor pearlite can form
+  \item Lattice shear of FCC austenite produces tetragonal body-centered martensite
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/martensite.png}
+\end{figure*}
+
+\subsection{Bainite}
+Rapid cooling to an intermediate temperature range (250-500$^\circ$C), slower than for martensite
+or pearlite, produces bainite:
+\begin{itemize}
+  \item Combined shear and limited diffusion with cementite precipitation
+  \item \textbf{Higher strength} than pearlite, \textbf{more ductile} than martensite
+  \item Suitable for high-performance components and tools
+\end{itemize}
+
+\subsubsection{Structure}
+\textbf{Upper bainite}
+\begin{itemize}
+  \item Forms at higher bainitic temperatures (350-500$^\circ$C)
+  \item Ferrite needles with cementite lamellae mainly at ferrite boundaries
+\end{itemize}
+
+\textbf{Lower bainite}
+\begin{itemize}
+  \item Forms at lower bainitic temperatures (250-350$^\circ$C)
+  \item Ferrite needles with fine cementite particles inside the ferrite
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/bainite.png}
+\end{figure*}
+
+\newpage
+\subsection{Continuous-Cooling Transformation Diagram (CCT)}
+The CCT diagram shows phase transformation during continuous cooling.
+
+\subsubsection{Carbon steel C35E CCT}
+\begin{itemize}
+  \item For C35E steel (0.35 wt\% C), only small amounts of bainite form
+  \item Bainite forms only within a narrow temperature-time range
+  \item Higher cooling rates produce martensite, slower cooling produces ferrite and pearlite
+\end{itemize}
+
+\textbf{Resulting hardness for typical cooling paths}
+\begin{itemize}
+  \item Martensite: about 650-600 HV
+  \item Bainite: about 290 HV
+  \item Ferrite-pearlite: about 200-180 HV
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/CCT_C35E.png}
+\end{figure*}
+
+\subsubsection{Vickers hardness calculation}
+\figbox{$\dm \mathrm{HV} = 0.102 \cdot F \cdot \frac{2\cos(22^\circ)}{\left(\dfrac{d_1 + d_2}{2}\right)^2}$}
+
+where $d_1$, $d_2$ are the diagonals of the indentation in mm, and $F$ is the applied force in N.
+
+\subsubsection{Low-alloyed (Mild) Steel 34CrMo4}
+This alloyed steel contains 0.34 wt\% C, 1 wt\% Cr, and 0.2 wt\% Mo. It has more bainite,
+higher ductility, greater hardening depth.
+\begin{itemize}
+  \item Larger bainite region that in plain-carbon steel
+  \item Increased toughness and ductility compared to martensite
+  \item Greater hardening depth because slower cooling can still produce martensite or bainite
+\end{itemize}
+
+\textbf{Typical hardness for cooling path}
+\begin{itemize}
+  \item Martensite: about 650-640 HV
+  \item Bainite: about 300-240 HV
+  \item Ferrite-pearlite: about 200 HV
+\end{itemize}
+
+\newpage
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/CCT_34CrMo4.png}
+\end{figure*}
+
+\subsection{Real-life Continuous-Cooling Transformation Diagram (CCT)}
+The Real-life CCT diagram shows the transformation behavior under real continuous cooling,
+illustrating transformation ranges for austenite, bainite, pearlite, and martensite.
+
+\subsubsection{Carbon steel C45E}
+Carbon steel C45E requires high cooling rates to form martensite. 
+\begin{itemize}
+  \item High cooling rate is needed to reach the martensite region
+  \item Hardening depth is limited due to the need for fast cooling
+  \item Maximum martensitic hardness is reached only to about 5 mm depth from the surface
+\end{itemize}
+
+\subsubsection{Low-alloyed (mild) steel 42CrMo4}
+Low-alloy steel 42CrMo4 contains 0.42 wt\% C, 1 wt\% Cr, and 0.2 wt\% Mo. It shows
+improved hardenability compared to plain-carbon steels. The martensite region is reached
+at slower cooling rates, and the bainite formation is more likely.
+\begin{itemize}
+  \item Slower cooling still produces martensite, which reduces quench distortions
+  \item Hardening depth greater than 5 mm, so thicker parts can be through-hardened or quenched and tempered
+  \item Higher bainite fraction possible, giving a good strength-ductility balance
+\end{itemize}
+
+\subsection{Isothermal Transformation Diagram}
+Bainite can also be formed in carbon steels through isothermal transformation:
+\begin{itemize}
+  \item Up to 100\% bainite possible in unalloyed carbon steels
+  \item Lower cost than low-alloy steels
+  \item \textbf{Use}: automotive parts such as disc springs
+  \item \textbf{Cons}: quenching baths often contain liquid lead or toxic salts
+\end{itemize}
+
+Isothermal transformation diagram for C35E shows ferrite, pearlite, bainite, and martensite
+formation at constant temperatures. \textbf{Hardness increases from ferrite-pearlite to bainite to martensite}
+
+\newpage
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=.8\textwidth]{media/ITT_C35E.png}
+\end{figure*}
+
+\section{Heat treatments}
+\subsection{Heat treatments overview}
+Heat treatments adjust the properties of steel after primary and secondary metallurgy:
+\begin{itemize}
+  \item \textbf{Annealing treatments} refine microstructure and reduce internal stresses
+  \item \textbf{Hardening and tempering} increase strength and wear resistance
+  \item \textbf{Surface heat treatments} improve surface hardness while maintaining a tough core
+\end{itemize}
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/heat_treatments.png}
+\end{figure*}
+
+\newpage
+\subsection{Typical annealing treatments of steel}
+Annealing adjusts the microstructure of steel by heating it to a defined temperature range
+followed by controlled cooling.
+
+\begin{figure*}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{media/annealing_treatments.png}
+\end{figure*}
 
 
 

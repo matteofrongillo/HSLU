@@ -36,10 +36,14 @@
 \usepackage{tabularx}
 \usepackage{pdflscape}
 \usepackage{wasysym}
+\usepackage{float}
+\usepackage{caption}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
+\usepgfplotslibrary{statistics}
 \definecolor{darkgreen}{RGB}{0, 160, 0}
+\definecolor{darkgray}{rgb}{0.2, 0.2, 0.2}
 
 % ============= GEOMETRY =============
 
@@ -63,7 +67,21 @@
 \IfFileExists{ref.bib}{\addbibresource{ref.bib}}{}
 \DeclareFieldFormat[article]{volume}{\textbf{#1}}
 \DeclareFieldFormat[article]{journaltitle}{\textit{#1}}
-% ====================
+\DeclareFieldFormat[online]{title}{\textit{#1}}
+\AtBeginBibliography{%
+  \renewbibmacro*{url+urldate}{%
+    \printfield{url}%
+    \newunit\newblock
+    \iffieldundef{urldate}
+      {}
+      {\newunit\newblock\printurldate}%
+  }%
+}
+
+\setlength{\bibhang}{20pt}
+\setlength{\bibitemsep}{\baselineskip}
+\DeclareFieldFormat{url}{\newline\url{#1}}
+% =================================
 
 % ============= NEW COMMANDS =============
 
@@ -95,6 +113,43 @@
     \fi
     \phantom{}
 }
+
+\newcommand{\cfig}[1]{%
+  \begin{figure*}[ht!]%
+    \centering%
+    #1%
+  \end{figure*}%
+}
+
+% === LIST OF EQUATIONS ===
+\newcounter{myequation}
+\renewcommand{\themyequation}{\arabic{myequation}}
+
+\newlistof{myequations}{loe}{\Large List of Equations}
+\newcommand{\addequationtotoc}[1]{%
+  \addcontentsline{loe}{myequations}{\protect\numberline{\themyequation}#1}%
+}
+
+\renewcommand{\cftmyequationspresnum}{}
+\renewcommand{\cftmyequationsaftersnum}{\hspace{1em}}
+\setlength{\cftmyequationsnumwidth}{2em}
+\cftsetindents{myequations}{1.5em}{2.3em}
+
+\newcommand{\capeq}[3]{%
+    \refstepcounter{myequation}%
+    \begin{equation*}
+        #1
+    \end{equation*}
+    \label{#2}%
+    \begin{center}
+        \vspace*{-.4cm}
+        \noindent{Equation \themyequation:} #3
+    \end{center}
+    \addequationtotoc{#3}%
+}
+
+\newcommand{\refeq}[1]{\hyperref[#1]{[Equation~\ref*{#1}]}}
+% =========================
 
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }

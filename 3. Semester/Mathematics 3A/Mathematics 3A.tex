@@ -298,4 +298,23 @@ If $f$ is differentiable and $\overrightarrow{e_u} = u_1\overrightarrow{e_x} + u
 is the unit vector in the direction of $\overrightarrow{u}$, then:
 \figbox{$\dm \frac{\partial f}{\partial \overrightarrow{u}}(a,b) = f_{\overrightarrow{u}}(a,b) = f_x(a,b)u_1 + f_y(a,b)u_2 = \nabla f(a,b)\cdot\overrightarrow{e_u}$}
 
+\section{Critical points}
+\subsection{Discriminant}
+Let $(x_0,y_0)$ be a critical point. Furthermore, let
+\figbox{$\dm D(x_0,y_0) = f_{xx}(x_0,y_0)f_{yy}(x_0,y_0) - \big(f_{xy}(x_0,y_0)\big)^2$}
+
+Then the following holds:
+\begin{itemize}
+    \item If $D>0$ and $f_{xx}>0$, then $f$ has a local minimum at $(x_0,y_0)$
+    \item If $D>0$ and $f_{xx}<0$, then $f$ has a local maximum at $(x_0,y_0)$
+    \item If $D><$, then $f$ has a saddle point at $(x_0,y_0)$
+    \item If $D=0$, no conclusion can be made
+\end{itemize}
+
+
+
+
+
+
+
 \end{document}

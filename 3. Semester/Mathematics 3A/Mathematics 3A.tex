@@ -307,10 +307,26 @@ Then the following holds:
 \begin{itemize}
     \item If $D>0$ and $f_{xx}>0$, then $f$ has a local minimum at $(x_0,y_0)$
     \item If $D>0$ and $f_{xx}<0$, then $f$ has a local maximum at $(x_0,y_0)$
-    \item If $D><$, then $f$ has a saddle point at $(x_0,y_0)$
+    \item If $D<0$, then $f$ has a saddle point at $(x_0,y_0)$
     \item If $D=0$, no conclusion can be made
 \end{itemize}
 
+\section{Constraints and Lagrange Multipliers}
+
+\subsection{Graphical representation}
+
+\subsection{Lagrange multiplier $\lambda$}
+
+
+\subsection{Lagrange function $\mathcal{L}$}
+When optimizing $f(x,y)$ under the constraint $g(x,y) = c$, the
+Lagrange function is used:
+\figbox{$\dm \mathcal{L}(x,y,\lambda) = f(x,y) - \lambda(g(x,y)-c)$}
+
+The partial derivatives must be calculated:
+\figbox{$\dm \frac{\partial\mathcal{L}}{\partial x} = \frac{\partial f}{\partial x} - \lambda\frac{\partial g}{\partial x}$\\\\
+        $\dm \frac{\partial\mathcal{L}}{\partial y} = \frac{\partial f}{\partial y} - \lambda\frac{\partial g}{\partial y}$\\\\
+        $\dm \frac{\partial\mathcal{L}}{\partial \lambda} = -\big(g(x,y)-c\big)$}
 
 
 

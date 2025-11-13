@@ -1,0 +1,250 @@
+\ProvidesPackage{Lab_report}[2025/11/10 Lab report package]
+
+% ================= PACKAGES =================
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usepackage{esvect}
+\usepackage{xcolor}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{babel}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{tocloft}
+\usepackage{varwidth}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{pdflscape}
+\usepackage{wasysym}
+\usepackage{listings}
+
+\usetikzlibrary{arrows,arrows.meta,decorations.pathreplacing}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{statistics}
+
+% ================= GEOMETRY =================
+\geometry{
+  a4paper,
+  total={170mm, 257mm},
+  left=20mm,
+  top=20mm
+}
+
+% ================= COLORS =================
+\definecolor{darkgreen}{RGB}{0,160,0}
+\definecolor{darkgray}{rgb}{0.2,0.2,0.2}
+\definecolor{newgreen}{HTML}{4da833}
+\definecolor{neworange}{HTML}{e96d2f}
+\definecolor{newblue}{HTML}{145d80}
+
+% ================= HYPERREF + PDF META =================
+\newcommand{\pdftitle}[1]{%
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={#1}
+  }%
+}
+
+% ================= BIBLIOGRAPHY (biblatex APA) =================
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[style=apa, backend=biber, doi=true, url=true]{biblatex}
+\IfFileExists{ref.bib}{\addbibresource{ref.bib}}{}
+\DeclareFieldFormat[article]{volume}{\textbf{#1}}
+\DeclareFieldFormat[article]{journaltitle}{\textit{#1}}
+\DeclareFieldFormat[online]{title}{\textit{#1}}
+\AtBeginBibliography{%
+  \renewbibmacro*{url+urldate}{%
+    \printfield{url}%
+    \newunit\newblock
+    \iffieldundef{urldate}
+      {}
+      {\newunit\newblock\printurldate}%
+  }%
+}
+
+\setlength{\bibhang}{20pt}
+\setlength{\bibitemsep}{\baselineskip}
+\DeclareFieldFormat{url}{\newline\url{#1}}
+
+% Break URL on new line with access date after URL when present
+\AtBeginBibliography{%
+  \renewbibmacro*{url+urldate}{%
+    \printfield{url}%
+    \newunit\newblock
+    \iffieldundef{urldate}{}{%
+      \newunit\newblock\printurldate}%
+  }%
+}
+
+% ================= AUTHOR BLOCK ENHANCEMENT =================
+\makeatletter
+\renewcommand{\author}[1]{%
+  \def\@author{%
+    #1\\\\
+    \parbox{\textwidth}{%
+      \noindent
+      \begin{minipage}[t]{0.15\textwidth}Last update:\end{minipage}%
+      \begin{minipage}[t]{0.70\textwidth}\centering\today\end{minipage}%
+      \begin{minipage}[t]{0.15\textwidth}\end{minipage}%
+    }%
+  }%
+}
+\makeatother
+
+% ================= TIKZ/PGF MATH HELPERS =================
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+  \begingroup
+  \pgfmathparse{rad(atan(#1))}%
+  \endgroup
+}
+\makeatother
+
+% ================= EQUATION LIST =================
+\newcounter{myequation}
+\renewcommand{\themyequation}{\arabic{myequation}}
+
+\newlistof{myequations}{loe}{\Large List of Equations}
+\newcommand{\addequationtotoc}[1]{%
+  \addcontentsline{loe}{myequations}{\protect\numberline{\themyequation}#1}%
+}
+
+\renewcommand{\cftmyequationspresnum}{}
+\renewcommand{\cftmyequationsaftersnum}{\hspace{1em}}
+\setlength{\cftmyequationsnumwidth}{2em}
+\cftsetindents{myequations}{1.5em}{2.3em}
+
+\newcommand{\capeq}[3]{%
+  \refstepcounter{myequation}%
+  \begin{equation*}#1\end{equation*}%
+  \label{#2}%
+  \begin{center}
+    \vspace*{-0.4cm}%
+    \noindent{Equation \themyequation:} #3%
+  \end{center}
+  \addequationtotoc{#3}%
+}
+
+\RenewDocumentCommand{\refeq}{m}{\hyperref[#1]{Equation~\ref*{#1}}}
+
+% ================= COMMANDS: MATH + TEXT =================
+\let\emptyset\varnothing
+
+\ExplSyntaxOn
+\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
+{
+  \IfNoValueTF { #4 }
+    {
+      \IfNoValueTF { #3 }
+        { \displaystyle \int #1\,d#2 }
+        { \text{Either\,\,2\,\,or\,\,4\,\,arguments\,\,must\,\,be\,\,passed} }
+    }
+    {
+      \displaystyle \int\limits\c_math_subscript_token{#1}^{#2} #3 \,d#4
+    }
+}
+\ExplSyntaxOff
+
+\newcommand*\circled[1]{%
+  \tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}%
+}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\note}{\underline{Note}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1}\phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
+\newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
+\newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
+\newcommand{\ccit}[1]{\citeauthor{#1} \cite{#1}}
+
+% ================= FIGURES/BOXES HELPERS =================
+\newcommand{\figbox}[1]{%
+  \begin{figure*}[ht!]%
+    \begin{center}%
+      \fbox{\begin{varwidth}{\textwidth}#1\end{varwidth}}%
+    \end{center}%
+  \end{figure*}%
+}
+
+% Generic centered figure* wrapper
+\newcommand{\cfigure}[1]{%
+  \begin{figure*}[ht!]%
+    \centering
+    #1%
+  \end{figure*}%
+}
+
+% Backward-compatible chemfig helper: \cfig{<chem>}{<label>}{<caption>}
+\newcommand{\cfig}[3]{%
+  \begin{figure}[H]%
+    \centering
+    \chemfig{#1}%
+    \caption{#3}%
+    \label{#2}%
+  \end{figure}%
+}
+
+% Wrapfig fill helper
+\newcommand{\wrapfill}{%
+  \par
+  \ifnum \value{WF@wrappedlines} > 0
+    \addtocounter{WF@wrappedlines}{-1}%
+    \null\vspace{\arabic{WF@wrappedlines}\baselineskip}%
+    \WFclear
+  \fi
+  \phantom{}%
+}
+
+% ================= LISTINGS =================
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{green!60!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true
+}
+
+% ================= TITLE/CHAPTER FORMAT =================
+\titleformat{\chapter}[block]{\bfseries\Large}{\thechapter.}{1em}{}

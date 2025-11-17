@@ -1,0 +1,309 @@
+Introduction
+Plastic is a material found in every environment, and its use is indispensable in everyday life, present in consumer products and industrial applications. However, plastics often contain additives that modify their properties, such as their appearance or performance.
+Analyzing and understanding the composition of plastics is essential for mitigating pollution and protecting nature so that their environmental hazard can be effectively minimized.
+This experiment focuses on the extraction of admixtures from plastics and on the spectroscopic analysis of polymers in order to visualize their chemical composition and the relative functional groups of the molecules. By combining these two techniques, it is possible to evaluate and study the environmental impact of polymers and their additives.
+
+Soxhlet extraction
+Soxhlet extraction is a chemical separation technique based on extraction cycles. The technique consists of the separation of soluble compounds from solid materials and relies on the differences in solubility between the analyte and the solid matrix; that is the portion of the sample that remains insoluble in the chosen solvent.
+A Soxhlet extractor is composed of a round-bottom flask in which the solvent is boiled (1,2) heated up by a isomantle (8), a thimble (3) needed for holding the solid sample that contains the analyte to be extracted, which in turn is contained in the Soxhlet body (4). A siphon (6) and a side arm (7) connect the flask to the body, enabling the solvent circulation throughout the system.
+A Soxhlet cycle is made up of solvent boiling, vapor condensation, percolation through the sample, and siphoning of the extract back into the boiling flask. A condensed with running water (5) is used to liquefy the rising solvent vapors and drip back onto the sample.
+[picture]
+
+Attenuated Total Reflectance-Fourier Transform Infrared Spectroscopy (ATR-IR)
+Fourier transform infrared spectroscopy (FTIR) [1] consists of a broadband infrared source. To measure all frequencies simultaneously, the beam must first pass through an interferometer to encode the light. Afterwards, the infrared light is sent to an ATR extension to probe the sample.
+Attenuated total reflection extension (ATR) [2] consisting of a crystal with a high refractive index. The extension holds the sample in place with maximum contact to the crystal.
+The infrared beam from the FTIR source arrives and enters the crystal at a specific angel, is internally reflected many times, and an evanescent wave forms. The evanescent wave will penetrate out of the crystal and into the sample at a depth of around 0.5 - 2 micrometers. Chemical bonds from the sample are excited at specific frequencies and absorb energy.
+Finally, a detector collects the returning beam, and a Fourier Transform is performed to calculate the final absorbance graph, visually showing at which frequencies the material has been absorbing energy.
+Sources:
+Gemini to catch errors: atoms -> chemical bonds
+[1] https://en.wikipedia.org/wiki/Fourier-transform_infrared_spectroscopy
+[2] https://en.wikipedia.org/wiki/Attenuated_total_reflectance
+
+Material and Methods
+Material for Soxhlet extraction method
+Soxhlet extractor body
+Glass reflux condenser
+Round-bottom flask (RBF)
+Hot plate with heating controller
+Support and clamps
+Cooling water supply and tubing (secure with clamps)
+Polymer sample impregnated with rhodamine (record mass)
+Solvents
+
+What is rhodamine B
+Rhodamine B is an organic molecule that exists as the chloride salt, and it is notable for its intense fluorescence and use in tracing and dye applications [PubChem]. It is widely used in fluorescence microscopy and as a tracer in hydrodynamic studies because of its bright emission and sensitivity to the environment.
+
+Material for ATR-IR
+Plastic samples
+Agilent Technologies Cary 630 FTIR Spectrometer
+Laboratory gloves
+Isopropyl alcohol and wipes
+
+Procedure
+The laboratory work was divided into two main phases: determining the most suitable solvent for the extraction of rhodamine B from a provided polystyrene-based plastic sample (matrix) using a Soxhlet extractor, followed by the identification of plastics and their functional groups collected along the street between the HSLU T&A building and Horw lake.
+
+Soxhlet procedure
+In this experiment, additives were extracted from a polystyrene-based plastic sample containing rhodamine B using a Soxhlet extractor then further identified and characterized. Before the extraction, a small piece of the polymer was tested with different solvents to select one that dissolved the dye but did not dissolve the plastic matrix. Once a suitable solvent had been identified, the required volume was measured and transferred into a clean round-bottom flask (RBF), filling a half of its volume. The mass of the polymer sample was recorded, and the sample was placed into the extraction thimble, which was then positioned inside the Soxhlet body. The Soxhlet extraction was then carried out using a standard assembly consisting of a round-bottom flask (RBF), a Soxhlet body, and water-cooled reflux condenser. The RBF, filled with the selected solvent, served as the boiling reservoir, while the polymer sample was placed in an extraction thimble positioned within the Soxhlet chamber. The system was heated to establish a gentle, continuous reflux. Under these conditions, solvent vapor is condensed in the condenser and percolated through the sample in repeated cycles. Each siphon event returned the enriched solvent to the RBF, enabling continuous extraction as the dye progressively accumulated in the boiling flask.
+
+ATR-FTIR procedure
+In this experiment, the composition of the plastics were identified using the Agilent Technologies Cary 630 FTIR Spectrometer. Before the samples were measured, the crystal was thoroughly cleaned using isopropyl alcohol and a background measurement was taken to ensure no contaminants were measured. The chosen sample was then placed under the spectrometer, and a measurement was recorded. Using the built in library of reference materials, the most likely match was chosen and plotted next to the measured sample. In the results given by the spectrometer, the most likely match appears as a blue line, while the measured sample appears as a red line. As the spectrometer can only measure one side of the sample, if necessary, the sample was flipped, and the other side was measured due to possible difference in materials. Finally, before proceeding to the next measurements, the crystal was always cleaned using isopropyl alcohol.
+Out of the 17 trash samples collected, the Twix wrapper and the white foam were chosen as they were found next to the shoreline of the lake, where their potential environmental impact is greatest. The location of these samples can be seen in Figure 3 under the points 12 and 13, next to the Seerosenplatz.
+Some images taken during the measurements of the samples can be seen below:
+[picture]
+Figure 1. Measurement procedure for Twix inside
+[picture]
+Figure 2 Measurement procedure for Twix outside
+
+Results
+ATR-FTIR results
+What is the purpose of using ATR-FTIR in environmental analysis?
+To make a risk assessment of an environmental sample, first the material needs to be determined. Then further analysis can proceed. The ATR-FTIR is an excellent choice for two main reasons. It is portable for use in the field, and it is relatively cheap and reliable.
+What does the absorbance spectrum represent?
+The absorbance spectrum shows which frequency of infrared radiation was absorbed by the material. These peaks or broader bands give most materials a fingerprint by which they can be identified. The fingerprints of the measured sample are shown by the red colored lines, while the blue lines show the most likely material fit.
+
+White foam:
+Table 1: Foam
+Peak cm-1
+Functional group
+Possible compound
+2900
+CH3 Valenz.
+Alkane
+2820
+CH3 Valenz.
+Methylether
+1480
+CH3 and CH2 deform.
+Hydrocarbons/Esters
+710
+C—H Deform.
+Monosubstituted Benzenes
+
+Twix inside:
+Table 2: Twix inside
+[picture]
+Figure 3. View of the inside material of the Twix wrapper
+Peak cm-1
+Functional group
+Possible compound
+2910
+CH3 Valenz.
+Alkane
+1450
+CH3 and CH2 deform.
+Hydrocarbons/Esters
+1380
+CH3 Deform.
+Hydrocarbons
+
+Twix outside:
+[picture]
+Figure 4. View of the outside material of the Twix wrapper
+Table 3: Twix outside
+Peak cm-1
+Functional group
+Possible compound
+3300 (broad)
+N—H Valenz.
+Amine/Amide
+2940
+CH3 Valenz.
+Alkane
+1630
+C==O Valenz.
+Primary carbon acid amide
+1550
+NO2 Valenz.
+Nitroalkane
+
+Compare your measured spectrum with reference spectra from the library what materials were identified?
+Foam: Low-density Polyethylene.
+Twix outside: Polyethylene
+Twix inside: Nylon 6 Poly(caprolactam) Pellets
+
+Probably best to put this table in the appendix
+
+Discuss the environmental implications of finding plastics at the lake shore.
+Finding polystyrene (foam) and nylon along the lake shore suggests pollution from packaging or insulation waste. These kinds of plastics fragment into microplastic with time. Microplastics can stay in the environment for many years, leach into water, and can also release toxic chemicals into the environment.
+
+How could the presence of these materials impact ecosystem health and aquatic life?
+These materials can harm the ecosystem and aquatic life physically, or by chemical impact. Small plastic fragments can be ingested by fish, birds, or other organisms, causing internal injuries.
+Degradation of polystyrene and other potentially toxic chemicals can harm the ecosystem and therefore, other life forms. If these kinds of waste are improperly disposed of in large amounts, they could cover the water surface, block light penetration and reduce oxygen exchange in the water.
+
+Include all the collection samples and important pictures taken during the Excursion.
+[picture]
+[picture]
+[picture]
+[picture]
+[picture]
+
+Include the rest of the questions from the sampling guideline given last week in this report.
+
+Why might there be little to no litter in this area?
+The area could be well maintained, with regular cleaning and responsible public behavior.
+
+What does this say about local waste management and environmental awareness?
+This indicated effective waste management and a decently high level of environmental awareness among locals and the administration.
+
+What might happen to this ecosystem if more people started visiting every day?
+Increased visitors could lead to more littering, and greater pollution, if strict waste disposal and education measures are not maintained.
+
+What are potential hidden pollutants (microplastics, chemical runoff, etc.) even if no visible litter is present?
+There could possibly be microplastics, chemical runoff, detergents, fertilizers in the water, or sediments along the coast.
+
+How could community behavior or infrastructure (bins, signage, etc.) influence cleanliness?
+Properly placed bins, clear signage, and community involvement in maintaining a clean neighborhood can help influence cleanliness.
+
+How could environmental education maintain or improve this standard?
+Environmental education including, but not limited to, workshops, school programs, and local awareness campaigns can emphasize the importance of proper waste disposal and appreciation of the lake ecosystem.
+
+Record observations about waste bins, signage, or evidence of maintenance and report findings. How many waste bins did you see from HSLU to the lake?
+From HSLU to the lake, there were a total of 50 private bins, and 15 public bins.
+
+I made a plan below to put this into paragraphs
+
+Soxhlet solvents result
+In order to determine the best solvent for the Soxhlet extraction of the rhodamine B dye from the polystyrene-based samples, four candidate solvents were tested and categorized according to their properties and their effectiveness on the matrix and the dye:
+
+Table 4: Candidate solvents effectiveness
+Solvent
+Solubility of matrix
+Solubility of dye
+Boiling point [°C]
+Toxicity
+Polarity
+Hexane
+Insoluble
+No extraction
+~69
+High: Neurotoxic
+Non-polar
+Diethyl ether
+Slight swelling
+No extraction
+~35
+High: Peroxide-forming
+Low polarity
+Acetone
+Swelling
+No extraction
+~56
+Moderate: Irritant
+Moderately polar
+Ethanol
+Insoluble
+Strong extraction
+~78
+Low toxicity
+Polar
+
+Scales used:
+Matrix solubility: Insoluble – Slight swelling – Swelling – Partially soluble – Soluble
+Dye solubility: No extraction – Weak – Moderate – Strong – Complete extraction
+
+Soxhlet extraction result
+Throughout the Soxhlet extraction, a progressive change in the appearance of both the solvent and the matrix was observed. At the beginning of the process, the ethanol in the round bottom flask looked completely colorless, and the polystyrene samples were brilliant pink due to the presence of rhodamine B. With the progression in the extraction cycles, the ethanol gradually stained with due to the extraction of the additive in the sample, turning the solvent pinker. Simultaneously, the polymer-based sample reduced its color intensity every siphoning cycle. The experiment finished before the first cycle by reason of time, nonetheless, assuming between 20 and 60 cycles, with a cycle time of 5 to 10 minutes, the expected result is bright-pink colored ethanol due to the presence of dissolved rhodamine B in the solvent, and a bleached sample compared to its initial state.
+
+UT sampling: Yannik + Anthony
+
+Litter in Horw
+This chapter discusses the following questions:
+Why might there be little to no litter in this area?
+What does this say about local waste management and environmental awareness?
+What might happen to this ecosystem if more people started visiting every day?
+What are potential hidden pollutants (microplastics, chemical runoff, etc.) even if no visible litter is present?
+How could community behavior or infrastructure (bins, signage, etc.) influence cleanliness?
+How could environmental education maintain or improve this standard?
+Record observations about waste bins, signage, or evidence of maintenance and report findings. How many waste bins did you see from HSLU until the lake?
+
+With these questions in mind, a survey was conducted in which trash samples were collected across the region of Horw in Luzern, spanning the area from the HSLU university down to Lake Lucerne. The specific locations where each of the samples were collected can be seen below in Figure 5.
+[picture]
+Figure 5. Locations of collected trash samples
+
+In total, 17 different samples were collected, and their respective images can be found in the appendix. This amount of litter is relatively little which can can be attributed to a couple reasons. Those being the availability of bins, regular cleaning and maintenance by the Horw municipal (Gemeinde Horw, 2025) and a culture which includes responsible public behavior and environmental awareness (Hansmann and Binder, 2020).
+
+Availability of bins
+In total, around 50 private bins and 15 public bins were seen on the route from HSLU to the lake. This means that people who are looking for a place to dispose of trash never have to walk very far until they find a bin. Additionally, these bins were never overflowing, indicating that the Horw municipality regularly empties these bins. These factors encourage people to correctly dispose of their litter instead of throwing it onto the ground.
+Talk about the infrastructure: bins, signage, etc. (question 5)
+
+Regular cleaning and maintenance
+The fact that none of the bins were overflowing, and regular cleaning of the roads is performed, indicates that the Horw municipality takes responsibility in their local waste management and has a high environmental awareness. Additionally, the municipality of Horw states that they are responsible for duties including: the operation and maintenance of streets, paths and public squares; the upkeep of green spaces, public playgrounds, and bathing/rest areas; the cleaning and maintenance of waste-collection points; and the daily emptying of public litter bins (Gemeinde Horw, 2025).
+However, an increase in the number of daily visitors would lead to more littering, and greater pollution, if strict waste disposal and education measures are not maintained. This can increase the workload on the municipality and can have negative impacts on the ecosystem. For instance, litter along the lake shores can degrade the habitat quality and enter the food chain of the local wildlife.
+
+Public culture
+In general, the Swiss culture encourages proper disposal of litter. A study in 2020 surveying 1206 participants across Switzerland found that Swiss residents generally have a high environmental awareness and held themselves responsible for environmental consequences. Additionally, some of the most frequently performed behaviors to combat environmental pollution consisted of not littering and correctly sorting waste for recycling (Hansmann and Binder, 2020).
+This could be further improved by introducing environmental education including, but not limited to, workshops, school programs, and local awareness campaigns to emphasize the importance of proper waste disposal and appreciation of the lake ecosystem. Additionally, properly placed bins, clear signage, and community involvement in maintaining a clean neighborhood can help influence cleanliness.
+
+Invisible trash
+However, even if there is no visible trash in appearance, there are many invisible elements that still contribute to dangerous pollution that need to be taken into consideration. One of the major concerns is microplastics, which comprises plastic parts larger than five millimeters and barely visible. A study conducted by the Swiss Federal Institute of Aquatic Science and Technology, Eawag found out that freshwater snails that ingested nanoplastics with their foods were unable to reproduce (Eawag, 2022). This is concerning due to the presence of the lake ecosystem nearby. Chemical runoff, detergents, fertilizers in the water, or sediments along the lake are other concerns. These pollutants can accumulate over time in the ecosystem.
+We could give examples where these come from, with sources.
+Talk about potential hidden pollutants (question 4)
+
+Sources:
+Gemeinde Horw (2025). Horw Werkdienste. [online] Horw.ch. Available at: https://www.horw.ch/aemter/3402.
+Hansmann, R. and Binder, C.R. (2020). Determinants of Different Types of Positive Environmental Behaviors: An Analysis of Public and Private Sphere Actions. Sustainability, 12(20), p.8547. doi: https://doi.org/10.3390/su12208547.
+Holzer, M., Mitrano, D. M., Carles, L., Wagner, B., & Tlili, A. (2022). Important ecological processes are affected by the accumulation and trophic transfer of nanoplastics in a freshwater periphyton-grazer food chain. Environmental Science: Nano, 9, 2990-3003. https://doi.org/10.1039/D2EN00101B
+
+Discussion
+Soxhlet extraction results interpretation
+After the experiment for the decision of the solvent, ethanol was chosen due to its capability of removing rhodamine B effectively from the polystyrene sample without dissolving or damaging the plastic matrix. Ethanol is a polar alcohol molecule, leading to the conclusion that the dye was on his turn polar. The polystyrene, that is a non-polar polymer, was not dissolved in the solvent. In contrast, diethyl ether and acetone caused the polymer to swell or soften, indicating partial solubility, but failed to extract the dye. Hexane, a strongly non-polar molecule, dissolved neither the matrix nor the dye.
+With the change in color of the solvent and the matrix after the first extraction cycle in the Soxhlet experiment, the efficiency of the solvent with respect to the dye was demonstrated. Due to the low viscosity of the ethanol while boiling, the interaction with the matrix and the rhodamine B was enhanced, lowering consequently the cycles time.
+
+Questions
+Why does operating at the solvent’s boiling point almost always improve extraction efficiency?
+The boiling temperature enhances mass transfer due to the increased solubility of the solute and the decreased viscosity and surface tension of the solvent. The solvent reacts better with the matrix because of the reduction of the thickness of the boundary layer. Soxhlet continuous reflux helps to renew the solvent and keep it warm, allowing for a faster and more complete extraction [1].
+
+In what ways can Soxhlet extraction reduce fresh solvent consumption compared with repeated batch extractions?
+In Soxhlet extraction, the same portion of the solvent continuously boils and condensates, removing the necessity of replacing the solvent after each extraction phase, as required in repeated batch extraction.
+
+Which other characteristics of rhodamine can help us with its identification?
+Rhodamine B can be identified by its pink-purple color and by its strong fluorescence, anis easily excited under UV light.
+
+What makes a solvent good for extraction?
+The polarity of the solute plays a key role in selecting the most suitable solvent, as the solvent’s polarity should match the solute’s (“like dissolves like”). In organic extractions, the nature of the phytochemical constituents (bioactive compounds naturally present in plants) is also important. Moreover, the thermal stability and boiling point of the solvent are essential physical properties to consider [2].
+
+Sources:
+[1] https://link.springer.com/article/10.1134/S1061934824700382
+[2] https://cmjournal.biomedcentral.com/articles/10.1186/s13020-018-0177-x
+
+ATR-FTIR results interpretation
+Interpretation + Q&A PLEASE DO IT
+
+Conclusions
+... ... ...
+
+Appendix
+1. Wrapper 1
+[picture]
+2. Wrapper 2
+[picture]
+3. Cigarette
+[picture]
+4. White plastic piece
+[picture]
+5. AA battery
+[picture]
+6. Zip tie
+[picture]
+7. Liquid energy plus wrapper
+[picture]
+8. Black plastic piece
+[picture]
+9. Metal bottle cap
+[picture]
+10. Aluminium can 1
+[picture]
+11. Wrapper 3
+[picture]
+12. Twix wrapper
+[picture]
+13. White foam
+[picture]
+14. Wrapper 4
+[picture]
+15. Evliya wrapper
+[picture]
+16. Aluminium can 2
+[picture]
+17. Plastic bottle cap
+[picture]

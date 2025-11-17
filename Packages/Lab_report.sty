@@ -70,7 +70,7 @@
   }%
 }
 
-% ================= BIBLIOGRAPHY (biblatex APA) =================
+% === BIBLIOGRAPHY ===
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[style=apa, backend=biber, doi=true, url=true]{biblatex}
@@ -91,18 +91,8 @@
 \setlength{\bibhang}{20pt}
 \setlength{\bibitemsep}{\baselineskip}
 \DeclareFieldFormat{url}{\newline\url{#1}}
+% =================================
 
-% Break URL on new line with access date after URL when present
-\AtBeginBibliography{%
-  \renewbibmacro*{url+urldate}{%
-    \printfield{url}%
-    \newunit\newblock
-    \iffieldundef{urldate}{}{%
-      \newunit\newblock\printurldate}%
-  }%
-}
-
-% ================= AUTHOR BLOCK ENHANCEMENT =================
 \makeatletter
 \renewcommand{\author}[1]{%
   \def\@author{%

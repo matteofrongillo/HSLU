@@ -1,11 +1,14 @@
 \documentclass{article}
 
-\usepackage{Lab_report}
+\usepackage{Paper}
+\renewcommand\theadfont{\bfseries}
+\setcellgapes{2pt}
+
 \pdftitle{Team1_LabReport_UT}
 
 % === TEXT ===
 \begin{document}
-
+\thispagestyle{empty}
 \hypersetup{citecolor=black}
 
 \begin{minipage}{0.7\textwidth}
@@ -54,17 +57,81 @@
 \pagebreak
 
 \section{Introduction}
-...
+\label{sec:introduction}
+Plastic is a material found in every environment, and its use is
+indispensable in everyday life, present in consumer products and
+industrial applications. However, plastics often contain additives
+that modify their properties, such as their appearance or performance.
+Analyzing and understanding the composition of plastics is essential
+for mitigating pollution and protecting nature so that their
+environmental hazards can be effectively minimized.
+
+This experiment focuses on the extraction of admixtures from plastics
+and on the spectroscopic analysis of polymers in order to determine
+their chemical composition and the functional groups of the
+molecules. By combining these two techniques, it is possible to
+evaluate and study the environmental impact of polymers and their
+additives.
 
 \subsection{Soxhlet extraction}
-\parencite{ATRFTIR}
+\begin{wrapfigure}{l}{.4\textwidth}
+    \includegraphics[width=.4\textwidth]{media/soxhlet_extractor.png}
+    \caption{Soxhlet extractor components}
+\end{wrapfigure}
+
+\phantom{}
+
+Soxhlet extraction is a chemical separation technique based on
+extraction cycles. The technique consists of the separation of
+soluble compounds from solid materials and relies on the differences
+in solubility between the analyte and the solid matrix; that is the
+portion of the sample that remains insoluble in the chosen solvent.
+
+A Soxhlet extractor is composed of a round-bottom flask in which the
+solvent is boiled (1,2) heated up by an isomantle (8), a thimble (3)
+needed for holding the solid sample that contains the analyte to be
+extracted, which in turn is contained in the Soxhlet body (4).
+A siphon (6) and a side arm (7) connect the flask to the body,
+enabling the solvent circulation throughout the system.
+
+A Soxhlet cycle is made up of solvent boiling, vapor condensation,
+percolation through the sample, and siphoning of the extract back
+into the boiling flask. A condenser with running water (5) is used to
+liquefy the rising solvent vapors and drip back onto the sample.
+\wrapfill
+
+\vspace*{-1.5cm}
 
 \subsection{Attenuated Total Reflectance-Fourier Transform Infrared Spectroscopy (ATR-IR)}
-...
+Fourier transform infrared spectroscopy (FTIR) consists of a broadband infrared source.
+To measure all frequencies simultaneously, the beam must first pass through an
+interferometer to encode the light \parencite{FTIR13}.
+Afterwards, the infrared light is sent to an ATR extension to probe the sample.
+
+Attenuated total reflection extension (ATR) consisting of a crystal with a high refractive
+index \parencite{ATR}. The extension holds the sample in place with
+maximum contact to the crystal.\\[1.5ex]
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.45\textwidth]{media/FTIR_crystal.png}
+    \caption{Graphical representation of a single bounce ATR \parencite{Specac}}
+\end{figure}
+\newpage
+
+The infrared beam from the FTIR source arrives and enters the crystal at a specific angel,
+is internally reflected many times, and an evanescent wave forms.
+The evanescent wave will penetrate out of the crystal and into the sample at a depth of
+around 0.5 - 2 micrometers \parencite{ATR}. Chemical bonds from the sample are excited at
+specific frequencies and absorb energy.
+
+Finally, a detector collects the returning beam, and a Fourier Transform is performed to
+calculate the final absorbance graph, visually showing at which frequencies the material
+has been absorbing energy \parencite{FTIR4}. 
 
 \section{Materials and Methods}
 \subsection{Material for Soxhlet extraction method}
-\begin{minipage}[t]{0.4\textwidth}
+\begin{minipage}[t]{0.43\textwidth}
     \begin{itemize}
         \item Soxhlet extractor body
         \item Glass reflux condenser
@@ -73,25 +140,723 @@
     \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{0.6\textwidth}
+\begin{minipage}[t]{0.57\textwidth}
     \begin{itemize}
         \item Support and clamps
         \item Cooling water supply and tubing (secure with clamps)
-        \item Polymer sample impregnated with rhodamine (record mass)
+        \item Polymer sample impregnated with rhodamine B (record mass)
         \item Solvents
     \end{itemize}
 \end{minipage}
+
+\subsubsection{Rhodamine B}
+Rhodamine B is an organic molecule that exists as the chloride salt,
+and it is notable for its intense fluorescence and use in tracing and
+dye applications \parencite{NCBI2025_RhodamineB}. It is widely used
+in fluorescence microscopy and as a tracer in hydrodynamic studies
+because of its bright emission and sensitivity to the environment.
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.45\textwidth]{media/rhodamine.png}
+    \caption{Rhodamine B}
+\end{figure}
 
 \subsection{Material for ATR-IR}
 \begin{itemize}
     \item Plastic samples
     \item Agilent Technologies Cary 630 FTIR Spectrometer
+    \item Isopropyl alcohol
 \end{itemize}
 
 \subsection{Procedure}
-...
+The laboratory work was divided into two main phases: determining the most suitable
+solvent for the extraction of rhodamine B from a provided polystyrene-based plastic
+sample (matrix) using a Soxhlet extractor, followed by the identification of plastics
+and their functional groups in samples collected along the street between the HSLU T\&A
+building and the Lucerne Lake.
+
+\subsubsection{Soxhlet extraction}
+In this experiment, additives were extracted from a polystyrene-based plastic sample
+containing rhodamine B using a Soxhlet extractor, then further identified and
+characterized. Before the extraction, a small piece of the polymer was tested with
+different solvents to select one that dissolved the dye but did not dissolve the plastic
+matrix. Once a suitable solvent had been identified, the required volume was measured and
+transferred into a clean round-bottom flask (RBF), filling half of its volume. The mass
+of the polymer sample was recorded, and the sample was placed into the extraction thimble,
+which was then positioned inside the Soxhlet body. The Soxhlet extraction was then carried
+out using a standard assembly consisting of a round-bottom flask (RBF), a Soxhlet body,
+and a water-cooled reflux condenser. The RBF, filled with the selected solvent, served as
+the boiling reservoir, while the polymer sample was placed in an extraction thimble
+positioned within the Soxhlet chamber. The system was heated to establish a gentle,
+continuous reflux. Under these conditions, solvent vapor is condensed in the condenser
+and percolates through the sample in repeated cycles. Each siphon event returns the
+enriched solvent to the RBF, enabling continuous extraction as the dye progressively
+accumulated in the boiling flask.
+
+\subsubsection{ATR-FTIR}
+The composition of two different pieces of plastic waste was identified using the Agilent
+Technologies Cary 630 FTIR Spectrometer. Before the samples were measured, the crystal was
+thoroughly cleaned with isopropyl alcohol. This was followed by a background measurement to
+calibrate the baseline. The chosen sample was then placed under the spectrometer, and
+a measurement was recorded. Using the built-in library of reference materials, the most
+likely match was chosen and plotted next to the measured sample. In the results given by
+the spectrometer, the most likely match appears as a blue line, while the measured sample
+appears as a red line. As the spectrometer can only measure one side of the sample, if
+necessary, the sample was flipped, and the other side was measured due to possible
+differences in materials. Finally, before proceeding to the next measurements, the crystal
+was always cleaned using isopropyl alcohol. 
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{media/ftir_twix.png}
+        \caption{Measurement procedure for the sample ``Twix inside''}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{media/ftir_twix2.png}
+        \caption{Measurement procedure for the sample ``Twix outside''}
+    \end{minipage}
+\end{figure}
+
+\vspace*{.5cm}
+Out of the 17 trash samples collected, the Twix wrapper and the white foam were chosen as
+they were found next to the shoreline of the lake, where their potential environmental
+impact is greatest. The location of these samples can be seen in \autoref{pic:locations}
+under the points 12 and 13, next to the Seerosenplatz.
 
 \newpage
+\section{Results}
+\label{sub:results}
+The following section reports the results obtained from Soxhlet extraction and ATR-FTIR
+analysis.
+
+\subsection{Selection of the Soxhlet solvent}
+In order to determine the best solvent for the Soxhlet extraction of the rhodamine B
+from the polystyrene-based samples, four candidate solvents were tested and categorized
+according to their properties and their effectiveness on the matrix and the dye:
+
+\vspace*{.5cm}
+\begin{table*}[ht!]
+    \caption{Candidate solvents properties and effectiveness}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{c c c c c c}
+    \toprule
+    \textbf{Solvent} & \textbf{Solubility of matrix} & \makecell{\textbf{Solubility}\\\textbf{of dye}} &\makecell{\textbf{Boiling point}\\\textbf{[$^\circ$C]}} &\makecell{\textbf{Toxicity}} &\makecell{\textbf{Polarity}} \\
+    \midrule
+    Hexane & Insoluble & \makecell{No\\extraction} & 69 & \makecell{High:\\neurotoxic} & \makecell{Non-polar} \\[1.5ex]
+    Diethyl ether & Slight swelling & \makecell{No\\extraction} & 35 & \makecell{High:\\peroxide-forming} & \makecell{Low polarity} \\[1.5ex]
+    Acetone & Swelling & \makecell{No\\extraction} & 56 & \makecell{Moderate:\\irritant} & \makecell{Moderately\\polar} \\[1.5ex]
+    Ethanol & Insoluble & \makecell{Strong\\extraction} & 78 & \makecell{Low\\toxicity} & \makecell{Polar} \\
+    \bottomrule
+    \end{tabular}
+\end{table*}
+
+\pph{Scales used}
+Matrix solubility: Insoluble -- Slight swelling -- Swelling -- Partially soluble -- Soluble\\
+Dye solubility: No extraction -- Weak -- Moderate -- Strong -- Complete extraction
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.6\textwidth]{media/solvents.png}
+    \caption{Result of the solvents effectiveness experiment}
+\end{figure}
+
+\subsection{Soxhlet extraction}
+Throughout the Soxhlet extraction, a progressive change in the appearance of both the
+solvent and the matrix was observed. At the beginning of the process, the ethanol in the
+round bottom flask looked completely colorless, and the polystyrene samples were brilliant
+pink due to the presence of rhodamine B. With the progression in the extraction cycles,
+the ethanol gradually stained due to the extraction of the additive in the sample,
+turning the solvent pinker. Simultaneously, the polymer-based sample reduced its color
+intensity every siphoning cycle. The experiment finished before the first cycle due to
+time constraints, nonetheless, assuming between 20 and 60 cycles, with a cycle duration
+of 5 to 10 minutes, the expected result is bright-pink colored ethanol due to the
+presence of dissolved rhodamine B in the solvent, and a bleached sample compared to its
+initial state.
+
+\newpage
+\subsection{ATR-FTIR analysis}
+The results from the two different samples are listed, each with a picture of the sample,
+the measured absorbance graph (in red) compared to the reference graph from the library
+(in blue), and a table containing information about the functional groups and possible
+compounds. These were determined using the reference table provided in the lab (\autoref{table:functionalgroups}).
+
+\subsubsection{Sample 1: White foam}
+Sample 1 is a white foam found in nature, near a road in the village of Horw.
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.4\textwidth]{media/whitefoam.png}
+    \caption{Collection of Sample 1}
+\end{figure}
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.8\textwidth]{media/whitefoam_analysis.png}
+    \caption{Sample 1 ATR-FTIR analysis}
+\end{figure}
+
+\vspace*{1cm}
+\begin{table*}[ht!]
+    \centering
+    \caption{Sample 1 results}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{c c c}
+    \toprule
+    \textbf{Peak [cm$^{-1}$]} & \textbf{Functional groups} & \textbf{Possible compound}\\
+    \midrule
+    2900 & CH$_3$ Valenz. & Alkane\\
+    2820 & CH$_3$ Valenz. & Methylether\\
+    1480 & CH$_3$ and CH$_2$ deform. & \makecell{Hydrocarbons/\\Esters}\\
+    710 & \chemfig{C-H} Deform. & \makecell{Monosubstituted\\Benzenes}\\
+    \bottomrule
+    \end{tabular}
+\end{table*}
+
+\newpage
+\subsubsection{Sample 2: Inside of a Twix bar wrapper}
+Sample 2 is a Twix bar wrapper found beside the railway in the village of Horw.
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.4\textwidth]{media/twix_inside.png}
+    \caption{Sample 2 during the analysis}
+\end{figure}
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.8\textwidth]{media/twix_inside_analysis.png}
+    \caption{Sample 2 ATR-FTIR analysis}
+\end{figure}
+
+\vspace*{1cm}
+\begin{table*}[ht!]
+    \centering
+    \caption{Sample 2 results}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{c c c}
+    \toprule
+    \textbf{Peak [cm$^{-1}$]} & \textbf{Functional groups} & \textbf{Possible compound}\\
+    \midrule
+    2910 & CH$_3$ Valenz. & Alkane\\
+    1450 & CH$_3$ and CH$_2$ deform. & \makecell{Hydrocarbons/\\Esters}\\
+    1380 & CH$_3$ Deform. & Hydrocarbons\\
+    \bottomrule
+    \end{tabular}
+\end{table*}
+
+\newpage
+\subsubsection{Sample 3: Outside of a Twix bar wrapper}
+Sample 3 is a Twix bar wrapper found beside the railway in the village of Horw.
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.4\textwidth]{media/twix_outside.png}
+    \caption{Collection of Sample 3}
+\end{figure}
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.8\textwidth]{media/twix_outside_analysis.png}
+    \caption{Sample 3 ATR-FTIR analysis}
+\end{figure}
+
+\vspace*{1cm}
+\begin{table*}[ht!]
+    \centering
+    \caption{Sample 3 results}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{c c c}
+    \toprule
+    \textbf{Peak [cm$^{-1}$]} & \textbf{Functional groups} & \textbf{Possible compound}\\
+    \midrule
+    3300 (broad) & \chemfig{N-H} Valenz. & Amine/Amide\\
+    2940 & CH$_3$ Valenz. & Alkane\\
+    1630 & \chemfig{C=O} Valenz. & \makecell{Primary carbon\\acid amice}\\
+    1550 & NO$_2$ Valenz. & Nitroalkane\\
+    \bottomrule
+    \end{tabular}
+\end{table*}
+
+\newpage
+\section{Discussion}
+This section evaluates litter analysis in Horw and examines the results obtained from the
+Soxhlet extraction and ATR-FTIR measurements.
+
+\subsection{Litter in Horw}
+During the excursion, a survey was conducted in which trash samples were collected across
+the region of Horw in Luzern, spanning the area from the HSLU Campus down to Lake Lucerne.
+
+\vspace*{.5cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.85\textwidth]{media/locations.png}
+    \caption{Samples locations}
+    \label{pic:locations}
+\end{figure}
+
+\vspace*{.5cm}
+In total, 17 different samples were collected, and their respective images can be found in
+the appendix. Out of the 17 trash samples collected, the Twix wrapper and the white foam
+were chosen as they were found next to the shoreline of the lake, where their potential
+environmental impact is greatest. The location of these samples can be seen in \autoref{pic:locations}
+under the points 12 and 13, next to the Seerosenplatz.
+
+This amount of litter collected is relatively little, which can be attributed to a couple of
+reasons. These include the availability of bins, regular cleaning and maintenance by the
+Horw municipality \parencite{Horw}, and a culture that promotes responsible public
+behavior and environmental awareness \parencite{HansmannBinder2020}.
+
+\newpage
+\subsubsection{Questions}
+The excursion required providing responses to seven questions related to litter
+and environmental conditions in Horw:
+\begin{itemize}
+    \item Why might there be little to no litter in this area?
+    \item What does this say about local waste management and environmental awareness?
+    \item What might happen to this ecosystem if more people started visiting every day?
+    \item What are potential hidden pollutants (microplastics, chemical runoff, etc.) even if no visible litter is present?
+    \item How could community behavior or infrastructure (bins, signage, etc.) influence cleanliness?
+    \item How could environmental education maintain or improve this standard?
+    \item Record observations about waste bins, signage, or evidence of maintenance and report findings. How many waste bins did you see from HSLU until the lake?
+\end{itemize}
+
+The following points address the seven questions collectively.
+
+\subsubsection{Availability of bins}
+In total, around 50 private bins and 15 public bins were seen on the route from HSLU to
+the lake. This means that people looking for a place to dispose of trash do not have to
+walk far to find a bin. Additionally, these bins were never overflowing, indicating that
+the Horw municipality empties them regularly. These factors encourage people to
+correctly dispose of their litter instead of throwing it onto the ground.
+
+\subsubsection{Regual cleaning and maintenance}
+The fact that none of the bins were overflowing, and that regular road cleaning is carried
+out, indicates that the Horw municipality takes responsibility for local waste management
+and demonstrates high environmental awareness. Additionally, the municipality of Horw
+states that they are responsible for duties including: the operation and maintenance of
+streets, paths and public squares; the upkeep of green spaces, public playgrounds, and
+bathing/rest areas; the cleaning and maintenance of waste-collection points; and the daily
+emptying of public litter bins \parencite{Horw}.
+
+However, an increase in the number of daily visitors would lead to more littering and
+greater pollution, if strict waste disposal and education measures are not maintained.
+This can increase the workload on the municipality and have negative impacts on the
+ecosystem. For instance, litter along the lake shores can degrade the habitat quality and
+enter the food chain of the local wildlife.
+
+\subsubsection{Public culture}
+In general, the Swiss culture encourages proper disposal of litter. A study in 2020
+surveying 1206 participants across Switzerland found that Swiss residents generally have
+high environmental awareness and hold themselves responsible for environmental
+consequences. Additionally, some of the most frequently performed behaviors to combat
+environmental pollution consisted of avoiding littering and correctly sorting waste for
+recycling \parencite{su12208547}.
+
+This could be further improved by introducing environmental education including, but not
+limited to, workshops, school programs, and local awareness campaigns to emphasize the
+importance of proper waste disposal and appreciation of the lake ecosystem. Additionally,
+properly placed bins, clear signage, and community involvement in maintaining a clean
+neighborhood can help promote cleanliness.
+
+\subsubsection{Invisible trash}
+Despite the absence of visible trash, many invisible elements still contribute to
+dangerous pollution and need to be taken into consideration.
+One of the major concerns is microplastics, which comprise plastic particles smaller
+than five millimetres and often barely visible. A study conducted by the Swiss
+Federal Institute of Aquatic Science and Technology, Eawag found that freshwater snails
+that ingested nanoplastics with their food were unable to reproduce \parencite{D2EN00101B}.
+This is concerning due to the presence of the lake ecosystem nearby. Chemical runoff,
+detergents, fertilizers, or sediments along the lake are other concerns.
+These pollutants can accumulate over time in the ecosystem and in wildlife. 
+
+\newpage
+\subsection{Soxhlet extraction: results interpretation}
+After the experiment for the decision of the solvent, ethanol was chosen due to its
+capability of removing rhodamine B effectively from the polystyrene sample without
+dissolving or damaging the plastic matrix. Ethanol is a polar alcohol molecule, leading
+to the conclusion that the dye is also partly polar. The polystyrene, which is a non-polar
+polymer, was not dissolved in the solvent. In contrast, diethyl ether and acetone caused
+the polymer to swell or soften, indicating partial solubility, but failed to extract the
+dye. Hexane, a strongly non-polar molecule, dissolved neither the matrix nor the dye. 
+
+With the change in color of the solvent and the matrix after the first extraction cycle
+in the Soxhlet experiment, the efficiency of the solvent with respect to the dye was
+demonstrated. Due to the low viscosity of the ethanol while boiling, the interaction
+with the matrix and the rhodamine B was enhanced, lowering consequently the cycle time. 
+
+\subsubsection{Questions}
+\begin{enumerate}
+    \item Why does operating at the solvent’s boiling point almost always improve extraction efficiency?
+    \item[R:] The boiling temperature enhances mass transfer due to the increased
+        solubility of the solute and the decreased viscosity and surface tension of the
+        solvent. The solvent interacts more effectively with the matrix because of the
+        reduced thickness of the boundary layer. Soxhlet continuous reflux helps to renew
+        the solvent and keep it warm, allowing for a faster and more complete extraction \parencite{Dmitrienko2024}.\\
+
+    \item In what ways can Soxhlet extraction reduce fresh solvent consumption compared with repeated batch extractions?
+    \item[R:] In Soxhlet extraction, the same portion of the solvent continuously boils
+        and condenses, removing the necessity of replacing the solvent after each
+        extraction phase, as required in repeated batch extraction. Moreover, the solvent
+        in the thimble is automatically and continuously replenished, ensuring that it
+        never becomes fully saturated.\\
+
+    \item Which other characteristics of rhodamine can help us with its identification?
+    \item[R:] Rhodamine B can be identified by its pink-purple color and by its strong
+        fluorescence, and is easily excited under UV light.\\
+        
+    \item What makes a solvent good for extraction?
+    \item[R:] The polarity of the solute plays a key role in selecting the most suitable
+        solvent, as the solvent’s polarity should match the solute’s (“like dissolves like”).
+        In organic extractions, the nature of the phytochemical constituents
+        (bioactive compounds naturally present in plants) is also important. Moreover,
+        the thermal stability and boiling point of the solvent are essential properties
+        to consider \parencite{Zhang2018}.
+\end{enumerate}
+
+\subsection{ATR-FTIR analysis: results interpretation}
+This section provides an interpretation of the ATR-FTIR results, outlining the methodology
+used, the material identification process, and the environmental implications of the findings.
+
+\subsubsection{Questions}
+For the ATR-FTIR analyses, the following questions were asked:
+\begin{enumerate}
+    \item What is the purpose of using ATR-FTIR in environmental analysis?
+    \item What does the absorbance spectrum represent?
+    \item Compare your measured spectrum with reference spectra from the library what materials were identified?
+    \item Discuss the environmental implications of finding plastics at the lake shore.
+    \item How could the presence of these materials impact ecosystem health and aquatic life?
+\end{enumerate}
+
+\subsubsection{Methodology}
+To make a risk assessment of an environmental sample, the material must first be
+determined. Then further analysis can proceed. ATR-FTIR is an excellent choice for
+two main reasons: firstly, it is portable for use in the field, and secondly, it is
+relatively inexpensive and reliable. 
+
+As discussed in \autoref{sec:introduction}, the ATR-FTIR uses a system of infrared
+beams, a crystal, and a detector to generate an absorbance graph of the sample tested.
+The graph shows which frequencies of infrared radiation were absorbed by the material and
+by what amount. It can have broad bands or pointy peaks. This pattern is used as a
+fingerprint to identify the material in question.
+
+\subsubsection{Identification}
+After the measurement of each sample, the computer automatically calculates the best match
+for the given absorbance graph. However, it could be wrong, so it is always a good habit
+to check and verify if the peaks match the sample accurately. The data presented in
+\autoref{sub:results} are now evaluated to figure out what the best-fitting material is
+for each of the two samples:
+
+\pph{Sample 1: White foam}
+Low-density Polyethylene, this is very plausible, due to it matching the measured graph
+nearly perfectly. Each frequency lines up exactly, and the magnitude of the peak is spot
+on. This result can be trusted.
+
+\pph{Sample 2: Inside of a Twix bar wrapper}
+Polyethylene, this is also a very good match: all the frequency peaks, and
+magnitudes match. This result can be trusted.
+
+\pph{Sample 3: Outside of a Twix bar wrapper}
+Nylon 6 Poly(caprolactam) Pellets, here it is harder to justify a 100\% match, the
+frequencies match almost perfectly, but in the high-frequency region the magnitudes are
+very different. In the low-frequency region, some minor differences can be seen. All in
+all, this should still be a match, but caution is still advised.
+
+\subsubsection{Impact on the environment}
+Polyethylene is very stable and can persist in the environment for a long time. This means
+that it will spread from its initial deposition to many other areas. This is accelerated
+by the fragmentation of the material into smaller pieces \parencite{YAO2022113933}.  
+
+These smaller pieces, called microplastics, can stay in the environment for many years.
+They lead to a range of dangerous side effects, many still unknown. One dangerous effect
+is the bioaccumulation \parencite{nature}, where microplastics are ingested by organisms,
+build up in their tissues, and are then transported up the food chain. For a human, this
+could lead to an increased risk in cardiovascular disease \parencite{nature}. In aquatic
+life, such as Lake Lucerne and its population of fish and plants, this poses a great
+risk for their reproduction and growth over longers periods of time.
+
+Nylon microplastics can also have a devastating impact on marine life. The feeding of
+primary and secondary producers is potentially hindered due to these microplastics.
+If these populations decrease, a ripple effect could destabilize the entire food chain,
+leading to a reduced total biomass and diminished overall ecosystem health \parencite{Cole2019}. 
+
+\newpage
+\section{Conclusions}
+In conclusion, the combined use of Soxhlet extraction and ATR-FTIR spectroscopy was an
+effective approach for studying the chemical composition of plastics especially in the
+context of waste management. The ATR-FTIR experiment identified the presence of compounds
+such as polyethylene, low density polyethylene and Nylon 6 Poly(caprolactam) Pellets in
+the trash samples, which can be harmful to the environment. Polyethylene and nylon
+persist in the environment for a very long time and fragment into microplastics,
+harming the local ecosystem.  
+
+The Soxhlet extraction successfully showed its effectiveness in dissolving certain
+chemicals contained within materials through the usage of rhodamine B dye.
+Nevertheless, tthe collected samples were not further analyzed using Soxhlet
+extraction, as ATR-FTIR already provided sufficient information.
+
+Throughout the route from HSLU to the lakeshore, relatively little litter was found.
+This can be assosiacted with the fact that multiple public and private bins were found,
+none of which were overflowing. This also indicates that the Horw municipality takes
+responsibility for local waste management and has a high environmental awareness.
+Additionally, the Swiss culture in general promotes environmental awareness and holding
+one another accountable for environmental consequences.
+
+\newpage
+\appendix
+\section{Appendix}
+\subsection{Inventory of samples collected}
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{1. Wrapper 1}
+    \includegraphics[width=\textwidth]{media/s1.png}
+    E8°18'19.0''\; N47°00'39.8''\; (Altitude: 498 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{2. Wrapper 2}
+    \includegraphics[width=\textwidth]{media/s2.png}
+    E8°18'19.1''\; N47°00'39.9''\; (Altitude: 480 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{3. Cigarette}
+    \includegraphics[width=\textwidth]{media/s3.png}
+    E8°18'19.6''\; N47°00'38.9''\; (Altitude: 578 m)
+\end{minipage}
+\end{figure}
+
+\vspace{.75cm}
+\begin{figure}[h!]
+\centering
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{4. White plastic piece}
+    \includegraphics[width=\textwidth]{media/s4.png}
+    E8°18'20.7''\; N47°00'38.0''\; (Altitude: 491 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{5. AA battery}
+    \includegraphics[width=\textwidth]{media/s5.png}
+    E8°18'19.7''\; N47°00'38.2''\; (Altitude: 525 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{6. Zip tie}
+    \includegraphics[width=\textwidth]{media/s6.png}
+    E8°18'22.3''\; N47°00'35.9''\; (Altitude: 476 m)
+\end{minipage}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{7. Liquid proteine wrapper}
+    \includegraphics[width=\textwidth]{media/s7.png}
+    E8°18'21.0''\; N47°00'32.1''\; (Altitude: 477 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{8. Black plastic piece}
+    \includegraphics[width=\textwidth]{media/s8.png}
+    E8°18'20.9''\; N47°00'29.1''\; (Altitude: 475 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{9. Metal bottle cap}
+    \includegraphics[width=\textwidth]{media/s9.png}
+    E8°18'20.2''\; N47°00'24.3''\; (Altitude: 481 m)
+\end{minipage}
+\end{figure}
+
+\vspace{.75cm}
+\begin{figure}[h!]
+\centering
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{10. Aluminum can 1}
+    \includegraphics[width=\textwidth]{media/s10.png}
+    E8°18'19.9''\; N47°00'23.0''\; (Altitude: 477 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{11. Wrapper 3}
+    \includegraphics[width=\textwidth]{media/s11.png}
+    E8°18'19.8''\; N47°00'24.4''\; (Altitude: 478 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{12. Twix wrapper}
+    \includegraphics[width=\textwidth]{media/s12.png}
+    E8°18'19.8''\; N47°00'24.4''\; (Altitude: 478 m)
+\end{minipage}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{13. White foam}
+    \includegraphics[width=\textwidth]{media/s13.png}
+    E8°18'19.5''\; N47°00'24.2''\; (Altitude: 483 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{14. Wrapper 4}
+    \includegraphics[width=\textwidth]{media/s14.png}
+    E8°18'19.3''\; N47°00'23.5''\; (Altitude: 449 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{15. Evliya wrapper}
+    \includegraphics[width=\textwidth]{media/s15.png}
+    E8°18'23.6''\; N47°00'42.1''\; (Altitude: 487 m)
+\end{minipage}
+\end{figure}
+
+\vspace{.75cm}
+\begin{figure}[h!]
+\centering
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{16. Aluminum can 2}
+    \includegraphics[width=\textwidth]{media/s16.png}
+    E8°18'23.6''\; N47°00'42.1''\; (Altitude: 487 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \caption*{17. Plastic bottle cap}
+    \includegraphics[width=\textwidth]{media/s17.png}
+    E8°18'21.8''\; N47°00'46.0''\; (Altitude: 491 m)
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \phantom{}
+\end{minipage}
+\end{figure}
+
+\newpage
+\subsection{ATR-FTIR analysis}
+
+\renewcommand{\arraystretch}{1.8}
+\begin{longtable}{ccl}
+    \caption{Inftrared absorption bands for Functional groups identification} \\
+    \toprule
+    \textbf{Wavenumber (cm\(^{-1}\))} & \textbf{Vibration} & \textbf{Compounds} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Wavenumber (cm\(^{-1}\))} & \textbf{Vibration} & \textbf{Compounds} \\
+    \midrule
+    \endhead
+    3700--3600    & O--H stretching & Alcohols, phenols, acids \\
+    3500--3300    & O--H stretching (broad) & Alcohols, phenols, acids \\
+    3550--3350    & N--H stretching (unassociated) & Primary/secondary amines, amides \\
+    3500--3100    & N--H stretching (associated) & Primary/secondary amines, amides \\
+    3300--3270    & $\equiv$C--H stretching & Monosubstituted alkynes \\
+    3350--3150    & NH$_3^+$ stretching (broad) & Aminohydrochlorides \\
+    3300--2500    & O--H stretching (very broad) & Carboxylic acids \\
+    3100--3000    & =C--H stretching & Aromatics, alkenes \\
+    3000--2800    & C--H stretching & Alkanes, cycloalkanes \\
+    2962, 2872    & CH$_3$ stretching & Alkanes \\
+    2926, 2853    & CH$_2$ stretching & Alkanes \\
+    2820          & CH$_3$ stretching & Methyl ethers \\
+    2300--2100    & C$\equiv$X stretching (X = C, N, O) & Alkynes, nitriles \\
+    2190--2100    & C$\equiv$C stretching & 1,2-disubstituted alkynes \\
+    2245--2220    & C$\equiv$N stretching & Nitriles \\
+    2140--1970    & C$\equiv$C stretching & Monosubstituted alkynes \\
+    1900--1660    & C=O stretching & Carbonyl compounds \\
+    1850--1800    & C=O stretching & Acid halides \\
+    1840--1780    & C=O stretching & Acid anhydrides (2 bands) \\
+    1780--1650    & C=O stretching & Saturated carboxylic acids \\
+    1760--1700    & C=O stretching & Saturated esters \\
+    1740--1710    & C=O stretching & \makecell[l]{Aldehydes/ketones; $\alpha,\beta$-unsaturated\\and aromatic esters} \\
+    1745          & C=O stretching & Cyclopentanone \\
+    1715          & C=O stretching & Cyclohexanone \\
+    1715--1680    & C=O stretching & $\alpha,\beta$-unsaturated and aromatic aldehydes \\
+    1690--1660    & C=O stretching & $\alpha,\beta$-unsaturated and aromatic ketones \\
+    1680--1630    & C=O stretching & Primary amides (Amide I) \\
+    1660--1600    & C=C stretching & Aromatics, alkenes \\
+    1650--1620    & NH$_2$ deformation & Primary amides (Amide II) \\
+    1650--1580 & N--H deformation & Primary and secondary amines \\
+    1630--1615 & H--O--H deformation & Crystalline water \\
+    1630--1590 & Ring vibration & Aromatics \\
+    1560       & NO$_2$ stretching & Nitroalkanes \\
+    1520       & NO$_2$ stretching & Aromatic nitro compounds \\
+    1518       & --- & Aromatic nitro compounds \\
+    1500--1480 & Ring vibration & Aromatics \\
+    1480--1430 & CH$_3$, CH$_2$ deformation & Hydrocarbons, esters \\
+    1420--1340 & O--H deformation & Alcohols, phenols, carboxylic acids \\
+    1390--1370 & CH$_3$ deformation & Hydrocarbons \\
+    1360--1030 & C--N stretching & Amides, amines \\
+    1350--1420 & NO$_2$ stretching & Aliphatic and aromatic nitro compounds \\
+    1290--1050 & C--O stretching & Ethers, alcohols \\
+    1250--1180 & C--O stretching & Saturated esters \\
+    1200--600  & C--H deformation / ring & \makecell[l]{Alkanes, cycloalkanes, alkenes,\\substituted aromatics} \\
+    970--960   & C--H deformation & 1,2-disubstituted alkenes (trans) \\
+    965--885   & --- & Monosubstituted alkenes \\
+    915--905   & C--H deformation & 1,3-disubstituted benzenes \\
+    830--750   & --- & --- \\
+    815--750   & C--H deformation & 1,2-disubstituted aromatics \\
+    855--825   & C--H deformation & 1,4-disubstituted aromatics \\
+    770--735   & C--H deformation & 1,2-disubstituted benzenes \\
+    740--680   & C--H deformation & Monosubstituted benzenes \\
+    710--690   & --- & Alkanes with \(>\)4 CH$_2$ groups \\
+    670--650   & C--H deformation & 1,2-disubstituted alkenes (cis) \\
+    690--610   & C--H deformation & Benzene \\
+    620--490   & C--I stretching & Aliphatics \\
+    700--500   & C--Br stretching & Aliphatics \\
+    \bottomrule
+    \label{table:functionalgroups}
+\end{longtable}
+
+
+\newpage
+\listoffigures
+
+\listoftables
+
 \printbibliography
+
+\section*{Declarations on the use of AI tools}
+\begin{itemize}
+    \item ``\textit{ChatGPT 5.1}'' was used to enhance vocabulary.\\
+        {\color{darkgray!95}{\textit{All original sentences originate from our own ideas and were refined with the support of this tool.}}}\\
+        \url{https://chatgpt.com/}
+    \item ``DeepL'' was used as a spell-checker.\\
+        \url{https://www.deepl.com}
+    \item ``Google Gemini'' was used as a fact-checker.\\
+        \url{https://gemini.google.com/app}
+\end{itemize}
 
 \end{document}

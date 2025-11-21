@@ -328,6 +328,48 @@ The partial derivatives must be calculated:
         $\dm \frac{\partial\mathcal{L}}{\partial y} = \frac{\partial f}{\partial y} - \lambda\frac{\partial g}{\partial y}$\\\\
         $\dm \frac{\partial\mathcal{L}}{\partial \lambda} = -\big(g(x,y)-c\big)$}
 
+\newpage
+\part{Integration of functions with multiple variables}
+\section{Domain of integration $\Omega$}
+Let $f:\Omega \subset \mathbb{R}^2 \to R$. The set $\Omega$ is a
+region in the $xy$-plane over which the double integral
+\figbox{$\dm \iint_\Omega f(x,y)\ dx\ dy$}
+
+is taken.
+
+\section{Double integrals as iterated integrals}
+If the region $R$ is a rectangle with $a\leq x\leq b$ and
+$c\leq y\leq d$ and if $f$ is continuous in the region $R$, then the
+integral of $f$ over $R$ is equal to the iterated integral
+\figbox{$\dm \integral[R][][f][A] = \integral[y=c][d][\integral[x=a][b][f(x,y)][x]][y]$}
+
+The iterated integrals can also be written as
+\figbox{$\dm \integral[c][d][\integral[a][b][f(x,y)][x]][y]$}
+
+\subsection{Double integral over rectangles}
+\figbox{$\dm \integral[R][][f(x,y)][A] = \integral[c][d][\integral[a][b][f(x,y)][x]][y] = \integral[a][b][\integral[c][d][f(x,y)][y]][x]$}
+
+\subsection{Triangular regions}
+For the triangle with vertices $(0,0)$, $(1,0)$, $(0,1) \Longrightarrow\ 0\le y\le 1,\ 0\le x\le 1-y$:
+\figbox{$\dm \integral[y=0][1][\integral[x=0][1-y][f(x,y)][x]][y]$}
+
+Equivalently $0\le x\le 1,\ 0\le y\le 1-x$:
+\figbox{$\dm \integral[x=0][1][\integral[y=0][1-x][f(x,y)][y]][x]$}
+
+\newpage
+\subsection{Double integral over general regions}
+If the region $\Omega$ is not a rectangle, one must describe it using
+variable limits that follow the boundary of $\Omega$
+
+\subsubsection{$x$-simple region}
+If the region $\Omega=\{(x,y)\mid a\le x\le b,\ \varphi_1(x)\le y\le \varphi_2(x)\}$, then
+\figbox{$\dm \integral[a][b][\integral[\varphi_1(x)][\varphi_2(x)][f(x,y)][y]][x]$}
+
+\subsubsection{$y$-simple region}
+If the region $\Omega=\{(x,y)\mid c\le y\le d,\ \psi_1(y)\le x\le \psi_2(y)\}$, then
+\figbox{$\dm \integral[c][d][\integral[\psi_1(y)][\psi_2(y)][f(x,y)][x]][y]$}
+
+
 
 
 

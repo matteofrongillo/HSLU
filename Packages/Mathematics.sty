@@ -43,6 +43,15 @@
     top=20mm
 }
 
+% ============= META DATA =============
+\newcommand{\pdftitle}[1]{\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={#1},
+  pdfauthor={Matteo Frongillo}
+}}
+
 % ============= RENEW COMMANDS =============
 
 \makeatletter
@@ -98,19 +107,46 @@
     \phantom{}
 }
 
+
+% OLD INTEGRAL
+%
+%\ExplSyntaxOn
+%\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
+%{
+%    \IfNoValueTF { #4 }
+%    {
+%        \IfNoValueTF { #3 }
+%        { \displaystyle \int #1\,d#2 }
+%        { \text{Either\,\,2\,\,or\,\,4\,\,arguments\,\,must\,\,be\,\,passed} }
+%    }
+%    {
+%        \displaystyle \int\limits\c_math_subscript_token{#1}^{#2} #3 \,d#4
+%        % In Expl Syntax characters as '_' or ':' are used as letters in command names
+%        % hence the \c_math_subscript_token{#1} rather than _{#1}
+%    }
+%}
+%\ExplSyntaxOff
+
+% NEW INTEGRAL
 \ExplSyntaxOn
 \DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
 {
-    \IfNoValueTF { #4 }
-    {
-        \IfNoValueTF { #3 }
-        { \displaystyle \int #1\,d#2 }
-        { \text{Either\,\,2\,\,or\,\,4\,\,arguments\,\,must\,\,be\,\,passed} }
-    }
-    {
-        \displaystyle \int\limits\c_math_subscript_token{#1}^{#2} #3 \,d#4
-        % In Expl Syntax characters as '_' or ':' are used as letters in command names
-        % hence the \c_math_subscript_token{#1} rather than _{#1}
+    \IfNoValueTF{#3}{
+        \IfNoValueTF{#4}{
+            \displaystyle \int #1\,d#2
+        }{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }
+    }{
+        \IfNoValueTF{#4}{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }{
+            \displaystyle
+            \int\limits
+                \IfNoValueF{#1}{\c_math_subscript_token{#1}}
+                ^{\IfNoValueTF{#2}{}{#2}}
+                #3\, d#4
+        }
     }
 }
 \ExplSyntaxOff
@@ -121,13 +157,6 @@
 \makeatletter
 \newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 \makeatother
-
-\newcommand{\pdftitle}[1]{\hypersetup{
-  colorlinks=true,
-  linkcolor=black,
-  urlcolor=blue,
-  pdftitle={#1}
-}}
 
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }

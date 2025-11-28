@@ -15,7 +15,8 @@
 \tableofcontents
 \pagebreak
 
-\part{Just stuff I have to explain, wait few days}
+\part{Planes and surfaces in space}
+\section{Plane $\pi$ in space}
 Let $\pi$ denote the plane:
 \[s_x\in \pi, s_y\in\pi, s_z\in\pi\]
 \[\pi: ax+by+cz+d=0\qquad \]
@@ -369,10 +370,37 @@ If the region $\Omega=\{(x,y)\mid a\le x\le b,\ \varphi_1(x)\le y\le \varphi_2(x
 If the region $\Omega=\{(x,y)\mid c\le y\le d,\ \psi_1(y)\le x\le \psi_2(y)\}$, then
 \figbox{$\dm \integral[c][d][\integral[\psi_1(y)][\psi_2(y)][f(x,y)][x]][y]$}
 
+\subsection{Double integrals in Polar coordiates}
+\subsubsection{Polar coordinates}
+Polar coordinates are defined as the coordinate change
+\figbox{$\dm f: \left(0,+\infty\right) \times \left(-\pi, \pi\right) \to \mathbb{R}^2 \difference \left\{(x,0)\in \mathbb{R}^2 \sht x \leq 0\right\}$}
 
+given by
+\figbox{$\dm f(r,\varphi) = \left(r\cos\varphi, r\sin\varphi\right)$}
 
+\subsubsection{Integration formula}
+To compute an integral in polar coordinates:
+\figbox{$\dm x=r\cos\varphi,\\ y=r\sin\varphi,\\ x^2+y^2=r^2$}
 
+and 
+\figbox{$\dm dA = r\ \mathrm{d}\varphi\ \mathrm{d}r\quad \text{and}\quad dA=r\ \mathrm{d}r\ \mathrm{d}\varphi$}
 
+\section{Triple integrals as iterated integrals}
+If the region $V$ is a box with $a\leq x\leq b$, $c\leq y\leq d$, and $p\leq z\leq q$ and if $f$ is continuous in
+the region $V$, then the integral of $f$ over $V$ is equal to the iterated integral
+\figbox{$\dm \integral[W][][f][V] = \integral[p][q][\integral[c][d][\integral[a][b][f(x,y,z)][x]][y]][z]$}
 
+\subsection{Triple integrals in Cylindrical coordinates}
+\subsubsection{Cylindrical coordinates}
+Each point $(x,y,z)$ in a 3D space is represented by $0\leq r < \infty,\ 0\leq \varphi \leq 2\pi$, and $-\infty < z <\infty$.
+The following relations hold:
+\figbox{$x=r\cos\varphi\\ y=r\sin\varphi\\ z=z$}
+
+As with polar coordinates in the plane:
+\figbox{$x^2+y^2=r^2$}
+
+and 
+
+\figbox{$\mathrm{d}V = r \mathrm{d}r \mathrm{d}\varphi \mathrm{d}z$}
 
 \end{document}

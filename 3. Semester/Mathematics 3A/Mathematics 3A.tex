@@ -314,11 +314,21 @@ Then the following holds:
 
 \section{Constraints and Lagrange Multipliers}
 
-\subsection{Graphical representation}
-
 \subsection{Lagrange multiplier $\lambda$}
+The scalar $\lambda$ measures how sensitive the optimal value of $f$ is with respect
+to small changes in the constraint level $c$. Formally,
+\figbox{$\dm \lambda = \frac{\partial f^\ast}{\partial c}$}
 
+where $f^\ast$ denotes the optimal value of $f$. A positive $\lambda$ indicates that
+relaxing the constraint ($c$ larger) increases the optimal value of $f$.
 
+\subsection{Graphical representation}
+The optimization of $f(x,y)$ under the constraint $g(x,y)=c$ can be visualized
+as searching for points where a level curve of $f$ is tangent to the constraint
+curve. At an optimum, the gradients are parallel:
+\figbox{$\dm \nabla f(x,y) = \lambda\, \nabla g(x,y)$}
+
+\newpage
 \subsection{Lagrange function $\mathcal{L}$}
 When optimizing $f(x,y)$ under the constraint $g(x,y) = c$, the
 Lagrange function is used:
@@ -328,6 +338,12 @@ The partial derivatives must be calculated:
 \figbox{$\dm \frac{\partial\mathcal{L}}{\partial x} = \frac{\partial f}{\partial x} - \lambda\frac{\partial g}{\partial x}$\\\\
         $\dm \frac{\partial\mathcal{L}}{\partial y} = \frac{\partial f}{\partial y} - \lambda\frac{\partial g}{\partial y}$\\\\
         $\dm \frac{\partial\mathcal{L}}{\partial \lambda} = -\big(g(x,y)-c\big)$}
+
+The stationary points of $\mathcal{L}$ satisfy:
+\figbox{$\dm \frac{\partial\mathcal{L}}{\partial x}=0\\[2ex]\frac{\partial\mathcal{L}}{\partial y}=0\\[2ex]g(x,y)=c$}
+
+Solutions $(x,y,\lambda)$ of this system give the candidate extrema of $f$
+under the constraint $g(x,y)=c$.
 
 \newpage
 \part{Integration of functions with multiple variables}
@@ -373,7 +389,7 @@ If the region $\Omega=\{(x,y)\mid c\le y\le d,\ \psi_1(y)\le x\le \psi_2(y)\}$, 
 \subsection{Double integrals in Polar coordiates}
 \subsubsection{Polar coordinates}
 Polar coordinates are defined as the coordinate change
-\figbox{$\dm f: \left(0,+\infty\right) \times \left(-\pi, \pi\right) \to \mathbb{R}^2 \difference \left\{(x,0)\in \mathbb{R}^2 \sht x \leq 0\right\}$}
+\figbox{$\dm f: \left(0,+\infty\right) \times (-\pi, \pi] \to \mathbb{R}^2 \difference \left\{(x,0)\in \mathbb{R}^2 \sht x \leq 0\right\}$}
 
 given by
 \figbox{$\dm f(r,\varphi) = \left(r\cos\varphi, r\sin\varphi\right)$}
@@ -392,15 +408,19 @@ the region $V$, then the integral of $f$ over $V$ is equal to the iterated integ
 
 \subsection{Triple integrals in Cylindrical coordinates}
 \subsubsection{Cylindrical coordinates}
-Each point $(x,y,z)$ in a 3D space is represented by $0\leq r < \infty,\ 0\leq \varphi \leq 2\pi$, and $-\infty < z <\infty$.
-The following relations hold:
-\figbox{$x=r\cos\varphi\\ y=r\sin\varphi\\ z=z$}
+Cylindrical coordinates are defined as the coordinate change
+\figbox{$\dm f: \left(0,+\infty\right) \times (-\pi, \pi] \times \mathbb{R} \to \mathbb{R}^3 \difference \left\{(x,0,z) \in \mathbb{R}^3 \sht x \leq 0\right\}$}
 
-As with polar coordinates in the plane:
-\figbox{$x^2+y^2=r^2$}
+given by
+\figbox{$\dm f(r, \varphi, z) = (r\cos\varphi, r\sin\varphi, z)$}
+
+\subsubsection{Integration formula}
+Each point $(x,y,z)$ in a 3D space is represented by $0\leq r < \infty,\ -\pi < \varphi \leq \pi$, and $-\infty < z <\infty$.
+The following relations hold:
+\figbox{$x=r\cos\varphi\\ y=r\sin\varphi\\ z=z\\ x^2+y^2=r^2$}
 
 and 
 
-\figbox{$\mathrm{d}V = r \mathrm{d}r \mathrm{d}\varphi \mathrm{d}z$}
+\figbox{$\mathrm{d}V = r\ \mathrm{d}r\ \mathrm{d}\varphi\ \mathrm{d}z$}
 
 \end{document}

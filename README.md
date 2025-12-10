@@ -30,8 +30,8 @@ University personal notes
       <td valign="top">
         <a href="./2.%20Semester">📂 <b>View Folder</b></a><br><br>
         • <a href="./2.%20Semester/Context%202">Context 2</a><br>
-        • <a href="./2.%20Semester/Electrical%20Engineering">ET+L</a><br>
         • <a href="./2.%20Semester/Fluid%20dynamic%20engineering">EFPLab 1</a><br>
+        • <a href="./2.%20Semester/Electrical%20Engineering">ET+L</a><br>
         • <a href="./2.%20Semester/Marketing">Marketing</a><br>
         • <a href="./2.%20Semester/Mathematics%202A">Mathematics 2A</a><br>
         • <a href="./2.%20Semester/Physics%201">Physics 1</a><br>
@@ -39,13 +39,13 @@ University personal notes
       </td>
       <td valign="top">
         <a href="./3.%20Semester">📂 <b>View Folder</b></a><br><br>
+        • <a href="./3.%20Semester/Thermodynamics%20engineering">EFPLab 2</a><br>
         • <a href="./3.%20Semester/English%20for%20Engineers">English for Eng</a><br>
         • <a href="./3.%20Semester/Materials%20Lab">Materials Lab</a><br>
         • <a href="./3.%20Semester/Mathematics%203A">Mathematics 3A</a><br>
         • <a href="./3.%20Semester/PDP1">PDP1</a><br>
         • <a href="./3.%20Semester/Physics%202">Physics 2</a><br>
         • <a href="./3.%20Semester/Systems%20Modeling">Systems Modeling</a><br>
-        • <a href="./3.%20Semester/Thermodynamics%20engineering">EFPLab 2</a><br>
         • <a href="./3.%20Semester/Tutoring%20Math1A">Tutoring Math1A</a><br>
         • <a href="./3.%20Semester/UT">UT</a>
       </td>

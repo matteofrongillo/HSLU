@@ -1,0 +1,673 @@
+\documentclass{article}
+
+\usepackage{Engineering}
+\pdftitle{Materials Lab}
+
+\newcommand{\qs}[1]{\vspace{0.2cm} \noindent \\{\color{red}#1} \vspace{0.5cm}} 
+
+% === TEXT ===
+\title{\textbf{Materials Lab Questions + Answers \\ HSLU, Semester 3}}
+\author{Matteo Frongillo}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Basics and Crystal Structure}
+\begin{enumerate}[label=\textbf{1.\arabic*}]
+    \item How are Young's modulus, binding energy, and the coefficient of thermal expansion qualitatively related? 
+    \qs{The higher the Young's modulus, the higher the binding energy, and the lower the coefficient of thermal expansion.}
+    
+    \item What is the plastic deformation of metals at room temperature based on? 
+    \qs{Plastic deformation of metals is primarily based on dislocation glide on close-packed slip planes.}
+    
+    \item In dishwashers, the side walls often consist of stainless ferritic chromium steel (body-centered cubic, BCC). For the bottom, which is subjected to very large plastic deformations during manufacturing, the choice usually falls on a stainless austenitic chromium-nickel steel (face-centered cubic, FCC). Explain the material choice for the tub bottom; please argue using the crystal structure. 
+    \qs{The FCC structure is easier to plastically deform than the BCC structure due to the denser packing. Both have many slip planes and slip systems, so the probability of a favorable orientation of one of these slip systems for plastic deformation exists in both crystal structures.}
+    
+    \item Why are FCC and BCC metals easier to plastically deform than the hexagonal close-packed (HCP) titanium? 
+    \qs{The HCP structure of Ti possesses only one slip plane. The probability that high shear stresses occur on precisely this slip plane due to a favorable orientation according to Schmid's Law is very low. High shear stresses on a slip plane are important for the process of plastic deformation by dislocation glide.}
+    
+    \item The strength of metals can be increased by deliberately placing obstacles in the form of lattice defects in the path of dislocations. Name four lattice defects and the strengthening mechanisms caused by them. Order them according to the dimension of the lattice defects (zero to three-dimensional). 
+    \qs{
+    \begin{itemize}
+        \item \textbf{0-Dimensional (Point defects):} Foreign atoms $\rightarrow$ Solid solution hardening.
+        \item \textbf{1-Dimensional (Line defects):} Dislocations $\rightarrow$ Strain hardening (Work hardening).
+        \item \textbf{2-Dimensional (Surface defects):} Grain boundaries $\rightarrow$ Grain boundary hardening (Hall-Petch).
+        \item \textbf{3-Dimensional (Volume defects):} Precipitates $\rightarrow$ Precipitation hardening.
+    \end{itemize}
+    }
+    
+    \item Spring elements in mechanical watch movements (setting lever springs, metallic hairsprings) are usually cold-rolled. Why? 
+    \qs{Increase in strength through strain hardening (cold working).}
+    
+    \item Please name and explain three factors that decisively influence solid solution hardening. 
+    \qs{
+    \begin{itemize}
+        \item Interstitial atoms lead to a greater increase in strength in solid solution hardening than substitutional atoms.
+        \item A larger difference in atomic radii between substitutional atoms and lattice atoms results in a greater increase in strength.
+        \item A higher concentration of foreign atoms in the solid solution causes a greater increase in strength.
+    \end{itemize}
+    }
+    
+    \item Electrical sheets for transformers consist of BCC iron with 2-4\% Si (solid solution, suppression of eddy currents). These sheets often have a Goss texture, i.e., the (100) directions of the crystals lie preferentially in the rolling direction and the \{110\} planes parallel to the sheet surface.
+    \begin{enumerate}
+        \item Please draw a BCC unit cell. 
+        \qs{See solution diagram.}
+        \item Draw an electrical sheet with Goss texture in the correct orientation into this unit cell and mark the rolling direction of type (100) in this plane of type \{110\}. 
+        \qs{The sheet surface corresponds to the (011) plane (blue), one of the six possible planes of type \{110\}. The rolling direction in this specific plane is the [100] direction (red).}
+    \end{enumerate}
+    
+    \item Drawn copper wires possess a (111) fiber texture, i.e., planes of type \{111\} are oriented perpendicular to the wire axis or the pulling direction of the wire.
+    \begin{enumerate}
+        \item Draw an FCC unit cell. 
+        \qs{See solution diagram.}
+        \item Draw a plane of type \{111\} as well as the direction of the wire axis or the pulling direction of the wire of type (111) perpendicular to it into the FCC unit cell. 
+        \qs{One of the four possible planes of type \{111\}, the (111) plane (red), and the wire axis or pulling direction of the wire perpendicular to it, i.e., the plane normal [111].}
+    \end{enumerate}
+\end{enumerate}
+
+\newpage
+\section{Alloys}
+\begin{enumerate}[label=\textbf{2.\arabic*}]
+    \item The aluminum casting alloy EN AC-AlSi10Mg (EN AC-43000) is used for both Sand Casting (S) and Permanent Mold/Die Casting (K). In the cast state, the properties differ. Why is the strength of the alloy higher after permanent mold casting than after sand casting? 
+    \qs{The metal mold dissipates heat faster. This leads to faster cooling and a smaller grain size. A fine-grain microstructure has higher strength.}
+    
+    \item The binary system Copper-Nickel is a phase diagram with complete solubility. What three conditions must generally be met for such a binary system to exist? 
+    \qs{Same crystal structure (here: Cu and Ni are both face-centered cubic), atomic radius difference < 15\%, no chemical affinity (no formation of a chemical or intermetallic compound).}
+    
+    \item All Swiss coins from ten centimes to five francs have consisted of a CuNi25 alloy (Cu with 25\% Ni) since 1968. Please describe, using the Copper-Nickel binary system, how the state of aggregation would change with increasing temperature for a five-franc coin if it were heated from room temperature to $1300^{\circ}C$ with a gas burner. 
+    \qs{At $1140^{\circ}C$, the coin begins to melt, and at $1210^{\circ}C$, it is completely melted.}
+    
+    \item What is the chemical composition of the first crystals of the CuNi25 alloy when this alloy is cooled from the melt? 
+    \qs{The first solid solution crystals form at $1210^{\circ}C$. They have a nickel content of 44\% Ni.}
+    
+    \item Describe the state of this CuNi25 alloy at $1160^{\circ}C$. Which phases are present in what proportions (Lever rule)? How are these phases chemically composed? 
+    \qs{
+    At $1160^{\circ}C$, this alloy consists of Melt and Solid Solution.
+    \begin{itemize}
+        \item The proportion of Melt is $BC/AC = (30-25)/(30-14) = 5/16 = 0.31$ or 31\%. The chemical composition of the melt at this temperature is 14\% Ni, 86\% Cu.
+        \item The proportion of Solid Solution is $AB/AC = (25-14)/(30-14) = 11/16 = 0.69$ or 69\%. The chemical composition of the solid solution at this temperature is 30\% Ni, 70\% Cu.
+    \end{itemize}
+    }
+    
+    \item What is the composition of the last melt when this alloy is cooled? 
+    \qs{The last melt solidifies at $1140^{\circ}C$ and has a nickel content of 10\%.}
+    
+    \item Please describe what segregations are and to what extent they can occur in this coin alloy? 
+    \qs{The equilibrium concentration sets in during infinitely slow cooling through diffusion processes. In reality, the cooling rate is finite. The first crystals had a nickel content of 44\% and the last crystals formed from a melt with a nickel content of 10\%. In practice, the difference will be smaller, but differences in Ni content exist within the alloy. These concentration differences are called segregation. They must be eliminated by long diffusion annealing (homogenization) just below the solidus line, i.e., below $1140^{\circ}C$. Hot rolling also balances out segregations.}
+    
+    \item What disadvantages would segregations have in this coin alloy? 
+    \qs{Segregations lead to locally different properties. Segregations can also lead to reduced corrosion resistance because a local galvanic element is formed (see Chap. 5). Corrosion would be unfavorable for a coin.}
+    
+    \item Aluminum-Silicon phase diagram: At the eutectic point, there are classic casting alloys. Why is the alloy with 12.5\% Silicon in the Al-Si binary system a good casting alloy? Please name two arguments. 
+    \qs{Lowest melting temperature, no melting interval (mushy zone) with a viscous phase mixture of melt and solid solution crystals.}
+    
+    \item Briefly describe the structure of the microstructure of the alloy with 12.5\% Si (casting alloy) and the alloy with 35\% Si (piston alloy) at room temperature. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{Casting alloy with 12.5\% Si:} Eutectic microstructure with lamellae of aluminum solid solution and pure silicon crystals, formed at the eutectic temperature of $577^{\circ}C$.
+        \item \textbf{Piston alloy with 35\% Si:} Pure silicon primary crystals formed in the two-phase field Melt + Si, and eutectic microstructure with lamellae of aluminum solid solution and pure silicon crystals, formed at the eutectic temperature of $577^{\circ}C$.
+    \end{itemize}
+    }
+\end{enumerate}
+
+\newpage
+\section{Iron-Carbon Diagram}
+\begin{enumerate}[label=\textbf{3.\arabic*}]
+    \item Please determine, using the lever rule for the hypoeutectoid alloy $L_{1}$ (Fig 3.4), which phases are present in what proportions with what respective chemical composition at $800^{\circ}C$. 
+    \qs{At $800^{\circ}C$, the phases Austenite and Ferrite (as primary ferrite crystals) are present in alloy $L_{1}$.
+    \begin{itemize}
+        \item \textbf{Phase proportions:} approx. 70\% Austenite, approx. 30\% Ferrite.
+        \item \textbf{Chemical composition:} Austenite 0.5\% C, 99.5\% Fe. Ferrite <0.02\% C, Balance Fe (>99.98\%).
+    \end{itemize}
+    }
+    
+    \item Which phases with what chemical composition are present at $800^{\circ}C$ for the eutectoid alloy $L_{2}$? 
+    \qs{The eutectoid alloy $L_{2}$ with 0.8\% C is in the single-phase Austenite field at $800^{\circ}C$. Therefore, only the Austenite phase exists (homogeneous, single-phase structure of 100\% Austenite). The Austenite solid solution has the composition of the alloy, i.e., 0.8\% C and 99.2\% Fe.}
+    
+    \item Please determine, using the lever rule for the hypereutectoid alloy $L_{3}$, which phases are present in what proportions with what respective chemical composition at $800^{\circ}C$. 
+    \qs{At $800^{\circ}C$, the phases Austenite and Cementite (as grain boundary cementite) are present in alloy $L_{3}$.
+    \begin{itemize}
+        \item \textbf{Phase proportions:} approx. 94\% Austenite, approx. 6\% Cementite.
+        \item \textbf{Chemical composition:} Austenite 1\% C, 99\% Fe. Cementite 6.7\% C, 93.3\% Fe.
+    \end{itemize}
+    }
+    
+    \item Please name two applications for hypoeutectoid steels. 
+    \qs{Structural steel, Heat-treatable steel.}
+    
+    \item Please name one application for hypereutectoid steel. 
+    \qs{Hard tools for machining.}
+\end{enumerate}
+
+\newpage
+\section{Materials Testing}
+\begin{enumerate}[label=\textbf{4.\arabic*}]
+    \item Please briefly explain the meaning of the isotropic elastic material parameters: Young's Modulus $E$, Poisson's ratio $\nu$, and Shear modulus $G$. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{Young's Modulus E:} A measure of the binding force/energy. A large E-modulus results in a small thermal expansion coefficient. It is the resistance of a material to elastic deformation ($\sigma = E \cdot \epsilon$).
+        \item \textbf{Poisson's ratio $\nu$:} Results from the tensor character of elastic properties. If a material is stretched elastically in one direction, an elastic contraction occurs perpendicular to it.
+        \item \textbf{Shear modulus G:} The proportionality factor between shear stress and elastic shear strain $\gamma$ ($\tau = G \cdot \gamma$).
+    \end{itemize}
+    }
+    
+    \item Please briefly explain the meaning of the plastic material parameters: 0.2\% Proof Stress $R_{p0.2}$, Tensile Strength $R_{m}$, and Elongation at Break $A$. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{0.2\% Proof Stress $R_{p0.2}$:} A measure of the material's resistance to plastic deformation. By definition, it marks the beginning of plastic deformation in the tensile test.
+        \item \textbf{Tensile Strength $R_{m}$:} The maximum engineering stress that occurs in the tensile test.
+        \item \textbf{Elongation at Break A:} The permanent (plastic) elongation at fracture of the specimen in the tensile test. It is a measure of plastic deformability (ductility).
+    \end{itemize}
+    }
+    
+    \item Which parameter is usually of greater importance for a design engineer: the 0.2\% proof stress $R_{p0.2}$ or the tensile strength $R_{m}$? Please justify your answer. 
+    \qs{In general, the 0.2\% proof stress $R_{p0.2}$ is more important than the tensile strength $R_{m}$ because, in practice, plastic deformation is generally not desired. This begins at $R_{p0.2}$.}
+    
+    \item Using the stress-strain diagrams for EN AW-6082-T6 (Abb. 4.40 and 4.41), read the parameters Young's Modulus $E$, 0.2\% proof stress $R_{p0.2}$, Tensile Strength $R_{m}$, and Elongation at Break $A$ as accurately as possible. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{Young's Modulus $E$ ($\Delta\sigma/\Delta\epsilon$):} 70 GPa.
+        \item \textbf{0.2\% Proof Stress $R_{p0.2}$:} 380 MPa.
+        \item \textbf{Tensile Strength $R_{m}$:} 400 MPa.
+        \item \textbf{Elongation at Break $A$:} 13.6\%.
+    \end{itemize}
+    }
+    
+    \item Which steel is a spring steel with high 0.2\% proof stress $R_{p0.2}$: a steel with 0.2\% C or a steel with 0.7\% C and 4\% Si? Please justify your answer. 
+    \qs{The steel with 0.7\% C and 4\% Si. More foreign atoms, more dislocation obstacles, higher 0.2\% proof stress. The spring remains elastic over a larger mechanical stress range without plastically deforming.}
+    
+    \item May an aluminum profile loaded in tension with an initial cross-section $A_{0} = 500~mm^{2}$ be loaded with 150 kN without plastically deforming if its 0.2\% proof stress is 280 MPa? 
+    \qs{No. The acting normal stress is $\sigma = F/A_0 = 150 \text{ kN} / 500 \text{ mm}^2 = 300 \text{ N/mm}^2$. Since $300 \text{ MPa} > 280 \text{ MPa}$ ($R_{p0.2}$), plastic deformation begins.}
+    
+    \item Which value from the tensile test is decisive for a predetermined breaking point? Justify the choice. 
+    \qs{Tensile strength. For a break to occur, the tensile strength must be exceeded. Notched bars or bolts are usually used for predetermined breaking points. Plastic deformation then only takes place in the most highly stressed notch, without large preceding plastic deformation.}
+    
+    \item When launching an F/A 18F Superhornet, a release rod (20 mm diameter) holds the aircraft. Engine thrust: $2 \times 98,000$ N. Catapult force: 1,235,000 N. The thrust must not plastically deform the rod, but the catapult must tear it (force $>3 \times$ force at tensile strength). Decide if a steel with $R_{p0.2} = 985$ MPa and $R_{m} = 1075$ MPa meets the requirements. 
+    \qs{
+    The rod is suitable.
+    \begin{itemize}
+        \item Stress from engine thrust: $\sigma = F/A_0 = (2 \cdot 98,000 \text{ N}) / (\pi \cdot (10 \text{ mm})^2) = 624 \text{ MPa} < 985 \text{ MPa} (R_{p0.2})$. It will not plastically deform.
+        \item Stress from catapult: $\sigma = F/A_0 = 1,235,000 \text{ N} / 314 \text{ mm}^2 = 3931 \text{ MPa} > 3 \cdot 1075 \text{ MPa} (3 \cdot R_m)$. It will surely tear.
+    \end{itemize}
+    }
+    
+    \item Excessive magnetic reversal losses occur in an electrical sheet. Which measurement methods would principally be suitable for determining grain size, texture, and chemical composition? 
+    \qs{
+    \begin{itemize}
+        \item \textbf{Grain size:} X-ray diffractometry, Light microscopy.
+        \item \textbf{Texture:} X-ray diffractometry (possibly a texture goniometer).
+        \item \textbf{Chemical composition:} EDX, XRF (RFA), OES.
+    \end{itemize}
+    }
+    
+    \item A stainless chromium-nickel steel has discolored. You need to distinguish between a thin temper color (max 10 nm oxide) and organic contamination. If it is oxide, you need the Cr/Fe ratio. EDX penetrates too deep. Which method do you choose? 
+    \qs{XPS (ESCA). Because of the low penetration depth of approx. 10 nm, because light elements can also be measured quantitatively, and because XPS also provides information on whether a metallic, oxidic, or organic bond is present.}
+\end{enumerate}
+
+\newpage
+\section{Corrosion}
+\begin{enumerate}[label=\textbf{5.\arabic*}]
+    \item Please explain the terms Anode, Cathode, and Electrolyte. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{Anode:} The electrode where the oxidation reaction takes place and to which anions migrate. Corresponds to the less noble half-cell in corrosion.
+        \item \textbf{Cathode:} The electrode where the reduction reaction takes place and to which cations migrate. Corresponds to the more noble half-cell in corrosion.
+        \item \textbf{Electrolyte:} An ion conductor, e.g., an aqueous solution.
+    \end{itemize}
+    }
+    
+    \item Please name four necessary conditions for a corrosion reaction to occur. 
+    \qs{
+    There is a less noble electrochemical half-cell (Anode) and a more noble electrochemical half-cell (Cathode). Both are in contact with an electrolyte (ion conductor). Furthermore, Anode and Cathode must be electrically connected so that a flow of electrons can occur between them.
+    }
+    
+    \item \begin{enumerate}
+        \item Under what conditions is the nobler half-cell in a corrosion reaction the oxygen electrode? 
+        \qs{At neutral or basic pH values in the electrolyte, typically above pH 5.}
+        \item Under what conditions is the nobler half-cell in a corrosion reaction the hydrogen electrode? 
+        \qs{At acidic pH values in the electrolyte, typically below pH 5. Also in the presence of chloride ions (lowering of pH value).}
+    \end{enumerate}
+    \item Why does hydrogen corrosion generally proceed faster at acidic pH values than oxygen corrosion at neutral pH values? 
+    \qs{The concentration of hydrogen ions in acidic electrolytes is orders of magnitude higher than the concentration of dissolved oxygen in neutral aqueous electrolytes. The slow diffusion of oxygen from the electrolyte to the metal surface is the limiting factor for the reaction rate in oxygen corrosion.}
+    
+    \item Can the noble metal copper corrode in a humid environment at a neutral pH value? 
+    \qs{Yes. Copper is indeed nobler than the hydrogen electrode, but less noble than the oxygen electrode.}
+    
+    \item Zinc layers are used as active corrosion protection on steel (e.g., power pylons). Explain why zinc corrodes instead of iron. Write the anodic and cathodic partial reactions. Which cathodic reaction would occur in an acidic electrolyte? 
+    \qs{Zinc is less noble than iron and corrodes first (sacrificial layer, sacrificial anode).
+    \begin{itemize}
+        \item \textbf{Anode:} $Zn \rightarrow Zn^{2+} + 2e^-$
+        \item \textbf{Cathode (neutral electrolyte):} $H_2O + \frac{1}{2}O_2 + 2e^- \rightarrow 2OH^-$
+        \item \textbf{Cathode (acidic electrolyte):} $2H^+ + 2e^- \rightarrow H_2$
+    \end{itemize}
+    }
+    
+    \item Case Study: A welded sheet of austenitic stainless steel 1.4301 corrodes along the weld seam. Discuss the cause and suggest two possible solutions. 
+    \qs{
+    \textbf{Cause:} Chromium carbide formation at the grain boundaries during welding. The grain boundaries are no longer protected by a chromium oxide layer. \\
+    \textbf{Solution 1:} Use an equivalent steel with less carbon (e.g., 1.4307) to avoid chromium carbide formation. \\
+    \textbf{Solution 2:} Use a titanium-stabilized stainless steel (e.g., 1.4571), which forms titanium carbide instead of chromium carbide.
+    }
+    
+    \item Case Study: Gold-plated brass plugs are corroding under scratches in the gold layer.
+    \begin{enumerate}
+        \item Does the gold act as active or passive protection? 
+        \qs{Passive corrosion protection, because it is nobler (no sacrificial layer).}
+        \item Why does the brass corrode strongly under small scratches? 
+        \qs{
+        \textbf{Cause 1 (Area rule):} Small anode (Brass), large cathode (Gold), i.e., high corrosion current density and strong corrosion at the anode. \\
+        \textbf{Cause 2:} Contact corrosion; the nobler gold acts as a catalyst (accelerator) of corrosion.
+        }
+        \item Suggest two measures to avoid this. 
+        \qs{Fix or pad goods to avoid scratches. Pack in a dry atmosphere, e.g., shrink-wrap in nitrogen.}
+    \end{enumerate}
+    \item Pitting corrosion occurs in a 1.4301 stainless steel cooking chamber due to chloride concentration ($130$ mg/l). Suggest solutions. 
+    \qs{
+    \begin{itemize}
+        \item Rinse the cooking chamber or wipe dry after every cooking process.
+        \item Provide a drain so that water cannot evaporate in the chamber and concentrate chloride ions.
+        \item Choose molybdenum-containing stainless steel that withstands high chloride concentration, e.g., 1.4404.
+    \end{itemize}
+    }
+    
+    \item You need a stainless steel for a water-carrying device (15-year life). A supplier offers a cheap high-sulfur (0.1\% S) version and a dearer low-sulfur (0.01\% S) version. Which do you choose and why? 
+    \qs{Choose the material with less sulfur. Sulfur forms manganese sulfide inclusions in stainless steels. These are good for machining (short chips), but are typical starting points for pitting corrosion. If the device should last long, choose 0.01\% sulfur.}
+\end{enumerate}
+
+\newpage
+\section{Tribology and Surface Technology}
+\begin{enumerate}[label=\textbf{6.\arabic*}]
+    \item Which is greater – static friction or kinetic friction? 
+    \qs{Static friction is greater.}
+    
+    \item Can the coefficient of friction take values greater than one? Name an example. 
+    \qs{Yes. Examples: Lab-on-Chip systems with PDMS on glass. Soft FCC metals (Al, Au, Pt, Ag, Cu) in pure state (wire bonding). Baggage belts made of elastomers. In the micro world, adhesion force is often greater than gravity.}
+    
+    \item Name two advantages and two disadvantages of dry lubrication (graphite/MoS$_2$) vs. wet lubrication (oil). 
+    \qs{
+    \textbf{Advantages:} No running dry (emergency lubrication); no leakage or outgassing; high surface pressures possible. \\
+    \textbf{Disadvantages:} Run-in required for leveling before first operation; very high rotational speeds not achievable.
+    }
+    
+    \item Which metallic materials are susceptible to adhesive wear? Where is this exploited? 
+    \qs{Metals with FCC structure. Exploited in friction stir welding of aluminum alloys or wire bonding of gold or aluminum in electronics.}
+    
+    \item Name and explain three ways to improve coating adhesion. 
+    \qs{
+    \begin{itemize}
+        \item Adhesion promoters (Primers, e.g., silanes): Bind well to substrate and offer good bonding for paint.
+        \item Plasma treatment: Cleaning effect and activation of bonds (modification of surface energy).
+        \item Adhesion layers (Ti, Ta, Cr) for subsequent PVD/CVD coatings on glass/silicon.
+    \end{itemize}
+    }
+    
+    \item Name and explain two advantages of electroless nickel deposition over galvanic. 
+    \qs{
+    \begin{itemize}
+        \item Advantage 1: More uniform layer thickness (galvanic has higher thickness at edges/corners due to field lines).
+        \item Advantage 2: Plastics and other non-conductive substrates can also be coated.
+    \end{itemize}
+    }
+    
+    \item Why are hexavalent chromium electrolytes banned (RoHS)? Name an alternative for galvanized screws. 
+    \qs{Hexavalent chromium is carcinogenic. Alternative: Chromating with trivalent chromium.}
+    
+    \item Why does the oxide layer grow into the surface during aluminum anodizing? Name an alternative to chromic acid anodizing. 
+    \qs{The thin barrier layer is punctually breached by electrical breakdowns. The exposed aluminum surface is oxidized by the electrolyte. This repeats, growing the layer inwards. Alternative: TSA (Tartaric-Sulfuric Acid) anodizing.}
+    
+    \item Name and explain two advantages of powder coatings over wet paint. 
+    \qs{
+    \begin{itemize}
+        \item Advantage 1: No evaporating solvents.
+        \item Advantage 2: Less material loss and higher recycling rate for overspray.
+    \end{itemize}
+    }
+    
+    \item What are PVD and CVD coatings used for? Name three applications. 
+    \qs{
+    \begin{itemize}
+        \item Wear-resistant coatings for cutting and forming tools.
+        \item Decorative coatings (watches, jewelry).
+        \item PE-CVD silicon oxide layers on stainless steel (anti-fingerprint/corrosion).
+    \end{itemize}
+    }
+\end{enumerate}
+
+\newpage
+\section{Steel Technology}
+\begin{enumerate}[label=\textbf{7.\arabic*}]
+    \item What happens to steel in the ESR (Electro-Slag Remelting) process? What are the pros/cons and applications? 
+    \qs{
+    Sulfur, slag inclusions, and impurities are removed. The steel becomes purer, finer-grained (cooling in copper mold), tougher, and more corrosion resistant. Disadvantage: More expensive. Applications: Tool steel, medical technology.
+    }
+    
+    \item Why is martensite not in the iron-carbon diagram? What is the advantage of bainite over martensite? 
+    \qs{Martensite forms only during very fast cooling (quenching), while the Fe-C diagram applies to equilibrium (slow) cooling. Bainite is not quite as hard as martensite, but tougher and less brittle.}
+    
+    \item Which microstructural constituents form if 34CrMo4 is cooled according to curve No. 4 in the TTT diagram (Fig 7.24)? 
+    \qs{25\% Ferrite, 5\% Pearlite, 65\% Bainite, 5\% Martensite.}
+    
+    \item Is pearlite a phase? 
+    \qs{No. Pearlite is a two-phase microstructural constituent consisting of lamellae of the phases Ferrite and Cementite.}
+    
+    \item Explain quench and tempering of carbon steels. Difference to austempering? 
+    \qs{
+    \textbf{Quench and Tempering:} Austenitize $\rightarrow$ Quench (Martensite) $\rightarrow$ Temper (relax stress). \\
+    \textbf{Austempering:} Austenitize $\rightarrow$ Quench into liquid bath (lead/salt) above martensite start temp $\rightarrow$ Hold until transformation to Bainite is complete.
+    }
+    
+    \item What is the heat treatment for strong and tough fine-grained structural steels? 
+    \qs{Normalizing.}
+    
+    \item Difference between carbonitriding and nitrocarburizing? 
+    \qs{
+    \textbf{Nitrocarburizing:} Creates a compound layer (hard carbonitrides). \\
+    \textbf{Carbonitriding:} Diffusion of C and N into austenite, contributing to Martensite formation upon quenching.
+    }
+    
+    \item How is hardening depth defined for surface hardening vs. case hardening? Difference between surface-hardening steels and case-hardening steels? 
+    \qs{Hardening depth is defined as the depth where hardness drops to 550 HV1. Surface hardening steels must already contain enough carbon (>0.25\%) for martensite formation. Case-hardening steels contain less (<0.2\%) and require carbon diffusion (carburizing) before hardening.}
+    
+    \item Which elements increase hardenability (max surface hardness)? 
+    \qs{Primarily Carbon and Nitrogen (interstitial atoms).}
+    
+    \item Which elements increase the depth of hardening? 
+    \qs{Chromium, Molybdenum, and Nickel.}
+\end{enumerate}
+
+\newpage
+\section{Steel Designation}
+\begin{enumerate}[label=\textbf{8.\arabic*}]
+    \item Compare C35E and 34CrMo4. Name one advantage of each. Give their chemical compositions. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{C35E:} Heat-treatable carbon steel. Advantage: Cost-effective. Composition: 0.35\% C, $\le$ 0.035\% S.
+        \item \textbf{34CrMo4:} Low-alloy heat-treatable steel. Advantage: Better hardenability (thick sections), higher forces. Composition: 0.34\% C, 1\% Cr, <1\% Mo.
+    \end{itemize}
+    }
+    
+    \item Derive the short name for material 1.4301 (0.05\% C, 18\% Cr, 10\% Ni). 
+    \qs{X5CrNi18-10.}
+    
+    \item Which is intended for heat treatment: Quality steel or High-grade steel (Edelstahl)? 
+    \qs{High-grade steel (Edelstahl) due to higher purity and reproducible results.}
+    
+    \item Which material numbers apply to unalloyed tool steels, alloyed tool steels, and high-speed steels? 
+    \qs{
+    \begin{itemize}
+        \item Unalloyed tool steels: 1.14XX - 1.18XX.
+        \item Alloyed tool steels: 1.20XX - 1.28XX.
+        \item High-speed steels: 1.32XX (with Co) and 1.33XX (without Co).
+    \end{itemize}
+    }
+    
+    \item Difference between C45 and C45E? 
+    \qs{Both contain 0.45\% C; however, C45E is purer (less S and P).}
+\end{enumerate}
+
+\newpage
+\section{Special Steels}
+\begin{enumerate}[label=\textbf{9.\arabic*}]
+    \item Why are high-alloy austenitic steels chosen for very low temps ($-50^{\circ}C$)? 
+    \qs{Austenitic steels possess an FCC structure, retaining high toughness and low brittleness at low temperatures.}
+    
+    \item How can the high-temperature strength of steels be increased? 
+    \qs{By forming special carbides (using Cr, Mo, W, V).}
+    
+    \item Advantage and disadvantage of maraging steels vs. heat-treatable steels? 
+    \qs{
+    \textbf{Advantage:} Highest strengths achievable (coherent precipitates). \\
+    \textbf{Disadvantage:} Low deformation reserve (yield strength close to tensile strength).
+    }
+    
+    \item Which is a good spring steel: 0.2\% C or 0.56\% C + 1.75\% Si? Why? 
+    \qs{The steel with 0.56\% C, 1.75\% Si. High concentration of foreign atoms (solid solution hardening) and heat-treatable for further yield strength increase. High yield strength expands elastic range.}
+    
+    \item Name three steel grades for automotive body stiffening (B-pillar, etc.). 
+    \qs{Complex phase steels (CP), Martensitic steels (MS), Manganese-Boron steels.}
+    
+    \item 1.4016 (0.7\% C) is hard to weld. Suggest an alternative ferritic stainless steel for a washing machine drum. Which element helps weldability/corrosion? 
+    \qs{Suggestion: 1.4510. It contains Titanium (Ti) for stabilization. Ti forms TiC instead of Cr-carbides, preventing sensitization.}
+    
+    \item Pitting in a 1.4301 tank due to chloride ($70$ mg/l). Name two prevention methods. 
+    \qs{
+    \begin{itemize}
+        \item Regularly empty and rinse tank.
+        \item Use Mo-alloyed stainless steel (e.g., 1.4404) with higher PREN.
+    \end{itemize}
+    }
+    
+    \item Advantage of seawater-resistant duplex steels vs. super-austenitic steels? 
+    \qs{Duplex steels are more cost-effective (less Nickel) and achieve high PREN via Nitrogen.}
+    
+    \item Pros/cons of cold-work vs. hot-work tool steels? Two applications for each? 
+    \qs{
+    \textbf{Cold-work:} High hardness/wear (<200$^{\circ}$C). App: Screwdrivers, Dies. \\
+    \textbf{Hot-work:} Strength retained up to 600$^{\circ}$C. App: Forging dies, Extrusion tools.
+    }
+    
+    \item Pros of HSS tools vs. ceramic tools? Main elements in HSS? 
+    \qs{
+    \textbf{Pros:} Bending strength, Cost. \\
+    \textbf{Elements:} W, Mo, V, Co, Cr, C.
+    }
+\end{enumerate}
+
+\newpage
+\section{Cast Iron}
+\begin{enumerate}[label=\textbf{10.\arabic*}]
+    \item Which use stable vs. metastable diagrams? Match: GJL, GS, GJN, GJS, GJV. 
+    \qs{
+    \textbf{Stable (Graphite):} GJL, GJS, GJV (Grey cast irons). \\
+    \textbf{Metastable (Cementite):} GS (Cast steel), GJN (White cast iron).
+    }
+    
+    \item Why is austenitic cast steel GX5CrNi19-10 better for cryo tech than ferritic GE300? 
+    \qs{Austenitic (FCC) metals remain tough/ductile at low temperatures, whereas Ferritic (BCC) metals become brittle.}
+    
+    \item Compare Nodular Cast Iron (GJS) vs. Grey Cast Iron (GJL). One advantage and application for each. 
+    \qs{
+    \textbf{GJS:} Higher strength/ductility (Crankshafts). \\
+    \textbf{GJL:} Better damping (Machine beds).
+    }
+    
+    \item Match applications (Crankshaft, Pump housing, Grinding balls) to types (White cast iron, ADI, Austenitic cast iron). 
+    \qs{
+    \begin{itemize}
+        \item Crankshaft (Diesel): ADI.
+        \item Pump housing (Seawater): Austenitic cast iron.
+        \item Grinding balls: White cast iron.
+    \end{itemize}
+    }
+    
+    \item How is the melt treated to create nodular graphite instead of flake graphite? 
+    \qs{Desulfurization, alloying with Mg (or Ce), and inoculation with Ferrosilicon (FeSi).}
+\end{enumerate}
+
+\newpage
+\section{Aluminum}
+\begin{enumerate}[label=\textbf{11.\arabic*}]
+    \item Why is aluminum a "young" industrial metal (only approx. 100 years)? 
+    \qs{Production requires large amounts of electricity, available only since the 20th century.}
+    
+    \item Name five properties and resulting applications of aluminum. 
+    \qs{
+    \begin{itemize}
+        \item Low density: Transport (Auto/Aero).
+        \item Electrical conductivity: Power lines.
+        \item Thermal conductivity: Heat exchangers.
+        \item Formability (FCC): Foil/Profiles.
+        \item Food safe: Packaging.
+    \end{itemize}
+    }
+    
+    \item Why replace Steel or Copper with Aluminum despite lower strength/conductivity? 
+    \qs{Better specific strength/conductivity (property per weight).}
+    
+    \item List main elements and strengthening mechanisms for EN-AW 2XXX, 3XXX, 5XXX, 6XXX, 7XXX. 
+    \qs{
+    \begin{itemize}
+        \item 2XXX: Cu (Precipitation).
+        \item 3XXX: Mn (Solution/Work).
+        \item 5XXX: Mg (Solution/Work).
+        \item 6XXX: Mg+Si (Precipitation).
+        \item 7XXX: Zn (Precipitation).
+    \end{itemize}
+    }
+    
+    \item What causes the highest strength increase? (Solid solution, Work hardening, Natural aging, Artificial aging). 
+    \qs{Artificial aging (Warmaushärten).}
+    
+    \item Which precipitate type gives greatest strength? (Coherent, Semi-coherent, Incoherent). 
+    \qs{Coherent/Semi-coherent (Implied by context of precipitation hardening efficiency). Note: Checkbox solutions indicate characteristics for specific alloys in 11.7.}
+    
+    \item Compare 2024, 7075, 6061 regarding: Fatigue (T3/T4), Strength (T6), Corrosion, Weldability. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{Naturally aged/Fatigue resistant:} 2024.
+        \item \textbf{Artificially aged/Strongest:} 7075.
+        \item \textbf{Corrosion resistant:} 6061.
+        \item \textbf{Weldable:} 6061.
+    \end{itemize}
+    }
+    
+    \item Which binary system are most casting alloys based on? Elements for precipitation hardening? 
+    \qs{Binary system: Al-Si. Hardening elements: Mg or Cu.}
+    
+    \item Name four forming processes and four casting processes for aluminum. 
+    \qs{
+    \textbf{Forming:} Rolling, Forging, Extrusion, Hydroforming. \\
+    \textbf{Casting:} Sand, Die, Pressure die, Thixo.
+    }
+    
+    \item How is EN AW-2024 made corrosion resistant? 
+    \qs{Cladding (Plattieren).}
+\end{enumerate}
+
+\newpage
+\section{Non-Ferrous Metals}
+\begin{enumerate}[label=\textbf{12.\arabic*}]
+    \item Which light alloys offer strength of heat-treatable steel but lower weight? 
+    \qs{Titanium alloys.}
+    
+    \item Why is Titanium corrosion resistant (biocompatible) despite being non-noble? 
+    \qs{It possesses a chemically inert passivation layer.}
+    
+    \item Name two negative properties of Magnesium preventing it from replacing Aluminum. 
+    \qs{HCP structure (poor cold forming), Reactive/Flammable (hazard), High purity needed.}
+    
+    \item Which properties allow Ni-superalloys in turbine blades? How to increase creep strength? 
+    \qs{High-temperature strength, corrosion resistance. Creep strength increased by Single Crystal (SX) casting (no grain boundaries).}
+    
+    \item Which Ni alloy is best for maritime atmospheres? 
+    \qs{Nickel-Copper alloys (Monel).}
+    
+    \item Which Ni alloy is used for soft magnetic cores in quartz watches? 
+    \qs{Nickel-Iron alloys (Permalloy).}
+    
+    \item How is high purity Copper produced? 
+    \qs{Electrolytic refining.}
+    
+    \item Two applications of Zinc? 
+    \qs{Die casting (e.g., toys), Active corrosion protection on steel.}
+    
+    \item Advantage of Niobium/Tantalum over Tungsten/Molybdenum at room temp? 
+    \qs{Nb/Ta are ductile at room temperature (transition temp < RT). W/Mo are brittle.}
+    
+    \item Why can gold wires be friction welded (piezo actuators)? 
+    \qs{Gold (FCC) shows adhesive wear behavior (cold welding).}
+\end{enumerate}
+
+\newpage
+\section{Ceramics and Glass}
+\begin{enumerate}[label=\textbf{13.\arabic*}]
+    \item Three pros and three cons of ceramics vs. metals. 
+    \qs{
+    \textbf{Pros:} Wear resistance, Corrosion resistance, Temp resistance. \\
+    \textbf{Cons:} Brittle, Shrinkage, Hard to machine.
+    }
+    
+    \item What is the Weibull modulus? Which has higher modulus: HIP or sintered Al$_2$O$_3$? Effect of sample volume on Weibull plot? 
+    \qs{Weibull modulus measures scatter (High modulus = low scatter). HIP has higher modulus (homogeneous). Larger volume shifts line to lower strength.}
+    
+    \item Silicate vs. High-performance ceramic? Why is single-crystal Al$_2$O$_3$ transparent but poly- not? 
+    \qs{Classic uses natural raw materials; High-performance uses synthetic. Polycrystalline scatters light at grain boundaries; single crystal does not.}
+    
+    \item Three requirements for refractory ceramics. 
+    \qs{Heat resistant, Corrosion resistant, Insulation, High heat capacity.}
+    
+    \item Components of porcelain? Function of glaze? Advantage of Cordierite? 
+    \qs{
+    \textbf{Porcelain:} Kaolin, Quartz, Feldspar. \\
+    \textbf{Glaze:} Seals porosity, decoration. \\
+    \textbf{Cordierite:} Low thermal expansion coefficient.
+    }
+    
+    \item Properties of Yttrium-stabilized Zirconia (Mechanical \& Electrical). 
+    \qs{
+    \textbf{Mech:} Transformation toughening (tetragonal $\rightarrow$ monoclinic). \\
+    \textbf{Elec:} Oxygen ion conductor.
+    }
+    
+    \item Decisive advantage of glass-ceramic? 
+    \qs{Thermal expansion coefficient of nearly zero.}
+    
+    \item Why is float glass perfectly flat? 
+    \qs{Floats on liquid tin bath; surface tension/gravity flattens it.}
+    
+    \item Components of window glass? Use for oven window? Alternative? Why is chemically toughened glass stronger? 
+    \qs{
+    \textbf{Components:} SiO$_2$, CaO, Na$_2$O. \\
+    \textbf{Oven:} No, poor thermal shock resistance. Alt: Borosilicate. \\
+    \textbf{Chem. toughened:} Ion exchange (K replaces Na) creates compressive surface stress.
+    }
+    
+    \item Structural feature of piezoelectric ceramics? 
+    \qs{No inversion center.}
+\end{enumerate}
+
+\newpage
+\section{Polymers}
+\begin{enumerate}[label=\textbf{14.\arabic*}]
+    \item Match: Thermoplast, Thermoset, Elastomer to Cross-link density (Many, Few, None). Give examples. 
+    \qs{
+    \begin{itemize}
+        \item \textbf{Thermoplast:} No cross-links (PE, PP).
+        \item \textbf{Thermoset:} Many cross-links (Epoxy).
+        \item \textbf{Elastomer:} Few cross-links (Rubber).
+    \end{itemize}
+    }
+    
+    \item Structural features increasing strength/melting point of thermoplasts? Which melt $>200^{\circ}C$? 
+    \qs{Steric hindrance, polar bonds, long chains, crystallinity. Examples >200$^{\circ}$C: PI, PPS, PEEK, PES.}
+    
+    \item Write a biaxial stress tensor for a pressurized container. How to increase strength in stress direction without fibers? 
+    \qs{Tensor has normal stresses in x/y, zero in z (thickness). Strength increased by biaxial stretching (orientation).}
+    
+    \item Higher strength: PE or PS? Why? Copolymer for Styrene to improve toughness? 
+    \qs{PS is stronger (steric hindrance/benzene ring). Copolymer: Butadiene (ABS, SB-rubber).}
+    
+    \item Advantage of POM vs PA? 
+    \qs{POM absorbs less moisture (dimensionally stable), stiffer, wear resistant.}
+    
+    \item Advantage of EPDM vs Classic Elastomers? 
+    \qs{No unsaturated double bonds in main chain $\rightarrow$ UV/Ozone stable.}
+    
+    \item Applications of thermosets? 
+    \qs{Adhesives, Matrix for composites, Sockets, Melamine dishes.}
+    
+    \item Sources of microplastic? 
+    \qs{Degrading trash, Tire wear, Road markings, Textiles, Cosmetics.}
+    
+    \item Problem with oxo-degradable plastics? 
+    \qs{They don't biodegrade, they just disintegrate into microplastics.}
+    
+    \item Name a biodegradable plastic and application. Why not suitable for all uses? 
+    \qs{PLA (Sutures, Cups). Low resistance to heat/moisture (which triggers degradation).}
+\end{enumerate}
+
+\end{document}

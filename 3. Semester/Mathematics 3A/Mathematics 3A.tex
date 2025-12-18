@@ -423,4 +423,28 @@ and
 
 \figbox{$\mathrm{d}V = r\ \mathrm{d}r\ \mathrm{d}\varphi\ \mathrm{d}z$}
 
+\subsection{Changing the Order of Integration}
+To change the order of integration (e.g., swapping $dy\ dx$ to $dx\ dy$), one must redefine the boundaries of the region $\Omega$. This involves switching from a $y$-simple description to an $x$-simple description (or vice versa).
+
+\textbf{Method:}
+\begin{enumerate}
+    \item Sketch the region $\Omega$ based on the original limits.
+    \item Identify the boundary curves and rewrite their equations (e.g., convert $y=g(x)$ to $x=g^{-1}(y)$).
+    \item Determine the new constant limits for the new outer variable.
+    \item Determine the new variable limits for the new inner variable.
+\end{enumerate}
+
+\textbf{Example:}
+Consider the integral over the region bounded by $y=x^2$, $x=0$, and $y=1$:
+\figbox{$\dm \int_0^1 \int_{x^2}^1 f(x,y)\ dy\ dx$}
+
+To change the order to $dx\ dy$:
+\begin{itemize}
+    \item The boundary $y=x^2$ becomes $x=\sqrt{y}$.
+    \item The outer variable $y$ ranges from $0$ to $1$.
+    \item For a fixed $y$, $x$ ranges from $0$ to $\sqrt{y}$.
+\end{itemize}
+
+\figbox{$\dm \int_0^1 \int_0^{\sqrt{y}} f(x,y)\ dx\ dy$}
+
 \end{document}

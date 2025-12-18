@@ -1,0 +1,217 @@
+\documentclass{article}
+
+\usepackage{Engineering}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{etoolbox}
+\usepackage{tabularx}
+
+% === METADATA ===
+\pdftitle{EFPLab2 Cheatsheet}
+
+% === HEADER/FOOTER ===
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Matteo Frongillo}
+\chead{\nouppercase Materials Lab}
+\rhead{\thepage}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+% === CUSTOM BOX COMMANDS ===
+\definecolor{BoxBG}{HTML}{F0F8FF}
+\definecolor{BoxBorder}{HTML}{3B83BD}
+
+\newtcolorbox{theorybox}[1][]{
+  colback=BoxBG,
+  colframe=BoxBorder,
+  fonttitle=\bfseries,
+  left=1mm,right=1mm,top=1mm,bottom=1mm,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  title={\ifstrempty{#1}{}{\begingroup\intheoryboxtitletrue #1\endgroup\intheoryboxtitlefalse}}
+}
+
+\newtcolorbox{examplebox}[1]{
+  colback=gray!10!white,
+  colframe=gray!80!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  left=1mm,right=1mm,top=1mm,bottom=1mm,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  title={#1}
+}
+
+\newtcolorbox{formula}[1]{
+  colback=red!10!white,
+  colframe=red!90!black!75,
+  fonttitle=\bfseries,
+  left=1mm,right=1mm,top=1mm,bottom=1mm,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  title={#1}
+}
+
+% === SECTION TITLE FORMATTING ===
+\newif\ifintheoryboxtitle
+\intheoryboxtitlefalse
+
+\titleformat{\part}
+  {\ifintheoryboxtitle\color{white}\else\color{BoxBorder}\fi\huge\bfseries}
+  {\thepart}{0.5em}{}
+
+\titleformat{\section}
+  {\ifintheoryboxtitle\color{white}\else\color{BoxBorder}\fi\Large\bfseries}
+  {\thesection}{0.5em}{}
+
+\titleformat{\subsection}
+  {\ifintheoryboxtitle\color{white}\else\color{BoxBorder}\fi\bfseries}
+  {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\ifintheoryboxtitle\color{white}\else\color{BoxBorder}\fi\small\bfseries}
+  {\thesubsubsection}{0.5em}{}
+
+% === DOCUMENT ===
+\begin{document}
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+% === CONTENT ===
+%   \section{Preambule}
+%   \begin{theorybox}{Theory box}
+%       Lorem ipsum dolor sit amet.
+%   \end{theorybox}
+%   
+%   \begin{formula}{Formula box}
+%       Lorem ipsum dolor sit amet.
+%   \end{formula}
+%   
+%   \begin{examplebox}{Lab/examples box}
+%       Lorem ipsum dolor sit amet.
+%   \end{examplebox}
+
+\vspace*{-1.4cm}
+\part{Physical metallurgy}
+\section{Classes and properties}
+\begin{theorybox}[Material classes and typical properties]
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|c|l|}
+    \hline Class & Typical properties\\
+    \hline \makecell{Metal\\Alloys} & \makecell[l]{1) Thermal + electric conductivity\\2) Ductility\\3) Castable\\4) Reflective}\\
+    \hline Ceramics & \makecell[l]{1) High T resistance\\(High E, low $\alpha$)\\2) High compression strength\\3) Thermal + electric insulator\\4) Wear resistance}\\
+    \hline Polymers & \makecell[l]{1) Cheap\\2) Thermal + electric insulator\\3) Corrosion resistance\\4) Moldable}\\
+    \hline
+  \end{tabular}
+\end{theorybox}
+
+\subsection{Structural model of metals}
+\begin{theorybox}
+  \begin{center}
+    $\phi = \dfrac{\text{Volume occupied by atoms in unit cell}}{\text{Total volume of unit cell}}$
+  \end{center}
+
+  \subsubsection{FCC (Face-centered cubic)}
+  \begin{center}
+    \includegraphics[width=.4\linewidth]{media/fcc.png}\\[1.5ex]
+    \begin{itemize}
+      \item Packing efficiency:\\
+        $\phi \approx 74\%$
+      \item Many slip systems (12)
+      \item Closest pack direction
+    \end{itemize}
+
+    \subsubsection{BCC (Body-centered cubic)}
+    \includegraphics[width=.4\linewidth]{media/bcc.png}\\[1.5ex]
+    \begin{itemize}
+      \item Packing efficiency:\\
+        $\phi \approx 68\%$
+      \item Many slip systems (6)
+      \item Not closest pack direction
+      \item Cottrell atmosphere
+    \end{itemize}
+  \end{center}
+\end{theorybox}
+
+\vfill
+\phantom{}
+\columnbreak
+
+\begin{theorybox}
+  \subsubsection{HCP (Hexagonal close-packed)}
+  \begin{center}
+    \includegraphics[width=.4\linewidth]{media/hcp.png}\\[1.5ex]
+    \begin{itemize}
+      \item Packing efficiency:\\
+        $\phi \approx 74\%$
+      \item Very few slip systems (3)
+      \item Closest pack direction
+    \end{itemize}
+  \end{center}
+\end{theorybox}
+
+\subsection{Structural odel of ceramics}
+\begin{itemize}
+  \item Ionic bonding, complex crystal structures (ceramics), amorphous (glasses)
+  \item Brittle, but high chemical and thermal resistance
+  \item Insulators
+  \item Wear-resistant (e.g. ferro-/piezoelectricity)
+\end{itemize}
+
+\subsection{Amorphous and crystalline materials}
+\begin{center}
+  \includegraphics[width=\linewidth]{media/mono-poly-amorph.png}
+\end{center}
+\begin{theorybox}
+  \subsubsection{Amorpohus materials}
+  \begin{itemize}
+    \item No crystal lattice (e.g. quartz glass, polymers)
+    \item Atomic distances defined by chemical bonds
+    \item Bond angles are variable
+  \end{itemize}
+
+  \subsubsection{Crystalline materials}
+  \begin{itemize}
+    \item Crystal lattice (e.g. metals, ceramics, quartz)
+    \item Atomic distances and bonding angles are defined
+  \end{itemize}
+\end{theorybox}
+
+\vfill
+\phantom{}
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+\setlength{\columnsep}{1pt}
+
+\subsection{Directionals depenence}
+\begin{theorybox}
+  \subsubsection{Anisotropy and Isotropy}
+  \textbf{Anisotropic}:\\
+  properties depend on the direction
+
+  \textbf{Isotropic}:\\
+  properties do not depend on direction
+
+  \textbf{Quasi-isotropic}:\\
+  properties microscopically depend on the direction but not macroscopically
+\end{theorybox}
+
+\subsubsection{Miller indices for crystal directions}
+\begin{center}
+  \includegraphics[width=.7\linewidth]{media/miller.png}
+\end{center}
+
+
+
+\vfill
+\phantom{}
+\end{multicols}
+
+\end{document}

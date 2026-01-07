@@ -29,6 +29,7 @@
 \usepackage{varwidth}
 \usepackage{multicol}
 \usepackage{titlesec}
+\usepackage{bm}
 
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta}
@@ -36,28 +37,44 @@
 \pgfplotsset{compat=1.18}
 \definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
 
-% ============= GEOMETRY ADJUSTMENT =============
+% ============= GEOMETRY =============
 \geometry{
     a4paper,
     landscape,
-    margin=1.5cm,
+    left=0.5cm,
+    right=0.5cm,
+    top=1.5cm, 
+    bottom=0.5cm,
+    footskip=0cm
+}
+
+\setlist{nosep, leftmargin=*} 
+
+\AtBeginDocument{
+  \setlength{\abovedisplayskip}{3pt}
+  \setlength{\belowdisplayskip}{3pt}
+  \setlength{\abovedisplayshortskip}{0pt}
+  \setlength{\belowdisplayshortskip}{0pt}
 }
 
 % ============= HEADER & TITLES =============
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{Systems Modelling}
-\rhead{Matteo Frongillo}
+\rhead{\small Systems Modelling Cheat Sheet}
+\lhead{\small Matteo Frongillo}
+\cfoot{\small \thepage}
 \renewcommand{\headrulewidth}{0pt}
+\setlength{\headsep}{2pt}
 
-\titlespacing*{\section}{0pt}{8pt}{0pt}
-\titlespacing*{\subsection}{0pt}{6pt}{2pt}
-\titlespacing*{\subsubsection}{0pt}{4pt}{2pt}
+% Aggressive spacing reduction for titles
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
 
-\titleformat{\section}{\normalfont\Large\bfseries\color{black}}{}{0em}{}
-\titleformat{\subsection}{\normalfont\large\bfseries\color[HTML]{007AFF}}{}{0em}{}
-\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color[HTML]{007355}}{}{0em}{}
+\titleformat{\section}{\normalfont\large\bfseries\color{black}}{}{0em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries\color[HTML]{007AFF}}{}{0em}{}
+\titleformat{\subsubsection}{\normalfont\small\bfseries\color[HTML]{007355}}{}{0em}{}
 
 % ============= META DATA =============
 \newcommand{\pdftitle}[1]{\hypersetup{
@@ -73,18 +90,10 @@
 \makeatletter
 \renewcommand{\author}[1]{%
   \def\@author{%
-    #1\\\\
+    #1\\
     \parbox{\textwidth}{%
-      \noindent
-      \begin{minipage}[t]{0.15\textwidth}
-        Last update:
-      \end{minipage}%
-      \begin{minipage}[t]{0.70\textwidth}
-        \centering
-        \today
-      \end{minipage}%
-      \begin{minipage}[t]{0.15\textwidth}
-      \end{minipage}%
+      \centering
+      \small Last update: \today
     }
   }%
 }
@@ -147,7 +156,7 @@
 \ExplSyntaxOff
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}} % Reduced inner sep
 
 \makeatletter
 \newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
@@ -176,69 +185,71 @@
 
 \begin{document}
 
-\setlength{\columnsep}{1cm}
+\setlength{\columnsep}{0.5cm}
+
 \begin{multicols*}{3}
 
-\section*{SW 1: Introduction}
-\subsection*{Model's three properties}
+\section{SW 1: Introduction}
+\subsection{Model's three properties}
 \begin{itemize}
-    \item[\textbf{Mapping}:] models act as a representation of natural or artificial originals and can be models in turn;
-    \item[\textbf{Reduction}:] models function as abstraction. They do not capture every attribute of the original; instead, they isolate and retain only those attributes relevant to the spectific objective, intentionally omitting detail to manage complexity and focus on the problem at hand;
-    \item[\textbf{Pragmatic}:] models function as utilitarian substitutes. They do not replace the original universally but serve as a representative for a specific user (subject), within a defined time frame, and for a particular purpose or operation.   
+    \item \textbf{Mapping}: models act as a representation of natural or artificial originals and can be models in turn;
+    \item \textbf{Reduction}: models function as abstraction. They do not capture every attribute of the original; instead, they isolate and retain only those attributes relevant to the specific objective, intentionally omitting detail to manage complexity and focus on the problem at hand;
+    \item \textbf{Pragmatic}: models function as utilitarian substitutes. They do not replace the original universally but serve as a representative for a specific user (subject), within a defined time frame, and for a particular purpose or operation.   
 \end{itemize}
 
-\textbf{Example}\\
+\textbf{Example}
 \begin{center}
-    \includegraphics[width=.75\linewidth]{media/sw1_inclinedplane.png}
+    \includegraphics[width=.6\linewidth]{media/sw1_inclinedplane.png}
 \end{center}
 \begin{itemize}
-    \item[Generaliz.:] point mass sliding down an inclined plane;
-    \item[Mapping:] box as mass, conveyor slope as an angle $\theta$, vertical drop as height $h$, gravity;
-    \item[Reduction:] no structure flexibility, no air movement, no friction, no rollers\ $\rightarrow$\ flat plane;
-    \item[Pragmatic:] it allows $a,v_f,t$ of the box to be calculated, it enables the prediction of how to build a belt mockup.  
+    \item \textbf{Generaliz.}: point mass sliding down an inclined plane;
+    \item \textbf{Mapping}: box as mass, conveyor slope as an angle $\theta$, vertical drop as height $h$, gravity;
+    \item \textbf{Reduction}: no structure flexibility, no air movement, no friction, no rollers\ $\rightarrow$\ flat plane;
+    \item \textbf{Pragmatic}: it allows $a,v_f,t$ of the box to be calculated, it enables the prediction of how to build a belt mockup.  
 \end{itemize}
 
-\columnbreak
-\subsection*{Digital representation}
+\subsection{Digital representation}
 \begin{tikzpicture}
-    \draw[-latex, dashed, thick, red] (0,0) -- (2.5,0) node[right] {Manual Data Flow (Offline)};
-    \draw[-latex, thick, red] (0,-.5) -- (2.5,-.5) node[right] {Automatic Data Flow (Real-time)};
+    \draw[-latex, dashed, thick, red] (0,0) -- (2.5,0) node[right, scale=0.8] {Manual Data Flow (Offline)};
+    \draw[-latex, thick, red] (0,-.5) -- (2.5,-.5) node[right, scale=0.8] {Automatic Data Flow (Real-time)};
 \end{tikzpicture}
-\subsubsection*{Digital model (simulation)}
+\subsubsection{Digital model (simulation)}
 No direct connection between digital and physical object:
 \begin{center}
-    \includegraphics[width=.7\linewidth]{media/sw1_digitalmodel.png}
+    \includegraphics[width=.6\linewidth]{media/sw1_digitalmodel.png}
 \end{center}
 
-\subsubsection*{Digital shadow}
+\subsubsection{Digital shadow}
 Unidirectional, automated data flow from physical object to digital model:
+\vspace*{-.3cm}
 \begin{center}
-    \includegraphics[width=\linewidth]{media/sw1_digitalshadow.png}
+    \includegraphics[width=.9\linewidth]{media/sw1_digitalshadow.png}
 \end{center}
 
-\subsubsection*{Digital twin}
+\subsubsection{Digital twin}
 Automated data exchange between physical object and model:
 \begin{center}
-    \includegraphics[width=.8\linewidth]{media/sw1_digitaltwin.png}
+    \includegraphics[width=.7\linewidth]{media/sw1_digitaltwin.png}
 \end{center}
 
-\subsection*{Role of time}
-\subsubsection*{Stationary behavior}
+\subsection{Role of time}
+\subsubsection{Stationary behavior}
 Steady-state operation: $\dot{m}_\alpha = \dot{m}_\omega$
 
-\subsubsection*{Dynamic behavior}
+\subsubsection{Dynamic behavior}
 Non stationary/transient/unsteady: $\dfrac{dm}{dt} = \dot{m}_\alpha - \dot{m}_\omega$
 
-\subsection*{Governing dynamics}
-\subsubsection*{Empirical (black box)}
+\subsection{Governing dynamics}
+\subsubsection{Empirical (black box)}
+\noindent
 \begin{minipage}[c]{0.65\linewidth}
-    Data based, without direct physics link.\\
+    Data based, without direct physics link.
     (ex: machine learning, fitting of functions)
 \end{minipage}
 \hfill
 \begin{minipage}[c]{0.3\linewidth}
     \centering
-    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+    \begin{tikzpicture}[scale=0.7, every node/.style={scale=0.7}]
         \draw[thick, -{Stealth}] (-0.8, 0.4) -- (0, 0.4) node[pos=0, left] {$t$};
         \draw[thick, -{Stealth}] (1.2, 0.4) -- (2.0, 0.4) node[pos=1, right] {$y$};
         \draw[thick, fill=black] (0,0) rectangle (1.2,0.8);
@@ -246,7 +257,8 @@ Non stationary/transient/unsteady: $\dfrac{dm}{dt} = \dot{m}_\alpha - \dot{m}_\o
     \end{tikzpicture}
 \end{minipage}
 
-\subsubsection*{Physics-based (white box)}
+\subsubsection{Physics-based (white box)}
+\noindent
 \begin{minipage}[c]{0.65\linewidth}
     Based on physical laws.\\
     (ex: conservation of mass)
@@ -254,7 +266,7 @@ Non stationary/transient/unsteady: $\dfrac{dm}{dt} = \dot{m}_\alpha - \dot{m}_\o
 \hfill
 \begin{minipage}[c]{0.3\linewidth}
     \centering
-    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+    \begin{tikzpicture}[scale=0.7, every node/.style={scale=0.7}]
         \draw[thick, -{Stealth}] (-0.8, 0.4) -- (0, 0.4) node[pos=0, left] {$t$};
         \draw[thick, -{Stealth}] (1.2, 0.4) -- (2.0, 0.4) node[pos=1, right] {$y$};
         \draw[thick] (0,0) rectangle (1.2,0.8);
@@ -262,14 +274,15 @@ Non stationary/transient/unsteady: $\dfrac{dm}{dt} = \dot{m}_\alpha - \dot{m}_\o
     \end{tikzpicture}
 \end{minipage}
 
-\subsubsection*{Grey-box (hybrid)}
+\subsubsection{Grey-box (hybrid)}
+\noindent
 \begin{minipage}[c]{0.65\linewidth}
     Combining physics and data\\ parameters.
 \end{minipage}
 \hfill
-\begin{minipage}[c]{0.26\linewidth}
+\begin{minipage}[c]{0.3\linewidth}
     \centering
-    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+    \begin{tikzpicture}[scale=0.7, every node/.style={scale=0.7}]
         \draw[thick, -{Stealth}] (-0.8, 0.4) -- (0, 0.4);
         \draw[thick, -{Stealth}] (1.2, 0.4) -- (2.0, 0.4);
         \draw[thick, fill=gray!50] (0,0) rectangle (1.2,0.8);
@@ -277,49 +290,47 @@ Non stationary/transient/unsteady: $\dfrac{dm}{dt} = \dot{m}_\alpha - \dot{m}_\o
     \end{tikzpicture}
 \end{minipage}
 
-\subsection*{Role of space}
-\subsubsection*{Point model (0D)}
-Assumes the whole system is perfectly mixed.\\
-(ex: ideal mixer with isotropic distribution)\\
+\subsection{Role of space}
+\subsubsection{Point model (0D)}
+Assumes the whole system is perfectly mixed.
+(ex: ideal mixer with isotropic distribution).
 Software: Excel, MATLAB
 
-\subsubsection*{Linked point}
-Connects several simple models together to create a basic network or layout.\\
-(ex: space shown via linking of 0D-models)\\
+\newcolumn
+\subsubsection{Linked point}
+Connects several simple models together to create a basic network or layout.
+(ex: space shown via linking of 0D-models).
 Software: Simulink, Modelica
 
-\subsubsection*{Spatial model (1-3D)}
+\subsubsection{Spatial model (1-3D)}
 Considers real position of state variables or entities;
-spatial relationships affect the dynamics.\\
-(ex: real mixer with anisotropic, heterogeneous distribution)\\
-Software: COMSOL, ANSYS, AutoCAD, REVIT
-
+spatial relationships affect the dynamics.
+(ex: real mixer with anisotropic, heterogeneous distribution).
+Software: COMSOL, ANSYS, AutoCAD, REVIT\\
 \textbf{Example with a heat pump}
 \begin{itemize}
-    \item Purpose: digital shadow $\to$\ automated data;
-    \item Governing dynamics: physics-based\\$\to$\ based on thermodyn. laws;
-    \item Time: time dependent, dynamic behavior $\to$\ heating load, power of the hp, on/off cycles;
-    \item Space: linked point $\to$\ el. inputs, thermal\\energy exchange, 4 components to monitor.
+    \item \textbf{Purpose}: digital shadow $\to$\ automated data;
+    \item \textbf{Governing dynamics}: physics-based $\to$\ based on thermodyn. laws;
+    \item \textbf{Time}: time dependent, dynamic behavior $\to$\ heating load, power of the hp, on/off cycles;
+    \item \textbf{Space}: linked point $\to$\ el. inputs, thermal\\energy exchange, 4 components to monitor.
 \end{itemize}
 
-\newpage
-\subsection*{Solvability of models}
-as example, $A=\integral[0][2][x^2][x]$
-\subsubsection*{Analytical}
+\subsection{Solvability of models}
+\subsubsection{Analytical}
 Closed formula as solution. Only for simple problems.
 \[A=\dfrac{x^3}{3}\Big|_0^2 = \dfrac{8}{3}\]
 
-\subsubsection*{Numerical}
+\subsubsection{Numerical}
 Numerical approximation. For complex problems.
 \[A\approx \dsum{i=1}{n} f(x_i) dx \approx 2.6667 \]
 
-\subsection*{Further modelling properties}
-\subsubsection*{Linear vs Non-linear}
+\subsection{Further modelling properties}
+\subsubsection{Linear vs Non-linear}
 
 \noindent
 \begin{minipage}[t]{0.48\linewidth}
     \centering
-    \begin{tikzpicture}[scale=0.45]
+    \begin{tikzpicture}[scale=0.4]
         \draw[->] (0,0) -- (2,0);
         \draw[->] (0,0) -- (0,2);
         \draw[blue, thick] (0,0) -- (1.8,1.8);
@@ -329,7 +340,7 @@ Numerical approximation. For complex problems.
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
     \centering
-    \begin{tikzpicture}[scale=0.45]
+    \begin{tikzpicture}[scale=0.4]
         \draw[->] (0,0) -- (2,0);
         \draw[->] (0,0) -- (0,2);
         \draw[red, thick] (0,0) .. controls (1,2) and (1.5,1.5) .. (1.8,1.8);
@@ -337,11 +348,11 @@ Numerical approximation. For complex problems.
     \end{tikzpicture}
 \end{minipage}
 
-\subsubsection*{Continuity vs Differentiability}
+\subsubsection{Continuity vs Differentiability}
 \noindent
 \begin{minipage}[t]{0.31\linewidth}
     \centering
-    \scalebox{0.8}{
+    \scalebox{0.7}{
     \begin{tikzpicture}
         \draw[->] (0,0) -- (1.5,0); \draw[->] (0,0) -- (0,1.5);
         \draw[red, thick] (0,0.5) -- (0.7,0.5);
@@ -353,7 +364,7 @@ Numerical approximation. For complex problems.
 \hfill
 \begin{minipage}[t]{0.31\linewidth}
     \centering
-    \scalebox{0.8}{
+    \scalebox{0.7}{
     \begin{tikzpicture}
         \draw[->] (0,0) -- (1.5,0); \draw[->] (0,0) -- (0,1.5);
         \draw[blue, thick] (0,1.2) -- (0.7,0.2) -- (1.4,1.2);
@@ -363,7 +374,7 @@ Numerical approximation. For complex problems.
 \hfill
 \begin{minipage}[t]{0.31\linewidth}
     \centering
-    \scalebox{0.8}{
+    \scalebox{0.7}{
     \begin{tikzpicture}
         \draw[->] (0,0) -- (1.5,0); \draw[->] (0,0) -- (0,1.5);
         \draw[darkgreen, thick] (0,0.2) .. controls (0.7,1.5) .. (1.4,0.2);
@@ -371,11 +382,11 @@ Numerical approximation. For complex problems.
     \end{tikzpicture}}
 \end{minipage}
 
-\subsubsection*{Deterministic vs Stochastic}
+\subsubsection{Deterministic vs Stochastic}
 \noindent
 \begin{minipage}[t]{0.48\linewidth}
     \centering
-    \begin{tikzpicture}[scale=0.75]
+    \begin{tikzpicture}[scale=0.7]
         \draw[->] (0,0) -- (2,0) node[right] {\tiny $t$};
         \draw[->] (0,0) -- (0,1.5);
         \draw[blue, thick] (0,0.2) to[out=20, in=160] (2,1.2);
@@ -385,7 +396,7 @@ Numerical approximation. For complex problems.
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
     \centering
-    \begin{tikzpicture}[scale=0.75]
+    \begin{tikzpicture}[scale=0.7]
         \draw[->] (0,0) -- (2,0) node[right] {\tiny $t$};
         \draw[->] (0,0) -- (0,1.5);
         \draw[red, thick] plot[domain=0:2, samples=40] (\x, {0.6 + 0.3*\x + 0.15*rand});
@@ -393,14 +404,14 @@ Numerical approximation. For complex problems.
     \end{tikzpicture}
 \end{minipage}
 
-\subsection*{Modelling approaches}
-\subsubsection*{Top-down}
-Largest components broken down into smaller.\\
+\subsection{Modelling approaches}
+\subsubsection{Top-down}
+Largest components broken down into smaller.
 ex: marble block sculpture, railway network.\\
 \circled{+} Efficient model, \circled{--} Misses details
 
-\subsubsection*{Bottom-up}
-Individual components combined into larger.\\
+\subsubsection{Bottom-up}
+Individual components combined into larger.
 ex: LEGO model, human body.\\
 \circled{+} Detailed model, \circled{--} Complex
 
@@ -412,9 +423,9 @@ ex: LEGO model, human body.\\
     \item Interpretation and evaluation of results
 \end{enumerate}
 
-\subsection*{Problem formulation}
+\subsection{Problem formulation}
 \subsubsection{Task 1 - Defining goals}
-What do we want to archieve?\\
+What do we want to achieve?\\
 How well/closely does our model need to represent reality?\\
 What could be the goals for this specific system?
 
@@ -423,18 +434,325 @@ What are the relevant parameters and variables of the system?\\
 What are the system boundaries?\\
 What are the inputs and outputs of the system?
 
-\subsubsection*{Task 3 - Simplify and idealize the system}
+\subsubsection{Task 3 - Simplify and idealize the system}
 Still reproduce the significant behaviors of the system, while reducing complexity.\\
 Reduce model to the main parameters and variables (ex. for hp:
 COP? Max. power? Avg power? Yearly values? Temperature levels?).
 
-\subsection*{Mathematical formulation}
-\subsubsection*{Task 1 - Identify fundamental theories and laws}
+\subsection{Mathematical formulation}
+\subsubsection{Task 1 - Identify fundamental theories and laws}
 If no laws are available, use ad-hoc or empirical data to derive relationships:\\
-Thermodynamic laws, material properties, ad-hoc $P_{out} = COP(T_{amb})\cdot P_{in}$
+Thermodynamic laws, material properties, ad-hoc\\
+$P_{out} = COP(T_{amb})\cdot P_{in}$
 
-\subsubsection*{Task 2 - Derivation of relationships}
-Derivation of relationships between the 
+\subsubsection{Task 2 - Derivation of relationships}
+Transfer system into a mathematical formulation.\\
+\textbf{Top-down (black/grey box)}:
+Use generic relationship, data from measurement to determine parameters.
+For more complex systems, add more parameters.
+Use techniques such as machine learning.
+
+\newcolumn
+\textbf{Bottom-up}:
+Detailed physical modelling of the device.
+Physical laws to describe each component.
+Exact geometry, material properties, boundary conditions.
+
+\subsubsection{Task 3 - Reduce to standard mathematical problem}
+Simple algebra, linear programming, differential equation, diffusion problem,
+wave propagation, FEM problem, using suitable methods and software/programming tools.
+
+\subsection{Interpretation and evaluation of the results}
+\subsubsection{Task 1 - Calibration of results}
+Use existing data to calibrate the model.
+
+\subsubsection{Task 2 - Validation}
+Check underlying physics law, such as energy or mass conservation,
+compare to known solutions, look at extreme cases, compare to measured data.\\
+$\to$\ What is it and why do we have to do it?
+
+\textbf{Before the modelling}:\\
+What do we model how?:
+\vspace*{-0.2cm}
+\begin{enumerate}[label=\alph*)]
+    \item Aims: does the model describe the process under test?
+    \item Output: does the model provide the required output to describe the process?
+    \item Type: is the type of the model suitable to describe the process?
+\end{enumerate}
+
+\vspace*{-0.2cm}
+\textbf{During modelling}:\\
+Can we reproduce the measurements?\\
+Does the model behave like to system under study?
+\vspace*{-0.2cm}
+\begin{enumerate}[label=\alph*), start=4]
+    \item Fitting data: does the model reproduce the fitting data? How to measure accuracy?
+    \item Reproducing novel data: does the model also predict novel measurement data correctly?
+    \item Sensitivity analysis: does the model predict the behavior of the system correctly when system parameters are changed?
+\end{enumerate}
+
+\vspace*{-0.2cm}
+\textbf{After modelling}:\\
+Does the model also work with new data?
+\vspace*{-0.2cm}
+\begin{enumerate}[label=\alph*), start=7]
+    \item System potentially changed.
+    \item Differences in system behavior is only manifest in new experiments.
+\end{enumerate}
+
+\newcolumn
+\section{SW 3: Data-based modeling}
+\subsection{Linear regression}
+Used to find a linear function $y=f(x)=a+bx$ that best fits a dataset ${(x_i,y_i)}$.
+\subsubsection{Least squares method}
+Minimize the sum of squared errors (SSE):
+\[S=\sum_{i=1}(y_i - (a+bx_i))^2\]
+If measurement uncertainties $\Delta y_i$ exist, weight the error:
+\[S_i = \frac{y_i-y(x)}{\Delta y_i}\]
+
+\subsubsection{Optimal parameter formulas}
+Finding $a$ and $b$ when $S$ is minimal:
+\[\frac{\partial S}{\partial a} = 0\quad ; \quad \frac{\partial S}{\partial b} = 0\]
+Slope $b$:
+\[b=\frac{\sum_i x_iy_i - \frac{1}{n}\left(\sum_i x_i\right)\left(\sum_i y_i\right)}{\sum_i x_i^2 - \frac{1}{n}\left(\sum_i x_i\right)^2}\]
+Intercept $a$:
+\[a=\bar{y} - b\bar{x}\]
+where:
+\[\bar{x} = \dfrac{\sum_i x_i}{n}\quad ; \quad \bar{y} = \dfrac{\sum_i y_i}{n}\]
+
+\subsubsection{Quality of fit $\mathbf{\left(R^2\right)}$}
+The coefficient of determination $R^2$ indicates the percentage of variation explained
+by the model:
+\[R^2 = \frac{\sum_i \left(y(x)-\bar{y}\right)^2}{\sum_i \left(y_i - \bar{y}\right)^2}\]
+\vspace*{-0.2cm}
+\begin{itemize}
+    \item $R^2 = 1\ (100\%)$: the model explains all data;
+    \item $R^2 = 0\ (0\%)$: the model doesn't (random).
+\end{itemize}
+
+\subsubsection{Multilinear regression}
+Used when the target depends on multiple variables:
+\[y(x_1,\dots,x_n) = a+b_1x_1 + \dots + b_nx_n = a + \sum_{j=1}^{n} b_j x_{j}\]
+
+\subsection{Non-linear regression}
+The goal is to fit data using non-linear functions when the underlying process is not linear.
+\subsubsection{Linearization techniques}
+\vspace{-.2cm}
+\begin{center}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{|l|l|l|l|}
+        \hline \small Function & Equation & Trasformation & Variables\\
+        \hline \small Exp & $y=ae^{bx}$ & $\ln y = \ln a + bx$ & $x$ vs $\ln y$\\
+        \hline \small Power & $y=ab^x$ & $\ln y = \ln a + x\ln b$ & $x$ vs $\ln y$\\[.5ex]
+        \hline \small Inverse & $y=\dfrac{a}{x}$ & $\dfrac{1}{y} = \dfrac{x}{a}$ & $x$ vs $\dfrac{1}{y}$\\
+        \hline \small \makecell[l]{Square\\offset} & $y=ax^2 + b$ & $y=a(x^2)+b$ & $x^2$ vs $y$\\
+        \hline \small \makecell[l]{Root /\\Cubic} & $y=\sqrt{ax^3+b}$ & $y^2=ax^3+b$ & $x^3$ vs $y^2$\\
+        \hline         
+    \end{tabular}
+\end{center}
+
+\subsection{Maximum likelihood method (MLE)}
+Determines the parameters of a probability distribution that best describes a dataset,
+independent of histogram binning.
+\subsubsection{Likelihood function}
+Defines as the product of probability densities for all data points:
+\[L(\sigma,\mu) = \prod_i f(x_i,\sigma,\mu)\]
+
+\subsubsection{Log-likelihood}
+To simplify calculation and avoid small numbers, minimize the negative logarithm:
+\[-\log L = -\sum_i \log(f(x_i,\sigma,\mu))\]
+
+\subsubsection{Common distribution}
+\textbf{Normal distribution}:
+\[f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}\exp\left(-\dfrac{1}{2}\left(\dfrac{x-\mu}{\sigma}\right)^2\right)\]
+
+\textbf{Weibull distribution (Reliability)}:
+\[f(x) = \begin{cases}
+    \lambda k (\lambda x)^{k-1} e^{-(\lambda x)^k}, &x>0\\
+    0 &\text{else}
+\end{cases}\]
+
+\textbf{Weibull cumulative distribution function}
+\[F(x) = \integral[-\infty][x][f(u)][u] = \begin{cases}
+    1-e^{-(\lambda x)^k} & for x>0\\
+    0 &\text{else}
+\end{cases}\]
+\newcolumn
+
+\section{SW4: Modelling with ODEs}
+\subsection{Fundamentals of ODEs}
+An ODE contains functions of one independent variable and their derivatives.
+\subsubsection{Ordinary (ODE)}
+Involves one independent variable:
+\[\dfrac{d^2x}{dt^2} = -g\]
+
+\subsubsection{Partial (PDE)}
+Involves multiple independent variables:
+\[\dfrac{d^2u}{dt^2} = c^2\dfrac{d^2u}{dx^2}\]
+
+\subsection{Analytical solution method}
+\subsubsection{Separation of variables}
+Used when terms involving $y$ and $x$ can be moved to opposite sides.
+
+\subsubsection{Variation of parameters}
+Used for inhomogeneous linear ODEs. General solution is the sum of the homogeneous
+solution and a particular solution.
+
+\subsection{Numerical solution methods}
+\subsubsection{Euler method}
+A simple iterative method to approximate ODEs defined as $\dfrac{df}{dx} = g(x)$.\\
+The approximation uses the finite difference slope:
+\[\dfrac{df}{dx} \approx \dfrac{f(x_0+\Delta x) - f(x_0)}{\Delta x}\]
+Iterative steps:
+\[f(x_0+\Delta x) = f(x_0)+g(x_0)\Delta x\]
+
+\subsection{Modelling principles}
+\subsubsection{Balance equations}
+Based on the conservation principle:
+\[\frac{d}{dt} f(t) = f(t_\alpha) - f(t_\omega)\]
+\textbf{Example in a capacitor}
+\[U_0 = U_R + U_C \Rightarrow U_0 = RI + \frac{Q}{C} = R\frac{dQ}{dt}+\frac{Q}{C}\]
+
+\newcolumn
+\subsubsection{Mechanics and forces}
+Equation of motion is derived from Newton's second law $F_{net} = ma$.\\
+\textbf{Example of a falling drop with drag}
+\[m\dot{v}=mg-bv \Rightarrow v(t) = \frac{mg}{b}\left(1 - e^{-bt/m}\right)\]
+
+\subsubsection{Growth and decay}
+Describes processes where a quantity increases or decreases over time.
+\[\frac{dN}{dt} = kN \Rightarrow N(t)=N_0e^{kt}\]
+with half-time / doubling factor $\tau$:
+\[\tau = \left|\frac{\ln 2}{k}\right|\]
+\textbf{Example of logistic growth}
+\[\frac{dN}{dt} = KN(t) - \frac{K}{K}N^2 \Rightarrow N(t) = \frac{L}{1+\left(\frac{L}{N_0}-1\right)e^{-kt}}\]
+
+\subsubsection{Recipe to derive the equation of motion}
+\begin{enumerate}
+    \item Make a sketch of the situation;
+    \item Define the coordinate system and select variables of interest;
+    \item Identify all forces and momenta;
+    \item Formulate the equation of motion;
+    \item Solve it.
+\end{enumerate}
+
+\subsection{Linear algebra and systems of ODEs}
+\subsubsection{Matrix representation}
+System of equations:
+\begin{gather*}
+    a_{11}x_1 + a_{12}x_2+a_{13}x_3 = b_1\\
+    a_{21}x_1 + a_{22}x_2+a_{23}x_3 = b_2\\
+    a_{31}x_1 + a_{32}x_2+a_{33}x_3 = b_3
+\end{gather*}
+Matrix form ($Ax = b$):
+\[
+\begin{pmatrix}
+    a_{11}&a_{12}&a_{13}\\
+    a_{21}&a_{22}&a_{23}\\
+    a_{31}&a_{32}&a_{33}
+\end{pmatrix}
+\begin{pmatrix}
+    x_1\\
+    x_2\\
+    x_3
+\end{pmatrix}
+=
+\begin{pmatrix}
+    b_1\\
+    b_2\\
+    b_3
+\end{pmatrix}
+\]
+
+If $x=\begin{pmatrix}
+    x_1\\x_2\\x_3
+\end{pmatrix}$, then
+$\dot{x} = \begin{pmatrix}
+    \dot{x}_1\\\dot{x}_2\\\dot{x_3}
+\end{pmatrix}$
+\vfill\phantom{}
+
+\newcolumn
+\subsubsection{Inversion and diagonalization}
+\textbf{Inverse matrix} $\bm{R^{-1}}$\\
+$R \cdot R^{-1} = I$ (Identity matrix).\\
+\[I = \begin{pmatrix}
+    1&0&0\\
+    0&1&0\\
+    0&0&1
+\end{pmatrix}\]
+
+\textbf{Diagonalization}
+Special matrices can be rewritten as:
+\[A = \begin{pmatrix}
+    \lambda_1&0&0\\
+    0&\lambda_2&0\\
+    0&0&\lambda_3
+\end{pmatrix}\]
+This transforms the matrix into a diagonal matrix containing eigenvalues $\lambda$.
+
+\subsubsection{Why is it called linear algebra}
+\textbf{Linearitazion}\\
+Complex, non-linear functions can be approximated by linear functions in a small
+neighborhood of a point a:
+\[f(x) \approx f(a)+f'(a)(x-a)\]
+
+\subsubsection{Benefit of solving ODEs}
+If $A$ were a number, $\dot{x}=Ax$ would solve to $x(t)=ke^{At}$.\\
+Since $A$ is a matrix, if we diagonalize it using eigenvalues $\lambda$, the solution
+becomes a mixture of exponentials:
+\[ x(t) = R^{-1}
+\begin{pmatrix}
+    k_1e^{\lambda_1t}&0&0\\
+    0&k_2e^{\lambda_2t}&0\\
+    0&0&k_3e^{\lambda_3t}
+\end{pmatrix}R
+\]
+
+\subsubsection{Solvability of linear systems}
+\textbf{Geometric interpretation}:\\
+Solving $Ax=b$ is finding the intersenction of lines/planes.
+\vspace{-.2cm}
+\begin{itemize}
+    \item \textbf{Case 1}, consistent: lines intersect at exactly one point;
+    \item \textbf{Case 2}, inconsistent: lines are parallel and distinct, there is no solution;
+    \item \textbf{Case 3}, infinite solutions: lines are identical and overlap completely.
+\end{itemize}
+
+\subsubsection{Determinant}
+A scalar value derived from a square matrix that tells us if it is invertible.
+If $\det \bm{A} = 0$, the matrix is not invertible.\\[.75ex]
+\textbf{2x2 formula}:
+For $\bm{A}=\big[\begin{smallmatrix}
+  a & b\\
+  c & d
+\end{smallmatrix}\big]$, $\det \bm{A} = ad-bc$.\\[.75ex]
+\textbf{3x3 formula}:
+For $\bm{A}=\Big[\begin{smallmatrix}
+  a & b & c\\
+  d & e & f\\
+  g & h & i
+\end{smallmatrix}\Big]$, \[\det \bm{A} = a_{11}\det\begin{bmatrix}
+    e&f\\h&i
+\end{bmatrix} - a_{12}\det\begin{bmatrix}
+    d&f\\g&i
+\end{bmatrix}+a_{13}\det\begin{bmatrix}
+    d&e\\g&h
+\end{bmatrix}\]
+
+\newcolumn
+\[\det \bm{A} = \sum_j^n a_{1j}C{1j},\quad \underbrace{C{1j}=(-1)^{1+j}\det \bm{A}_{ij}}_{\text{Cofactors}}\]
+
+\subsubsection{The Eigenvalue problem}
+For a square n$\times$n matrix $\bm{A}$, we look for a Eigenvector $x$ and a Eigenvalues $a$ such that:
+\[\bm{A}x=\lambda x\]
+\textbf{Calculation method}:
+\vspace{-.2cm}
+\begin{enumerate}
+    \item Solve the characteristic equation $\det(\bm{A}-\lambda I)=0$
+    \item This result in an n-th order polynomial $(a_1\lambda^n+\dots = 0)$
+    \item The roots of this polynomial are the Eigenvalues.
+\end{enumerate}
 
 
 

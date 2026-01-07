@@ -798,7 +798,7 @@ physics law component is added.
     \textbf{thermalConductor}\\
     Models heat linear heat flow between two ports determined by a
     constant thermal conductance $G$
-    \[\dot{Q}=G\left(T_a - T_b\right)\]
+    \[\dot{Q}=G\left(T_a - T_b\right)\quad ; \quad \dot{Q}=\frac{\lambda\cdot A}{L}\]
 \end{minipage}
 
 \begin{minipage}[c]{0.3\linewidth}
@@ -846,7 +846,7 @@ physics law component is added.
     \textbf{convection}\\
     Models the heat transfer between a solid surface and a moving fluid
     based on a convection coefficient $G_c$.
-    \[\dot{Q}=G_c\cdot\left(T_\text{solid} - T_\text{fluid}\right)\]
+    \[\dot{Q} = \alpha\cdot A \cdot \Delta T = G_c\cdot\left(T_\text{solid} - T_\text{fluid}\right)\]
 \end{minipage}
 
 \begin{minipage}[c]{0.3\linewidth}
@@ -871,7 +871,7 @@ physics law component is added.
     \textbf{resistor}\\
     Resists the flow of electric current, creating a voltage drop
     proportional to the current.
-    \[U = R\cdot I\]
+    \[U = R\cdot I \quad ; \quad \dot{Q} = P = U\cdot I\]
 \end{minipage}
 
 \begin{minipage}[c]{0.3\linewidth}
@@ -985,6 +985,85 @@ heat to a cooler environment
 \end{center}
 Conservation of energy at the central node:
 \[C\cdot \frac{dT}{dt}=Q_{in}-G\left(T-T_\text{sink}\right)\]
+
+\subsection{Multi-domain modelling}
+\subsubsection{Multi-domain model}
+Allows representing different physical domains such as electrical,
+mechanical, thermodynamic, and fluid dynamics in a single model.
+\begin{center}
+    \includegraphics[width=.7\linewidth]{media/sw7_multidomain.png}
+
+    Resistor heat interacts with the thermal system
+\end{center}
+
+\subsubsection{Cyber-physical model}
+A model combining physical domains with a software.
+\begin{center}
+    \includegraphics[width=.7\linewidth]{media/sw7_cyberphysics.png}
+\end{center}
+
+\subsection{One-dimensional model}
+Simulation technique used to calculate spatial distribution by discretizing
+a continuous object into multiple discrete, lumped segments.
+
+\subsection{About Modelica}
+\subsubsection{Definition and structure}
+Open source, equation-based, non-casual language for modelling dynamic behavior
+of multidisciplinary systems.
+Component-based (graphical connection), object oriented (inheritance), and
+hierarchical.
+
+\subsubsection{Equation-based / non-casual modelling}
+\begin{itemize}
+    \item Component diagram: topological (physical) structure;
+    \item Equation-based: no fixed input/output direction;
+    \item Connections: represent physical wiring/piping;
+    \item Pros: reusable, multi-domain, closer to physics.
+\end{itemize}
+
+\subsubsection{Casual modelling}
+\begin{itemize}
+    \item Block diagram: represents computational data flow;
+    \item Assignment-based: fixed input/output;
+    \item Connections: represent signal flow variables;
+    \item Cons: prone to errors when modifying structure.
+\end{itemize}
+\subsubsection{Hierarchical structure}
+Components are built from connected subcomponents and/or equations, allowing
+complex systems to be broken down into reusable parts.
+
+\subsubsection{Object-oriented}
+Allows creating general base definitions (superclasses) that specific
+components extend, rather than defining every component from scratch.
+
+\subsubsection{Physical mapping}
+Icons represent physical components, connections  represent actual physical
+couplings.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

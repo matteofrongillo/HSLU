@@ -501,7 +501,7 @@ Does the model also work with new data?
 \end{enumerate}
 
 \newcolumn
-\section{SW 3: Data-based modeling}
+\section{SW 3: Data-based modelling}
 \subsection{Linear regression}
 Used to find a linear function $y=f(x)=a+bx$ that best fits a dataset ${(x_i,y_i)}$.
 \subsubsection{Least squares method}
@@ -754,23 +754,237 @@ For a square n$\times$n matrix $\bm{A}$, we look for a Eigenvector $x$ and a Eig
     \item The roots of this polynomial are the Eigenvalues.
 \end{enumerate}
 
-\section{MODELICA}
+\section{SW5-10: Modelica}
+\subsection{Equation-based modelling}
+\subsubsection{Problem definition - Double layer wall}
+A wall consists of two layers with different thermal conductance
+values $G_1$ and $G_2$.
 
-\newpage
-\section{SW11: Model and control energy systems}
+We consider two steady-state cases:\vspace{-.2cm}
+\begin{enumerate}
+    \item A heat flow $\dot{Q}_1$ passes througs the wall and the
+        right temperature is $T_2$. The interface temperature $T_i$
+        and the left temperature $T_1$ are unknown.
+    \item Both boundary temperatures $T_1$ and $T_2$ are given and
+        the interface temperature $T_i$ and the heat flow $\dot{Q}$
+        are unknown. 
+\end{enumerate}
 
+\begin{center}
+    \includegraphics[width=.8\linewidth]{media/sw5_heattransfer.png}
+\end{center}
+\textbf{Formulas}\\
+Heat conduction equation [W]:
+\[\dot{Q}=G\Delta T = G\left(T_\alpha - T_\omega\right)=G_1\left(T_1 - T_i\right) = G_2\left(T_i-T_2\right)\]
+Thermal conductance [W/K]:
+\[G=\frac{A}{L}\lambda\]
+Conservation of energy:
+\[\dot{Q}_1 = \dot{Q}_2 = \dot{Q}\]
 
+\subsection{Component-based modelling}
+Instead of rewriting equations each time, an instance of the needed
+physics law component is added.
+\vfill\phantom{}
 
+\newcolumn
+\subsubsection{Thermal components}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_thermalConductor.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{thermalConductor}\\
+    Models heat linear heat flow between two ports determined by a
+    constant thermal conductance $G$
+    \[\dot{Q}=G\left(T_a - T_b\right)\]
+\end{minipage}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_heatFlow.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{fixedHeatFlow}\\
+    A source that injects a constant heat flow into the connected
+    component
+    \[port.\dot{Q} = -\dot{Q}_{\text{component}}\]
+\end{minipage}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_fixedTemperature.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{fixedTemperature}\\
+    Defines a constant temperature boundary condition
+    (acting like an infinite heat reservoir).
+    \[port.T = T_\text{parameter}\]
+\end{minipage}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_heatCapacitor.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{heatCapacitor}\\
+    Thermal mass that stores energy, where temperature
+    changes based on heat flow and heat capacity $C$.
+    \[C\cdot\frac{dT}{dt} = m\cdot c_p\cdot\frac{dT}{dt}  = \dot{Q}\]
+\end{minipage}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_convection.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{convection}\\
+    Models the heat transfer between a solid surface and a moving fluid
+    based on a convection coefficient $G_c$.
+    \[\dot{Q}=G_c\cdot\left(T_\text{solid} - T_\text{fluid}\right)\]
+\end{minipage}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_temperatureSensor.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{temperatureSensor}\\
+    Measures the absolute temperature at the thermal port and outputs
+    that value as a real signal.
+    \[y=T_{port}\quad ; \quad \dot{Q}=0\]
+\end{minipage}
 
+\subsubsection{Electrical components}
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_resistor.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{resistor}\\
+    Resists the flow of electric current, creating a voltage drop
+    proportional to the current.
+    \[U = R\cdot I\]
+\end{minipage}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_constantVoltage.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{constantVoltage}\\
+    An ideal voltage source that maintains a constant voltage difference
+    between its prositive and negative pins.
+    \[v_{port} = V_\text{const}\]
+\end{minipage}
 
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.5\linewidth]{media/modelica_ground.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{ground}\\
+    Defines the reference potential (zero voltage) for an electric
+    circuit.
+    \[v_{port} = 0\]
+\end{minipage}
 
+\subsubsection{Signal components}
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_pulse.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{pulse}\\
+    Generates a signal that alternates between two values
+    (amplitude and offset) with a defined period and pulse width.
+    \[y=\begin{cases}
+        \text{offset + ampl.}, & \text{if} \in \text{pulse width}\\
+        \text{offset}, & \text{otherwise}
+    \end{cases}\]
+\end{minipage}
+
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_constant.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{constant}\\
+    A signal source that outputs a fixed numerical value.
+    \[y=k\]
+\end{minipage}
+
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_gain.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{gain}\\
+    A signal block that multiplies the input signal $u$ by a constant
+    parameter $k$ to produce the output signal $y$.
+    \[y=ku\] 
+\end{minipage}
+
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_OnOffController.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{onOffController}\\
+    A logical controller that switches its output between true and
+    false based on comparing a measured signal $u$ to a reference
+    value.
+    \[y=\begin{cases}
+        \text{true} & \text{if}\ u < (\text{reference} - \frac{\text{bandswitch}}{2})\\
+        \text{false} & \text{if}\ u > (\text{reference} - \frac{\text{bandswitch}}{2})
+    \end{cases}\]
+\end{minipage}
+
+\begin{minipage}[c]{0.3\linewidth}
+    \centering
+    \includegraphics[width=.75\linewidth]{media/modelica_BooleanToReal.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.70\linewidth}
+    \textbf{booleanToReal}\\
+    Converts a Boolean signal into a Real float number.
+    \[y=\begin{cases}
+        \text{realTrue} &\text{if input is True}\\
+        \text{realFalse} &\text{if input is False}
+    \end{cases}\]
+\end{minipage}
+\vfill\phantom{}
+
+\subsection{Dynamic systems}
+Two things can lead to time-varying behavior:
+\vspace{-.2cm}
+\begin{enumerate}
+    \item Transient boundary conditions
+    \item A dynamic system starting from a non-eq. state
+\end{enumerate}
+\vspace{.1cm}
+
+\subsubsection{First-order thermal model}
+A mass is heated by a constant source while simultaneously losing
+heat to a cooler environment
+\begin{center}
+    \includegraphics[width=\linewidth]{media/modelica_dynamicsystem.png}
+\end{center}
+Conservation of energy at the central node:
+\[C\cdot \frac{dT}{dt}=Q_{in}-G\left(T-T_\text{sink}\right)\]
 
 
 

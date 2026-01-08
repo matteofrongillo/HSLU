@@ -30,6 +30,7 @@
 \usepackage{multicol}
 \usepackage{titlesec}
 \usepackage{bm}
+\usepackage{forest}
 
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta}
@@ -48,7 +49,7 @@
     footskip=0cm
 }
 
-\setlist{nosep, leftmargin=*} 
+\setlist{nosep, leftmargin=*}
 
 \AtBeginDocument{
   \setlength{\abovedisplayskip}{3pt}
@@ -61,11 +62,11 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{\small Systems Modelling Cheat Sheet}
-\lhead{\small Matteo Frongillo}
+\rhead{\small \vspace*{.1cm}Systems Modelling Cheat Sheet}
+\lhead{\small \vspace*{.1cm}Matteo Frongillo}
 \cfoot{\small \vspace*{.4cm}\thepage}
 \renewcommand{\headrulewidth}{0pt}
-\setlength{\headsep}{2pt}
+\setlength{\headsep}{4pt}
 
 % Aggressive spacing reduction for titles
 \titlespacing*{\section}{0pt}{2pt}{1pt}
@@ -112,11 +113,7 @@
 % ============= NEW COMMANDS =============
 
 \newcommand{\figbox}[1]{ 
-    \begin{figure*}[ht!]        
-        \begin{center}            
-            \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}}        
-        \end{center}    
-    \end{figure*}
+    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}}        
 }
 
 \newcommand{\wrapfill}{
@@ -416,12 +413,12 @@ ex: LEGO model, human body.\\
 \circled{+} Detailed model, \circled{--} Complex
 
 \section{SW2: How to model a system}
-\begin{enumerate}
+\figbox{\begin{enumerate}
     \item Problem formulation
     \item Mathematical representation
     \item Mathematical analysis
     \item Interpretation and evaluation of results
-\end{enumerate}
+\end{enumerate}}
 
 \subsection{Problem formulation}
 \subsubsection{Task 1 - Defining goals}
@@ -442,8 +439,7 @@ COP? Max. power? Avg power? Yearly values? Temperature levels?).
 \subsection{Mathematical formulation}
 \subsubsection{Task 1 - Identify fundamental theories and laws}
 If no laws are available, use ad-hoc or empirical data to derive relationships:\\
-Thermodynamic laws, material properties, ad-hoc\\
-$P_{out} = COP(T_{amb})\cdot P_{in}$
+Thermodynamic laws, material properties, ad-hoc
 
 \subsubsection{Task 2 - Derivation of relationships}
 Transfer system into a mathematical formulation.\\
@@ -508,7 +504,7 @@ Used to find a linear function $y=f(x)=a+bx$ that best fits a dataset ${(x_i,y_i
 Minimize the sum of squared errors (SSE):
 \[S=\sum_{i=1}(y_i - (a+bx_i))^2\]
 If measurement uncertainties $\Delta y_i$ exist, weight the error:
-\[S_i = \frac{y_i-y(x)}{\Delta y_i}\]
+\[S_i = \left(\frac{y_i-y(x)}{\Delta y_i}\right)^2\]
 
 \subsubsection{Optimal parameter formulas}
 Finding $a$ and $b$ when $S$ is minimal:
@@ -1273,7 +1269,203 @@ model $y=F(x)$ from sampled runs and use it for optimisation.
 \begin{itemize}
     \item Ex: among all system configuration we find the solution with highest share of renewable energy
 \end{itemize}
+
+\subsubsection{Coarse workflow}
+\begin{enumerate}
+    \item Calculate total / monthly energy demand;
+    \item Calculate production for different sizes of the system;
+    \item Calculate share of renewable energy;
+    \item Pck optimum solution
+\end{enumerate}
 \vspace*{-.2cm}
+\textbf{Challenges}: energy demand has to be fulfilled in each time
+point unless large storage system is considered. Storage capacity
+of battery often heavily overestimated.
+
+\subsubsection{Detailed workflow}
+\begin{enumerate}
+    \item Setup system simulation;
+    \item Select different system sizes;
+    \item Run simulation measuring total and renewable energy consumption and calculate share of renewables;
+    \item Visualise the results;
+    \item Pick optimum solution.
+\end{enumerate}
+\vspace*{-.2cm}
+\textbf{Challenges}: requires detailed knowledge about the building
+and the demand profiles, variable values for the system size is
+typically selected at random.
+
+\subsubsection{Visualisation of results}
+\begin{itemize}
+    \item Display the sare of renewable energy versus systems size;
+    \item Select for the system size the optimum value and plot the two graphs.
+\end{itemize}
+
+\newcolumn
+\subsection{How to model a system (SW2)}
+\subsubsection{Task 1 - Defining goarls}
+What do we want to archieve? $\to\ $ \textbf{Aim}
+
+\subsubsection{Task 2 - Characterize the system}
+What are the relevant parameters and variables of the system?
+$\to\ $ \textbf{Variables / KPIs}
+
+\subsection{Situation analysis}
+\begin{itemize}
+    \item System boundaries:
+    \begin{itemize}
+        \item Depend on the question that needs answering;
+        \item Should include all parts with strong back-reaction;
+    \end{itemize}
+    \item Structure of the system under consideration;
+    \item Characterization of the influencing environment;
+    \item Interpretation of actual state (SWOT);
+    \item List of general restrictions / conditions;
+    \item Summary of problem definition. 
+\end{itemize}
+
+\subsection{Impact of system parameters}
+\subsubsection{Problem framing \& sources of parameter influence}
+\begin{itemize}
+    \item What is the problem?: Example:\\
+        exernal / non-controllable parameters may change the optimal solution sustainability;
+    \item Where do these effects come from? Example:\\
+        thermal energy storage integration in residential heating system with PV system and heat pump;
+    \item Where is the parameter effect? Example:\\
+        depending on utility or collaboration model, the compensation
+        for PV injection is different.
+\end{itemize}
+
+\subsubsection{Pitfalls of visualisation approach}
+Parameters may have:
+\vspace*{-.2cm}
+\begin{itemize}
+    \item co-dependencies;
+    \item exclusive effect (one counteracts the second);
+    \item infinitely many solutions.
+\end{itemize}
+
+\subsection{Design of experiment (DoE)}
+\subsubsection{Why do we need to design an experiment?}
+Analytical models are rare; optimisation typically involves
+many options and parameter ranges.
+
+\subsubsection{Impact of variability on DoE}
+Factor values and execution of experiments may have a major effect
+on results.
+
+\begin{center}
+    \includegraphics[width=\linewidth]{media/sw12_variability.png}
+\end{center}
+
+\subsubsection{Typical steps of a DoE}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/sw12_DoEsteps.png}
+\end{center}
+
+\subsubsection{Basic principles of DoE}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/sw12_DoEprinciples.png}
+\end{center}
+
+\subsubsection{Comment on factor selection}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/sw12_factortype.png}
+\end{center}
+
+\subsubsection{Choice of experimental design model}
+Empirical model.
+\textbf{First-order polynomial}:
+\[y=\beta_0 + \sum_{i=1}^I \beta_i x_i + \epsilon\]
+x's are design factors, y's are
+responsesn, $\beta_i$ are parameters to be estimates, main effects
+are evaluated.\\
+First-order with \textbf{interactions}:
+\[y=\beta_0 + \sum_{i=1}^{I} \beta_i x_i + \sum_{i=1}^{I} \sum_{j=i=1}^{J} \beta_{ji} x_i \cdot x_j + \epsilon\]
+
+\vspace*{-.2cm}
+\textbf{Second-order model}: Adequate for optimisation.
+\[y=\beta_0 + \sum_{i=1}^{I} \beta_i x_i + \sum_{i=1}^{I} \sum_{j=i=1}^{J} \beta_{ji} x_i \cdot x_j + \sum_{i=1}^{I} \beta_{ii}x^2_i +\epsilon\]
+
+\vspace*{-.2cm}
+\textbf{Regression model}: data collected from experiments used for finding $\bm{\beta}$, which
+are used in turn to estimate the response variable $\hat{y}_\text{NEW}$ for new combination var. $\bm{x}_\text{NEW}$
+
+\subsubsection{Full factor design}
+Used in experiments involving several factors and perform experiments on all possible
+combinations of the levels of all the factors. When \textbf{L}evels are considered for
+\textbf{K} variables, the total \textbf{N}umber of experiments: $N=L^K$
+
+\section{SW13: Optimisation - Linear programming}
+\subsection{Linear programming (LP)}
+\subsubsection{Definition}
+Linear programming is an optimization technique for problems with linear cost function
+$x_\text{opt} = \max\left(a^T x\right)$\\
+under the side conditions given by linear (in)equations
+\[x_1 \leq 10, x_1 + x_2 \geq 3, x_1+x_2+x_3=5\]
+
+\subsubsection{Why is LP relevant?}
+Energy system operation schedules, energy saving potential by novel technologies,
+trading applications, routing of cars, busses, goods in a process.
+
+\subsubsection{Prerequisites}
+Linear and single cost function to optimize, linear constraints, continuous variables.
+
+\subsection{Controller vs Linear programming}
+\subsubsection{Controller}
+Decides based on current, historic, or predicted data.
+
+\subsubsection{Linear programming application}
+The optimum solution for a full period is investigated assuming perfect knowledge
+of the past, present, and future.
+
+\subsection{Graphical solution of linear programs}
+\subsubsection{Solving more complex systems}
+\begin{enumerate}
+    \item Identify the area of permitted variable combinations:
+    \item Find lines of constant cost function;
+    \item Optimize the cost function.
+\end{enumerate}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/sw13_linearprogramming.png}
+\end{center}
+
+\subsubsection{Optimisation of a national energy system}
+\begin{enumerate}
+    \item Variables, cost function and boundary conditions;
+    \item Energy system simulation;
+    \item System design + challenges;
+    \item Model setup;
+    \item Simulation results and optimized energy flows.
+\end{enumerate}
+
+\newcolumn
+\subsection{The simplex algorithm}
+Real-world LP problems involve very large numbers of variables and constraints,
+making graphical methods impractical. The simplex algorithm efficiently solves
+such problems by moving along the edges of the feasible region, each time selecting
+the direction that most improves the cost function, until no further improvements
+is possible.
+\begin{center}
+    \includegraphics[width=.6\linewidth]{media/sw13_simplex.png}
+\end{center}
+
+\section{SW14: Mixed-integer and non-LP}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

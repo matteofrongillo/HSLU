@@ -574,7 +574,7 @@ To simplify calculation and avoid small numbers, minimize the negative logarithm
 
 \textbf{Weibull cumulative distribution function}
 \[F(x) = \integral[-\infty][x][f(u)][u] = \begin{cases}
-    1-e^{-(\lambda x)^k} & for x>0\\
+    1-e^{-(\lambda x)^k} & \text{for}\ x>0\\
     0 &\text{else}
 \end{cases}\]
 \newcolumn
@@ -756,6 +756,8 @@ For a square n$\times$n matrix $\bm{A}$, we look for a Eigenvector $x$ and a Eig
 
 \section{SW5-10: Modelica}
 \subsection{Equation-based modelling}
+Describes a system by using physical relationships.
+
 \subsubsection{Problem definition - Double layer wall}
 A wall consists of two layers with different thermal conductance
 values $G_1$ and $G_2$.
@@ -1039,7 +1041,7 @@ couplings.
 
 \subsubsection{Heat flow}
 \begin{center}
-    \includegraphics[width=.6\linewidth]{media/sw10_example1.png}
+    \includegraphics[width=.55\linewidth]{media/sw10_example1.png}
 \end{center}
 
 \subsubsection{Heaten up rod}
@@ -1059,25 +1061,219 @@ couplings.
 }
 
 \section{SW11: Model and control energy systems}
+\subsection{Energy system model}
+Model dynamics of energy systems to study consumption peaks,
+self-sufficiency and storage sizing, planning.
 
+\subsection{How to build an energy system model}
+\subsubsection{Single building}
+Component list + properties; hydraulic connections; usage profiles;
+pricing information.
 
+\subsubsection{Quarter/community/city}
+Single-building info for ALL buildings + grid/connection properties
++ control scheme (balance demand/supply).
 
+\newcolumn
+\subsection{Main challenges in energy system modelling}
+\subsubsection{Acquiring}
+Layout, parameters, installed-component details, control-system
+detailsm shading/clouds, usage profiles.
 
+\subsubsection{Modelling}
+Reliable component behavior and coupling, environment interaction
+(solar/shading/clouds, wind shielding, contributions from
+neighboring buildings).
 
+\subsection{Models availability}
+\subsubsection{Software frameworks}
+Built-in, pre-made models for specific component types.
 
+\subsubsection{Simplified models}
+Basic blackbox representation:
+\begin{center}
+    \begin{tikzpicture}[scale=.3]
+        \draw[thick, fill=gray!60] (0,0) -- (0,2) -- (4,2) -- (4,0) -- (0,0);
+        \draw[-Stealth, thick] (-2,1) -- (0,1);
+        \draw[-Stealth, thick] (4,1) -- (6,1);
 
+        \node[scale=.7] at (-3.3,1) {input};
+        \node[scale=.7] at (7.5,1) {output};
+        \node[scale=.7] at (2.05,1) {model};
+    \end{tikzpicture}
+\end{center}
 
+\subsubsection{Literature}
+Models taken from published research and publications.
 
+\subsubsection{Data-science models}
+Models learned or fitted from data.
 
+\subsection{White-/Grey-/Black-box models}
+\begin{itemize}
+    \item \textbf{White box}: theory-based, parameters from measurement or ab initio calculations;
+    \item \textbf{Grey-box}: simplified theory, parameters estimated from data;
+    \item \textbf{Black-box}: fit a model and parameters (data-based).
+\end{itemize}
 
+\subsubsection{White-box}
+\begin{center}
+    \includegraphics[width=.4\linewidth]{media/sw11_whitebox.png}
+\end{center}
+\vspace*{-.2cm}
+Each white-box model is a digital twin, but not all digital
+twins are white-box models.
 
+\subsubsection{Digital twin}
+Virtual representation that serves as the real-time digital
+counterpart of a physical object or process:
+\vspace*{-.2cm}
+\begin{itemize}
+    \item \textbf{Detailed}: detailed, ab initio / measured parameters;
+    \item \textbf{Simplified}: key mechanisms, simple assumptions;
+    \item \textbf{Numerical}: fitting data, parameters are fitted.
+\end{itemize}
+\subsubsection{Heat pump modelling example (white to gray box)}
+Evaporator and condenser cycles, refrigerant dynamics,
+expansion valve control algorithm.
+COP dependence, interpolate experimental data with non-linear regression.
 
+\newcolumn
+\subsubsection{Grey-box example (1st order building / RC idea)}
+\begin{center}
+    \includegraphics[width=.5\linewidth]{media/sw11_greybox.png}
+\end{center}
+\[
+C\frac{dT_\text{room}}{dt}=\dot Q_{ES}+\dot Q_{int}+g\,I(t)-H\,(T_\text{room}-T_\text{ambient})
+\]
 
+\subsubsection{Black-box example (wind turbine power curve)}
+\begin{center}
+    \includegraphics[width=.5\linewidth]{media/sw11_blackbox.png}
+\end{center}
+\vspace*{-.2cm}
+\begin{gather*}
+    P(w)=\frac{a}{1+\exp\!\bigl(-b\cdot(w-s)\bigr)}\\
+\end{gather*}
 
+\vspace*{-.5cm}
 
+\subsection{Control schemes overview}
+Control events = CE;\\
+Control decisions = CD;\\
+Control signal = CS.
+\vspace*{-.2cm}
+\begin{itemize}
+    \item \textbf{Rule-based}: CE are chosen based on a rule-set;
+    \item \textbf{Model-based}: predict the future behavior based on a model and decide such that the model performs best;
+    \item \textbf{Neuronal network-based}: trains a neuronal network to take CD and act accordingly;
+    \item \textbf{A posteriori optimisation-based}: takes historic data and optimise CD.
+\end{itemize}
+\subsection{Rule-based}
+\subsubsection{Fixed time plan controllers}
+CE are chosen based on a fixed time schedule.
 
+\subsubsection{Model predictive controllers}
+CE are chosen based on model prediction of system dynamics.
 
+\subsubsection{Set point controllers}
+\begin{minipage}[c]{0.35\linewidth}
+    \begin{center}
+    \includegraphics[width=\linewidth]{media/sw11_setpoint.png}
+    \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.65\linewidth}
+    CE is triggered if the target quantity is leaving the
+    set point corridor. Ex:
+    \begin{equation*}
+        \begin{cases}
+            \text{ON} & \text{if}\ T_\text{room} < 19.5^\circ C\\
+            \text{OFF} & \text{if}\ T_\text{room} > 20.5^\circ C\\
+        \end{cases}
+    \end{equation*}
+\end{minipage}
 
+\newcolumn
+\subsubsection{Feedback based controllers -- P \& I \& D}
+CE are initiated based on the interaction with the controlled
+quantity. We have P, PI, PID controllers.
+
+A PID-type controller computes the actuator command $u(t)$ from the
+error $e(t)=r(t)-y(t)$
+\vspace*{-.2cm}
+\[
+u(t)=
+\underbrace{K_P e(t)\vphantom{\integral[0][t][e(\tau)][\tau]}}_{\text{P}}
++
+\underbrace{K_I \integral[0][t][e(\tau)][\tau]}_{\text{I}}
++
+\underbrace{K_D\frac{d}{dt}e(t)\vphantom{\integral[0][t][e(\tau)][\tau]}}_{\text{D}}
+\]
+\vspace*{-.2cm}
+\begin{itemize}
+    \item \textbf{P}: reacts immediately to error:\\
+        Bigger $K_P \to\ $ faster response, but can overshoot /\\ oscillate
+        and typically leaves a steady-state error;
+    \item \textbf{I}ntegral: accumulates error over time:\\
+        Removes steady-state error (drives output to the setpoint),
+        but makes the response slower and can increase overshoot
+        and ``windup'' if not handled.
+    \item \textbf{D}erivative: reacts to how fast the error is changing:\\
+        reduces overshoot and improves settling, but is sensitive to
+        measurement noise.
+\end{itemize}
+
+\subsubsection{Graphical representation}
+\begin{center}
+    \includegraphics[width=.94\linewidth]{media/sw11_feedback.png}
+\end{center}
+The plot shows the closed-loop step response over time of the same
+plant controlled with different controllers with setpoint at 1.
+\vspace*{-.2cm}
+\begin{itemize}
+    \item \textbf{P}: rises quickly but settles below 1 $\to\ $ steady-state error remains;
+    \item \textbf{I}: rises very slowly but eventually reaches (and may slightly exceed) 1 $\to\ $ zero steady-state error, poor speed;
+    \item \textbf{PD}: faster than P and with less overshoot / better damping, but still can have steady-state error;
+    \item \textbf{PI}: reaches 1 but shows overshoot and slower settling;
+    \item \textbf{PID}: fast rise, small overshoot, good settling, and zero steady-state error. 
+\end{itemize}
+
+\newcolumn
+\section{SW12: Design and analysis of experiments}
+Design of experiments (DoE): systematics sweep of parameter space
+when no fully-analytical optimum is available. Build an empirical
+model $y=F(x)$ from sampled runs and use it for optimisation.
+\subsection{Setup of simulation study}
+\textbf{Aim}: what do you want to archieve?
+\vspace*{-.2cm}
+\begin{itemize}
+    \item control optimisation for given energy
+    \item retrofitting of existing energy system by adding or
+        replacing technologies
+    \item design of novel energy system
+\end{itemize}
+\vspace*{-.2cm}
+\textbf{Quantification}: choose KPI / cost function.
+\vspace*{-.2cm}
+\begin{itemize}
+    \item total energy consumption
+    \item cost for energy provision
+    \item share/amount of renewable energy
+\end{itemize}
+\vspace*{-.2cm}
+\textbf{Decision variables}: which variable can be influenced.
+\vspace*{-.2cm}
+\begin{itemize}
+    \item Ex: size, orientation, capacity, ...
+\end{itemize}
+\vspace*{-.2cm}
+\textbf{Measure of success}: optimal configuration with respect to the KPI.
+\vspace*{-.2cm}
+\begin{itemize}
+    \item Ex: among all system configuration we find the solution with highest share of renewable energy
+\end{itemize}
+\vspace*{-.2cm}
 
 
 

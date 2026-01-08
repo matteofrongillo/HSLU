@@ -528,7 +528,7 @@ by the model:
 
 \subsubsection{Multilinear regression}
 Used when the target depends on multiple variables:
-\[y(x_1,\dots,x_n) = a+b_1x_1 + \dots + b_nx_n = a + \sum_{j=1}^{n} b_j x_{j}\]
+\[y(x_1,\ldots,x_n) = a+b_1x_1 + \ldots + b_nx_n = a + \sum_{j=1}^{n} b_j x_{j}\]
 
 \subsection{Non-linear regression}
 The goal is to fit data using non-linear functions when the underlying process is not linear.
@@ -746,7 +746,7 @@ For a square n$\times$n matrix $\bm{A}$, we look for a Eigenvector $x$ and a Eig
 \vspace{-.2cm}
 \begin{enumerate}
     \item Solve the characteristic equation $\det(\bm{A}-\lambda I)=0$
-    \item This result in an n-th order polynomial $(a_1\lambda^n+\dots = 0)$
+    \item This result in an n-th order polynomial $(a_1\lambda^n+\ldots = 0)$
     \item The roots of this polynomial are the Eigenvalues.
 \end{enumerate}
 
@@ -1378,7 +1378,7 @@ Empirical model.
 \textbf{First-order polynomial}:
 \[y=\beta_0 + \sum_{i=1}^I \beta_i x_i + \epsilon\]
 x's are design factors, y's are
-responsesn, $\beta_i$ are parameters to be estimates, main effects
+responses, $\beta_i$ are parameters to be estimates, main effects
 are evaluated.\\
 First-order with \textbf{interactions}:
 \[y=\beta_0 + \sum_{i=1}^{I} \beta_i x_i + \sum_{i=1}^{I} \sum_{j=i=1}^{J} \beta_{ji} x_i \cdot x_j + \epsilon\]
@@ -1402,7 +1402,7 @@ combinations of the levels of all the factors. When \textbf{L}evels are consider
 Linear programming is an optimization technique for problems with linear cost function
 $x_\text{opt} = \max\left(a^T x\right)$\\
 under the side conditions given by linear (in)equations
-\[x_1 \leq 10, x_1 + x_2 \geq 3, x_1+x_2+x_3=5\]
+\[x_1 \leq 10,\ x_1 + x_2 \geq 3,\ x_1+x_2+x_3=5\]
 
 \subsubsection{Why is LP relevant?}
 Energy system operation schedules, energy saving potential by novel technologies,
@@ -1450,18 +1450,60 @@ is possible.
     \includegraphics[width=.6\linewidth]{media/sw13_simplex.png}
 \end{center}
 
-\section{SW14: Mixed-integer and non-LP}
+\section{SW14: Mixed-integer (MILP) and NLP}
+\subsection{LP vs MILP vs NLP}
+\subsubsection{Linear Programming (LP)}
+In LP, one assumes that the variables are continuous:
+\[x_i \in \mathbb{R}\]
 
+\subsubsection{Mixed-Integer Linear Programming (MILP)}
+In reality, variables can only be integers:
+\[w_i = \lfloor x_i\rfloor,\quad w_i \in \mathbb{Z}\]
 
+\begin{center}
+    \includegraphics[width=.7\linewidth]{media/sw14_mixedinteger.png}
+\end{center}
 
+\subsubsection{Non-Linear Programming (NLP)}
+Non-linear programming is an optimization technique for problem with
+non-linear cost function $x_\text{opt} = \max(f(x))$ under the side conditions
+given by the non-linear (in)equations
+\[x_1\leq 10,\ x_1+x_2 \geq 3,\ x_1^2+x_2^2 \leq 10\]
+Note that either the function or the constraints or both can be non-linear
 
+\newcolumn
+\subsection{Non-Linear Programming optimization}
+\subsubsection{Application}
+NLP is used where the cost function and/or the constraints are non-linear, such as:
+\vspace*{-.2cm}
+\begin{itemize}
+    \item Capital cost of devices like power plants;
+    \item Optimizing a solar PV installation and using the inclination
+        and orientation of the panels as variables;
+    \item Optimization of wind turbine power output, depending on the
+        height or radius of the generator.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/sw14_nlpgraph.png}
+\end{center}
 
+\subsubsection{Lagrange multipliers}
+If we have a function 
+\[f(x_1,\ldots,x_n)\]
+and a boundary condition 
+\[g(x_1,\ldots,x_n)=0\]
+then we can define a new function:
+\[\mathcal{L}(x_1,\ldots,x_n,\lambda) = f(x_1,\ldots,x_n) + \lambda\cdot g(x_1,\ldots,x_n)\]
 
-
-
-
-
-
+The optimized variables are given by the sistem of equations:
+\begin{equation*}
+    \begin{cases}
+        \dfrac{\partial \mathcal{L}}{\partial x_1} = \dfrac{\partial f}{\partial x_1} + \lambda\dfrac{\partial g}{\partial x_1} = 0\\[2ex]
+        \dfrac{\partial \mathcal{L}}{\partial x_2} = \dfrac{\partial f}{\partial x_2} + \lambda\dfrac{\partial g}{\partial x_2} = 0\\
+        \vdots\\[0.5ex]
+        \dfrac{\partial \mathcal{L}}{\partial \lambda} = g(x_1,\ldots,x_n) = 0
+    \end{cases}
+\end{equation*}
 
 
 

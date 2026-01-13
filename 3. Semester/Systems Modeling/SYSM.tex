@@ -68,7 +68,6 @@
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headsep}{4pt}
 
-% Aggressive spacing reduction for titles
 \titlespacing*{\section}{0pt}{2pt}{1pt}
 \titlespacing*{\subsection}{0pt}{2pt}{1pt}
 \titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
@@ -153,7 +152,7 @@
 \ExplSyntaxOff
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}} % Reduced inner sep
+            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}}
 
 \makeatletter
 \newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}

@@ -1,0 +1,1200 @@
+\documentclass[9pt, landscape, a4paper]{article}
+
+\usepackage{fontspec}
+\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
+\usepackage[english]{babel}
+\babelfont{rm}{Noto Sans}
+\babelfont{sf}{Noto Sans}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{esvect}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{varwidth}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{bm}
+\usepackage{forest}
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.18}
+\definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
+
+% ============= GEOMETRY =============
+\geometry{
+    a4paper,
+    landscape,
+    left=0.5cm,
+    right=0.5cm,
+    top=1.5cm, 
+    bottom=0.5cm,
+    footskip=0cm
+}
+
+\setlist{nosep, leftmargin=*}
+
+\AtBeginDocument{
+  \setlength{\abovedisplayskip}{3pt}
+  \setlength{\belowdisplayskip}{3pt}
+  \setlength{\abovedisplayshortskip}{0pt}
+  \setlength{\belowdisplayshortskip}{0pt}
+}
+
+% ============= HEADER & TITLES =============
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small \vspace*{.1cm}Materials Lab Cheatsheet}
+\lhead{\small \vspace*{.1cm}Matteo Frongillo}
+\cfoot{\small \vspace*{.4cm}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headsep}{4pt}
+
+\titlespacing*{\part}{0pt}{2pt}{1pt}
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
+
+\titleformat{\part}{\normalfont\large\bfseries\color{black}}{\thepart.}{0.5em}{}
+\titleformat{\section}{\normalfont\normalsize\bfseries\color{red!80}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries\color[HTML]{007AFF}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalfont\small\bfseries\color[HTML]{007355}}{\thesubsubsection}{0.5em}{}
+
+% ============= META DATA =============
+\newcommand{\pdftitle}[1]{\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={#1},
+  pdfauthor={Matteo Frongillo}
+}}
+
+% ============= RENEW COMMANDS =============
+
+\makeatletter
+\renewcommand{\author}[1]{%
+  \def\@author{%
+    #1\\
+    \parbox{\textwidth}{%
+      \centering
+      \small Last update: \today
+    }
+  }%
+}
+\makeatother
+
+\let\emptyset\varnothing
+
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+    \begingroup
+    \pgfmathparse{rad(atan(#1))}%
+    \endgroup
+}
+\makeatother
+
+% ============= NEW COMMANDS =============
+
+\newcommand{\figbox}[1]{ 
+    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}}        
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\ExplSyntaxOn
+\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
+{
+    \IfNoValueTF{#3}{
+        \IfNoValueTF{#4}{
+            \displaystyle \int #1\,d#2
+        }{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }
+    }{
+        \IfNoValueTF{#4}{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }{
+            \displaystyle
+            \int\limits
+                \IfNoValueF{#1}{\c_math_subscript_token{#1}}
+                ^{\IfNoValueTF{#2}{}{#2}}
+                #3\, d#4
+        }
+    }
+}
+\ExplSyntaxOff
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\note}{\underline{Note}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
+\newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
+\newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
+\newcommand{\cel}{$^\circ$C }
+
+% ============= DOCUMENT CONTENT =============
+
+\begin{document}
+\pdftitle{MLAB-Cheatsheet}
+\vspace*{-.5cm}
+\setlength{\columnsep}{0.5cm}
+
+\begin{multicols*}{3}
+\vspace*{-.5cm}
+
+\part{Physical metallurgy}
+\section{Classes and properties}
+\begin{center}
+    \begin{tabular}{|c|l|}
+    \hline Class & Typical properties\\
+    \hline \makecell{Metal\\Alloys} & \makecell[l]{1) Thermal + electric conductivity\\2) Ductility\\3) Castable\\4) Reflective}\\
+    \hline Ceramics & \makecell[l]{1) High T resistance (High E, low $\alpha$)\\2) High compression strength\\3) Thermal + electric insulator\\4) Wear resistance}\\
+    \hline Polymers & \makecell[l]{1) Cheap\\2) Thermal + electric insulator\\3) Corrosion resistance\\4) Moldable}\\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Structural model of metals}
+\[\phi = \dfrac{\text{Volume occupied by atoms in unit cell}}{\text{Total volume of unit cell}}\]
+\vspace*{0cm}
+
+\subsubsection{FCC (Face-centered cubic)}
+\begin{minipage}{0.3\linewidth}
+    \centering
+    \includegraphics[width=.65\linewidth]{media/fcc.png}
+\end{minipage}%
+\begin{minipage}{0.7\linewidth}
+    \begin{itemize}
+        \item Packing efficiency: $\phi \approx 74\%$
+        \item Many slip systems (12)
+        \item Closest pack direction
+    \end{itemize}
+\end{minipage}
+
+\subsubsection{BCC (Body-centered cubic)}
+\begin{minipage}{0.3\linewidth}
+    \centering
+    \includegraphics[width=.65\linewidth]{media/bcc.png}
+\end{minipage}%
+\begin{minipage}{0.7\linewidth}
+    \begin{itemize}
+        \item Packing efficiency: $\phi \approx 68\%$
+        \item Many slip systems (6)
+        \item Not closest pack direction
+        \item Cottrell atmosphere
+    \end{itemize}
+\end{minipage}
+
+\subsubsection{HCP (Hexagonal close-packed)}
+\begin{minipage}{0.3\linewidth}
+    \centering
+    \includegraphics[width=.65\linewidth]{media/hcp.png}
+\end{minipage}%
+\begin{minipage}{0.7\linewidth}
+    \begin{itemize}
+        \item Packing efficiency: $\phi \approx 74\%$
+        \item Very few slip systems (3)
+        \item Closest pack direction
+    \end{itemize}
+\end{minipage}
+
+\subsection{Structural model of ceramics}
+\begin{itemize}
+    \item Ionic bonding, complex crystal structures (ceramics), amorphous (glasses)
+    \item Brittle, but high chemical and thermal resistance
+    \item Insulators
+    \item Wear-resistant (e.g. ferro-/piezoelectricity)
+\end{itemize}
+
+\subsection{Structural model of polymers}
+\begin{itemize}
+    \item Macromolecules (10$^3$ to 10$^5$ C atoms)
+    \item Weaker intermolecular bonds but strong atomic bond in molecular chain
+    \item Electrically and thermally insulating
+    \item Cheap, moldable, massive waste problem, pollutant
+    \item Matrix for many composite materials (no recycling)
+\end{itemize}
+
+\subsection{Amorphous and crystalline materials}
+\begin{center}
+    \includegraphics[width=.9\linewidth]{media/mono-poly-amorph.png}
+\end{center}
+
+\subsubsection{Amorphous materials}
+\begin{itemize}
+    \item No crystal lattice (e.g. quartz glass, polymers)
+    \item Atomic distances defined by chemical bonds
+    \item Bond angles are variable
+\end{itemize}
+\vspace*{-.2cm}
+\textbf{Field}: inorganic classes (also Gorilla glass), metallic glasses (ferrous
+transformer sheet metal), amorphous plastics (PMMA - plexiglass, COC, ...)
+
+\subsubsection{Crystalline materials}
+\begin{itemize}
+    \item Crystal lattice (e.g. metals, ceramics, quartz)
+    \item Atomic distances and bonding angles are defined
+\end{itemize}
+
+\subsubsection{Monocrystalline materials}
+Only for special applications, expensive.\\
+\textbf{Field}: single-crystal turbine blades (T $>$ 1000$^\circ$C, creep-resistant),
+semiconductors, MEMS components made of silicon (gyroscopes in smartphones, accelerometers),
+optical elements (laser crystals, $\lambda$/4 plates, crystals for frequency doubling of lasers).
+
+\subsubsection{Polycrystalline materials}
+Most metal components are polycr. (made of many grains/crystals).
+
+\subsection{Directional dependence}
+\subsubsection{Anisotropy and Isotropy}
+\begin{itemize}
+    \item \textbf{Anisotropic}: properties depend on the direction\\(eg. single crystals, wood, composites)
+    \item \textbf{Isotropic}: properties do not depend on direction\\(eg. polycr. metals, amorphous materials)
+    \item \textbf{Quasi-isotropic}: properties microscopically depend on the direction but not macroscopically
+\end{itemize}
+
+\subsection{Polymorphism (Allotropy)}
+\subsubsection{Iron}
+\begin{itemize}
+    \item $\alpha$-Fe (ferrite, BCC) $\rightarrow$\ below 911\cel
+    \item $\gamma$-Fe (austenite, FCC) $\rightarrow$\ 911\cel to 1392\cel
+    \item $\delta$-Fe (ferrite, BCC) $\rightarrow$\ 1932\cel to 1536\cel
+\end{itemize}
+
+\subsubsection{Carbon}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/carbon_poly.png}
+\end{center}
+
+\subsubsection{Other materials}
+\begin{itemize}
+    \item Titanium: HCP $<$ 880\cel, BCC $>$ 880\cel
+    \item Shape memory allory (eg. NiTi)
+    \item Zirconia (high crack resistance due to phase transformation toughening)
+    \item Ferro- and piezoelectric materials (eg. PZT, quartz, ...)
+\end{itemize}
+
+
+
+\subsubsection{Shape memory alloy (SMA)}
+\begin{minipage}{0.5\linewidth}
+    \begin{center}
+        \includegraphics[width=.9\linewidth]{media/Nitinol.png}
+    \end{center}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+    NiTi is a SMA used for screen lock of tablet notebooks, medtech and
+    spectacle frames.
+\end{minipage}%
+
+\subsection{Microstructure and phases}
+\subsubsection{Homogeneous microstructure}
+They have only one phase and crystal structure. A phase can be
+either crystalline or amorphous (eg. only iron crystals).
+
+\subsubsection{Heterogeneous microstructure}
+They have multiple phases and many types of crystal structures
+(eg. graphite and iron).
+
+\subsection{Alloys}
+An alloy is a metallic material of at least 2 types of atoms:
+\vspace*{-.2cm}
+\begin{itemize}
+    \item Metal + metal (iron-nickel, gold-silver, tin-lead, aluminum-copper)
+    \item Metal + non-metal (iron-carbon, nickel-phosphorus)
+\end{itemize}
+
+\subsubsection{Microstructure of alloys}
+\begin{itemize}
+    \item \textbf{Solid solution crystal}: homogeneous, single-phase, only one type of crystal
+    \item \textbf{Mix of different crystal types}: heterogeneous, multi-phase
+\end{itemize}
+
+\section{Metal structures and crystal lattice defects}
+\subsection{Lattice defects}
+\subsubsection{0-dimensional defects}
+Point defects due to vacancies and impurity atoms.
+
+\subsubsection{1-dimensional defects}
+Line defects due to dislocations. Edge dislocations insert an
+extra half-plane of atoms in the crystal, distorting the nearby
+planes of atoms.
+
+\subsubsection{2-dimensional defects}
+Surface defects due to grain boundaries. Crystal growth starts at
+multiple locations within the molten metal\\
+\textbf{Crystallization from a melt}: (1) homogeneous melt, (2)
+nucleation of crystals, (3) crystal growth surrounded by residual melt,
+(4) fully solidified polycrystalline structure with grain boundaries.
+
+\subsubsection{3-dimensional defects}
+Volume defects due to precipitations, inclusions, voids, cracks in
+the crystal structure.
+
+\section{Elastic and plastic deformation}
+\subsection{Elastic deformation}
+The coefficient of thermal expansion $\alpha$ is inversely proportional
+to: Young's Modulus $E$, Bonding energy, Melting temp.
+
+\subsection{Elastic constants of isotropic materials}
+\subsubsection{Elastic stress, strain, and Young's modulus}
+\[\varepsilon_x = \frac{\sigma_x}{E} \Longleftrightarrow \sigma_x = \frac{E}{\varepsilon_x}\]
+
+\subsubsection{Poisson's ratio $\nu$}
+When a material is stretched in x, it tends to contract in y, z:
+\[\nu = -\frac{\varepsilon_{y,z}}{\varepsilon_x}\]
+
+\subsubsection{Relation between 3 isotropic elastic constants $G$}
+\[G = \frac{E}{2(1+\nu)} = \frac{\sigma}{2\varepsilon_x(1+\nu)}\]
+
+\subsection{Plastic deformation in metals}
+The plastic deformation is permanent and non-reversible
+
+\subsubsection{At room temp T$_\text{R}$}
+\begin{itemize}
+    \item Dislocations move on densely packed slip planes in densely packed directions
+    \item Smaller slip distances require less external force or energy
+\end{itemize}
+
+\subsubsection{At high temps}
+The metal creeps, leading to diffusion of atoms, especially at grain boundaries.
+
+\subsection{Simplified dislocation slip model}
+\begin{center}
+    \includegraphics[width=.84\linewidth]{media/simplified_dislocation_slip_model.png}
+\end{center}
+
+\subsection{Slip systems}
+\subsubsection{Slip systems in FCC metals}
+FCC metals have 12 close packed systems, making them \textbf{soft and highly ductile}
+(eg. Au, Ag, Cu, Al, $\alpha$-Fe).
+
+\subsubsection{Slip systems in HCP metals}
+HCP metals are closely packed but deform on only one slip plane with 3 slip systems,
+resulting in \textbf{limited ductility} (eg. Ti, Zn, Mg).
+
+\subsubsection{Slip systems in BCC metals}
+BCC metals have 48 slip systems but are less closely packed, leading
+to \textbf{higher strength and lower ductility} (eg. $\alpha$-Fe, Cr,
+W, Mo, Ta, Nb).
+
+\subsection{Metals crystal structure vs Ductility}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/structure_vs_ductility.png}
+\end{center}
+
+\subsection{Cottrell atmospheres and Dislocation pinning}
+\begin{itemize}
+    \item In $\alpha$-Fe with a BCC structure (ferrite), the sites for interstitial atoms are much smaller than $\gamma$-Fe (austenite)
+    \item Carbon atmos in ferrite diffuse into the distortion fields near dislocation lines, forming Cottrell atmospheres
+    \item Causes upper yield point (R$_\text{eH}$) in tensile tests and brittle fracture at low temps
+    \item During plastic deformation, dislocations must first break freefrom the Cottrell atmosphere. 
+\end{itemize}
+
+\section{Strenghtening mechanisms}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/strengthening.png}
+\end{center}
+
+\subsection{Solid-solution hardening}
+\begin{itemize}
+    \item Impurity atoms in a solid solution create lattice distortion fields that impede dislocation motion
+    \item Interstitial atoms cause stronger lattice distortions than substitutionals atoms, leading to a greared strengthening effect
+    \item A larger atomic radius mismatch and higher impurity concentration both increase the stremgthening effect
+    \item \textbf{Result}: increased strength but reduced ductility
+\end{itemize}
+
+\subsubsection{0-d: SSH application field}
+Al-Mb and Al-Mg alloys (5000 and 3000) for automotive sheet metal,
+airplane outer skin, beverage cans;
+Structural and stainless steels; Gold jewerly (Au with Ag, Cu, Ni,
+Pt, Pd, ...)
+
+\subsection{1-d: Strain hardening (Work hardening)}
+\begin{itemize}
+    \item Cold work increases dislocation density $\rightarrow$\ dislocation entanglement
+    \item Cold working / cold forming: below the recrystallization temp
+    \item Hot forming: above the recrystallization temp
+    \item Recrystallization temp: $(T_{\mathrm{recr}} \approx 0.4,T_m\ [\text{K}])$
+    \item \textbf{Result}: strength increases but ductility decreases
+\end{itemize}
+
+\subsubsection{SH application field}
+Any cold-formed parts: cold rolled sheet metal, neckline holes in
+sheet metal of a washing machine drum, cold pressed steels.
+
+\subsection{2-d: Grain boundary hardening}
+\begin{itemize}
+    \item Smaller grains increase strength: grain boundaries hinder dislocation slip
+    \item Not suitable at high temp: grain growth reduces strength and ductility
+    \item \textbf{Result}: strength and ductility both increased (statistical grain orientation, Schmid's law)
+\end{itemize}
+
+\subsubsection{GBH application field}
+High-strength fine-grain or even Q+T structural steels:
+cranes, oil platforms, bridges, shipbuilding.
+
+\subsection{3-d: Precipitation hardening}
+\begin{itemize}
+    \item Increase in strength by coherence of the precipitates and size and number of the precipitates
+    \item \textbf{Result}: increase in strength but decrease in ductility
+\end{itemize}
+
+\subsubsection{Effect of precipitate coherence on strength}
+\textbf{Coherent}: lattice planes match, strong strain fields in the matrix $\rightarrow$\ large strength increase.\\
+\textbf{Semi-coherent}: misfit dislocations at the interface reduce lattice strain $\rightarrow$\ strength decreases.\\
+\textbf{Incoherent}: lattice planes mismatch; little matrix distortion\\$\rightarrow$\ small strength increase.
+
+\subsubsection{PH application field}
+High-strength aluminum alloys for aerospace, maraging steels, stainless PH steels,
+highly temp-resistant Ni base superalloys for turbine blades.
+\vfill\phantom{}
+
+\newcolumn
+\part{Strength and Ductility}
+\section{Properties of material}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/propertiesofmaterial.png}
+\end{center}
+
+\subsection{Failure hypotesis and Material testing methods}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/failures.png}
+\end{center}
+
+\section{Tensile test}
+\subsection{Engineering stress and stress conditions}
+\subsubsection{Normal vs Engineering vs Shear stress}
+Engineering stress is the force $F$ acting on the original
+cross-sectional area $S_0$.
+Normal stress is the normal force $F_N$ that acts
+perpendicularly to $S_0$.
+The shear stress $\tau$ is the force $F_Q$ parallel to $S_0$.
+\[\sigma=\frac{F}{S_0}\quad;\quad \sigma_N = \frac{F_N}{S_0}\quad;\quad \tau = \frac{F_Q}{S_0}\quad;\quad \sigma = E\cdot \varepsilon\]
+
+\subsubsection{Engineering strain $\varepsilon$}
+Engineering strain is the ratio of the change in length to the
+original length of the material under load:
+\[\varepsilon = \frac{\Delta L}{L_0}\]
+
+\subsection{Stress-strain behavior of metals}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/stressstrain.png}
+\end{center}
+
+\newcolumn
+\subsubsection{Yield stress R}
+\begin{itemize}
+    \item \textbf{R$_\text{eH}$}: Upper Yield point
+    \item \textbf{R$_\text{p0.2}$}: 0.2\% Yield Stress
+    \item Without max yield point: $\sigma_\text{max}$ = R$_\text{p0.2}$
+\end{itemize}
+
+\subsubsection{Yound's modulus}
+Slope of the linear-elastic region: \[E=\frac{\Delta\sigma}{\Delta\varepsilon}\]
+
+\subsubsection{Tensile strength R$_\text{m}$}
+It correspondes to the stress at the max of the stress-strain curve.
+With max yield point: $\sigma_\text{max}$ = R$_\text{m}$; upper yield point $R_\text{eH}$.
+
+\subsection{Fracture strain A}
+Plastic strain at fracture is defined with respect to the initial
+specimen length $L_0$. (eg. $L_0 = 50$mm $\rightarrow A_{50\text{mm}}$)
+
+\subsubsection{Uniform strain A$_\text{g}$}
+It corresponds to the plastic strain at maximum load before necking
+begins.
+
+\subsubsection{Contraction at fracture Z}
+\[Z = \frac{\Delta S}{S_0}\]
+
+\section{Other quasi-static mechanical tests}
+\subsection{Bending test}
+A specimen is placed on two supports, loaded in bending (typically at midspan) until failure, and the maximum bending stress is calculated.
+
+\subsection{Torsion test}
+A cylindrical specimen is clamped and twisted by applying torque until yielding or fracture, and the torsion strength is taken from the peripheral shear stress.
+
+\subsection{Creep and relaxation tests (High temps)}
+\begin{itemize}
+    \item Creep: time-dependent deformation under constant stress
+    \item Relaxation: decreasing stress under constant strain
+    \item At high T, strength becomes time- and strain-rate-dependent
+    \item Strain changes with time under constant load
+    \item Creep/relaxation tests assess heat-resistant materials for high-T applications (eg. steels and Ni alloys above 400\cel)
+\end{itemize}
+
+\part{Steel - technology and applications}
+Stees is a Carbon-iron alloy. Has very good properties: strength,
+ductility, toughness, formability, machining, weldability. Can be
+heat-treated due its polymorphism.
+
+\section{Steel Technology}
+\subsection{Blast furnace and Pig iron}
+\begin{itemize}
+    \item \textbf{Process}: reduction of iron oxide with coke\\
+        Fe$_2$O$_3$ + 3C $\rightarrow$\ 2Fe + 3CO
+    \item \textbf{Product}: pig iron (3-5\% C, also Mn, Si, S, P)
+\end{itemize}
+
+\subsection{Crude steel production}
+\begin{itemize}
+    \item Pig iron refined to crude steel by reducing carbon content
+    \item Oxygen-Blown Converter (OBC): refining with oxygen
+    \item Electric Furnace (EF): melts scrap steel or direct-reduced iron (sponge iron) to crude steel
+\end{itemize}
+
+\subsection{Secondary metallurgy}
+\begin{itemize}
+    \item Crude steel further purified and adjusted to final composition in a ladle furnace
+    \item Process:
+    \begin{itemize}
+        \item Deoxidation (chemical or vacuum)
+        \item Advanced purification (electroslag remelting (ESR), vacuum arc remelting (VAR), powder metallurgy (PM))
+        \item Alloying additions
+    \end{itemize}
+\end{itemize}
+
+\subsection{Semi-finished products}
+\begin{itemize}
+    \item Produced mainly by continuous casting (slabs, billets)
+    \item Formed into sheets, plates, wires, rods, pipes, and profiles by hot or cold rolling/drawing
+\end{itemize}
+
+\subsection{Important alloying elements}
+\begin{center}
+    \begin{tabular}{|l|l|}
+        \hline \textbf{Function} & \textbf{Alloying elements}\\
+        \hline Hardenability & Mn, Cr, Ni, Mo, V, Si\\
+        \hline Grain refinement & Al, V, Ti, Nb\\
+        \hline Corrosion resistance & Cr (>12\%), Cu, Ni, Si, Mn, Mo, N\\
+        \hline Wear/heat resistance & Cr (>1\%), Mo, V, Al, Ti, Nb, Mo\\
+        \hline Scale resistance & Cr, Al, Si\\
+        \hline 
+    \end{tabular}
+\end{center}
+
+\section{Microstructure formation}
+\subsection{Polymorphism of iron}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/iron_polymorphism.png}
+\end{center}
+
+\subsection{Metastable iron-iron carbide phase diagram}
+\subsubsection{Phase diagram}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/phasediagram_explaination.png}
+\end{center}
+
+\newcolumn
+\begin{center}
+    \includegraphics[width=\linewidth]{media/iron-castiron_diagram.png}
+\end{center}
+
+\subsection{Microstructure formation of Steel (Slow Cooling)}
+\begin{center}
+    \scriptsize
+    \begin{tabular}{|c|c|l|l|}
+        \hline \textbf{Type} & \textbf{\makecell{Composition\\range wt\% C}} & \textbf{\makecell{Resulting\\microstructure}} & \textbf{Properties}\\
+        \hline Hypoeutectic & < 4.3 & \makecell[l]{Primary austenite\\+ledeburite} &
+        \makecell[l]{toughness $\uparrow$\\brittleness $\downarrow$\\machinability $\uparrow$}\\
+        \hline Eutectic & 4.3 & \makecell[l]{Ledeburite (austenite\\+cementite)} &
+        \makecell[l]{castability $\uparrow\uparrow$\\hardness $\uparrow$\\ductility $\downarrow$}\\
+        \hline Hypereutectic & > 4.3 & \makecell[l]{Primary cementite\\+ledeburite} &
+        \makecell[l]{hardness $\uparrow\uparrow$\\wear $\uparrow\uparrow$\\machinability $\downarrow$\\toughness $\downarrow$}\\
+        \hline Hypoeutectoid & < 0.8 & \makecell[l]{Primary ferrite\\+pearlite} &
+        \makecell[l]{ductility $\uparrow\uparrow$\\weldability $\uparrow\uparrow$\\formability $\uparrow\uparrow$\\hardness $\downarrow$}\\
+        \hline Eutectoid & 0.8 & \makecell[l]{Pearlite (ferrite\\+cementite)} &
+        \makecell[l]{hardness $\uparrow$\\toughness $\uparrow$\\ductility $\downarrow$}\\
+        \hline Hypereutectoid & > 0.8 & \makecell[l]{Primary cementite\\+pearlite} &
+        \makecell[l]{hardness $\uparrow\uparrow$\\wear $\uparrow\uparrow$\\toughness $\downarrow$}\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Eutectoid steel final microstructure at T$_\text{R}$}
+The microstructure is 100\% pearlite, consisting of ferrite lamellae
+(soft, ductile phase forming the light layers), and cementite lamellae
+(hard, brittle phase forming the dark layers).
+
+\subsubsection{Hypereutectoid steel final microstructure at T$_\text{R}$}
+Final components are grain boundary cementite (hard and brittle,
+formed before eutectoid reaction) and pearlite (lamellar mixture of
+ferrite and cementite).
+
+\subsection{Faster cooling / Quenching}
+Fast cooling of steels changes the transformation behavior compared
+to equilibrium cooling.
+
+\subsubsection{Fast cooling}
+\begin{itemize}
+    \item Transformation temps shift to lower values
+    \item Pearlite become finer and forms over a wider Temp range
+    \item Martensite and bainite can form
+\end{itemize}
+
+\subsection{Ferrite}
+\begin{itemize}
+    \item $\alpha$-iron (BCC), stable at low temps
+    \item Very low carbon solubility $\rightarrow$ carbon tends to form cementite
+    \item Soft and ductile $\rightarrow$ good formability and toughness
+\end{itemize}
+
+\subsection{Austenite}
+\begin{itemize}
+    \item $\gamma$-iron (FCC), stable at higher temps
+    \item High carbon solubility $\rightarrow$ carbon dissolves readily
+    \item Parent phase for transf. to pearlite, bainite, and martensite
+\end{itemize}
+
+\subsection{Pearlite}
+\begin{itemize}
+    \item Forms from austenite during slow cooling (eutectoid trans.)
+    \item Lamellar mixture of ferrite ($\alpha$) and cementite ($\mathrm{Fe_3C}$)
+    \item Higher strength and hardness than ferrite, but lower ductility; finer lamellae give higher strength
+\end{itemize}
+
+\subsection{Martensite}
+\begin{itemize}
+    \item Very fast cooling of austenite produces martensite
+    \item Diffusion does not occur, so no ferrite or pearlite
+    \item Lattice shear of FCC austenite produces BCT
+\end{itemize}
+
+\subsection{Bainite}
+\begin{itemize}
+    \item Produced by a rapid cooling (250-500\cel)
+    \item Combined shear and limited diffusion; cementite precipitate
+    \item Higher strength than pearlite, more ductile than martensite
+    \item Good for high-performance components and tools
+\end{itemize}
+
+\subsubsection{Upper bainite}
+\begin{itemize}
+    \item Forms at higher bainitic T (350-500\cel)
+    \item Ferrite needles with cementite lamellae at ferrite boundaries
+\end{itemize}
+
+\subsubsection{Lower bainite}
+\begin{itemize}
+    \item Forms at lower bainitic T (250-350\cel)
+    \item Ferrite needles with fine cementite particles inside the ferrite
+\end{itemize}
+
+\section{Heat treatments}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/heat_treatments.png}
+\end{center}
+
+\newcolumn
+\part{Hardness and Toughness}
+\section{Hardness}
+It measures resistance against localized plastic deformation.
+
+\subsection{Hardness testing}
+\subsubsection{Common testing methods}
+\begin{center}
+    \footnotesize
+    \begin{tabular}{|l|l|}
+        \hline \textbf{Testing method} & \textbf{Application}\\
+        \hline Vickers (HV) & Universal application\\
+        \hline Rockwell (HCR) & For hard steels\\
+        \hline Brinell (HB) & For soft steels and aluminum\\
+        \hline Berkovich & For nanoindentation\\
+        \hline Shore A, D & For rubber and plastic\\
+        \hline 
+    \end{tabular}
+\end{center}
+
+Approximate relation: R$_\text{m} \approx 3\times$ HB or HV
+
+\subsection{Hardness Testing procedures}
+\subsubsection{Indentation depth}
+Hardness is measured based on how deep the indenter penetrates
+the material.
+
+\subsubsection{Indentation area}
+Hardness is determined by the surface area of the indentation left
+in the material.
+
+\section{Notch Impact Toughness}
+\subsection{Impact Notch Toughness test (Charpy)}
+\begin{itemize}
+    \item Applied mainly to structural steel (BCC)
+    \item Shows the transition temp from ductile to brittle fracture
+    \item Determines the absorbed impact energy (``notch toughness'')
+    \item Failure hypotesis: crack propagation under sudden loads
+\end{itemize}
+
+\subsection{Toughness}
+\subsubsection{Material behavior}
+\begin{itemize}
+    \item \textbf{Tough material}: absorb high energy before fracture
+    \item \textbf{Brittle material}: fracture with little energy absorbtion
+\end{itemize}
+
+\subsubsection{Energy criterion}
+\begin{itemize}
+    \item \textbf{Ductile fracture}: if absorbes > 27 J of the impact energy
+    \item \textbf{Brittle fracture}: if absorbes < 27 J of the impact energy
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{multicols*}
+
+\end{document}

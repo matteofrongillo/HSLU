@@ -74,10 +74,10 @@
 \titlespacing*{\subsection}{0pt}{2pt}{1pt}
 \titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
 
-\titleformat{\part}{\normalfont\large\bfseries\color{black}}{\thepart.}{0.5em}{}
-\titleformat{\section}{\normalfont\normalsize\bfseries\color{red!80}}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\normalfont\normalsize\bfseries\color[HTML]{007AFF}}{\thesubsection}{0.5em}{}
-\titleformat{\subsubsection}{\normalfont\small\bfseries\color[HTML]{007355}}{\thesubsubsection}{0.5em}{}
+\titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.5em}{}
+\titleformat{\section}{\bfseries\color{red!80}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{\thesubsubsection}{0.5em}{}
 
 % ============= META DATA =============
 \newcommand{\pdftitle}[1]{\hypersetup{
@@ -175,7 +175,7 @@
 \newcommand{\rad}{^{\mathrm{c}}}
 \newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
 \newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
-\newcommand{\cel}{$^\circ$C }
+\newcommand{\cel}{$^\circ$C}
 
 % ============= DOCUMENT CONTENT =============
 
@@ -318,8 +318,6 @@ Most metal components are polycr. (made of many grains/crystals).
     \item Zirconia (high crack resistance due to phase transformation toughening)
     \item Ferro- and piezoelectric materials (eg. PZT, quartz, ...)
 \end{itemize}
-
-
 
 \subsubsection{Shape memory alloy (SMA)}
 \begin{minipage}{0.5\linewidth}
@@ -570,7 +568,7 @@ A cylindrical specimen is clamped and twisted by applying torque until yielding 
 \end{itemize}
 
 \part{Steel - technology and applications}
-Stees is a Carbon-iron alloy. Has very good properties: strength,
+Steel is a Carbon-iron alloy. Has very good properties: strength,
 ductility, toughness, formability, machining, weldability. Can be
 heat-treated due its polymorphism.
 
@@ -640,13 +638,6 @@ heat-treated due its polymorphism.
 \begin{center}
     \scriptsize
     \begin{tabular}{|c|c|l|l|}
-        \hline \textbf{Type} & \textbf{\makecell{Composition\\range wt\% C}} & \textbf{\makecell{Resulting\\microstructure}} & \textbf{Properties}\\
-        \hline Hypoeutectic & < 4.3 & \makecell[l]{Primary austenite\\+ledeburite} &
-        \makecell[l]{toughness $\uparrow$\\brittleness $\downarrow$\\machinability $\uparrow$}\\
-        \hline Eutectic & 4.3 & \makecell[l]{Ledeburite (austenite\\+cementite)} &
-        \makecell[l]{castability $\uparrow\uparrow$\\hardness $\uparrow$\\ductility $\downarrow$}\\
-        \hline Hypereutectic & > 4.3 & \makecell[l]{Primary cementite\\+ledeburite} &
-        \makecell[l]{hardness $\uparrow\uparrow$\\wear $\uparrow\uparrow$\\machinability $\downarrow$\\toughness $\downarrow$}\\
         \hline Hypoeutectoid & < 0.8 & \makecell[l]{Primary ferrite\\+pearlite} &
         \makecell[l]{ductility $\uparrow\uparrow$\\weldability $\uparrow\uparrow$\\formability $\uparrow\uparrow$\\hardness $\downarrow$}\\
         \hline Eutectoid & 0.8 & \makecell[l]{Pearlite (ferrite\\+cementite)} &
@@ -731,13 +722,79 @@ to equilibrium cooling.
     \includegraphics[width=\linewidth]{media/heat_treatments.png}
 \end{center}
 
-\newcolumn
+\subsection{Process steps}
+\vspace*{-.2cm}
+\begin{center}
+    \footnotesize
+    \begin{tabular}{|c|l|l|}
+        \hline \textbf{Process step} & \textbf{\makecell[l]{Microstructure after\\each process step}} & \textbf{\makecell[l]{Strength and toughness\\after each process step}}\\
+        \hline Austenitizing & Austenite & \makecell[l]{Low strength (low R$_\text{p0.2}$),\\high toughness,\\high energy absorbed.}\\
+        \hline Quenching & Martensite & \makecell[l]{Very high strength,\\brittle.}\\
+        \hline \makecell{Temperting\\400-700\cel} & \makecell[l]{Very small ferrite and\\cementite crystals} & \makecell[l]{High strength,\\high toughness.}\\
+        \hline 
+    \end{tabular}
+\end{center}
+
+\subsection{Homogeneization annealing}
+\begin{itemize}
+    \item Elimination of segretations
+    \item Often performed together with hot forming
+\end{itemize}
+
+\subsection{Normalizing}
+\subsubsection{Austenization + slow cooling}
+\begin{itemize}
+    \item Produces a uniform, fine-grained microstructure
+    \item Austenitize: transform ferrite to austenite
+    \item Slow, controlled cooling
+    \item \textbf{Result}: fine grains $\rightarrow$\ higher strength and toughness
+\end{itemize}
+
+\subsection{Martensitic hardening and Q+T}
+\subsubsection{Martensitic hardening}
+Austenitize $\rightarrow$\ quench $\rightarrow$\ low-temp temper (200\cel)
+
+\subsubsection{Quench + temper}
+Austenitize $\rightarrow$\ quench $\rightarrow$\ temper (350-700\cel) $\rightarrow$\ tempered martensite
+
+\subsubsection{Bainitic transformation}
+Continuous cooling of low-alloy steels to form bainite.
+
+\subsubsection{Graphical representation}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/martensitic_hardening.png}
+\end{center}
+
+\subsection{Case hardenable steels}
+Typically contain less than 0.25\% carbon before carburizing.
+After case hardening and quenching, martensite forms at the surface,
+improving wear resistance and fatigue resistance.
+
+\section{Hardening of the surface overview}
+\subsection{Without thermochemical diffusion}
+\subsubsection{Surface hardening}
+For C > 0.3\%, quenching forms martensite at the surface.
+
+\subsection{With thermochemical diffusion}
+\subsubsection{Case hardening}
+For C < 0.25\%, first diffuse C (carburizing) or C+N (carbonitriding),
+then quench to form surface martensite.
+\subsubsection{Nitriding}
+Diffuses N to form a hard nitride layer (or carbonitrades in nitrocarburizing).
+In works for any steel, highest hardness in nitriding steels with Al/Mo/C.
+
+\subsection{Hardening Depth}
+\begin{itemize}
+    \item \textbf{SHD}: at 0.8 $\cdot$ HV$_\text{surface}$ (80\% of SH)
+    \item \textbf{CHD}: at 550 HV1 (limit hardness line at 550 with HV1 load)
+    \item \textbf{NHD}: at HV$_\text{lower line}$ + 50HV0.5 
+\end{itemize}
+
 \part{Hardness and Toughness}
 \section{Hardness}
 It measures resistance against localized plastic deformation.
 
 \subsection{Hardness testing}
-\subsubsection{Common testing methods}
 \begin{center}
     \footnotesize
     \begin{tabular}{|l|l|}
@@ -751,16 +808,12 @@ It measures resistance against localized plastic deformation.
     \end{tabular}
 \end{center}
 
-Approximate relation: R$_\text{m} \approx 3\times$ HB or HV
-
 \subsection{Hardness Testing procedures}
 \subsubsection{Indentation depth}
-Hardness is measured based on how deep the indenter penetrates
-the material.
+Hardness is based on the indenter penetration depth.
 
 \subsubsection{Indentation area}
-Hardness is determined by the surface area of the indentation left
-in the material.
+Hardness is based on the indentation surface area.
 
 \section{Notch Impact Toughness}
 \subsection{Impact Notch Toughness test (Charpy)}
@@ -784,193 +837,397 @@ in the material.
     \item \textbf{Brittle fracture}: if absorbes < 27 J of the impact energy
 \end{itemize}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsubsection{Stress State dependence}
+\begin{itemize}
+    \item Monoaxial (tensile test): material can yield in lateral ways
+    \item Biaxial (pressure vessels): yield possible in one direction
+    \item Triaxial (notches): no yielding possible, leads to brittle failure
+\end{itemize}
+
+\subsection{BCC brittle behavior at low temps}
+\subsubsection{Cottrell atmosphere (BCC $\alpha$-Fe)}
+Small interstitial sites, C/N diffuse to dislocation stress fields and cluster there,
+forming atmospheres that lock dislocations.
+
+\subsubsection{Dislocation pinning}
+Cottrell locking produces an upper yield point R$_\text{eH}$, plastic flow starts
+only after dislocations break away.
+
+\subsubsection{Low temperature brittleness (BCC)}
+At low temp or high strain rate, breakaway is difficult\\
+$\rightarrow$\ stronger pinning, reduced ductility, and brittle behavior.
+
+\subsubsection{Absorbed Notch Impact energy}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/energyabsorbed.png}
+\end{center}
+
+\subsection{Absorbed energy - Temperature graph}
+\begin{center}
+    \includegraphics[width=.745\linewidth]{media/energy_temperature_impact_graph.png}
+\end{center}
+
+\part{Aluminum - Wrought and Cast alloys}
+\section{Properties and application of aluminum alloys}
+\begin{center}
+    \footnotesize
+    \begin{tabular}{|l|l|}
+        \hline \textbf{Property} & \textbf{Application}\\
+        \hline Heat conductivity & Heat exchangers\\
+        \hline Electrical conductivity & High voltage lines\\
+        \hline \makecell[l]{Corrosion resistance\\(< 10 pH only)} & \makecell[l]{Electronic appliace\\housing, architecture}\\
+        \hline Non-magnetic & Electronic appliace housing\\
+        \hline Light-weight & Aerospace, automotive industry\\
+        \hline 
+    \end{tabular}
+\end{center}
+
+\section{Designation of alloys and conditional designations}
+\subsection{Numerical Designation System (DIN EN 573-1)}
+\begin{center}
+    \includegraphics[width=.95\linewidth]{media/aluminum_designation.png}
+\end{center}
+
+\subsection{Condition Designation (DIN EN 515)}
+\begin{center}
+    \includegraphics[width=.8\linewidth]{media/aluminum_condition.png}
+\end{center}
+
+\subsection{Cold-working H}
+\begin{center}
+    \includegraphics[width=.9\linewidth]{media/cold-working.png}
+\end{center}
+
+\subsection{Precipitation hardening (age hardening)}
+\subsubsection{Age hardening steps}
+\begin{enumerate}
+    \item Solution annealing (W): dissolves existing precipitates into alloy
+    \item Quenching: rapidly cools to form a supersaturated solid solution without precipitates
+    \item Aging: small, coherent precipitates form, alloy strengthening
+\end{enumerate}
+
+\subsubsection{Aging types}
+\begin{itemize}
+    \item Natural aging: at room temps, moderate strength, lower hardness, higher ductility
+    \item Artificial aging: elevated temps (120-200\cel), higher strength and hardness, lower ductility
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=.88\linewidth]{media/age_hardening.png}
+\end{center}
+
+\subsubsection{Artificial aging}
+\begin{center}
+    \includegraphics[width=.8\linewidth]{media/artificial_aging.png}
+\end{center}
+
+\section{Aluminum Wrought Alloys}
+\subsection{Pure aluminum}
+\subsubsection{Properties}
+\begin{itemize}
+    \item Excellent electrical conductivity (best weight/cost balance)
+    \item High thermal conductivity (good heat dissipation)
+    \item Good corrosion resistance, formability, and weldability
+    \item Low inherent strength; strengthened by cold working and grain refinement
+    \item Very suitable for surface finishing/polishing/anodizing
+\end{itemize}
+
+\subsubsection{Applications}
+\begin{itemize}
+    \item Electrical/electronics (busbars, bonding wires, HV cables)
+    \item Heat exchangers/heat sinks; avoid Al-Cu contact to limit galvanic corrosion
+    \item Corrosion-resistant cladding on high-strength sheets for aircraft/automotive
+    \item Food packaging (foils, dishes, coffee capsules)
+\end{itemize}
+
+\subsection{Type of wrought alloys system}
+\subsubsection{EN AW-3XXX: (Al-Si)}
+\begin{itemize}
+    \item Stronger than pure Al, easy to form/weld
+    \item Good corrosion resistance
+    \item Tanks/chemical equipment, cookware, gas pipes
+\end{itemize}
+
+\subsubsection{EN AW-4XXX: Al-Si}
+\begin{itemize}
+    \item Mainly used as cast alloys/coating
+    \item Low eutectic melting point
+    \item Cast parts, corrosion-resistant coatings, welding wires
+\end{itemize}
+
+\subsubsection{EN AW-5XXX: Al-Mg}
+\begin{itemize}
+    \item Excellent weldability and corrosion resistance
+    \item Ship hulls, tanks, cookware, beverage can lids
+\end{itemize}
+
+\subsubsection{Over-saturated 5XXX (>3\% Mg, quenched)}
+\begin{itemize}
+    \item High strength
+    \item Risk of intergranular corrosion and stress-corrosion cracking
+    \item High-strength rods/profiles, avoid hot/chloride exposure
+\end{itemize}
+
+\subsubsection{EN AW-6XXX: Al-Mg-Si}
+\begin{itemize}
+    \item Good strength, good processing properties
+    \item Formability + weldability + corrosion resistance + anodizing
+    \item Extruded profiles, doors/windows, bicycle frames
+\end{itemize}
+
+\subsubsection{EN AW-2XXX: Al-Cu}
+\begin{itemize}
+    \item High strength and fatigue performance (T3/T4/T6)
+    \item Poor fusion weldability and corrosion resistance
+    \item Aircraft, high-strength structural parts
+\end{itemize}
+
+\subsubsection{EN AW-7XXX: Al-Zn-Mg (-Cu)}
+\begin{itemize}
+    \item Very high strength; poor corrosion resistance and weldability
+    \item SCC/exfolian risk: often use over-aged tempers
+    \item Aircraft parts, climbing hardware, lightweight housing
+\end{itemize}
+
+\section{Aluminum cast alloys}
+\begin{center}
+    \includegraphics[width=.5\linewidth]{media/aluminum_cast_alloys.png}
+    \includegraphics[width=\linewidth]{media/tectics.png}
+\end{center}
+
+\subsection{Hypoeutectic cast alloys}
+\begin{itemize}
+    \item Solidify as primary $\alpha$-Al + remaining eutectic
+    \item At T$_\text{R}$: primary $\alpha$-Al crystal + residual eutectic
+    \item Mg/Cu/Fe additions allow precipitation hardening of $\alpha$
+    \item Typical alloys: EC AC-465000, EC AC-42000, EN AC-435000
+    \item Uses: EV motor housing, chassis parts
+\end{itemize}
+
+\subsection{Eutectic cast alloys}
+\begin{itemize}
+    \item Lowest melting point: excellent castability, no freezing range
+    \item Na/Sr modify and refine eutectic; Ti/TiB$_2$ suppress Si needles
+    \item Typical alloys: EN AC-44100, EN AC-44300, EC AC-47000
+    \item Uses: ribbed casting, pump/engine housing, cylinder heads
+\end{itemize}
+
+\subsection{Hypereutectic cast alloys}
+\begin{itemize}
+    \item Primary Si crystal: very high wear resistance and reduced thermal expansion
+    \item Uses: pistons (eg. EN AC-48000 (T6))
+\end{itemize}
+
+\newcolumn
+\section{Surface technology - corrosion protection}
+\subsection{Natural oxide layer on aluminum}
+\begin{itemize}
+    \item Aluminum forms an immediate, compact Al$_2$O$_3$ oxide layer (passivation)
+    \item Properties: hard (ceramic), corrosion-resistant, stable at pH 5-8, only a few nm thick
+    \item Thickening: chemical (chromating/chromitizing, boiling water) or electrochemical (anodizing)
+\end{itemize}
+
+\subsection{Chemical conversion coatings}
+\begin{itemize}
+    \item Remove the natural oxide by pickling/etching, then convert the surface into a thin conversion layer (oxide/chromate/chromite/phosphate)
+    \item Coating is very thin, may show microcracks
+    \item CCC (chromate, Cr VI): transparent/yellow/blue; good paint/primer adhesion; alternatives use Cr III (chromitizing) or chromous-acid systems
+    \item Phosphating: phosphoric-acid based; adhesion primer for paint; common in the food industry
+\end{itemize}
+
+\subsection{Electrochemical anodizing}
+\begin{itemize}
+    \item GS (sulfuric gas): oxide up to 30$\mu$m; mainly decodative
+    \item GSX (sulfuric + oxalic): 80-150$\mu$m; very good wear protection
+    \item CAA (chromic acid): thin. flexible, low-crack layer; very high corrosion resistance; mainly aerospace (Cr(VI) hazard)
+    \item TSA (tartaric-sulfuric): safer, more environmentally friendly
+\end{itemize}
+
+\part{Non-ferrous metals and applications}
+\section{Titanium and Titanium alloys}
+\subsection{Key properties of pure Ti}
+\begin{itemize}
+    \item $E \approx 110$ GPa (low compared to steel)
+    \item Very good corrosion resistance, very good biocompatibility
+    \item Interstitial (O, Fe) high strength but low ductility
+\end{itemize}
+
+\subsection{Crystal structure/polymorphism}
+\begin{itemize}
+    \item $\alpha$-Ti ar T$_\text{R}$; $\beta$-Ti above 882\cel
+    \item Hot-forming easier in $\beta$; cold-forming limited in $\alpha$
+    \item Service temperature limited by phase changes
+\end{itemize}
+
+\subsection{Alloy types}
+\begin{itemize}
+    \item c.p. Ti: best corrosion + weldability, lower strength
+    \item $\alpha$ alloys: solid-solution strengthened, not precip.-hardenable
+    \item $\alpha+\beta$ alloys: best all-round, heat-treatable
+    \item $\beta$ alloys: highest strength, usually lower corrosion resistance
+\end{itemize}
+
+\subsection{Application}
+\begin{itemize}
+    \item Aerospace/structures and landing-gear parts
+    \item Chemical industry: heat exchangers, pipes, pumps/valves
+    \item Medical: implants and instruments
+\end{itemize}
+
+\section{Magnesium and Magnesium alloys}
+\subsection{Key properties of pure Mg}
+\begin{itemize}
+    \item Very low density
+    \item HCP structure; very low stiffness. $E\approx 44$ GPa
+    \item Very un-noble, corrosion sensitive
+\end{itemize}
+
+\subsection{Main limitations}
+\begin{itemize}
+    \item Low strength; low fatigue/wear/creep resistance
+    \item HCP: few slip systems $\rightarrow$\ limited cold-formability
+    \item Machining risk: chips/dust can ignite
+\end{itemize}
+
+\subsection{Alloy types}
+\begin{itemize}
+    \item Mg-Al-Zn: common low-cost cast alloys
+    \item AMZ40: 4\% Al + minor Mn/Zn (die-cast parts)
+    \item Rare-earth cast alloys: improved high-T/creep performance
+\end{itemize}
+
+\subsection{Application}
+\begin{itemize}
+    \item Automotive die-cast parts: brackets, steering
+    \item Lightweight housing: laptops, cameras
+    \item Aerospace casting: very light gearbox housings
+\end{itemize}
+
+\section{Nickel and Nickel alloys}
+\subsection{Key properties of pure Ni}
+\begin{itemize}
+    \item FCC crystal structure: very ductile even at low temps
+    \item Self-passivating: very good corrosion resistance
+    \item High melting point: good high-temps capability
+    \item If precipitation-hardened: higher strength, creep resistance
+\end{itemize}
+
+\subsection{Alloy families}
+\begin{itemize}
+    \item Ni-Cu: solid-solution strengthened; very corrosion resistant
+    \item Ni-base superalloys: high-temp + oxidation/corrosion
+    \item Soft-magnetic Ni: very high permeability, magnetic losses
+    \item NiTi: superelasticity + shape-memory effect
+\end{itemize}
+
+\subsection{Applications}
+\begin{itemize}
+    \item Corrosive environment: seawater, chemical plants
+    \item High-temp parts: gas turbines, furnaces
+    \item Electrical / magnetic: coil cores, sensors
+    \item Medical: stents, orthodontic wires
+\end{itemize}
+
+\section{Copper and Copper alloys}
+\subsection{Key properties of pure Cu}
+\begin{itemize}
+    \item Very high electrical and thermal conductivity
+    \item Medium strength, high ductility
+    \item FCC: very well cold-formable (malleable/ductile)
+    \item Good atmospheric corrosion resistance
+\end{itemize}
+
+\subsection{Refining / purity}
+\begin{itemize}
+    \item Conductivity requires very high  purity
+    \item Industrial route: fire refining then electrolytic refining
+    \item Cu dissolves at anode and re-deposits at cathode
+\end{itemize}
+
+\subsection{Alloying and applications}
+\begin{itemize}
+    \item Alloying: $\uparrow$ strength but $\downarrow$ el + therm conductivity
+    \item Pure Cu: cables, wires, busbars
+    \item Low-alloy Cu: overhead contact lines, spring contacts
+    \item Brass (Cu-Zn): good formability + machinability
+    \item Bronze (Cu-Sn): springs, wear-resistant parts
+\end{itemize}
+
+\section{Zinc and Tin}
+\subsection{Key properties}
+\begin{itemize}
+    \item Zn (pure): sacrificial corrosion protection for steel; cheap, easy to cast
+    \item Sn: corrosion-resistand and food-safe
+\end{itemize}
+
+\subsection{Crystal structure / formability}
+\begin{itemize}
+    \item Zn: HCP; at TR already hot-forming, deformation
+    \item Sn: low melting point: hot-formable already near TR
+\end{itemize}
+
+\subsection{Applications}
+\begin{itemize}
+    \item Zn: galvanizing, die casting, alloying element for brass
+    \item Sn: tin plating for food and beverage, electronics solders 
+\end{itemize}
+
+\section{Refractory metals (W, Mo, Ta, Mb)}
+\subsection{Key properties}
+\begin{itemize}
+    \item Very high melting temp: high-T capability, bus expensive
+    \item Very good thermal and chemical/corrosion resistance
+    \item High stiffness; generally low thermal expansion
+\end{itemize}
+
+\subsection{Crystal structure and deformation behavior}
+\begin{itemize}
+    \item BCC lattice: brittle-ductile transition temperature
+    \item W, Mo: often brittle at TR; become ductile at higher T
+    \item Ta, Nb: already ductile at TR
+\end{itemize}
+
+\subsection{Strengthening concept}
+\begin{itemize}
+    \item Strength at high T increases mainly by SSH
+    \item Grain boundaries can limit creep/ductility at high T
+\end{itemize}
+
+\subsection{Applications}
+\begin{itemize}
+    \item W: TIG welding electrodes, high-T components
+    \item Mo: high-T parts, air-lubricated bearing components
+    \item Ta: chemical/biomedical components, Ta capacitors
+    \item Nb: high-T/corrosion-resistant components, aerospace
+\end{itemize}
+
+\section{Precious metals (Pt, Pd, Au, Ag, Ir, Rh)}
+\subsection{Key properties}
+\begin{itemize}
+    \item Very noble: high corrosion/oxidation resistance; stable in air
+    \item High value: often used as thin layers
+    \item Often excellent catalysts
+\end{itemize}
+
+\subsection{Jewelry alloys}
+\begin{itemize}
+    \item Platinum: typical fineness 950, 900, 800
+    \item Gold: common fineness 999, 750, 585, 375
+    \item Silver: sterling 925
+\end{itemize}
+
+\subsection{Applications}
+\begin{itemize}
+    \item Pt/Pd/Rh: Catalysts, chemical process
+    \item Au: conductors, contact layers, wire bonding
+    \item Rh: watch and jewelry industry
+    \item Au/Ag/Pt/Pd: finance and investment speculation
+\end{itemize}
+\vfill\phantom{}
+
+\newcolumn
+\vspace*{-.5cm}
+\part{Corrosion and corrosion prevention}
 
 
 

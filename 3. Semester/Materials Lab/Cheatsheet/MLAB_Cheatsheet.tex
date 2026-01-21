@@ -161,6 +161,27 @@
 \newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 \makeatother
 
+\makeatletter
+\newcommand{\shorteq}{\mathrel{\mkern0.2mu\mathpalette\shorteq@\relax\mkern0.2mu}}
+\newcommand{\shorteq@}[2]{\scalebox{0.5}[1]{$\m@th#1=$}}
+
+\newcommand{\longeq}[1]{\mathrel{\mathpalette\longeq@{#1}}}
+\newcommand{\longeq@}[2]{%
+  \begingroup
+  \sbox\z@{$\m@th#1=$}%
+  \ifdim#2<\wd\z@
+    \resizebox{#2}{\height}{\box\z@}%
+  \else
+    \ifdim#2<3\wd\z@
+      \hbox to #2{$\m@th#1=\hss=\hss=\hss=$}%
+    \else
+      \hbox to #2{$\m@th#1=\cleaders\hbox to 0.2\wd\z@{\hss$#1=$\hss}\hfil=$}%
+    \fi
+  \fi
+  \endgroup
+}
+\makeatother
+
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
 \newcommand{\nots}{\underline{Notation}: }
@@ -442,8 +463,8 @@ W, Mo, Ta, Nb).
 \subsection{Solid-solution hardening}
 \begin{itemize}
     \item Impurity atoms in a solid solution create lattice distortion fields that impede dislocation motion
-    \item Interstitial atoms cause stronger lattice distortions than substitutionals atoms, leading to a greared strengthening effect
-    \item A larger atomic radius mismatch and higher impurity concentration both increase the stremgthening effect
+    \item Interstitial atoms cause stronger lattice distortions than substitutionals atoms, leading to a greater strengthening effect
+    \item A larger atomic radius mismatch and higher impurity concentration both increase the strengthening effect
     \item \textbf{Result}: increased strength but reduced ductility
 \end{itemize}
 
@@ -1510,142 +1531,284 @@ Ion exchange (Na$^+ \to$\ K$^+$) creates compressive surface
 layer (display glasses). As a result, compressive stress increases
 
 \part{Polymers, Recycling, and FRP}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\section{Basics}
+\subsection{Properties and applications of polymers}
+\begin{itemize}
+    \item \textbf{Pros}: inexpensive, non-magnetic, low density, good corrosion resistance, moldability, limited high-T strength
+    \item \textbf{Appl.}: automotive and aerospace, insulators, containers.
+\end{itemize}
+
+\subsection{Classification by cross-linking}
+\begin{itemize}
+    \item Thermoplastics: no chemical cross-link $\to$\ melt/reformable
+    \item Elastomers: few cross-links $\to$\ rubber-elastic
+    \item Thermosets (duroplasts): many cross-links $\to$\ not meltable
+\end{itemize}
+
+\subsection{Structure and properties in thermoplastics}
+\subsubsection{Polymers}
+\begin{itemize}
+    \item Macromolecule made from monomers (polymerization, polycondensation, polyaddition)
+    \item Young's Modulus $E$ and strength depen on secondary bonds between macromolecular chains
+\end{itemize}
+
+\subsubsection{Monomers}
+\begin{center}
+    \includegraphics[width=\linewidth]{media/monomers.png}
+\end{center}
+
+\subsubsection{Bonding types in polymers}
+\textbf{Primary bonds}: strong atomic bond, rotatable, leads to folded, intertwined
+molecules.\\
+\textbf{Secondary bonds}:
+\vspace*{-.3cm}
+\begin{itemize}
+    \item Polarity of bonds: Van der Waals, dipoles, H-bonds
+    \item Steric obstruction for intermolecular slip
+    \item Crystallinity and orientation of the chains
+\end{itemize}
+
+\subsubsection{Polarity of the bonds}
+\begin{itemize}
+    \item Polar bonds: electrostatic attraction, higher strength and melting temperature; C---O, C---N, C$\longeq{10pt}$O (eg. PA, PI)
+    \item Non-polar: C---C, C---H (eg. PE, PP)
+\end{itemize}
+
+\subsubsection{Steric (Spatial) obstructions}
+\begin{itemize}
+    \item Higher stiffness $E$, strength and temperature resistance
+    \item Aromatic structures: strongest and stiffest steric obstacles
+\end{itemize}
+
+\subsubsection{Degree of crystallinity}
+Ordered, closer arrangment of molecules; Stronger intermolecular forces;
+Steric obstacles and olar bonds have a stronger effect.
+
+\subsubsection{Liquid crystal polymer (LCP)}
+\begin{itemize}
+    \item Polymers with preferred molecular orientation
+    \item Very high melting temp T$_m$ of crystalline phase
+    \item Applications: PET-LCP, aramid fibers
+\end{itemize}
+
+\subsubsection{Anisotropy of stretched Polypropylene}
+\begin{center}
+    \includegraphics[width=.8\linewidth]{media/polymers_anisotropy.png}
+\end{center}
+
+\subsubsection{Additives in plastic resins}
+Resin = polymer + additives.\\
+Flame retardants, plasticized, coloring agent, foaming agents. Many additives
+are a problem in recycling because are hard to remove from the matrix.
+
+\subsubsection{Molecular weight and chain architecture}
+\begin{itemize}
+    \item Higher molecular weight $\to$\ higher strength/viscosity, slower diffusion
+    \item Branching/cross-linking $\to$\ changes stiffness, creep, solvent resistance
+\end{itemize}
+
+\subsubsection{Time-temperature dependance (viscoelasticity)}
+Mechanical response depends on temperature and loading rate (creep/relaxation).
+
+\section{Thermoplastics and their applications}
+\subsection{Main groups}
+\subsubsection{Standard thermoplastics}
+\textbf{PE}: most used, very cheap; for packaging\\
+\textbf{PP}: stronger than PE; for dishwasher plastics\\
+\textbf{PVC}: for outdoor pipes, window frames\\
+\textbf{PS}: thermal insulator; for disposable party dishes
+
+\subsubsection{Engineering thermoplastics}
+\textbf{PA}: wear-/temp-resistance; for gear and worm wheels\\
+\textbf{POM}: absorbs less moisture than PA, good PA substitute\\
+\textbf{PMMA}: very transparent; for transparent panels, medtech\\
+\textbf{PC}: like PMMA, impact-resistant, shock absorbers; for helmets\\
+\textbf{PET}: for bottles; higher recycling quota\\
+\textbf{Copolymers}: ABS, ASA, SAN; for medtech
+
+\subsubsection{High-performance thermoplastics}
+\textbf{PEEK}: high strength, T-resistance, biocompatibility; medtech\\
+\textbf{PTFE}: chemically very resistant, water-repellent; GoreTex\\
+\textbf{PI}: max 400\cel; foils as flexprints in electronis\\
+\textbf{PPS}: for water boilers, hair dryers
+
+\subsection{Processing}
+\subsubsection{Injection molding}
+\begin{itemize}
+    \item Molten thermopl. injected into a closed mold under pressure
+    \item High precision, complex shapes, high production rates
+\end{itemize}
+
+\subsubsection{Extrusion}
+\begin{itemize}
+    \item Melt forced through a die to produce continuous profiles
+    \item Used for pipes, sheets, films, and profiles
+\end{itemize}
+
+\subsubsection{Blow molding}
+\begin{itemize}
+    \item Heated tube (parison) expanded by air inside a mold
+    \item Used for hollow parts (bottles, containers)
+\end{itemize}
+
+\subsubsection{Thermoforming}
+\begin{itemize}
+    \item Heated thermoplastic sgeet formed over/into a mold by vaacum or pressure
+    \item Low tooling cost; for packaging and large thin-walled parts
+\end{itemize}
+
+\newcolumn
+\section{Elastomers and their applications}
+\subsection{Types (common notation)}
+\subsubsection{R-caoutchucs (unsaturated)}
+Good elasticity, limited aging/ozone resistance.\\
+\textbf{NR} (natural rubber): tires, replaced by isoprene\\
+\textbf{Isoprene + SBR}: industrial belts, tires\\
+\textbf{BR / BUNA}: technical tires in racing\\
+\textbf{IIR}: gas tight (eg. for bycicles)\\
+\textbf{NBR}: good resistance to mineral oils; for gas station hoses\\
+\textbf{CR}: very resistant to weather and aging; for roof covering.
+
+\subsubsection{M-caoutchoucs (saturated)}
+Better aging/ozone resistance.\\
+M- doesn't have unsaturated molecules, while R- does.\\
+\textbf{EPDM}: chemically very resistant; for V-belts in motor vehicles\\
+\textbf{CM}: chemically very resistant; for hoses in engine areas\\
+\textbf{FFKM/FFPM}: best chemical resistance; for sealings
+
+\subsubsection{Q-caoutchoucs (silicones)}
+T up to 300\cel, hydrophobic surface (easy to clean), food-safe, biocompatible,
+not brittle at low T of -20\cel.\\
+Main: PDMS, MQ, MPQ, VMQ\\
+Chemically very resistant: MFQ\\
+MVFQ: resistant to very low T, aerospace applications
+
+\subsubsection{Thermoplastic elastomers (TPE)}
+\begin{itemize}
+    \item Elastomer-like at RT
+    \item Thermoplastic processable (reversible physical cross-links)
+    \item \textbf{PS}: for flexible showehead nozzles, athletic shoe soles.
+\end{itemize}
+
+\section{Thermosets (Duroplasts) and their applications}
+\subsection{Key idea}
+\begin{itemize}
+    \item Highly cross-linked network
+    \item High stiffness and heat resistance
+    \item Brittle; not remeltable (decompose)
+\end{itemize}
+
+\subsection{Applications}
+\textbf{Phenolic resins}: biliard balls, adhesives\\
+\textbf{Amino and melamine resins}: picnic dishes; dishwasher-safe\\
+\textbf{Polyester resins}: material and composite matrix in boats\\
+\textbf{Epoxy resins}: adhesives, photoresists, PBCs
+
+\section{Fiber-reinforced plastics (FRP)}
+Optimal for light-weight construction. Problematic to recycle.
+
+\subsection{Fibers}
+\subsubsection{Glass fibers (GFRP)}
+\begin{itemize}
+    \item Cheap, good strength, electrically insulating
+    \item Applications: construction panels, wind turbine blades
+\end{itemize}
+
+\subsubsection{Carbon fibers (CFRP)}
+\begin{itemize}
+    \item Very high stiffness and strength, low density
+    \item Electrically conductive, expensive
+    \item Applications: aerospace, sports equipment
+\end{itemize}
+
+\subsubsection{Aramid fibers (AFRP)}
+\begin{itemize}
+    \item Very tough, impact resistant, high tensile stress
+    \item Poor compression strength, difficult to machine
+    \item Applications: ballistic protection, ropes, cables
+\end{itemize}
+
+\subsubsection{Flax fibers}
+\begin{itemize}
+    \item Good CO$_2$ footprint
+    \item Matrix not recyclable
+    \item Applications: absorption of water/moisture
+\end{itemize}
+
+\section{Recycling and sustainability}
+\subsection{Hazardous and degradation products}
+Plasticizers, flame retardants, PFAS
+
+\subsection{Biopolymers: selected materials}
+\subsubsection{Oxo-degradable standard plastics}
+Main producers of microplastics (PE, PA, PET)
+
+\subsubsection{Polylactide (PLA)}
+Most widely used ``biodegradable'' polymer in CH.\\
+Good mechanical properties, water and oil resistant.\\
+Temperature resistance questionable. Not biodegradable in soils, even in compost
+plants. Very long degradation times.
+
+\subsubsection{Polyhydroxyalkanoate (PHA, PHB, PHBV)}
+Inferior biodegradability than PLA. Chemically and mechanically long-term resistant.
+
+\part{Metallography and Chemical analysis}
+\section{Crystallographic structure}
+\subsection{X-ray diffraction (XRD)}
+\begin{itemize}
+    \item Crystal structure and lattice plane spacing
+    \item Residual (internal) stresses
+    \item Grain orientation (texture)
+    \item Grain size; layer/film thickness
+\end{itemize}
+
+\section{Metallographic microstructure analysis}
+\subsection{Sample preparation}
+Cutting of samples; mounting in phenolic resin or epoxy; grinding and polishing;
+etching.
+
+\subsection{Metallographic light microscopy}
+\subsubsection{Images}
+\begin{itemize}
+    \item Grains and grain boundaries
+    \item Different phases
+    \item Material defects (pores, inclusions)
+\end{itemize}
+
+\subsection{Confocal laser scanning microscopy}
+\begin{itemize}
+    \item Suitable for measuring tasks for depth and roughness
+    \item Better lateral and depth resolution than while light
+    \item Good metallographic depth and reflection images 
+\end{itemize}
+
+\section{Measurement of chemical compositions}
+\subsection{X-Tay Fluorescence (XRF)}
+\begin{itemize}
+    \item Very fast method
+    \item Detects only starting from potassium (K)
+    \item Modern devices can already detect from Mg
+\end{itemize}
+
+\subsection{Optical Emission Spectrometry (OES)}
+\begin{itemize}
+    \item Between the electrically conductive sample and a counter-electrode
+    \item By collision with electrons of the plasma, the evaporated ions are excited and emit characteristic spectral lines
+    \item Light elements measured quantitatively with high accuracy
+\end{itemize}
+
+\subsection{Energy-Dispersive Spectroscopy (EDS)}
+\begin{itemize}
+    \item Often used in SEM and TEM
+    \item Reliable quantitative measurement from sodium onward
+    \item WDS/WDX: lighter elements, higher accuracy but slower
+\end{itemize}
+
+\subsection{Infrared Spectroscopy for Polymers (FTIR)}
+\begin{itemize}
+    \item Measures infrared spectrum of a plastic in reflection
+    \item The plastic absorbs part of the IR radiation and the existing bonds / chemical groups can be identified by comparison
+\end{itemize}
 
 \end{multicols*}
 

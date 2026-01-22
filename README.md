@@ -30,7 +30,7 @@ University personal notes
       <td valign="top">
         <a href="./2.%20Semester">📂 <b>View Folder</b></a><br><br>
         • <a href="./2.%20Semester/Context%202">Context 2</a><br>
-        • <a href="./2.%20Semester/Fluid%20dynamic%20engineering">EFPLab 1</a><br>
+        • <a href="./2.%20Semester/Energy%20and%20fluids%201">EFPLab 1</a><br>
         • <a href="./2.%20Semester/Electrical%20Engineering">ET+L</a><br>
         • <a href="./2.%20Semester/Marketing">Marketing</a><br>
         • <a href="./2.%20Semester/Mathematics%202A">Mathematics 2A</a><br>
@@ -39,7 +39,7 @@ University personal notes
       </td>
       <td valign="top">
         <a href="./3.%20Semester">📂 <b>View Folder</b></a><br><br>
-        • <a href="./3.%20Semester/Thermodynamics%20engineering">EFPLab 2</a><br>
+        • <a href="./3.%20Semester/Energy%20and%20fluids%202">EFPLab 2</a><br>
         • <a href="./3.%20Semester/English%20for%20Engineers">English for Eng</a><br>
         • <a href="./3.%20Semester/Materials%20Lab">Materials Lab</a><br>
         • <a href="./3.%20Semester/Mathematics%203A">Mathematics 3A</a><br>
@@ -49,7 +49,17 @@ University personal notes
         • <a href="./3.%20Semester/Tutoring%20Math1A">Tutoring Math1A</a><br>
         • <a href="./3.%20Semester/UT">UT</a>
       </td>
-      <td valign="top"><i>2026</i></td>
+      <td valign="top">
+        <a href="./4.%20Semester">📂 <b>View Folder</b></a><br><br>
+        • <a href="./4.%20Semester/Applied%20Process%20Control">APC</a><br>
+        • <a href="./4.%20Semester/Electrical%20Power%20Grid">EPG</a><br>
+        • <a href="./4.%20Semester/Env.%20Analysis%20and%20Ecology">Env + Eco</a><br>
+        • <a href="./4.%20Semester/Fluid%20dynamics">Fluid dynamics</a><br>
+        • <a href="./4.%20Semester/Linear%20Algebra">Linear Algebra</a><br>
+        • <a href="./4.%20Semester/PDP2">PDP2</a><br>
+        • <a href="./4.%20Semester/Sustainable%20Energy%20Systems">SES</a><br>
+        • <a href="./4.%20Semester/Thermodynamics">Thermodynamics</a>
+      </td>
       <td valign="top"><i>2026</i></td>
       <td valign="top"><i>2027</i></td>
     </tr>

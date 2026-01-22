@@ -21,7 +21,7 @@ University personal notes
         • <a href="./1.%20Semester/Context%201">Context 1</a><br>
         • <a href="./1.%20Semester/English%20C1">English C1</a><br>
         • <a href="./1.%20Semester/Environmental-chem-bio">EnCheBio</a><br>
-        • <a href="./1.%20Semester/Mathematics%201A">Mathematics 1A</a><br>
+        • <a href="./1.%20Semester/Mathematics%201A">Maths 1A</a><br>
         • <a href="./1.%20Semester/Maths-refresh-courses">Maths refresh</a><br>
         • <a href="./1.%20Semester/Python">Python Basics</a><br>
         • <a href="./1.%20Semester/Sys-engineering-EES">Systems eng</a><br>
@@ -33,7 +33,7 @@ University personal notes
         • <a href="./2.%20Semester/Energy%20and%20fluids%201">EFPLab 1</a><br>
         • <a href="./2.%20Semester/Electrical%20Engineering">ET+L</a><br>
         • <a href="./2.%20Semester/Marketing">Marketing</a><br>
-        • <a href="./2.%20Semester/Mathematics%202A">Mathematics 2A</a><br>
+        • <a href="./2.%20Semester/Mathematics%202A">Maths 2A</a><br>
         • <a href="./2.%20Semester/Physics%201">Physics 1</a><br>
         • <a href="./2.%20Semester/Technical%20Mechanics">Tech Mech</a>
       </td>
@@ -42,10 +42,10 @@ University personal notes
         • <a href="./3.%20Semester/Energy%20and%20fluids%202">EFPLab 2</a><br>
         • <a href="./3.%20Semester/English%20for%20Engineers">English for Eng</a><br>
         • <a href="./3.%20Semester/Materials%20Lab">Materials Lab</a><br>
-        • <a href="./3.%20Semester/Mathematics%203A">Mathematics 3A</a><br>
+        • <a href="./3.%20Semester/Mathematics%203A">Maths 3A</a><br>
         • <a href="./3.%20Semester/PDP1">PDP1</a><br>
         • <a href="./3.%20Semester/Physics%202">Physics 2</a><br>
-        • <a href="./3.%20Semester/Systems%20Modeling">Systems Modeling</a><br>
+        • <a href="./3.%20Semester/Systems%20Modeling">Sys Modeling</a><br>
         • <a href="./3.%20Semester/Tutoring%20Math1A">Tutoring Math1A</a><br>
         • <a href="./3.%20Semester/UT">UT</a>
       </td>
@@ -58,7 +58,7 @@ University personal notes
         • <a href="./4.%20Semester/Linear%20Algebra">Linear Algebra</a><br>
         • <a href="./4.%20Semester/PDP2">PDP2</a><br>
         • <a href="./4.%20Semester/Sustainable%20Energy%20Systems">SES</a><br>
-        • <a href="./4.%20Semester/Thermodynamics">Thermodynamics</a>
+        • <a href="./4.%20Semester/Thermodynamics">Thermodyn</a>
       </td>
       <td valign="top"><i>2026</i></td>
       <td valign="top"><i>2027</i></td>

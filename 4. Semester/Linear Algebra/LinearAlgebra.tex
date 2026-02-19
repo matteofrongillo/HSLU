@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage{Mathematics}
+\pdftitle{Linear Algebra}
+
+% === TITLE ===
+\title{\textbf{Linear Algebra \\ HSLU, Semester 4}}
+\author{Matteo Frongillo}
+\date{}
+
+% === TEXT ===
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Vectors}
+\subsection{Linear combination}
+A sum of scalings of vectors is called a linear combination of the vectors.
+
+Let $\vec{u}$, $\vec{v}$ be vectors, and $a$, $b$ be scalars, $a,b \in \mathbb{R}$, then:
+\figbox{$\dm a\cdot\vec{u} + b\cdot\vec{v}$}
+
+Generalizing this to a set of vectors $\vec{u}_1, \dots, \vec{u}_n$, and
+scalars $a_1, \dots, a_n$, we have:
+\figbox{$\dm \sum_{i=1}^{n} a_i \cdot \vec{u}_i$}
+
+\subsection{Cross product (vector product)}
+The cross product of two vectors $\vec{u}$ and $\vec{v}$ is a
+vector $\vec{w}$ that is perpendicular to both $\vec{u}$ and $\vec{v}$,
+and has a magnitude equal to the area of the parallelogram formed by $\vec{u}$ and $\vec{v}$.
+
+Let $\vec{u} = (x,y,z)$ and $\vec{v}=(t,s,q)$
+\figbox{$\dm \vec{u} \times \vec{v} = (yq-sz,\ -(xq-tz),\ xs-yt)$}
+
+\subsection{Unit vectors}
+Components of the unit vectors of the vector basis are as follow:
+\figbox{$\dm \vec{i} = \vec{e}_x = \begin{bmatrix}
+    1 \\ 0 \\ 0
+\end{bmatrix} \qquad \vec{j} = \vec{e}_y = \begin{bmatrix}
+    0 \\ 1 \\ 0
+\end{bmatrix} \qquad \vec{k} = \vec{e}_z = \begin{bmatrix}
+    0 \\ 0 \\ 1
+\end{bmatrix}$}
+
+with their norms being $\Vert{\vec{i}}\Vert = \Vert{\vec{j}}\Vert = \Vert{\vec{k}}\Vert = 1$
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

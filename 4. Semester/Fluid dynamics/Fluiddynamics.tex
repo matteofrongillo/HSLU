@@ -1,0 +1,267 @@
+\documentclass[9pt, landscape, a4paper]{article}
+
+\usepackage{fontspec}
+\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
+\usepackage[english]{babel}
+\babelfont{rm}{Noto Sans}
+\babelfont{sf}{Noto Sans}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{esvect}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{varwidth}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{bm}
+\usepackage{forest}
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\pgfplotsset{compat=1.18}
+\definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
+
+% ============= GEOMETRY =============
+\geometry{
+    a4paper,
+    landscape,
+    left=0.5cm,
+    right=0.5cm,
+    top=1.5cm, 
+    bottom=0.5cm,
+    footskip=0cm
+}
+
+\setlist{nosep, leftmargin=*}
+
+\AtBeginDocument{
+  \setlength{\abovedisplayskip}{3pt}
+  \setlength{\belowdisplayskip}{3pt}
+  \setlength{\abovedisplayshortskip}{0pt}
+  \setlength{\belowdisplayshortskip}{0pt}
+}
+
+% ============= HEADER & TITLES =============
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small \vspace*{.1cm}Fluid Dynamics Cheatsheet}
+\lhead{\small \vspace*{.1cm}Matteo Frongillo}
+\cfoot{\small \vspace*{.4cm}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headsep}{4pt}
+
+\titlespacing*{\part}{0pt}{6pt}{1pt}
+\titlespacing*{\section}{0pt}{6pt}{1pt}
+\titlespacing*{\subsection}{0pt}{6pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{1pt}
+
+\titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.5em}{}
+\titleformat{\section}{\bfseries\color{red!80}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{\thesubsubsection}{0.5em}{}
+
+% ============= META DATA =============
+\newcommand{\pdftitle}[1]{\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={#1},
+  pdfauthor={Matteo Frongillo}
+}}
+
+% ============= RENEW COMMANDS =============
+
+\makeatletter
+\renewcommand{\author}[1]{%
+  \def\@author{%
+    #1\\
+    \parbox{\textwidth}{%
+      \centering
+      \small Last update: \today
+    }
+  }%
+}
+\makeatother
+
+\let\emptyset\varnothing
+
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+    \begingroup
+    \pgfmathparse{rad(atan(#1))}%
+    \endgroup
+}
+\makeatother
+
+% ============= NEW COMMANDS =============
+
+\newcommand{\figbox}[1]{ 
+    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}}        
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\ExplSyntaxOn
+\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
+{
+    \IfNoValueTF{#3}{
+        \IfNoValueTF{#4}{
+            \displaystyle \int #1\,d#2
+        }{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }
+    }{
+        \IfNoValueTF{#4}{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }{
+            \displaystyle
+            \int\limits
+                \IfNoValueF{#1}{\c_math_subscript_token{#1}}
+                ^{\IfNoValueTF{#2}{}{#2}}
+                #3\, d#4
+        }
+    }
+}
+\ExplSyntaxOff
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\makeatletter
+\newcommand{\shorteq}{\mathrel{\mkern0.2mu\mathpalette\shorteq@\relax\mkern0.2mu}}
+\newcommand{\shorteq@}[2]{\scalebox{0.5}[1]{$\m@th#1=$}}
+
+\newcommand{\longeq}[1]{\mathrel{\mathpalette\longeq@{#1}}}
+\newcommand{\longeq@}[2]{%
+  \begingroup
+  \sbox\z@{$\m@th#1=$}%
+  \ifdim#2<\wd\z@
+    \resizebox{#2}{\height}{\box\z@}%
+  \else
+    \ifdim#2<3\wd\z@
+      \hbox to #2{$\m@th#1=\hss=\hss=\hss=$}%
+    \else
+      \hbox to #2{$\m@th#1=\cleaders\hbox to 0.2\wd\z@{\hss$#1=$\hss}\hfil=$}%
+    \fi
+  \fi
+  \endgroup
+}
+\makeatother
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\note}{\underline{Note}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
+\newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
+\newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
+\newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\cel}{$^\circ$C}
+
+% ============= DOCUMENT CONTENT =============
+
+\begin{document}
+\pdftitle{Fluid dynamics}
+\vspace*{-.5cm}
+\setlength{\columnsep}{0.5cm}
+
+\begin{multicols*}{3}
+\vspace*{-.5cm}
+\part{Viscous flow}
+\section{Flows with friction}
+\begin{center}
+  \includegraphics[width=\linewidth]{media/smallgap.png}
+\end{center}
+
+\begin{minipage}{0.5\linewidth}
+  \begin{gather*}
+    F = \eta\dfrac{v_0\cdot A}{h_0}\\
+    \tau = \dfrac{F}{A} = \eta\dfrac{v_0}{h_0} = \eta\der{v}{n}
+  \end{gather*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\linewidth}
+where:
+  \begin{itemize}
+    \item $\eta$ = dynamic viscosity [Pa$\cdot$s]
+    \item $\tau$ = shear stress [Pa]
+    \item $\mathrm{d}n$ = normal distance [m]
+  \end{itemize}
+\end{minipage}
+
+\section{Viscosity}
+\subsection{Newtonian fluids}
+\begin{itemize}
+  \item Rate of deformation $\mathrm{d}u / \mathrm{d}y$ (velocity gradient) is linearly proportional to the shear stress $\tau$
+  \item The constant of proportionality is the viscosity (slope)
+  \item $\dm \mu = \frac{\tau}{\mathrm{d}u / \mathrm{d}y}$
+\end{itemize}
+
+\subsection{Non-Newtonian fluids}
+Non-linear relation between shear stress and deformation rate.
+
+\subsubsection{Dilatant (shear thickening) fluids}
+Viscosity increases with increasing strain rate.
+
+\subsubsection{Plastic or pseudo-plastic (shear thinning) fluids}
+Viscosity decreases with increasing strain rate.
+
+\subsubsection{Bingham medium}
+Flow occurs only after a yield stress $\tau_0$ is reached.
+
+\subsection{Graphical representation}
+\begin{center}
+  \includegraphics[width=.8\linewidth]{media/viscosity.png}
+\end{center}
+
+\newcolumn
+\subsection{Reynolds Number}
+\begin{gather*}
+    \mathrm{Re} = \dfrac{\rho v L}{\eta} = \dfrac{v L}{\nu}\\
+    \nu = \dfrac{\eta}{\rho}
+\end{gather*}
+
+\end{multicols*}
+
+\end{document}

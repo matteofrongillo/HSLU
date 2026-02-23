@@ -274,17 +274,17 @@ Procedure:
   \dot{Q} = -\lambda A \der{T}{r} = -\lambda 2\pi r l \der{T}{r}\\
 \end{gather*}
 \vspace*{-.9cm}
-\figbox{$\dot{Q} = 2\pi l \cdot \dfrac{T_0 - T_1}{\dfrac{1}{\lambda} \ln\dfrac{r_1}{r_0}}$}
+\figbox{$\dot{Q} = 2\pi l \cdot \dfrac{T_0 - T_1}{\dfrac{1}{\lambda} \ln\dfrac{r_1}{r_0}} = 2\pi r_0 l k \Delta T$}
 
 With multilayered walls:
 \begin{gather*}
-  \dot{Q} = 2\pi l \cdot \dfrac{T_0 - T_1}{\dm \sum_{i=1}^n \dfrac{1}{\lambda_i} \ln\dfrac{r_i}{r_{i-1}}}
+  \dot{Q} = 2\pi l \cdot \dfrac{T_0 - T_n}{\dm \sum_{i=1}^n \dfrac{1}{\lambda_i} \ln\dfrac{r_i}{r_{i-1}}} = \boxed{2\pi r_0 l k_0 (T_0 - T_n)}
 \end{gather*}
 
 \subsection{Thermal conductivity $k$}
 \begin{gather*}
-  k_0 = \dfrac{1}{r_0 \left(\frac{1}{\lambda_1} \ln\frac{r_1}{r_0}\right) + r_1 \left(\frac{1}{\lambda_2} \ln\frac{r_2}{r_1}\right) + \dots + r_{n-1} \left(\frac{1}{\lambda_n} \ln\frac{r_n}{r_{n-1}}\right)}\\[.3cm]
-  k_0 = \dfrac{1}{\dm \sum_n \left(r_{n}\left(\frac{1}{\lambda_n}\ln\frac{r_{n}}{r_{n-1}}\right)\right)}
+  k_0 = \dfrac{1}{r_0\left(\left(\frac{1}{\lambda_1} \ln\frac{r_1}{r_0}\right) + \left(\frac{1}{\lambda_2} \ln\frac{r_2}{r_1}\right) + \dots + \left(\frac{1}{\lambda_n} \ln\frac{r_n}{r_{n-1}}\right)\right)}\\[.3cm]
+  k_0^{-1} = \dm r_0\sum_n \left(\frac{1}{\lambda_n}\ln\frac{r_{n}}{r_{n-1}}\right)
 \end{gather*}
 
 \subsection{Thin-walled pipe approximated as a flat wall}

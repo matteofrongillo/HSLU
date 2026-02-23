@@ -115,7 +115,9 @@
 % ============= NEW COMMANDS =============
 
 \newcommand{\figbox}[1]{ 
-    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}}        
+    \begin{center}
+      \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}} 
+    \end{center}       
 }
 
 \newcommand{\wrapfill}{
@@ -216,9 +218,9 @@
     $\lambda$ , $k$ & Thermal conductivity & $\mathrm{W/(m\cdot K)}$ \\
     $\dot{q}$ & Heat flux & $\mathrm{W/m^2}$ \\
     $\dot{Q}$ & Heat flow & $\mathrm{W}$ \\
-    $a$ & Thermal diffusivity & $\mathrm{m^2/s}$ \\
     $\alpha$ & Heat transfer coefficient & $\mathrm{W/(m^2\cdot K)}$ \\
-
+    $a$ & Thermal diffusivity & $\mathrm{m^2/s}$ \\
+    $\nu$ & Kinematic viscosity & $\mathrm{m^2/s}$
   \end{tabular}
 \end{center}
 
@@ -240,15 +242,25 @@ Occurs with all materials when there is a temperature gradient.
 This occurs in moved fluids.
 
 \textbf{Newton's approach}:
-\[\dot{q} = \alpha\left(T_1 - T_2\right)\]
+\begin{gather*}
+  \dot{q} = \alpha\left(T_1 - T_2\right) = \dfrac{\lambda_\text{fluid}}{\delta_\text{th}}\left(T_1 - T_2\right)
+\end{gather*}
 
 \subsection{Radiation}
 Bodies with a temperature above 0 K emit thermal radiation.
 
 \section{Heat conduction and conductivity}
-\subsection{Heat flux and Heat flow}
+\subsection{Heat flux}
 \begin{gather*}
-  \dot{q} = -\lambda\der{T}{x} = k\Delta T = \dfrac{\lambda}{\delta}\Delta T \quad | \quad
+  \dot{q} = -\lambda\der{T}{x} = k\Delta T = \dfrac{\lambda}{\delta}\Delta T
+\end{gather*}
+Procedure:
+\begin{gather*}
+  \vec{\dot{q}} \integral[0][\delta][][x] = -\lambda \integral[T_1][T_2][][T] \Longrightarrow \dot{q} = \dfrac{\lambda}{\delta}\left(T_1 - T_2\right) 
+\end{gather*}
+
+\subsection{Heat flow}
+\begin{gather*}
   \dot{Q} = \dfrac{\Delta Q}{\Delta t} = \dot{q}A = kA\Delta T = \dfrac{\lambda}{\delta}A\Delta T
 \end{gather*}
 
@@ -256,6 +268,90 @@ Bodies with a temperature above 0 K emit thermal radiation.
 \begin{gather*}
   k^{-1}_\text{tot} = \sum_{i=1}^n \dfrac{\delta_i}{\lambda_i}\ \Longrightarrow\ k_\text{tot} = \dfrac{1}{k^{-1}_\text{tot}}
 \end{gather*}
+
+\section{Heat conductivity through a hollow cylinder}
+\begin{gather*}
+  \dot{Q} = -\lambda A \der{T}{r} = -\lambda 2\pi r l \der{T}{r}\\
+\end{gather*}
+\vspace*{-.9cm}
+\figbox{$\dot{Q} = 2\pi l \cdot \dfrac{T_0 - T_1}{\dfrac{1}{\lambda} \ln\dfrac{r_1}{r_0}}$}
+
+With multilayered walls:
+\begin{gather*}
+  \dot{Q} = 2\pi l \cdot \dfrac{T_0 - T_1}{\dm \sum_{i=1}^n \dfrac{1}{\lambda_i} \ln\dfrac{r_i}{r_{i-1}}}
+\end{gather*}
+
+\subsection{Thermal conductivity $k$}
+\begin{gather*}
+  k_0 = \dfrac{1}{r_0 \left(\frac{1}{\lambda_1} \ln\frac{r_1}{r_0}\right) + r_1 \left(\frac{1}{\lambda_2} \ln\frac{r_2}{r_1}\right) + \dots + r_{n-1} \left(\frac{1}{\lambda_n} \ln\frac{r_n}{r_{n-1}}\right)}\\[.3cm]
+  k_0 = \dfrac{1}{\dm \sum_n \left(r_{n}\left(\frac{1}{\lambda_n}\ln\frac{r_{n}}{r_{n-1}}\right)\right)}
+\end{gather*}
+
+\subsection{Thin-walled pipe approximated as a flat wall}
+\begin{gather*}
+  \dot{Q}_T = \lambda A \dfrac{T_0 - T_1}{\delta}\quad ; \quad A = 2\pi l \left(r_0 + \frac{\delta}{2}\right)\\
+  \dfrac{\dot{Q}_T}{\dot{Q}_W} = \dfrac{\delta}{\left(r_0 + \frac{\delta}{2}\right)\ln\left(1+\frac{\delta}{r_0}\right)} = \dfrac{\delta}{r_0} \dfrac{1}{\left(1+\frac{\delta}{2r_0}\right) \ln\left(1+\frac{\delta}{r_0}\right)}
+\end{gather*}
+
+\section{Convective heat transfer}
+\subsection{Reynold's number}
+It compares inertial to viscous forces.
+
+\begin{minipage}{0.5\linewidth}
+  \centering
+  \figbox{$Re = \rho\, c\, \dfrac{L_\text{char}}{\eta} = c\, \dfrac{L_\text{char}}{\nu}$}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+  $Re < 2300$: Laminar flow;\\
+  $Re \simeq 2300$: Transition zone;\\
+  $Re > 2300$: Turbulent flow
+\end{minipage}
+
+\subsection{Prandtl number}
+It compares momemtum diffusivity to thermal diffusivity.\\
+Sets velocity's relative thickness and thermal boundary layers.
+\begin{gather*}
+  Pr = \dfrac{\nu}{a} = \dfrac{\delta_\text{fluid}}{\delta_\text{th}} = \dfrac{\eta c_p}{\lambda}\quad ; \quad a = \dfrac{\lambda}{\rho c_p} \quad ; \quad \nu = \dfrac{\eta}{\rho}
+\end{gather*}
+
+\subsection{Nusselt number}
+Measures convective heat transfer relative to pure conduction across a boundary layer
+and the heat transfer coefficient $\alpha$.
+\begin{gather*}
+  Nu = \dfrac{\alpha\cdot L_\text{char}}{\lambda_\text{fl}} = \dot{q}\dfrac{L_\text{char}}{\lambda\Delta T_\text{char}}\\[.2cm]
+  \alpha = \dfrac{Nu\cdot \lambda}{L_\text{char}}
+\end{gather*}
+
+\subsubsection{Forced convection}
+\figbox{$Nu = c\cdot Re^m \cdot Pr^n$}
+
+For laminar flow over a flat plate:
+\[Nu = 0.664 \cdot \sqrt{Re} \cdot \sqrt[3]{Pr}\]
+
+For a flow in the transition zone (Tz):
+\[Nu_\text{ Tz} = \sqrt{Nu_{\text{ lam}}^2 + Nu_{\text{ turb}}^2}\]
+
+\subsection{Grashof number}
+It compares buoyancy to viscous forces.
+\begin{gather*}
+  Gr = g\beta\Delta T \dfrac{L^3}{\nu^2}\\
+  \beta\Delta T = \dfrac{\rho_\infty - \rho_0}{\rho_\infty} = \dfrac{\Delta\rho}{\rho_\infty}\\
+  Gr = g\dfrac{\rho_\infty - \rho_0}{\rho_\infty} \dfrac{L^3}{\nu^2}
+\end{gather*}
+
+\subsubsection{Natural convection}
+\textbf{Peclet number}\\
+It compares advective to diffusive heat transport, i.e., the strength of convection relative to thermal diffusion.
+\[Pe = Re Pr\]
+
+\textbf{Rayleigh number}\\
+It combines buoyancy driving and thermal diffusion, and it measures the intensity of natural convection.
+\[Ra = Gr Pr\]
+
+
+
+
+
 
 
 

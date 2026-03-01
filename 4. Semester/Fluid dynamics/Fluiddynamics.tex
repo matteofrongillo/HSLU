@@ -33,9 +33,9 @@
 \usepackage{bm}
 \usepackage{forest}
 
-\usetikzlibrary{arrows}
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows, arrows.meta}
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
 \pgfplotsset{compat=1.18}
 \definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
 
@@ -209,37 +209,47 @@
 \begin{multicols*}{3}
 \vspace*{-.5cm}
 \part{Viscous flow}
+\section*{Symbology}
+\begin{center}
+  \scriptsize
+  \begin{tabular}{clc|clc}
+    Symbol & \makecell{Name} & Units & Symbol & Name & Units \\
+    $\nu$ & Kinematic viscosity & m$^2$/s & $\eta$ & Dynamic viscosity & Pa$\cdot$s \\
+    $\tau$ & Shear stress & Pa & $\mathrm{d}n$ & Normal distance & m \\
+    $\mathrm{d}u / \mathrm{d}y$ & Rate of strain & [-] & $e_{\, \text{Diss}}$ & \makecell[l]{Specific dissip.\\power} & W/m$^3$\\
+  \end{tabular}
+\end{center}
+
 \section{Flows with friction}
 \begin{center}
   \includegraphics[width=\linewidth]{media/smallgap.png}
+  \begin{gather*}
+  F = \eta\dfrac{v_0\cdot A}{h_0}\\
+  \tau = \dfrac{F}{A} = \eta\dfrac{v_0}{h_0} = \eta\der{v}{n}
+  \end{gather*}
 \end{center}
 
-\begin{minipage}{0.5\linewidth}
-  \begin{gather*}
-    F = \eta\dfrac{v_0\cdot A}{h_0}\\
-    \tau = \dfrac{F}{A} = \eta\dfrac{v_0}{h_0} = \eta\der{v}{n}
-  \end{gather*}
-\end{minipage}
-\hfill
-\begin{minipage}{0.5\linewidth}
-where:
-  \begin{itemize}
-    \item $\eta$ = dynamic viscosity [Pa$\cdot$s]
-    \item $\tau$ = shear stress [Pa]
-    \item $\mathrm{d}n$ = normal distance [m]
-  \end{itemize}
-\end{minipage}
-
 \section{Viscosity}
+If $\eta = 0$, the fluid is called inviscid.\\[2pt]
+No slip condition: velocity of a particle closest to the wall has
+velocity equal to the wall velocity.
+
+\subsection{Reynolds Number}
+\begin{gather*}
+    Re = \dfrac{\rho v L}{\eta} = \dfrac{v L}{\nu}\quad ; \quad \nu = \dfrac{\eta}{\rho}
+\end{gather*}
+
 \subsection{Newtonian fluids}
 \begin{itemize}
   \item Rate of deformation $\mathrm{d}u / \mathrm{d}y$ (velocity gradient) is linearly proportional to the shear stress $\tau$
   \item The constant of proportionality is the viscosity (slope)
-  \item $\dm \mu = \frac{\tau}{\mathrm{d}u / \mathrm{d}y}$
+  \item $\dm \eta = \frac{\tau}{\mathrm{d}u / \mathrm{d}y} =$ constant
 \end{itemize}
 
 \subsection{Non-Newtonian fluids}
-Non-linear relation between shear stress and deformation rate.
+Non-linear relation between shear stress and deformation rate due
+to non-constant viscosity.
+\[\tau = \eta\left(\frac{\partial u}{\partial y}\right) \cdot \frac{\partial u}{\partial y}\]
 
 \subsubsection{Dilatant (shear thickening) fluids}
 Viscosity increases with increasing strain rate.
@@ -252,15 +262,108 @@ Flow occurs only after a yield stress $\tau_0$ is reached.
 
 \subsection{Graphical representation}
 \begin{center}
-  \includegraphics[width=.8\linewidth]{media/viscosity.png}
+  \includegraphics[width=.7\linewidth]{media/viscosity.png}
 \end{center}
 
-\newcolumn
-\subsection{Reynolds Number}
+\section{Flows in gaps and bearings}
+\subsection{Power}
 \begin{gather*}
-    \mathrm{Re} = \dfrac{\rho v L}{\eta} = \dfrac{v L}{\nu}\\
-    \nu = \dfrac{\eta}{\rho}
+  P = \tau A v = \eta \frac{\partial v}{\partial n} A v \quad ; \quad \mathrm{d}P = \mathrm{d}F\mathrm{d}v
 \end{gather*}
+
+\subsubsection{Specific dissipation power}
+Acting shear stress on infinitesimal small volume:
+\begin{gather*}
+  dF_\tau = d\tau dA = \eta \frac{dv}{dy} dxdz\\
+  e_{\, \text{Diss}} = \frac{dP_\tau}{dV} = \frac{\eta\frac{dv}{dy}dxdzdv}{dxdydz} = \eta\left(\frac{dv}{dy}\right)^2 = \eta\left(\frac{\partial v}{\partial y}\right)^2\\
+  P_{\, \text{Diss}} = \int_V \!\!e_{\, \text{Diss}}\ dV = \iiint_V \!\!e_{\, \text{Diss}}\ dxdydz
+\end{gather*}
+
+\section{Flow profiles}
+\subsection{Constant linear flow profiles}
+\begin{minipage}{0.5\linewidth}
+  \begin{gather*}
+    \frac{\partial u(y)}{\partial y} = \frac{v_p}{s}\\
+    e_{\, \text{Diss}} = \eta\left(\frac{\partial u(y)}{\partial y}\right)^2 = \eta\left(\frac{v_p}{s}\right)^2\\
+    P_{\, \text{Diss}} = \int_V e_{\, \text{Diss}}(y)\ dV
+  \end{gather*}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+  \begin{center}
+    \begin{tikzpicture}[scale=.5][ht!]
+      % Parameters
+      \def\H{3}       % Distance between plates
+      \def\W{5}       % Width of plates
+      \def\xBase{1.5} % Base x-coordinate for the velocity profile
+      \def\vMax{2.5}  % Maximum velocity vector length
+  
+      % Bottom stationary plate
+      \fill[pattern=north east lines] (0,-0.4) rectangle (\W,0);
+      \draw[thick] (0,0) -- (\W,0);
+  
+      % Top moving plate
+      \fill[pattern=north east lines] (0,\H) rectangle (\W,\H+0.4);
+      \draw[thick] (0,\H) -- (\W,\H);
+  
+      % Velocity profile envelope (triangle)
+      \draw[red, thick] (\xBase,0) -- (\xBase,\H) -- (\xBase+\vMax,\H) -- cycle;
+  
+      % Velocity vectors
+      \foreach \y in {0.6, 1.2, 1.8, 2.4, 3.0} {
+          \pgfmathsetmacro{\xEnd}{\xBase + \y*(\vMax/\H)}
+          \draw[-{latex[length=2.5mm]}, red, thick] (\xBase,\y) -- (\xEnd,\y);
+      }
+    \end{tikzpicture}
+  \end{center}
+\end{minipage}
+
+\newcolumn
+\subsection{Parabolic flow profiles}
+\begin{minipage}{0.5\linewidth}
+  \begin{align*}
+    &\frac{\partial u(y)}{\partial y} = \frac{4 v_{\text{max}}}{s} \left(1 - \frac{2y}{s}\right) \\
+    &v(r) = ar^2 + br + c \\
+    &e_{\, \text{Diss}} = \eta \frac{16 v_{\text{max}}^2}{s^2} \left(1 - \frac{2y}{s}\right)^2 \\
+    &P_{\, \text{Diss}} = \frac{16 \eta A v_{\text{max}}^2}{3s}
+  \end{align*}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+  \begin{center}
+    \begin{tikzpicture}[scale=.5]
+      % Parameters
+      \def\H{3}       % Distance between plates
+      \def\W{5}       % Width of plates
+      \def\xBase{1.5} % Base x-coordinate for the velocity profile
+      \def\vMax{2.5}  % Maximum velocity vector length
+
+      % Bottom stationary plate
+      \fill[pattern=north east lines] (0,-0.4) rectangle (\W,0);
+      \draw[thick] (0,0) -- (\W,0);
+
+      % Top stationary plate
+      \fill[pattern=north east lines] (0,\H) rectangle (\W,\H+0.4);
+      \draw[thick] (0,\H) -- (\W,\H);
+
+      % Velocity profile envelope (parabola)
+      \draw[red, thick] (\xBase,0) -- (\xBase,\H);
+      \draw[red, thick, domain=0:\H, samples=50] plot ({\xBase + 4*\vMax*(\x/\H)*(1-\x/\H)}, \x);
+
+      % Velocity vectors
+      \foreach \y in {0.5, 1.0, 1.5, 2.0, 2.5} {
+          \pgfmathsetmacro{\v}{4*\vMax*(\y/\H)*(1-\y/\H)}
+          \pgfmathsetmacro{\xEnd}{\xBase + \v}
+          \draw[-{latex[length=2.5mm]}, red, thick] (\xBase,\y) -- (\xEnd,\y);
+      }
+    \end{tikzpicture}
+  \end{center}
+\end{minipage}
+
+\section{Laminar pipe flow}
+\subsection{$p_1 > p_2$}
+\begin{gather*}
+  \frac{\partial p}{\partial z} = \frac{p_2 - p_1}{L}
+\end{gather*}
+
 
 \end{multicols*}
 

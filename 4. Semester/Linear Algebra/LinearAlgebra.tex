@@ -46,9 +46,101 @@ Components of the unit vectors of the vector basis are as follow:
 
 with their norms being $\Vert{\vec{i}}\Vert = \Vert{\vec{j}}\Vert = \Vert{\vec{k}}\Vert = 1$
 
+\section{Gaussian elimination}
+We want to archieve a stair of zeros on the bottom left of the matrix:
+\begin{gather*}
+    \begin{bmatrix}
+        \begin{array}{ccc|c}
+        * & * & * & * \\
+        0 & * & * & * \\
+        0 & 0 & * & *
+        \end{array}
+    \end{bmatrix}
+\end{gather*}
 
+where $*$ is a non-zero number.
 
+This also applies to higher dimensions, for example:
+\begin{gather*}
+    \begin{bmatrix}
+        \begin{array}{ccccccc|c}
+            * & * & * & * & * & * & * & * \\
+            0 & * & * & * & * & * & * & * \\
+            0 & 0 & * & * & * & * & * & * \\
+            0 & 0 & 0 & * & * & * & * & * \\
+            0 & 0 & 0 & 0 & * & * & * & * \\
+            0 & 0 & 0 & 0 & 0 & * & * & * \\
+            0 & 0 & 0 & 0 & 0 & 0 & * & * 
+        \end{array}
+    \end{bmatrix}
+\end{gather*}
 
+\subsection{Solution cases}
+\subsubsection{1 possible solution}
+\begin{minipage}[t]{0.5\textwidth}
+    \begin{gather*}
+        \begin{bmatrix}
+            \begin{array}{ccc|c}
+            * & * & * & * \\
+            0 & * & * & * \\
+            0 & 0 & * & *
+            \end{array}
+        \end{bmatrix}
+    \end{gather*}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \begin{gather*}
+        \begin{cases}
+            x = * \\
+            y = * \\
+            z = * 
+        \end{cases}
+    \end{gather*}
+\end{minipage}
+
+\subsubsection{Infinitely many solutions}
+\begin{minipage}[t]{0.5\textwidth}
+    \begin{gather*}
+        \begin{bmatrix}
+            \begin{array}{ccc|c}
+            * & * & * & * \\
+            0 & * & * & * \\
+            0 & 0 & 0 & 0
+            \end{array}
+        \end{bmatrix}
+    \end{gather*}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \begin{gather*}
+        \begin{cases}
+            x = * \\
+            y = * \\
+            z = t \in \mathbb{R}
+        \end{cases}
+    \end{gather*}
+\end{minipage}
+
+\subsubsection{No solution}
+\begin{minipage}[t]{0.5\textwidth}
+    \begin{gather*}
+        \begin{bmatrix}
+            \begin{array}{ccc|c}
+            * & * & * & * \\
+            0 & * & * & * \\
+            0 & 0 & 0 & *
+            \end{array}
+        \end{bmatrix}
+    \end{gather*}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \begin{gather*}
+        \begin{cases}
+            x = * \\
+            y = * \\
+            0 = * \rightarrow z \in \emptyset
+        \end{cases}
+    \end{gather*}
+\end{minipage}
 
 
 

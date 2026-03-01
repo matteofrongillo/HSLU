@@ -1,0 +1,398 @@
+\documentclass[11pt, a4paper]{article}
+
+% ==========================================
+% PACKAGES & CONFIGURATION
+% ==========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% Page Layout
+\usepackage[margin=2.54cm, headheight=15pt]{geometry}
+
+% Typography & Formatting
+\usepackage{lmodern} % Better font
+\usepackage{setspace}
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.8em}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{float}    % For [H] placement
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Tables & Lists
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem} % Better list control
+\usepackage{makecell} 
+\usepackage{amssymb}
+
+% Colors & Styling
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% Headers and Footers
+\usepackage{fancyhdr}
+
+% Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=magenta,      
+    urlcolor=primary,
+    pdftitle={Technical Assembly Manual},
+    pdfauthor={Your Team Name},
+}
+
+% ==========================================
+% COLOR DEFINITIONS
+% ==========================================
+\definecolor{primary}{RGB}{35, 80, 130}       % Corporate Blue
+\definecolor{secondary}{RGB}{120, 120, 120}   % Gray
+\definecolor{warningred}{RGB}{200, 40, 40}    % Warning Red
+\definecolor{notegreen}{RGB}{40, 140, 60}     % Note Green
+\definecolor{tipblue}{RGB}{40, 150, 200}      % Tip Blue
+
+% ==========================================
+% CUSTOM ENVIRONMENTS
+% ==========================================
+
+% Warning Box (e.g. for safety critical steps)
+\newtcolorbox{warningbox}[1][]{
+  enhanced, breakable,
+  colback=warningred!5!white,
+  colframe=warningred!90!black,
+  title=\textbf{\Large \textsf{\textbf{!}}\ \normalsize Warning: #1},
+  arc=3mm, left=2mm, right=2mm, top=1mm, bottom=1mm,
+  boxrule=1.5pt, drop fuzzy shadow
+}
+
+% Note Box (e.g. for important, but not safety critical tips)
+\newtcolorbox{notebox}[1][]{
+  enhanced, breakable,
+  colback=notegreen!5!white,
+  colframe=notegreen!90!black,
+  title=\textbf{\Large \textsf{\textbf{i}}\ \normalsize Note: #1},
+  arc=3mm, left=2mm, right=2mm, top=1mm, bottom=1mm,
+  boxrule=1.2pt
+}
+
+% Tip Box (e.g. best practices, assembly tricks)
+\newtcolorbox{tipbox}[1][]{
+  enhanced, breakable,
+  colback=tipblue!5!white,
+  colframe=tipblue!90!black,
+  title=\textbf{\Large \textsf{\textbf{+}}\ \normalsize Pro Tip: #1},
+  arc=3mm, left=2mm, right=2mm, top=1mm, bottom=1mm,
+  boxrule=1.2pt
+}
+
+% Custom Counter for Assembly Steps
+\newcounter{stepcounter}
+\setcounter{stepcounter}{0}
+
+% Assembly Step Environment
+\newenvironment{assemblystep}[1]{
+  \refstepcounter{stepcounter}
+  \vspace{1.5em}
+  {\noindent\color{primary}\rule{\textwidth}{1.5pt}}
+  \vspace{0.3em} \\
+  {\noindent\Large\textbf{\color{primary}Step \thestepcounter: #1}} \\
+  \vspace{-0.5em}
+}{
+  \vspace{1em}
+}
+
+% ==========================================
+% HEADER & FOOTER SETUP
+% ==========================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{secondary}{\small \textbf{Project Name} | Assembly Instructions}}
+\fancyhead[R]{\color{secondary}{\small Version 1.0}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{secondary}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{secondary}\leaders\hrule height \footrulewidth\hfill}}
+
+% ==========================================
+% DOCUMENT BEGIN
+% ==========================================
+\begin{document}
+
+% --- TITLE PAGE ---
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    % Logo (uncomment and replace with your logo path)
+    {\color{gray}\rule{5cm}{5cm}} % Placeholder image
+    % \includegraphics[width=0.4\textwidth]{images/logo.png} 
+    
+    \vspace{2.5cm}
+    
+    {\Huge \textbf{Assembly Instructions \& \vspace{0.3cm} \\ Technical Manual}}\\[1.5cm]
+    
+    {\huge \color{primary} \textbf{Model XY-2000 Robotic Arm}}\\[2cm] % Project Name
+    
+    \vfill
+    
+    \begin{tabular}{ll}
+        \textbf{Document Version:} & 1.0.0 \\
+        \textbf{Date:} & \today \\
+        \textbf{Prepared By:} & Engineering Team Alpha \\
+        \textbf{Document ID:} & DOC-MAN-001 \\
+    \end{tabular}
+    
+    \vspace{2cm}
+\end{titlepage}
+
+\newpage
+
+% --- TABLE OF CONTENTS ---
+\tableofcontents
+\newpage
+
+% --- SECTION 1: INTRODUCTION ---
+\section{Introduction}
+Welcome to the official assembly manual for the \textbf{Model XY-2000}. This guide provides a comprehensive, step-by-step approach to building the model safely and accurately. 
+
+Please ensure you read through all instructions, warnings, and notes completely before beginning the assembly process to familiarize yourself with the build sequence.
+
+\begin{warningbox}[Safety First]
+Always wear appropriate personal protective equipment (PPE) such as safety goggles when clipping zip ties or handling sharp components. Ensure that the power supply is unplugged before wiring the electronics.
+\end{warningbox}
+
+% --- SECTION 2: REQUIRED TOOLS & EQUIPMENT ---
+\section{Required Tools \& Equipment}
+To complete the assembly, the following tools are required. Ensure your tools are in good working condition to avoid damaging hardware (such as stripping screw heads).
+
+\begin{itemize}[label={\color{primary}\textbullet}]
+    \item \textbf{Basic Hand Tools:}
+    \begin{itemize}
+        \item Metric Hex Keys / Allen Wrenches (1.5mm, 2.0mm, 2.5mm, 3.0mm, 4.0mm)
+        \item Phillips Head Screwdriver (\#1, \#2)
+        \item Small Flathead Screwdriver (for terminal blocks)
+        \item Needle-nose Pliers
+        \item Flush Cutters (for zip ties)
+    \end{itemize}
+    \item \textbf{Measurement \& Testing:}
+    \begin{itemize}
+        \item Digital Calipers
+        \item Digital Multimeter
+    \end{itemize}
+    \item \textbf{Consumables:}
+    \begin{itemize}
+        \item Medium Strength Threadlocker (e.g., Loctite 243 Blue)
+        \item Lithium Grease or PTFE Lubricant
+        \item Zip-ties
+    \end{itemize}
+\end{itemize}
+
+% --- SECTION 3: BILL OF MATERIALS ---
+\newpage
+\section{Bill of Materials (BOM)}
+Before starting, take inventory of all parts to ensure you have everything required. Open bags sequentially as prompted by the manual to prevent losing small components.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabularx}{\textwidth}{@{}llXlc@{}}
+        \toprule
+        \textbf{Item \#} & \textbf{Part Number} & \textbf{Description} & \textbf{Qty} & \textbf{CheckOut} \\
+        \midrule
+        \rowcolor{gray!10} \multicolumn{5}{l}{\textbf{Structural Components}} \\
+        1 & B-101 & Aluminum Base Plate (200x200x5mm) & 1 & $\square$ \\
+        2 & L-204 & Carbon Fiber Link Arm (150mm length) & 2 & $\square$ \\
+        
+        \rowcolor{gray!10} \multicolumn{5}{l}{\textbf{Motion \& Actuators}} \\
+        3 & M-400 & Stepper Motor NEMA 17 (1.5A, 40Ncm) & 4 & $\square$ \\
+        4 & B-020 & Radial Ball Bearing (624ZZ, 4x13x5mm)& 6 & $\square$ \\
+        
+        \rowcolor{gray!10} \multicolumn{5}{l}{\textbf{Fasteners (M3 Series)}} \\
+        5 & S-010 & M3x10 Socket Head Cap Screw & 45 & $\square$ \\
+        6 & S-016 & M3x16 Socket Head Cap Screw & 12 & $\square$ \\
+        7 & N-030 & M3 Nylon Lock Nut & 20 & $\square$ \\
+        8 & W-020 & M3 Flat Washer & 60 & $\square$ \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Pre-Assembly Inventory Checklist}
+\end{table}
+
+\begin{tipbox}[Hardware Handling]
+Fasteners are typically supplied with 5\% extra quantities. Don't worry if you have a few loose screws left over at the end of the build.
+\end{tipbox}
+
+% --- SECTION 4: ASSEMBLY PROCEDURE ---
+\newpage
+\section{Assembly Procedure}
+
+\begin{notebox}[Workspace Preparation]
+Clear a clean, well-lit, and flat surface. Lay out all parts grouped by their assembly stages to optimize your workflow. Use a magnetic tray for small fasteners.
+\end{notebox}
+
+% --- STEP 1 ---
+\begin{assemblystep}{Base Plate Preparation}
+
+\textbf{Parts Needed in this step:}
+\begin{itemize}[noitemsep, label=-]
+    \item 1x Aluminum Base Plate (B-101)
+    \item 4x M3x10 Screws (S-010)
+    \item 4x M3 Washers (W-020)
+\end{itemize}
+
+\vspace{1em}
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+    \textbf{Instructions:}
+    \begin{enumerate}[label=\arabic*., leftmargin=*]
+        \item Orient the Aluminum Base Plate (B-101) so that the countersunk holes are facing upwards.
+        \item Clean any manufacturing residue or oils from the plate using isopropyl alcohol and a clean rag.
+        \item Insert the four M3x10 screws with washers into the corner mounting holes. Do not fully tighten them yet.
+    \end{enumerate}
+    
+    \vspace{1em}
+    \begin{tipbox}[Screw installation]
+    To prevent cross-threading, turn the screw counter-clockwise until you feel a "click", then turn clockwise to tighten.
+    \end{tipbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt} % Align tops of minipages
+    {\color{gray}\rule{0.9\linewidth}{4cm}} % Placeholder image
+    %\includegraphics[width=0.9\linewidth]{images/step1.png}
+    \captionof{figure}{Base Plate Orientation}
+\end{minipage}
+
+\end{assemblystep}
+
+% --- STEP 2 ---
+\begin{assemblystep}{Mounting the Stepper Motor}
+
+\textbf{Parts Needed in this step:}
+\begin{itemize}[noitemsep, label=-]
+    \item 1x Stepper Motor NEMA 17 (M-400)
+    \item 4x M3x10 Screws (S-010)
+    \item 4x M3 Washers (W-020)
+\end{itemize}
+
+\vspace{1em}
+\noindent
+\begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt}
+    {\color{gray}\rule{0.9\linewidth}{4.5cm}} % Placeholder image
+    %\includegraphics[width=0.9\linewidth]{images/step2.png}
+    \captionof{figure}{Motor Alignment and Wire Routing}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+    \textbf{Instructions:}
+    \begin{enumerate}[label=\arabic*., leftmargin=*]
+        \item Align the motor shaft with the central cutout on the Base Plate.
+        \item Ensure the motor's cable connector is facing towards the rear cable channel.
+        \item Place a washer on each screw and thread them through the plate into the motor mounting face.
+        \item Tighten the screws gradually in a star (criss-cross) pattern to ensure even pressure.
+    \end{enumerate}
+    
+    \vspace{1em}
+    \begin{warningbox}[Torque Limit]
+    Do not overtighten the M3 screws securely into the aluminum motor faceplate, as the internal threads are easily stripped. Recommended max torque is 1.5 Nm.
+    \end{warningbox}
+\end{minipage}
+
+\end{assemblystep}
+
+% --- STEP 3 ---
+\begin{assemblystep}{Link Arm Assembly}
+
+\textbf{Instructions:} \\
+This step connects the first joint. 
+\begin{enumerate}[label=\arabic*., leftmargin=2em]
+    \item Press-fit the radial ball bearings (B-020) into both ends of the Carbon Fiber Link Arm (L-204). If the fit is tight, ensure you push only on the \textit{outer race} of the bearing to avoid damaging the balls.
+    \item Slide the assembled Link Arm over the motor shaft hub.
+    \item Secure using an M3x16 screw (S-016) and a Nylon Lock Nut (N-030).
+\end{enumerate}
+
+\end{assemblystep}
+
+% --- SECTION 5: WIRING ---
+\newpage
+\section{Wiring and Electronics}
+
+Once all mechanical assemblies are complete, proceed to wire the control electronics.
+
+\begin{notebox}[Anti-Static Precautions]
+Ensure you are grounded (e.g., using an ESD wrist strap) before handling the main control board to avoid electrostatic discharge (ESD) damage to sensitive components.
+\end{notebox}
+
+\subsection{Motor Connections}
+Route all motor wires to the main control board. Use zip-ties every 10cm to secure the cables neatly against the frame. \textbf{Ensure cables have enough slack at the joints to allow for the full range of motion.}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabularx}{0.8\textwidth}{@{}llX@{}}
+        \toprule
+        \textbf{Motor} & \textbf{Board Port} & \textbf{Cable Color Coding (Standard)} \\
+        \midrule
+        Base Motor & Axis X / J1 & Black, Green, Red, Blue \\
+        Shoulder Motor & Axis Y / J2 & Black, Green, Red, Blue \\
+        Elbow Motor & Axis Z / J3 & Black, Green, Red, Blue \\
+        Wrist Motor & Axis A / J4 & Black, Green, Red, Blue \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Motor Wiring Map}
+\end{table}
+
+
+% --- SECTION 6: TESTING & CALIBRATION ---
+\section{Calibration and Testing}
+
+Before putting the model into operation, systematically perform the following checks:
+\begin{enumerate}
+    \item \textbf{Mechanical bind check:} With power disconnected, slowly move all axes by hand. They should traverse their full range smoothly with consistent resistance.
+    \item \textbf{Power supply verification:} Ensure the power supply is set to the correct local mains voltage (110V or 220V switch) before turning on. 
+    \item \textbf{Direction verification:} Connect via the control software and command a +10mm / +10 degree move for each axis individually. Verify that the arm moves in the intended positive direction. If an axis moves backward, power down the board and reverse the motor connector by 180 degrees.
+\end{enumerate}
+
+% --- SECTION 7: TROUBLESHOOTING ---
+\newpage
+\section{Troubleshooting Guide}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Symptom} & \textbf{Possible Cause} & \textbf{Corrective Action} \\
+        \midrule
+        \makecell[l]{Motor stutters, buzzes,\\but does not rotate} & \makecell[l]{Wiring mismatch or loose\\connection on one coil phase} & \makecell[l]{Check the 4-pin connector seating.\\Verify wire pairing via multimeter\\(continuity check on coils).} \\
+        \hline
+        \makecell[l]{Axis binds in certain\\spots} & \makecell[l]{Misaligned bearings or frame\\skewed during tightening} & \makecell[l]{Loosen structural screws slightly,\\actuate the joint to self-align, and\\retighten carefully.} \\
+        \hline
+        \makecell[l]{Excessive noise during\\operation} & \makecell[l]{Loose pulleys or lack of\\lubrication on sliding surfaces} & \makecell[l]{Tighten set screws. Apply a small\\amount of lithium grease to\\gears/rails.} \\
+        \hline
+        \makecell[l]{Board resets when\\moving multiple axes} & \makecell[l]{Power supply dropping voltage\\(insufficient current rating)} & \makecell[l]{Check power supply wiring.\\Verify PSU is rated for at least 150W.} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Common Issues and Solutions}
+\end{table}
+
+% --- SECTION 8: MAINTENANCE ---
+\section{Routine Maintenance Schedule}
+To ensure the longevity and accuracy of the model, adhere to the following maintenance intervals:
+\begin{itemize}[label={\color{primary}\textbullet}]
+    \item \textbf{After first 10 hours of operation:} Re-check all structural screws (especially those without threadlocker) for tightness. Things will settle during initial run-in.
+    \item \textbf{Monthly:} Clean linear rails and gears with a dry cloth. Reapply a light film of PTFE lubricant.
+    \item \textbf{Quarterly:} Re-tension drive belts if applicable, and inspect wiring harnesses for any signs of fatigue or rubbing at the joints.
+\end{itemize}
+
+\end{document}

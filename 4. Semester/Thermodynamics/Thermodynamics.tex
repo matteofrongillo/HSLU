@@ -324,6 +324,7 @@ and the heat transfer coefficient $\alpha$.
 
 \subsubsection{Forced convection}
 \figbox{$Nu = c\cdot Re^m \cdot Pr^n$}
+where $c$ is a constant.
 
 For laminar flow over a flat plate:
 \[Nu = 0.664 \cdot \sqrt{Re} \cdot \sqrt[3]{Pr}\]
@@ -334,7 +335,7 @@ For a flow in the transition zone (Tz):
 \subsection{Grashof number}
 It compares buoyancy to viscous forces.
 \begin{gather*}
-  Gr = g\beta\Delta T \dfrac{L^3}{\nu^2}\\
+  Gr = g\beta\Delta T \dfrac{L^3}{\nu^2}\quad ; \quad g = 9.81 \text{ N/kg}\\
   \beta\Delta T = \dfrac{\rho_\infty - \rho_0}{\rho_\infty} = \dfrac{\Delta\rho}{\rho_\infty}\\
   Gr = g\dfrac{\rho_\infty - \rho_0}{\rho_\infty} \dfrac{L^3}{\nu^2}
 \end{gather*}
@@ -348,7 +349,42 @@ It compares advective to diffusive heat transport, i.e., the strength of convect
 It combines buoyancy driving and thermal diffusion, and it measures the intensity of natural convection.
 \[Ra = Gr Pr\]
 
+\section{Heat exchanger}
+\subsection{Energy balance}
+\begin{gather*}
+  \dot{Q} = \dot{m}c_p\Delta\vartheta =CP\Delta\vartheta\\
+  \dot{Q}_1 = \dot{Q}_2\\
+  \dot{m}_1 c_{p1} \Delta\vartheta_1 = \dot{m}_2 c_{p2} \Delta\vartheta_2 \Longleftrightarrow CP_1 \Delta\vartheta_1 = CP_2 \Delta\vartheta_2
+\end{gather*}
 
+\subsection{Average temperature difference}
+\begin{center}
+  \includegraphics[width=\linewidth]{media/heatexchangers.png}
+\end{center}
+
+\subsubsection{Logarithmic mean temperature difference (LMTD)}
+\[\Delta T_m = \dfrac{\Delta T_1 - \Delta T_2}{\ln\dfrac{\Delta T_1}{\Delta T_2}}\]
+where:
+\[\Delta T_1 = \vartheta_{1,a} - \vartheta_{2,a}\quad ; \quad \Delta T_2 = \vartheta_{1,b} - \vartheta_{2,b}\]
+
+\subsubsection{Mean temperature heat flow}
+\[\dot{Q} = kA\Delta T_m\]
+
+\subsubsection{Heat capacity rate ratio (Capacity ration)}
+It measures the relative ability of stream 1 vs. stream 2 to carry
+heat per kelvin:
+\[R_1 = \dfrac{\Delta\vartheta_1}{\Delta\vartheta_2} = \dfrac{CP_1}{CP_2}\]
+
+\subsection{Cocurrent vs countercurrent flow heat exchanger}
+\begin{gather*}
+  \dot{Q} = kA_\text{co}\Delta T_{m,\text{co}} = kA_\text{count}\Delta T_{m,\text{count}}\\
+  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\Delta T_{m,\text{count}}}{\Delta T_{m,\text{co}}}
+\end{gather*}
+
+\subsubsection{If $\dot{Q}_1 \neq \dot{Q}_2$}
+\begin{gather*}
+  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\dot{Q}_\text{count}\Delta T_{m,\text{count}}}{\dot{Q}_\text{co}\Delta T_{m,\text{co}}}
+\end{gather*}
 
 
 

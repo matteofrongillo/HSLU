@@ -2,7 +2,13 @@
 
 \usepackage{Mathematics}
 \usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{titletoc}
 \pdftitle{Environmental Analysis and Ecology}
+
+\renewcommand{\thepart}{\Large Week }
+\titleformat{\part}{\LARGE\bfseries\color{black}}{\thepart}{0em}{}
+\newcommand{\todo}{{\color{red}TODO}}
 
 % === TITLE ===
 \title{\textbf{Environmental Analysis and Ecology \\ HSLU, Semester 4}}
@@ -16,10 +22,16 @@
 \tableofcontents
 \pagebreak
 
-\section{SW1 - ...}
-Carrying capacity: TODO
+\part{1}
+\section{\todo}
+\pph{Carrying capacity in general systems:}
+The maximum level of output or performance that a system can sustain over time without experiencing degradation or failure.
 
-\section{SW2 - Systems}
+\pph{Carrying capacity in population:}
+Maximum population size of a species that an environment can sustain indefinitely, given the available resources and environmental conditions.
+
+\part{2}
+\section{Systems}
 \subsection{Characteristics}
 \begin{itemize}
     \item Input and Output
@@ -83,7 +95,7 @@ So:\\
 A$\uparrow$ $\rightarrow$ B$\uparrow$ $\rightarrow$ C$\downarrow$ $\rightarrow$ A$\uparrow\uparrow$ (Reinforcing Loop) \\
 A$\downarrow$ $\rightarrow$ B$\downarrow$ $\rightarrow$ C$\uparrow$ $\rightarrow$ A$\downarrow\downarrow$ (Reinforcing Loop)
 
-\section{SW3 - Ecosystems}
+\section{Ecosystems}
 \subsection{Energy flow in ecosystems}
 Robustness in ecosystems is the capacity of an ecosystem to withstand disturbances (e.g., drought, fire, pollution) while maintaining its structure and key functions.
 
@@ -91,8 +103,10 @@ It is important because it helps prevent collapse into degraded states and prese
 
 \subsection{Cycles in the biosphere}
 \subsubsection{Nutrient cycle}
+\todo
 
 \subsubsection{Hydrologic cycle}
+\todo
 
 \subsubsection{Nitrogen cycle}
 \begin{itemize}
@@ -155,5 +169,82 @@ It is important because it helps prevent collapse into degraded states and prese
         \item Extraction of fossil fuels $\rightarrow$ CO$_2$ emissions due to combustion
     \end{itemize}
 \end{itemize}
+
+\part{3}
+\section{Biodiversity}
+\subsection{Definition}
+Biodiversity is the variety of earth͛s species, the genes they contain, the ecosystems in which they
+live and the ecosystem processes (energy flow and nutrient cycling).
+
+TODO
+
+\section{Species diversity}
+\subsection{Population dynamics}
+\subsubsection{Population}
+Group of individuals of the same species that live in the same place at the same time
+
+\subsubsection{Population factors}
+\begin{itemize}
+    \item Distribution
+    \item Size
+    \item Age structure
+    \item Density
+\end{itemize}
+
+\subsubsection{Population dynamics}
+Study of how population characteristics change in response to changes in environmental
+conditions.
+
+Four factors that determine population size:
+\begin{itemize}
+    \item Births
+    \item Deaths
+    \item Immigration
+    \item Emigration
+\end{itemize}
+
+Population change is defined as:
+\figbox{population change = (births + immigration) - (deaths + emigration)}
+
+Age structure can have a strong effect on how rapidly a population size increases or decreases:
+\begin{itemize}
+    \item Pre-reproductive age (not mature enough to reproduce)
+    \item Reproductive stage (capable of reproduction)
+    \item Post-reproductive stage (too old to reproduce)
+\end{itemize}
+
+\subsubsection{Growth functions}
+Species vary in their capacity for population growth under ideal conditions
+
+\subsubsection{Intrinsic rate of increase}
+Rate at which the population of a species would grow if it had unlimited resources.
+
+Populations with high intrinsic rate of growth typically reproduce early in life, have short
+generation times (time between successive generations), can reproduce many times, and have
+many offspring each time they reproduce.
+
+\subsubsection{Carrying capacity}
+Intrinsic rate of increase and environmental resistance = carrying capacity.
+
+\pph{Definition:}
+Maximum population of a given species that a particular habitat/area can sustain
+indefinitely without being degraded
+
+\begin{itemize}
+    \item Carrying capacity of an area is not fixed
+    \item A population with few (or no) limitations can grow exponentially
+    \item Environmental resistance slows down growth rate as population size gets closer to carrying capacity:\\\textrightarrow\ logistic growth curve or S-shaped growth curve
+\end{itemize}
+
+\subsection{Human influence}
+Extinction rate caused by human influence will increase to 10,000 times the
+background extinction within this century.
+
+Annual extinction rate of ~1\% per year (currently between 0.01 - 0.1\%)
+
+New species eventually evolve to take the places of the lost one.
+
+
+
 
 \end{document}

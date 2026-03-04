@@ -115,7 +115,9 @@
 % ============= NEW COMMANDS =============
 
 \newcommand{\figbox}[1]{ 
-    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}}        
+  \begin{center}
+    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}} 
+  \end{center}       
 }
 
 \newcommand{\wrapfill}{
@@ -266,9 +268,49 @@ Flow occurs only after a yield stress $\tau_0$ is reached.
 \end{center}
 
 \section{Flows in gaps and bearings}
+\subsection{Assumptions in gaps and bearings}
+\begin{minipage}[t]{0.5\linewidth}
+  \begin{itemize}
+    \item Newtonian fluid with\\constant viscosity $\eta$
+    \item Incompressible fluid
+    \item Very low Reynolds\\number $Re < 2000$
+    \item Laminar flow
+  \end{itemize}
+  \end{minipage}%
+\begin{minipage}[t]{0.5\linewidth}
+  \begin{itemize}
+    \item Balance of pressure and\\viscous forces
+    \item No slip condition at the walls
+    \item No acceleration (negligible)
+    \item Pressure is uniform across the thickness $\partial p/\partial y \approx 0$
+  \end{itemize}
+\end{minipage}
+
+\subsection{Equilibrium of forces}
+\begin{gather*}
+  \sum F_x = 0 \Longrightarrow pA_p - (p+dp)A_p + \tau A_\tau + (\tau + d\tau)A_\tau = 0\\
+  A_p = dy \cdot b\quad ; \quad A_\tau = dx \cdot b \quad ; \quad \tau = \eta \dfrac{dv}{dy} \rightarrow \dfrac{d\tau}{dy}\\
+  \boxed{\eta\dfrac{d^2v(x,y)}{dy^2} = \dfrac{dp(x)}{dx} = p'}
+\end{gather*}
+
+\subsection{Velocity equation}
+\[v(x,y) = \frac{1}{\eta} \cdot p' \cdot \frac{y^2}{2} + c(x)y + d(x)\]
+
+\subsubsection{Gap flow (walls not moving)}
+\begin{gather*}
+  v(x,y) = \dfrac{p'(x)}{2\eta}\left(y^2-h(x)y\right)\\
+  c(x) = -\dfrac{h(x)}{2\eta} \cdot \dfrac{dp(x)}{dx}\quad ; \quad d(x) = 0
+\end{gather*}
+
+\subsubsection{Plain bearing flow (one wall moving)}
+\begin{gather*}
+  v(x,y) = \dfrac{p'(x)}{2\eta}\left(y^2-h(x)y\right) + \dfrac{v_0}{h(x)}\left(h(x)-y\right)\\
+  c(x) = -\dfrac{h(x)}{2\eta} \cdot \dfrac{dp(x)}{dx} - \dfrac{v_0}{h(x)}\quad ; \quad d(x) = v_0
+\end{gather*}
+
 \subsection{Power}
 \begin{gather*}
-  P = \tau A v = \eta \frac{\partial v}{\partial n} A v \quad ; \quad \mathrm{d}P = \mathrm{d}F\mathrm{d}v
+  P = \tau A v = \eta \frac{\partial v}{\partial n} A v \quad ; \quad dP = dFdv
 \end{gather*}
 
 \subsubsection{Specific dissipation power}
@@ -279,6 +321,7 @@ Acting shear stress on infinitesimal small volume:
   P_{\, \text{Diss}} = \int_V \!\!e_{\, \text{Diss}}\ dV = \iiint_V \!\!e_{\, \text{Diss}}\ dxdydz
 \end{gather*}
 
+\newcolumn
 \section{Flow profiles}
 \subsection{Constant linear flow profiles}
 \begin{minipage}{0.5\linewidth}
@@ -317,7 +360,6 @@ Acting shear stress on infinitesimal small volume:
   \end{center}
 \end{minipage}
 
-\newcolumn
 \subsection{Parabolic flow profiles}
 \begin{minipage}{0.5\linewidth}
   \begin{align*}
@@ -360,9 +402,47 @@ Acting shear stress on infinitesimal small volume:
 
 \section{Laminar pipe flow}
 \subsection{$p_1 > p_2$}
+\[\frac{\partial p}{\partial z} = \frac{p_2 - p_1}{L}\]
+
+\subsection{Constant linear flow profiles}
+\[\dot{V} = v_m A = v_m R^2 \pi\]
+
+\subsection{Parabolic flow profiles}
 \begin{gather*}
-  \frac{\partial p}{\partial z} = \frac{p_2 - p_1}{L}
+  \dot{V} = \integral[v(r)][A] = \dfrac{v_{max}\cdot R^2\pi}{2}\\
+  v(r) = v_{max}\left(1-\dfrac{r^2}{R^2}\right)\\
+  \dfrac{dv}{dr} = -2v_{max}\dfrac{r}{R^2}\\
+  P_{\, \text{Diss}} = \integral[0][L][\integral[0][2\pi][\integral[0][R][\eta\left(-2v_{max}\dfrac{r^2}{R^2}\right)\cdot r][r]][\varphi]][x]\\
+  P_{\, \text{Diss}} = 2\pi L \integral[0][R][\eta\left(-2v_{max}\dfrac{r^2}{R^2}\right)\cdot r][r] = 2\pi L\eta v_{max}^2 = 8\pi L\eta v_{m}^2
 \end{gather*}
+
+\subsection{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{multicols*}

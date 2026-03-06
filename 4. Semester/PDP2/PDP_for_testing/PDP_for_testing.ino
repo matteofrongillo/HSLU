@@ -2,7 +2,6 @@
 #include "Seeed_AMG8833_driver.h"
 #include <Grove_I2C_Motor_Driver.h>
 #include <Wire.h>
-#include <setjmp.h>
 #include <stdint.h>
 
 // ===================== CONSTANTS / GLOBALS =====================
@@ -30,25 +29,7 @@ const int ultrasonicPin = 5; // D5
 
 // Grove Button for Reset
 const int resetButtonPin = A1;
-jmp_buf resetContext; // Software reset context
-
-void performReset() {
-  // De-energize coils so the motor is loose, matching driver reset behavior
-  Motor.stop(MOTOR1);
-  Motor.stop(MOTOR2);
-
-  // Wait until the user releases the button!
-  // This prevents the Arduino from instantly restarting and hanging.
-  while (digitalRead(resetButtonPin) == HIGH) {
-    delay(10);
-  }
-
-  delay(500); // Give the user half a second to move their hand away
-
-  // Jump back to the start of loop() cleanly without rebooting the
-  // microcontroller
-  longjmp(resetContext, 1);
-}
+void (*resetFunc)(void) = 0; // Software reset function
 
 // Thermal camera
 AMG8833 sensor;
@@ -62,7 +43,7 @@ void smartDelay(unsigned long ms) {
   unsigned long start = millis();
   while (millis() - start < ms) {
     if (digitalRead(resetButtonPin) == HIGH) {
-      performReset();
+      resetFunc();
     }
     delay(1);
   }
@@ -140,10 +121,6 @@ void setup() {
   Wire.begin();
   Motor.begin(I2C_ADDRESS);
 
-  // De-energize coils on boot in case of power cycle
-  Motor.stop(MOTOR1);
-  Motor.stop(MOTOR2);
-
   // Init AMG8833 thermal camera
   sensor.init();
 
@@ -166,86 +143,34 @@ void setup() {
 
 // ===================== MAIN LOOP =====================
 void loop() {
-  setjmp(resetContext); // Jump target for reset
+  long angle = 0;
 
-  currentMotorPosition = 0; // Reset position counter
+  float distanceCm = getAverageDistance();
 
-  smartDelay(500);
+  float pixels_temp[PIXEL_NUM] = {0};
+  sensor.read_pixel_temperature(pixels_temp);
+  float hottestMid = getHottestMiddleColumn(pixels_temp);
 
-  // ---------- Sweep Forward 0 -> 180 ----------
-  for (int i = 0; i < SWEEP_STEPS; i++) {
-    Motor.StepperRun(1, 0, 0);
-    currentMotorPosition++;
-
-    long angle = map(i, 0, SWEEP_STEPS, 0, 90);
-
-    float distanceCm = getAverageDistance();
-
-    float pixels_temp[PIXEL_NUM] = {0};
-    sensor.read_pixel_temperature(pixels_temp);
-    float hottestMid = getHottestMiddleColumn(pixels_temp);
-
-    // --- NEW LOGIC: PAUSE IF HOT ---
-    if (hottestMid > HOT_THRESHOLD) {
-      smartDelay(150); // Sleep for 150ms to "stare" at the object
-    }
-
-    // --- RESET CHECK ---
-    if (digitalRead(resetButtonPin) == HIGH) {
-      performReset();
-    }
-
-    // --- CLEAN OUTPUT ---
-    Serial.print("Pos:");
-    Serial.print(currentMotorPosition);
-    Serial.print(",Ang:");
-    Serial.print(angle);
-    Serial.print(",");
-    Serial.print(distanceCm, 2);
-    Serial.print("=");
-    Serial.print(hottestMid, 2);
-    Serial.print("_");
-
-    delayMicroseconds(5000);
+  // --- NEW LOGIC: PAUSE IF HOT ---
+  if (hottestMid > HOT_THRESHOLD) {
+    smartDelay(150); // Sleep for 150ms to "stare" at the object
   }
 
-  smartDelay(2000);
-
-  // ---------- Sweep Backward 180 -> 0 ----------
-  for (int i = 0; i < SWEEP_STEPS; i++) {
-    Motor.StepperRun(-1, 0, 0);
-    currentMotorPosition--;
-
-    long angle = map(i, 0, SWEEP_STEPS, 90, 0);
-
-    float distanceCm = getAverageDistance();
-
-    float pixels_temp[PIXEL_NUM] = {0};
-    sensor.read_pixel_temperature(pixels_temp);
-    float hottestMid = getHottestMiddleColumn(pixels_temp);
-
-    // --- NEW LOGIC: PAUSE IF HOT ---
-    if (hottestMid > HOT_THRESHOLD) {
-      smartDelay(150);
-    }
-
-    // --- RESET CHECK ---
-    if (digitalRead(resetButtonPin) == HIGH) {
-      performReset();
-    }
-
-    // --- CLEAN OUTPUT ---
-    Serial.print("Pos:");
-    Serial.print(currentMotorPosition);
-    Serial.print(",Ang:");
-    Serial.print(angle);
-    Serial.print(",");
-    Serial.print(distanceCm, 2);
-    Serial.print("=");
-    Serial.print(hottestMid, 2);
-    Serial.print("_");
-
-    delayMicroseconds(5000);
+  // --- RESET CHECK ---
+  if (digitalRead(resetButtonPin) == HIGH) {
+    resetFunc();
   }
-  smartDelay(2000);
+
+  // --- CLEAN OUTPUT ---
+  Serial.print("Pos:");
+  Serial.print(currentMotorPosition);
+  Serial.print(",Ang:");
+  Serial.print(angle);
+  Serial.print(",");
+  Serial.print(distanceCm, 2);
+  Serial.print("=");
+  Serial.print(hottestMid, 2);
+  Serial.print("_");
+
+  delayMicroseconds(5000);
 }

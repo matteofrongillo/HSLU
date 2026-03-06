@@ -232,13 +232,14 @@ void drawText() {
   textSize(28);
   textAlign(LEFT, CENTER);
 
-  float distMeters = iDistance / 100.0;
+  // float distMeters = iDistance / 100.0;
+  float distMeters = iDistance;
 
   String distLabel;
   if (iDistance > maxRangeCm || iDistance < 0) {
     distLabel = "Out of Range";
   } else {
-    distLabel = nf(distMeters, 1, 2) + " m";
+    distLabel = nf(distMeters, 1, 2) + " cm";
   }
 
 int x = 40;

@@ -20,14 +20,15 @@
 
 const int START_OFFSET_STEPS = 0; // Set this if you want it to move to a start
                                   // point relative to boot (e.g., -50 or 50)
-const int SWEEP_STEPS = 256;      // The range of motion for the loop
-int currentMotorPosition = 0;     // Tracks relative position from boot
+const int SWEEP_STEPS =
+    128; // The range of motion for the loop (128 steps for 90 degrees)
+int currentMotorPosition = 0; // Tracks relative position from boot
 
 // Ultrasonic sensor pin (Grove)
-const int ultrasonicPin = 8;
+const int ultrasonicPin = 5; // D5
 
 // Grove Button for Reset
-const int resetButtonPin = A0;
+const int resetButtonPin = A1;
 void (*resetFunc)(void) = 0; // Software reset function
 
 // Thermal camera
@@ -149,7 +150,7 @@ void loop() {
     Motor.StepperRun(1, 0, 0);
     currentMotorPosition++;
 
-    long angle = map(i, 0, SWEEP_STEPS, 0, 180);
+    long angle = map(i, 0, SWEEP_STEPS, 0, 90);
 
     float distanceCm = getAverageDistance();
 
@@ -188,7 +189,7 @@ void loop() {
     Motor.StepperRun(-1, 0, 0);
     currentMotorPosition--;
 
-    long angle = map(i, 0, SWEEP_STEPS, 180, 0);
+    long angle = map(i, 0, SWEEP_STEPS, 90, 0);
 
     float distanceCm = getAverageDistance();
 

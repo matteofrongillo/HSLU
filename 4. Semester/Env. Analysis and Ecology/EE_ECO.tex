@@ -176,7 +176,7 @@ It is important because it helps prevent collapse into degraded states and prese
 Biodiversity is the variety of earth͛s species, the genes they contain, the ecosystems in which they
 live and the ecosystem processes (energy flow and nutrient cycling).
 
-TODO
+\todo
 
 \section{Species diversity}
 \subsection{Population dynamics}
@@ -244,6 +244,79 @@ Annual extinction rate of ~1\% per year (currently between 0.01 - 0.1\%)
 
 New species eventually evolve to take the places of the lost one.
 
+\part{}
+\section{Stock and flow diagrams (SFD)}
+\subsection{Translating CLDs into SFDs}
+\begin{itemize}
+    \item CLDs represent conceptual models, which depict causal mechanisms based on underlying reference behaviour patterns (RBPs)
+    \item First step in computational modelling of CLDs is the translation of CLDs into SFDs
+\end{itemize}
+
+\subsection{Stock and flow diagrams (SFDs)}
+\begin{itemize}
+    \item SFDs provide a richer visual language than CLDs
+    \item Six basic elements exist in SFDs: \textbf{Stocks, Flows, Converters, Connectors, Sources, and Sinks}
+\end{itemize}
+
+\subsection{Components of SFDs}
+\subsubsection{Stocks}
+A stock is a ``part of a system whose value at any given instant in time depends on the systems past behavior''.
+
+A stock is defided as:
+\figbox{Stock = $\integral[t_0][t_1][\text{(inflow - outflow)}][t] + \text{initial value}$}
+
+\begin{itemize}
+    \item Stocks represent anything that accumulates (normally in both directions)
+    \item \textbf{Stocks are only affected by input and output flows}
+    \item Stocks are normally tangible, countable and physical
+    \begin{itemize}
+        \item But can also be non-physical (e.g. level of fear, aggression)
+        \item Non-tangible stocks require special attention, since differences in numerical translation might cause different system behaviours
+    \end{itemize}
+    \item Stocks are usually presented by nouns
+\end{itemize}
+
+\subsubsection{Flows}
+\begin{itemize}
+    \item Represent activities that lead to inflows and outflows to stocks (e.g. births, migration)
+    \item Inflows cause the stock to increase
+    \item Outflows decrease the stock
+    \item Flows are usually presented by verbs or nouns describing an action
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=0.55\textwidth]{media/flows_stella.png}
+\end{center}
+
+\begin{minipage}{0.5\textwidth}
+    \subsubsection{Converter}
+    \begin{itemize}
+        \item Contain equations that generate an output value during each time interval of a simulation\\(e.g. birth rate, migration rate)
+        \item Can also be used for storing constant values\\(e.g. initial population size)
+    \end{itemize}
+
+    \subsubsection{Connectors}
+    \begin{itemize}
+        \item Transmit information to regulate flows
+        \item Connectors can connect into flows or converters but never into stocks
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{media/connectors_stella.png}
+\end{minipage}
+
+\subsubsection{Source and Sink}
+\begin{itemize}
+    \item Stocks that lie outside the system boundary
+    \item Are used to show that a certain stock inflow is coming from another source (e.g. migration)
+    \item Or that an outflow ends up in another stock outside the system (e.g. emigration)
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=0.45\textwidth]{media/sinks.png}
+\end{center}
 
 
 

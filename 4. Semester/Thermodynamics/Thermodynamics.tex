@@ -32,6 +32,8 @@
 \usepackage{titlesec}
 \usepackage{bm}
 \usepackage{forest}
+\usepackage{extpfeil}
+\usepackage{cancel}
 
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta}
@@ -183,6 +185,8 @@
   \endgroup
 }
 \makeatother
+
+\renewcommand{\CancelColor}{\color{red}}
 
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
@@ -385,8 +389,67 @@ heat per kelvin:
 \begin{gather*}
   \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\dot{Q}_\text{count}\Delta T_{m,\text{count}}}{\dot{Q}_\text{co}\Delta T_{m,\text{co}}}
 \end{gather*}
+\vfill\phantom{}
 
+\newcolumn
+\part{The 2nd law of thermodynamics}
+\section{Recap of the 1st law}
+\subsection{Closed systems}
+\[q_{12} + w_{12} = u_2 - u_1\]
 
+\subsection{Open systems}
+\begin{gather*}
+  q_{12} + w_{12} = h_2 - h_1 + \dfrac{1}{2}\left(c_2^2 - c_1^2\right) + g\left(z_2 - z_1\right)\\
+  w_{t12} = \integral[v][p] + \dfrac{1}{2}\left(c_2^2 - c_1^2\right) + g\left(z_2 - z_1\right) + j_{12}\\
+  q_{12} + \integral[v][p] + j_{12} = h_2 - h_1 \overset{\text{ideal gas}}{\xlongequal{\hspace{18pt}}} c_p\left(T_2 - T_1\right)
+\end{gather*}
+
+\section{The 2nd law}
+\subsection{Statements}
+\figbox{Energy = Exergy + Anergy}
+\vspace*{-.2cm}
+\begin{center}
+  \begin{tabular}{|c|c|c|}
+    \hline & \textbf{Reversible Processes} & \textbf{Irreversible Processes}\\
+    \hline \textbf{Energy} & Conserved & Reduced $\rightarrow$ Loss\\
+    \hline \textbf{Entropy} & Constant & Increases $\rightarrow$ Production\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Entropy}
+Entropy $S$: extensive state variable [J/K]\\[1ex]
+Specific entropy $s$: intensive state variable [J/kgK]\\[1ex]
+Entropy flow $\dot{S}$: entropy over time [W/K]
+
+\section{Entropy balance equation}
+\subsection{Entropy balance terms}
+\begin{itemize}
+    \item Heat transfer across the system boundary:
+    \[dS_Q = \frac{dQ}{T}\]
+    \item Mass flow across the system boundary:
+    \[dS_{\mathrm{m}} = \dot{S} = \dot{m}\,s\]
+    \item Irreversible processes inside the system:
+    \[dS_{\mathrm{irr}} \geq 0\]
+\end{itemize}
+
+\figbox{\[dS = dS_Q + dS_m + dS_{irr}\]}
+
+\subsection{Entropy balance equation for closed systems}
+\begin{gather*}
+  dS = dS_Q + \cancelto{0}{dS_m} + dS_{irr}\\
+  dS = \dot{S}_Q\ dt + \dot{S}_{irr}\ dt = \left(\dfrac{\dot{Q}}{T} + \dot{S}_{irr}\right) dt 
+\end{gather*}
+
+\newcolumn
+\subsubsection{Heat balance}
+\begin{minipage}{0.5\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{media/entropy_closedsystem.png}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+  \figbox{$\dm \sum_i \dot{S}_{Qi} = \sum_i\dfrac{\dot{Q}_i}{T_i} = -\dot{S}_{irr}$}
+\end{minipage}
 
 
 

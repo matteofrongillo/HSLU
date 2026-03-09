@@ -408,10 +408,9 @@ heat per kelvin:
 \section{The 2nd law}
 \subsection{Statements}
 \figbox{Energy = Exergy + Anergy}
-\vspace*{-.2cm}
 \begin{center}
   \begin{tabular}{|c|c|c|}
-    \hline & \textbf{Reversible Processes} & \textbf{Irreversible Processes}\\
+    \hline \textbf{Processes}& \textbf{Reversible} & \textbf{Irreversible}\\
     \hline \textbf{Energy} & Conserved & Reduced $\rightarrow$ Loss\\
     \hline \textbf{Entropy} & Constant & Increases $\rightarrow$ Production\\
     \hline
@@ -424,6 +423,8 @@ Specific entropy $s$: intensive state variable [J/kgK]\\[1ex]
 Entropy flow $\dot{S}$: entropy over time [W/K]
 
 \section{Entropy balance equation}
+\figbox{\[dS = dS_Q + dS_m + dS_{irr}\]}
+
 \subsection{Entropy balance terms}
 \begin{itemize}
     \item Heat transfer across the system boundary:
@@ -431,10 +432,12 @@ Entropy flow $\dot{S}$: entropy over time [W/K]
     \item Mass flow across the system boundary:
     \[dS_{\mathrm{m}} = \dot{S} = \dot{m}\,s\]
     \item Irreversible processes inside the system:
-    \[dS_{\mathrm{irr}} \geq 0\]
+    \[\dot{S}_{irr}(t)\begin{cases}
+      dS_{irr} > 0 &\text{ irreversible processes}\\
+      dS_{irr} = 0 &\text{ reversible processes}\\
+      dS_{irr} < 0 &\text{ impossible}
+    \end{cases}\]
 \end{itemize}
-
-\figbox{\[dS = dS_Q + dS_m + dS_{irr}\]}
 
 \subsection{Entropy balance equation for closed systems}
 \begin{gather*}
@@ -443,7 +446,17 @@ Entropy flow $\dot{S}$: entropy over time [W/K]
 \end{gather*}
 
 \newcolumn
-\subsubsection{Heat balance}
+\subsubsection{Closed system entropy flow balance equation}
+\begin{gather*}
+  \dfrac{dS}{dt} = \sum_i \dot{S}_{Qi} + \dot{S}_{irr}\quad ; \quad \dot{S}_{irr} \geq 0
+\end{gather*}
+
+For steady-state case:
+\begin{gather*}
+  \dot{S}_{irr} = -\sum_i \dot{S}_{Qi} = -\sum_i \dfrac{\dot{Q}_i}{T_i} \geq 0
+\end{gather*}
+
+\subsubsection{Visual representation}
 \begin{minipage}{0.5\linewidth}
   \centering
   \includegraphics[width=\linewidth]{media/entropy_closedsystem.png}
@@ -452,12 +465,34 @@ Entropy flow $\dot{S}$: entropy over time [W/K]
   \figbox{$\dm \sum_i \dot{S}_{Qi} = \sum_i\dfrac{\dot{Q}_i}{T_i} = -\dot{S}_{irr}$}
 \end{minipage}
 
+\subsection{Entropy balance equation for open systems}
+\[\dfrac{dS}{dt} = \sum_\alpha \dot{m}_\alpha s_\alpha - \sum_\omega \dot{m}_\omega s_\omega + \sum \dot{S}_Q(t) + \dot{S}_{irr}(t)\]
 
+\subsubsection{Steady-state flow processes}
+\[\dot{S}_{irr} = \sum_\omega \dot{m}_\omega s_\omega - \sum_\alpha \dot{m}_\alpha s_\alpha - \sum \dot{S}_Q \geq 0\]
 
+\subsubsection{Steady-state and adiabatic flow processes}
+\[\dot{S}_{irr} = \sum_\omega \dot{m}_\omega s_\omega - \sum_\alpha \dot{m}_\alpha s_\alpha \geq 0\]
 
+\section{The thermal enigne}
+\begin{minipage}{0.4\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{media/thermal_engine.png}
+\end{minipage}%
+\begin{minipage}{0.6\linewidth}
+  \begin{align*}
+    &\dot{Q}+\dot{Q}_0 + P = 0\\
+    &\eta_{th} = \dfrac{-P}{\dot{Q}} = 1 - \dfrac{\left|\dot{Q}_0\right|}{\dot{Q}}\\
+    &\dot{S}_{irr} = -\sum_{i=1}^{n} \dot{S}_{Qi} = -\dfrac{\dot{Q}}{T} - \dfrac{\dot{Q}_0}{T_0} \geq 0\\
+    &-\dot{Q}_0 = T_0\left(\dfrac{\dot{Q}}{T} + \dot{S}_{irr}\right)
+  \end{align*}
+\end{minipage}
 
-
-
+\subsection{Carnot efficiency}
+\begin{gather*}
+  \eta_{th} = 1 - \dfrac{T_0}{T} - \cancelto{0,\text{ ideal}}{\dfrac{T_0 \dot{S}_{irr}}{\dot{Q}}}\\
+  \eta_{th,max} = \eta_C(T,T_0) = 1 - \dfrac{T_0}{T}
+\end{gather*}
 
 
 

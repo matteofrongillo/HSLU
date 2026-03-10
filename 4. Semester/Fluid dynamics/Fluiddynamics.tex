@@ -32,6 +32,7 @@
 \usepackage{titlesec}
 \usepackage{bm}
 \usepackage{forest}
+\usepackage{upgreek}
 
 \usetikzlibrary{arrows, arrows.meta}
 \usetikzlibrary{decorations.pathreplacing}
@@ -111,6 +112,9 @@
     \endgroup
 }
 \makeatother
+
+\renewcommand{\tau}{\uptau}
+\renewcommand{\nu}{\upnu}
 
 % ============= NEW COMMANDS =============
 
@@ -219,24 +223,28 @@
 \vspace*{-.5cm}
 \part{Viscous flow}
 \section*{Symbology}
-\begin{center}
-  \scriptsize
-  \begin{tabular}{clc|clc}
-    Symbol & \makecell{Name} & Units & Symbol & Name & Units \\
+{\scriptsize
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{clc|clc}
+  \textbf{Symb} & \makecell{\textbf{Name}} & \textbf{Units} & \textbf{Symb} & \makecell{\textbf{Name}} & \textbf{Units} \\
     $\nu$ & Kinematic viscosity & m$^2$/s & $\eta$ & Dynamic viscosity & Pa$\cdot$s \\
-    $\tau$ & Shear stress & Pa & $\mathrm{d}n$ & Normal distance & m \\
-    $\mathrm{d}u / \mathrm{d}y$ & Rate of strain & [-] & $e_{\, \text{Diss}}$ & \makecell[l]{Specific dissip.\\power} & W/m$^3$\\
-  \end{tabular}
-\end{center}
+    $\tau$ & Shear stress & Pa & $dn$ & Normal distance & m \\
+    $du/dy$ & Rate of strain & [-] & $e_{\, \text{Diss}}$ & Spec. diss. power & W/m$^3$\\
+\end{tabular}}
 
 \section{Flows with friction}
 \begin{center}
-  \includegraphics[width=\linewidth]{media/smallgap.png}
-  \begin{gather*}
-  F = \eta\dfrac{v_0\cdot A}{h_0}\\
-  \tau = \dfrac{F}{A} = \eta\dfrac{v_0}{h_0} = \eta\der{v}{n}
-  \end{gather*}
+  \includegraphics[width=.85\linewidth]{media/smallgap.png}
 \end{center}
+\[F = \eta\dfrac{v_0\cdot A}{h_0} \Longrightarrow \tau = \dfrac{F}{A} = \eta\dfrac{v_0}{h_0} = \eta\dfrac{dv}{dn}\]
+
+For pipes:
+\[F_\tau = \tau A \Longrightarrow M_\tau = F_\tau y = \tau \cdot l \cdot 2\pi r_0^2\]
+
+\subsection{Friction law}
+\begin{equation*}
+  \tau = -\eta \dfrac{dv}{dn}\quad ; \quad \dot{e}_{\, \text{Diss}} = \eta\left(\dfrac{dv}{dn}\right)^2
+\end{equation*}
 
 \section{Viscosity}
 If $\eta = 0$, the fluid is called inviscid.\\[2pt]
@@ -447,6 +455,10 @@ General sliding bearings:
   p' = \dfrac{6\eta}{h(x)^3}\left(\dfrac{\dot{V}}{b}-c(x)\dfrac{h(x)^2}{2} - d(x)h(x)\right)
 \end{gather*}
 
+\subsubsection{Possible semplifications}
+If h $<<$ D:
+\[A = \int_A r\ dr\ d\varphi \approx \pi D h\]
+
 \subsection{Specific dissipation power}
 \begin{gather*}
   P = \tau A v = \eta \frac{\partial v}{\partial n} A v \quad ; \quad dP = dFdv\\
@@ -458,13 +470,44 @@ General sliding bearings:
 \subsubsection{Pressure loss according to Bernoulli}
 \[p_1 - p_2 = \rho\frac{P_{\, \text{Diss}}}{\dot{m}} = \frac{P_{\, \text{Diss}}}{\dot{V}} = \frac{8\pi L \eta v_m}{R^2}\]
 
+\part{Boundary layers}
+{\scriptsize
+\newcommand{\rowstrut}{\rule{0pt}{4ex}}
+\begin{tabular}{clc|clc}
+  \textbf{Symb} & \makecell{\textbf{Name}} & \textbf{Units} & \textbf{Symb} & \makecell{\textbf{Name}} & \textbf{Units}\\[-1ex]
+  \rowstrut $v_\infty$ & \makecell[l]{free-stream\\velocity} & m/s & $v(y)$ & \makecell[l]{local velocity in\\boundary layer} & m/s\\
+  \rowstrut $\delta$ & \makecell[l]{boundary layer\\thickness} & m & $\delta^*$ & \makecell[l]{displacement\\thickness} & m\\
+  \rowstrut $\theta$ & \makecell[l]{momentum\\thickness} & m & $\tau_w$ & \makecell[l]{wall shear stress} & Pa\\
+  \rowstrut $\nu$ & \makecell[l]{kinematic\\viscosity} & m$^2$/s & $Re_x$ & \makecell[l]{Reynolds number\\at position $x$} & --\\
+  \rowstrut $x$ & \makecell[l]{distance from\\leading edge} & m & $\dot{V}_{BL}$ & \makecell[l]{boundary-layer\\volume flow rate} & m$^2$/s
+\end{tabular}}
 
+\section{Laminar vs. Turbulent boundary layers}
+\subsection{Critical Reynolds number}
+\begin{center}
+  \includegraphics[width=.7\linewidth]{media/reynoldBL.png}
+\end{center}
 
+Reynolds number for the BL on a flat plate:
+\[Re_x = \dfrac{v_\infty x}{\nu} = \dfrac{v_\infty \cdot l_{char}}{\nu}\]
 
+$Re$ \textbf{increases} with the distance from the plate entry.\\
+Transition to turbulent: $Re_x \geq 5e5$ (usually $3.2e5$ to $3e6$)
+\vfill\phantom{}
 
+\newcolumn
+\subsection{Flat plate boundary layer}
+\begin{center}
+  \includegraphics[width=.55\linewidth]{media/displacement_thickness.png}
+\end{center}
 
-
-
+where:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item $\delta(x) \approx \sqrt{x}$
+  \item $\tau(x) \approx 1/\delta(x) = 1/\sqrt{x}$
+  \item $\dot{V}_{BL} = v_\infty \cdot \delta^*(x)$
+\end{itemize}
 
 
 

@@ -1,0 +1,108 @@
+\documentclass{article}
+
+\usepackage{Paper}
+
+\pdftitle{XXXX} % TITLE OF THE PDF
+
+% ========= BEGIN OF THE DOCUMENT ========
+
+\begin{document}
+
+% === FIRST PAGE ===
+\begin{titlepage}
+    \hspace*{.01cm}
+    \includegraphics[width=.3\textwidth]{media/hslu-logo-2.png}
+
+    \vspace*{.01cm}
+    \hspace*{.16cm}\includegraphics[width=0.4\textwidth]{media/hslu-svg-logo.png}
+
+    \phantom{}
+    \vspace*{-1cm}
+
+    {\huge \textbf{Report title}}
+
+    {\Large Milestone XX - Title of the milestone}
+
+    \vspace*{2cm}
+    \begin{center}
+        \includegraphics[width=.65\textwidth]{media/tuefterpark_logo.png}
+    \end{center}
+
+    \vfill
+    {\Large \textbf{Team 38}}\\[1em]
+    \renewcommand{\arraystretch}{2}
+    \begin{tabularx}{\textwidth}{>{\large}p{0.33\textwidth}>{\large}p{0.34\textwidth}>{\large}p{0.33\textwidth}}
+    Blecha Antonin & Monti Antonio & Odermatt Patrick \\
+    Frongillo Matteo & Murali Arjun & Suvorova Maria 
+    \end{tabularx}
+    \renewcommand{\arraystretch}{1}
+    \vspace{.5cm}
+
+    \large{\textbf{Coaches}: S. Züst, S. West} 
+    \vspace{.5cm}
+    
+    \large{\textbf{Submission date}: {\color{red}XXX}}
+\end{titlepage}
+
+
+% === ABSTRACT ===
+\newpage
+\pagenumbering{roman}
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+
+\clearpage
+\newpage
+
+\pagenumbering{arabic}
+\tableofcontents
+
+% === REPORT ===
+
+\newpage
+\section{Section}
+\[5x=5\]
+
+\begin{gather}
+    5x = 5\\
+    x = \dfrac{5}{5} \notag\\
+    x = 1
+\end{gather}
+
+\subsection{Subsection}
+
+\subsubsection{Subsubsection}
+
+\newpage
+\section{Tables}
+\begin{table}[ht!]
+    \centering
+    \caption{Caption of the table} % Caption of the table, usually is on the top of tables
+    \renewcommand{\arraystretch}{2.5} % TO MODIFY THE GENERAL CELL HEIGHT
+    \begin{tabular}{clcr} % here c=center, l=left, r=right. You can also use \tabularx and use {XXXX} but it's not easy to use
+        \hline Arjun & Ganesh & Murali & Ganesh\\
+        \hline This & is & a & template\\
+        \hline \makecell[l]{If the sentence\\is really long\\you can use\\this command} & \makecell[r]{Also\\written\\on the\\right} & \makecell{for\\centered\\identation} & \\
+        \hline Bye & bye & bye & bye\\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Figures}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.2\textwidth]{media/tuefterpark_logo.png}
+    \caption{TüftelPark logo}
+\end{figure}
+
+\section{References}
+Here you can easily use Bib\TeX, but you should check online (or I can teach you) how to use it.
+
+\newpage
+\appendix % it changes sections numeration into letters (A,B,...)
+\section{List of stuff}
+\listoftables
+\listoffigures
+
+\end{document}
+

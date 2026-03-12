@@ -167,9 +167,10 @@ void drawLine() {
 // Blue →  Red
 // ---------------------------------------------------------
 color tempToColor(float temp, float tCold, float tHot) {
+  float threshold = getHotThreshold(iDistance);
   float t = constrain((temp - tCold) / (tHot - tCold), 0, 1);
 
-  if (temp  < 30) {
+  if (temp  < threshold) {
     // blue → cyan
     float k = t / 0.5;
     return color(0, 0 , 255);
@@ -249,7 +250,7 @@ int x = 40;
   text("Distance: " + distLabel,   x, baseY + 40);
   text("Temp: " + nf(fTemp, 1, 2) + " °C", x, baseY + 90);
 
-  float triggerTemp = 30.0; // Change this value to your "hot" threshold
+  float triggerTemp = getHotThreshold(iDistance); // Dynamic hot threshold
 
   if (fTemp > triggerTemp) {
     fill(255, 0, 0);          // Red Color
@@ -257,5 +258,18 @@ int x = 40;
     textAlign(RIGHT, BOTTOM); // Aligns text to the bottom-right corner
     
     text("Penguin Detected!", width - 40, height - 80); 
+  }
+}
+
+// ---------------------------------------------------------
+// THRESHOLD FUNCTION
+// ---------------------------------------------------------
+float getHotThreshold(float distanceCm) {
+  if (distanceCm <= 38.28694) {
+    return 30.0;
+  } else if (distanceCm < 78.44575) {
+    return 23.5f + 38.72f * exp(-0.04661f * distanceCm);
+  } else {
+    return 24.5;
   }
 }

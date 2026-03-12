@@ -10,8 +10,7 @@
 // Motor driver settings
 #define I2C_ADDRESS 0x0f
 
-// Temp in Celsius that triggers the pause
-#define HOT_THRESHOLD 30.0
+
 
 // --- MOTOR CONFIGURATION ---
 // Adjust these values to match your physical setup
@@ -57,6 +56,16 @@ AMG8833 sensor;
 #define COLS 8
 
 // ===================== HELPER FUNCTIONS =====================
+
+float getHotThreshold(float distanceCm) {
+  if (distanceCm <= 38.28694) {
+    return 30.0;
+  } else if (distanceCm < 78.44575) {
+    return 23.5 + 38.72 * exp(-0.04661 * distanceCm);
+  } else {
+    return 24.5;
+  }
+}
 
 void smartDelay(unsigned long ms) {
   unsigned long start = millis();
@@ -186,7 +195,8 @@ void loop() {
     float hottestMid = getHottestMiddleColumn(pixels_temp);
 
     // --- NEW LOGIC: PAUSE IF HOT ---
-    if (hottestMid > HOT_THRESHOLD) {
+    float currentThreshold = getHotThreshold(distanceCm);
+    if (hottestMid > currentThreshold) {
       smartDelay(150); // Sleep for 150ms to "stare" at the object
     }
 
@@ -225,7 +235,8 @@ void loop() {
     float hottestMid = getHottestMiddleColumn(pixels_temp);
 
     // --- NEW LOGIC: PAUSE IF HOT ---
-    if (hottestMid > HOT_THRESHOLD) {
+    float currentThreshold = getHotThreshold(distanceCm);
+    if (hottestMid > currentThreshold) {
       smartDelay(150);
     }
 

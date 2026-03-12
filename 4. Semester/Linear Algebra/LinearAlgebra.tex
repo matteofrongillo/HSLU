@@ -142,11 +142,39 @@ This also applies to higher dimensions, for example:
     \end{gather*}
 \end{minipage}
 
+\section{dunno I forgot to take notes}
 
+\newpage
 
+\section{Inverse and Determinant}
+Let $A$ be a square matrix. The inverse of $A$, denoted by $A^{-1}$,
+satisfies the following:
+\figbox{$A\cdot A^{-1} = I_n$}
 
+where $I_n$ is the identity matrix
+$\left(\begin{smallmatrix}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+\end{smallmatrix}\right)$
 
+\subsection{Title?}
+Let $M$ be a $2\times 2$ matrix and $a_{\substack{1\leq i \leq m\\1\leq j\leq n}}$
+\figbox{$\dm M^{-1} = \frac{1}{\det M}\ \mathrm{adj}(M),\quad \det M \neq 0$}
 
+where:
+\figbox{$\dm A \in \mathbb{R}^{2\times 2},\ \mathrm{adj}(A) =
+\begin{pmatrix}
+    d & -b\\
+    -c & a
+\end{pmatrix}$\\
+$\dm B \in \mathbb{R}^{{3\times 3}}$, apply the sign pattern $\begin{pmatrix}
+    + & - & +\\
+    - & + & -\\
+    + & - & +
+\end{pmatrix}$ }
 
+\subsection{Linear systems}
+\figbox{$Ax = b \Longleftrightarrow x=A^{-1} \bullet b$}
 
 \end{document}

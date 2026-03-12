@@ -108,8 +108,19 @@ feedforward control anticipates changes and adjusts the system accordingly to im
     \includegraphics[width=.9\textwidth]{media/Block_diagrams.png}
 \end{center}
 
+\section{Signals and Systems}
+\subsection{Homogeneity}
+A system h is homogeneous if, for every input $u(t)$ and every scalar $\alpha$:
+\figbox{$h(\alpha u(t)) = \alpha h(u(t))$}
 
-
+\begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}
+        \draw[-latex, thick] (-1,0) -- (0,0) node[left] at (-1,0) {$\sum u(t)$};
+        \draw[rectangle, thick, fill=blue!30] (0,-.5) -- (0,.5) -- (2,.5) -- (2,-.5) -- (0,-.5) node at (1,0) {$h$};
+        \draw[-latex, thick] (2,0) -- (3,0) node[right] at (3,0) {$y(t)$};
+    \end{tikzpicture}
+\end{figure}
 
 
 

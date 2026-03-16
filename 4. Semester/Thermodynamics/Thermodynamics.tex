@@ -408,6 +408,7 @@ heat per kelvin:
 \section{The 2nd law}
 \subsection{Statements}
 \figbox{Energy = Exergy + Anergy}
+
 \begin{center}
   \begin{tabular}{|c|c|c|}
     \hline \textbf{Processes}& \textbf{Reversible} & \textbf{Irreversible}\\
@@ -493,6 +494,109 @@ For steady-state case:
   \eta_{th} = 1 - \dfrac{T_0}{T} - \cancelto{0,\text{ ideal}}{\dfrac{T_0 \dot{S}_{irr}}{\dot{Q}}}\\
   \eta_{th,max} = \eta_C(T,T_0) = 1 - \dfrac{T_0}{T}
 \end{gather*}
+
+\newpage
+\section{Entropy $S$ as a state variable}
+\subsection{Reversible processes}
+\subsubsection{Clausius entropy relation}
+\figbox{$\delta q_{\mathrm{rev}} = T\,ds \Longleftrightarrow \delta Q_\mathrm{rev} = T\, dS$}
+
+\subsubsection{Work $W$ and heat $Q$}
+\begin{gather*}
+  w_{p,\ rev} = \integral[v][p]\\
+  Q_{rev} = \integral[T][S]
+\end{gather*}
+
+\subsection{Dissipation $j$ as a state variable}
+\subsubsection{Dissipation}
+\begin{gather*}
+  w_{t12} = w_{p12} + j_{12} \Longleftrightarrow w_{p12} = w_{t12} - j_{12}\\
+  dq_{rev} + dw_{v,\ rev} = du\\
+  T\ ds = dq + T\ ds_{irr} = dq_{rev} + dj\\
+  \integral[1][2][T][s] = q_{12} + j_{12}
+\end{gather*}
+
+\subsubsection{For closed systems}
+\begin{gather*}
+  ds = \dfrac{du + p\ dv}{T} = \dfrac{d_v\ dT}{T} + \dfrac{R_i\ dv}{v}\\[1ex]
+  s_2 - s_1 = c_v \ln \dfrac{T_2}{T_1} + R_i \ln \dfrac{v_2}{v_1}
+\end{gather*}
+
+\subsubsection{Work change}
+All the works can be calculated with a temperature change:
+\begin{gather*}
+  q_{12} + w_{t12} = h_2 - h_1 + \dfrac{c_2^2 - c_1^2}{2} + g\left(z_2 - z_1\right)\\
+  q_{12} + \integral[v][p] + j_{12} = h_2 - h_1 = c_p\left(T_2 - T_1\right)\\
+  \integral[T][s] = q_{12} + j_{12} = \boxed{\integral[T][s] + \integral[v][p] = h_2 - h_1}\\
+  \boxed{T\ ds + v\ dp = h_2 - h_1 \Longleftrightarrow T\ ds - p\ dv = u_2 - u_1}
+\end{gather*}
+
+\subsection{Reversible state changes with perfect gases}
+\subsubsection{Open system}
+\begin{gather*}
+  q_{12} + j_{12} + w_{p,rev} = h_2 - h_1\\
+  \integral[1][2][T][s] + \integral[1][2][v][p] = c_p\left(T_2 - T_1\right)
+\end{gather*}
+\vfill\phantom{}
+\newcolumn
+
+\subsubsection{Closed system}
+\begin{gather*}
+  q_{12} + j_{12} + w_{p,rev} = u_2 - u_1\\
+  \integral[1][2][T][s] - \integral[1][2][p][v] = c_v\left(T_2 - T_1\right)
+\end{gather*}
+
+\subsection{Polytropic state changes}
+\begin{gather*}
+  T\ ds = dq + dj = du + p\ dv = dh - v\ dp\\
+  du + p\ dv = c_v\ dT + p\ dv \quad ; \quad dh - v\ dp = c_p\ dT - v\ dp\\
+  dw_v = c_v \frac{k-1}{n-1}\ dT = -p\ dv
+\end{gather*}
+
+For the change in entropy of the polytropic state change:
+\begin{gather*}
+  ds = c_v \dfrac{n-k}{n-1} \dfrac{dT}{T}\\[1ex]
+  \frac{T_2}{T_1} = \left(\dfrac{v_1}{v_2}\right)^{n-1} = \left(\dfrac{p_2}{p_1}\right)^{\frac{n-1}{n}}\\[1ex]
+  \boxed{s_2 - s_1 = c_v \dfrac{n - k}{n-1} \ln \dfrac{T_2}{T_1}}\quad n\neq 1\\[1ex]
+  \boxed{s_2 - s_1 = c_v \ln\dfrac{T_2}{T_1} + R_i \ln\dfrac{v_2}{v_1} = c_p \ln\dfrac{T_2}{T_1} - R_i \ln\dfrac{p_2}{p_1}}
+\end{gather*}
+
+Compressor with dissipation: $n > k$\\
+Turbine with dissipation: $n < k$
+
+\section{Exergy and anergy}
+\textbf{Exergy}: useful part of energy that can be completely converted into work under given ambient conditions.\\[1ex]
+\textbf{Anergy}: remaining part of energy that cannot be converted into work under given ambient conditions.
+\figbox{$e = ex + an$}
+
+\subsection{Statements of the 2nd LT}
+\begin{enumerate}[label=\textbf{\Roman*.}]
+  \item In all irreversible processes exergy is converted in anergy
+  \item Only in reversible processes exergy remains constant
+  \item It is impossible to convert anergy into exergy
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

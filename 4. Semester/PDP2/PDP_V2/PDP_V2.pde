@@ -3,13 +3,15 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 Serial myPort;
+PrintWriter output;
 
 String angle   = "";
 String distance = "";
 String tempStr = "";
 String data    = "";
 
-int   iAngle, iDistance;
+int   iAngle;
+float fDistance;
 float fTemp;
 
 int index1 = 0;
@@ -22,6 +24,11 @@ float maxRangeCm     = maxRangeMeters * 100.0; // 100 cm
 void setup() {
   fullScreen();
   smooth();
+
+  // Initialize the text file to log the distance
+  output = createWriter("distance_log.txt");
+  output.println("--- Log Started " + year() + "/" + month() + "/" + day() + " " + hour() + ":" + minute() + ":" + second() + " ---");
+  output.flush();
 
   // FIX 1: MATCH BAUD RATE TO ARDUINO (115200)
   // Ensure the port name "/dev/ttyACM0" is correct for your system
@@ -84,10 +91,14 @@ void serialEvent(Serial p) {
           iAngle = int(trim(sAngle));
 
           // Distance comes in as "37.60" (float string).
-          // We parse to float first, then cast to int to match your 'iDistance' variable type.
-          iDistance = int(float(trim(sDist)));
+          // We parse to float to maintain precise distance.
+          fDistance = float(trim(sDist));
 
           fTemp = float(trim(sTemp));
+          
+          // Log distance as soon as it is received
+          output.println(fDistance);
+          output.flush();
         }
       }
     } catch (Exception e) {
@@ -167,7 +178,7 @@ void drawLine() {
 // Blue →  Red
 // ---------------------------------------------------------
 color tempToColor(float temp, float tCold, float tHot) {
-  float threshold = getHotThreshold(iDistance);
+  float threshold = getHotThreshold(fDistance);
   float t = constrain((temp - tCold) / (tHot - tCold), 0, 1);
 
   if (temp  < threshold) {
@@ -191,10 +202,10 @@ void drawObject() {
   float radarDiameter = min(width, height) * 0.8;
   float radarRadius   = radarDiameter / 2.0;
 
-  float pxDist = map(iDistance, 0, maxRangeCm, 0, radarRadius);
+  float pxDist = map(fDistance, 0, maxRangeCm, 0, radarRadius);
 
   // only draw inside range
-  if (iDistance <= maxRangeCm) {
+  if (fDistance <= maxRangeCm) {
 
     // temperature range for visualization (tune these!)
     float coldTemp = 15;  // <= 15°C → blue
@@ -233,11 +244,11 @@ void drawText() {
   textSize(28);
   textAlign(LEFT, CENTER);
 
-  // float distMeters = iDistance / 100.0;
-  float distMeters = iDistance;
+  // float distMeters = fDistance / 100.0;
+  float distMeters = fDistance;
 
   String distLabel;
-  if (iDistance > maxRangeCm || iDistance < 0) {
+  if (fDistance > maxRangeCm || fDistance < 0) {
     distLabel = "Out of Range";
   } else {
     distLabel = nf(distMeters, 1, 2) + " cm";
@@ -250,7 +261,7 @@ int x = 40;
   text("Distance: " + distLabel,   x, baseY + 40);
   text("Temp: " + nf(fTemp, 1, 2) + " °C", x, baseY + 90);
 
-  float triggerTemp = getHotThreshold(iDistance); // Dynamic hot threshold
+  float triggerTemp = getHotThreshold(fDistance); // Dynamic hot threshold
 
   if (fTemp > triggerTemp) {
     fill(255, 0, 0);          // Red Color

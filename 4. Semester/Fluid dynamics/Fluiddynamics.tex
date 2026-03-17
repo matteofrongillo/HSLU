@@ -425,7 +425,7 @@ Flow occurs only after a yield stress $\tau_0$ is reached.
 \begin{center}
   \includegraphics[width=.4\linewidth]{media/bearingflow.png}
 \end{center}
-Assumption for $Re << 1$: $\eta \dfrac{d^2v}{dy^2}=\dfrac{dp}{dx}=p'$
+Assumption for $Re \ll 1$: $\eta \dfrac{d^2v}{dy^2}=\dfrac{dp}{dx}=p'$
 \begin{align*}
   &v(x,y) = \dfrac{p'(x)}{2\eta}\left[y^2-h(x)y\right] + \dfrac{v_0}{h(x)}\left[h(x)-y\right]\\
   &c(x) = -\dfrac{h(x)}{2\eta} \cdot \dfrac{dp(x)}{dx} - \dfrac{v_0}{h(x)}\\
@@ -456,7 +456,7 @@ General sliding bearings:
 \end{gather*}
 
 \subsubsection{Possible semplifications}
-If h $<<$ D:
+If h $\ll$ D:
 \[A = \int_A r\ dr\ d\varphi \approx \pi D h\]
 
 \subsection{Specific dissipation power}
@@ -509,18 +509,103 @@ where:
   \item $\dot{V}_{BL} = v_\infty \cdot \delta^*(x)$
 \end{itemize}
 
+\subsection{Turbolent BL}
+\subsubsection{Non-dimensional forms}
+Non-dimensional plot of wall normal turbulent velocity profile:
+\begin{center}
+  \includegraphics[width=.75\linewidth]{media/turbolent_BL.png}
+\end{center}
+\begin{itemize}
+  \item Friction velocity: $u_\tau = \sqrt{\dfrac{\tau_\text{wall}}{\rho}}$
+  \item Dimensionless wall parallel velocity: $u^+ = \dfrac{u}{u_\tau}$
+  \item Dimensionless wall distance: $y^+ = \dfrac{yu_\tau}{\nu}$
+\end{itemize}
 
+\subsection{Rough and smooth walls and the effect on friction}
+\subsubsection{No-slip condition}
+\begin{center}
+  \includegraphics[width=.7\linewidth]{media/noslip.png}
+\end{center}
+\begin{itemize}
+  \item Hydraulically smooth surface: $\delta(x) > k_s$
+  \item Rough surface: $\delta(x) < k_s$. Leads to vortex.
+\end{itemize}
 
+\newcolumn
+\section{Flow separation}
+\subsection{Flow separation conditions}
+\begin{enumerate}
+  \item Friction
+  \item Pressure increase
+\end{enumerate}
 
+At sharp edges, the flow always separate.
 
+\subsection{Pressure gradient}
+\begin{center}
+  \includegraphics[width=.7\linewidth]{media/flow_separation.png}
+\end{center}
 
+\subsubsection{Comparison of boundary layer profile shape}
+Comparing BL as a function of the pressure gradient:
+\[\dfrac{dP}{dx} \sim -\dfrac{dU(x)}{dx}\quad ; \quad \tau_\text{wall} = m\dfrac{dv}{dy_{y=0}}\]
 
+\begin{enumerate}[label=\color{red}\textbf{\arabic*.}]
+  \item favorable pressure gradient: $\dfrac{\partial p}{\partial x} \ll 0$\\[0ex]
+  \item favorable pressure gradient: $\dfrac{\partial p}{\partial x} < 0$\\[0ex]
+  \item zero pressure gradient: $\dfrac{\partial p}{\partial x} = 0$\\[0ex]
+  \item mild adverse pressure gradient: $\dfrac{\partial p}{\partial x} > 0$\\[0ex]
+  \item critical adverse pressure gradient: $\dfrac{\partial p}{\partial x} > 0, \tau_\text{wall} = 0$\\[0ex]
+  \item large adverse pressure gradient: $\dfrac{\partial p}{\partial x} \gg 0$\\[0ex]
+\end{enumerate}
 
+\subsection{Flow separation gradients}
+\begin{center}
+  \includegraphics[width=.88\linewidth]{media/flow_gradients.png}
+\end{center}
 
+\newcolumn
+\subsubsection{Nozzle (Favorable Pressure Gradient) {\color{red} (A)}}
+\[\frac{dp}{dx} < 0\quad ; \quad \frac{dU}{dx} > 0\]
+\begin{itemize}
+  \item Decreasing pressure and decreasing area
+  \item Pressure decreases in the flow direction
+  \item Pressure force is in the flow direction
+  \item No flow separation
+\end{itemize}
 
+\subsubsection{Throat {\color{red} (B)}}
+\[\frac{dp}{dx} = 0 \quad ; \quad \frac{dU}{dx} = 0\]
+\begin{itemize}
+  \item Constant pressure and constant area
+  \item Fluid particles in the BL slow down due to shear stress only
+  \item No flow separation can occur
+  \item Similar to a flat plate
+\end{itemize}
 
+\subsubsection{Diffuser (Adverse Pressure Gradient) {\color{red} (C)}}
+\[\frac{dp}{dx} > 0 \quad ; \quad \frac{dU}{dx} < 0\]
+\begin{itemize}
+  \item Pressure increases in the flow direction
+  \item Pressure force is in opposite direction of the flow
+  \item \textbf{Back flow situation}: Fluid particles close to the wall with low momentum may come to a stop or even move in opposite direction of the main flow
+\end{itemize}
 
+\section{Lift force and Drag coefficient}
+\subsection{Drag force}
+\figbox{$\dm F_D = C_D\frac{1}{2}\rho v_\infty^2 A_p$}
 
+where:
+\begin{center}
+  $C_D$: drag coefficient ($\mu$)$\quad ; \quad$$A_p$: project area
+\end{center}
+
+\subsection{Influence of $Re$ on blunt bodies}
+\begin{itemize}
+  \item $Re < 1$: No vortex formation
+  \item $Re \approx 10^5$: Laminar BL, vortex formation in dead water area 
+  \item $Re > 10^6$: BL partially turbolent, vortex on the body surface
+\end{itemize}
 
 
 

@@ -41,6 +41,7 @@
 \usepackage{longtable}
 \usepackage{makecell}
 \usepackage{setspace}
+\usepackage{titling}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \pgfplotsset{compat=1.17}
@@ -70,18 +71,35 @@
 % === BIBLIOGRAPHY ===
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
-\usepackage[style=apa, backend=biber, doi=true, url=true]{biblatex}
+\usepackage[
+    %style=apa,
+    style=ieee,
+    backend=biber,
+    doi=true,
+    url=true,
+    urldate=iso
+]{biblatex}
 \IfFileExists{ref.bib}{\addbibresource{ref.bib}}{}
 \DeclareFieldFormat[article]{volume}{\textbf{#1}}
 \DeclareFieldFormat[article]{journaltitle}{\textit{#1}}
 \DeclareFieldFormat[online]{title}{\textit{#1}}
+\DefineBibliographyStrings{english}{
+  urlseen = {accessed}
+}
 \AtBeginBibliography{%
+  \sloppy
   \renewbibmacro*{url+urldate}{%
     \printfield{url}%
-    \newunit\newblock
     \iffieldundef{urldate}
       {}
-      {\newunit\newblock\printurldate}%
+      {\setunit*{\addspace}\printtext[parens]{\bibstring{urlseen}\space\printfield{urldate}}}%
+  }%
+  \renewbibmacro*{doi+eprint+url}{%
+    \printfield{doi}%
+    \newunit\newblock
+    \usebibmacro{eprint}%
+    \newunit\newblock
+    \usebibmacro{url+urldate}%
   }%
 }
 

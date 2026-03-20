@@ -501,19 +501,18 @@ Transition to turbulent: $Re_x \geq 5e5$ (usually $3.2e5$ to $3e6$)
   \includegraphics[width=.55\linewidth]{media/displacement_thickness.png}
 \end{center}
 
-where:
-\vspace*{-.2cm}
-\begin{itemize}
-  \item $\delta(x) \approx \sqrt{x}$
-  \item $\tau(x) \approx 1/\delta(x) = 1/\sqrt{x}$
-  \item $\dot{V}_{BL} = v_\infty \cdot \delta^*(x)$
-\end{itemize}
+\vspace*{-.4cm}
+\begin{gather*}
+  \delta(x) \approx \sqrt{x}\quad ; \quad \tau(x) \approx 1/\delta(x) = 1/\sqrt{x}\\
+  \dot{V}_{BL} = v_\infty \cdot \delta^*(x)\\
+  \text{with 2 plates: }\dot{V}_{BL} = A^*\cdot v = \left(\dfrac{d - 2\delta^*}{2}\right)\pi \cdot v
+\end{gather*}
 
 \subsection{Turbolent BL}
 \subsubsection{Non-dimensional forms}
 Non-dimensional plot of wall normal turbulent velocity profile:
 \begin{center}
-  \includegraphics[width=.75\linewidth]{media/turbolent_BL.png}
+  \includegraphics[width=.7\linewidth]{media/turbolent_BL.png}
 \end{center}
 \begin{itemize}
   \item Friction velocity: $u_\tau = \sqrt{\dfrac{\tau_\text{wall}}{\rho}}$

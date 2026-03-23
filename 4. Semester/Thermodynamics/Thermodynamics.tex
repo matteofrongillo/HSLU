@@ -77,11 +77,13 @@
 \titlespacing*{\section}{0pt}{6pt}{1pt}
 \titlespacing*{\subsection}{0pt}{6pt}{1pt}
 \titlespacing*{\subsubsection}{0pt}{6pt}{1pt}
+\titlespacing*{\paragraph}{0pt}{6pt}{1pt}
 
 \titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.5em}{}
 \titleformat{\section}{\bfseries\color{red!80}}{\thesection.}{0.5em}{}
 \titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{\thesubsection}{0.5em}{}
 \titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{\thesubsubsection}{0.5em}{}
+\titleformat{\paragraph}{\small\bfseries}{\theparagraph}{0em}{}
 
 % ============= META DATA =============
 \newcommand{\pdftitle}[1]{\hypersetup{
@@ -199,7 +201,7 @@
 \newcommand{\defs}{\underline{Definition}: }
 \newcommand{\wrn}{\underline{Warning}: }
 \newcommand{\sht}{\ |\ }
-\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\pph}[1]{\paragraph{#1}}
 \newcommand{\dm}{\displaystyle}
 \newcommand{\rad}{^{\mathrm{c}}}
 \newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
@@ -563,8 +565,8 @@ For the change in entropy of the polytropic state change:
   \boxed{s_2 - s_1 = c_v \ln\dfrac{T_2}{T_1} + R_i \ln\dfrac{v_2}{v_1} = c_p \ln\dfrac{T_2}{T_1} - R_i \ln\dfrac{p_2}{p_1}}
 \end{gather*}
 
-Compressor with dissipation: $n > k$\\
-Turbine with dissipation: $n < k$
+\textbf{Compressor with dissipation}: $n > k$\\
+\textbf{Turbine with dissipation}: $n < k$
 
 \section{Exergy and anergy}
 \textbf{Exergy}: useful part of energy that can be completely converted into work under given ambient conditions.\\[1ex]
@@ -577,25 +579,33 @@ Turbine with dissipation: $n < k$
   \item Only in reversible processes exergy remains constant
   \item It is impossible to convert anergy into exergy
 \end{enumerate}
+\vfill\phantom{}
 
+\newcolumn
+\subsection{Exergy}
+\subsubsection{Exergy loss}
+\begin{center}
+  \includegraphics[width=\linewidth]{media/exergy.png}
+\end{center}
+\figbox{$\dm \dot{E_L} = T_E\dot{S}_{irr} = T_E\ \dot{m}\left(s_2 - s_1\right)$}
 
+\subsubsection{Exergy of heat}
+\[\dot{E}_Q = P_{rev} = \left(1-\frac{T_E}{T}\right)\dot{Q} = \eta_C \dot{Q}\]
 
+\subsubsection{Exergy of material flows (without mixtures)}
+\begin{gather*}
+  e = h - h_E - T_E\left(s-s_E\right) + \dfrac{c^2}{2} + gz + q\left(1-\dfrac{T_E}{T}\right)\\
+  e_2 - e_1 = h_2 - h_1 - T_E\left(s_2 - s_1\right)
+\end{gather*}
 
+\pph{Ideal gases}
+\[e = c_p\left(T - T_E - T_E \ln\dfrac{T}{T_E}\right) + R_i T_E \ln\dfrac{p}{p_E}\]
 
+\pph{Isobaric}
+\[e = c_p\left(T - T_E - T_E\ln\dfrac{T}{T_E}\right)\]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+\pph{Isobaric for $T < T_E$ (cooling)}
+\[e = c_p\left(T_E - T - T_E\ln\dfrac{T_E}{T}\right)\]
 
 
 

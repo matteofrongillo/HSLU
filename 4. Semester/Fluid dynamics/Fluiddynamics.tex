@@ -468,7 +468,7 @@ If h $\ll$ D:
 \end{gather*}
 
 \subsubsection{Pressure loss according to Bernoulli}
-\[p_1 - p_2 = \rho\frac{P_{\, \text{Diss}}}{\dot{m}} = \frac{P_{\, \text{Diss}}}{\dot{V}} = \frac{8\pi L \eta v_m}{R^2}\]
+\[p_1 - p_2 = \rho\frac{P_{\, \text{Diss}}}{\dot{m}} = \frac{P_{\, \text{Diss}}}{\dot{V}} = \frac{8\pi L \eta v_m}{R^2} \left(= \rho g h\right)\]
 
 \part{Boundary layers}
 {\scriptsize
@@ -476,11 +476,13 @@ If h $\ll$ D:
 \begin{tabular}{clc|clc}
   \textbf{Symb} & \makecell{\textbf{Name}} & \textbf{Units} & \textbf{Symb} & \makecell{\textbf{Name}} & \textbf{Units}\\[-1ex]
   \rowstrut $v_\infty$ & \makecell[l]{free-stream\\velocity} & m/s & $v(y)$ & \makecell[l]{local velocity in\\boundary layer} & m/s\\
-  \rowstrut $\delta$ & \makecell[l]{boundary layer\\thickness} & m & $\delta^*$ & \makecell[l]{displacement\\thickness} & m\\
+  \rowstrut $\delta$ & \makecell[l]{boundary layer\\thickness} & m & $\delta^*$ & \makecell[l]{BL displacement\\thickness} & m\\
   \rowstrut $\theta$ & \makecell[l]{momentum\\thickness} & m & $\tau_w$ & \makecell[l]{wall shear stress} & Pa\\
-  \rowstrut $\nu$ & \makecell[l]{kinematic\\viscosity} & m$^2$/s & $Re_x$ & \makecell[l]{Reynolds number\\at position $x$} & --\\
-  \rowstrut $x$ & \makecell[l]{distance from\\leading edge} & m & $\dot{V}_{BL}$ & \makecell[l]{boundary-layer\\volume flow rate} & m$^2$/s
+  \rowstrut $\nu$ & \makecell[l]{kinematic\\viscosity} & m$^2$/s & $\eta$ & \makecell[l]{dynamic\\viscosity} & Pa$\cdot$s\\
+  \rowstrut $Re_x$ & \makecell[l]{Reynolds num.\\at position $x$} & -- & $\dot{V}_{BL}$ & \makecell[l]{boundary-layer\\volume flow rate} & m$^2$/s
 \end{tabular}}
+
+Boundary layers develop due to wall shear stress $\tau$ and fluid viscosity $\nu$.
 
 \section{Laminar vs. Turbulent boundary layers}
 \subsection{Critical Reynolds number}
@@ -492,8 +494,7 @@ Reynolds number for the BL on a flat plate:
 \[Re_x = \dfrac{v_\infty x}{\nu} = \dfrac{v_\infty \cdot l_{char}}{\nu}\]
 
 $Re$ \textbf{increases} with the distance from the plate entry.\\
-Transition to turbulent: $Re_x \geq 5e5$ (usually $3.2e5$ to $3e6$)
-\vfill\phantom{}
+\textbf{Transition to turbulent}: $Re_x \geq 5\times 10^5$
 
 \newcolumn
 \subsection{Flat plate boundary layer}
@@ -590,15 +591,6 @@ Comparing BL as a function of the pressure gradient:
   \item \textbf{Back flow situation}: Fluid particles close to the wall with low momentum may come to a stop or even move in opposite direction of the main flow
 \end{itemize}
 
-\section{Lift force and Drag coefficient}
-\subsection{Drag force}
-\figbox{$\dm F_D = C_D\frac{1}{2}\rho v_\infty^2 A_p$}
-
-where:
-\begin{center}
-  $C_D$: drag coefficient ($\mu$)$\quad ; \quad$$A_p$: project area
-\end{center}
-
 \subsection{Influence of $Re$ on blunt bodies}
 \begin{itemize}
   \item $Re < 1$: No vortex formation
@@ -606,6 +598,36 @@ where:
   \item $Re > 10^6$: BL partially turbolent, vortex on the body surface
 \end{itemize}
 
+\part{Drag and Lift Forces}
+\textbf{Drag force}: parallel and opposite to the relative flow direction\\
+\textbf{Lift force}: perpendicular to the relative flow direction
+
+\section{Lift force and Drag coefficient}
+\subsection{Drag force}
+\figbox{$\dm F_D = C_D q_\infty A_P = C_D\frac{1}{2}\rho v_\infty^2 A_p$}
+
+where:
+\begin{gather*}
+  C_D: \text{drag coefficient } (\mu)\quad ; \quad A_p: \text{project area}\\
+  q_\infty: \text{dynamic contribution}
+\end{gather*}
+
+\subsubsection{Drag on a body in a flow}
+\figbox{$\dm F_D = F_P + F_\tau$}
+\textbf{Friction drag}: friction forces $F_\tau$ due to wall shear stress $\tau_\text{wall}$\\
+\textbf{Pressure drag}: pressure forces $F_P$ due to pressure variation along
+the surface of the object
+
+\subsubsection{Drag power}
+\figbox{$P_D = F_D v_\infty$}
+
+\subsection{Drag on smooth circular cylinders}
+\subsubsection{Prandlt's experiment}
+\begin{center}
+  \includegraphics[width=.9\linewidth]{media/Stokes.png}
+\end{center}
+\subsubsection{Stokes formula}
+\figbox{$F_D \approx F_\tau = 3\pi\eta dv_\infty$}
 
 
 

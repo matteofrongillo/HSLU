@@ -35,7 +35,7 @@
 
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta}
-\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.pathreplacing, patterns}
 \pgfplotsset{compat=1.18}
 \definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
 
@@ -237,22 +237,32 @@ the end-user.
   \item Focuses on poverty, work, and the fair distribution of social burdens
 \end{itemize}
 
+\section{Current and future energy sources}
 \subsection{Primary and secondary energy sources}
 \begin{center}
-  \includegraphics[width=\linewidth]{media/primary_secondary_sources.png}
+  \includegraphics[width=.95\linewidth]{media/primary_secondary_sources.png}
 \end{center}
 
 \subsubsection{From primary energy to useful energy}
 \begin{center}
-  \includegraphics[width=\linewidth]{media/primary_energy.png}
+  \includegraphics[width=.95\linewidth]{media/primary_energy.png}
 \end{center}
 
-
-
-
-
-
-
+\newcolumn
+\subsection{Energy conversion and efficiency}
+\begin{center}
+  \begin{tikzpicture}[>=Latex, line width=0.4pt, transform shape, scale=.7]
+  
+    \draw (0,-0.1) rectangle (2.2,1.2);
+  
+    \draw[->] (-1.2,0.55) -- (0,0.55);
+    \draw[->] (2.2,0.55) -- (3.4,0.55);
+  
+    \node[align=center, font=\bfseries\footnotesize] at (-1.8,0.55) {Energy\\Input\\$\alpha$};
+    \node[align=center, font=\bfseries\footnotesize] at (4.05,0.55) {Useful\\Energy\\Output\\$\omega$};
+    \node[align=center, font=\large] at (1.1,0.55) {$\dm \eta = \frac{E_\omega}{E_\alpha}$};
+  \end{tikzpicture}
+\end{center}
 
 
 

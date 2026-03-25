@@ -105,10 +105,10 @@ feedforward control anticipates changes and adjusts the system accordingly to im
 \section{Process model development}
 \subsection{Block diagrams}
 \begin{center}
-    \includegraphics[width=.9\textwidth]{media/Block_diagrams.png}
+    \includegraphics[width=.75\textwidth]{media/Block_diagrams.png}
 \end{center}
 
-\section{Signals and Systems}
+\section{Signals and Systems \todo}
 \subsection{Homogeneity}
 A system h is homogeneous if, for every input $u(t)$ and every scalar $\alpha$:
 \figbox{$h(\alpha u(t)) = \alpha h(u(t))$}
@@ -121,6 +121,49 @@ A system h is homogeneous if, for every input $u(t)$ and every scalar $\alpha$:
         \draw[-latex, thick] (2,0) -- (3,0) node[right] at (3,0) {$y(t)$};
     \end{tikzpicture}
 \end{figure}
+
+\section{Linearization}
+A line will now be defined as
+\figbox{$\dm w-\bar{w} = \left.\frac{dw}{dh}\right|_{\bar{h}=1} \left(h-\bar{h}\right)$}
+
+that can be written also as
+\[\Delta w = \dot{w}\Delta h\]
+ 
+\newpage
+\subsection{Linearization example}
+Nonlinear differential equation:
+\[M\ddot{h} + c\dot{h} = Mg - kh^3\]
+
+Define:
+\[f(\ddot{h},\dot{h},h) = 0 \quad \Longrightarrow \quad M\ddot{h} + c\dot{h} + kh^3 - Mg = 0\]
+
+Calculate the partial derivatives of $f$ at the operating point (steady state):
+\[\frac{\partial f}{\partial \ddot{h}} = M \quad \Longrightarrow \quad \left.\frac{\partial f}{\partial \ddot{h}}\right|_{\bar{h}} = M\]
+\[\frac{\partial f}{\partial \dot{h}} = c \quad \Longrightarrow \quad \left.\frac{\partial f}{\partial \dot{h}}\right|_{\bar{h}} = c\]
+\[\frac{\partial f}{\partial h} = 3kh^2 \quad \Longrightarrow \quad \left.\frac{\partial f}{\partial h}\right|_{\bar{h}} = 3k\bar{h}^2\]
+
+Establish a linear equation using the slopes (partial derivatives):
+\[\left.\frac{\partial f}{\partial \ddot{h}}\right|_{\bar{h}} \cdot \Delta\ddot{h} + \left.\frac{\partial f}{\partial \dot{h}}\right|_{\bar{h}} \cdot \Delta\dot{h} + \left.\frac{\partial f}{\partial h}\right|_{\bar{h}} \cdot \Delta h = 0\]
+\[\Longrightarrow \quad M\Delta\ddot{h} + c\Delta\dot{h} + 3k\bar{h}^2\Delta h = 0\]
+
+Block diagram form of the linearized system:
+\[\Delta\ddot{h} = -\frac{c}{M}\,\Delta\dot{h} - \frac{3k\bar{h}^2}{M}\,\Delta h\]
+
+Note:
+\[\Delta h = h - \bar{h} \quad \Longrightarrow \quad h = \Delta h + \bar{h} \qquad \left(\bar{h} = h_0 = \sqrt[3]{\frac{Mg}{k}}\right)\]
+
+\subsubsection{Block diagram}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{media/linearization.png}
+\end{center}
+
+
+
+
+
+
+
+
 
 
 

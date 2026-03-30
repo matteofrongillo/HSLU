@@ -1,213 +1,6 @@
 \documentclass[9pt, landscape, a4paper]{article}
 
-\usepackage{fontspec}
-\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
-\usepackage[english]{babel}
-\babelfont{rm}{Noto Sans}
-\babelfont{sf}{Noto Sans}
-
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{hyperref}
-\usepackage{url}
-\usepackage{graphicx}
-\usepackage{geometry}
-\usepackage{enumitem}
-\usepackage{parskip}
-\usepackage{chemfig}
-\usepackage{pdfpages}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usepackage{fancybox}
-\usepackage{makecell}
-\usepackage{pgfplots}
-\usepackage{ulem}
-\usepackage{wrapfig}
-\usepackage{subcaption}
-\usepackage{esvect}
-\usepackage{siunitx}
-\usepackage{mathtools}
-\usepackage{varwidth}
-\usepackage{multicol}
-\usepackage{titlesec}
-\usepackage{bm}
-\usepackage{forest}
-\usepackage{extpfeil}
-\usepackage{cancel}
-\usepackage{lastpage}
-
-\usetikzlibrary{arrows}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{decorations.pathreplacing}
-\pgfplotsset{compat=1.18}
-\definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
-
-% ============= GEOMETRY =============
-\geometry{
-    a4paper,
-    landscape,
-    left=0.5cm,
-    right=0.5cm,
-    top=1.5cm, 
-    bottom=0.5cm,
-    footskip=0cm
-}
-
-\setlist{nosep, leftmargin=*}
-
-\AtBeginDocument{
-  \setlength{\abovedisplayskip}{3pt}
-  \setlength{\belowdisplayskip}{3pt}
-  \setlength{\abovedisplayshortskip}{0pt}
-  \setlength{\belowdisplayshortskip}{0pt}
-}
-
-% ============= HEADER & TITLES =============
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\small \vspace*{.1cm}Thermodynamics Cheatsheet}
-\lhead{\small \vspace*{.1cm}Matteo Frongillo}
-\newcommand{\TotalPages}{12}
-\cfoot{\small \vspace*{.4cm}\thepage/\TotalPages}
-\renewcommand{\headrulewidth}{0pt}
-\setlength{\headsep}{4pt}
-
-\titlespacing*{\part}{0pt}{6pt}{1pt}
-\titlespacing*{\section}{0pt}{6pt}{1pt}
-\titlespacing*{\subsection}{0pt}{6pt}{1pt}
-\titlespacing*{\subsubsection}{0pt}{6pt}{1pt}
-\titlespacing*{\paragraph}{0pt}{6pt}{1pt}
-
-\titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.5em}{}
-\titleformat{\section}{\bfseries\color{red!80}}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{\thesubsection}{0.5em}{}
-\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{\thesubsubsection}{0.5em}{}
-\titleformat{\paragraph}{\small\bfseries}{\theparagraph}{0em}{}
-
-% ============= META DATA =============
-\newcommand{\pdftitle}[1]{\hypersetup{
-  colorlinks=true,
-  linkcolor=black,
-  urlcolor=blue,
-  pdftitle={#1},
-  pdfauthor={Matteo Frongillo}
-}}
-
-% ============= RENEW COMMANDS =============
-
-\makeatletter
-\renewcommand{\author}[1]{%
-  \def\@author{%
-    #1\\
-    \parbox{\textwidth}{%
-      \centering
-      \small Last update: \today
-    }
-  }%
-}
-\makeatother
-
-\let\emptyset\varnothing
-
-\makeatletter
-\pgfmathdeclarefunction{arctan}{1}{%
-    \begingroup
-    \pgfmathparse{rad(atan(#1))}%
-    \endgroup
-}
-\makeatother
-
-% ============= NEW COMMANDS =============
-
-\newcommand{\figbox}[1]{ 
-    \begin{center}
-      \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}} 
-    \end{center}       
-}
-
-\newcommand{\wrapfill}{
-    \par
-    \ifnum \value{WF@wrappedlines} > 0
-        \addtocounter{WF@wrappedlines}{-1}%
-        \null\vspace{
-            \arabic{WF@wrappedlines}
-            \baselineskip
-        }
-        \WFclear
-    \fi
-    \phantom{}
-}
-
-\ExplSyntaxOn
-\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
-{
-    \IfNoValueTF{#3}{
-        \IfNoValueTF{#4}{
-            \displaystyle \int #1\,d#2
-        }{
-            \text{Error: either 2 or 4 arguments must be provided}
-        }
-    }{
-        \IfNoValueTF{#4}{
-            \text{Error: either 2 or 4 arguments must be provided}
-        }{
-            \displaystyle
-            \int\limits
-                \IfNoValueF{#1}{\c_math_subscript_token{#1}}
-                ^{\IfNoValueTF{#2}{}{#2}}
-                #3\, d#4
-        }
-    }
-}
-\ExplSyntaxOff
-
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}}
-
-\makeatletter
-\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
-\makeatother
-
-\makeatletter
-\newcommand{\shorteq}{\mathrel{\mkern0.2mu\mathpalette\shorteq@\relax\mkern0.2mu}}
-\newcommand{\shorteq@}[2]{\scalebox{0.5}[1]{$\m@th#1=$}}
-
-\newcommand{\longeq}[1]{\mathrel{\mathpalette\longeq@{#1}}}
-\newcommand{\longeq@}[2]{%
-  \begingroup
-  \sbox\z@{$\m@th#1=$}%
-  \ifdim#2<\wd\z@
-    \resizebox{#2}{\height}{\box\z@}%
-  \else
-    \ifdim#2<3\wd\z@
-      \hbox to #2{$\m@th#1=\hss=\hss=\hss=$}%
-    \else
-      \hbox to #2{$\m@th#1=\cleaders\hbox to 0.2\wd\z@{\hss$#1=$\hss}\hfil=$}%
-    \fi
-  \fi
-  \endgroup
-}
-\makeatother
-
-\renewcommand{\CancelColor}{\color{red}}
-
-\newcommand{\difference}{\,\backslash\,}
-\newcommand{\rem}{\underline{Remark}: }
-\newcommand{\nots}{\underline{Notation}: }
-\newcommand{\note}{\underline{Note}: }
-\newcommand{\prf}{\underline{Proof}: }
-\newcommand{\exs}{\underline{Example}: }
-\newcommand{\defs}{\underline{Definition}: }
-\newcommand{\wrn}{\underline{Warning}: }
-\newcommand{\sht}{\ |\ }
-\newcommand{\pph}[1]{\paragraph{#1}}
-\newcommand{\dm}{\displaystyle}
-\newcommand{\rad}{^{\mathrm{c}}}
-\newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
-\newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
-\newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
-\newcommand{\cel}{$^\circ$C}
+\usepackage{Cheatsheet}
 
 % ============= DOCUMENT CONTENT =============
 
@@ -501,6 +294,11 @@ For steady-state case:
 
 \newpage
 \section{Entropy $S$ as a state variable}
+\begin{gather*}
+  ds = \dfrac{dq + dj}{T} = \dfrac{du + p\ dv}{T} = \dfrac{dh - v\ dp}{T}\\
+  T\ ds = dq + dj \Longrightarrow T\left(s_2 - s_1\right) = q_{12} + j_{12}
+\end{gather*}
+
 \subsection{Reversible processes}
 \subsubsection{Clausius entropy relation}
 \figbox{$\delta q_{\mathrm{rev}} = T\,ds \Longleftrightarrow \delta Q_\mathrm{rev} = T\, dS$}
@@ -534,15 +332,15 @@ All the works can be calculated with a temperature change:
   \integral[T][s] = q_{12} + j_{12} = \boxed{\integral[T][s] + \integral[v][p] = h_2 - h_1}\\
   \boxed{T\ ds + v\ dp = h_2 - h_1 \Longleftrightarrow T\ ds - p\ dv = u_2 - u_1}
 \end{gather*}
+\vfill\phantom{}
 
+\newcolumn
 \subsection{Reversible state changes with perfect gases}
 \subsubsection{Open system}
 \begin{gather*}
   q_{12} + j_{12} + w_{p,rev} = h_2 - h_1\\
   \integral[1][2][T][s] + \integral[1][2][v][p] = c_p\left(T_2 - T_1\right)
 \end{gather*}
-\vfill\phantom{}
-\newcolumn
 
 \subsubsection{Closed system}
 \begin{gather*}
@@ -579,32 +377,106 @@ For the change in entropy of the polytropic state change:
   \item Only in reversible processes exergy remains constant
   \item It is impossible to convert anergy into exergy
 \end{enumerate}
-\vfill\phantom{}
 
-\newcolumn
 \subsection{Exergy}
-\subsubsection{Exergy loss}
+\subsubsection{Exergy balance / Exergy loss}
 \begin{center}
   \includegraphics[width=\linewidth]{media/exergy.png}
 \end{center}
-\figbox{$\dm \dot{E}_L = T_E \dot{S}_{\mathrm{irr}} = T_E\ \dot{m}\left(s_2 - s_1\right) = T_E \underbrace{\frac{\Delta T}{T_1\cdot T_2}\,\dot{Q}}_{\dot{S}_{\mathrm{irr}}}$}
+\begin{gather*}
+  \dot{E}_L = \sum_\alpha \dot{E}_\alpha - \sum_\omega \left|\dot{E}_\omega\right| = \dot{Q}\dfrac{T_A - T_E}{T_A} + \left(-\dot{Q}\dfrac{T_B - T_E}{T_B}\right)\\
+  \boxed{\dot{E}_L = T_E\dot{S}_{irr} = T_E\dfrac{T_A - T_B}{T_AT_B}\dot{Q}}\\
+  \dot{S}_{irr} = \sum_\omega \dot{m}_\omega s_\omega - \sum_\alpha \dot{m}_\alpha s_\alpha - \sum \dot{S}_Q \geq 0,\quad d\dot{S}_Q = \dfrac{d\dot{Q}}{T}
+\end{gather*}
+
 \subsubsection{Exergy of heat}
 \[\dot{E}_Q = P_{rev} = \left(1-\frac{T_E}{T}\right)\dot{Q} = \eta_C \dot{Q}\]
 
 \subsubsection{Exergy of material flows (without mixtures)}
 \begin{gather*}
-  e = h - h_E - T_E\left(s-s_E\right) + \dfrac{c^2}{2} + gz + q\left(1-\dfrac{T_E}{T}\right)\\
+  e = h - h_E - T_E\left(s-s_E\right) + \dfrac{c^2}{2} + gz + q\left(1-\dfrac{T_E}{T}\right)\\[1ex]
   e_2 - e_1 = h_2 - h_1 - T_E\left(s_2 - s_1\right)
 \end{gather*}
 
-\pph{Ideal gases}
-\[e = c_p\left(T - T_E - T_E \ln\dfrac{T}{T_E}\right) + R_i T_E \ln\dfrac{p}{p_E}\]
+\pph{Perfect gases}
+\begin{gather*}
+  e = c_p\left(T - T_E - T_E \ln\dfrac{T}{T_E}\right) + R_i T_E \ln\dfrac{p}{p_E}
+\end{gather*}
 
-\pph{Isobaric}
+\pph{Incompressible liquids (isobaric)}
 \[e = c_p\left(T - T_E - T_E\ln\dfrac{T}{T_E}\right)\]
 
 \pph{Isobaric for $T < T_E$ (cooling)}
 \[e = c_p\left(T_E - T - T_E\ln\dfrac{T_E}{T}\right)\]
+
+\vfill\phantom{}
+
+\newcolumn
+\part{Steady-state flow processes}
+\section{Adiabatic working cycles}
+\subsection{Compressor}
+\subsubsection{1st law}
+\begin{gather*}
+  w_{t12} + q_{12} = h_2 - h_1 + \dfrac{1}{2}\left(c_2^2 - c_1^2\right) + g\left(z_2 - z_1\right)\\
+  w_{t12} + q_{12} = c_p\left(T_2 - T_1\right) + \dfrac{1}{2}\left(c_2^2 - c_1^2\right) + g\left(z_2 - z_1\right)\\
+  P_{12} + \dot{Q}_{12} = \dot{m}\left(w_{t12} + q_{12}\right)
+\end{gather*}
+
+\subsubsection{Isentropic compression efficiency factor}
+\begin{gather*}
+  \eta_s = \dfrac{\text{isentropic work}}{\text{real polytropic work}}\\[1.5ex]
+  \eta_s = \dfrac{\Delta h_s}{\Delta h} = \dfrac{h_{2,s} - h_1}{h_2 - h_1} = \dfrac{c_{p,m} \left(T_{2,s} - T_1\right)}{c_{p,m} \left(T_2 - T_1\right)} = \dfrac{T_{2,s} - T_1}{T_2 - T_1} \leq 1
+\end{gather*}
+
+\subsection{Turbine}
+\subsubsection{1st law}
+\begin{gather*}
+  w_{t12} + q_{12} = h_2 - h_1 + \dfrac{1}{2}\left(c_2^2 - c_1^2\right) + g\left(z_2 - z_1\right)\\
+  w_{t12} + q_{12} = c_p\left(T_2 - T_1\right) + \dfrac{1}{2}\left(c_2^2 - c_1^2\right) + g\left(z_2 - z_1\right)\\
+  P_{12} = \dot{m}w_{t12} \Longleftrightarrow -P_{12} = \dot{m}\left|w_{t12}\right|
+\end{gather*}
+
+\subsubsection{Isentropic turbine efficiency}
+\begin{gather*}
+  \eta_s = \dfrac{\text{real polytropic work}}{\text{isentropic work}}\\[1.5ex]
+  \eta_s = \dfrac{-\Delta h}{-\Delta h_s} = \dfrac{h_1 - h_2}{h_1 - h_{2,s}} = \dfrac{T_1 - T_2}{T_1 - T_{2,s}}
+\end{gather*}
+
+\section{Adiabatic flow processes without work}
+\subsection{Throttle / Expansion valve (isenthalpic)}
+\begin{gather*}
+  h_1 = h_2 \Longrightarrow j_{12} = -\integral[1][2][v][p] = -R_i T \ln\dfrac{p_2}{p_1}
+\end{gather*}
+
+\subsection{Nozzle}
+\begin{gather*}
+  h_2^0 = h_1^0 \Longrightarrow h_2 + \dfrac{1}{2}c_2^2 = h_1 + \dfrac{1}{2}c_1^2\\
+  c_2 = \sqrt{2\left(h_1 - h_2\right) + c_1^2}
+\end{gather*}
+where $h^0$ is the total enthalpy: $h^0 = h + \dfrac{c^2}{2}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

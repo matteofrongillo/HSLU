@@ -8,7 +8,6 @@
 
 \renewcommand{\thepart}{\Large Week }
 \titleformat{\part}{\LARGE\bfseries\color{black}}{\thepart}{0em}{}
-\newcommand{\todo}{{\color{red}TODO}}
 
 % === TITLE ===
 \title{\textbf{Environmental Analysis and Ecology \\ HSLU, Semester 4}}
@@ -744,11 +743,176 @@ where:
 
 \section{Life Cycle Assessment (LCA)}
 LCA is an analytical tool that assesses energy consumption/emissions
-within a life cycle of a system (e.g. product, energy system, material)
+within a life cycle of a system (e.g. product, energy system, material).
 
+\pph{Example: LCA of a reusable water bottle}
+1. Crude oil extraction, 2. Transportation, 3. Refinery, 4. Manufactory/Assembly, 5. Transportation to consumption, 6. Use, 7. Disposal
 
+\subsection{Precision vs. Accuracy}
 
+\subsubsection{Precision}
+Precision describes how close repeated measurements are to each other.
+A method is precise when it produces very similar results under the
+same conditions.
 
+\subsubsection{Accuracy}
+Accuracy describes how close a measurement is to the true or accepted
+value. Accuracy is only meaningful when the result is also sufficiently
+precise, because a correct value obtained by chance is not reliable.
+
+\subsection{Four phases of LCA}
+\begin{minipage}{.55\textwidth}
+    \renewcommand{\baselinestretch}{1.5}\selectfont
+    \begin{enumerate}[label=\textbf{\arabic*}.]
+        \item Goal and scope definition
+        \item Inventory Analysis (LCI): compiling relevant inputs and outputs
+        \item Impact Assessment (LCIA): evaluating potential environmental impacts associated with the inputs and outputs
+        \item Interpretation: evaluation of results (LCI and LCIA) in relation to objectives of LCA
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{.37\textwidth}
+    \includegraphics[width=\linewidth]{media/LCA.png}
+\end{minipage}
+
+\subsubsection{Goal and scope definition}
+\begin{itemize}
+    \item Breadth and depth of the study is defined
+    \item Goal should include statement of the reason for carrying out the LCA
+    \item Scope should include the following:
+    \begin{itemize}
+        \item Function of the considered system
+        \item Check for fixed bias (a measurement tool that gives you always the same fixed error)
+        \item System boundaries (including assumptions and limitations)
+        \item Data requirements
+        \item Type of impact assessment methodology (LCIA)
+    \end{itemize}
+    \item Funcional unit:
+    \begin{itemize}
+        \item Provides reference to which the inputs and outputs (inventory analysis) can be related to
+        \item Enables possibilities for comparison between different systems
+    \end{itemize}
+\end{itemize}
+
+\pph{Tools for analysing energy systems}
+\vspace*{-.4cm}
+\begin{itemize}
+    \item Requires estimate of in- and outflow values for each stage of the life cycle
+    \item It is partly very difficult to accurately estimate these values for each activity (e.g. energy consumed in individual stage)
+    \item If no educated guess can be made, stage must be explicitly excluded from the LCA
+    \item LCA can be performed from ``cradle to grave'' $\to$\ From resource extraction to disposal phase
+    \item Or from ``cradle to cradle'' $\to$\ End-of-life disposal step for product is a recycling process
+\end{itemize}
+
+\subsubsection{Life cycle inventory analysis (LCI)}
+\begin{itemize}
+    \item Data collection part of LCA
+    \item Accounting of all processes involved in the system of interest
+    \item Determination and quantification of all in- and outflows of the system:
+    \begin{itemize}[label=$\to$]
+        \item Raw resources or materials
+        \item Types and amount of energy
+        \item Water use
+        \item Emissions to air, water and land by specific substance
+    \end{itemize}
+\end{itemize}
+
+\pph{Overview of different stages within life cycle}
+\begin{table*}[ht!]
+    \renewcommand{\baselinestretch}{1.5}\selectfont
+    \begin{tabular}{lll}
+        Resource extraction & Transportation raw material & Conversion of raw material\\
+        Product manufacturing & Product transportation & Commercial ``overhead''\\
+        \makecell[l]{Infrastructure construction\\[-1ex] and maintenance} & Product use phase / consumption & Demolition / disposal / recycling\\
+    \end{tabular}
+\end{table*}
+
+\newpage
+\subsubsection{Life cycle impact assessment (LCIA)}
+Evaluation of magnitude and significance of potential environmental impacts.
+
+\pph{Classification and characterization}
+\vspace*{-.4cm}
+\begin{itemize}
+    \item Selection of relevant impact categories (based on goal an scope)
+    \item Impact potentials are calculated
+\end{itemize}
+
+\pph{Normalization and weighting}
+\vspace*{-.4cm}
+\begin{itemize}
+    \item Both steps are voluntary according to ISO standard (ISO 14040)
+    \item Normalization provides basis for comparing different types of environmental impact categories (same unit is assigned)
+    \item Weighting assigns a weighting factor to each impact category depending on relative importance
+\end{itemize}
+
+\pph{LCIA - Impact categories (ICs)}
+\vspace*{-.4cm}
+\begin{itemize}
+    \item ICs represent environmental issues of concern
+    \item LCI results are assigned to various ICs
+    \item Possible ICs:\\
+    Global warming / climate change, Acidification, Smog formation, Stratospheric ozone depletion, Eutrophication, Human carcinogenicity, Ecotoxicity (aquatic, terrestial)
+\end{itemize}
+
+\subsection{Eco-indicator 99}
+Eco-indicator assesses seriousness of three damage categories:
+\begin{enumerate}
+    \item \textbf{Damage to human health}:
+    \begin{itemize}[label=$\to$]
+        \item Expressed as the number of years life lost and the number of years lived disabled
+        \item Combined as Disability Adjusted Life Years (DALYs)
+    \end{itemize}
+    \item \textbf{Damage to ecosystem quality}:
+    \begin{itemize}[label=$\to$]
+        \item Expressed as loss of species over a certain area during a certain time (using for instance CO$_2$e)
+    \end{itemize}
+    \item \textbf{Damage to resources}:
+    \begin{itemize}[label=$\to$]
+        \item Expressed as surplus energy needed for future extractions of fossil fuels and minerals
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Damage model for resources}
+\begin{itemize}
+    \item Extracting minerals reduces quality of remaining resources $\to$\ High quality resources are extracted first (high ore grade)
+    \item Damage to resources will be experienced by future generations $\to$\ More effort (energy) required to extract same amount of resources; Expressed as ``surplus energy''
+\end{itemize}
+
+\subsubsection{Damage model for land-use (ecosystem quality)}
+\begin{itemize}
+    \item Mankind occupies large areas for urban and agricultural purposes $\to$\ Degradation of natural habitat; increased species extinction rate
+    \item Different types of land-use have different effects
+    \item Scale expresses decrease in species diversity per type of land use
+\end{itemize}
+
+\newpage
+\subsubsection{Damage model for human health - emissions}
+Subdivided in 4 steps:
+
+\pph{Fate analysis}
+\vspace*{-.4cm}
+\begin{itemize}
+    \item Chemical substances are released into the air, water and soil (compartments)
+    \item Where substance will go and how long it remains there depends on properties of substance and compartment
+    \item Fate analysis models transfer between compartments and degradation (lifetime) of substance (calculating concentrations in air and water)
+\end{itemize}
+
+\pph{Exposure}
+Based on concentration levels, it is determined how much of a substance is actually consumed by living organisms.
+
+\pph{Effect analysis}
+Based on exposure level diseases and other harmful effects and there frequencies are predicted.
+
+\pph{Damage analysis}
+Predicted diseases are expressed as damage unit:
+\begin{itemize}
+    \item For humans expressed as DALY
+    \item For toxic effects on ecosystems percentage of exposed plants and species is determined
+    \item For acidification and eutrophication percentage of plants which is likely to disappear is determined
+\end{itemize}
+
+It is important to determine the correct scale of impact (locally or globally).
 
 
 

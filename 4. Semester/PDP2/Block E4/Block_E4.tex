@@ -1,24 +1,38 @@
 \documentclass{article}
 
-\usepackage{Mathematics}
+\usepackage{Paper}
 \pdftitle{Block-E4-PDP2}
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\normalsize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true
+}
 
 \title{\textbf{Block E4 \\ PDP2, HSLU, Semester 4}}
 \author{Matteo Frongillo}
 \date{}
 
 \begin{document}
+\pagestyle{plain}
 
 \part*{Block E4 - Effective prompting}
-\section*{Good promts}
+\section*{How to write a good prompt (30 min)}
 \subsection*{Rules to follow}
 \begin{itemize}
     \item Start with the simplest request
     \item Use clear separators between different tasks, such as
         \begin{verbatim}
-            ### INTRODUCTION ###
-            ### OUTPUT STYLE ###
+            ## INTRODUCTION
+            ## OUTPUT STYLE
         \end{verbatim}
+        \vspace*{-.4cm}
     \item Use clear words to tell the AI what you want, for instance ``Translate'', ``List'', ``Explain''
     \item Be very specific as you add details: ``Explain the differece between renewable and non-renewable energy to a 16-year-old. Use simple words. Include three examples each.''
     \item Go to the point and remove all the unnecessary informations.
@@ -29,28 +43,28 @@
 
 \subsection*{Good prompt example}
 \begin{verbatim}
-You are a librarian
+    You are a librarian
 
-### RULES ###
-Before starting generating the output, ask:
-- How old are you?
-- What is your favorite book?
-- How many book per year do you read?
-- What is your favorite book genre?
+    ## RULES
+    Before starting generating the output, ask:
+    - How old are you?
+    - What is your favorite book?
+    - How many book per year do you read?
+    - What is your favorite book genre?
 
-### GOAL ###
-Suggest a book based on the user age, favorite book, number of books read the past year,
-and book genre.
+    ## GOAL
+    Suggest a book based on the user age, favorite book, number of books read the past year,
+    and book genre.
 
-### OUTPUT ###
-- Return a list of 5 books
-- Add a 30 words description for each book
-- Ask the user if they want 5 more books suggested
-- Do not ask further questions
+    ## OUTPUT
+    - Return a list of 5 books
+    - Add a 30 words description for each book
+    - Ask the user if they want 5 more books suggested
+    - Do not ask further questions
 
-### CONSTRAINTS ###
-- Do not suggest the same book
-- Do not suggest books from the same saga, if any
+    ## CONSTRAINTS
+    - Do not suggest the same book
+    - Do not suggest books from the same saga, if any
 \end{verbatim}
 
 \subsection*{Bad prompt example}
@@ -58,5 +72,60 @@ and book genre.
 Suggest me some books Tolkien-style.
 \end{verbatim}
 
+\section*{Exercise (15 min)}
+Write a good prompt in order to have the AI generate a complete Python script for a simple calculator.
+
+\newpage
+\subsection*{Possible exercise solution}
+\begin{verbatim}
+    You are a Python programmer.
+
+    ## GOAL
+    Generate a complete Python script for a simple calculator.
+
+    ## TASK
+    The program must:
+    - Ask the user to enter the first number
+    - Ask the user to choose one operation between +, -, *, /
+    - Ask the user to enter the second number
+    - Calculate and print the result
+
+    ## RULES
+    - The code must be complete and directly runnable
+    - The code must print only the calculation
+    - Use simple Python only
+    - Do not include explanations before or after the code
+    - Handle division by zero with an error message
+    - Handle invalid operations with an error message
+
+    ## OUTPUT STYLE
+    - Write the complete `.py` code
+\end{verbatim}
+
+\subsection*{Possible output}
+\begin{lstlisting}[language=Python]
+    first = float(input("Enter the first number: "))
+    operation = input("Choose an operation (+, -, *, /): ")
+    second = float(input("Enter the second number: "))
+
+    if operation == "+":
+        print(first + second)
+    elif operation == "-":
+        print(first - second)
+    elif operation == "*":
+        print(first * second)
+    elif operation == "/":
+        if second == 0:
+            print("Error: division by zero")
+        else:
+            print(first / second)
+    else:
+        print("Error: invalid operation")
+\end{lstlisting}
+
+To run it:
+\begin{lstlisting}[language=bash]
+>   python3 calculator.py
+\end{lstlisting}
 
 \end{document}

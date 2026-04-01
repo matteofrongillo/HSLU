@@ -102,23 +102,23 @@ Write a good prompt in order to have the AI generate a complete Python script fo
 
 \subsection*{Possible output}
 \begin{lstlisting}[language=Python]
-    first = float(input("Enter the first number: "))
-    operation = input("Choose an operation (+, -, *, /): ")
-    second = float(input("Enter the second number: "))
-
-    if operation == "+":
-        print(first + second)
-    elif operation == "-":
-        print(first - second)
-    elif operation == "*":
-        print(first * second)
-    elif operation == "/":
-        if second == 0:
-            print("Error: division by zero")
-        else:
-            print(first / second)
-    else:
-        print("Error: invalid operation")
+ first = float(input("Enter the first number: "))
+ operation = input("Choose an operation (+, -, *, /): ")
+ second = float(input("Enter the second number: "))
+ 
+ if operation == "+":
+     print(first + second)
+ elif operation == "-":
+     print(first - second)
+ elif operation == "*":
+     print(first * second)
+ elif operation == "/":
+     if second == 0:
+         print("Error: division by zero")
+     else:
+         print(first / second)
+ else:
+     print("Error: invalid operation")
 \end{lstlisting}
 Save the Python code as\ \ ``calculator.py''
 

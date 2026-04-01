@@ -15,9 +15,7 @@
     breaklines=true
 }
 
-\title{\textbf{Block E4 \\ PDP2, HSLU, Semester 4}}
 \author{Matteo Frongillo}
-\date{}
 
 \begin{document}
 \pagestyle{plain}
@@ -34,11 +32,11 @@
         \end{verbatim}
         \vspace*{-.4cm}
     \item Use clear words to tell the AI what you want, for instance ``Translate'', ``List'', ``Explain''
-    \item Be very specific as you add details: ``Explain the differece between renewable and non-renewable energy to a 16-year-old. Use simple words. Include three examples each.''
-    \item Go to the point and remove all the unnecessary informations.
-    \item Do not be generic and specify what you want: ``\sout{Write few paragraphs}''.\\
-        Better: ``Write 2 paragraphs'' or ``Write a 200 words essay''
-    \item Avoid to say what not to do, instead say what to do.
+    \item Be very specific as you add details: ``Explain the difference between renewable and non-renewable energy to a 16-year-old. Use simple words. Include three examples each.''
+    \item Go to the point and remove all the unnecessary information.
+    \item Do not be generic and specify what you want: ``\sout{Write a few paragraphs}''.\\
+        Better: ``Write 2 paragraphs'' or ``Write a 200 word essay''
+    \item Instead of saying what not to do, just say what to do.
 \end{itemize}
 
 \subsection*{Good prompt example}
@@ -49,16 +47,16 @@
     Before starting generating the output, ask:
     - How old are you?
     - What is your favorite book?
-    - How many book per year do you read?
+    - How many books per year do you read?
     - What is your favorite book genre?
 
     ## GOAL
-    Suggest a book based on the user age, favorite book, number of books read the past year,
+    Suggest a book based on the user's age, favorite book, number of books read the past year,
     and book genre.
 
     ## OUTPUT
     - Return a list of 5 books
-    - Add a 30 words description for each book
+    - Add a 30 word description for each book
     - Ask the user if they want 5 more books suggested
     - Do not ask further questions
 
@@ -69,7 +67,7 @@
 
 \subsection*{Bad prompt example}
 \begin{verbatim}
-Suggest me some books Tolkien-style.
+Suggest some Tolkien-style books.
 \end{verbatim}
 
 \section*{Exercise (15 min)}
@@ -122,9 +120,11 @@ Write a good prompt in order to have the AI generate a complete Python script fo
     else:
         print("Error: invalid operation")
 \end{lstlisting}
+Save the Python code as\ \ ``calculator.py''
 
 To run it:
 \begin{lstlisting}[language=bash]
+>   cd path/to/file/
 >   python3 calculator.py
 \end{lstlisting}
 

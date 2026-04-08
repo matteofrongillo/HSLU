@@ -3,6 +3,8 @@
 \usepackage{Mathematics}
 \pdftitle{Linear Algebra}
 
+\DeclareMathOperator{\adj}{adj}
+
 % === TITLE ===
 \title{\textbf{Linear Algebra \\ HSLU, Semester 4}}
 \author{Matteo Frongillo}
@@ -241,7 +243,34 @@ $
     $
 \end{minipage}
 
+\section{Inverse map}
+$L(v)=w$ is invertible if and only if $v$ is a basis (linear independent)
+and $w$ is also linear independent.
 
+\figbox{$\dm w=L(v) \Longleftrightarrow v=L^{-1}(w)$}
+
+
+If $L: \mathbb{R}^n \mapsto \mathbb{R}^n$ has a matrix $A$, then
+\[L^{-1}(x) = A^{-1}x\]
+
+then $L$ is invertible iff $\det A \neq 0$
+
+Follows that, for $L(e_1) = v$ and $L(e_2) = w$, $L$ is invertible iff $v,w$ are
+linearly independent, as $e_1,\ e_2$ are linearly independent.
+
+To calculate $L^{-1} \in \mathbb{R}^2$:
+
+\figbox{$\dm L^{-1} = \dfrac{1}{\det L} \adj L = \dfrac{1}{ad - bc}\begin{pmatrix}
+    d & -b\\
+    -c & a
+\end{pmatrix}$}
+
+\subsection{Kernel and image}
+Let \(A\) be a matrix, then:
+\begin{gather*}
+    \ker A=\{x\in\mathbb{R}^n \mid Ax=0\}\\
+    \operatorname{im} A=\{Ax \mid x\in\mathbb{R}^n\} \Longrightarrow \operatorname{im} A=\operatorname{span}\{a_1,\dots,a_n\}
+\end{gather*}
 
 
 

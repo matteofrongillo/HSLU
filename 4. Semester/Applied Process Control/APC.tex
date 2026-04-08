@@ -157,13 +157,29 @@ Note:
     \includegraphics[width=.7\textwidth]{media/linearization.png}
 \end{center}
 
+\section{PID Controllers \todo}
 
+\newpage
+\section{Laplace tranform and transfer function}
+\subsection{Laplace transform}
+The Laplace transform is defined for $t\geq 0$ as
+\figbox{$\dm F(s) = \mathcal{L}\left\{f(t)\right\} = \integral[0][\infty][f(t)e^{-st}][t]$}
 
+For the unit step: $\dm u(t) = \begin{cases}
+    0 &t < 0\\
+    1 &t \geq 0
+\end{cases}$:
 
+\begin{gather*}
+    U(s) = \mathcal{L}\left\{u(t)\right\} = \integral[0][\infty][1][t] = \left[\dfrac{e^{-st}}{-s}\right]_0^\infty = \dfrac{e^{-\infty}}{-s} - \dfrac{0}{-s} = 0 + \dfrac{1}{s} = \dfrac{1}{s}\\[1ex]
+    u(t)\overset{\raisebox{0.4ex}{$\mathcal{L}$}}{\longleftrightarrow}\frac{1}{s}
+\end{gather*}
 
-
-
-
+\subsection{Transfer function}
+\begin{gather*}
+    s\omega(s) + A\omega(s) = Bu(s) \Longrightarrow \omega(s)\left[s + A\right] = Bu(s)\\[1ex]
+    G_{\omega,u}(s) = \dfrac{\omega(s)}{u(s)} = \dfrac{B}{s+A}
+\end{gather*}
 
 
 

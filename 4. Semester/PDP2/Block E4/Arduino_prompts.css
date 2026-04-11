@@ -1,0 +1,15 @@
+pre.sourceCode {
+  border: 1px solid #c8d1dc;
+  border-radius: 8px;
+  background: #f7f9fc;
+  padding: 0.9rem;
+}
+
+div.sourceCode {
+  margin: 1rem 0;
+}
+
+code.sourceCode {
+  font-size: 0.92rem;
+  line-height: 1.45;
+}

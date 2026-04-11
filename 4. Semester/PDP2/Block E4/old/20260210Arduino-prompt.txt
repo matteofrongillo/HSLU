@@ -35,25 +35,20 @@ If one or more of these inputs are missing, ask only for the missing inputs and 
 
 ## FUNCTIONAL REQUIREMENTS
 1. Stepper motor:
-  - The motor starts at `0°`
-  - The motor continuously sweeps from `0°` to `X°` and back to `0°`
-  - If placement = `CORNER`, then `X = 90°`
-  - If placement = `BORDER`, then `X = 180°`
-  - Read sensors at each motor step
-  - The code must track and report the current motor angle in degrees
+   - The motor must rotate periodically from 0° to X° and back from X° to 0°
+   - If placement = `CORNER`, then X = 90°
+   - If placement = `BORDER`, then X = 180°
 
 2. Ultrasonic distance sensor:
-  - The board is a square with side length `d`
-  - Let the measured distance be `x` in cm
-  - A distance is valid only if `5 < x < d`
-  - If `x <= 5` or `x >= d`, treat it as out of range and do not detect a target
+   - The board is a square with side length `d`
+   - The ultrasonic sensor must detect an object only if its measured distance `x` satisfies: `5 cm < x < d cm`
+   - Any object at a distance `x <= 5 cm` or `x >= d cm` must be considered out of range and must not be detected
 
 3. AMG8833 thermal sensor:
-  - Read the full 8x8 temperature matrix
-  - Compute the maximum temperature among all 64 pixels
-  - A heat source is detected only if the maximum temperature is greater than the threshold computed from distance
-
-Use exactly this threshold function:
+   - Read the full 8x8 temperature matrix
+   - Determine the maximum temperature among all 64 pixels
+   - Consider a heat source detected only if the maximum temperature is above a threshold that depends on distance
+   - Use the following function for the threshold:
 ```
 float getHotThreshold(float distanceCm, float boardSideLength, float ambientTempC) {
   if (distanceCm <= 0.45 * boardSideLength) {
@@ -66,45 +61,22 @@ float getHotThreshold(float distanceCm, float boardSideLength, float ambientTemp
 }
 ```
 
-## DETECTION LOGIC
-A target is considered detected only when both conditions are true:
-- The ultrasonic distance is valid: `5 < x < d`
-- The thermal maximum temperature is above `getHotThreshold(x, d, ambientTempC)`
-
-When detected, report:
-- distance in cm
-- motor angle in degrees
-- maximum detected temperature in °C
-
-## REQUIRED LIBRARIES
-Use these includes exactly, and add only strictly necessary standard Arduino/math includes if required for compilation:
-- `#include "Seeed_AMG8833_driver.h"`
-- `#include <Grove_I2C_Motor_Driver.h>`
-- `#include <Wire.h>`
-- `#include <setjmp.h>`
-- `#include <stdint.h>`
-
 ## GOAL
 Detect heat sources and report their distance, motor angle, and maximum detected temperature.
 
 ## CODE REQUIREMENTS
 - Return one complete and compilable `.ino` sketch
+- Include all required `#include` statements
 - Include all constants, setup code, loop logic, and helper functions
-- Specify the serial port in order to display the detected distance, motor angle, and maximum detected temperature in the Arduino IDE Serial Monitor
+- Use widely available Arduino libraries compatible with Arduino Uno
 - Do not leave placeholder functions
 - Do not return pseudocode
-- Use Serial so the Arduino IDE Serial Monitor shows:
-  - current distance
-  - current motor angle
-  - maximum temperature
-  - detection status
-- Avoid dynamic memory and `String`
-- Keep the code suitable for Arduino Uno memory limits
 
 ## OUTPUT FORMAT
 Return exactly these sections and nothing else:
-1. Wiring and connections for the Grove Shield, as a table with columns: Component, Connector, Comment
-2. Complete `.ino` code
+1. Wiring and connections for the Grove Shield, as a table with columns: Component, Connector, Note
+2. Required libraries
+3. Complete `.ino` code
 
 ## CONSTRAINTS
 - Do not provide project improvement suggestions

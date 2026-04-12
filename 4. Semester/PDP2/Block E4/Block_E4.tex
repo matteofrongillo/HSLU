@@ -3,6 +3,7 @@
 \usepackage{Paper}
 \pdftitle{Block-E4-PDP2}
 \usepackage{listings}
+
 \lstset{
     basicstyle=\ttfamily\normalsize,
     keywordstyle=\color{blue}\bfseries,
@@ -25,12 +26,9 @@
 \subsection*{Rules to follow}
 \begin{itemize}
     \item Start with the simplest request
-    \item Use clear separators between different tasks, such as
-        \begin{verbatim}
-            ## INTRODUCTION
-            ## OUTPUT STYLE
-        \end{verbatim}
-        \vspace*{-.4cm}
+    \item Use clear separators between different tasks, such as\\[.5ex]
+        \texttt{\#\# INTRODUCTION}\\
+        \texttt{\#\# OUTPUT STYLE}
     \item Use clear words to tell the AI what you want, for instance ``Translate'', ``List'', ``Explain''
     \item Be very specific as you add details: ``Explain the difference between renewable and non-renewable energy to a 16-year-old. Use simple words. Include three examples each.''
     \item Go to the point and remove all the unnecessary information.
@@ -70,62 +68,80 @@
 Suggest some Tolkien-style books.
 \end{verbatim}
 
+\newpage
 \section*{Exercise (15 min)}
-Write a good prompt in order to have the AI generate a complete Python script for a simple calculator.
+Write a good prompt following the requirements:
+\begin{itemize}
+    \item The output must be an Arduino \texttt{.ino} file
+    \item The code must use the \texttt{Seeed\_AMG8833\_driver.h} library
+    \item The hardware is an AMG8833 thermal sensor with an 8x8 matrix, for a total of 64 pixels
+    \item The program must read the temperature values detected by all 64 pixels
+    \item The program must determine the highest temperature among the 64 pixels
+    \item The highest detected temperature must be printed in degree Celsius as output
+\end{itemize}
 
 \newpage
 \subsection*{Possible exercise solution}
 \begin{verbatim}
-    You are a Python programmer.
+You are an Arduino programmer
 
-    ## GOAL
-    Generate a complete Python script for a simple calculator.
+## GOAL
+Write Arduino code that reads temperature data from an AMG8833 thermal sensor
+and prints the highest detected temperature.
 
-    ## TASK
-    The program must:
-    - Ask the user to enter the first number
-    - Ask the user to choose one operation between +, -, *, /
-    - Ask the user to enter the second number
-    - Calculate and print the result
+## HARDWARE
+The hardware is an AMG8833 thermal sensor.
+The sensor provides an 8x8 thermal matrix, for a total of 64 pixels.
 
-    ## RULES
-    - The code must be complete and directly runnable
-    - The code must print only the calculation
-    - Use simple Python only
-    - Do not include explanations before or after the code
-    - Handle division by zero with an error message
-    - Handle invalid operations with an error message
+## REQUIREMENTS
+- The code must use the Seeed_AMG8833_driver.h library
+- The code must read the temperature values from all 64 pixels
+- The code must determine the highest temperature among the 64 pixels
+- The code must print the highest detected temperature in degree Celsius
 
-    ## OUTPUT STYLE
-    - Write the complete `.py` code
+## OUTPUT
+- Return only Arduino .ino code
+- The code must be ready to compile
+- Do not include explanations outside the code
+
+## CONSTRAINTS
+- Do not print all 64 pixel values
+- Do not use a different library
+- Do not add unnecessary features
 \end{verbatim}
 
 \subsection*{Possible output}
-\begin{lstlisting}[language=Python]
- first = float(input("Enter the first number: "))
- operation = input("Choose an operation (+, -, *, /): ")
- second = float(input("Enter the second number: "))
- 
- if operation == "+":
-     print(first + second)
- elif operation == "-":
-     print(first - second)
- elif operation == "*":
-     print(first * second)
- elif operation == "/":
-     if second == 0:
-         print("Error: division by zero")
-     else:
-         print(first / second)
- else:
-     print("Error: invalid operation")
-\end{lstlisting}
-Save the Python code as\ \ ``calculator.py''
+\begin{lstlisting}[language=C++]
+#include <Seeed_AMG8833_driver.h>
 
-To run it:
-\begin{lstlisting}[language=bash]
->   cd path/to/file/
->   python3 calculator.py
+AMG8833 sensor;
+float pixels[64];
+
+void setup() {
+  Serial.begin(115200);
+
+  if (sensor.init() != 0) {
+    Serial.println("AMG8833 init failed");
+    while (1) {
+      delay(1000);
+    }
+  }
+}
+
+void loop() {
+  sensor.read_pixel_temperature(pixels);
+  float maxTemp = pixels[0];
+  for (int i = 1; i < 64; i++) {
+    if (pixels[i] > maxTemp) {
+      maxTemp = pixels[i];
+    }
+  }
+
+  Serial.print("Highest temperature: ");
+  Serial.print(maxTemp, 2);
+  Serial.println(" °C");
+  delay(500);
+}
 \end{lstlisting}
 
 \end{document}

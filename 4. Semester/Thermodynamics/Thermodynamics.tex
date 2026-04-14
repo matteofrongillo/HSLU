@@ -408,10 +408,10 @@ For the change in entropy of the polytropic state change:
 
 \pph{Isobaric for $T < T_E$ (cooling)}
 \[e = c_p\left(T_E - T - T_E\ln\dfrac{T_E}{T}\right)\]
-
-\vfill\phantom{}
+\vfill \phantom{}
 
 \newcolumn
+\vspace*{-.7cm}
 \part{Steady-state flow processes}
 \section{Adiabatic working cycles}
 \subsection{Compressor}
@@ -454,20 +454,82 @@ For the change in entropy of the polytropic state change:
   c_2 = \sqrt{2\left(h_1 - h_2\right) + c_1^2}
 \end{gather*}
 where $h^0$ is the total enthalpy: $h^0 = h + \dfrac{c^2}{2}$
+\vfill \phantom{}
 
+\part{Thermodynamics cycles}
+\section{Reversible cycle work}
+Total cycle / sum of all sub-processes:
+\figbox{$\dm w_{t,\, rev} = \integral[1][2][v][p] + \integral[2][3][v][p] + \ldots + \integral[n][1][v][p] = \oint v\ dv = \sum_{i=1}^{n} w_{pi}$}
 
+\begin{center}
+  \resizebox{0.6\columnwidth}{!}{%
+  \begin{tikzpicture}[line cap=round, line join=round]
+  
+    \colorlet{myblue}{blue!75!black}
+    \colorlet{myred}{red!90!black}
+    
+    \draw[black, line width=1.1pt] (0,0) rectangle (5,3.5);
+    
+    \node[left] at (0,3.35) {$T_H$};
+    \node[left] at (0,0.00) {$T_C$};
+    
+    \draw[myred, line width=1.4pt, fill=red!30]
+      (0.85,-0.28) -- (0.85,4.55)
+      -- (1.95,3.75)
+      -- (3.05,4.55)
+      -- (3.05,3.15)
+      .. controls (3.05,2.60) and (3.45,2.40) .. (4.05,2.40)
+      -- (5.25,2.40)
+      -- (5.70,2.05)
+      -- (5.25,1.70)
+      -- (3.10,1.70)
+      .. controls (2.30,1.70) and (1.95,1.95) .. (1.95,2.85)
+      -- (1.95,-0.28)
+      -- (1.40,-0.83)
+      -- cycle;
+    
+    \node at (2.10,4.7) {$\dot{Q}_H$};
+    \node at (1.35,-1.25) {$\dot{Q}_L$};
+    \node[right] at (5.9,2.02) {$P$};
+    
+    \tikzset{
+      state/.style={
+        draw=myblue, text=myblue, line width=1pt,
+        circle, minimum size=5.8mm, inner sep=0pt
+      },
+      blabel/.style={text=myblue, font=\bfseries\small}
+    }
+    
+    \node[blabel] at (4.45,4.6) {Compressor};
+    
+    \node[state] at (3.75,4.00) {1};
+    \node[state] at (4.45,4.00) {2};
+    \node[blabel, anchor=west] at (4.75,4.00) {HX};
+    
+    \node[state] at (6.10,1.45) {3};
+    \node[blabel, anchor=west] at (6.50,1.38) {Turbine};
+    
+    \node[state] at (2.45,-0.62) {4};
+    \node[blabel, anchor=west] at (2.8,-0.47) {Heat};
+    \node[blabel, anchor=west] at (2.8,-0.85) {exchanger};
+  
+  \end{tikzpicture}%
+  }
+\end{center}
 
+\subsection{Clockwise cycle}
+\includegraphics[width=\linewidth]{media/clockwise.png}
+\begin{gather*}
+  w_{t,rev} = w_{p,23} + w_{p,41} < 0\\
+  \left|w_{t,rev}\right| = \left|q_{34}\right| - \left|q_{12}\right|
+\end{gather*}
 
-
-
-
-
-
-
-
-
-
-
+\subsection{Counterclockwise cycle}
+\includegraphics[width=\linewidth]{media/counterclockwise.png}
+\begin{gather*}
+  w_{t,rev} = w_{p,12} + w_{p,34} < 0\\
+  \left|w_{t,rev}\right| = \left|q_{23}\right| - \left|q_{41}\right|
+\end{gather*}
 
 
 

@@ -26,6 +26,10 @@
 \pph{Carrying capacity in general systems:}
 The maximum level of output or performance that a system can sustain over time without experiencing degradation or failure.
 
+Sensitivity analysis: sensitivity of a single parameter and how much it impacts
+
+Scenario analysis: optimization of multiple parameters to minimize the resultant impact
+
 \pph{Carrying capacity in population:}
 Maximum population size of a species that an environment can sustain indefinitely, given the available resources and environmental conditions.
 
@@ -911,6 +915,194 @@ Predicted diseases are expressed as damage unit:
 \end{itemize}
 
 It is important to determine the correct scale of impact (locally or globally).
+
+\part{8}
+\section{LCA modelling}
+\subsection{Product}
+It is what serves the process, for instance plastic, metal, aluminum,
+crude oil. The raw, virgin material is a product.
+
+\subsection{Process}
+A process creates the product. Whenever a product is transported,
+refined, modelled, molded.
+
+\section{Representative sampling for environmental QCQA}
+QCQA = Quality Control and Quality Assurance
+
+\begin{center}
+    \includegraphics[width=.85\textwidth]{media/sampling.png}
+\end{center}
+
+\subsection{Material heterogeneity}
+\includegraphics[width=\textwidth]{media/heterogeneity.png}
+
+\subsection{Theory of Sampling (TOS)}
+\begin{enumerate}
+    \item Fundamental understanding of the concept of: \textbf{Heterogeneity}
+    \item Full knowledge about different types of: \textbf{Sampling errors}
+    \item Practical understanding of: \textbf{Sampling Unit Operations}
+    \item Ability to analyze sampling problems/issues: \textbf{Heterogeneity Characterization}
+\end{enumerate}
+
+\subsubsection{Sampling practice}
+TOS = 6 General Principles (GPs) + 4 Sampling Unit Operations (SUOs)
+
+\pph{General Principles}
+GPs are normally used in design, planning, optimization of new sampling
+processes
+\begin{itemize}
+    \item FSP: Fundamental Sampling Principle
+    \item LDT: Lot Dimensionality Transformation
+    \item PSC: Sampling Correctness (bias-free sampling)
+    \item SSI: Sampling Scale Invariance
+    \item PSS: Sampling Simplicity (primary sampling + mass reduction)
+    \item LHC: Lot Heterogeneity Characterization
+\end{itemize}
+
+\pph{Sampling Unit Operations}
+SUOs are used as active steps in the sampling process
+(often used several times + in combination)
+\begin{itemize}
+    \item SUO 1: Composite Sampling
+    \item SUO 2: Mixing / Blending
+    \item SUO 3: Comminution
+    \item SUO 4: Mass Reduction (Sub-sampling)
+\end{itemize}
+
+\newpage
+\subsection{TOS' basic terms}
+\subsubsection{Lot / Sampling Target / Decision Unit}
+The complete entity of the original material being subject to sampling e.g. truck load,
+process stream, ship’s cargo, bags etc. The lot (sampling target) refers both to the physical,
+geometrical form and size, as well as the material characteristics of the material being subject
+to sampling.
+
+\paragraph{Dimension of the Lot}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/dimensions.png}
+\end{center}
+
+\pph{Increment}
+Correctly delineated and materialized unit of the lot which, combined with other
+increments, provides a composite sample.
+
+\pph{Sample}
+Correctly extracted material from the lot, which can only originate from a qualified
+`correct' sampling process. Composite sample consists of various increments.
+
+\pph{Specimen}
+A `sample' that cannot be documented to be representative (because it cannot be
+associated with a representative sampling process).
+
+\pph{Fragment}
+Fragment refers to the smallest separable unit of the lot
+that is not affected by the sampling process itself (e.g.
+particles, molecules, grains, etc).
+
+\pph{Group}
+A number of spatially correlated fragments, which act as a
+coherent unit during sampling operations.
+
+\pph{Representative Sample}
+! Sampling bias is not of the same nature as analytical bias !
+\begin{itemize}
+    \item Must be based on correctly delineated and materialized unit of the lot
+    \item Must be based on combination of increments (composite sample)
+    \item A sample can only be representative if the sampling process is both accurate (systematic part) and precise / reproducible (random part)
+\end{itemize}
+\begin{center}
+    \includegraphics[width=\textwidth]{media/analytical_bias.png}
+\end{center}
+
+\pph{Relative sampling error}
+\vspace*{-.5cm}
+\figbox{$\dm e = \frac{aS-aL}{aL}$}
+
+where:
+\begin{itemize}
+    \item $aL$ = analytical grade of the lot (grade = mass of analyte divided by the total mass of the lot)
+    \item   analytical grade of the sample (mass of analyte divided by the total mass of the sample)
+\end{itemize}
+
+\subsection{General Principles (GPs)}
+\subsubsection{FSP: Fundamental Sampling Principle}
+\begin{itemize}
+    \item All possible extractions from the lot (all possible virtual increments) must have the same (non-zero) probability of ending up in the sample
+    \item FSP implies physical access to all geometrical units of the lot (access to all the dimensions)
+    \item FSP must never be compromised, otherwise possibility of documenting accuracy of the sampling process is impossible
+\end{itemize}
+
+\subsubsection{LDT: Lot Dimensionality Transformation}
+\begin{minipage}{0.5\textwidth}
+    \begin{itemize}
+        \item No correlation exist and the increments or fragments can be mixed (any increment can be picked - more or less - freely)\\[1ex]
+        \item Increments fully covers two of the lot dimensions (e.g. a ``slice'')\\[1ex]
+        \item Increments fully covers one of the lot dimensions (e.g. a drill-core)\\[1ex]
+        \item Increments do not fully cover any of the lot dimensions (e.g. a ``stock pile'')
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \includegraphics[width=\linewidth]{media/LDT.png}
+\end{minipage}
+
+\newpage
+\subsubsection{PSC: Principle of Sampling Correctness (bias-free sampling)}
+``A sample can only be representative if the sampling process is
+both accurate (bias-free) and precise''
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/PSC.png}
+\end{center}
+
+where:
+\begin{itemize}
+    \item GEE = Global Estimation Error
+    \item TSE = Total Sampling Error
+    \item TAE = Total Analytical Error
+\end{itemize}
+
+\subsubsection{Incorrect sampling errors}
+\paragraph{IDE: Increment Delimitation (delineation) Error}
+\begin{itemize}
+    \item IDE relates to the physical extraction of the increments
+    \item IDE can be avoided by delineating an increment which covers the relevant dimensions of the lot
+    \item For 1-D lots a correctly delineated increment consists a complete cross-sectional slice of the material stream
+\end{itemize}
+\begin{center}
+    \includegraphics[width=.6\textwidth]{media/IDE.png}
+\end{center}
+
+\newpage
+\pph{IEE: Increment Extraction Error}
+IEE occurs when particles inside the delineated increment do not end up in the sample,
+also referred to as the ``centre-of-gravity rule''.
+\begin{center}
+    \includegraphics[width=.4\textwidth]{media/IEE.png}
+\end{center}
+
+\paragraph{IPE: Increment Preparation Error}
+\begin{itemize}
+    \item IPE arises when increments/samples are altered after extraction, e.g. contamination, evaporation, moisture absorption, loss of material (spillage), and also deliberate manipulation (fraud, sabotage)
+    \item Samples always need to be air-tight sealed, labeled and documented
+\end{itemize}
+
+\pph{Sampling process results}
+After sample extraction no possibility exists to proof
+whether a sample is representative (of the lot) or not.
+
+$\to$\ It must be ensured that the sampling process itself is representative (elimination of all
+bias-generating sampling errors)
+
+
+
+
+
+
+
+
+
+
+
 
 
 

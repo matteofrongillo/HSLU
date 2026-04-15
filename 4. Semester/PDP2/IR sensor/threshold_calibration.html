@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Threshold Function Calibration</title>
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --accent: #111827;
+      --ok: #065f46;
+      --warn: #92400e;
+      --err: #991b1b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .topbar-left {
+      min-width: 0;
+    }
+
+    .topbar-actions {
+      flex-shrink: 0;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .report {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .report h2 {
+      font-size: 1.35rem;
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+
+    .report p {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .report .section {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #fcfcfe;
+      margin-bottom: 16px;
+    }
+
+    .math-display {
+      margin: 10px 0 2px;
+      overflow-x: auto;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      margin: 0 0 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .hint {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 1.08rem;
+      background: #fff;
+    }
+
+    .input-layout {
+      display: grid;
+      grid-template-columns: 240px 460px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .input-panel,
+    .output-panel {
+      min-width: 0;
+    }
+
+    .panel-box {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fcfcfe;
+      height: 100%;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .measurements {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .measure-box {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      background: #ffffff;
+      min-width: 0;
+    }
+
+    .measure-box .mini {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .ambient-summary {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #ffffff;
+    }
+
+    .ambient-summary-label {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+    }
+
+    .ambient-summary-value {
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 16px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      display: none;
+      font-size: 0.95rem;
+    }
+
+    .status.ok {
+      display: block;
+      background: #ecfdf5;
+      color: var(--ok);
+      border: 1px solid #a7f3d0;
+    }
+
+    .status.warn {
+      display: block;
+      background: #fffbeb;
+      color: var(--warn);
+      border: 1px solid #fde68a;
+    }
+
+    .status.err {
+      display: block;
+      background: #fef2f2;
+      color: var(--err);
+      border: 1px solid #fecaca;
+    }
+
+    .output-layout {
+      display: grid;
+      grid-template-columns: minmax(700px, 1.45fr) minmax(520px, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .result-block {
+      margin-top: 0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-content: start;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: #ffffff;
+      min-height: 88px;
+    }
+
+    .stat.wide {
+      grid-column: 1 / -1;
+    }
+
+    .stat .k {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+    }
+
+    .stat .v {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-top: 2px;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+
+    .piecewise {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #ffffff;
+      overflow-x: auto;
+      min-height: 100%;
+    }
+
+    .lhs {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      padding-top: 0;
+      align-self: center;
+    }
+
+    .brace {
+      font-size: 7rem;
+      line-height: 1;
+      transform: translateY(-16px) scaleY(1.32);
+      margin-top: 0;
+      user-select: none;
+      align-self: center;
+    }
+
+    .cases {
+      display: grid;
+      grid-template-columns: max-content max-content;
+      row-gap: 10px;
+      column-gap: 2cm;
+      align-items: center;
+      min-width: 0;
+      padding-top: 0;
+    }
+
+    .expr, .cond {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 1.32rem;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    .cond {
+      color: #111827;
+    }
+
+    .mono {
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    .formula {
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    .overbar {
+      display: inline-block;
+      text-decoration: overline;
+      text-decoration-thickness: 1.5px;
+      padding: 0 0.08em;
+      line-height: 1;
+    }
+
+    .foot {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 12px;
+    }
+
+    .graph-card {
+      padding-top: 18px;
+    }
+
+    .graph-wrap {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #ffffff;
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .graph-canvas {
+      display: block;
+      width: 100%;
+      height: 460px;
+      cursor: crosshair;
+    }
+
+    @media (max-width: 1200px) {
+      .input-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .output-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .lhs {
+        font-size: 1.7rem;
+      }
+
+      .brace {
+        font-size: 5.7rem;
+        transform: translateY(-12px) scaleY(1.32);
+      }
+
+      .cases {
+        min-width: 380px;
+        grid-template-columns: max-content max-content;
+        row-gap: 8px;
+        column-gap: 1.2cm;
+      }
+
+      .expr, .cond {
+        font-size: 1.05rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat.wide {
+        grid-column: auto;
+      }
+    }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="topbar-left">
+        <h1>Threshold Function Calibration</h1>
+        <div class="subtitle">Compute the exponential threshold term from measured data using logarithmic linearization.</div>
+      </div>
+      <div class="topbar-actions">
+        <button id="explanationBtn" class="secondary">Explanation</button>
+      </div>
+    </div>
+
+    <div id="mainPage" class="page active">
+      <div class="grid">
+      <section class="card">
+        <h2>Input data</h2>
+
+        <div class="input-layout">
+          <div class="input-panel panel-box">
+            <label for="boardLength">Length of the board in cm</label>
+            <input id="boardLength" type="number" min="20" step="1" value="" />
+          </div>
+
+          <div class="input-panel panel-box">
+            <label>Ambient temperature set of 6 measurements in °C</label>
+            <div class="row" id="ambientInputs"></div>
+            <div class="ambient-summary">
+              <div class="ambient-summary-label">Average ambient temperature <span class="formula">T̄<sub>amb</sub></span></div>
+              <div class="ambient-summary-value" id="avgAmbient">—</div>
+            </div>
+          </div>
+
+          <div class="input-panel panel-box">
+            <label>Warm object temperature set in °C</label>
+            <div class="hint">Enter one measurement at 5 cm, one at 10 cm, and then one additional measurement every 10 cm.</div>
+            <div id="warmInputs" class="measurements"></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="calcBtn">Calibrate</button>
+          <button id="resetBtn" class="secondary">Reset</button>
+        </div>
+
+        <div id="status" class="status"></div>
+      </section>
+
+      <section class="card">
+        <h2>Output</h2>
+
+        <div class="output-layout">
+          <div class="output-panel">
+            <div class="piecewise" id="piecewiseBox" aria-live="polite">
+              <div class="lhs">T(x) =</div>
+              <div class="brace">{</div>
+              <div class="cases">
+                <div class="expr" id="topExpr">T<sub>max</sub>(T̄<sub>amb</sub>)</div>
+                <div class="cond" id="cond1">for x ≤ x<sub>max</sub></div>
+
+                <div class="expr" id="midExpr">T̄<sub>amb</sub> + A·e<sup>B·x</sup></div>
+                <div class="cond" id="cond2">for x<sub>max</sub> &lt; x &lt; x<sub>min</sub></div>
+
+                <div class="expr" id="bottomExpr">T<sub>min</sub>(T̄<sub>amb</sub>)</div>
+                <div class="cond" id="cond3">for x ≥ x<sub>min</sub></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="output-panel panel-box result-block">
+            <div class="stats">
+              <div class="stat">
+                <div class="k">Upper threshold <span class="formula">T<sub>max</sub></span></div>
+                <div class="v" id="tMaxText">—</div>
+              </div>
+              <div class="stat">
+                <div class="k">Lower threshold <span class="formula">T<sub>min</sub></span></div>
+                <div class="v" id="tMinText">—</div>
+              </div>
+              <div class="stat">
+                <div class="k">Exponential coefficient <span class="formula">A</span></div>
+                <div class="v" id="coefA">—</div>
+              </div>
+              <div class="stat">
+                <div class="k">Exponential coefficient <span class="formula">B</span></div>
+                <div class="v" id="coefB">—</div>
+              </div>
+              <div class="stat wide">
+                <div class="k">Fitted middle function</div>
+                <div class="v mono" id="functionText">—</div>
+              </div>
+              <div class="stat">
+                <div class="k">Transition at <span class="formula">T<sub>max</sub></span></div>
+                <div class="v" id="x30Text">—</div>
+              </div>
+              <div class="stat">
+                <div class="k">Transition at <span class="formula">T<sub>min</sub></span></div>
+                <div class="v" id="x245Text">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card graph-card">
+        <h2>Step-function graph</h2>
+        <div class="graph-wrap">
+          <canvas id="graphCanvas" class="graph-canvas"></canvas>
+        </div>
+      </section>
+      </div>
+    </div>
+
+    <div id="explanationPage" class="page">
+      <div class="report card">
+        <div class="actions" style="margin-top:0; margin-bottom:18px;">
+          <button id="backBtn" class="secondary">Back</button>
+        </div>
+
+        <h2>Explanation</h2>
+
+        <div class="section">
+          <p>The 6 ambient measurements are averaged to define the reference ambient temperature.</p>
+          <div class="math-display">\[
+          \displaystyle
+          \bar{T}_{amb}=\frac{1}{6}\sum_{i=1}^{6} T_{amb,i}
+          \]</div>
+        </div>
+
+        <div class="section">
+          <p>The warm-object data are fitted with an exponential curve that decreases with distance.</p>
+          <div class="math-display">\[
+          \displaystyle
+          T(x)=\bar{T}_{amb}+Ae^{Bx}
+          \]</div>
+          <div class="math-display">\[
+          \displaystyle
+          Y_i=\ln\left(T_i-\bar{T}_{amb}\right)
+          \]</div>
+          <div class="math-display">\[
+          \displaystyle
+          B=\frac{\sum x_iY_i-\frac{1}{n}\left(\sum x_i\right)\left(\sum Y_i\right)}{\sum x_i^2-\frac{1}{n}\left(\sum x_i\right)^2}
+          \qquad
+          \alpha=\bar{Y}-B\bar{x}
+          \qquad
+          A=e^{\alpha}
+          \]</div>
+        </div>
+
+        <div class="section">
+          <p>Two practical thresholds are then defined.</p>
+          <div class="math-display">\[
+          \displaystyle
+          T_{max}=\max\left(30,\bar{T}_{amb}+1\right)
+          \qquad
+          T_{min}=\max\left(24.5,\bar{T}_{amb}+1\right)
+          \]</div>
+        </div>
+
+        <div class="section">
+          <p>The transition distances are obtained where the exponential curve meets those thresholds.</p>
+          <div class="math-display">\[
+          \displaystyle
+          T_{max}=\bar{T}_{amb}+Ae^{Bx_{max}}
+          \qquad
+          T_{min}=\bar{T}_{amb}+Ae^{Bx_{min}}
+          \]</div>
+          <div class="math-display">\[
+          \displaystyle
+          x_{max}=\frac{\ln\left(\frac{T_{max}-\bar{T}_{amb}}{A}\right)}{B}
+          \qquad
+          x_{min}=\frac{\ln\left(\frac{T_{min}-\bar{T}_{amb}}{A}\right)}{B}
+          \]</div>
+        </div>
+
+        <div class="section">
+          <p>The final result is shown as a continuous piecewise threshold and as an interactive graph.</p>
+          <div class="math-display">\[
+          \displaystyle
+          T(x)=
+          \begin{cases}
+          \displaystyle T_{max}, & x \le x_{max} \\[1ex]
+          \displaystyle \bar{T}_{amb}+Ae^{Bx}, & x_{max} \lt x \lt x_{min} \\[1ex]
+          \displaystyle T_{min}, & x \ge x_{min}
+          \end{cases}
+          \]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const boardLengthInput = document.getElementById('boardLength');
+    const ambientInputs = document.getElementById('ambientInputs');
+    const warmInputs = document.getElementById('warmInputs');
+    const calcBtn = document.getElementById('calcBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const explanationBtn = document.getElementById('explanationBtn');
+    const backBtn = document.getElementById('backBtn');
+    const mainPage = document.getElementById('mainPage');
+    const explanationPage = document.getElementById('explanationPage');
+    const statusBox = document.getElementById('status');
+
+    const avgAmbientEl = document.getElementById('avgAmbient');
+    const coefAEl = document.getElementById('coefA');
+    const coefBEl = document.getElementById('coefB');
+    const functionTextEl = document.getElementById('functionText');
+    const topExprEl = document.getElementById('topExpr');
+    const midExprEl = document.getElementById('midExpr');
+    const bottomExprEl = document.getElementById('bottomExpr');
+    const cond1El = document.getElementById('cond1');
+    const cond2El = document.getElementById('cond2');
+    const cond3El = document.getElementById('cond3');
+    const tMaxTextEl = document.getElementById('tMaxText');
+    const tMinTextEl = document.getElementById('tMinText');
+    const x30TextEl = document.getElementById('x30Text');
+    const x245TextEl = document.getElementById('x245Text');
+    const graphCanvas = document.getElementById('graphCanvas');
+
+    const defaultAmbient = [23.5, 23.4, 23.6, 23.5, 23.5, 23.4];
+    let currentGraphState = { mode: 'placeholder' };
+
+    function setStatus(type, text) {
+      statusBox.className = `status ${type}`;
+      statusBox.textContent = text;
+    }
+
+    function clearStatus() {
+      statusBox.className = 'status';
+      statusBox.textContent = '';
+    }
+
+    function formatNum(value, digits = 2) {
+      if (!Number.isFinite(value)) return '—';
+      return Number(value).toFixed(digits).replace(/\.?0+$/, (m) => m === '.' ? '' : m);
+    }
+
+    function formatCm(value, digits = 2) {
+      return `${formatNum(value, digits)} cm`;
+    }
+
+    function computeTransitionX(target, Tamb, A, B) {
+      if (!(A > 0) || Math.abs(B) < 1e-12) {
+        throw new Error('The fitted exponential cannot be used to compute continuous transition points.');
+      }
+      const delta = target - Tamb;
+      if (delta <= 0) {
+        throw new Error(`Cannot compute the continuous transition at ${target} °C because it is not above the average ambient temperature.`);
+      }
+      const ratio = delta / A;
+      if (ratio <= 0) {
+        throw new Error(`Cannot compute the continuous transition at ${target} °C.`);
+      }
+      const x = Math.log(ratio) / B;
+      if (!Number.isFinite(x)) {
+        throw new Error('The transition-point computation produced an invalid value.');
+      }
+      return x;
+    }
+
+    function resetPiecewiseDisplay() {
+      topExprEl.innerHTML = 'T<sub>max</sub>(T̄<sub>amb</sub>)';
+      midExprEl.innerHTML = 'T̄<sub>amb</sub> + A·e<sup>B·x</sup>';
+      bottomExprEl.innerHTML = 'T<sub>min</sub>(T̄<sub>amb</sub>)';
+      cond1El.innerHTML = 'for x ≤ x<sub>max</sub>';
+      cond2El.innerHTML = 'for x<sub>max</sub> &lt; x &lt; x<sub>min</sub>';
+      cond3El.innerHTML = 'for x ≥ x<sub>min</sub>';
+      tMaxTextEl.textContent = '—';
+      tMinTextEl.textContent = '—';
+      x30TextEl.textContent = '—';
+      x245TextEl.textContent = '—';
+    }
+
+    function setConstantPiecewiseOutput(tMax, d, x1) {
+      topExprEl.textContent = `${formatNum(tMax, 2)} °C`;
+      midExprEl.innerHTML = '&nbsp;';
+      bottomExprEl.innerHTML = '&nbsp;';
+      cond1El.innerHTML = `for x ≤ ${formatCm(d, 2)}`;
+      cond2El.innerHTML = '&nbsp;';
+      cond3El.innerHTML = '&nbsp;';
+      x30TextEl.textContent = formatCm(x1, 2);
+      x245TextEl.textContent = '—';
+    }
+
+    function setFullPiecewiseOutput(tMax, tMin, x1, x2, exprHtml) {
+      topExprEl.textContent = `${formatNum(tMax, 2)} °C`;
+      midExprEl.innerHTML = exprHtml;
+      bottomExprEl.textContent = `${formatNum(tMin, 2)} °C`;
+      cond1El.innerHTML = `for x ≤ ${formatCm(x1, 2)}`;
+      cond2El.innerHTML = `for ${formatCm(x1, 2)} &lt; x &lt; ${formatCm(x2, 2)}`;
+      cond3El.innerHTML = `for x ≥ ${formatCm(x2, 2)}`;
+      x30TextEl.textContent = formatCm(x1, 2);
+      x245TextEl.textContent = formatCm(x2, 2);
+    }
+
+    function getPositions(d) {
+      const positions = [];
+      if (d >= 15) positions.push(5);
+      for (let x = 10; x <= d - 10; x += 10) {
+        positions.push(x);
+      }
+      return positions;
+    }
+
+    function buildAmbientInputs(prefill = true) {
+      ambientInputs.innerHTML = '';
+      for (let i = 0; i < 6; i++) {
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.step = '0.01';
+        input.value = prefill ? defaultAmbient[i] : '';
+        input.placeholder = `T${i + 1}`;
+        input.dataset.kind = 'ambient';
+        ambientInputs.appendChild(input);
+      }
+    }
+
+    function buildWarmInputs() {
+      const raw = boardLengthInput.value.trim();
+      const d = Number(raw);
+      warmInputs.innerHTML = '';
+
+      if (raw === '') {
+        clearStatus();
+        return;
+      }
+
+      if (!Number.isFinite(d) || d < 20) {
+        setStatus('warn', 'Enter a board length of at least 20 cm to generate the warm-object measurement points.');
+        return;
+      }
+
+      clearStatus();
+      const positions = getPositions(d);
+
+      positions.forEach((x) => {
+        const box = document.createElement('div');
+        box.className = 'measure-box';
+
+        const label = document.createElement('div');
+        label.className = 'mini';
+        label.textContent = `${x} cm`;
+
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.step = '0.01';
+        input.placeholder = '°C';
+        input.dataset.kind = 'warm';
+        input.dataset.x = String(x);
+        input.value = '';
+
+        box.appendChild(label);
+        box.appendChild(input);
+        warmInputs.appendChild(box);
+      });
+    }
+
+    function readAmbientValues() {
+      const values = [...ambientInputs.querySelectorAll('input')].map(input => Number(input.value));
+      if (values.some(v => !Number.isFinite(v))) {
+        throw new Error('All 6 ambient temperature values must be valid numbers.');
+      }
+      return values;
+    }
+
+    function readWarmValues() {
+      const fields = [...warmInputs.querySelectorAll('input')];
+      const points = fields.map(input => ({ x: Number(input.dataset.x), T: Number(input.value) }));
+      if (points.length < 2) {
+        throw new Error('At least 2 warm-object measurements are required.');
+      }
+      if (points.some(p => !Number.isFinite(p.T))) {
+        throw new Error('All warm-object temperature values must be valid numbers.');
+      }
+      return points;
+    }
+
+    function setupCanvasResolution(canvas) {
+      const ratio = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      const width = Math.max(320, Math.round(rect.width));
+      const height = Math.max(320, Math.round(rect.height));
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return { ctx, width, height };
+    }
+
+    function drawPlaceholderGraph() {
+      const { ctx, width, height } = setupCanvasResolution(graphCanvas);
+      currentGraphState = { mode: 'placeholder' };
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+      ctx.strokeStyle = '#d1d5db';
+      ctx.strokeRect(0.5, 0.5, width - 1, height - 1);
+      ctx.fillStyle = '#6b7280';
+      ctx.font = '18px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('Calibrate to display the step-function graph', width / 2, height / 2);
+    }
+
+    function evaluateThreshold(x, params) {
+      const { Tamb, A, B, x1, x2, tMax, tMin, constantUpper = false } = params;
+      if (constantUpper) {
+        return tMax;
+      }
+      if (x <= x1) {
+        return tMax;
+      }
+      if (x < x2) {
+        return Tamb + A * Math.exp(B * x);
+      }
+      return tMin;
+    }
+
+    function drawHoverOverlay(ctx, hoverX, state) {
+      const { params, layout } = state;
+      const { xMax, yMin, yMax, pad, plotW, plotH, width } = layout;
+      const x = Math.max(0, Math.min(xMax, hoverX));
+      const y = evaluateThreshold(x, params);
+
+      function pxX(value) {
+        return pad.left + (value / xMax) * plotW;
+      }
+
+      function pxY(value) {
+        return pad.top + ((yMax - value) / (yMax - yMin)) * plotH;
+      }
+
+      const xp = pxX(x);
+      const yp = pxY(y);
+
+      ctx.save();
+      ctx.strokeStyle = '#6b7280';
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([6, 6]);
+      ctx.beginPath();
+      ctx.moveTo(xp, pad.top);
+      ctx.lineTo(xp, pad.top + plotH);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = '#000000';
+      ctx.beginPath();
+      ctx.arc(xp, yp, 5.5, 0, 2 * Math.PI);
+      ctx.fill();
+
+      const text1 = `x = ${formatNum(x, 2)} cm`;
+      const text2 = `T(x) = ${formatNum(y, 2)} °C`;
+      ctx.font = '14px Arial';
+      const boxW = Math.max(ctx.measureText(text1).width, ctx.measureText(text2).width) + 20;
+      const boxH = 50;
+      let boxX = xp + 14;
+      let boxY = yp - boxH - 12;
+
+      if (boxX + boxW > width - 8) {
+        boxX = xp - boxW - 14;
+      }
+      if (boxY < pad.top + 4) {
+        boxY = yp + 12;
+      }
+
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#111827';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(boxX, boxY, boxW, boxH, 8);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#111827';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(text1, boxX + 10, boxY + 9);
+      ctx.fillText(text2, boxX + 10, boxY + 28);
+      ctx.restore();
+    }
+
+    function drawGraph(params, hoverX = null) {
+      const { d, Tamb, A, B, x1, x2, tMax, tMin, constantUpper = false } = params;
+      const { ctx, width, height } = setupCanvasResolution(graphCanvas);
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+
+      const pad = { left: 86, right: 24, top: 20, bottom: 64 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      const transitionExtent = constantUpper ? x1 : x2;
+      const xUpper = Math.max(d, transitionExtent + 10, 10);
+      const xMax = Math.ceil(xUpper / 10) * 10;
+
+      let yMinData = tMin;
+      let yMaxData = tMax;
+      if (!constantUpper && x2 > x1) {
+        for (let x = x1; x <= x2; x += Math.max(0.2, (x2 - x1) / 200)) {
+          const y = Tamb + A * Math.exp(B * x);
+          if (Number.isFinite(y)) {
+            yMinData = Math.min(yMinData, y);
+            yMaxData = Math.max(yMaxData, y);
+          }
+        }
+      }
+
+      const yMin = Math.floor((Math.min(tMin, yMinData) - 0.8) * 2) / 2;
+      const yMax = Math.ceil((Math.max(tMax, yMaxData) + 0.8) * 2) / 2;
+
+      currentGraphState = {
+        mode: 'data',
+        params,
+        layout: { width, height, pad, plotW, plotH, xMax, yMin, yMax }
+      };
+
+      function pxX(x) {
+        return pad.left + (x / xMax) * plotW;
+      }
+
+      function pxY(y) {
+        return pad.top + ((yMax - y) / (yMax - yMin)) * plotH;
+      }
+
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.lineWidth = 1;
+      for (let xt = 0; xt <= xMax; xt += 10) {
+        const xp = pxX(xt);
+        ctx.beginPath();
+        ctx.moveTo(xp, pad.top);
+        ctx.lineTo(xp, pad.top + plotH);
+        ctx.stroke();
+      }
+
+      const yStep = 1;
+      for (let yt = Math.ceil(yMin); yt <= Math.floor(yMax); yt += yStep) {
+        const yp = pxY(yt);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, yp);
+        ctx.lineTo(pad.left + plotW, yp);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = '#111827';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(pad.left, pad.top + plotH);
+      ctx.lineTo(pad.left + plotW, pad.top + plotH);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(pad.left, pad.top + plotH);
+      ctx.lineTo(pad.left, pad.top);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(pad.left + plotW, pad.top + plotH);
+      ctx.lineTo(pad.left + plotW - 9, pad.top + plotH - 5);
+      ctx.moveTo(pad.left + plotW, pad.top + plotH);
+      ctx.lineTo(pad.left + plotW - 9, pad.top + plotH + 5);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(pad.left, pad.top);
+      ctx.lineTo(pad.left - 5, pad.top + 9);
+      ctx.moveTo(pad.left, pad.top);
+      ctx.lineTo(pad.left + 5, pad.top + 9);
+      ctx.stroke();
+
+      ctx.fillStyle = '#111827';
+      ctx.font = '15px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      for (let xt = 0; xt <= xMax; xt += 10) {
+        ctx.fillText(String(xt), pxX(xt), pad.top + plotH + 10);
+      }
+
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      for (let yt = Math.ceil(yMin); yt <= Math.floor(yMax); yt += yStep) {
+        ctx.fillText(String(yt), pad.left - 12, pxY(yt));
+      }
+
+      ctx.save();
+      ctx.translate(28, pad.top + plotH / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = '16px "Times New Roman"';
+      ctx.fillText('T(x) [°C]', 0, 0);
+      ctx.restore();
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'alphabetic';
+      ctx.font = '16px "Times New Roman"';
+      ctx.fillText('x [cm]', pad.left + plotW / 2, height - 14);
+
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 3;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      ctx.beginPath();
+      ctx.moveTo(pxX(0), pxY(tMax));
+      ctx.lineTo(pxX(x1), pxY(tMax));
+      ctx.stroke();
+
+      if (constantUpper) {
+        ctx.beginPath();
+        ctx.moveTo(pxX(x1), pxY(tMax));
+        ctx.lineTo(pxX(xMax), pxY(tMax));
+        ctx.stroke();
+
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(pxX(x1), pxY(tMax), 6.5, 0, 2 * Math.PI);
+        ctx.fill();
+      } else if (x2 > x1 + 1e-9) {
+        ctx.beginPath();
+        let started = false;
+        const segments = 240;
+        for (let i = 0; i <= segments; i++) {
+          const x = x1 + (i / segments) * (x2 - x1);
+          const y = Tamb + A * Math.exp(B * x);
+          const xp = pxX(x);
+          const yp = pxY(y);
+          if (!started) {
+            ctx.moveTo(xp, yp);
+            started = true;
+          } else {
+            ctx.lineTo(xp, yp);
+          }
+        }
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(pxX(x2), pxY(tMin));
+        ctx.lineTo(pxX(xMax), pxY(tMin));
+        ctx.stroke();
+
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(pxX(x1), pxY(tMax), 6.5, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(pxX(x2), pxY(tMin), 6.5, 0, 2 * Math.PI);
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(pxX(x1), pxY(tMax));
+        ctx.lineTo(pxX(xMax), pxY(tMax));
+        ctx.stroke();
+
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(pxX(x1), pxY(tMax), 6.5, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+
+      if (hoverX !== null) {
+        drawHoverOverlay(ctx, hoverX, currentGraphState);
+      }
+    }
+
+    function calibrate() {
+      try {
+        clearStatus();
+
+        const d = Number(boardLengthInput.value);
+        if (!Number.isFinite(d) || d < 20) {
+          throw new Error('The board length must be at least 20 cm.');
+        }
+
+        const ambient = readAmbientValues();
+        const warm = readWarmValues();
+        const Tamb = ambient.reduce((a, b) => a + b, 0) / ambient.length;
+
+        const valid = warm
+          .map(p => ({ x: p.x, delta: p.T - Tamb }))
+          .filter(p => p.delta > 0);
+
+        if (valid.length < 2) {
+          throw new Error('Not enough valid points for linearization. Each warm-object temperature used in the fit must be strictly greater than the average ambient temperature.');
+        }
+
+        let sumX = 0, sumY = 0, sumXX = 0, sumXY = 0;
+        for (const p of valid) {
+          const Y = Math.log(p.delta);
+          sumX += p.x;
+          sumY += Y;
+          sumXX += p.x * p.x;
+          sumXY += p.x * Y;
+        }
+
+        const n = valid.length;
+        const denom = sumXX - (sumX * sumX) / n;
+        if (Math.abs(denom) < 1e-12) {
+          throw new Error('The regression denominator is zero. Check the input distances.');
+        }
+
+        const B = (sumXY - (sumX * sumY) / n) / denom;
+        const alpha = (sumY / n) - B * (sumX / n);
+        const A = Math.exp(alpha);
+
+const tMax = Math.max(30, Tamb + 1);
+        const tMin = Math.max(24.5, Tamb + 1);
+        const x1 = computeTransitionX(tMax, Tamb, A, B);
+        const x2 = computeTransitionX(tMin, Tamb, A, B);
+
+        if (x2 + 1e-9 < x1) {
+          throw new Error('The computed transition points are not ordered correctly, so a continuous step function cannot be built from these inputs.');
+        }
+
+        avgAmbientEl.textContent = `${formatNum(Tamb, 2)} °C`;
+        tMaxTextEl.textContent = `${formatNum(tMax, 2)} °C`;
+        tMinTextEl.textContent = `${formatNum(tMin, 2)} °C`;
+        coefAEl.textContent = formatNum(A, 2);
+        coefBEl.textContent = formatNum(B, 4);
+
+        const exprHtml = `${formatNum(Tamb, 2)} + ${formatNum(A, 2)}·e<sup>${formatNum(B, 4)}·x</sup>`;
+        const exprText = `${formatNum(Tamb, 2)} + ${formatNum(A, 2)} * exp(${formatNum(B, 4)} * x)`;
+        functionTextEl.textContent = exprText;
+
+        if (x1 >= d || x2 >= d) {
+          setConstantPiecewiseOutput(tMax, d, x1);
+          drawGraph({ d, Tamb, A, B, x1, x2, tMax, tMin, constantUpper: true });
+          setStatus('warn', 'Calibration completed. Since a transition point lies beyond the board length, the threshold is shown as a constant upper-threshold line.');
+        } else if (x2 > x1 + 1e-9) {
+          setFullPiecewiseOutput(tMax, tMin, x1, x2, exprHtml);
+          drawGraph({ d, Tamb, A, B, x1, x2, tMax, tMin });
+          setStatus('ok', 'Calibration completed successfully. The adaptive thresholds and transition points were computed from the continuity equations.');
+        } else {
+          setConstantPiecewiseOutput(tMax, d, x1);
+          drawGraph({ d, Tamb, A, B, x1, x2, tMax, tMin, constantUpper: true });
+          setStatus('warn', 'Calibration completed. Here T_max = T_min, so the threshold becomes a constant upper-threshold line.');
+        }
+      } catch (err) {
+        avgAmbientEl.textContent = '—';
+        tMaxTextEl.textContent = '—';
+        tMinTextEl.textContent = '—';
+        coefAEl.textContent = '—';
+        coefBEl.textContent = '—';
+        functionTextEl.textContent = '—';
+        midExprEl.innerHTML = 'T̄<sub>amb</sub> + A·e<sup>B·x</sup>';
+        resetPiecewiseDisplay();
+        drawPlaceholderGraph();
+        setStatus('err', err.message || 'Calibration failed.');
+      }
+    }
+
+    boardLengthInput.addEventListener('input', () => {
+      buildWarmInputs();
+    });
+
+    calcBtn.addEventListener('click', calibrate);
+
+    resetBtn.addEventListener('click', () => {
+      boardLengthInput.value = '';
+      buildAmbientInputs(false);
+      warmInputs.innerHTML = '';
+      avgAmbientEl.textContent = '—';
+      tMaxTextEl.textContent = '—';
+      tMinTextEl.textContent = '—';
+      coefAEl.textContent = '—';
+      coefBEl.textContent = '—';
+      functionTextEl.textContent = '—';
+      midExprEl.innerHTML = 'T̄<sub>amb</sub> + A·e<sup>B·x</sup>';
+      resetPiecewiseDisplay();
+      clearStatus();
+      drawPlaceholderGraph();
+    });
+
+    buildAmbientInputs(false);
+    buildWarmInputs();
+    resetPiecewiseDisplay();
+    drawPlaceholderGraph();
+
+    explanationBtn.addEventListener('click', () => {
+      mainPage.classList.remove('active');
+      explanationPage.classList.add('active');
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([explanationPage]);
+      }
+    });
+
+    backBtn.addEventListener('click', () => {
+      explanationPage.classList.remove('active');
+      mainPage.classList.add('active');
+    });
+
+    function getCanvasPlotX(event) {
+      if (currentGraphState.mode !== 'data') return null;
+      const rect = graphCanvas.getBoundingClientRect();
+      const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+      const xPx = clientX - rect.left;
+      const { pad, plotW, xMax } = currentGraphState.layout;
+      if (xPx < pad.left || xPx > pad.left + plotW) {
+        return null;
+      }
+      return ((xPx - pad.left) / plotW) * xMax;
+    }
+
+    graphCanvas.addEventListener('mousemove', (event) => {
+      const hoverX = getCanvasPlotX(event);
+      if (currentGraphState.mode !== 'data') return;
+      if (hoverX === null) {
+        drawGraph(currentGraphState.params);
+      } else {
+        drawGraph(currentGraphState.params, hoverX);
+      }
+    });
+
+    graphCanvas.addEventListener('mouseleave', () => {
+      if (currentGraphState.mode === 'data') {
+        drawGraph(currentGraphState.params);
+      }
+    });
+
+    graphCanvas.addEventListener('touchstart', (event) => {
+      const hoverX = getCanvasPlotX(event);
+      if (currentGraphState.mode !== 'data' || hoverX === null) return;
+      event.preventDefault();
+      drawGraph(currentGraphState.params, hoverX);
+    }, { passive: false });
+
+    graphCanvas.addEventListener('touchmove', (event) => {
+      const hoverX = getCanvasPlotX(event);
+      if (currentGraphState.mode !== 'data' || hoverX === null) return;
+      event.preventDefault();
+      drawGraph(currentGraphState.params, hoverX);
+    }, { passive: false });
+
+    graphCanvas.addEventListener('touchend', () => {
+      if (currentGraphState.mode === 'data') {
+        drawGraph(currentGraphState.params);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (coefAEl.textContent !== '—' && coefBEl.textContent !== '—' && avgAmbientEl.textContent !== '—') {
+        calibrate();
+      } else {
+        drawPlaceholderGraph();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -33,6 +33,7 @@
 \usepackage{bm}
 \usepackage{forest}
 \usepackage{upgreek}
+\usepackage{tabularx}
 
 \usetikzlibrary{arrows, arrows.meta}
 \usetikzlibrary{decorations.pathreplacing}
@@ -657,6 +658,35 @@ If steady terminal velocity $v(t) = v_\infty \cdot 0.99$:
   t = \dfrac{v_\infty \arctanh(0.99)}{g} = \dfrac{v_\infty \cdot 2.65}{g}
 \end{gather*}
 
+\subsection{Lift-induced drag and Parasitic drag}
+\begin{gather*}
+  C_D = C_{D_0} + C_{D_i}\\
+  C_{D_i} = \dfrac{C_L^2}{\pi e AR}\quad ; \quad AR = \dfrac{b^2}{A}
+\end{gather*}
+
+\begin{itemize}
+  \item low speed $\rightarrow$ induced drag dominates
+  \item high speed $\rightarrow$ parasitic drag dominates
+\end{itemize}
+
+\subsubsection{Parasitic drag}
+Drag not due to lift generation\\
+(skin friction + form drag + interference drag).
+\[
+F_{D_0} = C_{D_0}\dfrac{1}{2}\rho v_\infty^2 A
+\]
+
+\subsubsection{Lift-induced drag}
+Drag due to lift generation, caused by wing-tip vortices and downwash.
+\[
+F_{D_i} = C_{D_i}\dfrac{1}{2}\rho v_\infty^2 A
+\]
+
+For constant lift:
+\[
+F_{D_0} \sim v_\infty^2\quad ; \quad F_{D_i} \sim \dfrac{1}{v_\infty^2}
+\]
+
 \section{Lift force and lift coefficient}
 \subsection{Angle of Attack (AOA)}
 Variable angle between the chord line and the relative wind;
@@ -664,6 +694,8 @@ affects lift and can change during flight.
 \begin{center}
   \includegraphics[width=.75\linewidth]{media/AOA.png}
 \end{center}
+\vfill \phantom{}
+\newcolumn
 
 \subsection{Angle of Incidence (AOI)}
 Fixed angle between the chord line and the aircraft's
@@ -679,7 +711,98 @@ an airfoil
   \includegraphics[width=.75\linewidth]{media/centerofpressure.png}
 \end{center}
 
+\subsection{NACA Series}
+\subsubsection{4-Digit-Series}
+\includegraphics[width=.7\linewidth]{media/NACA4.png}
 
+\subsubsection{5-Digit-Series}
+\includegraphics[width=.7\linewidth]{media/NACA5.png}
+
+\section{Airfoil terminology}
+\begin{center}
+  \includegraphics[width=.8\linewidth]{media/airfoil.png}
+\end{center}
+\vfill \phantom{}
+\newcolumn
+
+\vspace*{-.7cm}
+\part{Dimensional Analysis and Similarity}
+\section{Dimensional homogeneity}
+\begin{center}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{\linewidth}{|X|l|X|}
+    \hline \textbf{Name} & \textbf{Variable} & \textbf{Primary Dimension} \\
+    \hline Length & $l,d$ & $L$ \\
+    \hline Time & $t$ & $T$ \\
+    \hline Mass & $m$ & $M$ \\
+    \hline Temperature & $T$ & $\Theta$ \\
+    \hline Molar amount & $n$ & $N$ \\
+    \hline Velocity & $u,v,w$ & $L\,T^{-1}$ \\
+    \hline Rotational Speed & $s$ & $T^{-1}$ \\
+    \hline Acceleration & $a,g$ & $L\,T^{-2}$ \\
+    \hline Kinematic Viscosity & $\nu$ & $L^{2}T^{-1}$ \\
+    \hline Diffusion coefficient & $D$ & $L^{2}T^{-1}$ \\
+    \hline Force & $F$ & $L\,T^{-2}M$ \\
+    \hline Energy & $E$ & $L^{2}T^{-2}M$ \\
+    \hline Work, Heat & $W,Q$ & $L^{2}T^{-2}M$ \\
+    \hline Power & $P$ & $L^{2}T^{-3}M$ \\
+    \hline Pressure & $p$ & $L^{-1}T^{-2}M$ \\
+    \hline Impuls & $I$ & $L\,T^{-1}M$ \\
+    \hline Surface Tension & $\gamma,\sigma$ & $T^{-2}M$ \\
+    \hline Density & $\rho$ & $L^{-3}M$ \\
+    \hline Dynamic Viscosity & $\eta$ & $L^{-1}T^{-1}M$ \\
+    \hline Heat Capacity & $C$ & $L^{2}T^{-2}M\Theta^{-1}$ \\
+    \hline Molar heat capacity & $c$ & $L^{2}T^{-2}M\Theta^{-1}N^{-1}$ \\
+    \hline
+  \end{tabularx}
+\end{center}
+
+\section{Similarity}
+Three basic laws of similarity must be satisfied in order to achieve complete similarity between prototype and
+model flow fields
+\subsection{Geometric similarity}
+\begin{itemize}
+  \item Model and prototype have same shape
+  \item Linear dimensions on model and prototype correspond within constant scale factor
+\end{itemize}
+\includegraphics[width=\linewidth]{media/geometric.png}
+
+\subsection{Kinetic similarity}
+Velocities at corresponding points on model and prototype differ only by a constant scale factor
+\includegraphics[width=\linewidth]{media/kinetic.png}
+
+\subsection{Dynamic similarity}
+All forces on model and prototype differ only by a constant scale factor
+
+\section{Buckingham $\Pi$-Theorem}
+Buckingham Pi-Theorem can be used to determine the nondimensional groups
+of variables (Pi-Groups) for a given set of dimensional variables.
+
+\begin{enumerate}[label=Step \arabic*.]
+  \item List all the dimensional variables involved (n)
+  \item Express each variables using primary dimensions (r):
+    \begin{itemize}
+      \item Only L: \textbf{geometric variables}
+      \item Only T or both L and T: \textbf{kinematic variables}
+      \item Those who have M: \textbf{dynamic variables}
+    \end{itemize}
+  \item Determine the repeating variables that are allowed to appear in more than one Pi-group
+  \item Determine (n-r) many Pi-Groups by combining repeating variables with non-repeating variables and using the fact that Pi-Groups should be non-dimensional
+\end{enumerate}
+
+\subsection{Example with drag force}
+\begin{center}
+  \includegraphics[width=.5\linewidth]{media/buckingham.png}
+\end{center}
+
+\begin{enumerate}[label=Step \arabic*.]
+  \item $\dm n = \left(F_D, D, v_\infty, \eta, \rho\right) = 5$\\[0ex]
+  \item $\dm F_D = \frac{ML}{T^2};\quad D = L;\quad v_\infty = \frac{L}{T};\quad \rho = \frac{M}{L^3};\quad \eta = \frac{M}{LT}$\\[0ex]
+        $r = \left[D, v_\infty, \left(F_D, \eta, \rho\right)\right] = 3$\\[0ex]
+  \item Repeating variables: $D, v_\infty, \rho$\\[0ex]
+  \item Number of $\Pi$-groups: $n-r = 5-3 = 2$\\[0.5ex]
+        $\dm \Pi_1 = F_D D^{a_1} v_\infty^{b_1} \rho^{c_1}\quad ; \quad \Pi_2 = F_D D^{a_2} v_\infty^{b_2} \rho^{c_3}$
+\end{enumerate}
 
 
 

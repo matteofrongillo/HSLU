@@ -749,12 +749,16 @@ within a life cycle of a system (e.g. product, energy system, material).
 \pph{Example: LCA of a reusable water bottle}
 1. Crude oil extraction, 2. Transportation, 3. Refinery, 4. Manufactory/Assembly, 5. Transportation to consumption, 6. Use, 7. Disposal
 
-\subsection{Precision vs. Accuracy}
+\subsection{\color{red}Precision vs. Accuracy}
 
 \subsubsection{Precision}
 Precision describes how close repeated measurements are to each other.
 A method is precise when it produces very similar results under the
 same conditions.
+
+Precision = Reproducibility
+
+Bias = inaccuracy / fixed error
 
 \subsubsection{Accuracy}
 Accuracy describes how close a measurement is to the true or accepted
@@ -936,7 +940,7 @@ QCQA = Quality Control and Quality Assurance
 \subsection{Material heterogeneity}
 \includegraphics[width=\textwidth]{media/heterogeneity.png}
 
-\subsection{Theory of Sampling (TOS)}
+\section{Theory of Sampling (TOS)}
 \begin{enumerate}
     \item Fundamental understanding of the concept of: \textbf{Heterogeneity}
     \item Full knowledge about different types of: \textbf{Sampling errors}
@@ -970,7 +974,7 @@ SUOs are used as active steps in the sampling process
 \end{itemize}
 
 \newpage
-\subsection{TOS' basic terms}
+\subsection{\color{red}TOS' basic terms}
 \subsubsection{Lot / Sampling Target / Decision Unit}
 The complete entity of the original material being subject to sampling e.g. truck load,
 process stream, ship’s cargo, bags etc. The lot (sampling target) refers both to the physical,
@@ -1024,15 +1028,18 @@ where:
     \item   analytical grade of the sample (mass of analyte divided by the total mass of the sample)
 \end{itemize}
 
-\subsection{General Principles (GPs)}
-\subsubsection{FSP: Fundamental Sampling Principle}
+\pph{Analyte}
+An analyte is the specific substance or chemical component in a sample that is being identified or measured.
+
+\section{General Principles (GPs)}
+\subsection{FSP: Fundamental Sampling Principle}
 \begin{itemize}
     \item All possible extractions from the lot (all possible virtual increments) must have the same (non-zero) probability of ending up in the sample
     \item FSP implies physical access to all geometrical units of the lot (access to all the dimensions)
     \item FSP must never be compromised, otherwise possibility of documenting accuracy of the sampling process is impossible
 \end{itemize}
 
-\subsubsection{LDT: Lot Dimensionality Transformation}
+\subsection{LDT: Lot Dimensionality Transformation}
 \begin{minipage}{0.5\textwidth}
     \begin{itemize}
         \item No correlation exist and the increments or fragments can be mixed (any increment can be picked - more or less - freely)\\[1ex]
@@ -1047,7 +1054,7 @@ where:
 \end{minipage}
 
 \newpage
-\subsubsection{PSC: Principle of Sampling Correctness (bias-free sampling)}
+\subsection{PSC: Principle of Sampling Correctness (bias-free sampling)}
 ``A sample can only be representative if the sampling process is
 both accurate (bias-free) and precise''
 \begin{center}
@@ -1058,7 +1065,7 @@ where:
 \begin{itemize}
     \item GEE = Global Estimation Error
     \item TSE = Total Sampling Error
-    \item TAE = Total Analytical Error
+    \item TAE = Total Analytical Error (e.g. $\pm 5\%$)
 \end{itemize}
 
 \subsubsection{Incorrect sampling errors}
@@ -1092,6 +1099,188 @@ whether a sample is representative (of the lot) or not.
 
 $\to$\ It must be ensured that the sampling process itself is representative (elimination of all
 bias-generating sampling errors)
+
+\subsubsection{Correct sampling errors}
+\begin{itemize}
+    \item Correct sampling errors cause random effects (imprecision) due to material heterogeneity effects
+    \item Can never be completely eliminated but should be reduced as far as possible
+\end{itemize}
+
+Total material heterogeneity in a lot must be distinguished as two components:
+\begin{enumerate}
+    \item \textbf{Constitutional (compositional) heterogeneity (CH)}
+    \item \textbf{Distributional heterogeneity (DH)}:
+    \begin{itemize}
+        \item DH$_\text{L}$ reflects the irregular spatial distribution of the analyte
+        \item DH$_\text{L}$ is caused by the inherent tendency of particles to cluster and segregate locally (grouping) and more pervasively throughout the lot (segregation)
+        \item In TOS, this is viewed as reflecting the Grouping and Segregation Error (GSE)
+        \item DH$_\text{L}$ can be counteracted by the process of mixing (SUO 2) and/or by suitably-deployed, problem- dependent composite sampling (SUO 1) with a sampling tool allowing a high number of increments
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+\subsubsection{Sampling Unit Operations (SUOs)}
+\paragraph{SUO 1: Composite Sampling}
+\begin{itemize}
+    \item Composite Sampling reduces Grouping and Segregation effects
+    \item Heterogeneity is many times not observable with the naked eye
+    \item Composite samples need often mass reduction $\to$\ representative mass reduction (SUO 4)
+\end{itemize}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{media/SUO1.png}
+\end{center}
+
+\pph{SUO 2: Mixing / Blending}
+Mixing is trivial but important process (decreases segregation effects - GSE) - still NO excuse for grab sampling
+
+Mixing reduces contributions to sampling variation from the Grouping and Segregation Error (GSE):
+\[s^2(\mathrm{(GSE)} = \zeta \cdot \gamma \cdot s^2\mathrm{(FSE)})\]
+
+where $\zeta$ is the Segregation factor and $\gamma$ is the Grouping
+factor (unaffected by mixing - reduced only by selecting smaller increments)
+
+\begin{center}
+    \includegraphics[width=\textwidth]{media/SUO2.png}
+\end{center}
+
+\paragraph{Constitutional heterogeneity (CH)}
+\begin{itemize}
+    \item CH describes the heterogeneity depending on the chemical and/ or physical differences between individual ``constituent units'' in the lot (e.g., particles, grains, or kernels)
+    \item When a lot (L) is sampled, CH$_\text{L}$ manifests itself in the form of the Fundamental Sampling Error (FSE) effect
+    \item CH$_\text{L}$ increases when the compositional difference between fragments increases; CH$_\text{L}$ can only be reduced by comminution/crushing (SUO 3)
+\end{itemize}
+
+\pph{SUO 3: Comminution}
+FSE can be reduced (never eliminated) by particle size reduction (crushing)
+
+\pph{SUO 4: Mass Reduction (sub-sampling)}
+Representative sampling is always a multistage process $\to$\
+Mass reduction is as important as primary, secondary [...] sampling
+
+Mass reduction method / device can have influence on:\\
+Estimating true concentration (accuracy), Sampling variation (precision / reproducibility), Time consumption, Ease of cleaning, Loss of material, User dependency, Cost
+
+\subsection{SSI: Sampling Scale Invariance}
+Theory of Sampling is scale invariant; all principles need to be followed
+independent of lot and increment size.
+
+\subsection{PSS: Sampling Simplicity (primary sampling + mass reduction)}
+\begin{enumerate}
+    \item Sampling is never a one-shot operation
+    \item Sampling is always a multi-stage process: Primary sampling + Representative Mass-reduction
+\end{enumerate}
+
+\subsection{LHC: Lot Heterogeneity Characterization}
+\begin{itemize}
+    \item An appropriate sampling procedure can only be designed knowing the lot heterogeneity quantitatively
+    \item For 3-dimensional/stationary lots: A replication experiment will reveal Total Sampling Error as well as sampling steps generating the largest variance
+    \item For 1-dimensional lots: Complete empirical sampling error estimation - variographic analysis
+\end{itemize}
+
+\subsubsection{Variographic Analysis (Variography)}
+\begin{itemize}
+    \item 1-dimensional heterogeneity characterization
+    \item 1-D lots: processes, long stationary piles, ordered series etc.
+    \item Valuable information about lot variation (trends, periodic phenomena, shifts)
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=.8\textwidth]{media/variography.png}
+\end{center}
+
+“Lag” is the distance between increments (samples) along the time or
+spatial dimension
+
+A variogram displays the total variation as a function of the lag
+
+\newpage
+\pph{Variography procedure}
+\textbf{Lag 1}:\\
+Increment 1 is compared with Increment 2, Increment 2 is compared with
+Increment 3, ..., Increment $i$ is compared with Increment $i+1$
+
+\textbf{Lag 2}:\\
+Increment 1 is compared with Increment 3, Increment 2 is compared with
+Increment 4, ..., Increment $i$ is compared with Increment $i+2$
+
+\textbf{Lag 3}:\\
+Increment 1 is compared with Increment 4, Increment 2 is compared with
+Increment 5, ..., Increment $i$ is compared with Increment $i+3$
+
+\textbf{Lag $\mathbf{n}$}:\\
+Increment 1 is compared with Increment $1+n$, Increment 2 is compared with
+Increment $2+n$, ..., Increment $i$ is compared with Increment $i+n$
+
+\part{9}
+\section{Multi-criteria decision analysis (MCDA/MCA)}
+Complex decisions require various inputs:
+\begin{itemize}
+    \item Data (measurements, observations, experiences etc.)
+    \item Risk analysis (what effects might a certain decision have?)
+    \item Cost analysis (or CBA)
+    \item Preferences of certain stakeholders
+\end{itemize}
+
+MCDA is a mathematical methodology incorporating values of decision makers to select best
+solution for a certain problem $\to$\ Scientifically defensible decision
+\begin{itemize}
+    \item Multi-criteria analysis identifies criteria for choosing the best alternative among competing projects or products
+    \item Criteria may include air/water pollution, GHG emissions, EROI, economic value, social criteria, etc.
+    \item All criteria are evaluated on common basis allowing comparison between criteria and alternatives $\to$\ overall multi-criteria score
+\end{itemize}
+
+\paragraph{Steps for MCDA}
+\begin{itemize}
+    \item Define aim and scope of analysis
+    \item Selection of decision criteria and weight scale
+    \item Calculation of scores for each criterion
+    \item If weight scale is modified $\to$\ recalculation of criteria weights
+    \item Interpretation of results and sensitivity analysis
+\end{itemize}
+
+\subsection{MCDA structure}
+\begin{enumerate}
+    \item Problem identification $\to$\ Defined in terms of overall structure and relevant stakeholders
+    \item Problem structuring:
+    \begin{itemize}
+        \item Definition of alternatives and criteria
+        \item Criteria are set of properties that describe alternative performance (e.g. cost, efficiency, environmental impact)
+    \end{itemize}
+    \item Assessment:
+    \begin{itemize}
+        \item Alternatives and criteria are given numerical values (e.g. LCA, cost assessment, risk assessment, long-term impact)
+        \item Alternatives are scored against the criteria
+        \item Criteria can also be weight according to value or importance
+    \end{itemize}
+    \item Initial results and sensitivity analysis
+    \item Decision/planning $\to$\ MCDA output is used to make decision or further planning
+\end{enumerate}
+
+\subsubsection{Problem identification}
+Focussing questions:
+\begin{itemize}
+    \item What is the significance of the problem?
+    \item Can the problem be broken down into key components (criteria)?
+    \item Does the problem involve several alternatives that need to be compared?
+    \item Are alternatives already known or is further research required?
+    \item What is the pre-conceived judgement of the problem?
+\end{itemize}
+
+\subsubsection{Problem structuring}
+\begin{itemize}
+    \item Identifying (decision) criteria $\to$\ Purpose is to develop hierarchical ``value tree''
+    \item Pre-emptive criteria are used to screen out alternatives before the comparison:
+    \begin{itemize}[label=$\to$]
+        \item Only alternatives in a certain cost range are considered
+        \item Pre-emptive criteria are not shown in value tree
+    \end{itemize}
+    \item Level of detail within tree hierarchy should be balanced
+    \item Avoid criteria that measure the same attribute
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{media/mcda.png}
+\end{center}
 
 
 

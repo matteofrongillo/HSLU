@@ -384,7 +384,7 @@ For the change in entropy of the polytropic state change:
   \includegraphics[width=\linewidth]{media/exergy.png}
 \end{center}
 \begin{gather*}
-  \dot{E}_L = \sum_\alpha \dot{E}_\alpha - \sum_\omega \left|\dot{E}_\omega\right| = \dot{Q}\dfrac{T_A - T_E}{T_A} + \left(-\dot{Q}\dfrac{T_B - T_E}{T_B}\right)\\
+  \dot{E}_L = \sum_\alpha \dot{E}_\alpha - \sum_\omega |\dot{E}_\omega| = \dot{Q}\dfrac{T_A - T_E}{T_A} + \left(-\dot{Q}\dfrac{T_B - T_E}{T_B}\right)\\
   \boxed{\dot{E}_L = T_E\dot{S}_{irr} = T_E\dfrac{T_A - T_B}{T_AT_B}\dot{Q}}\\
   \dot{S}_{irr} = \sum_\omega \dot{m}_\omega s_\omega - \sum_\alpha \dot{m}_\alpha s_\alpha - \sum \dot{S}_Q \geq 0,\quad d\dot{S}_Q = \dfrac{d\dot{Q}}{T}
 \end{gather*}
@@ -531,13 +531,23 @@ Total cycle / sum of all sub-processes:
   \left|w_{t,rev}\right| = \left|q_{23}\right| - \left|q_{41}\right|
 \end{gather*}
 
+\newcolumn
+\part{Thermal systems with gas turbines}
+\section{Turbine}
+\begin{center}
+  \includegraphics[width=.8\linewidth]{media/turbine.png}
+\end{center}
+Power balance:
+\[\dot{Q}_{23}+\dot{Q}_{41}+P_C = 0\]
 
-
-
-
-
-
-
+\subsection{Joule process}
+\begin{gather*}
+  \pi = \dfrac{p_2}{p_1} = \dfrac{p_3}{p_4}\\[1ex]
+  -w_C = q_\alpha + q_\omega = q_{23} + q_{41} = c_p\left(T_3-T_2+T_1-T_4\right)\\[1ex]
+  \left|w_C\right| = c_p\left(T_3-T_2\right)\left(1-\dfrac{T_4-T_1}{T_3-T_2}\right)\\[1ex]
+  \left(1-\dfrac{T_4-T_1}{T_3-T_2}\right) = \left(\dfrac{p}{p_0}\right)^{\frac{k-1}{k}} = \left(\frac{1}{\pi}\right)^{\frac{k-1}{k}}\\[1ex]
+  \eta_J = \dfrac{\left|w_C\right|}{q_\alpha} = 1 - \dfrac{T_1}{T_2} = 1 - \left(\dfrac{1}{\pi}\right)^{\frac{k-1}{k}}
+\end{gather*}
 
 
 

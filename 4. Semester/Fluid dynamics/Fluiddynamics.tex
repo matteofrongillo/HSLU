@@ -767,7 +767,7 @@ model flow fields
 \end{itemize}
 \includegraphics[width=\linewidth]{media/geometric.png}
 
-\subsection{Kinetic similarity}
+\subsection{Kinematic similarity}
 Velocities at corresponding points on model and prototype differ only by a constant scale factor
 \includegraphics[width=\linewidth]{media/kinetic.png}
 
@@ -799,10 +799,114 @@ of variables (Pi-Groups) for a given set of dimensional variables.
   \item $\dm n = \left(F_D, D, v_\infty, \eta, \rho\right) = 5$\\[0ex]
   \item $\dm F_D = \frac{ML}{T^2};\quad D = L;\quad v_\infty = \frac{L}{T};\quad \rho = \frac{M}{L^3};\quad \eta = \frac{M}{LT}$\\[0ex]
         $r = \left[D, v_\infty, \left(F_D, \eta, \rho\right)\right] = 3$\\[0ex]
-  \item Repeating variables: $D, v_\infty, \rho$\\[0ex]
+  \item Repeating variables: $D\ [L], v_\infty\ [T], \rho\ [M]$\\[0ex]
   \item Number of $\Pi$-groups: $n-r = 5-3 = 2$\\[0.5ex]
-        $\dm \Pi_1 = F_D D^{a_1} v_\infty^{b_1} \rho^{c_1}\quad ; \quad \Pi_2 = F_D D^{a_2} v_\infty^{b_2} \rho^{c_3}$
+        $\dm \Pi_1 = F_D D^{a_1} v_\infty^{b_1} \rho^{c_1}\quad ; \quad \Pi_2 = \eta D^{a_2} v_\infty^{b_2} \rho^{c_2}$
 \end{enumerate}
+
+\section{Nondimensional numbers}
+\subsection{Euler Number}
+\figbox{$\dm Eu = \frac{\text{Pressure energy}}{\text{Kinetic energy}} = \frac{\Delta p}{\rho v^2} = \frac{gH}{v^2}$}
+Important for:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item Nozzle and Diffuser
+  \item Pipe and Ducts
+  \item Pumps and Turbines
+\end{itemize}
+
+
+\subsection{Grasshof Number}
+\figbox{$\dm Gr = \frac{\text{Buoyancy force}}{\text{Viscous forces}} = \frac{L^3 g \beta \Delta T}{\nu}$}
+Important for:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item \textbf{Natural (Free) Convection}
+  \item $Gr \ll 1$: Conduction dominates
+  \item $Gr \gg 1$: Convection dominates
+  \item Radiators and heaters
+  \item Cooling of electronics (no Fan)
+\end{itemize}
+
+\subsection{Froude Number}
+\figbox{$\dm \frac{\text{Inertia forces}}{\text{Gravitational force}} = \frac{v}{\sqrt{gL}}$}
+Important for:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item Ship Design: Controls wave formation and resistance
+  \item General water flows
+  \item Open channel / Free Surface flows
+  \item $Fr \ll 1$: Gravity has high influence
+  \item $Fr \gg 1$: Gravity negligible
+\end{itemize}
+
+\subsection{Cavitation Number}
+\figbox{$\dm Ca = \sigma = \frac{p\infty-p_v}{\frac{1}{2}\rho v^2}$}
+Important for:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item Pump Design, Ship Propeller Design
+  \item Describes savety margin to cavitation:\\
+  $\sigma \approx 1$: Pressure close to vapor pressure
+\end{itemize}
+
+\subsection{Weber Number}
+\figbox{$\dm We = \frac{\text{Inertia forces}}{\text{Surface tension forces}} = \frac{\rho v L^2}{\sigma}$}
+Important for:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item Fuel injection
+  \item Jet breakup
+  \item Bubble formation
+\end{itemize}
+
+\subsection{Prandlt Number}
+\figbox{$\dm Pr = \frac{\text{Viscous diffusion}}{\text{Thermal diffusivity}} = \frac{c_p\nu}{\lambda} = \frac{\nu}{\alpha}$}
+\begin{itemize}
+  \item $Pr < 1$: Heat diffuses quickly compared to viscous (momentum) diffusion
+  \item $Pr = 1$: Momentum BL $\sim$ Temperature BL
+  \item $Pr > 1$: Heat is transported through diffusion in momentum
+\end{itemize}
+
+\subsection{Nusselt Number (Forced Convection)}
+Nusselt number is to the thermal boundary layer what the friction coefficient is to the
+velocity boundary layer:
+\figbox{$\dm Nu = \frac{\alpha L}{\lambda} \approx \frac{\text{Convective heat transfer}}{\text{Conductive heat transfer}} = f(x^*, Re_L, Pr)$}
+\begin{center}
+  \footnotesize
+  \setcellgapes{4pt}
+  \makegapedcells
+  \begin{tabular}{|l|c|c|c|}
+    \hline
+    \textbf{Regime} & \makecell[c]{\textbf{Velocity BL}} & \makecell[c]{\textbf{Thermal BL}} & $\bm{Nu(x)}$ \\
+    \hline
+    Laminar &
+    $\dm \delta(x) = x \cdot \frac{4.91}{\sqrt{Re_x}}$ &
+    $\dm \frac{\delta_t}{\delta} \approx Pr^{-1/3}$ &
+    $\dm 0.332\,Re^{\frac{1}{2}}Pr^{0.7}$ \\
+    \hline
+    Turbulent &
+    $\dm \delta(x) = x \cdot \frac{0.16}{Re_x^{1/7}}$ &
+    $\dm \frac{\delta_t}{\delta} \approx Pr^{-1/3}$ &
+    $\dm 0.023\,Re^{0.8}Pr^{1/3}$ \\
+    \hline
+  \end{tabular}
+  \nomakegapedcells
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

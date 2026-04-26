@@ -1,0 +1,536 @@
+\documentclass[9pt, landscape, a4paper]{article}
+
+\usepackage{fontspec}
+\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
+\usepackage[english]{babel}
+\babelfont{rm}{Noto Sans}
+\babelfont{sf}{Noto Sans}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{esvect}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{varwidth}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{bm}
+\usepackage{forest}
+\usepackage{upgreek}
+\usepackage{tabularx}
+
+\usetikzlibrary{arrows, arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\pgfplotsset{compat=1.18}
+\definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
+\DeclareMathOperator\arctanh{arctanh}
+
+% ============= GEOMETRY =============
+\geometry{
+    a4paper,
+    landscape,
+    left=0.5cm,
+    right=0.5cm,
+    top=1.5cm, 
+    bottom=0.5cm,
+    footskip=0cm
+}
+
+\setlist{nosep, leftmargin=*}
+
+\AtBeginDocument{
+  \setlength{\abovedisplayskip}{3pt}
+  \setlength{\belowdisplayskip}{3pt}
+  \setlength{\abovedisplayshortskip}{0pt}
+  \setlength{\belowdisplayshortskip}{0pt}
+}
+
+% ============= HEADER & TITLES =============
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small \vspace*{.1cm}Applied Process Control Cheatsheet}
+\lhead{\small \vspace*{.1cm}Matteo Frongillo}
+\cfoot{\small \vspace*{.4cm}\thepage}
+\newcommand{\TotalPages}{6}
+\cfoot{\small \vspace*{.4cm}\thepage/\TotalPages}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headsep}{4pt}
+
+\titlespacing*{\part}{0pt}{6pt}{1pt}
+\titlespacing*{\section}{0pt}{6pt}{1pt}
+\titlespacing*{\subsection}{0pt}{6pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{1pt}
+
+\titleformat{\part}{\large\bfseries\color{black}}{}{0em}{}
+\titleformat{\section}{\bfseries\color{red!80}}{}{0em}{}
+\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{}{0em}{}
+\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{}{0em}{}
+
+% ============= META DATA =============
+\newcommand{\pdftitle}[1]{\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={#1},
+  pdfauthor={Matteo Frongillo}
+}}
+
+% ============= RENEW COMMANDS =============
+
+\makeatletter
+\renewcommand{\author}[1]{%
+  \def\@author{%
+    #1\\
+    \parbox{\textwidth}{%
+      \centering
+      \small Last update: \today
+    }
+  }%
+}
+\makeatother
+
+\let\emptyset\varnothing
+
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+    \begingroup
+    \pgfmathparse{rad(atan(#1))}%
+    \endgroup
+}
+\makeatother
+
+\renewcommand{\tau}{\uptau}
+\renewcommand{\nu}{\upnu}
+
+% ============= NEW COMMANDS =============
+
+\newcommand{\figbox}[1]{ 
+  \begin{center}
+    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}} 
+  \end{center}       
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\ExplSyntaxOn
+\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
+{
+    \IfNoValueTF{#3}{
+        \IfNoValueTF{#4}{
+            \displaystyle \int #1\,d#2
+        }{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }
+    }{
+        \IfNoValueTF{#4}{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }{
+            \displaystyle
+            \int\limits
+                \IfNoValueF{#1}{\c_math_subscript_token{#1}}
+                ^{\IfNoValueTF{#2}{}{#2}}
+                #3\, d#4
+        }
+    }
+}
+\ExplSyntaxOff
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\makeatletter
+\newcommand{\shorteq}{\mathrel{\mkern0.2mu\mathpalette\shorteq@\relax\mkern0.2mu}}
+\newcommand{\shorteq@}[2]{\scalebox{0.5}[1]{$\m@th#1=$}}
+
+\newcommand{\longeq}[1]{\mathrel{\mathpalette\longeq@{#1}}}
+\newcommand{\longeq@}[2]{%
+  \begingroup
+  \sbox\z@{$\m@th#1=$}%
+  \ifdim#2<\wd\z@
+    \resizebox{#2}{\height}{\box\z@}%
+  \else
+    \ifdim#2<3\wd\z@
+      \hbox to #2{$\m@th#1=\hss=\hss=\hss=$}%
+    \else
+      \hbox to #2{$\m@th#1=\cleaders\hbox to 0.2\wd\z@{\hss$#1=$\hss}\hfil=$}%
+    \fi
+  \fi
+  \endgroup
+}
+\makeatother
+
+\newcommand{\const}{%
+  \ \mathrel{\ooalign{%
+    \hfil$c$\hfil\cr
+    \hfil\kern0.10em\raisebox{-0.4ex}{\rule{0.08pt}{1.7ex}}\hfil\cr
+  }}%
+}
+
+\makeatletter
+\define@key{Gin}{lw}[1]{\setkeys{Gin}{width=#1\linewidth}}
+\newcommand{\lw}{lw}
+\makeatother
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\note}{\underline{Note}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
+\newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
+\newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
+\newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\cel}{$^\circ$C}
+
+% ============= DOCUMENT CONTENT =============
+
+\begin{document}
+\pdftitle{Applied Process Control}
+\vspace*{-.5cm}
+\setlength{\columnsep}{0.5cm}
+
+\begin{multicols*}{3}
+\vspace*{-.7cm}
+\part{SW 1: Control Theroy and Automation}
+A control system regulates a process using sensors, controllers, actuators, and feedback.
+
+Control theory designs controllers to regulate and optimize dynamic systems.
+
+\section{Uncontrolled system}
+\begin{center}
+    \includegraphics[width=.8\linewidth]{media-cheatsheet/uncontrolled.png}
+\end{center}
+
+\section{Open-loop controlled system}
+\begin{center}
+    \includegraphics[width=\linewidth]{media-cheatsheet/openloop.png}
+\end{center}
+
+\subsection{Advantages}
+\begin{itemize}
+    \item Simple structure: no sensors or controllers needed
+    \item Low cost: fewer components and less complexity
+\end{itemize}
+
+\subsection{Disadvantages}
+\begin{itemize}
+    \item No adaptation: cannot correct changes or disturbances
+    \item Unstable performance: quality may decrease over time
+\end{itemize}
+
+\section{Closed-loop controlled system}
+\begin{center}
+    \includegraphics[width=\linewidth]{media-cheatsheet/closedloop.png}
+\end{center}
+
+\subsection{Advantages}
+\begin{itemize}
+    \item High accuracy: continuous correction improves precision, performance, and efficiency
+    \item Adaptation: reacts to load changes, disturbances, or operating conditions
+\end{itemize}
+
+\subsection{Disadvantages}
+\begin{itemize}
+    \item Complex structure: sensors, controllers, and feedback are required
+    \item Higher cost: more components increase total cost
+    \item More maintenance: components need calibration and maintenance
+\end{itemize}
+
+\newcolumn
+\section{Extended block diagram}
+\begin{center}
+    \includegraphics[width=\linewidth]{media-cheatsheet/extended.png}
+\end{center}
+\vspace*{-.2cm}
+\subsection{Components}
+\begin{minipage}[t]{0.48\linewidth}
+    \subsubsection{Controller}
+    Input: error $e(t)$\\
+    Output: command signal $u(t)$
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+    \subsubsection{Actuator}
+    Input: command signal $u(t)$\\
+    Output: process input signal
+\end{minipage}
+
+\subsubsection{Process}
+Input: process input signal\\
+Unwanted output: disturbance/noise $v(t)$\\
+Output: actual process output $y_m(t)$
+
+\subsubsection{Sensor}
+Input: actual process output $y_m(t)$\\
+Output: signal to be compared to the desired output signal
+
+\section{Feedback loop in a closed-loop control}
+\begin{center}
+    \includegraphics[width=\linewidth]{media-cheatsheet/feedback.png}
+\end{center}
+\vspace*{-.5cm}
+\begin{minipage}[t]{0.48\linewidth}
+    \begin{align*}
+        &e(t) = y_s(t) - y_m(t)\\
+        &u(t) = C(e(t))\\
+        &y_m(t) = P(u(t),v(t))
+    \end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+    \begin{align*}
+        &y_s(t), e(t), u(t), y_m(t):\ \text{Signals}\\
+        &P, C:\ \text{Systems}
+    \end{align*}
+\end{minipage}
+
+\subsection{Signals vs System}
+\subsubsection{Signals}
+\begin{itemize}
+    \item Carry information through variations in a physical quantity
+    \item Described as functions of one or more variables
+    \item Can be natural or artificial and are used in communication, measurement, and control
+\end{itemize}
+
+\subsubsection{System}
+\begin{itemize}
+    \item Interconnection of components used to perform a specific function
+    \item Takes input signals, processes or transforms them, and produces output signals
+    \item Describes the relationship between inputs and outputs
+\end{itemize}
+
+\section{Automation pyramid}
+\begin{enumerate}[label=Level \arabic*., start=0]
+    \item Field/process level
+    \item Control devices level
+    \item Supervisory control level
+    \item Manufacturing planning and execution system (MES)
+    \item Management/Business level or ERP
+    \item Digital transformation and AI-driven intelligent ecosystems (cloud level)
+\end{enumerate}
+
+\subsection{Control engineering}
+Levels 0-1: real-time control of physical processes using sensors, measurement systems, actuators, and controllers
+
+\subsection{Automation}
+Levels 2-5: integration, supervision, optimization, planning, and management of production and business processes
+
+\part{SW2: Good controllers}
+\section{Sauna example, closed-loop control}
+\includegraphics[\lw]{media-cheatsheet/sauna.png}
+
+\subsection{Disturbance rejection}
+\begin{itemize}
+    \item Ability to reduce the effect of internal or external disturbances on the system output
+    \item Keeps the output close to the desired reference
+\end{itemize}
+
+\subsubsection{Characteristics}
+\begin{itemize}
+    \item Disturbance types: internal component changes or external environmental changes
+    \item Effectiveness: controller detects and compensates disturbances
+    \item Control strategies: feedback control reacts after disturbance; feedforward control acts before it affects the output
+\end{itemize}
+
+\subsubsection{Performance metrics}
+\begin{itemize}
+    \item Stability: system remains robust under disturbances
+    \item Steady-state error: final deviation from the reference is minimized
+    \item Overshoot/undershoot: excessive output deviations are reduced
+    \item Rise/settling time: response is fast and stable
+\end{itemize}
+
+\subsubsection{Graphical representation}
+\includegraphics[\lw]{media-cheatsheet/distrej.png}
+
+\subsection{Reference tracking}
+\begin{itemize}
+    \item Ability to follow the desired reference signal accurately
+    \item Tracking error: difference between reference and output
+\end{itemize}
+
+\subsubsection{Characteristics}
+\begin{itemize}
+    \item Tracking accuracy: output follows the reference with minimal deviation
+    \item Effectiveness: controller reduces tracking error under different conditions
+    \item Control strategies: feedback corrects deviations; feedforward anticipates reference changes
+\end{itemize}
+
+\subsubsection{Performance metrics}
+\begin{itemize}
+    \item Stability: tracking remains consistent and robust
+    \item Steady-state error: long-term deviation from the reference is minimized
+    \item Overshoot/undershoot: excessive deviations during tracking are reduced
+    \item Rise/settling time: output reaches the reference quickly and stably
+\end{itemize}
+
+\subsubsection{Graphical representation}
+\includegraphics[\lw]{media-cheatsheet/reftra.png}
+
+\newcolumn
+\includegraphics[\lw]{media-cheatsheet/reftra_2.png}
+
+\section{Feedforward control}
+\begin{itemize}
+    \item Predictive control strategy that compensates known influences before they affect the output
+    \item Improves performance by anticipating changes instead of only reacting to errors
+\end{itemize}
+\includegraphics[\lw]{media-cheatsheet/feedforward.png}
+
+\subsection{Reference feedforward}
+\begin{itemize}
+    \item Compensates reference changes before they affect the system
+    \item Improves tracking by adjusting the control input in advance
+\end{itemize}
+
+\subsection{Disturbance feedforward}
+\begin{itemize}
+    \item Compensates measurable disturbances before they affect the output
+    \item Uses a precomputed correction based on the expected disturbance effect
+\end{itemize}
+
+\part{SW3: Process model development}
+\section{Damped mass-spring example}
+\subsection{Differential equation}
+Step 1: Set the differential equation
+\[M\frac{d^2h}{dt^2}+c\frac{dh}{dt}+kh = F\]
+
+Step 2: Isolate the term with the higher differential degree
+\[\frac{d^2h}{dt^2} = \frac{F}{M}-\frac{kh}{M}-\frac{c}{M}\frac{dh}{dt}\]
+\vfill\phantom{}
+
+\subsection{ODE diagram}
+\includegraphics[\lw]{media-cheatsheet/ode-diagram.png}
+
+\part{SW4: Signals and Systems}
+\section{Homogeneity (scaling principle)}
+Scaling the input by a constant also scales the output by the same constant:
+\begin{itemize}
+    \item If $u(t) \stackrel{h}{\to} y(t)$, then $\alpha u(t) \stackrel{h}{\to} \alpha y(t)$\\[0ex]
+    \item If $y(t) = h\big(u(t)\big)$, then $h\big(\alpha u(t)\big)$, that is, $h\big(\alpha u(t)\big)=\alpha h\big(u(t)\big)$ 
+\end{itemize}
+\includegraphics[\lw]{media-cheatsheet/homogeneity.png}
+
+\subsection{Homogeneity proof examples}
+\subsubsection{Homogeneous system}
+\begin{gather*}
+    u(t) \stackrel{h}{\to} y(t) = 4u(t)\\
+    h(\alpha u(t)) = 4(\alpha u(t)) = \alpha(4u(t)) = \alpha h(u(t))\\
+    \alpha u(t) \stackrel{h}{\to} \alpha y(t) \tag*{$\Box$}
+\end{gather*}
+
+\subsubsection{Non-homogeneous system}
+\begin{gather*}
+    u(t) \stackrel{h}{\to} y(t) = u^3(t)\\
+    h(\alpha u(t)) = (\alpha u(t))^3 = \alpha^3 y(t) \neq \alpha y(t)\\
+    h(\alpha u(t)) \neq \alpha h(u(t)) \tag*{$\Box$}
+\end{gather*}
+\vfill\phantom{}
+\newcolumn
+
+\section{Additivity (superposition principle)}
+The output of summed inputs equals the sum of the individual outputs:
+\begin{itemize}
+    \item If $u_1(t) \to y_1(t)$ and $u_2(t) \to y_2(t)$, then
+        \[u_1(t) + u_2(t) \to y_1(t) + y_2(t)\]
+    \item If $y_1(t) = h(u_1(t))$ and $y_2(t)=h(u_2(t))$, then
+        \[h(u_1(t) + u_2(t)) = y_1(t) + y_2(t)\]
+        \hspace*{.2cm} That is
+        \[h(u_1(t) + u_2(t)) = h(u_1(t))+h(u_2(t))\]
+\end{itemize}
+\includegraphics[\lw]{media-cheatsheet/additivity.png}
+
+\subsection{Additivity proof examples}
+\subsubsection{Additive system}
+\begin{gather*}
+    u_1(t) \stackrel{h}{\to} y_1(t) = 2u_1(t)\\
+    u_2(t) \stackrel{h}{\to} y_2(t) = 2u_2(t)\\
+    h\big(u_1(t) + u_2(t)\big) = 2\big(u_1(t) + u_2(t)\big)\\
+    = 2u_1(t) + 2u_2(t) = y_1(t) + y_2(t)\\
+    u_1(t) + u_2(t) \stackrel{h}{\to} y_1(t) + y_2(t) \tag*{$\Box$}
+\end{gather*}
+
+\subsubsection{Non-additive system}
+\begin{gather*}
+    u(t) \stackrel{h}{\to} y(t) = \sin(u(t))\\
+    h(u_+(t) + u_2(t)) = \sin(u_1(t)+u_2(t)) \neq \sin(u_1(t)) + \sin(u_2(t)) \tag*{$\Box$}
+\end{gather*}
+
+\section{Linear system}
+A system is linear if it satisfies both the homogeneity (scaling) and additivity principles.
+\vfill\phantom{}
+
+\newcolumn
+\section{Time-invariant system}
+System behavior does not change over time. A time-shifted input produces the same time-shifted output:
+\begin{itemize}
+    \item If $u(t) \to y(t)$, then
+        \[u(t-t_0) \to y(t-t_0)\]
+    \item If $y(t) = h(u(t))$, then
+        \[h(z(t-t_0)) = y(t-t_0)\]
+\end{itemize}
+
+\subsection{Time-invariance proof example}
+\subsubsection{Time-invariant system}
+\begin{gather*}
+    u(t) \stackrel{h}{\to} y(t) = u(t) + 7\\
+    h\big(u(t-t_0)\big) = u(t-t_0) + 7 = y(t-t_0)\\
+    u(t-t_0) \stackrel{h}{\to} y(t-t_0) \tag*{$\Box$}
+\end{gather*}
+
+\subsubsection{Time-variant system}
+\begin{gather*}
+    u(t) \stackrel{h}{\to} y(t) = u(t) + t\\
+    h\big(u(t-t_0)\big) = u(t-t_0) + t\\
+    y(t-t_0) = u(t-t_0) + (t-t_0)\\
+    h\big(u(t-t_0)\big) \neq y(t-t_0) \tag*{$\Box$}
+\end{gather*}
+
+
+
+
+
+
+
+\end{multicols*}
+
+\end{document}

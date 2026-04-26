@@ -434,7 +434,7 @@ Levels 2-5: integration, supervision, optimization, planning, and management of 
 Step 1: Set the differential equation
 \[M\frac{d^2h}{dt^2}+c\frac{dh}{dt}+kh = F\]
 
-Step 2: Isolate the term with the higher differential degree
+Step 2: Isolate the term with the highest differential order
 \[\frac{d^2h}{dt^2} = \frac{F}{M}-\frac{kh}{M}-\frac{c}{M}\frac{dh}{dt}\]
 \vfill\phantom{}
 
@@ -448,6 +448,7 @@ Scaling the input by a constant also scales the output by the same constant:
     \item If $u(t) \stackrel{h}{\to} y(t)$, then $\alpha u(t) \stackrel{h}{\to} \alpha y(t)$\\[0ex]
     \item If $y(t) = h\big(u(t)\big)$, then $h\big(\alpha u(t)\big)$, that is, $h\big(\alpha u(t)\big)=\alpha h\big(u(t)\big)$ 
 \end{itemize}
+\subsection{Graphical visualization}
 \includegraphics[\lw]{media-cheatsheet/homogeneity.png}
 
 \subsection{Homogeneity proof examples}
@@ -477,6 +478,7 @@ The output of summed inputs equals the sum of the individual outputs:
         \hspace*{.2cm} That is
         \[h(u_1(t) + u_2(t)) = h(u_1(t))+h(u_2(t))\]
 \end{itemize}
+\subsection{Graphical visualization}
 \includegraphics[\lw]{media-cheatsheet/additivity.png}
 
 \subsection{Additivity proof examples}
@@ -524,6 +526,63 @@ System behavior does not change over time. A time-shifted input produces the sam
     y(t-t_0) = u(t-t_0) + (t-t_0)\\
     h\big(u(t-t_0)\big) \neq y(t-t_0) \tag*{$\Box$}
 \end{gather*}
+
+\section{Digitalization}
+\begin{center}
+    \includegraphics[\lw=0.8]{media-cheatsheet/ADDA.png}
+\end{center}
+\subsection{Time discretization}
+\begin{itemize}
+    \item Sampling: continuous signal measured at fixed time intervals
+    \item Sampling rate: number of samples per second [Hz or kHz]
+\end{itemize}
+
+\subsection{Amplitude discretization}
+\begin{itemize}
+    \item Quantization: signal values are rounded to discrete levels
+    \item Quantization type: uniform uses equal steps; non-uniform uses variable steps
+    \item Quantization step: coarse steps give lower precision; fine steps give higher precision
+\end{itemize}
+
+\subsection{Basic input signals}
+\includegraphics[\lw]{media-cheatsheet/inputsignal.png}
+\vfill\phantom{}
+
+\includegraphics[\lw]{media-cheatsheet/inputsignal2.png}
+
+\part{SW05: Linearization}
+\section{Steps for linearizing a function}
+\begin{enumerate}[label=Step \arabic*.]
+    \item Determine the nonlinear differential equation:
+        \[M\ddot{h}+c\dot{h}=Mg-kh^3\]
+    \item Define $f(\ddot{h},\dot{h},h)=0$:
+        \[M\ddot{h}+c\dot{h}+kh^3-Mg=0\]
+    \item Define the slopes $\Delta$:
+        \[\Delta \ddot{h} = \ddot{h} - \overline{\ddot{h}}\]
+    \item Calculate the partial derivatives of $f$ at the steady state for all the variables:
+        \[\frac{\partial f}{\partial \ddot{h}} = M\Delta\ddot{h}\]
+    \item Establish a linear equation using the slopes solving for the highest differential order:
+        \[\Delta\ddot{h} = -\frac{c}{M}\Delta\dot{h} - \frac{3k(\overline{h})^2}{M}\Delta h\]
+\end{enumerate}
+
+\subsection{ODE diagram}
+\includegraphics[\lw]{media-cheatsheet/linearization.png}
+
+\part{SW06: Controllers}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

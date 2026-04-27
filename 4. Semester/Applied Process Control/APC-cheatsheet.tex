@@ -79,7 +79,7 @@
 \titlespacing*{\subsection}{0pt}{6pt}{1pt}
 \titlespacing*{\subsubsection}{0pt}{6pt}{1pt}
 
-\titleformat{\part}{\large\bfseries\color{black}}{}{0em}{}
+\titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.4em}{}
 \titleformat{\section}{\bfseries\color{red!80}}{}{0em}{}
 \titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{}{0em}{}
 \titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{}{0em}{}
@@ -231,7 +231,7 @@
 \begin{multicols*}{3}
 \raggedcolumns
 \vspace*{-.7cm}
-\part{SW 1: Control Theroy and Automation}
+\part{Control Theroy and Automation}
 A control system regulates a process using sensors, controllers, actuators, and feedback.
 
 Control theory designs controllers to regulate and optimize dynamic systems.
@@ -355,7 +355,7 @@ Levels 0-1: real-time control of physical processes using sensors, measurement s
 \subsection{Automation}
 Levels 2-5: integration, supervision, optimization, planning, and management of production and business processes
 
-\part{SW2: Good controllers}
+\part{Good controllers}
 \section{Sauna example, closed-loop control}
 \includegraphics[\lw]{media-cheatsheet/sauna.png}
 
@@ -429,7 +429,7 @@ Levels 2-5: integration, supervision, optimization, planning, and management of 
     \item Uses a precomputed correction based on the expected disturbance effect
 \end{itemize}
 
-\part{SW3: Process model development}
+\part{Process model development}
 \section{Damped mass-spring example}
 \subsection{Differential equation}
 Step 1: Set the differential equation
@@ -441,7 +441,7 @@ Step 2: Isolate the term with the highest differential order
 \subsection{ODE diagram}
 \includegraphics[\lw]{media-cheatsheet/ode-diagram.png}
 
-\part{SW4: Signals and Systems}
+\part{Signals and Systems}
 \section{Homogeneity (scaling principle)}
 Scaling the input by a constant also scales the output by the same constant:
 \begin{itemize}
@@ -547,7 +547,7 @@ System behavior does not change over time. A time-shifted input produces the sam
 
 \includegraphics[\lw]{media-cheatsheet/inputsignal2.png}
 
-\part{SW05: Linearization}
+\part{Linearization}
 \section{Steps for linearizing a function}
 \begin{enumerate}[label=Step \arabic*.]
     \item Determine the nonlinear differential equation:
@@ -565,7 +565,7 @@ System behavior does not change over time. A time-shifted input produces the sam
 \subsection{ODE diagram}
 \includegraphics[\lw]{media-cheatsheet/linearization.png}
 
-\part{SW06: Controllers}
+\part{Controllers}
 \section{Analog controller}
 \begin{itemize}
     \item Processes continuous signals using analog components, e.g. resistors, capacitors, and operational amplifiers
@@ -576,41 +576,29 @@ System behavior does not change over time. A time-shifted input produces the sam
 \newcolumn
 \section{Digital controller}
 \begin{itemize}
-    \item Signal processing: uses A/D and D/A converters, causing time/amplitude discretization and delays
-    \item Dynamic performance: slightly reduced due to discretization
-    \item Flexibility: parameters can be updated by software
-    \item Cost and size: smaller and often cheaper hardware
-    \item Multitasking: can perform additional tasks besides control
-    \item Noise robustness: digital filtering improves noise resistance
-    \item Complexity: supports advanced control algorithms
-    \item Maintenance: easier diagnostics and software updates
-    \item Scalability: easy integration, upgrades, and expansion
-    \item Precision: high accuracy and stable performance over time
+    \item Uses A/D and D/A converters $\to$\ discretization and delays
+    \item Slightly reduced dynamic performance due to discretization
+    \item Flexible, precise, scalable, and easy to maintain
+    \item Compact and cost-effective hardware
+    \item Supports multitasking, noise filtering, and advanced algorithms
 \end{itemize}
 
-\subsection{Implementation platforms for digital controllers}
+\subsection{Implementation platforms}
 \begin{itemize}
-    \item IPCs: industrial computers: complex real-time control tasks
-    \item MCUs: compact, low-cost chips for simple embedded control
-    \item PLCs: industrial controllers for automation in harsh env.
-    \item DSPs: processors optimized for fast real-time signal calc.
-    \item FPGAs: reconfigurable hardware for ultra-fast parallel control
-    \item SBCs: compact computers: prototyping and low-cost control
-    \item Cloud controllers: remote control, monitoring, and data analysis using cloud computing
+    \item IPCs: complex real-time industrial control
+    \item MCUs: simple low-cost embedded control
+    \item PLCs: robust automation in harsh environments
+    \item DSPs: fast real-time signal calculations
+    \item FPGAs: ultra-fast parallel control
+    \item SBCs: prototyping and low-cost control
+    \item Cloud: remote monitoring, control, and data analysis
 \end{itemize}
 
-\subsection{System architecture and communication}
-\subsubsection{Centralized control}
+\subsection{Architecture and communication}
 \begin{itemize}
-    \item One central unit handles signal processing, A/D and D/A conversion, inputs, and outputs
-    \item Simple wiring, but possible bottlenecks in larger systems
-\end{itemize}
-
-\subsubsection{Fieldbus communication}
-\begin{itemize}
-    \item Sensors, actuators, and controllers exchange data over an industrial network
-    \item Scalable, modular, and reduces wiring complexity
-    \item (e.g. ProfiNET, CAN/CANopen, EtherCAT)
+    \item Centralized control: one unit handles processing, conversion, inputs, and outputs; simple but less scalable
+    \item Fieldbus communication: distributed devices communicate via industrial networks; scalable and modular
+    \item Examples: ProfiNET, CAN/CANopen, EtherCAT
 \end{itemize}
 
 \subsection{2-point controller}
@@ -620,7 +608,6 @@ System behavior does not change over time. A time-shifted input produces the sam
     u = u_{min} &\text{if  } e < 0
 \end{cases}\]
 
-\newcolumn
 \subsubsection{2-point controller with hysteresis}
 \includegraphics[\lw]{media-cheatsheet/2step-hyst.png}
 \[\begin{cases}
@@ -644,43 +631,256 @@ System behavior does not change over time. A time-shifted input produces the sam
 \[\dm u(t) = K_p(e(t)) + K_i\integral[0][t][e(\tau)][\tau] + K_d\frac{de(t)}{dt}\]
 
 \subsubsection{Technical usual parametrization}
-\includegraphics[\lw]{media-cheatsheet/PID2.png}
+\begin{center}
+    \includegraphics[\lw=.8]{media-cheatsheet/PID2.png}
+\end{center}
 \[\dm u(t) = K_p\left(e(t) + \frac{1}{T}\integral[0][t][e(\tau)][\tau]+T_d\frac{de(t)}{dt}\right)\]
-
-Controller gain: $K_p$\\
-Integral time: $\dm T_i = \frac{K_p}{K_i}$\\
-Derivative time: $\dm T_d = \frac{K_d}{K_p}$
+\begin{center}
+    \begin{tabular}{ccc}
+        Controller gain & Integral time & Derivative time\\
+        $K_p$ & $\dm T_i = \frac{K_p}{K_i}$ & $\dm T_d = \frac{K_d}{K_p}$
+    \end{tabular}
+\end{center}
 
 \subsection{PID principle}
-\pph{Proportional (P)}
-Larger error $e(t)$ gives a larger control output $u(t)$
+\pph{Proportional term (P)}
+\vspace*{-.6cm}
+\begin{itemize}
+    \item Immediate correction proportional to current error
+    \item Reduces rise time
+    \item Cannot remove steady-state error alone
+    \item Too high $\to$\ oscillation/overshoot
+\end{itemize}
 
-\pph{Integral (I)}
-If $e(t)=0$, the control output keeps increasing or decreasing to
-remove steady-state error
+\newcolumn
+\pph{Integral term (I)}
+\vspace*{-.6cm}
+\begin{itemize}
+    \item Eliminates steady-state error
+    \item Slow reaction
+    \item Large integral action $\to$\ overshoot (integral wind-up)
+\end{itemize}
+\vspace*{-.4cm}
 
-\pph{Derivative (D)}
-Larger error change rate $\dot{e}(t)$ gives a stronger control action
-to anticipate future error and reduce overshoot
+\pph{Derivative term (D)}
+\vspace*{-.6cm}
+\begin{itemize}
+    \item Predictive action: reacts to error rate of change
+    \item Reduces overshoot and oscillations
+    \item Sensitive to noise
+\end{itemize}
 
+\begin{minipage}{0.48\linewidth}
+    \pph{PI controller}
+    \vspace*{-.4cm}
+    \begin{itemize}
+        \item Faster than pure I
+        \item Deletes steady-state error
+        \item Mild overshoot
+    \end{itemize}
+\end{minipage}%
+\begin{minipage}{0.48\linewidth}
+    \pph{PD controller}
+    \vspace*{-.4cm}
+    \begin{itemize}
+        \item Fast response
+        \item Low overshoot
+        \item Still has steady-state error
+    \end{itemize}
+\end{minipage}
+\vspace*{-.4cm}
+
+\pph{PDI controller}
+\vspace*{-.6cm}
+\begin{itemize}
+    \item Fast rise time
+    \item No steady-state error
+    \item Limited overshoot
+    \item Best compromise between accuracy + stability
+\end{itemize}
+
+\subsubsection{Graphical representation}
+\includegraphics[\lw]{media-cheatsheet/PID-graph.png}
+
+\part{Laplace transform}
+\section{Laplace transform}
+The Laplace transform is defined for $t \geq 0$ as
+\figbox{$\dm F(s) = \mathcal{L}\{f(t)\} = \integral[0][\infty][f(t)\cdot e^{-st}][t]$}
 \begin{center}
-    \includegraphics[\lw=.8]{media-cheatsheet/PID-graph.png}
+    \includegraphics[\lw=.72]{media-cheatsheet/Laplace.png}
 \end{center}
+
+\subsection{Laplace transform of some functions}
+\begin{center}
+    \footnotesize
+    \setcellgapes{2pt}
+    \makegapedcells
+    \begin{tabularx}{\linewidth}{|l|X|X|}
+        \hline & $\bm{f(t),\ t \geq 0}$ & $\bm{F(s) = \mathcal{L}\{f(t)\}}$\\
+        \hline Constant & $1\quad ;\quad a$ & $\dfrac{1}{s}\quad ;\quad \dfrac{a}{s}$\\
+        \hline Step function & $t\quad ;\quad at$ & $\dfrac{1}{s^2}\quad ;\quad \dfrac{a}{s^2}$\\
+        \hline Derivative & $\dfrac{df(t)}{dt}$ & $sF(s)-f(0)$\\
+        \hline Integral & $\displaystyle\int_0^t f(\tau)\,d\tau$ & $\dfrac{1}{s} F(s)$\\
+        \hline Initial value & $\displaystyle\lim_{t\to 0} f(t)$ & $\displaystyle\lim_{s\to\infty} sF(s)$\\
+        \hline Steady-state value & $\displaystyle\lim_{t\to\infty} f(t)$ & $\displaystyle\lim_{s\to 0} sF(s)$\\
+        \hline Delayed input & $f(t-t_0)$ & $\exp(-s\cdot t_0) F(s)$\\
+        \hline Exponential & $\exp(-at)$ & $\dfrac{1}{s+a}$\\
+        \hline 
+    \end{tabularx}
+    \nomakegapedcells
+\end{center}
+
+\subsection{Benefits of analysis in the s-domain}
+\begin{itemize}
+    \item Converts differential equations into algebraic equations
+    \item Defines direct input-output relation using transfer functions
+    \item Enables frequency response analysis
+    \item Simplifies stability and system behavior analysis
+    \item Supports structured open-loop and closed-loop analysis
+    \item Makes transfer functions easier to manipulate
+\end{itemize}
+
+\part{Transfer functions}
 \begin{gather*}
-    u(t_j) = K_p c_p + K_i c_i + K_d c_d\\
-    u(t_j) = K_p \left(c_p + \frac{1}{T_i} c_i + T_d c_d\right)
+    sY(s) + C(s)Y(s) = G(s)u(s) \Longrightarrow Y(s)\left[s + C(s)\right] = G(s)u(s)\\[0ex]
+    H_{Y,U}(s) = \dfrac{Y(s)}{U(s)} = \dfrac{C(s)}{s+G(s)} = \dfrac{K_Y}{1+\tau_Y \cdot s}
 \end{gather*}
 
+where $K_Y$ is the gain and $\tau_Y$ is the time constant.
 
+\section{Transfer function of the PID controller}
+ODE of the PID controller:
+\[u(t) = K_p\left(e(t) + \frac{1}{T_i}\integral[0][t][e(\tau)][\tau] + T_d\dot{e}(t)\right)\]
 
+Transfer function:
+\begin{gather*}
+    U(s) = K_p\left(E(s) + \frac{1}{T_i}\frac{E(s)}{s}+T_dsE(s)\right)\\[1ex]
+    U(s) = E(s)\left(K_p\frac{T_iT_ds^2+T_is+1}{T_is}\right)\\[1ex]
+    C(s) = \frac{U(s)}{E(s)} = \left(K_p\frac{T_iT_ds^2+T_is+1}{T_is}\right)
+\end{gather*}
 
+\newcolumn
+\section{Block diagram manipulation}
+\subsection{Serial connection}
+\includegraphics[\lw]{media-cheatsheet/serial.png}
 
+\subsection{Parallel connection}
+\includegraphics[\lw]{media-cheatsheet/parallel.png}
 
+\subsection{Feedback loop 1}
+\includegraphics[\lw]{media-cheatsheet/fb1.png}
 
+\subsection{Feedback loop 2}
+\includegraphics[\lw]{media-cheatsheet/fb2.png}
 
+\subsection{Summation points}
+\includegraphics[\lw]{media-cheatsheet/sumpoint.png}
 
+\subsection{Relocation of a summation 1}
+\begin{center}
+    \includegraphics[\lw=.8]{media-cheatsheet/rel1.png}
+\end{center}
 
+\subsection{Relocation of a summation 2}
+\begin{center}
+    \includegraphics[\lw=.8]{media-cheatsheet/rel2.png}
+\end{center}
 
+\subsection{Relocation of a junction 1}
+\begin{center}
+    \includegraphics[\lw=.8]{media-cheatsheet/jun1.png}
+\end{center}
+
+\subsection{Relocation of a junction 2}
+\begin{center}
+    \includegraphics[\lw=.75]{media-cheatsheet/jun2.png}
+\end{center}
+
+\subsection{Relocation of a disturbance}
+\begin{center}
+    \includegraphics[\lw=.9]{media-cheatsheet/dist.png}
+\end{center}
+
+\section{Systems transfer function}
+\subsection{Reference open-loop transfer function}
+\begin{center}
+    \includegraphics[\lw=.9]{media-cheatsheet/ol-tr.png}
+    \[L(s) = \frac{\omega_m(s)}{e(s)} = K(s)G_{\omega,u}(s)\]
+\end{center}
+
+\subsection{Closed-loop transfer function}
+\begin{center}
+    \includegraphics[\lw=.95]{media-cheatsheet/cl-tr.png}
+    \begin{gather*}
+    T_r(s) = \frac{\omega_m(s)}{\omega_s(s)} = \frac{K(s)G_{\omega,u}(s)}{1+K(s)G_{\omega,u}(s)}\\
+    T_d(s) = \frac{\omega_m(s)}{M_l(s)} = \frac{G_{\omega,M_l}(s)}{1+K(s)G_{\omega,u}(s)}
+\end{gather*}
+\end{center}
+
+\subsection{Controlled system response}
+\begin{center}
+    \includegraphics[\lw=.7]{media-cheatsheet/contr-tr.png}
+    \[\omega_m(s) = T_r(s)\omega_s(s) + T_d(s)M_l(s)\]
+\end{center}
+
+\section{Zeros and Poles}
+A system is described by its transfer function:
+\[G(s)=\frac{N(s)}{D(s)}\]
+\begin{itemize}
+    \item Zeros: roots of $N(s)$
+    \item Poles: roots of $D(s)$
+\end{itemize}
+
+\subsection{Stability}
+Bounded input gives bounded output:
+\[|u(t)|<\infty \Longrightarrow |y(t)|<\infty\]
+Pole conditions:
+\vspace*{-.2cm}
+\begin{itemize}
+    \item $Re<0$: stable
+    \item Any $Re>0$: unstable
+    \item Single pole with $Re=0$: marginally stable
+    \item Repeated poles with $Re=0$: unstable
+\end{itemize}
+
+\subsection{Causality}
+Output depends only on present and past inputs:
+\vspace*{-.2cm}
+\begin{itemize}
+    \item $\deg(N)<\deg(D)$: strictly causal
+    \item $\deg(N)=\deg(D)$: causal
+    \item $\deg(N)>\deg(D)$: non-causal
+\end{itemize}
+
+\subsection{Oscillations}
+Oscillations occur with complex poles:
+\vspace*{-.2cm}
+\begin{itemize}
+    \item Real poles only: no oscillation
+    \item $j\pm (Re=0)$: sustained oscillation
+    \item $j\pm (Re<0)$: damped oscillation
+    \item $j\pm (Re>0)$: increasing oscillation
+\end{itemize}
+\subsection{Final value theorem (steady-state)}
+\[t \to \infty \stackrel{\mathcal{L}}{\Longleftrightarrow} s \to 0\quad ; \quad \boxed{\lim_{t\to\infty} y(t) = \lim_{s\to0} s\cdot Y(s)}\]
+\subsubsection{Unit step final value}
+\begin{gather*}
+    Y(s) = G(s)U(S) = G(s)\cdot \frac{1}{s}\\
+    \lim_{s\to0} s\cdot Y(s) = \lim_{s\to 0} s\cdot\frac{1}{s}\cdot G(s) = \lim_{s\to0} G(s) = G(s=0)
+\end{gather*}
+
+\subsection{Initial value theorem}
+\[t \to 0 \stackrel{\mathcal{L}}{\Longleftrightarrow} s \to \infty\quad ; \quad \boxed{\lim_{t\to0} y(t) = \lim_{s\to\infty} s\cdot Y(s)}\]
+\subsubsection{Unit step final value}
+\begin{gather*}
+    Y(s) = G(s)U(S) = G(s)\cdot \frac{1}{s}\\
+    \lim_{s\to\infty} s\cdot Y(s) = \lim_{s\to\infty} s\cdot\frac{1}{s}\cdot G(s) = \lim_{s\to\infty} G(s)
+\end{gather*}
+
+\newcolumn
+\vspace*{-.6cm}
+\part{First- and second-order responses}
+TODO
 
 
 

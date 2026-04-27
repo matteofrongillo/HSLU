@@ -229,6 +229,7 @@
 \setlength{\columnsep}{0.5cm}
 
 \begin{multicols*}{3}
+\raggedcolumns
 \vspace*{-.7cm}
 \part{SW 1: Control Theroy and Automation}
 A control system regulates a process using sensors, controllers, actuators, and feedback.
@@ -436,7 +437,6 @@ Step 1: Set the differential equation
 
 Step 2: Isolate the term with the highest differential order
 \[\frac{d^2h}{dt^2} = \frac{F}{M}-\frac{kh}{M}-\frac{c}{M}\frac{dh}{dt}\]
-\vfill\phantom{}
 
 \subsection{ODE diagram}
 \includegraphics[\lw]{media-cheatsheet/ode-diagram.png}
@@ -465,7 +465,6 @@ Scaling the input by a constant also scales the output by the same constant:
     h(\alpha u(t)) = (\alpha u(t))^3 = \alpha^3 y(t) \neq \alpha y(t)\\
     h(\alpha u(t)) \neq \alpha h(u(t)) \tag*{$\Box$}
 \end{gather*}
-\vfill\phantom{}
 \newcolumn
 
 \section{Additivity (superposition principle)}
@@ -499,7 +498,6 @@ The output of summed inputs equals the sum of the individual outputs:
 
 \section{Linear system}
 A system is linear if it satisfies both the homogeneity (scaling) and additivity principles.
-\vfill\phantom{}
 
 \newcolumn
 \section{Time-invariant system}
@@ -546,7 +544,6 @@ System behavior does not change over time. A time-shifted input produces the sam
 
 \subsection{Basic input signals}
 \includegraphics[\lw]{media-cheatsheet/inputsignal.png}
-\vfill\phantom{}
 
 \includegraphics[\lw]{media-cheatsheet/inputsignal2.png}
 
@@ -569,9 +566,110 @@ System behavior does not change over time. A time-shifted input produces the sam
 \includegraphics[\lw]{media-cheatsheet/linearization.png}
 
 \part{SW06: Controllers}
+\section{Analog controller}
+\begin{itemize}
+    \item Processes continuous signals using analog components, e.g. resistors, capacitors, and operational amplifiers
+    \item Control signal: continuous voltage or current
+    \item Main feature: fast real-time response with simple control logic
+\end{itemize}
 
+\newcolumn
+\section{Digital controller}
+\begin{itemize}
+    \item Signal processing: uses A/D and D/A converters, causing time/amplitude discretization and delays
+    \item Dynamic performance: slightly reduced due to discretization
+    \item Flexibility: parameters can be updated by software
+    \item Cost and size: smaller and often cheaper hardware
+    \item Multitasking: can perform additional tasks besides control
+    \item Noise robustness: digital filtering improves noise resistance
+    \item Complexity: supports advanced control algorithms
+    \item Maintenance: easier diagnostics and software updates
+    \item Scalability: easy integration, upgrades, and expansion
+    \item Precision: high accuracy and stable performance over time
+\end{itemize}
 
+\subsection{Implementation platforms for digital controllers}
+\begin{itemize}
+    \item IPCs: industrial computers: complex real-time control tasks
+    \item MCUs: compact, low-cost chips for simple embedded control
+    \item PLCs: industrial controllers for automation in harsh env.
+    \item DSPs: processors optimized for fast real-time signal calc.
+    \item FPGAs: reconfigurable hardware for ultra-fast parallel control
+    \item SBCs: compact computers: prototyping and low-cost control
+    \item Cloud controllers: remote control, monitoring, and data analysis using cloud computing
+\end{itemize}
 
+\subsection{System architecture and communication}
+\subsubsection{Centralized control}
+\begin{itemize}
+    \item One central unit handles signal processing, A/D and D/A conversion, inputs, and outputs
+    \item Simple wiring, but possible bottlenecks in larger systems
+\end{itemize}
+
+\subsubsection{Fieldbus communication}
+\begin{itemize}
+    \item Sensors, actuators, and controllers exchange data over an industrial network
+    \item Scalable, modular, and reduces wiring complexity
+    \item (e.g. ProfiNET, CAN/CANopen, EtherCAT)
+\end{itemize}
+
+\subsection{2-point controller}
+\includegraphics[\lw]{media-cheatsheet/2step.png}
+\[\begin{cases}
+    u = u_{max} &\text{if  } e > 0\\
+    u = u_{min} &\text{if  } e < 0
+\end{cases}\]
+
+\newcolumn
+\subsubsection{2-point controller with hysteresis}
+\includegraphics[\lw]{media-cheatsheet/2step-hyst.png}
+\[\begin{cases}
+    u = u_{max} &\text{if  } e > e_{max}\\
+    u = u_{max} &\text{if  } e_{min} < e < e_{max} \text{ and } \dot{e} < 0\\
+    u = u_{min} &\text{if  } e_{min} < e < e_{max} \text{ and } \dot{e} > 0\\
+    u = u_{min} &\text{if  } e < e_{min}
+\end{cases}\]
+
+\subsection{3-point controller}
+\includegraphics[\lw]{media-cheatsheet/3step.png}
+\[\begin{cases}
+    u = u_{max} &\text{if  } e > e_{max}\\
+    u = 0       &\text{if  } e_{min} < e < e_{max}\\
+    u = u_{min} &\text{if  } e < e_{min}
+\end{cases}\]
+
+\subsection{Proportional-Integral-Derivative (PID) controller}
+\subsubsection{Mathematical parametrization}
+\includegraphics[\lw]{media-cheatsheet/PID.png}
+\[\dm u(t) = K_p(e(t)) + K_i\integral[0][t][e(\tau)][\tau] + K_d\frac{de(t)}{dt}\]
+
+\subsubsection{Technical usual parametrization}
+\includegraphics[\lw]{media-cheatsheet/PID2.png}
+\[\dm u(t) = K_p\left(e(t) + \frac{1}{T}\integral[0][t][e(\tau)][\tau]+T_d\frac{de(t)}{dt}\right)\]
+
+Controller gain: $K_p$\\
+Integral time: $\dm T_i = \frac{K_p}{K_i}$\\
+Derivative time: $\dm T_d = \frac{K_d}{K_p}$
+
+\subsection{PID principle}
+\pph{Proportional (P)}
+Larger error $e(t)$ gives a larger control output $u(t)$
+
+\pph{Integral (I)}
+If $e(t)=0$, the control output keeps increasing or decreasing to
+remove steady-state error
+
+\pph{Derivative (D)}
+Larger error change rate $\dot{e}(t)$ gives a stronger control action
+to anticipate future error and reduce overshoot
+
+\begin{center}
+    \includegraphics[\lw=.8]{media-cheatsheet/PID-graph.png}
+\end{center}
+\begin{gather*}
+    u(t_j) = K_p c_p + K_i c_i + K_d c_d\\
+    u(t_j) = K_p \left(c_p + \frac{1}{T_i} c_i + T_d c_d\right)
+\end{gather*}
 
 
 

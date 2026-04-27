@@ -10,6 +10,7 @@
 \setlength{\columnsep}{0.5cm}
 
 \begin{multicols*}{3}
+\raggedcolumns
 \vspace*{-.7cm}
 \part{Heat transfer}
 \section*{Symbology}
@@ -454,8 +455,9 @@ For the change in entropy of the polytropic state change:
   c_2 = \sqrt{2\left(h_1 - h_2\right) + c_1^2}
 \end{gather*}
 where $h^0$ is the total enthalpy: $h^0 = h + \dfrac{c^2}{2}$
-\vfill \phantom{}
+\newcolumn
 
+\vspace*{-.6cm}
 \part{Thermodynamics cycles}
 \section{Reversible cycle work}
 Total cycle / sum of all sub-processes:
@@ -532,6 +534,7 @@ Total cycle / sum of all sub-processes:
 \end{gather*}
 
 \newcolumn
+\vspace*{-.6cm}
 \part{Thermal systems with gas turbines}
 \section{Turbine}
 \begin{center}
@@ -548,6 +551,30 @@ Power balance:
   \left(1-\dfrac{T_4-T_1}{T_3-T_2}\right) = \left(\dfrac{p}{p_0}\right)^{\frac{k-1}{k}} = \left(\frac{1}{\pi}\right)^{\frac{k-1}{k}}\\[1ex]
   \eta_J = \dfrac{\left|w_C\right|}{q_\alpha} = 1 - \dfrac{T_1}{T_2} = 1 - \left(\dfrac{1}{\pi}\right)^{\frac{k-1}{k}}
 \end{gather*}
+
+\newpage
+\vspace*{-.6cm}
+
+\part{Thermal plants with steam turbines}
+\section{Types of steam}
+\begin{center}
+  \includegraphics[width=.75\linewidth]{media/steam.png}
+\end{center}
+
+\section{Boundary curves of the two phase region}
+\begin{center}
+  \includegraphics[width=.75\linewidth]{media/boundary_curves.png}
+\end{center}
+
+\subsection{Steam tables}
+\begin{gather*}
+  v = (1-x)v' + xv'' = v' + x(v'' - v')\\[1ex]
+  h = (1-x)h' + xh'' = h' + x\Delta h_v\\[1ex]
+  s = (1-x)s' + xs'' = s' + x\left(\dfrac{\Delta h_v}{T}\right)
+\end{gather*}
+
+\subsection{T-s diagram of water}
+\includegraphics[width=\linewidth]{media/T-s-diagram.png}
 
 
 

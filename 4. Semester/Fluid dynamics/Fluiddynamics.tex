@@ -199,6 +199,8 @@
   }}%
 }
 
+\DeclareMathOperator{\rot}{rot}
+
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
 \newcommand{\nots}{\underline{Notation}: }
@@ -224,6 +226,7 @@
 \setlength{\columnsep}{0.5cm}
 
 \begin{multicols*}{3}
+\raggedcolumns
 \vspace*{-.5cm}
 \part{Viscous flow}
 \section*{Symbology}
@@ -893,6 +896,162 @@ velocity boundary layer:
   \end{tabular}
   \nomakegapedcells
 \end{center}
+
+\part{Potential flow}
+\section{Irrotationality}
+\begin{center}
+  \includegraphics[width=.8\linewidth]{media/irrotationality.png}
+  \[\tau = \eta\frac{du}{dy} = 0\]
+\end{center}
+
+\section{Vorticity}
+\subsection{2D flow}
+For fluids with constant viscosity, a 2D flow is irrotational when:
+\begin{gather*}
+  \dfrac{\partial v}{\partial x} = \dfrac{\partial u}{\partial y}\\
+  \omega_z = \dfrac{\partial v}{\partial x} - \dfrac{\partial u}{\partial y} = 0
+\end{gather*}
+
+\subsection{3D flow}
+In 3D, the velocity becomes a vector:
+\begin{gather*}
+  \underline{u} = \begin{pmatrix} u \\ v \\ w \end{pmatrix}\\
+  \underline{\omega} = \rot(\underline{u}) = \nabla \times \underline{u} = \begin{pmatrix}
+    0\\0\\0
+  \end{pmatrix}
+\end{gather*}
+
+\subsubsection{Cartesian system}
+\begin{equation*}
+  \underline{u} =
+  \begin{pmatrix}
+    u\\
+    v\\
+    w
+  \end{pmatrix}
+  \text{ and }
+  \nabla =
+  \begin{pmatrix}
+    \dfrac{\partial}{\partial x}\\[1.2ex]
+    \dfrac{\partial}{\partial y}\\[1.2ex]
+    \dfrac{\partial}{\partial z}
+  \end{pmatrix} \Rightarrow
+  \begin{pmatrix}
+    \omega_x\\
+    \omega_y\\
+    \omega_z
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \dfrac{\partial w}{\partial y} - \dfrac{\partial v}{\partial z}\\[1.2ex]
+    \dfrac{\partial u}{\partial z} - \dfrac{\partial w}{\partial x}\\[1.2ex]
+    \dfrac{\partial v}{\partial x} - \dfrac{\partial u}{\partial y}
+  \end{pmatrix}
+\end{equation*}
+
+\subsubsection{Cylindrical system}
+\begin{equation*}
+  \underline{u} =
+  \begin{pmatrix}
+    u_r\\
+    u_\theta\\
+    u_z
+  \end{pmatrix}
+  \text{ and }
+  \nabla =
+  \begin{pmatrix}
+    \dfrac{\partial}{\partial r}\\[1.2ex]
+    \dfrac{1}{r}\dfrac{\partial}{\partial \theta}\\[1.2ex]
+    \dfrac{\partial}{\partial z}
+  \end{pmatrix} \Rightarrow
+  \begin{pmatrix}
+    \omega_r\\
+    \omega_\theta\\
+    \omega_z
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \dfrac{1}{r}\dfrac{\partial u_z}{\partial \theta} - \dfrac{\partial u_\theta}{\partial z}\\[1.2ex]
+    \dfrac{\partial u_r}{\partial z} - \dfrac{\partial u_z}{\partial r}\\[1.2ex]
+    \dfrac{1}{r}\dfrac{\partial\left(r u_\theta\right)}{\partial r} - \dfrac{1}{r}\dfrac{\partial u_r}{\partial \theta}
+  \end{pmatrix}
+\end{equation*}
+
+\section{Potential fields}
+\begin{gather*}
+  \rot(\underline{u}) =
+  \begin{pmatrix}
+    \omega_x \\ \omega_y \\ \omega_z
+  \end{pmatrix}
+  = 0\\
+  \underline{u} = \nabla(\Phi) \Longrightarrow
+  \begin{pmatrix}
+    u\\v\\w
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \dfrac{\partial \Phi}{\partial x}\\[1.2ex]
+    \dfrac{\partial \Phi}{\partial y}\\[1.2ex]
+    \dfrac{\partial \Phi}{\partial z}
+  \end{pmatrix}\\
+  w_z = \dfrac{\partial^2\Phi}{\partial x \partial y} - \dfrac{\partial^2\Phi}{\partial y \partial x} = 0
+\end{gather*}
+
+\section{General fluid motion}
+\subsection{Governing equations}
+\subsubsection{Continuity equation}
+\[\frac{\partial \rho}{\partial t} + \nabla \cdot \rho \underline{u} = 0\]
+
+\subsubsection{Momentum equation}
+\[\frac{\partial \rho\underline{u}}{\partial t} + \nabla\cdot \rho\underline{u}\ \underline{u} = \nabla p +\eta\nabla \cdot \underline{\underline{\tau}}\]
+
+\newcolumn
+\subsection{Simplifications}
+\begin{itemize}
+  \item Inviscid: $\eta = 0$
+  \item Steady: $\dfrac{\partial}{\partial t} = 0$
+  \item Irrotational: $\rot(\underline{u})=0 \to \underline{u} = \nabla\Phi$
+  \item Incompressible: $\rho=\const$
+  \item Continuity: $\nabla\cdot\underline{u} = 0$ 
+\end{itemize}
+
+\subsection{Potential flow model}
+\begin{itemize}
+  \item Velocity potential: $\underline{u} = \nabla\Phi$
+  \item Laplace governing equation: $\nabla^2\Phi = 0$
+  \item Pressure field (Euler $\to$\ Bernoulli): $p+\frac{1}{2}\rho u^2 = \const$
+\end{itemize}
+
+\section{Potential function $\phi(x,y)$}
+\subsection{Scalar potential field and Potential flow}
+Incompressible, steady flow and irrotational:
+\[\zeta = \rot(u) = \nabla \times u = 0\]
+Hence:
+\[u = \nabla\Phi = \begin{pmatrix}
+  u\\v
+\end{pmatrix} =
+\begin{pmatrix}
+  \frac{\nabla \Phi}{\partial x}\\[1.2ex]
+  \frac{\nabla \Phi}{\partial y}
+\end{pmatrix}\]
+
+\subsection{Continuity equation}
+\[\nabla \cdot u = 0 \to \nabla\cdot\nabla\Phi = \nabla^2\Phi = 0\]
+
+\subsection{Momentum (Euler) equation}
+\[u\cdot\nabla u = \nabla\frac{1}{2}\left|u\right|^2u \cdot \nabla u = \nabla\frac{1}{2}\left|u\right|^2-u\times(\nabla\times u)\]
+which reduces to:
+\[\nabla\frac{1}{2}\left|u\right|^2+\frac{p}{\rho}=\const\]
+
+\section{Stream function $\psi(x,y)$}
+Incompressible, steady flow:
+\[u = \frac{\partial\psi}{\partial y} = \frac{\partial\Phi}{\partial x}\quad \text{and}\quad v = -\frac{\partial \psi}{\partial x} = \frac{\partial\Phi}{\partial y}\]
+For $\nabla\cdot u = 0$:
+\[\nabla \cdot u = \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = \frac{\partial^2}{\partial x \partial y} - \frac{\partial^2 \psi}{\partial y \partial x} = 0\]
+
+
+
+
 
 
 

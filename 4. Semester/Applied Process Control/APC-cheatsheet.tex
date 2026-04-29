@@ -69,7 +69,7 @@
 \rhead{\small \vspace*{.1cm}Applied Process Control Cheatsheet}
 \lhead{\small \vspace*{.1cm}Matteo Frongillo}
 \cfoot{\small \vspace*{.4cm}\thepage}
-\newcommand{\TotalPages}{6}
+\newcommand{\TotalPages}{8}
 \cfoot{\small \vspace*{.4cm}\thepage/\TotalPages}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headsep}{4pt}
@@ -882,6 +882,83 @@ Oscillations occur with complex poles:
 \part{First- and second-order responses}
 \section{Type of lag responses}
 \includegraphics[\lw]{media-cheatsheet/lag-responses.png}
+
+\newpage
+\section{True/False}
+\includegraphics[\lw]{media-cheatsheet/tf.png}
+
+\section{Components of a medical infusion pump system}
+\tiny
+\textbf{Reference signal / setpoint}\\
+Set / desired concentration of medication in the patient's bloodstream, set by the nurse. It
+specifies the desired concentration of medication that the infusion pump system aims to
+maintain, as prescribed by the healthcare provider.
+
+\textbf{Controller}\\
+Infusion Pump System. It monitors the measured concentration of medication in the patient's
+bloodstream and adjusts the infusion rate to maintain the set concentration. The controller
+acts as the controller in the closed-loop system. It compares the measured medication
+concentration (feedback) with the set concentration (reference signal) and adjusts the
+infusion rate accordingly to maintain the desired concentration.
+
+\textbf{Process}\\
+Infusion Pump, i.e., the physical system (infusion pump) that delivers the medication into
+the patient's bloodstream based on the control signal from the infusion pump system. The
+process represents the physical mechanism (infusion pump) that controls the flow rate of
+medication into the patient's bloodstream based on the control signal from the infusion pump
+system.
+
+\textbf{Process output}\\
+Patient's current medication concentration. That is, the actual concentration of medication in
+the patient's bloodstream, continuously monitored and compared to the set concentration.
+The actual output of the controlled system is the concentration of medication in the patient's
+bloodstream. This output is continuously monitored and compared to the set concentration.
+
+\textbf{Disturbances}\\
+Factors such as changes in patient's metabolism, variations in blood flow, or external factors
+affecting medication absorption. Disturbances are external and internal factors that can
+affect the medication concentration in the patient's bloodstream, influencing the
+effectiveness of treatment.
+
+\textbf{Feedback signal}\\
+Measured medication concentration. That is, the actual concentration of medication in the
+patient's bloodstream, measured by sensors and fed back to the infusion pump system to
+adjust the infusion rate. The actual concentration of medication in the patient's bloodstream
+is measured, providing real-time feedback to the infusion pump system to adjust the infusion
+rate in response to changes.
+
+\section{Laplace transform}
+Derive $F(s)$ of the following time-domain signal:
+\begin{gather*}
+    f(t) = \dfrac{1}{4}e^{-5t}\cdot u(t)\\
+    F(s) = \integral[0][\infty][f(t)e^{-st}][t] = \integral[0][\infty][\dfrac{1}{4}e^{-5t}\cdot u(t)e^{-st}][t]\\
+    \dfrac{1}{4}\integral[0][\infty][e^{-(5+s)t}][t] = \dfrac{1}{4}\left[\dfrac{e^{-(5+s)t}}{-(5+s)}\right]_0^\infty\\
+    \dfrac{-1}{4(5+s)}\left[0-1\right] = \dfrac{1}{4(5+s)},\ \forall Re\{s\} > -5
+\end{gather*}
+
+\section{Closed-loop controller}
+\includegraphics[\lw]{media-cheatsheet/ex.png}
+\begin{enumerate}[label=\alph*.]
+    \item Zeros: $G(s) = 0 \Rightarrow$ no zeros\\
+        Poles: $(1+T_1s)(1+T_2s) = 0 \Rightarrow s_1 = \dfrac{-1}{T_1} = -50;\ s_2 = \dfrac{-1}{T_2} = -200$
+    \item Stable, because the real-part of all poles are negative
+    \item No. There are no complex-conjugate poles
+    \item $C(s) = K_p$
+    \item $L(s) = C(s)G(s) = K_p\dfrac{K}{(1+T_1s)(1+T_2s)} = \dfrac{40 K_p}{10^{-4}s^2 + 0.025s + 1}$\\[0.5ex]
+    \item $H_r(s) = \dfrac{L(s)}{1+L(s)} = \dfrac{\frac{40K_p}{20^{-4}s^2+0.025s+1}}{1+\frac{40K_p}{10^{-4}s^2+0.025s+1}} = \dfrac{40K_p}{10^{-4}s^2+0.025s+1+40K_p}$\\[0.5ex]
+    \item $H_d(s) = L(s)\cdot\left[-v(s)-Y_m(s)\right] \Rightarrow Y_m(s)\left[1+L(s)\right] = -v(s)L(s)$\\
+        $\Rightarrow \dfrac{-L(s)}{1+L(s)} = \dfrac{-40K_p}{10^{-4}s^2+0.025s+1+40K_p}$
+    \item \begin{minipage}{0.48\linewidth}
+        \includegraphics[width=\linewidth]{media-cheatsheet/bl1.png}
+    \end{minipage}
+    \begin{minipage}{0.48\linewidth}
+        \includegraphics[width=\linewidth]{media-cheatsheet/bl2.png}
+    \end{minipage}
+\end{enumerate}
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[9pt]{extarticle}
 
 \usepackage{Paper}
 
@@ -11,10 +11,19 @@
 \author{Matteo Frongillo, Anastasia Linnik, Yannik Neukom}
 \date{}
 
+\geometry{
+    a4paper,
+    total={170mm, 257mm},   
+    left=20mm,
+    top=20mm,
+    bottom=15mm
+}
+
 % === TEXT ===
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
+\vspace{-2em}
 
 \section{Photovoltaic Park {\small (Matteo)}}
 \subsection{Paper 1}
@@ -23,7 +32,171 @@
 \textbf{Year:} 2020\\
 \textbf{Journal/Source:} Solar Energy \parencite{SZILAGYI2020491}
 
-\dots
+The LCA in this paper is intended to support the planning and eco-design of photovoltaic
+plants by estimating their environmental impact during the early planning phase. 
+The goal of the paper is twofold: first, to assess the environmental impacts of the power
+plant using the Product Environmental Footprint (PEF) methodology released by the Official
+Journal of the European Union \parencite{EuropeanCommission2013Recommendation179} and second,
+to compare the results of the simplified life-cycle model with those of the detailed model.
+
+The study is comparative because it compares the simplified LCA with the detailed LCA, as
+well as the PV power plant with the Hungarian grid mix.
+
+The function of the system is to generate AC electricity and deliver it to the grid,
+and the functional unit is 1kWh of AC electricity. The estimated lifetime of the plant
+is of 25 years, and the expected lifetime production is 550 GWh.
+
+The system boundary is cradle-to-grave, but with two model variants. The detailed model
+applies a 99\% cut-off criterion, meaning that it aims to include more than 99\% of the
+total materials and energy required for the construction of the power plant, and
+includes PV modules, support structure, inverters, transformers,
+cables, auxiliary infrastructure such as roads, fence and buildings, transport to site,
+diesel and electricity for installation, packaging, site preparation, installation
+waste, operation and maintenance (O\&M), replacement of faulty components,
+and end-of-life transport and waste treatment. The excluded processes are capital
+equipment and machinery life cycles, commuting, administration, marketing, R\&D, and the
+energy needed for decommissioning, because it could not be reliably estimated.
+The simplified model takes into account only the dominant contributors of the
+environmental impact, which are PV panels, mounting structure, inverters, and cables.
+Installation, transport and most O\&M processes are neglected; O\&M is reduced to
+replacement of modules and inverters, and end-of-life is represented mainly by waste
+cable treatment. This simplified boundary still captures most impacts.
+
+\begin{figure}[H]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tikzpicture}[
+        font=\sffamily,
+        phase/.style={
+            draw=gray!35,
+            fill=gray!18,
+            rounded corners=12pt,
+            line width=1.1pt,
+            minimum width=5.25cm,
+            minimum height=8.4cm,
+            inner sep=0pt
+        },
+        title/.style={
+            font=\bfseries\fontsize{15}{17}\selectfont,
+            text=black!85
+        },
+        solidbox/.style={
+            draw=black!85,
+            fill=white,
+            rounded corners=5pt,
+            line width=1.1pt,
+            minimum width=4.55cm,
+            minimum height=0.72cm,
+            align=center,
+            inner xsep=6pt,
+            inner ysep=6pt,
+            font=\fontsize{13}{16}\selectfont
+        },
+        dashbox/.style={
+            solidbox,
+            dashed,
+            dash pattern=on 5pt off 4pt
+        }
+    ]
+
+    \node[phase] (prod) {};
+    \node[phase, right=0.35cm of prod] (inst) {};
+    \node[phase, right=0.35cm of inst] (oper) {};
+    \node[phase, right=0.35cm of oper] (eol) {};
+
+    \node[title, anchor=north] at ([yshift=-0.28cm]prod.north) {PRODUCTION};
+    \node[title, anchor=north] at ([yshift=-0.28cm]inst.north) {INSTALLATION};
+    \node[title, anchor=north] at ([yshift=-0.28cm]oper.north) {OPERATION};
+    \node[title, anchor=north] at ([yshift=-0.28cm]eol.north) {END-OF-LIFE};
+
+    \def\TopGap{1.15cm}
+    \def\BoxGap{0.22cm}
+
+    \node[solidbox, anchor=north] (p1) at ([yshift=-\TopGap]prod.north) {PV modules};
+    \node[solidbox, anchor=north] (p2) at ([yshift=-\BoxGap]p1.south) {Supporting structure};
+    \node[solidbox, anchor=north] (p3) at ([yshift=-\BoxGap]p2.south) {Transformers};
+    \node[solidbox, anchor=north] (p4) at ([yshift=-\BoxGap]p3.south) {Cables};
+    \node[dashbox, anchor=north] (p5) at ([yshift=-\BoxGap]p4.south) {Inverters};
+    \node[dashbox, anchor=north, minimum height=1.35cm] (p6) at ([yshift=-\BoxGap]p5.south)
+        {Materials for roads\\buildings, fence};
+
+    \node[dashbox, anchor=north] (i1) at ([yshift=-\TopGap]inst.north) {Site preparation};
+    \node[dashbox, anchor=north] (i2) at ([yshift=-\BoxGap]i1.south) {Energy carriers};
+    \node[dashbox, anchor=north, minimum height=1.35cm] (i3) at ([yshift=-\BoxGap]i2.south)
+        {Transport of\\components to site};
+    \node[dashbox, anchor=north] (i4) at ([yshift=-\BoxGap]i3.south) {Wastes};
+    \node[dashbox, anchor=north] (i5) at ([yshift=-\BoxGap]i4.south) {Packaging};
+    \node[dashbox, fill opacity=0, text opacity=1, anchor=north] (i6) at ([yshift=-\BoxGap]i5.south)
+        {\textit{Building machines}};
+
+    \node[solidbox, anchor=north, minimum height=1.45cm] (o1) at ([yshift=-\TopGap]oper.north)
+        {Replacement of PV\\modules, inverters};
+    \node[dashbox, anchor=north] (o2) at ([yshift=-\BoxGap]o1.south) {Water for cleaning};
+    \node[dashbox, anchor=north, minimum height=1.35cm] (o3) at ([yshift=-\BoxGap]o2.south)
+        {Land use and herbi-\\cide application};
+    \node[dashbox, anchor=north] (o4) at ([yshift=-\BoxGap]o3.south) {Transport for O\&M};
+    \node[dashbox, fill opacity=0, text opacity=1, anchor=north] (o5) at ([yshift=-\BoxGap]o4.south)
+        {\textit{Cleaning equipment}};
+
+    \node[solidbox, anchor=north] (e1) at ([yshift=-\TopGap]eol.north) {Treatment of cables};
+    \node[dashbox, anchor=north, minimum height=1.35cm] (e2) at ([yshift=-\BoxGap]e1.south)
+        {Treatment of other\\wastes};
+    \node[dashbox, anchor=north, minimum height=1.35cm] (e3) at ([yshift=-\BoxGap]e2.south)
+        {Transport to\\treatment facility};
+    \node[dashbox, fill opacity=0, text opacity=1, anchor=north, minimum height=2.05cm] (e4) at ([yshift=-\BoxGap]e3.south)
+        {\textit{Energy and}\\\textit{machinery for}\\\textit{decommission}};
+
+    \end{tikzpicture}%
+    }
+\caption{Life-cycle stages considered in the study. Processes with white background are considered in the detailed model, while processes with dashed borders are
+excluded from the simplified model. Processes with italic font are excluded from both models.
+}
+\end{figure}
+
+The inventory requires material quantities, component numbers, component masses,
+transport distances, diesel and electricity use, replacement rates, degradation rate,
+lifetime electricity generation and end-of-life treatment assumptions. Primary data is
+retrieved by the commissioner of the power plants, while the secondary data, mainly
+raw material, equipment, and fuels data, is taken from the latest available ecoinvent
+database version (v3.5) released in 2018.
+Most of the data is measured or calculated, while only transported quantity and
+end-of-life assumptions are estimated. The case study is located in Felsőzsolca,
+Hungary, and the data is representative of the Hungarian plant and European averages.
+Regarding the precision and the completeness of the data, the secondary PV-module dataset
+was checked against a review and found to be in the same range, but transport and
+end-of-life data remain uncertain. The study did not model the decarbonisation of the
+grid over the 25-year lifetime, limiting the comparison with the Hungarian grid mix.
+
+The impact categories are grouped by damage type. Climate change is represented by
+global warming 100a. Ecosystem quality includes freshwater and terrestrial
+acidification, freshwater ecotoxicity, freshwater eutrophication, marine eutrophication,
+and terrestrial eutrophication. Human health includes carcinogenic effects, ionising
+radiation, non-carcinogenic effects, ozone layer depletion, photochemical ozone creation,
+and respiratory effects from inorganics. Resources include fossil fuel depletion, land
+use, minerals and metals depletion, and water depletion.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.25}
+    \caption{Results of the case study vs. simplified model in PEF pts and impact coverage in (\%) by damage category}
+    \begin{tabular}{l c c r}
+        \textbf{Damage category} & \textbf{A: Simplified model} & \textbf{B: Detailed model} & \textbf{Share (A/B)} \\
+        \hline
+        Climate change & $8.67 \times 10^3$ PEF pt & $9.47 \times 10^3$ PEF pt & 92\% \\
+        Ecosystem quality & $2.67 \times 10^4$ PEF pt & $2.95 \times 10^4$ PEF pt & 91\% \\
+        Human health & $1.18 \times 10^5$ PEF pt & $1.36 \times 10^5$ PEF pt & 87\% \\
+        Natural resources & $2.23 \times 10^5$ PEF pt & $2.38 \times 10^5$ PEF pt & 94\% \\
+        \hline \hline
+        Total & $3.76 \times 10^5$ PEF pt & $4.13 \times 10^5$ PEF pt & 91\%\\
+    \end{tabular}
+\end{table}
+The total detailed result is equivalent to $7.5\times 10^{-4}$ PEF pt/kWh based on the
+550 GWh lifetime output. The converted GWP is 6.57 g CO$_2$-eq/kWh for the detailed model
+and 6.02 g CO$_2$-eq/kWh for the simplified model.
+
+The main contributors are PV production at 47.0\% and steel structure at 24.3\%, followed
+by the inverter production at 6.6\%, cable production at 5.5\%, and other smaller processes.
+Thus, PV modules and the mounting structure dominate the footprint.
 
 \subsection{Paper 2}
 \textbf{Title:} Life Cycle Assessment of a ground-mounted 1778 kW$_\text{p}$ photovoltaic plant and comparison with traditional energy production systems\\
@@ -141,7 +314,12 @@
 
 \newpage
 \section{References}
+\begingroup
+\sloppy
+\setlength{\emergencystretch}{3em}
 \printbibliography
+\par
+\endgroup
 
 
 

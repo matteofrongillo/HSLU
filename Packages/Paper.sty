@@ -44,6 +44,7 @@
 \usepackage{titling}
 \usetikzlibrary{arrows}
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
 \pgfplotsset{compat=1.17}
 \usepgfplotslibrary{statistics}
 \definecolor{darkgreen}{RGB}{0, 160, 0}
@@ -106,6 +107,18 @@
 \setlength{\bibhang}{20pt}
 \setlength{\bibitemsep}{\baselineskip}
 \DeclareFieldFormat{url}{\newline\url{#1}}
+
+\AtBeginBibliography{%
+  \renewbibmacro*{finentry}{%
+    \iffieldundef{urlyear}
+      {}
+      {\setunit{\addperiod\space}%
+       \printtext[parens]{accessed \thefield{urlyear}-%
+         \ifnumless{\thefield{urlmonth}}{10}{0}{}\thefield{urlmonth}-%
+         \ifnumless{\thefield{urlday}}{10}{0}{}\thefield{urlday}}}%
+    \finentry
+  }%
+}
 % =================================
 
 % ============= NEW COMMANDS =============

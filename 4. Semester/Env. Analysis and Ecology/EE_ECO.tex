@@ -1,9 +1,7 @@
 \documentclass{article}
 
 \usepackage{Mathematics}
-\usepackage{graphicx}
-\usepackage{titlesec}
-\usepackage{titletoc}
+
 \pdftitle{Environmental Analysis and Ecology}
 
 \renewcommand{\thepart}{\Large Week }
@@ -1337,6 +1335,178 @@ $\to$\ (Environmental) weight sets have been developed in various research studi
 
 \part{10}
 \section{Ecosystem services}
+
+\part{Geographic Information System (GIS)}
+\section{Framework vs Tool}
+\pph{Framework}
+A framework is a structured foundation that provides rules,
+components, and a predefined way to build something.
+
+\pph{Tool}
+A tool is a specific instrument or software used to perform a
+particular task.
+
+\section{What is GIS}
+\subsection{Definition}
+A geographic information system (GIS) is a framework for gathering, managing, and analyzing data. It
+analyzes spatial location and organizes layers of information into visualizations using maps.
+
+\textbf{G}eographic: relates to the surface of the earth
+
+\textbf{I}nformation: is knowledge derived from study, experience, or instruction
+
+\textbf{S}ystem: is a group of interacting, interrelated or
+interdependent elements forming a complex whole
+
+\subsection{Spatial data}
+Information about locations and shapes of geographic features and the
+relationships between them.
+
+\subsection{Applications}
+\begin{minipage}[t]{0.48\textwidth}
+    \textbf{Natural environment:}
+    \begin{itemize}
+        \item Forestry
+        \item Modelling of habitats
+        \item Habitat protection
+        \item Environmental impact assessment
+        \item Landscape protection
+        \item Management of natural resources
+        \item Modelling of emissions
+        \item Modelling of natural hazards
+        \item etc.
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \textbf{Anthropogenic environment:}
+    \begin{itemize}
+        \item Local and regional planning
+        \item Selection of company locations
+        \item Population statistics
+        \item Infrastructure management
+        \item Landscape protection
+        \item Planning of electricity grids
+        \item Route selection and fleet management
+        \item Vehicle navigation
+        \item etc.
+    \end{itemize}
+\end{minipage}
+
+\subsection{GIS tasks and questions}
+\begin{center}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{Task} & \textbf{Question}\\
+        \hline Localisation/Orientation & What can be found at this location (e.g. shops, restaurants etc.)?\\
+        \hline \multirow{2}{*}{Thematic query} & Which agricultural areas are used for vegetable cultivation? (and where are they situated?)\\
+        \cline{2-2}
+        & Which municipalities have more than 10'000 inhabitants? (and where are they situated?)\\
+        \hline Temporal query & How has forest area changed since 1900?\\
+        \hline Spatial query & How many people in Wales live 300 meters away from a mobile communications antenna?\\
+        \hline Network analysis & What is the fastest way from Zurich to Geneva?\\
+        \hline Simulation of processes & How would a forest fire spread or which path would a lava stream follow?\\
+        \hline Decision support & Which areas would be affected by the bursting of a dam and where would be safe evacuation routes?\\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\section{GIS components}
+\subsection{Data}
+\begin{itemize}
+    \item Data provides information used within a GIS
+    \item A GIS often incorporates data from multiple sources:
+    \begin{itemize}
+        \item Accuracy defines the quality of the GIS
+        \item GIS quality determines the level of detail of questions/problems that may be asked/answered
+    \end{itemize}
+    \item Data sources might be: Remote sensing, Paper maps, Statistical reports, Databases, ...
+\end{itemize}
+
+\subsubsection{Remote sensing (RS)}
+\begin{itemize}
+    \item Obtaining information in one place without physically being there
+    \item RS methods: airplane, satellite, drone etc.
+    \item RS cameras can see things beyond human vision (between \tilde 400 - 700 nm) $\to$\ From short wavelengths (like X-rays) to long wavelengths (like radio waves)
+    \item Each object has its own unique spectral signature, depending on its chemical composition
+\end{itemize}
+
+\pph{Active RS}
+Active instruments provide their own energy (electromagnetic radiation)
+to illuminate the object or scene they observe
+
+\pph{Passive RS}
+Passive sensors detect natural energy (sunlight) that is reflected or
+emitted from the observed scene
+
+\subsection{Software}
+\begin{itemize}
+    \item Standard software includes packages used for databases, drawings, statistics and imaging
+    \item Software used must match the needs and skills of the end user
+    \item Most popular GIS software programs are ArcGIS (commercial) and QGIS (open source)
+\end{itemize}
+
+\subsection{Hardware}
+Type of hardware determines speed at which a GIS will operate (may influence type of software
+used)
+
+\subsection{Method}
+\includegraphics[width=\textwidth]{media/methods.png}
+
+\subsection{Picture methods}
+\includegraphics[width=\textwidth]{media/GIS_pictures.png}
+Each feature (point, line, polygon or raster) within a GIS layer is
+represented as an entry in a data table
+
+\subsubsection{Raster picture}
+A geographic feature (e.g. land cover) is represented as single square cells
+
+\subsubsection{Vectorial picture}
+Features are represented as points, lines, polygons
+
+\subsection{Raster and vector models}
+\begin{center}
+    \renewcommand{\arraystretch}{1.35}
+    \renewcommand{\tabularxcolumn}[1]{m{#1}}
+    \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}m{1cm}|X|X|}
+        \cline{2-3}
+        \multicolumn{1}{c|}{} & \centering\arraybackslash\textbf{Raster model} & \centering\arraybackslash\textbf{Vector model}\\
+        \hline
+        \rotatebox{90}{\textbf{Advantages}} &
+        \begin{itemize}[leftmargin=*, topsep=2pt, itemsep=.2em, parsep=0pt]
+            \item Remote sensing imagery is typically obtained in raster format $\to$ simple data structure: a grid with a code in each cell
+            \item Quantitative analysis is more intuitive
+        \end{itemize}
+        &
+        \begin{itemize}[leftmargin=*, topsep=2pt, itemsep=.2em, parsep=0pt]
+            \item Graphic output is generally more aesthetically pleasing
+            \item Higher geographic accuracy because data is not dependent on grid size
+            \item Network analysis and proximity operations use vector data structures
+        \end{itemize}\\
+        \hline
+        \rotatebox{90}{\textbf{Disadvantages}} &
+        \begin{itemize}[leftmargin=*, topsep=2pt, itemsep=.2em, parsep=0pt]
+            \item Pixelated look, linear features and paths are difficult to display
+            \item Raster datasets can become very large $\to$ they record values for each cell in an image
+        \end{itemize}
+        &
+        \begin{itemize}[leftmargin=*, topsep=2pt, itemsep=.2em, parsep=0pt]
+            \item Usually substantial interpolation is required for these data layers
+        \end{itemize}\\
+        \hline
+    \end{tabularx}
+\end{center}
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -573,20 +573,33 @@ Power balance:
   s = (1-x)s' + xs'' = s' + x\left(\dfrac{\Delta h_v}{T}\right)
 \end{gather*}
 
-\subsection{T-s diagram of water}
-\includegraphics[width=\linewidth]{media/T-s-diagram.png}
+\section{Steam power stations}
+\subsection{Rankine cycle}
+\includegraphics[width=\linewidth]{media/rankine-T-s.png}
+\begin{minipage}{.48\linewidth}
+  \begin{align*}
+    w_{t12} &= h_2 - h_1 \text{ (pump)}\\
+    q_{23} &= h_3 - h_2 \text{ (boiler)}
+  \end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}{.48\linewidth}
+  \begin{align*}
+    \left|w_{t34}\right| &= h_4 - h_3 \text{ (turbine)}\\
+    \left|q_{41}\right| &= h_1 - h_4 \text{ (condensor)}
+  \end{align*}
+\end{minipage}
 
-
-
-
-
-
+\[\eta_{th} = \dfrac{h_4-h_3}{h_3-h_2}\]
 
 
 \end{multicols*}
 
 % ======== PROVIDED FORMULA SHEET =========
-
+\appendix
+\clearpage
+\section{T-s diagram}
+\includegraphics[width=\textwidth]{media/T-s-diagram.png}
 \clearpage
 \includepdf[pages=1,pagecommand={\thispagestyle{fancy}}]{media/FormulaSheet-1.pdf}
 \clearpage

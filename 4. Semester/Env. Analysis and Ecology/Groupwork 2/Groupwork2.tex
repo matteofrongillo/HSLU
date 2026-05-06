@@ -3,7 +3,7 @@
 \usepackage{Paper}
 
 \fancyhead[L]{EE\_ECO}
-\pdftitle{Life Cycle Assessment}
+\pdftitle{LCA - Group 3}
 \setlength{\droptitle}{-2.5em}
 
 % === TITLE ===
@@ -42,7 +42,7 @@ The study is comparative because it compares the simplified LCA with the detaile
 well as the PV power plant with the Hungarian grid mix.
 
 The function of the system is to generate AC electricity and deliver it to the grid,
-and the functional unit is 1kWh of AC electricity. The estimated lifetime of the plant
+and the functional unit is 1 kWh of AC electricity. The estimated lifetime of the plant
 is of 25 years, and the expected lifetime production is 550 GWh.
 
 The system boundary is cradle-to-grave, but with two model variants. The detailed model
@@ -404,159 +404,323 @@ can be compared and mainly for common indicators such as the GWP100.
 
 \newpage
 \section{Nuclear Power Plant {\small (Yannik)}}
-\subsection{Paper 1}
-\textbf{Title:} \\
-\textbf{Authors:} \\
-\textbf{Year:} 
 
-\dots
+\subsection{Introduction}
+The following two Life Cycle Assessments focus on the environmental impacts of nuclear
+power plants. The first report, titled ``Life Cycle Assessment of Nuclear Power in Switzerland'',
+was published by Paul Scherrer Institut (PSI) in 2018 and analyses two
+Swiss power plants based in Gösgen and Leibstadt \parencite{zhang}. The second report, titled
+``Parametric Life Cycle Assessment of Nuclear Power for Simplified Models'', was published
+in the journal Environmental Science \& Technology in 2023 and creates a simplified
+parametric LCA model \parencite{yannik2}. Even though both reports have drastically
+different motivations and audiences, they share the same functional unit, and an
+interesting comparison can be made.
 
-\subsection{Paper 2}
-\textbf{Title:} \\
-\textbf{Authors:} \\
-\textbf{Year:} 
+\subsection{Paper 1 \parencite{zhang}}
+\textbf{Title:} Life Cycle Assessment (LCA) of Nuclear Power in Switzerland\\
+\textbf{Authors:} Xiaojin Zhang, Christian Bauer\\
+\textbf{Year:} 2018
 
-\dots
+The intended application of this report is to update and extend the existing life-cycle
+inventory data for Swiss nuclear electricity \parencite{zhang}. It is important to note
+that this report was funded by Swissnuclear which may present a bias. However, the rest
+of this analysis will show that the results closely align with those from the parametric
+LCA report. The report is primarily aimed at researchers, plant operators, and Swiss
+policy stakeholders.
 
-\subsection{Comparison of Paper 1 and Paper 2}
+The two reactors this report analyses are the pressurized water reactor (PWR) at
+Kernkraftwerk Gösgen (KKG) and the boiling water reactor (BWR) at Kernkraftwerk
+Leibstadt (KKL). The functional unit is 1 kWh of electricity generated at the power
+plant, and the system boundary is cradle-to-grave which means it covers uranium mining
+and milling, conversion, enrichment, fuel-element fabrication, plant construction,
+operation, decommissioning, and geological storage of radioactive waste. However,
+reprocessing is excluded as it has been banned in Switzerland under the Nuclear Energy
+Act since 2006.
 
-\dots
+The analysis for both reactors consists of primary data collected directly from KKG and
+KKL between the years 2014 and 2017, and secondary data taken mainly from ecoinvent 3.3
+and a model ran on SimaPro 8. The data quality for the plant operation and
+decommissioning is described as high quality, but the data used for the analysis of the
+uranium supply chain is not as high quality, especially for KKL, as complete data was
+not publicly available due to the nature of the uranium source which can be highly
+confidential.
+
+The report identifies seven environmental indicators: climate change, ionizing radiation,
+particulate matter formation, land use, acidification, freshwater ecotoxicity, and human
+toxicity. The main climate change results are 5.6 g CO₂-eq/kWh for KKG and 9.4 g CO₂-eq/kWh
+for KKL. The main contributor to these emissions is the upstream nuclear fuel cycle.
+This includes uranium mining, milling, conversion, enrichment, and fuel-element
+fabrication, which account for 58\% of the KKG climate impact and 72\% of the KKL
+climate impact. The difference between the two reactors can be explained by the
+differing origins of nuclear fuel. For example, KKL uses Russian enrichment at Seversk
+which emits 578 kg CO₂-eq per kg SWU and KKG uses the French Areva facility which emits
+202 kg CO₂-eq per kg SWU.
+
+\subsection{Paper 2 \parencite{yannik2}}
+\textbf{Title:} Parametric Life Cycle Assessment of Nuclear Power for Simplified Models\\
+\textbf{Authors:} Thomas Gibon, Álvaro Hahn Menacho\\
+\textbf{Year:} 2023
+
+The second report takes a fundamentally different approach as it builds a parametric
+model of an average 1 GWe pressurized water reactor representative of the global 2020
+situation \parencite{yannik2}. This means that, on top of providing a default result,
+the report also provides the tools to calculate emissions for any input parameters.
+This means that the target audience includes the wider scientific community and
+policymakers. In contrast to the PSI report, the funding comes from UNECE and the
+Luxembourg National Research Fund which presents less risk of bias.
+
+The functional unit is 1 kWh generated from a pressurized water reactor, and the system
+boundary covers the same areas as the PSI report: uranium mining and milling,
+conversion, enrichment, fuel-element fabrication, plant construction, operation,
+decommissioning, interim storage, and final disposal of spent fuel. The model assumes
+an open fuel cycle, meaning that reprocessing of the fuel is also not included. The
+analysis was modelled with Brightway2 and the lca\_algebraic Python module and primarily
+used secondary data using ecoinvent 3.8 as the background database. Primary data
+consisted of direct input from World Nuclear Association experts. Compared to the PSI
+report which provided plant-specific LCAs, this report generated a parametric LCA with
+20 modifiable parameters. These include uranium ore grade, extraction technique,
+enrichment technique, power plant lifetime, availability, construction intensity, and
+the energy input used for enrichment. The quality of the data is generally high,
+however, not all 20 variables could be supported with rich data.
+
+The default model assumes a 1000 MWe plant with a 60-year lifetime, 34\% thermal
+efficiency, 4.15\% uranium enrichment, and an 80\% centrifugation and 20\% gaseous
+diffusion mix for the enrichment process. The report identifies nine environmental
+indicators: climate change, freshwater eutrophication, ionizing radiation, human
+toxicity, freshwater, ecotoxicity, land use, water resource depletion, mineral
+resource depletion, and non-renewable resource depletion. This default model results
+in 6.1 g CO₂-eq/kWh of greenhouse gas emissions. Once again, like in the PSI report,
+the main contributors to emissions are the upstream nuclear fuel processes.
+In the default model, mining and milling represent 46\% of greenhouse gas emissions,
+and conversion, enrichment, and fuel fabrication 23\%. Additionally, this report also
+shows how drastically the results can differ when the assumptions change. For example,
+the most pessimistic scenario assumes very low uranium ore grades combined with very
+inefficient enrichment processes which results in an emission of 122 g CO₂-eq/kWh.
+
+\subsection{Conclusion}
+Even though the two reports have drastically different motivations, audiences, and
+methodologies, the analysis above shows that they are comparable. They use the same
+functional unit of 1 kWh of electricity from a nuclear power plant, they both use a
+cradle-to-grave system boundary that covers the full nuclear fuel chain from uranium
+mining to waste storage, and they both ignore fuel reprocessing. Their climate change
+results are also very similar, the PSI report calculates 5.6 g CO₂-eq/kWh for KKG, while
+the parametric report calculates a default of 6.06 g CO₂-eq/kWh for an average global PWR.
+
+However, there are still some differing assumptions which can be seen in Table 2 which
+must be noted. For example, PSI assumes a lifetime of 50 years for both reactors and
+centrifuge-based enrichment, while the parametric report assumes a 60-year lifetime
+with a default enrichment mix of 80\% centrifugation and 20\% gaseous diffusion. The 9.4
+g CO₂-eq/kWh result for KKL is also higher than the parametric default, which can be
+explained by the Russian fuel source.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.45}
+    \renewcommand{\tabularxcolumn}[1]{m{#1}}
+    \caption{Summary of the assumptions of the LCAs}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash\bfseries}p{0.27\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+        \hline
+        Assumption & \centering\arraybackslash\textbf{KKG / KKL \parencite{zhang}} & \centering\arraybackslash\textbf{Parametric LCA \parencite{yannik2}} \\
+        \hline
+        Functional unit & 1 kWh at the power plant & 1 kWh from a PWR power plant \\
+        \hline
+        Reactor type & PWR (KKG) + BWR (KKL) & Generic PWR \\
+        \hline
+        Geography & Switzerland (2014--17) & Global average (2020) \\
+        \hline
+        System boundary & Cradle-to-grave, open cycle & Cradle-to-grave, open cycle \\
+        \hline
+        Modelling approach & Deterministic, plant-specific & Parametric (20 variables) \\
+        \hline
+        Lifetime & 50 years & 60 years \\
+        \hline
+        Capacity & 3002 / 3600 MWth & 1000 MWe \\
+        \hline
+        Net efficiency & 33.6\% / 33.3\% & 34\% \\
+        \hline
+        Enrichment level & 4.95\% / 4.50\% & 4.15\% \\
+        \hline
+        Enrichment mix & 100\% centrifuge & 80\% centrifuge / 20\% diffusion \\
+        \hline
+        Software / database & SimaPro 8 / ecoinvent 3.3 & Brightway2 / ecoinvent 3.8 \\
+        \hline
+        Climate change result & 5.6 / 9.4 g CO$_2$-eq/kWh & 6.06 g CO$_2$-eq/kWh (default model) \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+In conclusion, both reports show that nuclear electricity can have very low life-cycle
+emissions, but the parametric report shows that even with slight changes to the
+parameters, such as less efficient enrichment technologies, the emissions can
+drastically increase.
 
 \newpage
 \section{Coal-fired Power Plant {\small (Anastasia)}}
+
+The following section examines two Life Cycle Assessments of Coal-fired power plants.
+The first report focuses in Bangladesh and examines three different plants within the
+country \parencite{MAHMUD2025101325}, while the second looks at a single plant in
+Indonesia \parencite{BATISTA2025107365}. This diversity makes it harder to compare the
+LCAs with each other, but makes for an interesting examination of the different types of
+LCAs being published.
+
 \subsection{Paper 1 \parencite{MAHMUD2025101325}}
 \textbf{Title:} Life cycle and environmental impact assessment of coal-fired power plants in Bangladesh\\
 \textbf{Authors:} Khalid Shaifullah Mahmud, Md. Rasel Ahmed, Sajal Ahmed, Jahidul Islam Jihan, Mst. Tajnin Nahar Tonni, Md. Golam Kibria, Md. Rabiul Islam Sarker\\
 \textbf{Year:} 2025
 
+The first LCA looked at three plants across Bangladesh, making it a comparative analysis.
+The intended application of the LCA is to support sustainable energy policy in Bangladesh
+under growing electricity demand, with the purpose of evaluating resource use, emissions,
+and environmental impacts. The LCA is targeted at policy makers, energy engineers, and
+fellow researchers. Throughout the report, the functional unit of 1 MWh of electricity
+generated was used.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{media/Anastasia_1.png}
+    \caption{Summary of the plant boundaries}
+\end{figure}
+The figure above is a rough diagram of the LCA boundaries during the analysis.
+The LCA is Cradle-to-Gate. 
+
+This LCA has three geographical references, all in Bangladesh: Barapukuria (subcritical),
+Rampal (supercritical), and Payra (ultra-supercritical). It claims high precision and
+uses modern and state-of-the-art technologies and software that includes OpenLCA,
+ReCiPe 2016 Midpoint (H), CML-IA baseline, and ILCD 2011 Midpoint. The missing local
+plant data is substituted using the datasheets: Ecoinvent v3.8 database and
+ef\_secondarydata\_202202 for energy supply, material, transport and emission processes.
+The time reference used is 2020--2025 for plant data and 2015--2021 for datasheets.
+The report states that it follows ISO 14040/14044 transparency and reproducibility
+standards. As it is a Cradle-to-Gate analysis, no data for plant decommissioning is
+presented.
+
+Below are the impact categories considered in this analysis and their results,
+where given in number format:
+\begin{itemize}
+    \item Global Warming Potential (GWP): 765--767 kg CO$_2$-eq/MWh (Barapukuria), 826--828 kg CO$_2$-eq/MWh (Rampal), 841--843 kg CO$_2$-eq/MWh (Payra)
+    \item Acidification Potential (AP): 1.5--3.2 kg SO$_2$-eq/MWh
+    \item Eutrophication Potential (EP): 0.15--0.45 kg PO$_4$-eq/MWh
+    \item Particulate Matter Formation: 0.8--1.5 kg PM$_{2.5}$-eq/MWh
+    \item Human Toxicity
+    \item Freshwater Ecotoxicity
+    \item Water consumption / Resource depletion: 1.2--2.5 m$^3$/MWh
+\end{itemize}
+
+The goal and scope of this LCA was achieved, as the three planned power plants were
+assessed and evaluated with the same methods. The limitations of this LCA are that it
+excludes plant construction and its end-of-life (decommissioning), it relies heavily
+on secondary datasheets, and it is assumed that coal consumption across the three
+locations is the same.
+
+\newpage
 \subsection{Paper 2 \parencite{BATISTA2025107365}}
 \textbf{Title:} Environmental impact assessment of a remote coal-fired power plant in Central Kalimantan: A life cycle assessment approach and mitigation strategies\\
 \textbf{Authors:} Yohanes Christda Batista, Subhan Hasisi, Muchamad Arief Dharmawan, Bagus Adi Putra, Sunu Herwi Pranolo, Muflih Arisa Adnan\\
 \textbf{Year:} 2025
 
+The second LCA examined a single plant in Indonesia, meaning it was not a comparative
+analysis. The intended application of the LCA is to support climate-related frameworks such as the
+Paris Agreement. Its purpose is to quantify existing emissions and identify strategies
+for reducing future emissions. The LCA is targeted at fellow researchers
+and engineers. Throughout the report, the functional unit of 1 kWh of electricity
+generated from the power plant was used.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{media/Anastasia_2.png}
+    \caption{A diagram of the power plant and the system boundaries}
+\end{figure}
+The figure above is a diagram of the LCA boundaries during the analysis.
+The LCA is Gate-to-Gate.
+
+This LCA looks solely into one power plant located in Central Kalimantan, Indonesia.
+It is precise for the plant itself, as it uses 99\% of data from the power plant, in
+the years 2022--2024, but as such it is hard to use it as an estimate for another place.
+The data types needed are material inputs (water, coal, chemicals), their amounts, and
+operational parameters. Where data is missing, Ecoinvent databases are used, and
+OpenLCA is used as a tool to process the LCA. The assessment is Gate-to-Gate, and as such
+is missing upstream processes and infrastructure cycles, for which the gaps are not
+filled. This LCA can be reproduced in method for other plants, but for the data used
+only for this plant, as it relies heavily on existing datasheets.
+
+Below are the impact categories considered in this analysis and their results, where
+given in number format:
+\begin{itemize}
+    \item Global Warming Potential (GWP): 1.29 kg CO$_2$-eq/kWh
+    \item Acidification Potential (AP): $2.21 \times 10^{-3}$ kg SO$_2$-eq/kWh
+    \item Eutrophication Potential (EP): $1.31 \times 10^{-2}$ kg PO$_4$-eq/kWh
+    \item Ozone Depletion: $3.04 \times 10^{-8}$ kg-CFC-11-eq/kWh
+\end{itemize}
+
+The goal and scope of this LCA was achieved, as the results were
+measured and quantified in kWh. The limitations of this report are
+the missing parts of infrastructure, which limits full
+sustainability assessment. It is a good study for the particular
+power plant examined, but is not viable when looking at the
+industry in general.
+
 \subsection{Comparison of Paper 1 and Paper 2}
-\subsubsection{Goal and Scope}
-
-\underline{Question A}
-
-Plant 1: Leading Bangladesh towards policy for sustainable energy in growing demand.
-
-Plant 2: Helping reach frameworks such as the Paris Agreement.
-
-\underline{Question B}
-
-Plant 1: Evaluation of resource use, emissions and impact.
-
-Plant 2: Quantifying existing emissions and identifying strategies for minimizing future emissions.
-
-\underline{Question C}
-
-Plant 1: Policy makers, energy engineers and fellow researchers.
-
-Plant 2: Fellow researchers and engineers.
-
-\underline{Question D}
-
-Plant 1: Yes (3 plants).
-
-Plant 2: No.
-
-\underline{Question E}
-
-Plant 1: Electricity generated; 1 MWh.
-
-Plant 2: Electricity generated from the power plant; 1 kWh.
-
-\underline{Question F}
-
-Plant 1:
-\begin{center}
-    \includegraphics[width=\textwidth]{media/Anastasia_1.png}
-\end{center}
+Between both of the reports, the results are not comparable. While the units are
+different, MWh and kWh, the conversion between the units is easy, and as such it does
+not cause a problem when it comes to comparison. The main issue is that the first LCA
+considers Cradle-to-Gate and the second considered Gate-to-Gate. Also the first one
+considers more impact categories.
 
 \newpage
-Plant 2 (Reference paper 2):
-\begin{center}
-    \includegraphics[width=\textwidth]{media/Anastasia_2.png}
-\end{center}
+\section{Comparison between the three technologies}
+When comparing various methods of electricity production, it is most crucial to look at
+the following categories: purpose, functional unit, system boundary, included/excluded
+life cycle stages, and GWP results. It ensures that the calculation of environmental
+impacts takes place using an equivalent level of service and life cycle coverage. Other
+categories such as geographic scope, databases, and software tools are also important,
+although only to the extent that they affect the underlying assumptions and data used
+by each study.
 
-\underline{Question G}
+A detailed comparison for the 3 specific LCAs, solar PV in Hungary, nuclear power in
+Switzerland, and coal power in Indonesia, can be seen in Table 3.
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.45}
+    \renewcommand{\tabularxcolumn}[1]{m{#1}}
+    \caption{Comparison of selected LCA studies for solar PV, nuclear power, and coal power}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash\bfseries}p{0.18\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+        \hline
+        Category & \centering\arraybackslash\textbf{Solar PV -- LCA 1 \parencite{SZILAGYI2020491}} & \centering\arraybackslash\textbf{Nuclear -- LCA 1 \parencite{zhang}} & \centering\arraybackslash\textbf{Coal -- LCA 2 \parencite{BATISTA2025107365}} \\
+        \hline
+        Study focus & 20 MWp grid-connected PV plant in Hungary & Swiss nuclear power plants: Gösgen and Leibstadt & Remote coal-fired power plant in Central Kalimantan, Indonesia \\
+        \hline
+        Purpose & Electricity generation from a PV park & Electricity generation from nuclear power & Electricity generation from coal combustion \\
+        \hline
+        Functional unit & 1 kWh AC electricity & 1 kWh electricity generated at the power plant & 1 kWh electricity generated \\
+        \hline
+        System boundary & Cradle-to-grave & Cradle-to-grave & Gate-to-gate \\
+        \hline
+        Included stages & PV module production, mounting structure, inverters, cables, transport, installation, operation, maintenance, end-of-life treatment & Uranium mining, milling, conversion, enrichment, fuel fabrication, construction, operation, decommissioning, radioactive waste storage & Plant operation, coal combustion, water and chemical inputs, operational emissions \\
+        \hline
+        Excluded stages & Capital equipment, commuting, administration, marketing, R\&D, decommissioning energy & Fuel reprocessing & Coal mining, coal transport, plant construction, infrastructure, decommissioning, end-of-life \\
+        \hline
+        Main GWP result & 6.57 g CO$_2$-eq/kWh & 5.6 g CO$_2$-eq/kWh for KKG; 9.4 g CO$_2$-eq/kWh for KKL & 1.29 kg CO$_2$-eq/kWh \\
+        \hdashline
+        \rowcolor{gray!25}
+        Geography & Hungary / European data & Switzerland & Indonesia \\
+        \hdashline
+        \rowcolor{gray!25}
+        Main data sources & Primary plant data + ecoinvent 3.5 & Primary plant data + ecoinvent 3.3 & 99\% plant data + ecoinvent for missing data \\
+        \hdashline
+        \rowcolor{gray!25}
+        LCIA method / software & PEF methodology & SimaPro 8 & OpenLCA \\
+        \hline
+    \end{tabularx}
+\end{table}
 
-Plant 1: This LCA has three geographical references, all in Bangladesh: Barapukuria
-(subcritical), Rampal (supercritical), and Payra (ultra-supercritical). It claims high
-precision and uses modern and state-of-the-art technologies and software that includes
-OpenLCA, ReCiPe 2016 Midpoint (H), CML-IA baseline, and ILCD 2011 Midpoint. The
-missing local plant data is substituted using the datasheets: Ecoinvent v3.8 database
-and ef\_secondarydata\_202202 for energy supply, material, transport and emission
-process. The time reference used is 2020--2025 for plant data and 2015--2021 for
-datasheets. The report states that it follows ISO 14040/14044 transparency and
-reproducibility standards. This LCA is cradle-to-gate and does not take into account
-end-of-life, and as such no data for it is presented.
-
-Plant 2: This LCA looks solely into one power plant located in Central Kalimantan,
-Indonesia. It is precise for the plant itself, as it uses 99\% of data from the power
-plant, in the years 2022--2024, but as such it is hard to use it as an estimate for
-another place. The data types needed are material inputs (water, coal, chemicals), their
-amounts, and operational parameters. Where data is missing, Ecoinvent databases are
-used, and OpenLCA is used as a tool to process the LCA. The assessment is gate-to-gate,
-and as such is missing upstream processes and infrastructure cycles, for which the gaps
-are not filled. This LCA can be reproduced in method for other plants, but for the data
-used only for this plant, as it relies heavily on existing datasheets.
-
-\underline{Question H}
-
-Plant 1: Global Warming Potential (GWP), Acidification Potential (AP), Eutrophication
-Potential (EP), Particulate Matter Formation, Human Toxicity, Freshwater Ecotoxicity,
-Water consumption / Resource depletion.
-
-Plant 2: Global Warming Potential (GWP), Acidification Potential (AP), Eutrophication
-Potential (EP) and Ozone Depletion.
-
-\subsubsection{Results of Life Cycle Impact Assessment}
-
-\underline{Question A}
-
-Plant 1: GWP (Barapukuria): 765--767 kg CO$_2$-eq/MWh, GWP (Rampal):
-826--828 kg CO$_2$-eq/MWh, GWP (Payra): 841--843 kg CO$_2$-eq/MWh,
-AP: 1.5--3.2 kg SO$_2$-eq/MWh, EP: 0.15--0.45 kg PO$_4$-eq/MWh, PM Matter
-Formation: 0.8--1.5 kg PM$_{2.5}$-eq/MWh, Water consumption: 1.2--2.5 m$^3$/MWh.
-
-Plant 2: GWP: 1.29 kg CO$_2$-eq/kWh, AP: $2.21 \times 10^{-3}$
-kg SO$_2$-eq/kWh, EP: $1.31 \times 10^{-2}$ kg PO$_4$-eq/kWh, Ozone Depletion:
-$3.04 \times 10^{-8}$ kg CFC-11-eq/kWh.
-
-\underline{Question B}
-
-Plant 1: The goal and scope was achieved, as the three planned power plants were
-assessed and evaluated with the same methods. The limitations of this LCA are that it
-excludes plant construction and its end-of-life (decommissioning), it relies heavily on
-secondary datasheets, and it is assumed that coal consumption across the three locations
-are the same.
-
-Plant 2: The goal and scope was achieved, as the results were measured and quantified
-in kWh. The limitations of this report are the missing parts of infrastructure, which
-limits full sustainability assessment. It is a good study for the particular power plant
-examined, but is not viable when looking at the industry in general.
-
-Between both of the reports, the results are not comparable. The units are different,
-MWh and kWh, but the conversion between the units is easy, and as such it does not cause
-a problem when it comes to comparison. What does, is that the first LCA considers
-cradle-to-gate and the second considered gate-to-gate.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The three technologies can be partially compared since they assess the same function, which is
+electricity generation. Moreover, the same functional unit, which is 1 kWh of electricity
+generated, was used in all three LCAs. Nevertheless, these LCA analysis cannot be fully
+compared because of various system boundaries, assumptions, database, geographical
+location, and impact assessment techniques. Specifically, the study on coal uses
+cradle-to-gate or gate-to-gate system boundaries, whereas the studies on photovoltaics
+and nuclear power involve cradle-to-grave system boundaries.
 
 \newpage
 \appendix
@@ -609,7 +773,5 @@ cradle-to-gate and the second considered gate-to-gate.
 \printbibliography
 \par
 \endgroup
-
-
 
 \end{document}

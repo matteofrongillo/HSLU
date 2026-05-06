@@ -756,7 +756,7 @@ Transfer function:
 \begin{gather*}
     U(s) = K_p\left(E(s) + \frac{1}{T_i}\frac{E(s)}{s}+T_dsE(s)\right)\\[1ex]
     U(s) = E(s)\left(K_p\frac{T_iT_ds^2+T_is+1}{T_is}\right)\\[1ex]
-    C(s) = \frac{U(s)}{E(s)} = \left(K_p\frac{T_iT_ds^2+T_is+1}{T_is}\right)
+    \boxed{C(s) = \frac{U(s)}{E(s)} = \left(K_p\frac{T_iT_ds^2+T_is+1}{T_is}\right)}
 \end{gather*}
 
 \newcolumn
@@ -876,6 +876,8 @@ Oscillations occur with complex poles:
     Y(s) = G(s)U(S) = G(s)\cdot \frac{1}{s}\\
     \lim_{s\to\infty} s\cdot Y(s) = \lim_{s\to\infty} s\cdot\frac{1}{s}\cdot G(s) = \lim_{s\to\infty} G(s)
 \end{gather*}
+
+
 
 \newcolumn
 \vspace*{-.6cm}

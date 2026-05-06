@@ -932,8 +932,8 @@ In 3D, the velocity becomes a vector:
   \text{ and }
   \nabla =
   \begin{pmatrix}
-    \dfrac{\partial}{\partial x}\\[1.2ex]
-    \dfrac{\partial}{\partial y}\\[1.2ex]
+    \dfrac{\partial}{\partial x}\\[1.5ex]
+    \dfrac{\partial}{\partial y}\\[1.5ex]
     \dfrac{\partial}{\partial z}
   \end{pmatrix} \Rightarrow
   \begin{pmatrix}
@@ -943,8 +943,8 @@ In 3D, the velocity becomes a vector:
   \end{pmatrix}
   =
   \begin{pmatrix}
-    \dfrac{\partial w}{\partial y} - \dfrac{\partial v}{\partial z}\\[1.2ex]
-    \dfrac{\partial u}{\partial z} - \dfrac{\partial w}{\partial x}\\[1.2ex]
+    \dfrac{\partial w}{\partial y} - \dfrac{\partial v}{\partial z}\\[1.5ex]
+    \dfrac{\partial u}{\partial z} - \dfrac{\partial w}{\partial x}\\[1.5ex]
     \dfrac{\partial v}{\partial x} - \dfrac{\partial u}{\partial y}
   \end{pmatrix}
 \end{equation*}
@@ -960,8 +960,8 @@ In 3D, the velocity becomes a vector:
   \text{ and }
   \nabla =
   \begin{pmatrix}
-    \dfrac{\partial}{\partial r}\\[1.2ex]
-    \dfrac{1}{r}\dfrac{\partial}{\partial \theta}\\[1.2ex]
+    \dfrac{\partial}{\partial r}\\[1.5ex]
+    \dfrac{1}{r}\dfrac{\partial}{\partial \theta}\\[1.5ex]
     \dfrac{\partial}{\partial z}
   \end{pmatrix} \Rightarrow
   \begin{pmatrix}
@@ -971,8 +971,8 @@ In 3D, the velocity becomes a vector:
   \end{pmatrix}
   =
   \begin{pmatrix}
-    \dfrac{1}{r}\dfrac{\partial u_z}{\partial \theta} - \dfrac{\partial u_\theta}{\partial z}\\[1.2ex]
-    \dfrac{\partial u_r}{\partial z} - \dfrac{\partial u_z}{\partial r}\\[1.2ex]
+    \dfrac{1}{r}\dfrac{\partial u_z}{\partial \theta} - \dfrac{\partial u_\theta}{\partial z}\\[1.5ex]
+    \dfrac{\partial u_r}{\partial z} - \dfrac{\partial u_z}{\partial r}\\[1.5ex]
     \dfrac{1}{r}\dfrac{\partial\left(r u_\theta\right)}{\partial r} - \dfrac{1}{r}\dfrac{\partial u_r}{\partial \theta}
   \end{pmatrix}
 \end{equation*}
@@ -990,8 +990,8 @@ In 3D, the velocity becomes a vector:
   \end{pmatrix}
   =
   \begin{pmatrix}
-    \dfrac{\partial \Phi}{\partial x}\\[1.2ex]
-    \dfrac{\partial \Phi}{\partial y}\\[1.2ex]
+    \dfrac{\partial \Phi}{\partial x}\\[1.5ex]
+    \dfrac{\partial \Phi}{\partial y}\\[1.5ex]
     \dfrac{\partial \Phi}{\partial z}
   \end{pmatrix}\\
   w_z = \dfrac{\partial^2\Phi}{\partial x \partial y} - \dfrac{\partial^2\Phi}{\partial y \partial x} = 0
@@ -1008,19 +1008,19 @@ In 3D, the velocity becomes a vector:
 \newcolumn
 \subsection{Simplifications}
 \begin{itemize}
-  \item Inviscid: $\eta = 0$
-  \item Steady: $\dfrac{\partial}{\partial t} = 0$
+  \item Inviscid: $\eta = 0$\\
+  \item Steady: $\dfrac{\partial}{\partial t} = 0$\\
   \item Irrotational: $\rot(\underline{u})=0 \to \underline{u} = \nabla\Phi$
   \item Incompressible: $\rho=\const$
   \item Continuity: $\nabla\cdot\underline{u} = 0$ 
 \end{itemize}
 
 \subsection{Potential flow model}
-\begin{itemize}
-  \item Velocity potential: $\underline{u} = \nabla\Phi$
-  \item Laplace governing equation: $\nabla^2\Phi = 0$
-  \item Pressure field (Euler $\to$\ Bernoulli): $p+\frac{1}{2}\rho u^2 = \const$
-\end{itemize}
+\figbox{$
+  \text{Velocity potential: } \underline{u} = \nabla\Phi\\[1ex]
+  \text{Laplace governing equation: } \nabla^2\Phi = 0\\[1ex]
+  \text{Pressure field (Euler $\to$\ Bernoulli): } p+\dfrac{1}{2}\rho u^2 = \const\\
+$}
 
 \section{Potential function $\phi(x,y)$}
 \subsection{Scalar potential field and Potential flow}
@@ -1031,8 +1031,8 @@ Hence:
   u\\v
 \end{pmatrix} =
 \begin{pmatrix}
-  \frac{\nabla \Phi}{\partial x}\\[1.2ex]
-  \frac{\nabla \Phi}{\partial y}
+  \dfrac{\nabla \Phi}{\partial x}\\[1.5ex]
+  \dfrac{\nabla \Phi}{\partial y}
 \end{pmatrix}\]
 
 \subsection{Continuity equation}
@@ -1049,26 +1049,95 @@ Incompressible, steady flow:
 For $\nabla\cdot u = 0$:
 \[\nabla \cdot u = \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = \frac{\partial^2}{\partial x \partial y} - \frac{\partial^2 \psi}{\partial y \partial x} = 0\]
 
+\section{Potential vortex}
+Assuming $\eta = 0$ and irrotational flow:
+\[u_r (r,\theta) = 0 \qquad ; \qquad u_\theta (r,\theta) = v(r)\]
 
+\subsection{Velocity distribution}
+\begin{gather*}
+  \dm v(r) = \frac{C_\Phi}{r} = \frac{\Gamma}{2\pi r}\\
+  \dm \Gamma = \oint v(r)\ ds = 2\pi r v(s) = 2\pi\Phi
+\end{gather*}
+where $\Gamma$ is the circulation.
 
+\subsection{Pressure distribution}
+\[p(r) = p_\text{ref} + \frac{\rho}{2}\left(v^2_\text{ref} - v(r)^2\right)\]
+The total pressure is constant throughout the whole field
 
+\subsection{Proof of irrotationability}
+\begin{gather*}
+  \vec{\omega} = \nabla \times \vec{u}
+  =
+  \begin{pmatrix}
+    \omega_r\\
+    \omega_\theta\\
+    \omega_z
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \dm \frac{1}{r}\frac{\partial u_z}{\partial \theta}
+      - \frac{\partial u_\theta}{\partial z}\\[2mm]
+    \dm \frac{\partial u_r}{\partial z}
+      - \frac{\partial u_z}{\partial r}\\[2mm]
+    \dm \frac{1}{r}\frac{\partial}{\partial r}(r u_\theta)
+      - \frac{1}{r}\frac{\partial u_r}{\partial \theta}
+  \end{pmatrix}
+\end{gather*}
+For the potential vortex:
+\[
+  u_r = 0, \qquad u_\theta = \frac{C_\Phi}{r}, \qquad u_z = 0
+\]
+Therefore:
+\begin{align*}
+  \omega_r
+    &= \frac{1}{r}\frac{\partial u_z}{\partial \theta}
+      - \frac{\partial u_\theta}{\partial z}
+     = 0 - 0 = 0\\
+  \omega_\theta
+    &= \frac{\partial u_r}{\partial z}
+      - \frac{\partial u_z}{\partial r}
+     = 0 - 0 = 0\\
+  \omega_z
+    &= \frac{1}{r}\frac{\partial}{\partial r}(r u_\theta)
+      - \frac{1}{r}\frac{\partial u_r}{\partial \theta}\\
+    &= \frac{1}{r}\frac{\partial}{\partial r}
+      \left(r\frac{C_\Phi}{r}\right) - 0
+     = \frac{1}{r}\frac{\partial C_\Phi}{\partial r}
+     = 0
+\end{align*}
+Thus:
+\[\vec{\omega} = \nabla \times \vec{u} = \vec{0}\]
 
+and the potential vortex is irrotational for $r \neq 0$.
 
+\section{Source and Sink}
+Source and Sink behave as an inverted Potential Vortex:
+\[u_r (r,\theta) = v(r) \qquad ; \qquad u_\theta (r,\theta) = 0\]
 
+\subsection{Velocity distribution}
+\begin{gather*}
+  v(r) = \dfrac{C_r}{r} = \dfrac{E}{2\pi r}\\
+  V = 
+\end{gather*}
 
+{\color{red}TODO}
 
+\newcolumn
+\section{Superposition of inviscid flows}
+\subsection{Superposition principle}
+Laplace equation (potential flow) is linear, therefore
+solutions can be superposed:
+\begin{itemize}
+  \item source/sink
+  \item vortex
+  \item uniform flow
+\end{itemize}
 
+For instance:\\
+Tornado model = potential vortex + sink
 
-
-
-
-
-
-
-
-
-
-
+\subsection{Piecewise modelling approach}
+\subsubsection{Rankine vortex}
 
 
 \end{multicols*}

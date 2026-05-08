@@ -218,3 +218,8 @@
 \makeatletter
 \newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 \makeatother
+
+\makeatletter
+\define@key{Gin}{lw}[1]{\setkeys{Gin}{width=#1\linewidth}}
+\newcommand{\lw}{lw}
+\makeatother

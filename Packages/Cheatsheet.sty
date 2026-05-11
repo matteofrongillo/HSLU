@@ -196,6 +196,11 @@
 }
 \makeatother
 
+\makeatletter
+\define@key{Gin}{lw}[1]{\setkeys{Gin}{width=#1\linewidth}}
+\newcommand{\lw}{lw}
+\makeatother
+
 \renewcommand{\CancelColor}{\color{red}}
 
 \newcommand{\difference}{\,\backslash\,}
@@ -213,4 +218,5 @@
 \newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
 \newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
 \newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
-\newcommand{\cel}{$^\circ$C}
+\newcommand{\cel}{\ensuremath{^\circ\mathrm{C}}\xspace}
+\newcommand{\todo}{{\color{red}TODO}}

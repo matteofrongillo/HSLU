@@ -585,12 +585,53 @@ Power balance:
 \hfill
 \begin{minipage}{.48\linewidth}
   \begin{align*}
-    \left|w_{t34}\right| &= h_4 - h_3 \text{ (turbine)}\\
-    \left|q_{41}\right| &= h_1 - h_4 \text{ (condensor)}
+    \left|w_{t34}\right| &= h_3 - h_4 \text{ (turbine)}\\
+    \left|q_{41}\right| &= h_4 - h_1 \text{ (condensor)}
   \end{align*}
 \end{minipage}
 
-\[\eta_{th} = \dfrac{h_4-h_3}{h_3-h_2}\]
+\[\eta_{th} = \dfrac{(h_3 - h_4) \overbrace{- (h_2 - h_1)}^{\text{pump work}}}{h_3 - h_2}\quad ; \quad \eta_s = \frac{h_3 - h_4}{h_3 - h_{4,s}}\leq 1\]
+
+\newcolumn
+\vspace*{-.6cm}
+\part{Heat pumps and Chillers}
+\section{T-s and log p-h diagrams}
+\includegraphics[\lw]{media/heatpump.png}
+\begin{minipage}{.48\linewidth}
+  \begin{align*}
+    w_{12} &= h_2 - h_1 \text{ (compressor)}\\
+    q_{23} &= h_2 - h_3 \text{ (condenser)}
+  \end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}{.48\linewidth}
+  \begin{align*}
+    h_3 &= h_4 \text{ (expansion valve)}\\
+    q_{41} &= h_1 - h_4 \text{ (evaporator)}
+  \end{align*}
+\end{minipage}
+
+\subsection{Isentropic efficiency (compressor)}
+\[\eta_s = \frac{h_{2,s}-h_1}{h_2-h_1} \leq 1\]
+
+\section{Coefficient of performance}
+\subsection{Inner coefficient of performance}
+\begin{gather*}
+  \varepsilon_\text{HP} = \frac{\left|q_{23}\right|}{w_{12}} = \frac{h_2-h_3}{h_2-h_1} = \varepsilon_R + 1\\
+  \varepsilon_R = \frac{\left|q_{41}\right|}{w_{12}} = \frac{h_1-h_4}{h_2-h_1} = \varepsilon_\text{HP} - 1
+\end{gather*}
+
+\subsection{Outer coefficient of performance (COP)}
+\subsubsection{COP of a heat pump}
+\includegraphics[\lw]{media/heat-pump.png}
+\begin{gather*}
+  \text{COP}_\text{HP} = \frac{\lvert\dot{Q}_\omega\rvert}{P_{el}} = \frac{\lvert\dot{Q}\rvert}{P_{el}}\\[1ex]
+  \frac{1}{\eta_C} = \varepsilon_{HP,C} = \frac{T_C}{T_C - T_E} = \frac{T_C}{\Delta T_\text{lift}} = \varepsilon_R + 1\\[1ex]
+  \varepsilon_{HP} > COP_{HP} \quad ; \quad \zeta_{HP} = \frac{COP_{HP}}{\varepsilon_{HP,C}}
+\end{gather*}
+
+\newcolumn
+\subsubsection{COP of a refrigerator}
 
 
 \end{multicols*}

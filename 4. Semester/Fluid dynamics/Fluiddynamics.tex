@@ -79,10 +79,10 @@
 \titlespacing*{\subsection}{0pt}{6pt}{1pt}
 \titlespacing*{\subsubsection}{0pt}{6pt}{1pt}
 
-\titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.5em}{}
-\titleformat{\section}{\bfseries\color{red!80}}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{\thesubsection}{0.5em}{}
-\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{\thesubsubsection}{0.5em}{}
+\titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.4em}{}
+\titleformat{\section}{\bfseries\color{red!80}}{}{0em}{}
+\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{}{0em}{}
+\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{}{0em}{}
 
 % ============= META DATA =============
 \newcommand{\pdftitle}[1]{\hypersetup{
@@ -199,7 +199,10 @@
   }}%
 }
 
-\DeclareMathOperator{\rot}{rot}
+\makeatletter
+\define@key{Gin}{lw}[1]{\setkeys{Gin}{width=#1\linewidth}}
+\newcommand{\lw}{lw}
+\makeatother
 
 \newcommand{\difference}{\,\backslash\,}
 \newcommand{\rem}{\underline{Remark}: }
@@ -217,6 +220,8 @@
 \newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
 \newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
 \newcommand{\cel}{$^\circ$C}
+
+\DeclareMathOperator{\rot}{rot}
 
 % ============= DOCUMENT CONTENT =============
 
@@ -1138,6 +1143,97 @@ Tornado model = potential vortex + sink
 
 \subsection{Piecewise modelling approach}
 \subsubsection{Rankine vortex}
+{\color{red}TODO}
+
+\newcolumn
+\vspace*{-.7cm}
+\part{Compressible flow}
+\section{Incompressible vs compressible flows}
+\begin{minipage}[t]{0.48\linewidth}
+  \textbf{Incompressible}
+  \begin{itemize}
+    \item Mass conservation: $\rho$
+    \item Momentum conservation: $\vec{u}$
+    \item Energy conservation: $h \rightarrow T$
+  \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \textbf{Compressible}
+  \begin{itemize}
+    \item Mass conservation: $\rho$
+    \item Momentum conservation: $\vec{u}$
+    \item Energy conservation: $h \rightarrow T$
+    \item Eq. of state: $p = f(\rho, T)$
+  \end{itemize}
+\end{minipage}
+
+\section{Compressibility and Mach number}
+\subsection{Mach number}
+\figbox{$\dm M =\frac{v}{c}$}
+\begin{tabularx}{\linewidth}{|@{\phantom{hi}}c|c|X@{\phantom{hi}}|}
+  \hline \textbf{Mach number} & \textbf{Flow} & \textbf{Note}\\
+  \hline $M < 0.3$ & Incompressible & Density changes are negligible\\
+  \hline $0.3 < M < 0.9$ & Subsonic & No shock wave, density effects are important\\
+  \hline $0.9 < M < 1.1$ & Transonic & Shock waves; subsonic and supersonic regions\\
+  \hline $1.1 < M < 3.0$ & Supersonic & Shock waves, no subsonic regions\\
+  \hline $M > 3.0-5.0$ & Hypersonic & Strong shock waves, property changes\\
+  \hline 
+\end{tabularx}
+
+\subsection{Shock waves}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+  \textbf{Normal} & at 90$^\circ$ (perpendicular) to the flow direction\\[1ex]
+  \textbf{Oblique} & inclined to the flow direction\\[1ex]
+  \textbf{Bowed} & Forms ahead of a blunt body when the upstream flow is supersonic
+\end{tabularx}
+
+\subsubsection{Oblique shock}
+\begin{itemize}
+  \item $\theta$: turning / deflection angle
+  \item $\beta$: shock / wave angle
+  \item No boundary layer growth: $\theta = \delta$
+  \item Conservation of mass:
+  \[\rho_1 V_{1,n} A = \rho_2 V_{2,n} A\quad \Longrightarrow \quad\rho_1 V_{1,n} = \rho_2 V_{2,n}\]
+  \item Conservation of momentum:
+  \[p_1 - p_2 = \rho_2 V_{2,n}^2 - \rho_1 V_{1,n}^2\]
+  \item Normal Mach numbers:
+  \[M_{1,n} = M_1 \sin \beta, \qquad  M_{2,n} = M_2 \sin(\beta - \theta)\]
+  \item For oblique shock, only the normal component becomes subsonic.
+\end{itemize}
+
+\newcolumn
+\subsection{Speed of sound}
+\[c = \sqrt{\frac{dp}{d\rho}_s} = \sqrt{kR_sT}\]
+where $k = \dfrac{c_p}{c_v}$
+
+\section{Thermodynamics}
+\subsection{Internal energy}
+\[c_v = \frac{\partial u}{\partial T}\big|_V \to du = c_v(T)\ dT\]
+
+\subsubsection{Change in internal energy}
+\[u_2 - u_1 = c_v\Delta T = c_v\left(T_2 - T_1\right)\]
+
+\subsection{Enthalpy}
+\[h = u + pv = u + R_s T\]
+
+TODO
+
+\subsection{Specific heat capacity}
+TODO
+
+\subsection{Entropy}
+\[T\ ds = du + p\ dv\quad ; \quad T\ ds = dh - v\ dp\]
+
+\subsubsection{Ideal gas}
+\begin{align*}
+  s_2 - s_1 &= c_v \ln\left(\frac{T_2}{T_1}\right) + R_s \ln\left(\frac{\rho_1}{\rho_2}\right)\\
+  &= c_p\ln\left(\frac{T_2}{T_1}\right) - R_s\ln\left(\frac{p_2}{p_1}\right)
+\end{align*}
+
+\subsubsection{Isentropic flow}
+\[\left(\frac{T_2}{T_1}\right)^{\frac{k}{k-1}} = \left(\frac{\rho_2}{\rho_1}\right)^k = \frac{p_2}{p_1}\]
+
 
 
 \end{multicols*}

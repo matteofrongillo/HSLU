@@ -877,13 +877,65 @@ Oscillations occur with complex poles:
     \lim_{s\to\infty} s\cdot Y(s) = \lim_{s\to\infty} s\cdot\frac{1}{s}\cdot G(s) = \lim_{s\to\infty} G(s)
 \end{gather*}
 
-
-
 \newcolumn
 \vspace*{-.6cm}
 \part{First- and second-order responses}
 \section{Type of lag responses}
 \includegraphics[\lw]{media-cheatsheet/lag-responses.png}
+
+\part{Controller development}
+\section{Kuhn method}
+The process:
+\[G(s) = K \frac{(1+\tau_{d,1}s)(1+\tau_{d,2}s)...(1+\tau_{d,m}s)}{(1+\tau_1 s)(1+\tau_2 s)...(1+\tau_n s)}\]
+Controller parameters:
+\[T_\text{sum} = T_t + \sum_{i=1}^n \tau_i - \sum_{j=1}^m \tau_{d,j}\]
+\begin{center}
+    \setcellgapes{2.5pt}
+    \makegapedcells
+    \begin{tabular}{|l|c|c|c|}
+        \hline Controller type & $K_p$ & $T_i$ & $T_d$\\
+        \hline PI & $\dm \frac{1}{K}$ & $0.7\cdot T_\text{sum}$ & --\\
+        \hline PID & $\dm \frac{2}{K}$ & $0.8\cdot T_\text{sum}$ & $0.194\cdot T_\text{sum}$\\
+        \hline 
+    \end{tabular}
+\end{center}
+
+Transfer function:
+\[C(s) = K_p\left(1+\frac{1}{T_i s}\right) = K_p \frac{T_i s + 1}{T_i s}\]
+
+\newcolumn
+\section{Ziegler-Nichols tuning method}
+\begin{center}
+    \includegraphics[\lw=.75]{media-cheatsheet/Ziegler.png}
+\end{center}
+
+First-order lag process with time delay:
+\[G(s) = \frac{K}{1+\tau s}e^{-T_t s}\]
+
+Controller parameters:
+\[a = \frac{1}{K} \frac{\tau}{T_t} \quad ; \quad L = T_t\]
+\begin{center}
+    \setcellgapes{2.5pt}
+    \makegapedcells
+    \begin{tabular}{|l|c|c|c|}
+        \hline Controller type & $K_p$ & $T_i$ & $T_d$\\
+        \hline P & $a$ & -- & --\\
+        \hline PI & $0.9\cdot a$ & $3\cdot L$ & -- \\
+        \hline PID & $1.2\cdot a$ & $2\cdot L$ & $0.5\cdot L$\\
+        \hline 
+    \end{tabular}
+\end{center}
+
+Transfer function:
+\begin{gather*}
+\text{P:}\quad C(s) = K_p = a \\[6pt]
+\text{PI:}\quad C(s) = K_p\left(1+\frac{1}{T_i s}\right)
+= 0.9\cdot a\left(1+\frac{1}{3Ls}\right)
+= 0.9\cdot a \frac{3Ls+1}{3Ls} \\[6pt]
+\text{PID:}\quad C(s) = K_p\left(1+\frac{1}{T_i s}+T_d s\right)
+= 1.2\cdot a\left(1+\frac{1}{2Ls}+0.5Ls\right)
+= 1.2\cdot a \frac{L^2s^2+2Ls+1}{2Ls}
+\end{gather*}
 
 \newpage
 \section{True/False}

@@ -34,13 +34,27 @@
 \usepackage{forest}
 \usepackage{upgreek}
 \usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage[column=O]{cellspace}
+\usepackage{tcolorbox}
 
 \usetikzlibrary{arrows, arrows.meta}
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.markings}
 \usetikzlibrary{patterns}
 \pgfplotsset{compat=1.18}
 \definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
 \DeclareMathOperator\arctanh{arctanh}
+
+% ============= TABLE COLORS =============
+\definecolor{col1}{RGB}{80,60,160}
+\definecolor{col2}{RGB}{40,140,60}
+\definecolor{col3}{RGB}{50,80,180}
+\definecolor{col4}{RGB}{200,100,0}
+\definecolor{headerblue}{RGB}{220,230,245}
+\definecolor{headertxt}{RGB}{40,60,120}
+\definecolor{notebg}{RGB}{255,248,220}
+\definecolor{noteborder}{RGB}{200,160,0}
 
 % ============= GEOMETRY =============
 \geometry{
@@ -69,7 +83,7 @@
 \rhead{\small \vspace*{.1cm}Fluid Dynamics Cheatsheet}
 \lhead{\small \vspace*{.1cm}Matteo Frongillo}
 \cfoot{\small \vspace*{.4cm}\thepage}
-\newcommand{\TotalPages}{12}
+\newcommand{\TotalPages}{13}
 \cfoot{\small \vspace*{.4cm}\thepage/\TotalPages}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headsep}{4pt}
@@ -1066,8 +1080,8 @@ Assuming $\eta = 0$ and irrotational flow:
 where $\Gamma$ is the circulation.
 
 \subsection{Pressure distribution}
-\[p(r) = p_\text{ref} + \frac{\rho}{2}\left(v^2_\text{ref} - v(r)^2\right)\]
 The total pressure is constant throughout the whole field
+\[p(r) = p_\text{ref} + \frac{\rho}{2}\left(v^2_\text{ref} - v(r)^2\right) = \const\]
 
 \subsection{Proof of irrotationability}
 \begin{gather*}
@@ -1237,5 +1251,133 @@ TODO
 
 
 \end{multicols*}
+
+% ============= FLOW TYPES SUMMARY TABLE =============
+\newpage
+\begin{center}
+{\small
+\renewcommand{\arraystretch}{1.8}
+\setlength{\tabcolsep}{4pt}
+\setlength{\cellspacetoplimit}{5pt}
+\setlength{\cellspacebottomlimit}{5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|>{\centering\arraybackslash\bfseries\small\color{headertxt}}O{m{4cm}}|
+                 >{\centering\arraybackslash}O{m{5.8cm}}|
+                 >{\centering\arraybackslash}O{m{5.8cm}}|
+                 >{\centering\arraybackslash}O{m{5.8cm}}|
+                 >{\centering\arraybackslash}O{m{6.2cm}}|}
+\hline
+& \textbf{\color{col1}1. POTENTIAL VORTEX}
+& \textbf{\color{col2}2. RIGID-BODY VORTEX}
+& \textbf{\color{col3}3. SOURCE / SINK}
+& \textbf{\color{col4}4. VORTEX + SOURCE/SINK (OVERLAY)}
+\\[2pt]
+\hline
+
+% Row 1: Flow pattern
+\makecell{Flow pattern\\(streamlines)}
+& \includegraphics[\lw]{media/Potential-vortex.png}
+& \includegraphics[\lw]{media/rigid-body.png}
+& \includegraphics[\lw]{media/source-sink.png}
+& \includegraphics[\lw]{media/vortex-superposition.png}
+\\
+\hline
+
+% Row 2: Velocity components
+\makecell{Velocity\\components}
+& $\displaystyle v_r = 0, \qquad v_\varphi = \frac{C_\varphi}{r}$
+& $\displaystyle v_r = 0, \qquad v_\varphi = \Omega r$
+& $\displaystyle v_r = \frac{C_r}{r}, \qquad v_\varphi = 0$
+& $\displaystyle v_r = \frac{C_r}{r}, \qquad v_\varphi = \frac{C_\varphi}{r}$
+\\
+\hline
+
+% Row 3: Speed magnitude
+\makecell{Speed magnitude\\$v(r)$}
+& $\displaystyle v(r) = \frac{|C_\varphi|}{r}$
+& $\displaystyle v(r) = |\Omega|\, r$
+& $\displaystyle v(r) = \frac{|C_r|}{r}$
+& $\displaystyle v(r) = \frac{\sqrt{C_r^2 + C_\varphi^2}}{r}$
+\\
+\hline
+
+% Row 4: Flow angle
+\makecell{Flow angle $\alpha$\\(defined from $v_r, v_\varphi$)}
+& \makecell{$\alpha = 90^\circ$\\[2pt]{\footnotesize(purely tangential)}}
+& \makecell{$\alpha = 90^\circ$\\[2pt]{\footnotesize(purely tangential)}}
+& \makecell{$\alpha = 0^\circ$\\[2pt]{\footnotesize(purely radial outward for $C_r>0$,}\\{\footnotesize inward for $C_r<0$)}}
+& \makecell[c]{$\displaystyle \tan\alpha = \frac{v_r}{v_\varphi} = \frac{C_r}{C_\varphi} = \mathrm{const.}$\\[4pt]
+$\displaystyle \Rightarrow\; \alpha = \arctan\!\left(\frac{C_r}{C_\varphi}\right)$}
+\\
+\hline
+
+% Row 5: Pressure
+\makecell{Pressure\\$p(r)$}
+& $\displaystyle p(r) = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - \frac{C_\varphi^2}{r^2}\right)$
+& $\displaystyle p(r) = p_0 + \frac{1}{2}\rho\Omega^2 r^2$
+& $\displaystyle p(r) = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - \frac{C_r^2}{r^2}\right)$
+& \makecell[c]{$\displaystyle p(r) = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - v(r)^2\right)$\\[6pt]
+$\displaystyle = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - \frac{C_r^2+C_\varphi^2}{r^2}\right)$}
+\\
+\hline
+
+% Row 6: Properties
+Properties
+& \makecell[l]{\footnotesize $\bullet$ Irrotational for $r\neq 0$\\
+    \footnotesize $\bullet$ Singular at $r=0$\\
+    \footnotesize $\bullet$ Circular streamlines\\
+    \footnotesize $\bullet$ Circulation $\Gamma = 2\pi C_\varphi$}
+& \makecell[l]{\footnotesize $\bullet$ Rotational (solid-body rotation)\\
+    \footnotesize $\bullet$ Angular velocity $\Omega = v_\varphi/r = \mathrm{const.}$\\
+    \footnotesize $\bullet$ Finite at center ($v=0$ at $r=0$)\\
+    \footnotesize $\bullet$ Models viscous core}
+& \makecell[l]{\footnotesize $\bullet$ Irrotational for $r\neq 0$\\
+    \footnotesize $\bullet$ Singular at $r=0$\\
+    \footnotesize $\bullet$ Radial streamlines\\
+    \footnotesize $\bullet$ Source: $C_r>0$\quad Sink: $C_r<0$}
+& \makecell[l]{\footnotesize $\bullet$ Irrotational for $r\neq 0$\\
+    \footnotesize $\bullet$ Singular at $r=0$\\
+    \footnotesize $\bullet$ Spiral (logarithmic) streamlines\\
+    \footnotesize $\bullet$ Flow angle $\alpha$ constant\\
+    \footnotesize $\bullet$ Reduces to cases 1 or 3 if $C_r$ or $C_\varphi=0$}
+\\
+\hline
+
+% Row 7: Circulation
+\makecell{Circulation $\Gamma$}
+& $\boldsymbol{\Gamma = 2\pi C_\varphi}$
+& $\boldsymbol{\Gamma(r) = 2\pi\Omega r^2}$
+& $\boldsymbol{\Gamma = 0}$
+& $\boldsymbol{\Gamma = 2\pi C_\varphi}$
+\\
+\hline
+\end{tabular}
+}
+}
+\end{center}
+
+\vspace{4pt}
+
+\begin{minipage}[t]{0.54\textwidth}
+\begin{tcolorbox}[colback=notebg, colframe=noteborder, boxrule=0.8pt, arc=3pt,
+  left=6pt, right=6pt, top=4pt, bottom=4pt]
+\small All these flows are solutions of Laplace's equation $(\nabla^2\Phi=0)$ and can be combined by superposition. They serve as building blocks for more complex potential flows.
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\begin{tcolorbox}[colback=white, colframe=black!40, boxrule=0.7pt, arc=2pt,
+  left=5pt, right=5pt, top=3pt, bottom=3pt]
+\textbf{\small Notation}\\[3pt]
+\begin{tabular}{@{}ll|@{\quad}ll@{}}
+$r$ & radial distance & $C_\varphi$ & vortex strength (constant)\\
+$\varphi$ & azimuthal angle & $C_r$ & source strength ($>0$) or\\
+$v_r$ & radial velocity component & & sink strength ($<0$)\\
+$v_\varphi$ & tangential (azimuthal) vel.\ comp. & $\Omega$ & angular velocity (rigid-body vortex)\\
+$\rho$ & density & $p$ & pressure\\
+\end{tabular}
+\end{tcolorbox}
+\end{minipage}
+
 
 \end{document}

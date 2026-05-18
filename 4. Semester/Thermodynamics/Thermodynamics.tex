@@ -599,7 +599,7 @@ Power balance:
 \includegraphics[\lw]{media/heatpump.png}
 \begin{minipage}{.48\linewidth}
   \begin{align*}
-    w_{12} &= h_2 - h_1 \text{ (compressor)}\\
+    w_{t,12} &= h_2 - h_1 \text{ (compressor)}\\
     q_{23} &= h_2 - h_3 \text{ (condenser)}
   \end{align*}
 \end{minipage}
@@ -616,22 +616,34 @@ Power balance:
 
 \section{Coefficient of performance}
 \subsection{Inner coefficient of performance}
+\subsubsection{Inner COP of a heat pump}
 \begin{gather*}
-  \varepsilon_\text{HP} = \frac{\left|q_{23}\right|}{w_{12}} = \frac{h_2-h_3}{h_2-h_1} = \varepsilon_R + 1\\
-  \varepsilon_R = \frac{\left|q_{41}\right|}{w_{12}} = \frac{h_1-h_4}{h_2-h_1} = \varepsilon_\text{HP} - 1
+  \varepsilon_\text{HP} = \frac{\left|q_{23}\right|}{w_{12}} = \frac{\text{heat}}{\text{technical work}} = \frac{h_2-h_3}{h_2-h_1} = \varepsilon_R + 1\\[1ex]
+  \text{Carnot: }\frac{1}{\eta_C} = \varepsilon_{HP,C} = \frac{T_C}{T_C - T_E} = \frac{T_C}{\Delta T_\text{lift}} = \varepsilon_{R,C} + 1
+\end{gather*}
+
+\subsubsection{Inner COP of a refrigerator}
+\begin{gather*}
+  \varepsilon_R = \frac{\left|q_{41}\right|}{w_{12}} = \frac{h_1-h_4}{h_2-h_1} = \varepsilon_\text{HP} - 1\\[1ex]
+  \text{Carnot: } \varepsilon_{R,C} = \frac{T_E}{T_C - T_E} = \frac{T_E}{\Delta T_\text{lift}} = \varepsilon_{HP,C} - 1
 \end{gather*}
 
 \subsection{Outer coefficient of performance (COP)}
 \subsubsection{COP of a heat pump}
-\includegraphics[\lw]{media/heat-pump.png}
+\begin{center}
+  \includegraphics[\lw=.75]{media/heat-pump.png}
+\end{center}
 \begin{gather*}
   \text{COP}_\text{HP} = \frac{\lvert\dot{Q}_\omega\rvert}{P_{el}} = \frac{\lvert\dot{Q}\rvert}{P_{el}}\\[1ex]
-  \frac{1}{\eta_C} = \varepsilon_{HP,C} = \frac{T_C}{T_C - T_E} = \frac{T_C}{\Delta T_\text{lift}} = \varepsilon_R + 1\\[1ex]
   \varepsilon_{HP} > COP_{HP} \quad ; \quad \zeta_{HP} = \frac{COP_{HP}}{\varepsilon_{HP,C}}
 \end{gather*}
 
 \newcolumn
 \subsubsection{COP of a refrigerator}
+\begin{gather*}
+  EER = COP_R = \dfrac{\dot{Q}_{in}}{P_{el}} = \dfrac{\dot{Q}_e}{P_{el}}\\[1ex]
+  \varepsilon_R > EER \quad ; \quad \zeta_R = \dfrac{EER}{\varepsilon_{R,C}}
+\end{gather*}
 
 
 \end{multicols*}

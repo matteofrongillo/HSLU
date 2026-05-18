@@ -41,7 +41,7 @@ Occurs with all materials when there is a temperature gradient.
 \end{gather*}
 
 \subsection{Convective heat transfer}
-This occurs in moved fluids.
+This occurs in moving fluids.
 
 \textbf{Newton's approach}:
 \begin{gather*}
@@ -71,7 +71,7 @@ Procedure:
   k^{-1}_\text{tot} = \sum_{i=1}^n \dfrac{\delta_i}{\lambda_i}\ \Longrightarrow\ k_\text{tot} = \dfrac{1}{k^{-1}_\text{tot}}
 \end{gather*}
 
-\section{Heat conductivity through a hollow cylinder}
+\section{Heat conduction through a hollow cylinder}
 \begin{gather*}
   \dot{Q} = -\lambda A \der{T}{r} = -\lambda 2\pi r l \der{T}{r}\\
 \end{gather*}
@@ -86,7 +86,7 @@ With multilayered walls:
 \subsection{Thermal conductivity $k$}
 \begin{gather*}
   k_0 = \dfrac{1}{r_0\left(\left(\frac{1}{\lambda_1} \ln\frac{r_1}{r_0}\right) + \left(\frac{1}{\lambda_2} \ln\frac{r_2}{r_1}\right) + \dots + \left(\frac{1}{\lambda_n} \ln\frac{r_n}{r_{n-1}}\right)\right)}\\[.3cm]
-  k_0^{-1} = \dm r_0\sum_n \left(\frac{1}{\lambda_n}\ln\frac{r_{n}}{r_{n-1}}\right)
+  k_0^{-1} = r_0\sum_{i=1}^{n}\left(\frac{1}{\lambda_i}\ln\frac{r_i}{r_{i-1}}\right)
 \end{gather*}
 
 \subsection{Thin-walled pipe approximated as a flat wall}
@@ -96,7 +96,7 @@ With multilayered walls:
 \end{gather*}
 
 \section{Convective heat transfer}
-\subsection{Reynold's number}
+\subsection{Reynolds number}
 It compares inertial to viscous forces.
 
 \begin{minipage}{0.5\linewidth}
@@ -110,8 +110,8 @@ It compares inertial to viscous forces.
 \end{minipage}
 
 \subsection{Prandtl number}
-It compares momemtum diffusivity to thermal diffusivity.\\
-Sets velocity's relative thickness and thermal boundary layers.
+It compares momentum diffusivity to thermal diffusivity.\\
+Relates the relative thickness of the velocity and thermal boundary layers.
 \begin{gather*}
   Pr = \dfrac{\nu}{a} = \dfrac{\delta_\text{fluid}}{\delta_\text{th}} = \dfrac{\eta c_p}{\lambda}\quad ; \quad a = \dfrac{\lambda}{\rho c_p} \quad ; \quad \nu = \dfrac{\eta}{\rho}
 \end{gather*}
@@ -172,22 +172,20 @@ where:
 \subsubsection{Mean temperature heat flow}
 \[\dot{Q} = kA\Delta T_m\]
 
-\subsubsection{Heat capacity rate ratio (Capacity ration)}
+\subsubsection{Heat capacity rate ratio (Capacity ratio)}
 It measures the relative ability of stream 1 vs. stream 2 to carry
 heat per kelvin:
-\[R_1 = \dfrac{\Delta\vartheta_1}{\Delta\vartheta_2} = \dfrac{CP_1}{CP_2}\]
+\begin{gather*}
+  CP_1 \left(\vartheta_{1, \alpha} - \vartheta _{1, \omega}\right) = CP_2 \left(\vartheta_{2\omega} - \vartheta_{2,\alpha}\right)\\[1ex]
+  R_1 = \dfrac{CP_1}{CP_2} = \dfrac{\vartheta_{2,\omega} - \vartheta_{2,\alpha}}{\vartheta_{1,\alpha}-\vartheta_{1,\omega}} = \dfrac{\Delta \vartheta_2}{\Delta \vartheta_1}
+\end{gather*}
 
-\subsection{Cocurrent vs countercurrent flow heat exchanger}
+\subsection{Co-current vs countercurrent flow heat exchanger}
 \begin{gather*}
   \dot{Q} = kA_\text{co}\Delta T_{m,\text{co}} = kA_\text{count}\Delta T_{m,\text{count}}\\
-  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\Delta T_{m,\text{count}}}{\Delta T_{m,\text{co}}}
+  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\Delta T_{m,\text{count}}}{\Delta T_{m,\text{co}}}\\[1ex]
+  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\dot{Q}_\text{co}}{\dot{Q}_\text{count}}\cdot \dfrac{\Delta T_{m,\text{count}}}{\Delta T_{m,\text{co}}},\quad \text{if } \dot{Q}_1 \neq \dot{Q}_2
 \end{gather*}
-
-\subsubsection{If $\dot{Q}_1 \neq \dot{Q}_2$}
-\begin{gather*}
-  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\dot{Q}_\text{count}\Delta T_{m,\text{count}}}{\dot{Q}_\text{co}\Delta T_{m,\text{co}}}
-\end{gather*}
-\vfill\phantom{}
 
 \newcolumn
 \vspace*{-.7cm}
@@ -210,7 +208,7 @@ heat per kelvin:
 \begin{center}
   \begin{tabular}{|c|c|c|}
     \hline \textbf{Processes}& \textbf{Reversible} & \textbf{Irreversible}\\
-    \hline \textbf{Energy} & Conserved & Reduced $\rightarrow$ Loss\\
+    \hline \textbf{Exergy} & Conserved & Reduced $\rightarrow$ Loss\\
     \hline \textbf{Entropy} & Constant & Increases $\rightarrow$ Production\\
     \hline
   \end{tabular}
@@ -229,7 +227,7 @@ Entropy flow $\dot{S}$: entropy over time [W/K]
     \item Heat transfer across the system boundary:
     \[dS_Q = \frac{dQ}{T}\]
     \item Mass flow across the system boundary:
-    \[dS_{\mathrm{m}} = \dot{S} = \dot{m}\,s\]
+    \[dS_{\mathrm{m}} = \dot{m}\,s\ dt\quad ; \quad \dot{S}_m = \dot{m}\,s\]
     \item Irreversible processes inside the system:
     \[\dot{S}_{irr}(t)\begin{cases}
       dS_{irr} > 0 &\text{ irreversible processes}\\
@@ -273,7 +271,7 @@ For steady-state case:
 \subsubsection{Steady-state and adiabatic flow processes}
 \[\dot{S}_{irr} = \sum_\omega \dot{m}_\omega s_\omega - \sum_\alpha \dot{m}_\alpha s_\alpha \geq 0\]
 
-\section{The thermal enigne}
+\section{The thermal engine}
 \begin{minipage}{0.4\linewidth}
   \centering
   \includegraphics[width=\linewidth]{media/thermal_engine.png}
@@ -297,7 +295,8 @@ For steady-state case:
 \section{Entropy $S$ as a state variable}
 \begin{gather*}
   ds = \dfrac{dq + dj}{T} = \dfrac{du + p\ dv}{T} = \dfrac{dh - v\ dp}{T}\\
-  T\ ds = dq + dj \Longrightarrow T\left(s_2 - s_1\right) = q_{12} + j_{12}
+  T\ ds = dq + dj \Longrightarrow T\left(s_2 - s_1\right) = q_{12} + j_{12}\\
+  \text{General form: } \integral[1][2][T][s] = q_{12} + j_{12}
 \end{gather*}
 
 \subsection{Reversible processes}
@@ -321,7 +320,7 @@ For steady-state case:
 
 \subsubsection{For closed systems}
 \begin{gather*}
-  ds = \dfrac{du + p\ dv}{T} = \dfrac{d_v\ dT}{T} + \dfrac{R_i\ dv}{v}\\[1ex]
+  ds = \dfrac{du + p\ dv}{T} = \dfrac{c_v\ dT}{T} + \dfrac{R_i\ dv}{v}\\[1ex]
   s_2 - s_1 = c_v \ln \dfrac{T_2}{T_1} + R_i \ln \dfrac{v_2}{v_1}
 \end{gather*}
 
@@ -331,9 +330,9 @@ All the works can be calculated with a temperature change:
   q_{12} + w_{t12} = h_2 - h_1 + \dfrac{c_2^2 - c_1^2}{2} + g\left(z_2 - z_1\right)\\
   q_{12} + \integral[v][p] + j_{12} = h_2 - h_1 = c_p\left(T_2 - T_1\right)\\
   \integral[T][s] = q_{12} + j_{12} = \boxed{\integral[T][s] + \integral[v][p] = h_2 - h_1}\\
-  \boxed{T\ ds + v\ dp = h_2 - h_1 \Longleftrightarrow T\ ds - p\ dv = u_2 - u_1}
+  \boxed{T\ ds + v\ dp = h_2 - h_1 \Longleftrightarrow T\ ds - p\ dv = u_2 - u_1}\\
+  T\, ds + v\, dp = dh\, T\, ds - p\, dv = du
 \end{gather*}
-\vfill\phantom{}
 
 \newcolumn
 \subsection{Reversible state changes with perfect gases}
@@ -345,7 +344,7 @@ All the works can be calculated with a temperature change:
 
 \subsubsection{Closed system}
 \begin{gather*}
-  q_{12} + j_{12} + w_{p,rev} = u_2 - u_1\\
+  q_{12} + j_{12} + w_{v,rev} = u_2 - u_1\\
   \integral[1][2][T][s] - \integral[1][2][p][v] = c_v\left(T_2 - T_1\right)
 \end{gather*}
 
@@ -374,7 +373,7 @@ For the change in entropy of the polytropic state change:
 
 \subsection{Statements of the 2nd LT}
 \begin{enumerate}[label=\textbf{\Roman*.}]
-  \item In all irreversible processes exergy is converted in anergy
+  \item In all irreversible processes exergy is converted into anergy
   \item Only in reversible processes exergy remains constant
   \item It is impossible to convert anergy into exergy
 \end{enumerate}
@@ -461,7 +460,7 @@ where $h^0$ is the total enthalpy: $h^0 = h + \dfrac{c^2}{2}$
 \part{Thermodynamics cycles}
 \section{Reversible cycle work}
 Total cycle / sum of all sub-processes:
-\figbox{$\dm w_{t,\, rev} = \integral[1][2][v][p] + \integral[2][3][v][p] + \ldots + \integral[n][1][v][p] = \oint v\ dv = \sum_{i=1}^{n} w_{pi}$}
+\figbox{$\dm w_{t,\, rev} = \integral[1][2][v][p] + \integral[2][3][v][p] + \ldots + \integral[n][1][v][p] = \oint v\ dp = \sum_{i=1}^{n} w_{pi}$}
 
 \begin{center}
   \resizebox{0.6\columnwidth}{!}{%
@@ -548,7 +547,7 @@ Power balance:
   \pi = \dfrac{p_2}{p_1} = \dfrac{p_3}{p_4}\\[1ex]
   -w_C = q_\alpha + q_\omega = q_{23} + q_{41} = c_p\left(T_3-T_2+T_1-T_4\right)\\[1ex]
   \left|w_C\right| = c_p\left(T_3-T_2\right)\left(1-\dfrac{T_4-T_1}{T_3-T_2}\right)\\[1ex]
-  \left(1-\dfrac{T_4-T_1}{T_3-T_2}\right) = \left(\dfrac{p}{p_0}\right)^{\frac{k-1}{k}} = \left(\frac{1}{\pi}\right)^{\frac{k-1}{k}}\\[1ex]
+  \dfrac{T_4-T_1}{T_3-T_2} = \left(\dfrac{p}{p_0}\right)^{\frac{k-1}{k}} = \left(\frac{1}{\pi}\right)^{\frac{k-1}{k}}\\[1ex]
   \eta_J = \dfrac{\left|w_C\right|}{q_\alpha} = 1 - \dfrac{T_1}{T_2} = 1 - \left(\dfrac{1}{\pi}\right)^{\frac{k-1}{k}}
 \end{gather*}
 
@@ -586,7 +585,7 @@ Power balance:
 \begin{minipage}{.48\linewidth}
   \begin{align*}
     \left|w_{t34}\right| &= h_3 - h_4 \text{ (turbine)}\\
-    \left|q_{41}\right| &= h_4 - h_1 \text{ (condensor)}
+    \left|q_{41}\right| &= h_4 - h_1 \text{ (condenser)}
   \end{align*}
 \end{minipage}
 

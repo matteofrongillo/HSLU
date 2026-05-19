@@ -234,6 +234,7 @@
 \newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
 \newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
 \newcommand{\cel}{$^\circ$C}
+\newcommand{\todo}{{\color{red}TODO}}
 
 \DeclareMathOperator{\rot}{rot}
 
@@ -863,7 +864,7 @@ Important for:
 \end{itemize}
 
 \subsection{Cavitation Number}
-\figbox{$\dm Ca = \sigma = \frac{p\infty-p_v}{\frac{1}{2}\rho v^2}$}
+\figbox{$\dm Ca = \sigma = \frac{p_\infty-p_v}{\frac{1}{2}\rho v^2}$}
 Important for:
 \vspace*{-.2cm}
 \begin{itemize}
@@ -1223,7 +1224,7 @@ where $k = \dfrac{c_p}{c_v}$
 
 \section{Thermodynamics}
 \subsection{Internal energy}
-\[c_v = \frac{\partial u}{\partial T}\big|_V \to du = c_v(T)\ dT\]
+\[c_v = \left.\frac{\partial u}{\partial T}\right|_V \to du = c_v(T)\ dT\]
 
 \subsubsection{Change in internal energy}
 \[u_2 - u_1 = c_v\Delta T = c_v\left(T_2 - T_1\right)\]
@@ -1231,22 +1232,155 @@ where $k = \dfrac{c_p}{c_v}$
 \subsection{Enthalpy}
 \[h = u + pv = u + R_s T\]
 
-TODO
+\todo
 
 \subsection{Specific heat capacity}
-TODO
+\todo
 
 \subsection{Entropy}
 \[T\ ds = du + p\ dv\quad ; \quad T\ ds = dh - v\ dp\]
 
 \subsubsection{Ideal gas}
 \begin{align*}
-  s_2 - s_1 &= c_v \ln\left(\frac{T_2}{T_1}\right) + R_s \ln\left(\frac{\rho_1}{\rho_2}\right)\\
+  s_2 - s_1 &= c_v \ln\left(\frac{T_2}{T_1}\right) + R_s \ln\left(\frac{\rho_1}{\rho_2}\right)\\[1ex]
   &= c_p\ln\left(\frac{T_2}{T_1}\right) - R_s\ln\left(\frac{p_2}{p_1}\right)
 \end{align*}
 
 \subsubsection{Isentropic flow}
 \[\left(\frac{T_2}{T_1}\right)^{\frac{k}{k-1}} = \left(\frac{\rho_2}{\rho_1}\right)^k = \frac{p_2}{p_1}\]
+
+\subsection{Stagnation state and Mach number}
+\begin{minipage}{.6\linewidth}
+  \begin{gather*}
+    T_0 = T+\dfrac{v^2}{2c_p} \Longleftrightarrow \dfrac{T_0}{T} = 1 + \dfrac{v^2}{2c_p \cdot T}\\[1ex]
+    c_p = \dfrac{k}{k-1}R \Longleftrightarrow \dfrac{1}{c_p} = \dfrac{k-1}{k\cdot R}\\[1ex]
+    \dfrac{T_0}{T} = 1 + \dfrac{k-1}{2}\dfrac{v^2}{c^2} = 1 + \dfrac{k-1}{2}M^2
+  \end{gather*}
+\end{minipage}
+\begin{minipage}{.4\linewidth}
+  \includegraphics[\lw]{media/stagnation-ratio.png}
+\end{minipage}
+
+\subsubsection{Pressure ratio}
+\[\dfrac{p_0}{p} = \left(\dfrac{T_0}{T}\right)^{\frac{k}{k-1}} = \left(1+\dfrac{k-1}{2}M^2\right)^{\frac{k}{k-1}}\]
+
+\subsubsection{Density ratio}
+\[\dfrac{\rho_0}{\rho} = \left(\dfrac{T_0}{T}\right)^{\frac{1}{k-1}} = \left(1+\dfrac{k-1}{2}M^2\right)^{\frac{1}{k-1}}\]
+
+\subsection{Critical state $M = 1$}
+\begin{align*}
+  \dfrac{p_0}{p^*} &= \left(1+\dfrac{k-1}{2}\right)^{\frac{k}{k-1}}\\[1ex]
+  \dfrac{T_0}{T^*} &= 1 + \dfrac{k-1}{2}\\[1ex]
+  \dfrac{\rho_0}{\rho^*} &= \left(1+\dfrac{k-1}{2}\right)^{\frac{1}{k-1}}\\[1ex]
+  \dfrac{A}{A^*} &= \dfrac{1}{M} \left(\dfrac{1+\frac{k-1}{2}M^2}{\frac{k+1}{2}}\right)^{\frac{k+1}{2(k-1)}}
+\end{align*}
+
+\subsection{Isentropic flow with area change}
+\begin{gather*}
+  \frac{d\rho}{\rho} + \frac{dA}{A} + \frac{dv}{v} = 0\\[1ex]
+  \frac{dA}{A} = \frac{dp}{\rho}\left(\frac{1}{v^2}-\frac{d\rho}{dp}\right)\\[1ex]
+  \frac{dA}{A} = \frac{dp}{\rho v^2}\left(1 - M^2\right) = -\frac{dv}{v} \left(M^2 - 1\right)
+\end{gather*}
+
+\subsubsection{Nozzle results}
+\[
+  \begin{array}{r@{\quad}c@{\quad}c@{\quad}c}
+    \text{Subsonic:} & M < 1 & dp\left(1 - M^2\right) < 0 & dA < 0\\[1ex]
+    \text{Sonic:} & M = 1 & dp\left(1 - M^2\right) = 0 & dA = 0\\[1ex]
+    \text{Supersonic:} & M > 1 & dp\left(1 - M^2\right) > 0 & dA > 0
+  \end{array}
+\]
+
+\subsubsection{Diffuser results}
+\[
+  \begin{array}{r@{\quad}c@{\quad}c@{\quad}c}
+    \text{Subsonic:} & M < 1 & dp\left(1 - M^2\right) > 0 & dA > 0\\[1ex]
+    \text{Sonic:} & M = 1 & dp\left(1 - M^2\right) = 0 & dA = 0\\[1ex]
+    \text{Supersonic:} & M > 1 & dp\left(1 - M^2\right) < 0 & dA < 0
+  \end{array}
+\]
+
+\subsubsection{Nozzle and diffuser summary}
+\begin{center}
+\scriptsize
+\setcellgapes{4pt}
+\makegapedcells
+\begin{tabularx}{\linewidth}{|c|X|X|}
+  \hline
+   & \centering Subsonic $(Ma < 1)$ & \centering\arraybackslash Supersonic $(Ma > 1)$\\
+  \hline
+  \makecell{Diffuser\\$dp>0\quad ; \quad dv<0$}
+  &
+  \centering
+  \begin{tikzpicture}[baseline=-.5ex, x=.55cm, y=.55cm]
+    \draw[thick] (0,.25) -- (1,.45);
+    \draw[thick] (0,-.25) -- (1,-.45);
+    \draw[-{Latex[length=2mm]}] (.15,0) -- (.85,0);
+  \end{tikzpicture}
+  \quad $dA>0$
+  &
+  \centering\arraybackslash
+  \begin{tikzpicture}[baseline=-.5ex, x=.55cm, y=.55cm]
+    \draw[thick] (0,.45) -- (1,.25);
+    \draw[thick] (0,-.45) -- (1,-.25);
+    \draw[-{Latex[length=2mm]}] (.15,0) -- (.85,0);
+  \end{tikzpicture}
+  \quad $dA<0$\\
+  \hline
+  \makecell{Nozzle\\$dp<0\quad ; \quad v>0$}
+  &
+  \centering
+  \begin{tikzpicture}[baseline=-.5ex, x=.55cm, y=.55cm]
+    \draw[thick] (0,.45) -- (1,.25);
+    \draw[thick] (0,-.45) -- (1,-.25);
+    \draw[-{Latex[length=2mm]}] (.15,0) -- (.85,0);
+  \end{tikzpicture}
+  \quad $dA<0$
+  &
+  \centering\arraybackslash
+  \begin{tikzpicture}[baseline=-.5ex, x=.55cm, y=.55cm]
+    \draw[thick] (0,.25) -- (1,.45);
+    \draw[thick] (0,-.25) -- (1,-.45);
+    \draw[-{Latex[length=2mm]}] (.15,0) -- (.85,0);
+  \end{tikzpicture}
+  \quad $dA>0$\\
+  \hline
+\end{tabularx}
+\end{center}
+
+
+\newcolumn
+\subsection{Equation of mass flow rate through a nozzle}
+\begin{center}
+  \includegraphics[\lw=.5]{media/sonic-throttle.png}
+\end{center}
+
+Putting $\dfrac{d\dot{m}}{d\left(\frac{p}{p_0}\right)} = 0$:
+\[\dot{m} = A \cdot p_0\sqrt{\frac{2k}{(k-1)R_S T_0}}\cdot \sqrt{\left(\frac{p}{p_0}\right)^{\frac{2}{k}} - \left(\frac{p}{p_0}\right)^{\frac{k+1}{k}}}\]
+This leads to
+\[\frac{p}{p_0} = \left(\frac{2}{k+1}\right)^{\frac{k}{k-1}} = \frac{p^*}{p_0}\]
+
+\subsubsection{Chocked nozzle}
+Using $\dm \frac{p_0}{p} = \left(1+\frac{k-1}{2}M^2\right)^{\frac{k}{k-1}}$:
+
+\[\dot{m} = \sqrt{\frac{k}{R_S T_0}}\cdot \frac{A\cdot p_0 \cdot M}{\left(1+\frac{k-1}{2}M^2\right)^{\frac{k+1}{2(k-1)}}}\]
+
+When $M=1,\ A = A^*$, hence
+\[\dot{m} = A^* \cdot p_0 \sqrt{\frac{k}{R_S T_0}}\left(\frac{2}{k+1}\right)^{\frac{k+1}{2(k-1)}}\]
+
+The ratio of the area:
+\[\frac{A}{A^*}=\frac{1}{M}\left[\left(\frac{2}{k+1}\right)\left(1+\frac{k-1}{2}M^2\right)\right]^{\frac{k+1}{2(k-1)}}\]
+
+\subsection{Nozzle - Diffuser}
+\includegraphics[\lw]{media/subsonic.png}
+
+
+
+
+
+
+
+
 
 
 
@@ -1344,7 +1478,7 @@ Properties
 \hline
 
 % Row 7: Circulation
-\makecell{Circulation $\Gamma$}
+\makecell[c]{Circulation $\Gamma$}
 & $\boldsymbol{\Gamma = 2\pi C_\varphi}$
 & $\boldsymbol{\Gamma(r) = 2\pi\Omega r^2}$
 & $\boldsymbol{\Gamma = 0}$

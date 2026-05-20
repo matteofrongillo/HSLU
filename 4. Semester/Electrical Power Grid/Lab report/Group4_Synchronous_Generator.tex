@@ -6,6 +6,14 @@
 
 \fancyhead[L]{Group 4}
 
+\geometry{
+    a4paper,
+    total={170mm, 257mm},   
+    left=20mm,
+    top=20mm,
+    bottom=15mm
+}
+
 \pdftitle{Group4-Synchronous-Generator}
 
 % === TEXT ===
@@ -71,8 +79,8 @@ could be connected safely to the grid.
 In addition to the lamp circuit, the experimental setup included a dual-range voltmeter,
 a synchronoscope, a zero-voltmeter and a dual-range frequency meter. The voltmeter was
 used to compare the generator and grid voltages. The synchronoscope indicated the phase
-angle difference and the frequency difference between generator and grid, for
-synchronisation the green LED SYNC must be alight. The zero-voltmeter measured the
+angle difference and the frequency difference between the generator and the grid. For
+synchronisation, the green LED SYNC must be alight. The zero-voltmeter measured the
 voltage difference between corresponding phases, which approached 0 V during
 synchronisation. The frequency meter displayed the frequencies of both systems, which
 had to match before connection.
@@ -86,7 +94,7 @@ had to match before connection.
 
 \newpage
 \autoref{fig:exp-setup} shows the experimental setup used during the laboratory session.
-The generator was initially operated slightly above synchronous speed (+2rpm). The
+The generator was initially operated slightly above synchronous speed (+2 rpm). The
 excitation voltage was then adjusted until the generator voltage matched the grid
 voltage. Afterwards, the generator speed was reduced slowly until the synchronoscope
 rotated slowly and the phase angle approached synchronism. Once the synchronoscope
@@ -94,9 +102,9 @@ indicated synchronous operation and the lamps became dark, the generator was con
 to the grid using the synchronisation switch.
 
 \autoref{fig:meter} shows the measurement instruments and synchronoscope during the
-synchronisation process. On the top right the dual-range voltmeter shows twice 400 V, the
-zero voltmeter below shows 0 volts. On the left side the dual-range frequency meter
-shows both systems to be at 50 Hz and below the synchronoscope has the green SYNC LED
+synchronisation process. On the top right, the dual-range voltmeter shows twice 400 V, the
+zero voltmeter below shows 0 volts. On the left side, the dual-range frequency meter
+shows both systems to be at 50 Hz, and below, the synchronoscope has the green SYNC LED
 alight.
 
 \begin{figure}[H]
@@ -112,8 +120,86 @@ frequency and phase angle before connecting a synchronous generator to the elect
 grid.
 
 \newpage
-\subsection{Antonio}
+\subsection{Automatic Grid Synchronization}
+Following the manual synchronization phase, the experiment transitioned to an
+automated grid-coupling procedure using the system's digital control. This method
+utilizes a centralized control unit to automatically monitor, adjust, and couple the
+synchronous generator to the electrical grid, eliminating human error and timing
+mistakes.
 
+\subsubsection{Synchronization with the Multifunctional Relay}
+The initial phase required a reconfiguration of the circuit in a way to shift control from
+the manual to the automated system. The team disconnected the manual wiring
+components, as the dark lamp circuit and manual synchronoscope were no longer
+required for this procedure. The circuit was modified to focus entirely on interfacing the
+machine with the automatic synchronization unit and the Multifunctional relay
+(CO3301-5W).
+\begin{figure}[H]
+    \centering
+    \includegraphics[\lw=.7]{media/E1S2a/picture3.png}
+    \caption{Final setup for synchronisation with Multifunctional relay}
+\end{figure}
+The machine setup was configured into "Sync mode" via the control software
+touchscreen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[\lw=.45]{media/E1S2a/picture1.png}
+    \caption{Setting the Sync Mode in the Servo machine test system}
+\end{figure}
+
+The initial baseline voltage for the system was set to 45 V. Following the step-by-step
+procedures outlined in the Laboratory Instructions for synchronous generator, the
+target control parameters were programmed into the user interface. Once a secure
+connection to the multifunctional relay unit was established, a software delay of 90
+seconds was initiated to allow the system parameters to stabilize before execution.
+The team did not encounter issues with the time-out monitoring; increasing the delay
+to 120 s was therefore not needed.
+
+\begin{table}[ht!]
+    \centering
+    \caption{Table of the delay parameter from Labsoft}
+    \begin{tabularx}{.75\textwidth}{XXX}
+        \toprule
+        \textbf{ID} & \textbf{Name} & \textbf{Parameter}\\
+        \midrule
+        3063 & Time-out & 90 s (default: 60 s)\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsubsection{Automatic Synchronization Execution}
+Once the parameters were set and the "Run" command was executed, the integrated
+WOODWARD easygen-2500 control system took full autonomous control over the
+system. After starting it, the uncoupled generator was running at a standalone
+rotational speed of 1420 rpm and an un-synchronized frequency of 47 Hz.
+\begin{figure}[H]
+    \centering
+    \includegraphics[\lw=.45]{media/E1S2b/picture2.png}
+    \caption{Setting the generator's parameters}
+\end{figure}
+
+Recognizing that the generator frequency was below the rigid 50 Hz grid standard, the
+WOODWARD easygen-2500 controller automatically began increasing the prime
+mover's RPM to bring the two systems into alignment. The automated control unit
+continuously modulated the system, driving the generator through a ramp-up
+sequence; the rotational speed was automatically accelerated from 1470 rpm up to the
+exact synchronous speed of 1500 rpm. The internal generator frequency was adjusted
+from 47 Hz up to the matching grid frequency of 50 Hz. The terminal voltage was
+regulated upwards from the initial 45 V to a synchronized 48 V, drawing a measured
+current of 0.61 A.
+
+The control unit monitored the relative phase angle between the generator and the
+network. The exact instant all synchronization conditions such as equal voltage
+magnitude, frequency, and phase angle were achieved, the relay closed the internal
+contacts. This successful coupling was confirmed by an audible physical "click" from
+the power switch module, and the software interface instantly updated the system
+status to all green lights.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[\lw=.55]{media/E1S2b/picture1.png}
+    \caption{Grid Overview showing that the generator is connected}
+\end{figure}
 \newpage
 
 \subsection{Automatic active power control}
@@ -135,15 +221,15 @@ but instead causes the rotor displacement angle to lead further in the direction
 rotation. This shift in the rotor angle relative to the grid voltage is what facilitates
 the boost in active power output. 
 
-For a machine with non-salient pole or drum-type rotors operating at constant excitation
-current and steady state, can fall out of sync if a rotor displacement angle of 90$^\circ$
-is exceeded. To prevent this from happening a generator needs a power controller. The
+A machine with non-salient pole or drum-type rotors operating at constant excitation
+current and steady state can fall out of sync if a rotor displacement angle of 90$^\circ$
+is exceeded. To prevent this from happening, a generator needs a power controller. The
 controller will automatically correct the setpoint value specified for the output power. 
 
 To manage the exchange of reactive power with the grid, the generator’s excitation
 current must be controlled. An over-excited generator supplies lagging reactive power
 (acting like a capacitor) and an under-excited generator consumes lagging reactive
-power towards the grid. By utilizing a $\cos\Phi$ controller within the multifunction relay, the
+power from the grid. By utilizing a $\cos\Phi$ controller within the multifunction relay, the
 excitation voltage is automatically adjusted to maintain the desired power factor. 
 
 In this part of the experiment, the $\cos\Phi$ controller of the multifunction relay is
@@ -205,9 +291,9 @@ put into \autoref{tab:power}. The software then plots the measurements as seen i
 
 \subsubsection{Results and conclusion}
 The graph in \autoref{fig:graph} shows the relation of setpoint power P [kW] to the
-measured values of active (P HMI [W]) and reactive (Q HMI [var]) power. As the setpoint
+measured values of active (P HMI [W]) and reactive (Q HMI [Var]) power. As the setpoint
 is increased from 200 to 400 [kW], the magnitude of the active power increases from 193
-to 390 [W]. Simultaneously, the reactive power increases from 35 to 207 [var].
+to 390 [W]. Simultaneously, the reactive power increases from 35 to 207 [Var].
 
 This result shows that the active power controller successfully responds to the setpoint
 changes. The simultaneous rise in reactive power suggests that the system maintains a
@@ -223,22 +309,22 @@ available. Water flowing back down from the upper reservoir to the lower one pow
 the synchronous machine acting as a generator. The test system replaces hydraulics with
 an electrical motor-generator unit, a multifunction relay, and the SCADA.
 
-Active and reactive power compensation experiment is not conducted; hence, only the
-theoretical concept of their work is analyzed.
+The active and reactive power compensation experiment was not conducted; hence, only the
+theoretical concept of its operation is analyzed.
 
 \subsection{Power regulation}
-The conducted experiment involved semi-automatic changes. In such operating
-mode, the automatics run up and synchronize the machine, and the operator specifies the
+The conducted experiment involved semi-automatic changes. In such an operating
+mode, the automatic controls start up and synchronize the machine, and the operator specifies the
 required values of active/reactive power in the SCADA.
 
 \subsubsection{Theory}
-In grid parallel mode, the speed of the machine is determined by the grid frequency.
-For a four pole machine operating at a frequency of 50 Hz, the synchronous
+In grid-parallel mode, the speed of the machine is determined by the grid frequency.
+For a four-pole machine operating at a frequency of 50 Hz, the synchronous
 speed will be around 1500 rpm.
 
 The reactive power is controlled using excitation. If the excitation is increased,
-the machine is over excited and supplies reactive power to the grid. If the excitation
-is decreased, the machine is under excited and absorbs reactive power from the
+the machine is over-excited and supplies reactive power to the grid. If the excitation
+is decreased, the machine is under-excited and absorbs reactive power from the
 grid.
 \begin{figure}[H]
     \centering
@@ -257,7 +343,7 @@ apparent power limit:
 
 \subsubsection{Experimental setup}
 This experiment involved the following equipment: pumped-storage training system,
-synchronous machine, test bench for servomachine, excitation voltage controller,
+synchronous machine, test bench for servo machine, excitation voltage controller,
 multifunction relay, power supply, measuring units, and SCADA Viewer.
 
 The connection of the machine to the network was carried out using the multifunction
@@ -269,7 +355,7 @@ relay, which performed the automatic synchronization and protection operations.
     \label{fig:eug3-setup-before}
 \end{figure}
 
-The voltage exciters were initially controlled when off. The multifunction relay was put
+The voltage excitation was initially switched off. The multifunction relay was put
 into AUTO mode, and then using the SCADA interface, the machine was started, and the
 power was referenced. In the semi-automatic testing process, the load following feature
 remained disabled, thus allowing the active and reactive power to be manually controlled
@@ -280,18 +366,18 @@ The experiment was conducted as follows:
 \begin{enumerate}
     \item Parameter file named \texttt{EUG3\_400V\_50Hz.pvc} was loaded on the SCADA
     viewer.
-    \item Servo-machine test stand, three-phase power supply and excitation system were
+    \item The servo-machine test stand, three-phase power supply, and excitation system were
     arranged as per lab guidelines.
     \item Multi-function relay was set to AUTO mode.
-    \item SCADA diagnostics were initialized and synchronous machine was operated by
+    \item SCADA diagnostics were initialized, and the synchronous machine was operated by
     STARTUP command.
-    \item As soon as generator circuit breaker was closed, LOAD FOLLOWING was not turned
+    \item As soon as the generator circuit breaker was closed, LOAD FOLLOWING was not turned
     ON.
-    \item Limit of apparent power and active/reactive power references were imposed
+    \item The limit of apparent power and active/reactive power references were imposed
     through SCADA sliders manually.
-    \item Machine speed, torque, voltage, active/reactive power and power factor were
+    \item Machine speed, torque, voltage, active/reactive power, and power factor were
     measured by SCADA interface and attached sensors.
-    \item Experiment was ended using SCADA shutdown procedure.
+    \item The experiment was ended using the SCADA shutdown procedure.
 \end{enumerate}
 
 \subsubsection{Results}
@@ -354,7 +440,7 @@ onto a steady state.
 Semi-automatic start-up is a procedure where the user specifies the power references
 manually, while the PLC and multifunction relay conduct all other actions to complete
 the process of start-up. In contrast to fully automatic procedures, here the operator
-must press a key on a button to turn on the generator.
+must press a button to turn on the generator.
 
 The semi-automatic pumped-storage experiment showed how a synchronous motor-generator set
 can be started, synchronised and power-controlled through a SCADA interface.
@@ -364,16 +450,16 @@ remained close to zero due to excitation control.
 \subsection{Active and reactive power compensation}
 During the active-reactive power compensation test experiment, the LOAD FOLLOWING feature
 of SCADA will be used. In this case, the system computes the values of active and
-reactive power at the balance node and controls the motor-generator to provide a compensation
+reactive power at the balance node and controls the motor-generator to provide compensation
 for the externally added load. The active power compensation applies only to a resistive
 load while both active and reactive power compensations apply to the inductive load.
 This is done with the objective of minimizing the value of net power flow at the balance
 node to near zero within the limits of current, reactive power and the apparent power
 available in the machine.
 
-The above mentioned compensation was not done during the laboratory experiments.
+The above-mentioned compensation was not done during the laboratory experiments.
 The anticipated behavior should be that once the load switch is closed, the system adjusts
-upwards/downwards the output of the motor-generator until the $\sum P$ and $\sum Q$
+the output of the motor-generator upward or downward until the $\sum P$ and $\sum Q$
 values at the balance node are minimized. Active power compensation is achieved by
 changing the torque and therefore the active power output of the motor-generator set.
 Reactive power compensation is achieved by changing the excitation of the synchronous
@@ -390,10 +476,10 @@ machine.
 \printbibliography
 
 \section*{Declarations on the use of AI tools}
-%\begin{itemize}
-%    \item ``\textit{ChatGPT 5.1}'' was used to enhance vocabulary.\\
-%        {\color{darkgray!95}{\textit{All original sentences originate from our own ideas and were refined with the support of this tool.}}}\\
-%        \url{https://chatgpt.com/}
-%\end{itemize}
+\begin{itemize}
+    \item ``\textit{ChatGPT 5.5}'' was used to enhance vocabulary.\\
+        {\color{darkgray!95}{\textit{All original sentences originate from our own ideas and were refined with the support of this tool.}}}\\
+        \url{https://chatgpt.com/}
+\end{itemize}
 \thispagestyle{fancy}
 \end{document}

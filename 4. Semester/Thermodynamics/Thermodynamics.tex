@@ -644,6 +644,158 @@ Power balance:
   \varepsilon_R > EER \quad ; \quad \zeta_R = \dfrac{EER}{\varepsilon_{R,C}}
 \end{gather*}
 
+\subsection{Real inner COP}
+Assumptions: $\zeta = 0.5,\ \Delta T_e = 10K,\ \Delta T_c = 5K$
+
+\begin{gather*}
+  \varepsilon_{HP,C} = \dfrac{\vartheta_\text{req} - \Delta T_c}{\left(\vartheta_\text{env} - \Delta T_c\right) - \left(\vartheta_\text{req} - \Delta T_e\right)}\\[1ex]
+  \varepsilon_{R,C} = \dfrac{\vartheta_\text{req} - \Delta T_e}{\left(\vartheta_\text{env} - \Delta T_C\right) - \left(\vartheta_\text{req} - \Delta T_e\right)}\\[1ex]
+  \varepsilon = \zeta\cdot \varepsilon_C
+\end{gather*}
+
+\newpage
+\vspace*{-.6cm}
+\part{Data interpolation and extrapolation}
+\section{Interpolation}
+For any property $X$, with $X \in \{v,h,s\}$, the general linear interpolation
+formula is:
+\begin{gather*}
+  X = X_1 + \frac{x-x_1}{x_2-x_1}\left(X_2-X_1\right)
+\end{gather*}
+where $x$ can be pressure, temperature, or another independent variable.
+
+\subsection{Temperature interpolation at constant pressure}
+
+If the pressure is already available in the table, but the required temperature
+lies between two tabulated temperatures $\vartheta_1$ and $\vartheta_2$, then:
+\begin{gather*}
+  v = v_1 + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(v_2-v_1\right)\\[1ex]
+  h = h_1 + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(h_2-h_1\right)\\[1ex]
+  s = s_1 + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(s_2-s_1\right)
+\end{gather*}
+
+\subsection{Pressure interpolation at constant temperature}
+
+If the temperature is already available in the table, but the required pressure
+lies between two tabulated pressures $p_1$ and $p_2$, then:
+\begin{gather*}
+  v = v_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(v_{p_2}-v_{p_1}\right)\\[1ex]
+  h = h_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(h_{p_2}-h_{p_1}\right)\\[1ex]
+  s = s_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(s_{p_2}-s_{p_1}\right)
+\end{gather*}
+
+\subsection{Double interpolation in pressure and temperature}
+
+If both pressure and temperature are between table values, first interpolate
+with respect to temperature at $p_1$ and $p_2$, then interpolate with respect
+to pressure.
+
+Let: $p_1 < p < p_2 \qquad ; \qquad \vartheta_1 < \vartheta < \vartheta_2$
+
+For any property $X \in \{v,h,s\}$:
+\begin{gather*}
+  X_{p_1} =
+  X_{11} + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(X_{12}-X_{11}\right)\\[1ex]
+  X_{p_2} =
+  X_{21} + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(X_{22}-X_{21}\right)\\[1ex]
+  X =
+  X_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(X_{p_2}-X_{p_1}\right)
+\end{gather*}
+
+\subsection{Saturated steam values}
+
+For saturated steam properties at the top of the steam table, the same pressure
+interpolation formula can be used:
+\begin{gather*}
+  X'' =
+  X''_1 + \frac{p-p_1}{p_2-p_1}
+  \left(X''_2-X''_1\right)
+\end{gather*}
+where:
+\begin{gather*}
+  X'' \in \{v'',h'',s''\}
+\end{gather*}
+
+\section{Extrapolation}
+For any property $X$, with $X \in \{v,h,s\}$:
+\begin{gather*}
+  X = X_1 + \frac{x-x_1}{x_2-x_1}\left(X_2-X_1\right)
+\end{gather*}
+where $x$ is outside the interval $[x_1,x_2]$.
+
+\subsection{Pressure extrapolation at constant temperature}
+
+If the required pressure is outside the tabulated pressure range, use the two
+nearest available tabulated pressures. For any property $X \in \{v,h,s\}$:
+\begin{gather*}
+  X =
+  X_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(X_{p_2}-X_{p_1}\right)
+\end{gather*}
+where $p$ is outside the interval $[p_1,p_2]$.
+
+For the individual steam-table properties:
+\begin{gather*}
+  v =
+  v_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(v_{p_2}-v_{p_1}\right)\\[1ex]
+  h =
+  h_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(h_{p_2}-h_{p_1}\right)\\[1ex]
+  s =
+  s_{p_1} + \frac{p-p_1}{p_2-p_1}
+  \left(s_{p_2}-s_{p_1}\right)
+\end{gather*}
+
+\subsection{Temperature extrapolation at constant pressure}
+
+If the required temperature is outside the tabulated temperature range, use the
+two nearest available temperatures. For any property $X \in \{v,h,s\}$:
+\begin{gather*}
+  X =
+  X_1 + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(X_2-X_1\right)
+\end{gather*}
+
+For the individual properties:
+\begin{gather*}
+  v =
+  v_1 + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(v_2-v_1\right)\\[1ex]
+  h =
+  h_1 + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(h_2-h_1\right)\\[1ex]
+  s =
+  s_1 + \frac{\vartheta-\vartheta_1}{\vartheta_2-\vartheta_1}
+  \left(s_2-s_1\right)
+\end{gather*}
+
+\subsection{Saturated steam extrapolation}
+
+For saturated steam properties outside the tabulated pressure range:
+\begin{gather*}
+  X'' =
+  X''_1 + \frac{p-p_1}{p_2-p_1}
+  \left(X''_2-X''_1\right)
+\end{gather*}
+where:
+\begin{gather*}
+  X'' \in \{v'',h'',s''\}
+\end{gather*}
+
+For example, using $25$ bar and $50$ bar to estimate the value at $100$ bar:
+\begin{gather*}
+  X''_{100} = 3X''_{50}-2X''_{25}
+\end{gather*}
 
 \end{multicols*}
 

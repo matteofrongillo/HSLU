@@ -7,5 +7,6 @@ C = np.array([[1,2,3],[4,5,6]])
 # print(B.shape, B.size)
 
 D = np.hstack([A,C])
-print(D)
+
+
 

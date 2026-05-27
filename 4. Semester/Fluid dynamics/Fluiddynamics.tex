@@ -1069,6 +1069,7 @@ Incompressible, steady flow:
 For $\nabla\cdot u = 0$:
 \[\nabla \cdot u = \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = \frac{\partial^2}{\partial x \partial y} - \frac{\partial^2 \psi}{\partial y \partial x} = 0\]
 
+\newcolumn
 \section{Potential vortex}
 Assuming $\eta = 0$ and irrotational flow:
 \[u_r (r,\theta) = 0 \qquad ; \qquad u_\theta (r,\theta) = v(r)\]
@@ -1081,8 +1082,11 @@ Assuming $\eta = 0$ and irrotational flow:
 where $\Gamma$ is the circulation.
 
 \subsection{Pressure distribution}
-The total pressure is constant throughout the whole field
+{\color{red}The total pressure is constant throughout the whole field}
 \[p(r) = p_\text{ref} + \frac{\rho}{2}\left(v^2_\text{ref} - v(r)^2\right) = \const\]
+
+\subsection{Velocity, pressure, and energy graph}
+\includegraphics[\lw]{media/potential-vortex-graph.png}
 
 \subsection{Proof of irrotationability}
 \begin{gather*}
@@ -1130,6 +1134,7 @@ Thus:
 
 and the potential vortex is irrotational for $r \neq 0$.
 
+\newpage
 \section{Source and Sink}
 Source and Sink behave as an inverted Potential Vortex:
 \[u_r (r,\theta) = v(r) \qquad ; \qquad u_\theta (r,\theta) = 0\]
@@ -1137,28 +1142,123 @@ Source and Sink behave as an inverted Potential Vortex:
 \subsection{Velocity distribution}
 \begin{gather*}
   v(r) = \dfrac{C_r}{r} = \dfrac{E}{2\pi r}\\
-  V = 
+  V = \integral[v(r)][A] = 2\pi l_u v(r) = \dfrac{E}{l_z}
 \end{gather*}
+where $E$ is called Strength
 
-{\color{red}TODO}
+\subsection{Pressure distribution}
+{\color{red}The total pressure is constant throughout the whole field}
+\[p(r) = p_\text{ref} + \dfrac{\rho}{2}\left(v^2_\text{ref} - v(r)^2\right)\]
+
+\subsection{Velocity, pressure, and energy graph}
+\includegraphics[\lw]{media/potential-vortex-graph.png}
+
+\section{Rigid body vortex}
+Fluid rotates like a rigid body with angular velocity $\Omega$
+\[u_r(r,\theta) = 0\quad ;\quad u_\theta (r,\theta) = u_\theta (r)\]
+
+\subsection{Velocity distribution}
+\[v(r) = \Omega r\]
+
+\subsection{Pressure distribution}
+\[p(r) = p_\text{ref} + \frac{1}{2}\rho\Omega^2 \left(r^2 - r^2_\text{ref}\right)\]
+
+\subsubsection{Total pressure increase with the radius}
+\[p_t(r) = p(r) + \frac{1}{2}\rho v(r)^2 = p(r) \frac{1}{2}\rho\Omega^2r^2\]
+
+\subsection{Velocity, pressure, and energy graph}
+\includegraphics[\lw]{media/rigid-body-graph.png}
 
 \newcolumn
-\section{Superposition of inviscid flows}
-\subsection{Superposition principle}
-Laplace equation (potential flow) is linear, therefore
-solutions can be superposed:
-\begin{itemize}
-  \item source/sink
-  \item vortex
-  \item uniform flow
-\end{itemize}
+\section{Superposition: Potential Vortex and Sink / Source}
+\subsection{Velocity distribution}
+\begin{gather*}
+    \underline{u}
+  =
+  \begin{pmatrix}
+    v_r\\[1ex]
+    v_\varphi
+  \end{pmatrix}
+  =
+  \underbrace{
+    \begin{pmatrix}
+      \dfrac{C_r}{r} \\[1.5ex]
+      0
+    \end{pmatrix}
+  }_{\mathit{Sink}}
+  +
+  \underbrace{
+    \begin{pmatrix}
+      0 \\[1.5ex]
+      \dfrac{C_\varphi}{r}
+    \end{pmatrix}
+  }_{\mathit{Potential\ Vortex}}
+  =
+  \begin{pmatrix}
+    \dfrac{C_r}{r} \\[1.5ex]
+    \dfrac{C_\varphi}{r}
+  \end{pmatrix}\\[1.5ex]
+  \frac{v_r}{v_\varphi} = \frac{C_r}{C_\varphi} = \tan(\alpha) = C
+\end{gather*}
 
-For instance:\\
-Tornado model = potential vortex + sink
+The magnitude of the velocity:
+\begin{gather*}
+  v = \sqrt{v_\varphi^2 + v_r^2} = \sqrt{\dfrac{C^2_\varphi + C^2_r}{r^2}} = \dfrac{K}{r}\\[1ex]
+  v(r) = v_\text{ref}\dfrac{r_\text{ref}}{r}
+\end{gather*}
 
-\subsection{Piecewise modelling approach}
-\subsubsection{Rankine vortex}
-{\color{red}TODO}
+\subsection{Streamlines}
+\subsubsection{Streamline trajectory}
+\begin{gather*}
+  \tan(\alpha) = \dfrac{dr}{r\ d\varphi}\\
+  \tan(\alpha)\ d\varphi = \dfrac{1}{r}\ dr
+\end{gather*} 
+
+Integrating with respect to $(r_0, \varphi_0)$ and $(r, \varphi)$:
+\begin{gather*}
+  \tan(\alpha) \integral[\varphi_0][\varphi][][\varphi] = \integral[r_0][r][\dfrac{1}{r}][r]\\[1ex]
+  \tan(\alpha) \cdot \left(\varphi - \varphi_0\right) = \ln\left(\dfrac{r}{r_0}\right)
+\end{gather*}
+
+\subsubsection{Streamline angle}
+\[\varphi = \frac{1}{\tan(\alpha)}\ln\left(\frac{r}{r_0}\right)+\varphi_0\]
+
+\subsection{Pressure distribution}
+\[p(r) = p_\text{ref} + \frac{1}{2}\rho v^2_\text{ref}\left(1-\left(\frac{r_\text{ref}}{r}\right)^2\right)\]
+
+\subsection{Velocity and pressure graph}
+\begin{center}
+  \includegraphics[lw=.65]{media/superposition.png}
+\end{center}
+
+\newcolumn
+\section{Superposition: Rankine vortex}
+Potential vortex + Rigid body vortex = Rankine vortex
+\begin{center}
+  \includegraphics[\lw=.6]{media/rankine.png}
+\end{center}
+
+\subsection{Piecewise velocity distribution}
+\subsubsection{Inner region (r < R$_0$) -- Rigid body vortex}
+\[u_r = 0\quad ; \quad u_\theta = \Omega r\]
+
+Constant velocity:
+\[\omega_z = \frac{1}{r}\frac{d\left(ru_\theta\right)}{dr} = 2\Omega\]
+
+\subsubsection{Outer region (r > R$_0$) -- Potential vortex}
+\[u_r = 0\quad ; \quad u_\theta = \frac{\Gamma}{2\pi r}\]
+
+No vorticity:
+\[\omega_z = \frac{1}{r}\frac{d\left(ru_\theta\right)}{dr} = 0\]
+
+\subsubsection{Transition region (r = R$_0$) -- Same velocity}
+\[\Omega r = \frac{\Gamma}{2\pi r}\]
+
+Coupling between circulation and angular velocity:
+\[\Gamma = 2\pi\Omega R^2_0\]
+
+\subsection{Velocity, pressure, and energy graph}
+\includegraphics[\lw]{media/rankine-graph.png}
 
 \newcolumn
 \vspace*{-.7cm}
@@ -1448,7 +1548,7 @@ $\displaystyle \Rightarrow\; \alpha = \arctan\!\left(\frac{C_r}{C_\varphi}\right
 % Row 5: Pressure
 \makecell{Pressure\\$p(r)$}
 & $\displaystyle p(r) = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - \frac{C_\varphi^2}{r^2}\right)$
-& $\displaystyle p(r) = p_0 + \frac{1}{2}\rho\Omega^2 r^2$
+& $\displaystyle p(r) = p_\mathrm{ref} + \frac{1}{2}\rho\left(u_\theta^2(r) - u_\theta^2(r_\mathrm{ref})\right)$
 & $\displaystyle p(r) = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - \frac{C_r^2}{r^2}\right)$
 & \makecell[c]{$\displaystyle p(r) = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - v(r)^2\right)$\\[6pt]
 $\displaystyle = p_\mathrm{ref} + \frac{\rho}{2}\!\left(v_\mathrm{ref}^2 - \frac{C_r^2+C_\varphi^2}{r^2}\right)$}
@@ -1490,28 +1590,7 @@ Properties
 }
 \end{center}
 
-\vspace{4pt}
 
-\begin{minipage}[t]{0.54\textwidth}
-\begin{tcolorbox}[colback=notebg, colframe=noteborder, boxrule=0.8pt, arc=3pt,
-  left=6pt, right=6pt, top=4pt, bottom=4pt]
-\small All these flows are solutions of Laplace's equation $(\nabla^2\Phi=0)$ and can be combined by superposition. They serve as building blocks for more complex potential flows.
-\end{tcolorbox}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.45\textwidth}
-\begin{tcolorbox}[colback=white, colframe=black!40, boxrule=0.7pt, arc=2pt,
-  left=5pt, right=5pt, top=3pt, bottom=3pt]
-\textbf{\small Notation}\\[3pt]
-\begin{tabular}{@{}ll|@{\quad}ll@{}}
-$r$ & radial distance & $C_\varphi$ & vortex strength (constant)\\
-$\varphi$ & azimuthal angle & $C_r$ & source strength ($>0$) or\\
-$v_r$ & radial velocity component & & sink strength ($<0$)\\
-$v_\varphi$ & tangential (azimuthal) vel.\ comp. & $\Omega$ & angular velocity (rigid-body vortex)\\
-$\rho$ & density & $p$ & pressure\\
-\end{tabular}
-\end{tcolorbox}
-\end{minipage}
 
 
 \end{document}

@@ -38,7 +38,7 @@ tmp*.pdf
 *.DS_Store
 
 # Codex
-*.codex
+.codex
 
 # Lunar
-*.lunarignore
+.lunarignore

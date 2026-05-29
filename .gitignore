@@ -35,7 +35,10 @@
 tmp*.pdf
 
 # OS X
-.DS_Store
+*.DS_Store
 
 # Codex
-.codex
+*.codex
+
+# Lunar
+*.lunarignore

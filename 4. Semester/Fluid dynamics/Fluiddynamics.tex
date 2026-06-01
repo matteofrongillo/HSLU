@@ -1319,23 +1319,31 @@ Coupling between circulation and angular velocity:
 
 \newcolumn
 \subsection{Speed of sound}
-\[c = \sqrt{\frac{dp}{d\rho}_s} = \sqrt{kR_sT}\]
+\figbox{$\dm c = \sqrt{\frac{dp}{d\rho}_s} = \sqrt{kR_sT}$}
 where $k = \dfrac{c_p}{c_v}$
 
 \section{Thermodynamics}
 \subsection{Internal energy}
-\[c_v = \left.\frac{\partial u}{\partial T}\right|_V \to du = c_v(T)\ dT\]
-
-\subsubsection{Change in internal energy}
-\[u_2 - u_1 = c_v\Delta T = c_v\left(T_2 - T_1\right)\]
+\begin{gather*}
+  c_v = \left.\frac{\partial u}{\partial T}\right|_V \to du = c_v(T)\ dT\\
+  u_2 - u_1 = \integral[T_1][T_2][c_v(T)][T] = c_v\Delta T = c_v\left(T_2 - T_1\right)
+\end{gather*}
 
 \subsection{Enthalpy}
-\[h = u + pv = u + R_s T\]
-
-\todo
+\begin{gather*}
+  h = u + pv = u + R_s T\\
+  c_p = \left.\frac{\partial h}{\partial T}\right|_p \to dh = c_p(T)\ dT\\
+  h_2 - h_1 = \integral[T_1][T_2][c_p(T)][T] = c_p\Delta T = c_p\left(T_2 - T_1\right)
+\end{gather*}
 
 \subsection{Specific heat capacity}
-\todo
+\begin{gather*}
+  c_p - c_v = \dfrac{dh}{dT} - \dfrac{du}{dT} = R_s\\[1ex]
+  k = \dfrac{c_p}{c_v}\quad ; \quad c_p = \dfrac{R_S k}{k-1}\quad ; \quad c_v = \dfrac{R_S}{k-1}
+\end{gather*}
+
+\subsection{Density}
+\[pV = m R_i T \Longrightarrow p = \rho R_i T \Longrightarrow \rho = \dfrac{p}{R_i T}\]
 
 \subsection{Entropy}
 \[T\ ds = du + p\ dv\quad ; \quad T\ ds = dh - v\ dp\]
@@ -1448,8 +1456,6 @@ where $k = \dfrac{c_p}{c_v}$
 \end{tabularx}
 \end{center}
 
-
-\newcolumn
 \subsection{Equation of mass flow rate through a nozzle}
 \begin{center}
   \includegraphics[\lw=.5]{media/sonic-throttle.png}
@@ -1474,15 +1480,74 @@ The ratio of the area:
 \subsection{Nozzle - Diffuser}
 \includegraphics[\lw]{media/subsonic.png}
 
+\part{Repetition}
+\section{Fluid state variables}
+\subsection{Kinematic viscosity}
+\[\nu := \frac{\eta}{\rho}\ \left[\frac{m^2}{s}\right]\]
 
+\subsection{Dynamic viscosity}
+\[\eta := \nu \cdot \rho\ \left[Pa\cdot s = \frac{Ns}{m^2} = \frac{kg}{m\cdot s}\right]\]
 
+\section{Pressure}
+\begin{gather*}
+  p_\text{tot} = p_\text{stat} + p_\text{dyn} = \rho\left(gh + \dfrac{v^2}{2}\right)\\[1ex]
+  p_\text{rel} = p_\text{abs} - p_\text{ref} \Longleftrightarrow p_\text{abs} = p_\text{rel} + p_\text{ref} \geq 0
+\end{gather*}
 
+\subsection{Hydrostatic}
+\begin{gather*}
+  p = p_0 + \rho gh = \const\ \left[Pa\right]\\
+  p = p_0 + \dfrac{F_g}{A} = p_0 + \dfrac{mg}{A} = p_0 + \dfrac{\rho hAg}{A}
+\end{gather*}
 
+\section{Mass conservation (incompressible fluid)}
+\begin{gather*}
+  \dot{m} = \rho\dot{V}\\
+  \dot{m}_\alpha = \dot{m}_\omega \Longleftrightarrow \dot{V}_\alpha = \dot{V}_\omega\\
+  \dot{V} = \bar{v}A \Longrightarrow \left(\bar{v}A\right)_\alpha = \left(\bar{v}A\right)_\omega
+\end{gather*}
 
+\section{Energy conservation}
+\[\dot{m}_1 \left(\frac{p_1}{\rho} + \frac{v_1^2}{2} + gz_1\right) = \dot{m}_2 \left(\frac{p_2}{\rho} + \frac{v_2^2}{2} + gz_2\right)\]
 
+\subsection{Energy flow}
+\[\frac{dE}{dt} = \sum P + \sum Q + \sum_\alpha \dot{m} \left(\frac{p}{\rho} + \frac{v^2}{2} + gz\right) - \sum_\omega \dot{m} \left(\frac{p}{\rho} + \frac{v^2}{2} + gz\right)\]
 
+\section{Bernoulli equation}
+\subsection{Specific energy equation}
+\[\frac{p_1}{\rho} + \frac{v_1^2}{2} + gz_1 = \frac{p_2}{\rho} + \frac{v_2^2}{2} + gz_2 = \const\ \left[\frac{J}{kg}\right]\]
 
+\subsubsection{Pressure equation}
+\[p_1 + \frac{\rho v_1^2}{2} + \rho gz_1 = p_2 + \frac{\rho v_2^2}{2} + \rho gz_2 = \const\ \left[Pa\right]\]
 
+\subsubsection{Height equation}
+\[\frac{p_1}{\rho g} + \frac{v_1^2}{2g} + z_1 = \frac{p_2}{\rho g} + \frac{v_2^2}{2g} + z_2 = \const\ \left[m\right]\]
+
+\subsection{Extended Bernoulli equation}
+\[\frac{p_1}{\rho} + \frac{v_1^2}{2} + gz_1 + e_A = \frac{p_2}{\rho} + \frac{v_2^2}{2} + gz_2 + e_V\ \left[\frac{J}{kg}\right]\]
+
+\section{Work terms}
+\begin{gather*}
+  e_A = \frac{p_A}{\rho} = gz_A = \frac{E_A}{m} = \frac{P_A}{\dot{m}}\ \left[\frac{J}{kg}\right]\\[1ex]
+  e_V = \frac{p_V}{\rho} = gz_V = \frac{E_V}{m} = \frac{P_V}{\dot{m}}\ \left[\frac{J}{kg}\right]
+\end{gather*}
+
+\subsection{Pump and turbine work $Y$}
+\begin{gather*}
+  e_w = Y = \frac{W_A}{\dot{m}} = \frac{E_A}{m} = H\cdot g = \frac{p_A}{\rho}\ \left[\frac{J}{kg}\right] \\[1ex]
+  P_\text{hyd} = \dot{m}\cdot Y = \rho\dot{V}Y = \rho\dot{V}gH\ \left[W\right]
+\end{gather*}
+
+\subsection{Pressure loss}
+\[\Delta p_V = e_V\cdot \rho = \frac{E_V \cdot \rho}{m} = \rho gz_V = \zeta \cdot \rho\dfrac{v^2}{2}\ \left[Pa\right]\]
+
+where $\zeta = \dfrac{2\Delta p_V}{\rho v^2}$
+
+\subsection{Pressure head}
+\[H = \frac{e_A}{g} = \frac{\Delta p_A}{\rho g}\ \left[m\right]\]
+
+\section{U-tube manometer}
+\[h = \frac{\rho\left(v_2^2 - v_1^2\right)}{2g\left(\rho_\text{fl,u-tube} - \rho_\text{fl,pipe}\right)}\]
 
 \end{multicols*}
 

@@ -169,12 +169,11 @@ It combines buoyancy driving and thermal diffusion, and it measures the intensit
 \end{center}
 
 \subsubsection{Logarithmic mean temperature difference (LMTD)}
-\[\Delta T_m = \dfrac{\Delta T_a - \Delta T_b}{\ln\dfrac{\Delta T_a}{\Delta T_b}}\]
-where:
+\figbox{$\dm \Delta T_m = \dfrac{\Delta T_a - \Delta T_b}{\ln\dfrac{\Delta T_a}{\Delta T_b}}$}
 \[\Delta T_a = \left|\vartheta_{1,a} - \vartheta_{2,a}\right|\quad ; \quad \Delta T_b = \left|\vartheta_{1,b} - \vartheta_{2,b}\right|\]
 
 \subsubsection{Mean temperature heat flow}
-\[\dot{Q} = kA\Delta T_m\]
+\figbox{$\dot{Q} = kA\Delta T_m$}
 
 \subsubsection{Heat capacity rate ratio (Capacity ratio)}
 It measures the relative ability of stream 1 vs. stream 2 to carry
@@ -325,7 +324,7 @@ For steady-state case:
 \subsubsection{For closed systems}
 \begin{gather*}
   ds = \dfrac{du + p\ dv}{T} = \dfrac{c_v\ dT}{T} + \dfrac{R_i\ dv}{v}\\[1ex]
-  s_2 - s_1 = c_v \ln \dfrac{T_2}{T_1} + R_i \ln \dfrac{v_2}{v_1}
+  \boxed{s_2 - s_1 = c_v \ln \dfrac{T_2}{T_1} + R_i \ln \dfrac{v_2}{v_1}}
 \end{gather*}
 
 \subsubsection{Work change}
@@ -399,7 +398,7 @@ For the change in entropy of the polytropic state change:
 \subsubsection{Exergy of material flows (without mixtures)}
 \begin{gather*}
   e = h - h_E - T_E\left(s-s_E\right) + \dfrac{c^2}{2} + gz + q\left(1-\dfrac{T_E}{T}\right)\\[1ex]
-  e_2 - e_1 = h_2 - h_1 - T_E\left(s_2 - s_1\right)
+  \boxed{e_2 - e_1 = h_2 - h_1 - T_E\left(s_2 - s_1\right)}
 \end{gather*}
 
 \pph{Perfect gases}

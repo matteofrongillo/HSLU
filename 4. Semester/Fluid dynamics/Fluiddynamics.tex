@@ -83,7 +83,7 @@
 \rhead{\small \vspace*{.1cm}Fluid Dynamics Cheatsheet}
 \lhead{\small \vspace*{.1cm}Matteo Frongillo}
 \cfoot{\small \vspace*{.4cm}\thepage}
-\newcommand{\TotalPages}{13}
+\newcommand{\TotalPages}{12}
 \cfoot{\small \vspace*{.4cm}\thepage/\TotalPages}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headsep}{4pt}
@@ -1063,23 +1063,20 @@ Hence:
 which reduces to:
 \[\nabla\frac{1}{2}\left|u\right|^2+\frac{p}{\rho}=\const\]
 
-\section{Stream function $\psi(x,y)$}
-Incompressible, steady flow:
-\[u = \frac{\partial\psi}{\partial y} = \frac{\partial\Phi}{\partial x}\quad \text{and}\quad v = -\frac{\partial \psi}{\partial x} = \frac{\partial\Phi}{\partial y}\]
-For $\nabla\cdot u = 0$:
-\[\nabla \cdot u = \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = \frac{\partial^2}{\partial x \partial y} - \frac{\partial^2 \psi}{\partial y \partial x} = 0\]
-
-\newcolumn
 \section{Potential vortex}
 Assuming $\eta = 0$ and irrotational flow:
 \[u_r (r,\theta) = 0 \qquad ; \qquad u_\theta (r,\theta) = v(r)\]
 
 \subsection{Velocity distribution}
 \begin{gather*}
-  \dm v(r) = \frac{C_\Phi}{r} = \frac{\Gamma}{2\pi r}\\
-  \dm \Gamma = \oint v(r)\ ds = 2\pi r v(s) = 2\pi\Phi
+  \dm v_\theta(r) = \frac{C_\Phi}{r} = \frac{\Omega R^2}{r} = \frac{\Gamma}{2\pi r}\\
+  \dm \Gamma = \oint v(r)\ ds = 2\pi r v(r) = 2\pi\Phi
 \end{gather*}
 where $\Gamma$ is the circulation.
+
+\newcolumn
+\subsection{Volume over a radial plane}
+\[\dot{V} = \integral[R_1][R_2][v_\theta(r)][A] = \integral[R_1][R_2][\frac{\Omega R^2}{r} h][r] = \Omega R^2 h \ln\left(\frac{R_2}{R_1}\right)\]
 
 \subsection{Pressure distribution}
 {\color{red}The total pressure is constant throughout the whole field}
@@ -1160,11 +1157,14 @@ Fluid rotates like a rigid body with angular velocity $\Omega$
 \subsection{Velocity distribution}
 \[v(r) = \Omega r\]
 
+\subsubsection{Angular velocity distribution}
+\[\omega_z = 2\Omega\]
+
 \subsection{Pressure distribution}
 \[p(r) = p_\text{ref} + \frac{1}{2}\rho\Omega^2 \left(r^2 - r^2_\text{ref}\right)\]
 
 \subsubsection{Total pressure increase with the radius}
-\[p_t(r) = p(r) + \frac{1}{2}\rho v(r)^2 = p(r) \frac{1}{2}\rho\Omega^2r^2\]
+\[p_t(r) = p(r) + \frac{1}{2}\rho v(r)^2 = p(r) + \frac{1}{2}\rho\Omega^2r^2\]
 
 \subsection{Velocity, pressure, and energy graph}
 \includegraphics[\lw]{media/rigid-body-graph.png}
@@ -1480,7 +1480,7 @@ The ratio of the area:
 \subsection{Nozzle - Diffuser}
 \includegraphics[\lw]{media/subsonic.png}
 
-\part{Repetition}
+\part{EFPLab 1}
 \section{Fluid state variables}
 \subsection{Kinematic viscosity}
 \[\nu := \frac{\eta}{\rho}\ \left[\frac{m^2}{s}\right]\]

@@ -1,0 +1,580 @@
+\documentclass[9pt, landscape, a4paper]{article}
+
+\usepackage{fontspec}
+\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
+\usepackage[english]{babel}
+\babelfont{rm}{Noto Sans}
+\babelfont{sf}{Noto Sans}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{pdfpages}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancybox}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{esvect}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{varwidth}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{bm}
+\usepackage{forest}
+\usepackage{upgreek}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage[column=O]{cellspace}
+\usepackage{tcolorbox}
+
+\usetikzlibrary{arrows, arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{patterns}
+\pgfplotsset{compat=1.18}
+\definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
+\DeclareMathOperator\arctanh{arctanh}
+
+% ============= TABLE COLORS =============
+\definecolor{col1}{RGB}{80,60,160}
+\definecolor{col2}{RGB}{40,140,60}
+\definecolor{col3}{RGB}{50,80,180}
+\definecolor{col4}{RGB}{200,100,0}
+\definecolor{headerblue}{RGB}{220,230,245}
+\definecolor{headertxt}{RGB}{40,60,120}
+\definecolor{notebg}{RGB}{255,248,220}
+\definecolor{noteborder}{RGB}{200,160,0}
+
+% ============= GEOMETRY =============
+\geometry{
+    a4paper,
+    landscape,
+    left=0.5cm,
+    right=0.5cm,
+    top=1.5cm, 
+    bottom=0cm,
+    footskip=0cm
+}
+
+\setlist{nosep, leftmargin=*}
+
+\AtBeginDocument{
+  \setlength{\abovedisplayskip}{3pt}
+  \setlength{\belowdisplayskip}{3pt}
+  \setlength{\abovedisplayshortskip}{0pt}
+  \setlength{\belowdisplayshortskip}{0pt}
+}
+
+% ============= HEADER & TITLES =============
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small \vspace*{.1cm}Sustainable Energy Systems Cheatsheet}
+\lhead{\small \vspace*{.1cm}Matteo Frongillo}
+\cfoot{\small \vspace*{.4cm}\thepage}
+\newcommand{\TotalPages}{10}
+\cfoot{\small \thepage/\TotalPages}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headsep}{4pt}
+
+\titlespacing*{\part}{0pt}{2pt}{1pt}
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
+
+\titleformat{\part}{\large\bfseries\color{black}}{}{0em}{}
+\titleformat{\section}{\bfseries\color{red!80}}{}{0em}{}
+\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{}{0em}{}
+\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{}{0em}{}
+
+% ============= META DATA =============
+\newcommand{\pdftitle}[1]{\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={#1},
+  pdfauthor={Matteo Frongillo}
+}}
+
+% ============= RENEW COMMANDS =============
+
+\makeatletter
+\renewcommand{\author}[1]{%
+  \def\@author{%
+    #1\\
+    \parbox{\textwidth}{%
+      \centering
+      \small Last update: \today
+    }
+  }%
+}
+\makeatother
+
+\let\emptyset\varnothing
+
+\makeatletter
+\pgfmathdeclarefunction{arctan}{1}{%
+    \begingroup
+    \pgfmathparse{rad(atan(#1))}%
+    \endgroup
+}
+\makeatother
+
+\renewcommand{\tau}{\uptau}
+\renewcommand{\nu}{\upnu}
+
+% ============= NEW COMMANDS =============
+
+\newtcolorbox{exercisebox}[1][Exercise]{
+  colback=gray!5,
+  colframe=gray!75!black,
+  coltitle=white,
+  colbacktitle=gray!75!black,
+  title={\footnotesize\textbf{#1}},
+  fontupper=\footnotesize,
+  boxrule=0.6pt,
+  arc=2pt,
+  left=4pt,
+  right=4pt,
+  top=3pt,
+  bottom=3pt
+}
+
+\newcommand{\figbox}[1]{ 
+  \begin{center}
+    \fbox{\begin{varwidth}{\textwidth} #1 \end{varwidth}} 
+  \end{center}       
+}
+
+\newcommand{\wrapfill}{
+    \par
+    \ifnum \value{WF@wrappedlines} > 0
+        \addtocounter{WF@wrappedlines}{-1}%
+        \null\vspace{
+            \arabic{WF@wrappedlines}
+            \baselineskip
+        }
+        \WFclear
+    \fi
+    \phantom{}
+}
+
+\ExplSyntaxOn
+\DeclareDocumentCommand{\integral}{d[] d[] d[] d[]}
+{
+    \IfNoValueTF{#3}{
+        \IfNoValueTF{#4}{
+            \displaystyle \int #1\,d#2
+        }{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }
+    }{
+        \IfNoValueTF{#4}{
+            \text{Error: either 2 or 4 arguments must be provided}
+        }{
+            \displaystyle
+            \int\limits
+                \IfNoValueF{#1}{\c_math_subscript_token{#1}}
+                ^{\IfNoValueTF{#2}{}{#2}}
+                #3\, d#4
+        }
+    }
+}
+\ExplSyntaxOff
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {\small #1};}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\makeatletter
+\newcommand{\shorteq}{\mathrel{\mkern0.2mu\mathpalette\shorteq@\relax\mkern0.2mu}}
+\newcommand{\shorteq@}[2]{\scalebox{0.5}[1]{$\m@th#1=$}}
+
+\newcommand{\longeq}[1]{\mathrel{\mathpalette\longeq@{#1}}}
+\newcommand{\longeq@}[2]{%
+  \begingroup
+  \sbox\z@{$\m@th#1=$}%
+  \ifdim#2<\wd\z@
+    \resizebox{#2}{\height}{\box\z@}%
+  \else
+    \ifdim#2<3\wd\z@
+      \hbox to #2{$\m@th#1=\hss=\hss=\hss=$}%
+    \else
+      \hbox to #2{$\m@th#1=\cleaders\hbox to 0.2\wd\z@{\hss$#1=$\hss}\hfil=$}%
+    \fi
+  \fi
+  \endgroup
+}
+\makeatother
+
+\newcommand{\const}{%
+  \ \mathrel{\ooalign{%
+    \hfil$c$\hfil\cr
+    \hfil\kern0.10em\raisebox{-0.4ex}{\rule{0.08pt}{1.7ex}}\hfil\cr
+  }}%
+}
+
+\makeatletter
+\define@key{Gin}{lw}[1]{\setkeys{Gin}{width=#1\linewidth}}
+\newcommand{\lw}{lw}
+\makeatother
+
+\newcommand{\difference}{\,\backslash\,}
+\newcommand{\rem}{\underline{Remark}: }
+\newcommand{\nots}{\underline{Notation}: }
+\newcommand{\note}{\underline{Note}: }
+\newcommand{\prf}{\underline{Proof}: }
+\newcommand{\exs}{\underline{Example}: }
+\newcommand{\defs}{\underline{Definition}: }
+\newcommand{\wrn}{\underline{Warning}: }
+\newcommand{\sht}{\ |\ }
+\newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
+\newcommand{\dm}{\displaystyle}
+\newcommand{\rad}{^{\mathrm{c}}}
+\newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
+\newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
+\newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\cel}{$^\circ$C}
+\newcommand{\todo}{{\color{red}TODO}}
+
+\DeclareMathOperator{\rot}{rot}
+
+% ============= DOCUMENT CONTENT =============
+
+\begin{document}
+\pdftitle{Sustainable Energy Systems}
+
+\clearpage
+\includepdf[pages=1,pagecommand={\thispagestyle{empty}}]{SES-Cheatsheet.pdf}
+\clearpage
+\thispagestyle{empty}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    \includegraphics[page=2,width=\paperwidth,height=\paperheight]{SES-Cheatsheet.pdf}%
+  }%
+}
+
+\vspace*{-.8cm}
+\setlength{\columnsep}{0.5cm}
+\begin{multicols*}{3}
+\raggedcolumns
+\null\vfill\columnbreak
+\null\vfill\columnbreak
+
+\vspace*{8.25cm}
+\noindent\rule{\columnwidth}{0.5pt}
+
+\part{SW6: PtX and Syn Fuels}
+\section{Power to X (PtX)}
+PtX: conversion of excess electricity into other useful products.
+\subsection{Main PtX types}
+\begin{itemize}
+  \item \textbf{Power-to-Gas}: H$_2$, CH$_4$
+  \item \textbf{Power-to-Heat}: heat from electricity
+  \item \textbf{Power-to-Fuel}: liquid fuels (eg. methanol)
+  \item \textbf{Power-to-Chemicals}: feedstock (eg. ammonia, syngas)
+\end{itemize}
+
+\subsection{Purpose of PtX}
+\begin{itemize}
+  \item Convert excess renewable electricity for long-term storage
+  \item Stabilize the grid and reduce seasonal energy gaps
+  \item Increase energy system resilience
+\end{itemize}
+
+\subsubsection{Advantages}
+Long-term storage, high energy density, scalable to MW range
+
+\subsection{PtX concept}
+\subsubsection{Electrolysis}
+\begin{center}
+  \chemfig{H_2O + electricity \to\ H_2}
+\end{center}
+
+\subsubsection{Hydrogen path}
+Stored H$_2$ feeds fuel cells to produce electricity and heat
+
+\subsubsection{Methane path + use}
+\begin{center}
+  \chemfig{H_2 + CO_2 \to\ CH_4}
+\end{center}
+Stored CH$_4$ supplies gas demand and supports electricity / heat production
+
+\section{Electrolysis (hydrogen production)}
+\subsection{Chemical reaction and energy relation}
+\begin{center}
+  \chemfig{{H_2O} + {E_{el}} + {E_{th}} \to\ H_2 + \frac{1}{2}O_2}
+  \[\Delta_r H = \Delta_r G + T\Delta_r S\]
+\end{center}
+
+\subsubsection{Enthalpy}
+\begin{itemize}
+  \item $\Delta_r H$ (25\cel, atm) = 285.83 kJ/mol$_{H_2O}$: total energy demand
+  \item Endothermic: $\Delta_r H > 0$
+\end{itemize}
+
+\subsubsection{Gibbs free energy}
+\begin{itemize}
+  \item $\Delta_r G$ (25\cel, atm) = 237.13 kJ/mol$_{H_2O}$: min. electrical energy
+  \item Non-spontaneous: $\Delta_r G > 0$
+\end{itemize}
+
+\subsubsection{Reversible cell voltage}
+\[U_\text{rev} = -\frac{\Delta_r G}{zF} = -1.23 V\]
+
+\subsection{Hydrogen properties}
+\begin{itemize}
+  \item Highly flammable, much lighter than air
+  \item Highest gravimetric energy density: 33.3 kWh/kg
+  \item Low volumetric energy density: 3 kWh/m$^3$
+\end{itemize}
+
+\subsection{Water electrolysis}
+Water is split using electricity. Hydrogen is produced at the cathode,
+Oxygen is produced at the anode.
+
+\subsubsection{Ion formation}
+\begin{center}
+  \chemfig{4H_2O \to\ 4H^{+} + 4OH^{-}}
+\end{center}
+
+\subsubsection{Cathode = reduction}
+\begin{center}
+  \chemfig{4H^{+} + 4e^{-} \to\ 4H}$\quad ; \quad$\chemfig{4H \to\ 2H_2}
+\end{center}
+
+\subsubsection{Anode = oxidation}
+\begin{center}
+  \chemfig{4OH^{-} \to\ 4OH + 4e^{-}}$\quad ; \quad$\chemfig{4OH \to\ 2H_2O + O_2}
+\end{center}
+
+\begin{exercisebox}[Exercise: Waste heat reuse of PEM electrolysis]
+  \begin{minipage}[t]{0.48\linewidth}
+    Input:
+    \begin{itemize}
+      \item Electricity: 204.03 MJ/kg H$_2$
+      \item Water: 9.04 kg
+    \end{itemize}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.48\linewidth}
+    Output:
+    \begin{itemize}
+      \item Hydrogen: 1 kg
+      \item Oxygen: 7.94 kg
+    \end{itemize}
+  \end{minipage}
+  \vspace{.2cm}
+  \begin{enumerate}[label=\alph*.]
+    \item Draw a schematic of the situation
+    \item What is the cell efficiency? (LHV$_{\mathrm{H}_2}$ = 120 MJ/kg)
+    \item Assuming 80\% of the waste heat can be used for another purpose. What is the exergetic efficiency of the
+        electrolysis? Assuming a reaction temperature of 80\cel, ambient temperature of 25 \cel
+  \end{enumerate}
+  \vspace{0.1cm}\par\vspace{-.5\ht\strutbox}\noindent\rule{\linewidth}{.5pt}\par\vspace{0.1cm}
+  \begin{enumerate}[label=\alph*.]
+    \item \includegraphics[\lw=.5]{media/electrolysis-exercise.png}
+    \item $\eta_\text{cell} = \frac{120\text{ MJ}}{204.03\text{ MJ}} = 0.588 = 58.8\%$
+    \item $Q_\text{waste} = (204.03 - 120)\text{ MJ} = 84.03\text{ MJ}$\\
+      $Q_\text{waste,use} = 84.03\text{ MJ} \cdot 0.8 = 67.22\text{ MJ}$\\[.5ex]
+      $EX_\text{waste,use} = 67.22\text{ MJ} \left(1 - \frac{T_0}{T}\right) = 67.22 \left(1 - \frac{298}{353}\right) = 10.49\text{ MJ}$\\[.5ex]
+      $\eta_{\text{cell},EX} = \frac{120\text{ MJ} + 10.49\text{ MJ}}{204.03\text{ MJ}} = 0.6395 = 64\%$
+  \end{enumerate}
+\end{exercisebox}
+
+\subsection{Types of electrolysis}
+\subsubsection{AEL -- Alkaline Electrolysis}
+\begin{itemize}
+  \item Mature, industrial scale: > 100 MW$_\text{el}$
+  \item Electrolyte: 20--40 wt\% KOH, not consumed
+  \item Ni electrodes; diaphragm transports OH$^-$ and split gases
+\end{itemize}
+
+\subsubsection{PEM -- Proton Exchange Membrane}
+\begin{itemize}
+  \item Less mature, up to several MW$_\text{el}$; 5--10 times smaller than AEL
+  \item Solid polymer membrane conducts H$^+$ and blocks electrons
+  \item Acidic, anode-fed system; needs costly durable materials, eg. Nafion
+\end{itemize}
+
+\subsubsection{SOEC -- Solid Oxide Electrolysis Cell}
+\begin{itemize}
+  \item High-temperature steam electrolysis: 700 - 1000 \cel
+  \item Heat replaces part of the electrical demand
+  \item Solid oxide membrane conducts O$^{2-}$
+\end{itemize}
+
+\section{Methane}
+\subsection{Pros and Cons}
+\textbf{Pros}: good fuel and storage gas, higher volumetric energy density than H$_2$,
+uses existing gas infrastructure, can form longer hydrocarbons.
+
+\textbf{Cons}: Lower gravimetric energy density than H$_2$
+
+\subsection{Methanation}
+Conversion of H$_2$ and CO$_2$ into methane CH$_4$
+\subsubsection{Chemical}
+\begin{itemize}
+  \item Sabatier reaction
+  \item Converts \chemfig{CO_2 + H_2 \to\ CH_4}
+\end{itemize}
+
+\subsubsection{Biological}
+\begin{itemize}
+  \item Uses H$_2$
+  \item Bacteria/enzymes act as catalyst
+\end{itemize}
+
+\subsection{Thermochemical methanation}
+\begin{center}
+  \chemfig{CO_2 + 4H_2 \to\ CH_4 + 2H_2O}
+  \[\Delta_r H = \Delta_r G + T\Delta_r S\]
+\end{center}
+\begin{itemize}
+  \item Exothermic: $\Delta_r H < 0$; 300--500\cel
+  \item Ni-based catalyst, needs CO$_2$
+  \item Waste heat improves efficiency
+\end{itemize}
+
+\section{Fuels}
+\subsection{Fischer-Tropsch reaction}
+Aims to produce sustainable liquid hydrocarbons \chemfig{C_nH_{2n+2}} from CO$_2$ and H$_2$
+\subsubsection{Process}
+\begin{itemize}
+  \item Electrolysis $\to$\ H$_2$
+  \item RWGS $\to$\ syngas CO + H$_2$
+  \item FT synthesis $\to$\ liquid fuels
+\end{itemize}
+\subsubsection{Main products}
+Kerosene, diesel, naphtha, lubricating oil
+
+\subsection{Synhelion}
+\begin{itemize}
+  \item Concentrated solar heat drives fuel production
+  \item TES stores heat for continuous operation
+  \item \chemfig{CO_2 + H_2O \to\ CO + H_2}
+  \item Syngas $\to$\ GTL/FT $\to$\ gasoline, diesel, kerosene
+\end{itemize}
+
+\section{Storage}
+\begin{itemize}
+  \item Tank: limited volume
+  \item Porous caverns: existing tanks; scarcity, contamination risk
+  \item Aquifer: abundant; needs exploration, low leak rate
+  \item Rock salt caverns: large volumes, high gas purity
+  \item Underground pipes: independent from geology, expensive
+\end{itemize}
+
+\section{X-t-P}
+\subsection{Fuel cell}
+\begin{itemize}
+  \item Reverse electrolysis: \chemfig{H_2 + \frac{1}{2}O_2 \to\ H_2O + electricity}
+  \item Continuous input: H$_2$ + air/O$_2$
+  \item Output: water, electricity, heat
+  \item Anode + cathode + electrolyte
+  \item Porous electrodes for gas flow
+  \item Cell voltage < 1 V $\to$\ stack needed
+\end{itemize}
+
+\subsubsection{Fuel cell types}
+\begin{tabularx}{\columnwidth}{@{}lccXc@{}}
+  \toprule
+  \textbf{Type} & \textbf{Temp.} & \textbf{Carrier} & \textbf{Electrolyte} & \textbf{Eff.}\\
+  \midrule
+  AFC & 60--120\cel & OH$^-$ & KOH & 35--55\%\\
+  PEMFC & 50--100\cel & H$^+$ & polymer membr. & 35--45\%\\
+  SOFC & 800--1000\cel & O$^{2-}$ & zirconia & >50\%\\
+  \bottomrule
+\end{tabularx}
+
+\subsubsection{Proton Exchange Membrane (PEM) fuel cell}
+Polymer membrane conducts only H$^+$, not electrons:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item Anode: \chemfig{H_2 \to\ H^{+} + e^{-}}
+  \item H$^+$ passes through membrane
+  \item e$^-$ goes through external circuit $\to$\ current
+  \item Cathode: \chemfig{H^{+} + e^{-} + O_2 \to\ H_2O}
+\end{itemize}
+
+\subsection{Combustion}
+\begin{itemize}
+  \item \textbf{Power generation}: fuel $\to$\ turbine $\to$\ generator
+  \item \textbf{CHP}: produces electricity + useful heat
+  \item CHP improves total efficiency by reusing waste heat
+\end{itemize}
+\includegraphics[\lw]{media/combustion.png}
+
+\section{PtXtP}
+PtX has low electricity-to-electricity efficiency: CH$_4$ gives only 30--38\%, while
+batteries reach 80--90\%.
+
+PtX is mainly useful for long-term storage or when gas / heat / fuels are needed, not
+for short-term electricity storage.
+
+\newcolumn
+\part{SW 7: Electrical Grids}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{multicols*}
+\end{document}

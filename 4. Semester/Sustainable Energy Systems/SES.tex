@@ -135,7 +135,8 @@
 
 \renewcommand{\tau}{\uptau}
 \renewcommand{\nu}{\upnu}
-
+\let\mathto\to
+\renewcommand{\to}{\ensuremath{\mathto}\ }
 % ============= NEW COMMANDS =============
 
 \newtcolorbox{exercisebox}[1][Exercise]{
@@ -250,8 +251,9 @@
 \newcommand{\dsum}[2]{\displaystyle \sum_{#1}^{#2}}
 \newcommand{\dx}[2]{\dfrac{{\mathrm{d}}^{#1}{#2}}{\mathrm{d}x^{#1}}}
 \newcommand{\der}[2]{\dfrac{{\mathrm{d}}{#1}}{\mathrm{d}{#2}}}
-\newcommand{\cel}{$^\circ$C}
+\newcommand{\cel}{\ensuremath{^\circ}C}
 \newcommand{\todo}{{\color{red}TODO}}
+\newcommand{\hr}{\vspace{0.1cm}\par\vspace{-.5\ht\strutbox}\noindent\rule{\linewidth}{.5pt}\par\vspace{0.1cm}}
 
 \DeclareMathOperator{\rot}{rot}
 
@@ -280,7 +282,7 @@
 \vspace*{8.25cm}
 \noindent\rule{\columnwidth}{0.5pt}
 
-\part{SW6: PtX and Syn Fuels}
+\part{SW 6: PtX and Syn Fuels}
 \section{Power to X (PtX)}
 PtX: conversion of excess electricity into other useful products.
 \subsection{Main PtX types}
@@ -304,7 +306,7 @@ Long-term storage, high energy density, scalable to MW range
 \subsection{PtX concept}
 \subsubsection{Electrolysis}
 \begin{center}
-  \chemfig{H_2O + electricity \to\ H_2}
+  \chemfig{H_2O + electricity \rightarrow\ H_2}
 \end{center}
 
 \subsubsection{Hydrogen path}
@@ -312,14 +314,14 @@ Stored H$_2$ feeds fuel cells to produce electricity and heat
 
 \subsubsection{Methane path + use}
 \begin{center}
-  \chemfig{H_2 + CO_2 \to\ CH_4}
+  \chemfig{H_2 + CO_2 \rightarrow\ CH_4}
 \end{center}
 Stored CH$_4$ supplies gas demand and supports electricity / heat production
 
 \section{Electrolysis (hydrogen production)}
 \subsection{Chemical reaction and energy relation}
 \begin{center}
-  \chemfig{{H_2O} + {E_{el}} + {E_{th}} \to\ H_2 + \frac{1}{2}O_2}
+  \chemfig{{H_2O} + {E_{el}} + {E_{th}} \rightarrow\ H_2 + \frac{1}{2}O_2}
   \[\Delta_r H = \Delta_r G + T\Delta_r S\]
 \end{center}
 
@@ -351,17 +353,17 @@ Oxygen is produced at the anode.
 
 \subsubsection{Ion formation}
 \begin{center}
-  \chemfig{4H_2O \to\ 4H^{+} + 4OH^{-}}
+  \chemfig{4H_2O \rightarrow\ 4H^{+} + 4OH^{-}}
 \end{center}
 
 \subsubsection{Cathode = reduction}
 \begin{center}
-  \chemfig{4H^{+} + 4e^{-} \to\ 4H}$\quad ; \quad$\chemfig{4H \to\ 2H_2}
+  \chemfig{4H^{+} + 4e^{-} \rightarrow\ 4H}$\quad ; \quad$\chemfig{4H \rightarrow\ 2H_2}
 \end{center}
 
 \subsubsection{Anode = oxidation}
 \begin{center}
-  \chemfig{4OH^{-} \to\ 4OH + 4e^{-}}$\quad ; \quad$\chemfig{4OH \to\ 2H_2O + O_2}
+  \chemfig{4OH^{-} \rightarrow\ 4OH + 4e^{-}}$\quad ; \quad$\chemfig{4OH \rightarrow\ 2H_2O + O_2}
 \end{center}
 
 \begin{exercisebox}[Exercise: Waste heat reuse of PEM electrolysis]
@@ -387,7 +389,7 @@ Oxygen is produced at the anode.
     \item Assuming 80\% of the waste heat can be used for another purpose. What is the exergetic efficiency of the
         electrolysis? Assuming a reaction temperature of 80\cel, ambient temperature of 25 \cel
   \end{enumerate}
-  \vspace{0.1cm}\par\vspace{-.5\ht\strutbox}\noindent\rule{\linewidth}{.5pt}\par\vspace{0.1cm}
+  \hr
   \begin{enumerate}[label=\alph*.]
     \item \includegraphics[\lw=.5]{media/electrolysis-exercise.png}
     \item $\eta_\text{cell} = \frac{120\text{ MJ}}{204.03\text{ MJ}} = 0.588 = 58.8\%$
@@ -432,7 +434,7 @@ Conversion of H$_2$ and CO$_2$ into methane CH$_4$
 \subsubsection{Chemical}
 \begin{itemize}
   \item Sabatier reaction
-  \item Converts \chemfig{CO_2 + H_2 \to\ CH_4}
+  \item Converts \chemfig{CO_2 + H_2 \rightarrow\ CH_4}
 \end{itemize}
 
 \subsubsection{Biological}
@@ -443,7 +445,7 @@ Conversion of H$_2$ and CO$_2$ into methane CH$_4$
 
 \subsection{Thermochemical methanation}
 \begin{center}
-  \chemfig{CO_2 + 4H_2 \to\ CH_4 + 2H_2O}
+  \chemfig{CO_2 + 4H_2 \rightarrow\ CH_4 + 2H_2O}
   \[\Delta_r H = \Delta_r G + T\Delta_r S\]
 \end{center}
 \begin{itemize}
@@ -457,9 +459,9 @@ Conversion of H$_2$ and CO$_2$ into methane CH$_4$
 Aims to produce sustainable liquid hydrocarbons \chemfig{C_nH_{2n+2}} from CO$_2$ and H$_2$
 \subsubsection{Process}
 \begin{itemize}
-  \item Electrolysis $\to$\ H$_2$
-  \item RWGS $\to$\ syngas CO + H$_2$
-  \item FT synthesis $\to$\ liquid fuels
+  \item Electrolysis \to H$_2$
+  \item RWGS \to syngas CO + H$_2$
+  \item FT synthesis \to liquid fuels
 \end{itemize}
 \subsubsection{Main products}
 Kerosene, diesel, naphtha, lubricating oil
@@ -468,8 +470,8 @@ Kerosene, diesel, naphtha, lubricating oil
 \begin{itemize}
   \item Concentrated solar heat drives fuel production
   \item TES stores heat for continuous operation
-  \item \chemfig{CO_2 + H_2O \to\ CO + H_2}
-  \item Syngas $\to$\ GTL/FT $\to$\ gasoline, diesel, kerosene
+  \item \chemfig{CO_2 + H_2O \rightarrow\ CO + H_2}
+  \item Syngas \to GTL/FT \to gasoline, diesel, kerosene
 \end{itemize}
 
 \section{Storage}
@@ -484,12 +486,12 @@ Kerosene, diesel, naphtha, lubricating oil
 \section{X-t-P}
 \subsection{Fuel cell}
 \begin{itemize}
-  \item Reverse electrolysis: \chemfig{H_2 + \frac{1}{2}O_2 \to\ H_2O + electricity}
+  \item Reverse electrolysis: \chemfig{H_2 + \frac{1}{2}O_2 \rightarrow\ H_2O + electricity}
   \item Continuous input: H$_2$ + air/O$_2$
   \item Output: water, electricity, heat
   \item Anode + cathode + electrolyte
   \item Porous electrodes for gas flow
-  \item Cell voltage < 1 V $\to$\ stack needed
+  \item Cell voltage < 1 V \to stack needed
 \end{itemize}
 
 \subsubsection{Fuel cell types}
@@ -507,15 +509,15 @@ Kerosene, diesel, naphtha, lubricating oil
 Polymer membrane conducts only H$^+$, not electrons:
 \vspace*{-.2cm}
 \begin{itemize}
-  \item Anode: \chemfig{H_2 \to\ H^{+} + e^{-}}
+  \item Anode: \chemfig{H_2 \rightarrow\ H^{+} + e^{-}}
   \item H$^+$ passes through membrane
-  \item e$^-$ goes through external circuit $\to$\ current
-  \item Cathode: \chemfig{H^{+} + e^{-} + O_2 \to\ H_2O}
+  \item e$^-$ goes through external circuit \to current
+  \item Cathode: \chemfig{H^{+} + e^{-} + O_2 \rightarrow\ H_2O}
 \end{itemize}
 
 \subsection{Combustion}
 \begin{itemize}
-  \item \textbf{Power generation}: fuel $\to$\ turbine $\to$\ generator
+  \item \textbf{Power generation}: fuel \to turbine \to generator
   \item \textbf{CHP}: produces electricity + useful heat
   \item CHP improves total efficiency by reusing waste heat
 \end{itemize}
@@ -529,10 +531,570 @@ PtX is mainly useful for long-term storage or when gas / heat / fuels are needed
 for short-term electricity storage.
 
 \newcolumn
-\part{SW 7: Electrical Grids}
+\vspace*{-.5cm}
+\part{SW 8: Electrical Grids}
 
+\section{Grid integration of renewables}
+\begin{itemize}
+  \item Main issues: fluctuating production, winter/day supply gaps, congestion, voltage limits
+  \item More RES requires storage, smart control, grid reinforcement/expansion
+  \item Switzerland: voltage issues at connection points are often more critical than transformer overloads
+  \item PV curtailment: limiting peak power can lose little energy; 50\% power limit $\approx$ 10\% energy loss
+\end{itemize}
 
+\subsection{Synchronous grids}
+\begin{itemize}
+  \item All generators/loads operate at common frequency: Europe 50 Hz, North America 60 Hz
+  \item Interconnected AC network enables power flow and trading over large areas
+  \item Stability needs supply-demand balance, frequency control, voltage control, overload mitigation
+  \item Large rotating machines provide inertia and slow frequency changes
+  \item Alternatives: isolated grids, microgrids, DC grids, HVDC links
+\end{itemize}
 
+\subsection{DC transmission}
+\begin{itemize}
+  \item Connects asynchronous areas/islands; different frequencies possible
+  \item Efficient for long distance $>500$ km: no reactive power losses, no skin effect
+  \item Drawbacks: costly converters, harder monitoring/balancing, meshed DC grids complex
+\end{itemize}
+
+\section{Grid structure and components}
+\subsection{Swiss grid levels}
+Swiss transmission grid: 1 TSO, 380/220 kV, $\sim 6700$ km, substations, cross-border
+links, 2.5m CHF planned investment.
+\begin{center}
+  \includegraphics[\lw]{media/swiss-grid.png}
+\end{center}
+
+\subsection{Components}
+\begin{itemize}
+  \item Generation: hydro, nuclear, thermal, renewables
+  \item Delivery: overhead lines, underground cables, substations
+  \item Conversion/control: transformers, converters, tap changers, capacitor banks
+  \item Storage/loads: pumped hydro, BESS, industrial and local loads
+  \item Protection/monitoring: circuit breakers, fuses, SCADA, sensors, automation
+\end{itemize}
+
+\subsection{Operation requirements}
+\begin{itemize}
+  \item Frequency stable and in range
+  \item Voltage stable and in range
+  \item Operation within nominal current, voltage, thermal limits
+  \item Resilience against faults/short circuits
+  \item Transient stability after disturbances
+  \item $n-1$ criterion: supply remains guaranteed after any single component failure
+\end{itemize}
+
+\section{Renewable Energy Sources (RES) integration measures}
+\subsection{Voltage issues}
+\begin{itemize}
+  \item Reactive power regulation: absorb/inject $Q$ to control local voltage
+  \item Active power limitation: curtail feed-in peaks
+  \item Voltage regulating transformer: static or adjustable
+  \item Grid reinforcement:\\lower line/transformer impedance \to lower voltage rise
+\end{itemize}
+
+\subsection{Overloading}
+\begin{itemize}
+  \item Increase self-consumption; synchronize local loads with local production
+  \item Active power limitation: fixed feed-in limit or dynamic limit
+  \item Grid reinforcement increases transport capacity and reduces impedance
+\end{itemize}
+
+\section{Power in AC lines}
+\subsection{Complex power}
+\[S = V I^* = P + jQ\]
+where:\\
+$S$: apparent/complex power [VA], $I^*$: current conjugate
+\begin{itemize}
+  \item Active power: $P = Re(S) = VI\cos\theta$ [W]
+  \item Reactive power: $Q = Im(S) = VI\sin\theta$ [var]
+  \item Power factor: $\cos\theta = P/S$
+\end{itemize}
+
+\subsection{Line impedance, Power in a transmission line, Power losses}
+\[Z = R + jX\quad ;\quad S = P+jQ\frac{\left|V\right|^2}{Z}\quad ;\quad P_\text{loss} = I^2R\]
+\begin{itemize}
+  \item Higher voltage levels usually have higher reactance $X$
+  \item Reactive power flow is inefficient in transmission grids
+\end{itemize}
+
+\section{Voltage drop/rise at a connection point}
+\[\Delta U_2[\%] \approx \frac{R\,\Delta P + X\,\Delta Q}{U_n^2}\cdot 100\]
+where $U_n$: rated voltage = 400 V
+\vspace*{-.2cm}
+\begin{itemize}
+  \item $\Delta P > 0$ MW (more load) \to $\Delta U$ positive \to $U_2$ decreases
+  \item $\Delta P < 0$ MW (more feed-in) \to $\Delta U$ negative \to $U_2$ increases
+  \item $\Delta Q > 0$ Mvar (inductive) \to $\Delta U$ positive \to $U_2$ decreases
+  \item $\Delta Q < 0$ Mvar (capacitive) \to $\Delta U$ negative \to $U_2$ increases
+  \item Local feed-in/load changes voltage; high RES feed-in can cause overvoltage.
+\end{itemize}
+
+\begin{exercisebox}[Exercise: Loss in a transmission line]
+  An existing 10 kV transmission line carries 2 MVA (single phase line).
+  \begin{enumerate}[label=\arabic*.]
+    \item How much active power can it carry at $\cos(\theta)=0.95$?
+    \item What are the active power losses for $Z = 1 + j2\,\Omega$?
+    \item For the same active power, what are the losses at $\cos(\theta)=0.8$?
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\arabic*.]
+    \item $P = S\cos\theta = 2\text{ MVA}\cdot0.95 = 1.9\text{ MW}$
+    \item $I = \frac{S}{U} = \frac{2\text{ MVA}}{10\text{ kV}} = 200\text{ A}$\\
+      $P_\text{loss} = I^2R = (200\text{ A})^2\cdot1\,\Omega = 40\text{ kW}$
+    \item $S = \frac{P}{\cos\theta} = \frac{1.9\text{ MW}}{0.8} = 2.375\text{ MVA}$\\
+      $I = \frac{S}{U} = \frac{2.375\text{ MVA}}{10\text{ kV}} = 237.5\text{ A}$\\
+      $P_\text{loss} = (237.5\text{ A})^2\cdot1\,\Omega \approx 56.4\text{ kW}$
+  \end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Exercise: Voltage drop in a low-voltage grid]
+  A 400 V LV feeder supplies a household.\\
+  $R=0.15\,\Omega$, $X_L=0.1\,\Omega$, $U_n=400\text{ V}$, initial $P=5\text{ MW}$, $Q=2\text{ MVAr}$.\\
+  A PV plant changes $\Delta P=-100\text{ kW}$ and voltage control sets $\Delta Q=100\text{ kVAr}$ inductive.
+  \begin{enumerate}[label=\arabic*.]
+    \item Calculate $\Delta U_2[\%] \approx \frac{\Delta P R + \Delta Q X_L}{U_n^2}\cdot100$
+    \item Does the household voltage increase or decrease?
+    \item How can voltage fluctuations be mitigated?
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\arabic*.]
+    \item $\Delta U_2 = \frac{(-100000)\cdot0.15 + 100000\cdot0.1}{400^2}\cdot100
+      = -3.125\%$
+    \item Negative voltage drop \to voltage rises by $\approx 3.13\%$:
+      $\Delta U \approx 12.5\text{ V}$, so $U_2 \approx 412.5\text{ V}$
+    \item Reactive power control, active power curtailment, tap changer, local load shifting/self-consumption,
+      grid reinforcement
+  \end{enumerate}
+\end{exercisebox}
+
+\part{SW 9+10: Mobility and Smart Grid Trends}
+
+\section{E-mobility status quo}
+\begin{itemize}
+  \item Mobility uses $\approx 1/3$ of Swiss final energy; transport is still mostly fossil
+  \item Electrification of transport/heating increases electricity demand; transport electricity still $<10\%$
+  \item EVs: $\sim 50$--$80\%$ life-cycle CO$_2$ savings vs. combustion vehicles
+  \item Switzerland: BEV/PHEV $\sim 1/3$ of new car registrations; total EV stock still low
+  \item 2050: $\sim 4$--$5$ million EVs; storage potential $\sim 200$ GWh, comparable to pumped storage
+  \item Policy: Climate and Innovation Act, new Electricity Act incentives for electric mobility/storage
+\end{itemize}
+
+\subsection{Role in Energy Strategy 2050}
+\begin{itemize}
+  \item High PV/wind share \to more fluctuating production
+  \item Almost fully electrified car fleet can become flexible load and distributed storage
+  \item Bidirectional charging potential depends on charger power and availability for grid services
+\end{itemize}
+
+\newcolumn
+\section{Powertrains and storage}
+\subsection{Powertrain comparison}
+\begin{itemize}
+  \item BEV: highest well-to-wheel efficiency; best suited if electricity is low-carbon
+  \item FCEV/H$_2$: lower chain efficiency due to electrolysis, compression/storage, fuel cell losses
+  \item ICE/H$_2$ combustion: low drivetrain efficiency; fuel handling easier than batteries
+  \item BEV mid-size car life-cycle emissions much lower than ICE; lecture example $\approx 55$--$58\%$ reduction
+\end{itemize}
+
+\subsection{Battery storage}
+\begin{itemize}
+  \item E-mobility needs high specific energy [kWh/kg] and energy density [kWh/L]
+  \item Li-ion batteries store much less energy per kg than liquid fuels, but EV drivetrain efficiency is high
+  \item Typical drivetrain efficiency: EV $\sim 80\%$ vs. combustion $\sim 20\%$
+  \item Li-ion battery costs fell strongly; lecture: about $-80\%/10$ yr
+\end{itemize}
+
+\subsection{Battery ageing}
+\begin{itemize}
+  \item Ageing types: calendar ageing and cycling ageing
+  \item Drivers: temperature, C-rate, depth of discharge, energy throughput, deep discharge at high temperature
+  \item V2X ageing likely low/minimal for slow grid services; warranty conditions vary by manufacturer
+  \item Typical warranty: 5--8 years, 160'000--240'000 km, often $\geq 70\%$ remaining capacity
+\end{itemize}
+
+\section{Charging infrastructure}
+\subsection{AC vs. DC charging}
+\includegraphics[\lw]{media/acdc-charging.png}
+\vspace*{-.6cm}
+\begin{itemize}
+  \item DC bidirectional charging is commercially more available
+  \item AC bidirectional still limited
+  \item Requirements:\\AC/DC conversion, DC voltage regulation, galvanic isolation
+  \item MCS for heavy vehicles: MW scale, up to $\sim 3.75$ MW target
+\end{itemize}
+
+\subsection{Connector types}
+\subsubsection{DC connector types}
+\begin{itemize}
+  \item CCS: PLC communication, de facto standard in Europe/North America, bidirectional specified but limited
+  \item CHAdeMO: CAN bus, bidirectional commercially available, standard in Japan, phased out in Europe
+  \item Inductive charging (wireless)
+\end{itemize}
+
+\newcolumn
+\begin{center}
+  \includegraphics[\lw=.75]{media/connectors.png}
+\end{center}
+
+\subsection{IEC 61851 charging modes}
+\includegraphics[\lw]{media/IEC.png}
+
+\section{Management and interoperability}
+\subsection{Charge management (local parameters)}
+Charging is regulated based on several parameters:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item State of charge and temperature of the high-voltage battery
+  \item Charger's power and load of the charging station (wallbox)
+  \item Permissible charging power of the cable
+\end{itemize}
+
+\subsection{Load management (upstream limitations)}
+\begin{itemize}
+  \item Regulates the charging process within a building or area
+  \item Prevents the maximum reference power at the connection point from being exceeded
+  \item Other input variables are considered (eg. PV system optimisation and special tariffs)
+  \item Applies to both local and higher-level load management
+\end{itemize}
+
+\subsubsection{Dynamic and static load management}
+\includegraphics[\lw]{media/dyn-static.png}
+
+\subsection{Interoperability}
+\begin{itemize}
+  \item Required across backend systems, charging infrastructure, vehicles, users
+  \item Challenges: cybersecurity, privacy, protocols, response times, plug types, warranties, regulation
+  \item No one-size-fits-all solution today; V1G/V2G compatibility depends on car, charger, backend
+\end{itemize}
+
+\section{Grid integration and Flexibility of EVs, V2X}
+\subsection{Impacts of EVs on electrical power systems}
+\begin{itemize}
+  \item EV uptake increases energy demand and peak power consumption
+  \item Superchargers create high ramp rates and local $100+$ kW power steps
+  \item Risks: transformer/line overloads, congestion, higher losses, network reinforcement needs
+\end{itemize}
+
+\subsubsection{Impacts on distribution grids}
+\begin{itemize}
+  \item Directly affects voltage level
+  \item Affects power flows in lines and transformers
+  \item Reverse power flows can be challenging for sys. protection
+  \item Might increase network losses
+  \item Causes high ramp rates after dark (Duck curve)
+\end{itemize}
+
+\subsubsection{Challenges for distribution system operation}
+\begin{enumerate}
+  \item Increasing demand from EV charging
+  \item Uncertainty in renewable generation
+\end{enumerate}
+\vspace*{-.2cm}
+Mitigation: uni- and bidirectional charging; smart charging; Vehicle-to-grid (V2G) integration.
+
+\subsection{Bidirectional charging}
+\includegraphics[\lw]{media/bidirectional.png}
+
+\subsubsection{Use cases}
+\begin{itemize}
+  \item Standard charging: uncontrolled, cheap, but causes load spikes
+  \item V1G / smart charging: unidirectional controlled charging; peak shaving, tariff/PV optimization
+  \item V2H/V2B: vehicle supplies home/building; self-consumption, peak shaving, backup power
+  \item V2G: vehicle feeds grid; frequency control, congestion management, voltage regulation
+  \item V2L: loads supplied directly from vehicle; V2V: charge another vehicle; V2X: umbrella term
+\end{itemize}
+
+\subsubsection{Technology readiness}
+\includegraphics[\lw]{media/uni-vs-bi.png}
+
+\subsection{Battery ageing and warranty}
+\subsubsection{Ageing}
+\begin{itemize}
+  \item Complex, even without bidirectional charging
+  \item Calendar Ageing \& Cycling Ageing
+  \item Operating temperature, charge/discharge rates, depth of discharge, energy throughput \to individual use
+  \item Deep discharge combined with elevated temp. \to main driver
+  \item Limited experience for bidirectional charging
+  \item Low discharge rates due to V2X use cases
+  \item Extra V2X ageing is expected to be low; not enough to make V2X technically infeasible
+\end{itemize}
+
+\subsubsection{Warranty}
+\begin{itemize}
+  \item Battery warranties usually limited by both age and mileage
+  \item Typical range: 5--8 years and 160'000--240'000 km
+  \item End-of-warranty guarantee often requires at least 70\% remaining capacity
+  \item V2X warranty treatment differs strongly by manufacturer
+  \item Market is still early; warranty impact cannot yet be judged
+\end{itemize}
+
+\subsection{Flexibility and business cases}
+\subsubsection{Bidirectional charging / Vehicle-to-grid (V2G)}
+\textbf{Transmission system grid services (TSO)}
+\vspace*{-.2cm}
+\begin{itemize}
+  \item Frequency control: primary, secondary, tertiary reserves
+  \item Other services: voltage support, active power loss compensation, black start/island operation
+  \item Small assets need aggregation into virtual power plants (VPPs) after prequalification
+\end{itemize}
+
+\textbf{Distribution system grid services (DSO)}
+\vspace*{-.2cm}
+\begin{itemize}
+  \item DSO needs: congestion management, voltage regulation, grid-capacity management
+  \item Local optimization: TOU tariff shifting, kW$_\text{max}$ peak shaving, PV self-consumption, emergency supply
+  \item Barriers: limited distribution-grid visibility, no unified DSO market, uncertain local market design
+\end{itemize}
+
+\subsection{Aggregation and tariffs}
+\begin{itemize}
+  \item Aggregators pool EV fleets for ancillary/grid services and market participation
+  \item Benefits depend on availability, user behavior, charger power, tariffs, battery limits
+  \item Lecture pilot order: low daily savings per vehicle, but scalable with many vehicles
+\end{itemize}
+
+\subsection{V2X SWOT}
+\begin{itemize}
+  \item \textbf{Strengths}: distributed storage/flexibility, owner/grid revenues, supports decarbonization
+  \item \textbf{Weaknesses}: no seasonal storage, charging time constraints, comfort impact, limited bidi-ready EVs
+  \item \textbf{Opportunities}: new business models, local energy markets, dual-use vehicles, CO$_2$ savings
+  \item \textbf{Threats}: uncertain adoption/customer behavior, uncertain grid impact, flexibility not always available
+\end{itemize}
+
+\part{SW 11 + 12: Thermal grids}
+\section{Thermal grids}
+\begin{itemize}
+  \item Purpose: economies of scale, RES/waste heat integration, flexibility, lower peak load by diversity
+  \item Heating/cooling can be centralized, decentralized, or bidirectional in 5GDHC
+  \item 5GDHC/anergy: low-temperature warm/cold pipes, decentralized heat pumps/chillers, bidirectional use
+\end{itemize}
+
+\subsection{Generations and temperatures}
+\begin{itemize}
+  \item HT district heating:\\directed supply/return, $T_\text{supply}\geq 60\cel$ (70--130\cel\ in CH)
+  \item LT heating:\\30--60\cel; preheating: 20--30\cel; cooling/anergy: $<20\cel$
+  \item Lower temperature = lower heat losses, easier RES/waste heat integration, larger pipes/mass flow if $\Delta T$ is small
+  \item 5GDHC $\Delta T$ = 4--5 K; large $\Delta T$ increase transport capacity
+\end{itemize}
+\includegraphics[\lw]{media/th-generations.png}
+
+\subsubsection{Pipe size}
+\begin{center}
+  \includegraphics[\lw=.8]{media/pipe-size.png}
+\end{center}
+
+\subsection{Potential of district heating in CH}
+\begin{itemize}
+  \item CH: $\sim 1400$ thermal networks, $>9$ TWh/a heat; mostly HT
+  \item Main sources today: waste incineration (W2E), biomass, gas, environmental/waste heat + HP
+\end{itemize}
+
+\subsubsection{Outlook 2050 (CH)}
+\begin{itemize}
+  \item Swiss building stock = 50\% of primary energy consumption
+  \item More lakes, rivers, groundwater, geothermal, wastewater, environmental heat
+  \item Increase of share of renewables, security of energy supply, and domestic value creation
+  \item Decrease of CO$_2$ emissions
+  \item DH potential: $\sim 17$ TWh/a; likely where heat density is high
+\end{itemize}
+
+\subsection{Climate and cooling}
+\begin{itemize}
+  \item Climate change: HDD decrease, CDD increase strongly
+  \item Swiss service sector cooling demand forecast: 5--7 times today's demand by 2050. Cooling demand rises
+  \item DHC with lakes/rivers/groundwater can provide efficient cooling and heat-source regeneration
+\end{itemize}
+
+\section{Temperatures and pipes}
+\subsection{Pipe types in district heating}
+\begin{itemize}
+  \item Plastic jacket pipes: steel process pipe, PUR insulation $\lambda\sim0.03$ W/(mK), PE jacket, up to 140\cel, single or dual pipes
+  \item KMR/Premant: steel pipe, up to 140\cel
+  \item Calpex: plastic pipe, up 90\cel
+  \item Coolmant: plastic pipe, up to 40\cel
+  \item 5GDHC: uninsulated plastic pipes at very low temperature
+  \item Heat losses decrease with lower network temperature and better insulation
+\end{itemize}
+
+\newpage
+\subsection{District heating characteristics}
+\subsubsection{Heat sources}
+{\footnotesize
+  \begin{tabularx}{\columnwidth}{@{}XX@{}}
+  \toprule
+  \textbf{Heat sources} & \textbf{Typical temperature / medium}\\
+  \midrule
+  Waste incineration heat & >120\cel\\
+  \hline Wood firing & Hot water, supply >110\cel, steam\\
+  \hline CHP unit & Supply <120\cel, typical 90\cel\\
+  \hline \makecell[l]{Lake water, rivers, groundwater,\\shallow geothermal} & Supply <60\cel\\
+  \hline Waste heat, sewage water & Supply <60\cel\\
+  \bottomrule
+\end{tabularx}}
+
+\subsubsection{Choice of supply temperature}
+{\footnotesize
+  \begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Criterion} & \textbf{Implication}\\
+  \midrule
+  Heat demand characteristics & \makecell[l]{Buildings old/new, industry,\\hospitals}\\
+  \hline Heat source & Available temperature\\
+  \hline Steam from steam turbine (CHP) & \makecell[l]{Supply temp. as low as possible\\for high electrical efficiency}\\
+  \hline Size of network & Influence of heat losses\\
+  \bottomrule
+\end{tabularx}}
+
+\subsubsection{Temperature spread}
+\[\Delta T = T_\text{supply} - T_\text{return}\]
+{\footnotesize
+  \begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Criterion} & \textbf{Effect}\\
+  \midrule
+  Large $\Delta T$ & \makecell[l]{Lower mass flow, smaller pipes,\\lower pumping energy}\\
+  \hline Small $\Delta T$ & \makecell[l]{Higher COP for HP/chillers in 5GDHC,\\but higher mass flow}\\
+  \hline Half $\Delta T$ & Double mass flow for same heat power\\
+  \hline High supply temp. & Higher heat losses, but larger $\Delta T$ possible\\
+  \hline Low supply temp. & \makecell[l]{65\cel: limit for conventional heating/DHW\\35\cel: low-T heating, e.g. underfloor}\\
+  \hline Low return temp. & \makecell[l]{Efficient CHP/cogeneration, larger $\Delta T$,\\low-T waste heat usable}\\
+  \hline 5GDHC/anergy & \makecell[l]{Small $\Delta T$ helps high HP/chiller COP;\\large $\Delta T$ helps high thermal load}\\
+  \bottomrule
+\end{tabularx}}
+
+\color{red}
+\section{Demand and economics}
+\subsection{Economic feasibility indicators}
+\[
+  q_L = \frac{Q_\text{year}}{L}
+  \qquad [\text{MWh}/(\text{km}\,a)]
+\]
+\begin{itemize}
+  \item Linear heat density: annual heat demand per pipe length
+  \item Rough profitability criterion: $q_L > 2000$ MWh/(km a)
+  \item Heat/power density: max. heating power per area; rough criterion $\sim 50$ MW/km$^2$
+  \item Connection rate: share of units connected in an area
+  \item Annual full-load hours: $h_\text{FL} = Q_\text{year}/P_\text{sub}$; typical residential $\sim 2000$ h
+\end{itemize}
+
+\subsection{Load duration curve}
+\begin{itemize}
+  \item Load duration curve: load sorted by frequency/duration over the year
+  \item Area under curve = annual heat demand
+  \item Base load covers many hours and much energy; peak load covers few hours
+  \item Heat storage can shift short peak loads and reduce peak generator capacity
+\end{itemize}
+
+\subsection{Diversity factor}
+\[
+  f_\text{div} =
+  \frac{\sum_i \dot Q_i(t_\text{max})}{\sum_i \dot Q_{\text{sub},i}}
+\]
+\begin{itemize}
+  \item Consumers do not peak simultaneously; network power lower than sum of subscribed powers
+  \item Small groups: orientation $\sim 0.85$; large groups: orientation $\sim 0.75$
+  \item Diversity reduces required generation and pipe dimensions
+\end{itemize}
+
+\section{Thermal power and sizing}
+\subsection{Power and mass flow}
+\[
+  \dot Q = \dot m c_p (T_\text{supply} - T_\text{return})
+  = \dot m c_p \Delta T
+\]
+\[
+  \dot m = \frac{\dot Q}{c_p\Delta T}
+\]
+\begin{itemize}
+  \item Higher $\dot Q$ needs higher $\dot m$, larger $\Delta T$, or larger pipe diameter
+  \item For water: $c_p \approx 4.18$ kJ/(kg K)
+  \item Example from handout: DN100 transport power scales with $\Delta T$: 20 K \to 1.3 MW, 40 K \to 2.6 MW, 60 K \to 3.9 MW
+\end{itemize}
+
+\subsection{Required network power}
+\[
+  \dot Q_\text{req} = \dot Q_\text{sub} f_\text{div} + \dot Q_l
+\]
+\begin{itemize}
+  \item $\dot Q_\text{sub}$: subscribed/connected customer power
+  \item $\dot Q_l$: network heat losses; classic DH order $\sim 2\%$ of required heat
+  \item Nominal network power must include diversity and losses
+\end{itemize}
+
+\subsection{Peak load and reserves}
+\[
+  P_P = P_\text{sub}\,Sim + P_L - P_S
+\]
+\begin{itemize}
+  \item $P_P$: peak load coverage; $P_S$: base source power; $P_L$: losses
+  \item Reserve criterion: maintain supply if largest generator fails ($n-1$)
+  \item Typical reserve agreement: 100\% network power for critical/larger grids; lower possible if accepted
+\end{itemize}
+
+\section{Hydraulics}
+\subsection{Pressure loss}
+\[
+  \Delta p = \lambda\frac{L}{D}\frac{\rho v^2}{2},
+  \qquad
+  Re = \frac{\rho v d}{\mu} = \frac{vd}{\nu}
+\]
+\begin{itemize}
+  \item $\lambda=f(Re,k/D)$ depends on flow regime and pipe roughness
+  \item For same pipe and similar flow regime: $\Delta p \propto v^2$
+  \item Scaling: $\Delta p_2 = \Delta p_1\left(\frac{v_2}{v_1}\right)^2$
+  \item Design recommendation from handout: pressure loss $<250$ Pa/m
+  \item Larger pipe: lower pumping energy but higher investment; optimum balances both
+\end{itemize}
+
+\subsection{Pumps and pressure}
+\begin{itemize}
+  \item Transfer stations need differential pressure, typically $\sim 0.7$--1 bar
+  \item Network pressure must stay above vapor pressure plus safety margin at highest point
+  \item Pump redundancy examples: $2\times100\%$, $3\times50\%$, $4\times33\%$
+  \item Booster pumps can reduce maximum network pressure and central pump power
+\end{itemize}
+
+\section{Losses and cooling}
+\subsection{Heat loss through insulation}
+\[
+  \dot Q =
+  \frac{2\pi L\Delta T}{(1/\lambda)\ln(d_a/d_i)}
+\]
+\begin{itemize}
+  \item $d_a,d_i$: outer/inner insulation diameters; $L$: pipe length
+  \item Losses scale with temperature difference and length; earth cover reduces losses somewhat
+  \item Lower network temperatures reduce distribution losses
+\end{itemize}
+
+\subsection{Temperature drop along pipe}
+\[
+  \Delta T = \frac{\dot Q_l}{\dot m c_p}
+  \qquad \text{or} \qquad
+  \Delta T = \frac{q_l L}{\dot m c_p}
+\]
+\begin{itemize}
+  \item Low demand periods \to low $\dot m$ \to larger cooling of supply pipe
+  \item Summer DHW-only operation can suffer larger temperature drop along the network
+\end{itemize}
+
+\section{Stations and operation}
+\subsection{Heat transfer station}
+\begin{itemize}
+  \item Transfers heat from primary network to secondary building circuit
+  \item Measures heat by volume flow and supply/return temperatures
+  \item Reduces pressure, limits volume flow/subscribed power, controls and records data
+  \item Indirect stations with heat exchangers are common; direct stations are rare
+\end{itemize}
+
+\subsection{DHW and hot water}
+\begin{itemize}
+  \item DHW storage exit should reach 60\cel to avoid legionella
+  \item DHW system choice affects secondary and primary return temperature
+  \item Hot water $>110\cel$ means vapor pressure $>0.5$ bar rel.; PED/pressure rules become relevant
+  \item Heat carriers: water, brine, steam, thermal oil; choose by temperature range, safety, cost, durability
+\end{itemize}
 
 
 

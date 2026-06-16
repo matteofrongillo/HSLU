@@ -961,7 +961,7 @@ Mitigation: uni- and bidirectional charging; smart charging; Vehicle-to-grid (V2
   \hline Small $\Delta T$ & \makecell[l]{Higher COP for HP/chillers in 5GDHC,\\but higher mass flow}\\
   \hline Half $\Delta T$ & Double mass flow for same heat power\\
   \hline High supply temp. & Higher heat losses, but larger $\Delta T$ possible\\
-  \hline Low supply temp. & \makecell[l]{65\cel: limit for conventional heating/DHW\\35\cel: low-T heating, e.g. underfloor}\\
+  \hline Low supply temp. & \makecell[l]{65\cel: limit for conventional heating/DHW\\35\cel: low-T heating, eg. underfloor}\\
   \hline Low return temp. & \makecell[l]{Efficient CHP/cogeneration, larger $\Delta T$,\\low-T waste heat usable}\\
   \hline 5GDHC/anergy & \makecell[l]{Small $\Delta T$ helps high HP/chiller COP;\\large $\Delta T$ helps high thermal load}\\
   \bottomrule
@@ -1095,12 +1095,12 @@ where:
 \section{CBA basics}
 \begin{itemize}
   \item Cost-benefit analysis (CBA/BCA): accounting framework to compare project benefits and costs
-  \item Societal CBA: objective is public welfare, not profit maximisation
+  \item Societal CBA: aim is public welfare, not profit maximisation
   \item Project CBA: company/project perspective; include all relevant financial costs/benefits
-  \item CBA can include market and non-market goods via shadow prices
+  \item Can include market and non-market goods via shadow prices
 \end{itemize}
 
-\subsection{Basic workflow}
+\subsection{CBA workflow}
 \begin{enumerate}[label=\arabic*.]
   \item Define scope, assumptions, perspective, period, actors
   \item Identify alternatives/baseline and quantify costs/benefits
@@ -1109,22 +1109,53 @@ where:
   \item Discuss uncertainties, risks, and sensitivity
 \end{enumerate}
 
-\subsection{Scope}
+\section{1. Definition of scope and assumptions}
 \begin{itemize}
-  \item Proportionate analysis: depth of CBA proportional to expected effect size
-  \item Define whose costs/benefits count: municipality, company, users, society
-  \item Partial equilibrium: one market in isolation; effects on other markets negligible
-  \item General equilibrium: all affected markets considered simultaneously
+  \item State problem and define perspective (societal vs project)
+  \item Proportionate analysis: depth of CBA $\propto$ expected effect size
+  \item Find C/B stakeholders: municipality, company, users, society
 \end{itemize}
 
-\section{Monetising effects}
-\subsection{Shadow prices and externalities}
+\subsection{Partial equilibrium analysis}
 \begin{itemize}
-  \item Shadow price: monetary value assigned to non-market goods or distorted market prices
-  \item Negative externality: third-party cost not included in transaction, e.g. noise/pollution
-  \item Positive externality: third-party benefit, e.g. technology spillover
-  \item Market failure: market price does not reflect full social cost/benefit
+  \item Analyse one market separately from the rest of the economy
+  \item Valid when effects on other markets are negligible
+  \item e.g. town compares buying a garbage truck vs. outsourcing collection
 \end{itemize}
+
+\subsection{General equilibrium analysis}
+\begin{itemize}
+  \item Analyse all affected markets at the same time
+  \item Includes effects on transport, plastics, labour, and other linked markets
+  \item e.g. national waste strategy or nationwide oil tax
+\end{itemize}
+
+\section{2. Alternatives / Quantification of C/B}
+\begin{itemize}
+  \item Identification of alternatives or baseline
+  \item Translation of costs and benefits in monetary units
+  \item Goods/services traded in the market vs. non-market costs and benefits
+\end{itemize}
+
+\subsection{Shadow prices and externalities}
+\subsubsection{Shadow price}
+Assigned value for a non-market good, e.g. users' time savings.
+Also used when market prices do not reflect true social value.
+If the shadow price exceeds the market price, hidden costs indicate a negative externality.
+
+\subsubsection{Negative externality}
+Third-party cost not included in transaction, e.g. noise or pollution
+\begin{center}
+  \includegraphics[\lw]{media/negative-externality.png}
+\end{center}
+
+\subsubsection{Positive externality}
+A third party gains an additional benefit without being part of the transaction.
+The social value is higher than the private transaction value, e.g. technology spillovers
+where society benefits from new knowledge beyond the company itself.
+
+\subsubsection{Market failure}
+Market price does not reflect full social cost/benefit
 
 \subsection{WTP and WTA}
 \begin{itemize}
@@ -1134,19 +1165,55 @@ where:
   \item WTP is income constrained; WTA less directly constrained
 \end{itemize}
 
-\subsection{Non-market valuation}
+\newcolumn
+\subsection{Methods for determining WTP and WTA}
+\subsubsection{Travel cost method}
 \begin{itemize}
-  \item Travel cost method: travel time/cost + fees reveal WTP for recreational sites
-  \item Contingent valuation: survey asks WTP/WTA for a hypothetical scenario
-  \item Conjoint analysis: people choose bundles of attributes; regression estimates attribute values
-  \item Problems: sample bias, response bias, strategic over/understatement
+  \item Estimates WTP for recreational sites or environmental quality changes
+  \item Travel time, travel expenses, and entry fees act as the implicit access price
+  \item Higher travel cost usually means fewer visits; visit frequency reveals demand/WTP
+  \item eg. national park with \$2.50 entry fee; individual WTP = entry fee + travel cost
+  \item Average visitor demand gives the shadow price of one visit
+  \item Shadow price $\times$ annual visitors = annual recreational value of the site
 \end{itemize}
 
-\section{Discounting}
+\subsubsection{Contingent method}
+\begin{itemize}
+  \item Stated-preference method: survey directly asks WTP/WTA for an environmental service
+  \item "Contingent" because valuation depends on a hypothetical scenario
+  \item Useful for monetising non-market goods when no market behaviour is observable
+  \item Case: reservoir outflow decision trades hydropower generation against recreational water quality
+  \item Survey estimates visitors' WTP for better water quality
+  \item Optimum outflow: compare water-quality value with lost hydropower value
+\end{itemize}
+
+\subsubsection{Conjoint analysis}
+\begin{itemize}
+  \item Similar to contingent valuation, but compares bundles of attributes instead of one good
+  \item Example options combine water quality, electricity mix, and lake outflow impacts
+  \item Respondents choose their preferred bundle
+  \item Regression analysis estimates the value of each individual attribute
+\end{itemize}
+
+\subsubsection{Challenges with WTP/WTA methods}
+\begin{itemize}
+  \item Sample bias: surveyed group may not represent the average population
+  \item Response bias: people may overstate or understate their true WTP/WTA
+  \item Legal rights determine whether WTP or WTA is appropriate
+  \item Airport-noise example: WTP asks what residents pay for noise reduction; WTA asks compensation to accept noise
+  \item WTP is income constrained, WTA is less constrained and often gives higher shadow prices
+\end{itemize}
+
+\section{3. Discount rate and present value}
+\begin{itemize}
+  \item Costs/benefits occur at different times: initial investment, future gains, future O\&M
+  \item Cash flows are spread over time, not paid as one lump sum
+  \item Time value of money: money today is worth more because it can earn interest
+  \item Therefore, yearly cash flows must be discounted to present value
+\end{itemize}
+
 \subsection{Present value}
-\[
-  PV_t = \frac{F_t}{(1+r)^t}
-\]
+\[PV_t = \dm \sum_{t=0}^N\frac{F_t}{(1+r)^t}\]
 \begin{itemize}
   \item $F_t$: cash flow at time $t$; $r$: discount rate; $t$: year
   \item Future cash flows are worth less than immediate cash flows
@@ -1155,48 +1222,44 @@ where:
 \end{itemize}
 
 \subsection{Real vs. nominal}
-\[
-  r_\text{real} \approx r_\text{nominal} - \pi
-\]
+\[r_\text{real} \approx r_\text{nominal} - \pi\]
 \begin{itemize}
   \item Use comparable monetary units: nominal or constant prices
   \item For constant prices, subtract expected inflation $\pi$ from nominal rate
   \item Example: nominal 8\%, inflation 5\% $\to$ real rate $\approx 3\%$
 \end{itemize}
 
-\section{Decision metrics}
-\subsection{Net present value}
-\[
-  NPV = \sum_{t=0}^{N}\frac{B_t-C_t}{(1+r)^t}
-  = PV(B)-PV(C)
-\]
+\section{4. Comparing alternatives}
+\subsection{Net present value (NPV)}
+\[NPV = \sum_{t=0}^{N}\frac{B_t-C_t}{(1+r)^t}= PV(B)-PV(C)\]
 \begin{itemize}
-  \item $NPV>0$: project passes CBA test / financially desirable
-  \item $NPV<0$: project should be rejected from this perspective
-  \item Best absolute welfare/wealth measure when alternatives differ in size
+  \item NPV = present value of benefits - present value of costs
+  \item $NPV>0$: project passes CBA test
+  \item $NPV<0$: reject from the chosen perspective
+  \item Good absolute measure when alternatives differ in size
 \end{itemize}
 
-\subsection{Benefit-cost ratio}
-\[
-  B/C = \frac{PV(B)}{PV(C)}
-\]
+\subsection{Benefit-cost ratio (B/C)}
+\[B/C = \frac{PV(B)}{PV(C)}\]
 \begin{itemize}
   \item $B/C>1$: financially acceptable
-  \item Drawback: ratio can favour small projects with high ratio but low absolute benefit
+  \item Drawback: can favour small projects with high ratio but low absolute benefit
   \item Use together with NPV when project scales differ
+  \item e.g. Project A may cost \$100'000 and have lower $B/C$ than project B costing \$100, but A can still create more total net benefit
 \end{itemize}
 
-\subsection{Sensitivity analysis}
+\section{5. Uncertainty and risk}
 \begin{itemize}
-  \item Vary uncertain parameters and observe output, e.g. discount rate, fuel price, demand
-  \item Reveals risk and robustness of decision
-  \item Important because CBA depends strongly on assumptions and quantified benefits/costs
+  \item Sensitivity analysis: vary uncertain parameters and observe output
+  \item Important parameters: discount rate, fuel price, demand, lifetime, investment cost
+  \item CBA result depends strongly on scope, valuation, and assumptions
 \end{itemize}
 
+\newcolumn
 \section{Example: garbage truck}
 \subsection{Setup}
 \begin{itemize}
-  \item Lucerne chooses: buy garbage truck vs. continue outsourced collection
+  \item Lucerne compares buying a garbage truck vs. outsourced collection
   \item Perspective: city treasury; no resident externalities included
   \item Period: 5 years; real discount rate: 3\%; partial equilibrium
 \end{itemize}
@@ -1219,11 +1282,11 @@ where:
 {\footnotesize
 \begin{tabularx}{\columnwidth}{@{}lX@{}}
   \toprule
-  \textbf{Case} & \textbf{Interpretation}\\
+  \textbf{Case} & \textbf{Result}\\
   \midrule
-  3\% discount rate & $NPV=5'308$ EUR $\to$ buy truck desirable\\
+  3\% discount rate & $NPV=5'308$ EUR $\to$ buy truck\\
   $B/C$ at 3\% & $228'985/223'678 = 1.024 > 1$\\
-  7\% discount rate & $NPV=-2'242$ EUR $\to$ not desirable\\
+  7\% discount rate & $NPV=-2'242$ EUR $\to$ do not buy\\
   Fuel cost 3'000 EUR/a & $NPV=-3'852$ EUR at 3\%\\
   \bottomrule
 \end{tabularx}}
@@ -1231,7 +1294,180 @@ where:
 \begin{itemize}
   \item Same undiscounted savings can become unattractive after discounting
   \item Fuel-cost and discount-rate assumptions change the decision
-  \item CBA improves decisions but is only as good as scope, valuation, and uncertainty analysis
+  \item CBA supports decisions but does not remove uncertainty
+\end{itemize}
+
+\part{SW 2 -- 5: exercises}
+
+\section{SW2: Renewable Energy Sources 1}
+\begin{exercisebox}[Exercise: Solar area for world energy demand]
+  World energy demand: $183'230$ TWh/a. Average solar irradiance: $1361$ W/m$^2$.
+  PV efficiency: $\eta=25\%$. Earth area: $510'100'000$ km$^2$, land share: 29\%.
+  \begin{enumerate}[label=\alph*.]
+    \item How much PV area is required to cover the world energy demand?
+    \item What share of world land surface is this?
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\alph*.]
+    \item $A=\frac{183'230\cdot10^{12}\text{ Wh}}{1361\text{ W/m}^2\cdot8760\text{ h}\cdot0.25}
+      \approx 6.15\cdot10^{11}\text{ m}^2 = 615'000\text{ km}^2$
+    \item $A_\text{land}=510'100'000\text{ km}^2\cdot0.29\approx147.9\cdot10^6\text{ km}^2$\\
+      $\frac{615'000}{147.9\cdot10^6}\cdot100\approx0.42\%$
+  \end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Exercise: Sun radiation]
+  Given $\sigma=5.670\cdot10^{-8}$ W/(m$^2$K$^4$), $T_\text{sun}\approx5780$ K.
+  \begin{enumerate}[label=\alph*.]
+    \item Calculate the specific radiation power at the sun surface.
+    \item Calculate total radiation power of the sun.
+    \item Estimate solar irradiance at Earth distance.
+    \item Estimate average radiation power over Earth surface.
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\alph*.]
+    \item $E_\text{sun}=\sigma T^4\approx6.33\cdot10^7$ W/m$^2$
+    \item $P_\text{sun}=E_\text{sun}\cdot4\pi R_\text{sun}^2\approx3.85\cdot10^{26}$ W
+    \item Inverse-square scaling gives $E_\text{solar}\approx1354$ W/m$^2$
+    \item Average over sphere: $\bar E_\text{Earth}\approx E_\text{solar}/4\approx340$ W/m$^2$
+  \end{enumerate}
+\end{exercisebox}
+
+\section{SW3: Renewable Energy Sources 2}
+\begin{exercisebox}[Exercise: Run-of-river plant Lucerne]
+  Given: head $h=2$ m, two Kaplan turbines with $Q=29$ m$^3$/s each,
+  river speed $v=2$ m/s, actual yearly production $2400$ MWh/a, $\eta_\text{el}=0.9$.
+  \begin{enumerate}[label=\alph*.]
+    \item Compute hydraulic power and kinetic river-power share.
+    \item Compute yearly electricity at full load.
+    \item Compare with actual production and explain the gap.
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\alph*.]
+    \item $Q_\text{tot}=58$ m$^3$/s\\
+      $P_h=\rho gQh=1000\cdot9.81\cdot58\cdot2\approx1.14$ MW\\
+      $P_k=\frac12\rho Qv^2=\frac12\cdot1000\cdot58\cdot2^2\approx0.116$ MW
+    \item $E_\text{full}=P_h\eta\cdot8760\text{ h}\approx1.14\cdot0.9\cdot8760\approx8970$ MWh/a
+    \item Actual output is lower due to variable/low head and flow, downtime, ecological constraints, and non-full-load operation.
+  \end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Exercise: Storage power plant Goeschenen]
+  Given: storage lake volume $V=75\cdot10^6$ m$^3$, Pelton turbines $3\cdot41=123$ MW,
+  $\eta=0.9$, household demand $4500$ kWh/a. Head $h$ is not given on the extracted slide.
+  \begin{enumerate}[label=\alph*.]
+    \item Calculate potential energy and produced electricity.
+    \item Estimate number of households supplied.
+    \item Estimate minimum depletion time.
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\alph*.]
+    \item $E=\rho gVh$, \quad $E_\text{el}=\eta\rho gVh$; insert known/given head $h$ if available.
+    \item $N_\text{HH}=\frac{E_\text{el}[\text{kWh}]}{4500\text{ kWh/a}}$
+    \item $t_\text{min}=\frac{E_\text{el}}{123\text{ MW}}$
+  \end{enumerate}
+\end{exercisebox}
+
+\section{SW4: Energy Storage}
+\begin{exercisebox}[Exercise: Capacitor]
+  Given: $U=10$ V, $r=20$ cm, $d=5$ mm, $P_\text{LED}=75$ mW, glass $\varepsilon_r=4.7$.
+  \begin{enumerate}[label=\alph*.]
+    \item Energy stored with air between plates?
+    \item How long can an LED burn with this energy?
+    \item Energy stored with glass dielectric?
+  \end{enumerate}
+  \hr
+  \[
+    C=\varepsilon\frac{A}{d}, \qquad E=\frac12CU^2, \qquad t=\frac{E}{P}
+  \]
+  \begin{enumerate}[label=\alph*.]
+    \item Air: $E\approx1.1\cdot10^{-8}$ J
+    \item $t=1.1\cdot10^{-8}/0.075\approx1.5\cdot10^{-7}$ s
+    \item Glass: $E\approx5.2\cdot10^{-8}$ J
+  \end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Exercise: Stratified sensible tank]
+  Compare energy and exergy for tanks with 2 m thermocline, 10 m thermocline, and fully mixed state.
+  Also discuss replacing water by gravel. Given: $r=8$ m, $H=40$ m,
+  hot 90\cel, cold 30\cel, mixed 60\cel, ambient 18\cel, $c_p=4.18$ kJ/(kgK).
+  \hr
+  \begin{enumerate}
+    \item Tank mass: \[m = \rho V = \rho\pi R^2 H\]
+    \item Energy: \[Q = m\ c_p\left(T_\text{mix} - T_\text{amb}\right)\]
+    \item Exergy:
+    \begin{gather*}
+      f(T) = \left(T-T_\text{amb} - t_\text{amb}\ln\frac{T}{T_\text{amb}}\right)\\[1ex]
+      Ex = \frac{m\cdot c_p}{H}\left[h_cf(T_c) + h_hf(T_h) + \frac{h_\text{th}}{T_h - T_c} \integral[T_c][T_h][f(T)][T]\right]\\[1ex]
+      \integral[T_c][T_h][f(T)][T] = \left[\frac{T^2}{2} - T_\text{amb}\cdot T\ln\frac{T}{T_\text{amb}}\right]_{T_c}^{T_h}
+    \end{gather*}
+  \end{enumerate}
+  
+
+\end{exercisebox}
+
+\begin{exercisebox}[Exercise: Flywheel]
+  Solid cylindrical flywheel: $m=50$ kg, $r=0.5$ m, $6000$ RPM. Load: 2 kW.
+  \begin{enumerate}[label=\alph*.]
+    \item Calculate moment of inertia.
+    \item Calculate stored rotational kinetic energy.
+    \item Calculate runtime at 2 kW.
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\alph*.]
+    \item $J=\frac12mr^2=\frac12\cdot50\cdot0.5^2=6.25$ kg m$^2$
+    \item $\omega=2\pi\cdot6000/60\approx628$ rad/s\\
+      $E=\frac12J\omega^2\approx0.5\cdot6.25\cdot628^2\approx1.23$ MJ
+    \item $t=E/P=1.23\text{ MJ}/2\text{ kW}\approx615$ s $\approx10.3$ min
+  \end{enumerate}
+\end{exercisebox}
+
+\section{SW5: Residential Buildings}
+\begin{exercisebox}[Exercise: Residential energy bill]
+  Estimate yearly household energy costs for heating, TV, phone charging, and showering.
+  Use $C_\text{el}=P\cdot t\cdot c_\text{el}$ and $E=mc_p\Delta T$.
+  Typical orders: heating 7000 kWh/a, hot water 3000 kWh/a, electricity 4000--5000 kWh/a.
+  \hr
+  Examples from slides:
+  \begin{itemize}
+    \item TV: 2 h/week, 32 kWh/1000 h $\to E\approx3.33$ kWh/a $\to$ about 1 CHF/a
+    \item Phone: 10.28 Wh/day $\to E\approx3.75$ kWh/a $\to$ about 1.13 CHF/a at 0.30 CHF/kWh
+    \item Shower: 8 min, 9 l/min, 365 showers/a, $\Delta T=30$ K\\
+      $E\approx898$ kWh/a $\to$ about 269 CHF/a electricity plus water cost
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Exercise: Heat pump ROI]
+  Oil heating cost: 3500 CHF/a. Water-water heat pump investment: 27000 CHF.
+  Thermal demand: 20000 kWh/a, COP $=3.5$, electricity price: 0.29 CHF/kWh.
+  \begin{enumerate}[label=\alph*.]
+    \item Calculate payback time and ROI.
+    \item Would you recommend the heat pump?
+  \end{enumerate}
+  \hr
+  \begin{enumerate}[label=\alph*.]
+    \item $E_\text{el}=20000/3.5=5714$ kWh/a\\
+      $C_\text{HP,el}=5714\cdot0.29\approx1657$ CHF/a\\
+      Savings $=3500-1657=1843$ CHF/a\\
+      $ROI=\frac{1843}{27000}=0.068=6.8\%$\\
+      Payback $=\frac{27000}{1843}\approx14.6$ a
+    \item Marginal: payback is close to heat-pump lifetime. Arguments: future heat-demand reduction,
+      possible oil-price increase, PV can lower electricity cost.
+  \end{enumerate}
+\end{exercisebox}
+
+\part{Renergia}
+\begin{itemize}
+  \item Waste has a high calorific value: roughly comparable with coal for the same mass
+  \item Waste crane/loading cycles: about 3500 smartphone charges; truck unloading takes about 16 min
+  \item Highest waste input after Christmas; observed maximum about 1700 t/day
+  \item Typical plant output: about 50 MW
+  \item Bottom ash/slag: about 20\% of input; about 10\% of slag is metal, including non-ferrous metals
+  \item Metals are recovered from slag, e.g. at Uri/Attinghausen treatment facilities
+  \item Combustion residues are water-cooled, limiting dust/wind dispersion and cooling material from about 110\cel
+  \item Tubular heat exchangers last roughly 10 years; ash deposits require periodic cleaning to avoid blockage
+  \item Flue gas cleaning: baking soda neutralises acidic gases; cloth/bag filters remove particles
+  \item NO$_x$ reduction uses catalyst with AdBlue/ammonia; activated carbon removes remaining pollutants
 \end{itemize}
 
 

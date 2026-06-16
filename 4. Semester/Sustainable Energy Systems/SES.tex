@@ -880,9 +880,12 @@ Mitigation: uni- and bidirectional charging; smart charging; Vehicle-to-grid (V2
 \end{itemize}
 \includegraphics[\lw]{media/th-generations.png}
 
+\subsubsection{Conventional network vs 5GDHC}
+\includegraphics[\lw]{media/5gdhc.png}
+
 \subsubsection{Pipe size}
 \begin{center}
-  \includegraphics[\lw=.8]{media/pipe-size.png}
+  \includegraphics[\lw=.85]{media/pipe-size.png}
 \end{center}
 
 \subsection{Potential of district heating in CH}
@@ -907,6 +910,7 @@ Mitigation: uni- and bidirectional charging; smart charging; Vehicle-to-grid (V2
   \item DHC with lakes/rivers/groundwater can provide efficient cooling and heat-source regeneration
 \end{itemize}
 
+\newcolumn
 \section{Temperatures and pipes}
 \subsection{Pipe types in district heating}
 \begin{itemize}
@@ -918,7 +922,6 @@ Mitigation: uni- and bidirectional charging; smart charging; Vehicle-to-grid (V2
   \item Heat losses decrease with lower network temperature and better insulation
 \end{itemize}
 
-\newpage
 \subsection{District heating characteristics}
 \subsubsection{Heat sources}
 {\footnotesize
@@ -964,89 +967,79 @@ Mitigation: uni- and bidirectional charging; smart charging; Vehicle-to-grid (V2
   \bottomrule
 \end{tabularx}}
 
-\color{red}
-\section{Demand and economics}
-\subsection{Economic feasibility indicators}
-\[
-  q_L = \frac{Q_\text{year}}{L}
-  \qquad [\text{MWh}/(\text{km}\,a)]
-\]
+\newcolumn
+\section{Heat demand and economics}
+\subsection{Economic feasibility of thermal networks}
+\subsubsection{Linear heat density}
+\[q_L = \frac{Q_\text{year}}{L}\ \left[\text{MWh}/(\text{km}\cdot\text{a})\right]\]
 \begin{itemize}
   \item Linear heat density: annual heat demand per pipe length
-  \item Rough profitability criterion: $q_L > 2000$ MWh/(km a)
+  \item \textbf{Rough profitability criterion:} $q_L > 2000$ MWh/(km$\cdot$ a)
   \item Heat/power density: max. heating power per area; rough criterion $\sim 50$ MW/km$^2$
   \item Connection rate: share of units connected in an area
   \item Annual full-load hours: $h_\text{FL} = Q_\text{year}/P_\text{sub}$; typical residential $\sim 2000$ h
 \end{itemize}
 
+\subsubsection{Reduced linear heat density}
+\includegraphics[\lw]{media/DHC-FEASABILITY.png}
+
 \subsection{Load duration curve}
+\begin{center}
+  \includegraphics[\lw=.7]{media/load-type.png}
+\end{center}
+\vspace*{-.2cm}
 \begin{itemize}
-  \item Load duration curve: load sorted by frequency/duration over the year
+  \item Load sorted by frequency/duration over the year
   \item Area under curve = annual heat demand
   \item Base load covers many hours and much energy; peak load covers few hours
   \item Heat storage can shift short peak loads and reduce peak generator capacity
 \end{itemize}
 
-\subsection{Diversity factor}
-\[
-  f_\text{div} =
-  \frac{\sum_i \dot Q_i(t_\text{max})}{\sum_i \dot Q_{\text{sub},i}}
-\]
-\begin{itemize}
-  \item Consumers do not peak simultaneously; network power lower than sum of subscribed powers
-  \item Small groups: orientation $\sim 0.85$; large groups: orientation $\sim 0.75$
-  \item Diversity reduces required generation and pipe dimensions
-\end{itemize}
-
 \section{Thermal power and sizing}
 \subsection{Power and mass flow}
-\[
-  \dot Q = \dot m c_p (T_\text{supply} - T_\text{return})
-  = \dot m c_p \Delta T
-\]
-\[
+\begin{gather*}
+  \dot Q = \dot m c_p (T_\text{supply} - T_\text{return})= \dot m c_p \Delta T\\
   \dot m = \frac{\dot Q}{c_p\Delta T}
-\]
-\begin{itemize}
-  \item Higher $\dot Q$ needs higher $\dot m$, larger $\Delta T$, or larger pipe diameter
-  \item For water: $c_p \approx 4.18$ kJ/(kg K)
-  \item Example from handout: DN100 transport power scales with $\Delta T$: 20 K \to 1.3 MW, 40 K \to 2.6 MW, 60 K \to 3.9 MW
-\end{itemize}
+\end{gather*}
 
-\subsection{Required network power}
-\[
-  \dot Q_\text{req} = \dot Q_\text{sub} f_\text{div} + \dot Q_l
-\]
+\subsection{Required network (nominal) power}
+\[\dot Q_\text{req} = \dot Q_\text{sub}\cdot f_\text{div} + \dot Q_l\]
 \begin{itemize}
   \item $\dot Q_\text{sub}$: subscribed/connected customer power
-  \item $\dot Q_l$: network heat losses; classic DH order $\sim 2\%$ of required heat
-  \item Nominal network power must include diversity and losses
+  \item $\dot Q_l$: network heat losses
+  \item In classic DH (90\cel): $\dot{Q}_l \approx 2\% \cdot \dot{Q}_\text{req}$
 \end{itemize}
+
+\subsection{Diversity factor (or simultaneity factor)}
+\[f_\text{div} = \frac{\text{power drawn}}{\text{subscribed power}} = \frac{\sum_i \dot Q_i(t_\text{max})}{\sum_i \dot Q_{\text{sub},i}}\]
+\begin{itemize}
+  \item Consumers do not peak simultaneously; network power lower than sum of subscribed powers
+  \item Diversity reduces required generation and pipe dimensions
+\end{itemize}
+\[f_\text{div} = a + \frac{b}{1+\left(\dfrac{n}{c}\right)^d}\]
+where:\\
+$a = 0.4497$, $b = 0.5512$, $c = 53.8438$, $d = 1.7627$, $n =$ customers
 
 \subsection{Peak load and reserves}
 \[
-  P_P = P_\text{sub}\,Sim + P_L - P_S
+  P_P = P_\text{sub}\cdot f_\text{div} + P_L - P_S
 \]
 \begin{itemize}
   \item $P_P$: peak load coverage; $P_S$: base source power; $P_L$: losses
-  \item Reserve criterion: maintain supply if largest generator fails ($n-1$)
+  \item Maintain supply if largest generator fails ($n-1$)
   \item Typical reserve agreement: 100\% network power for critical/larger grids; lower possible if accepted
 \end{itemize}
 
 \section{Hydraulics}
 \subsection{Pressure loss}
-\[
-  \Delta p = \lambda\frac{L}{D}\frac{\rho v^2}{2},
-  \qquad
-  Re = \frac{\rho v d}{\mu} = \frac{vd}{\nu}
-\]
+\[\Delta p = \lambda\frac{L}{D}\frac{\rho v^2}{2}\quad ;\quad Re = \frac{\rho v d}{\mu} = \frac{vd}{\nu}\]
 \begin{itemize}
   \item $\lambda=f(Re,k/D)$ depends on flow regime and pipe roughness
   \item For same pipe and similar flow regime: $\Delta p \propto v^2$
-  \item Scaling: $\Delta p_2 = \Delta p_1\left(\frac{v_2}{v_1}\right)^2$
-  \item Design recommendation from handout: pressure loss $<250$ Pa/m
-  \item Larger pipe: lower pumping energy but higher investment; optimum balances both
+  \item Scaling: $\Delta p_2 = \Delta p_1\left(\dfrac{v_2}{v_1}\right)^2$
 \end{itemize}
+\subsubsection{Graphical visualization}
+\includegraphics[\lw]{media/pressure-loss.png}
 
 \subsection{Pumps and pressure}
 \begin{itemize}
@@ -1056,50 +1049,190 @@ Mitigation: uni- and bidirectional charging; smart charging; Vehicle-to-grid (V2
   \item Booster pumps can reduce maximum network pressure and central pump power
 \end{itemize}
 
+\newcolumn
+\section{District heating exercise}
+\includegraphics[\lw]{media/district-heating-exercise.png}
+
 \section{Losses and cooling}
+\subsection{Heat loss during operation}
+\[q = U\cdot \left(T_B - T_E\right)\ \left[\text{W/m}\right]\]
+where:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item $U =$ heat transfer coefficient [W/mK]
+  \item $T_B =$ avg. T between VL/RL [\cel]
+  \item $T_E =$ avg. ground temperature [\cel]
+\end{itemize}
+
+\subsection{Temperature drop along pipe}
+\[\Delta T = \frac{\dot Q_l}{\dot m c_p}\qquad \text{or} \qquad\Delta T = \frac{q_l L}{\dot m c_p}\]
+\begin{itemize}
+  \item Low demand periods \to low $\dot m$ \to larger cooling of supply pipe
+  \item Summer DHW-only operation can suffer larger temperature drop along the network
+\end{itemize}
+
 \subsection{Heat loss through insulation}
-\[
-  \dot Q =
-  \frac{2\pi L\Delta T}{(1/\lambda)\ln(d_a/d_i)}
-\]
+\[\dot Q = \frac{2\pi L\Delta T}{(1/\lambda)\ln(d_a/d_i)}\]
 \begin{itemize}
   \item $d_a,d_i$: outer/inner insulation diameters; $L$: pipe length
   \item Losses scale with temperature difference and length; earth cover reduces losses somewhat
   \item Lower network temperatures reduce distribution losses
 \end{itemize}
 
-\subsection{Temperature drop along pipe}
+\subsection{Cooling of pipes}
+\[T_i = T_u + \left(T_{io} - T_u\right)\exp\left(-\dfrac{1}{\dot{m} c_p R_{ges}}\right)\]
+where:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item $T_i =$ Pipe T after a distance L
+  \item $T_u =$ Ambient T
+  \item $T_{io} =$ Pipe T at the source
+  \item $R_{ges} =$ Thermal resistance [K/W]
+\end{itemize}
+
+\part{SW 14 + 15: Cost benefit analysis}
+
+\section{CBA basics}
+\begin{itemize}
+  \item Cost-benefit analysis (CBA/BCA): accounting framework to compare project benefits and costs
+  \item Societal CBA: objective is public welfare, not profit maximisation
+  \item Project CBA: company/project perspective; include all relevant financial costs/benefits
+  \item CBA can include market and non-market goods via shadow prices
+\end{itemize}
+
+\subsection{Basic workflow}
+\begin{enumerate}[label=\arabic*.]
+  \item Define scope, assumptions, perspective, period, actors
+  \item Identify alternatives/baseline and quantify costs/benefits
+  \item Select discount rate and calculate present values
+  \item Compare alternatives using NPV or benefit-cost ratio
+  \item Discuss uncertainties, risks, and sensitivity
+\end{enumerate}
+
+\subsection{Scope}
+\begin{itemize}
+  \item Proportionate analysis: depth of CBA proportional to expected effect size
+  \item Define whose costs/benefits count: municipality, company, users, society
+  \item Partial equilibrium: one market in isolation; effects on other markets negligible
+  \item General equilibrium: all affected markets considered simultaneously
+\end{itemize}
+
+\section{Monetising effects}
+\subsection{Shadow prices and externalities}
+\begin{itemize}
+  \item Shadow price: monetary value assigned to non-market goods or distorted market prices
+  \item Negative externality: third-party cost not included in transaction, e.g. noise/pollution
+  \item Positive externality: third-party benefit, e.g. technology spillover
+  \item Market failure: market price does not reflect full social cost/benefit
+\end{itemize}
+
+\subsection{WTP and WTA}
+\begin{itemize}
+  \item Willingness-to-pay (WTP): amount someone pays to gain benefit or reduce harm
+  \item Willingness-to-accept (WTA): compensation needed to accept a harm/loss
+  \item WTA often higher than WTP; legal rights affect which measure is appropriate
+  \item WTP is income constrained; WTA less directly constrained
+\end{itemize}
+
+\subsection{Non-market valuation}
+\begin{itemize}
+  \item Travel cost method: travel time/cost + fees reveal WTP for recreational sites
+  \item Contingent valuation: survey asks WTP/WTA for a hypothetical scenario
+  \item Conjoint analysis: people choose bundles of attributes; regression estimates attribute values
+  \item Problems: sample bias, response bias, strategic over/understatement
+\end{itemize}
+
+\section{Discounting}
+\subsection{Present value}
 \[
-  \Delta T = \frac{\dot Q_l}{\dot m c_p}
-  \qquad \text{or} \qquad
-  \Delta T = \frac{q_l L}{\dot m c_p}
+  PV_t = \frac{F_t}{(1+r)^t}
 \]
 \begin{itemize}
-  \item Low demand periods \to low $\dot m$ \to larger cooling of supply pipe
-  \item Summer DHW-only operation can suffer larger temperature drop along the network
+  \item $F_t$: cash flow at time $t$; $r$: discount rate; $t$: year
+  \item Future cash flows are worth less than immediate cash flows
+  \item High discount rates penalise projects with near-term costs and future benefits
+  \item Recommended rates vary widely, often 2--10\%; use sensitivity analysis
 \end{itemize}
 
-\section{Stations and operation}
-\subsection{Heat transfer station}
+\subsection{Real vs. nominal}
+\[
+  r_\text{real} \approx r_\text{nominal} - \pi
+\]
 \begin{itemize}
-  \item Transfers heat from primary network to secondary building circuit
-  \item Measures heat by volume flow and supply/return temperatures
-  \item Reduces pressure, limits volume flow/subscribed power, controls and records data
-  \item Indirect stations with heat exchangers are common; direct stations are rare
+  \item Use comparable monetary units: nominal or constant prices
+  \item For constant prices, subtract expected inflation $\pi$ from nominal rate
+  \item Example: nominal 8\%, inflation 5\% $\to$ real rate $\approx 3\%$
 \end{itemize}
 
-\subsection{DHW and hot water}
+\section{Decision metrics}
+\subsection{Net present value}
+\[
+  NPV = \sum_{t=0}^{N}\frac{B_t-C_t}{(1+r)^t}
+  = PV(B)-PV(C)
+\]
 \begin{itemize}
-  \item DHW storage exit should reach 60\cel to avoid legionella
-  \item DHW system choice affects secondary and primary return temperature
-  \item Hot water $>110\cel$ means vapor pressure $>0.5$ bar rel.; PED/pressure rules become relevant
-  \item Heat carriers: water, brine, steam, thermal oil; choose by temperature range, safety, cost, durability
+  \item $NPV>0$: project passes CBA test / financially desirable
+  \item $NPV<0$: project should be rejected from this perspective
+  \item Best absolute welfare/wealth measure when alternatives differ in size
 \end{itemize}
 
+\subsection{Benefit-cost ratio}
+\[
+  B/C = \frac{PV(B)}{PV(C)}
+\]
+\begin{itemize}
+  \item $B/C>1$: financially acceptable
+  \item Drawback: ratio can favour small projects with high ratio but low absolute benefit
+  \item Use together with NPV when project scales differ
+\end{itemize}
 
+\subsection{Sensitivity analysis}
+\begin{itemize}
+  \item Vary uncertain parameters and observe output, e.g. discount rate, fuel price, demand
+  \item Reveals risk and robustness of decision
+  \item Important because CBA depends strongly on assumptions and quantified benefits/costs
+\end{itemize}
 
+\section{Example: garbage truck}
+\subsection{Setup}
+\begin{itemize}
+  \item Lucerne chooses: buy garbage truck vs. continue outsourced collection
+  \item Perspective: city treasury; no resident externalities included
+  \item Period: 5 years; real discount rate: 3\%; partial equilibrium
+\end{itemize}
 
+{\footnotesize
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Item} & \textbf{Value}\\
+  \midrule
+  Truck purchase & 60'000 EUR initial cost\\
+  Driver + maintenance + fuel & 38'000 EUR/a\\
+  Scrap value & 12'000 EUR in year 5\\
+  Year 5 truck cost & 26'000 EUR\\
+  Contract cost & 50'000 EUR/a\\
+  Undiscounted difference & 12'000 EUR saved over 5 years\\
+  \bottomrule
+\end{tabularx}}
 
+\subsection{Results}
+{\footnotesize
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Case} & \textbf{Interpretation}\\
+  \midrule
+  3\% discount rate & $NPV=5'308$ EUR $\to$ buy truck desirable\\
+  $B/C$ at 3\% & $228'985/223'678 = 1.024 > 1$\\
+  7\% discount rate & $NPV=-2'242$ EUR $\to$ not desirable\\
+  Fuel cost 3'000 EUR/a & $NPV=-3'852$ EUR at 3\%\\
+  \bottomrule
+\end{tabularx}}
+
+\begin{itemize}
+  \item Same undiscounted savings can become unattractive after discounting
+  \item Fuel-cost and discount-rate assumptions change the decision
+  \item CBA improves decisions but is only as good as scope, valuation, and uncertainty analysis
+\end{itemize}
 
 
 

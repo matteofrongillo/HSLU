@@ -455,13 +455,12 @@ Flow occurs only after a yield stress $\tau_0$ is reached.
 Assumption for $Re \ll 1$: $\eta \dfrac{d^2v}{dy^2}=\dfrac{dp}{dx}=p'$
 \begin{align*}
   &v(x,y) = \dfrac{p'(x)}{2\eta}\left[y^2-h(x)y\right] + \dfrac{v_0}{h(x)}\left[h(x)-y\right]\\
-  &c(x) = -\dfrac{h(x)}{2\eta} \cdot \dfrac{dp(x)}{dx} - \dfrac{v_0}{h(x)}\\
-  &d(x) = v_0
+  &c(x) = -\dfrac{h(x)}{2\eta} \cdot \dfrac{dp(x)}{dx} - \dfrac{v_0}{h(x)}\quad ; \quad d(x) = v_0
 \end{align*}
 
 For the simplest, parabolic velocity profile case:
 \begin{gather*}
-  h(x)=h_0\quad ; \quad v_0 = 0\quad ; \quad p' = \dfrac{dp(x)}{dx} = \dfrac{\Delta p}{\Delta L} = -\dfrac{12\eta v_m}{h_0^2}\\
+  h(x)=h_0\quad ; \quad v_0 = 0\quad ; \quad \boxed{p' = \dfrac{dp(x)}{dx}} = \dfrac{\Delta p}{\Delta L} = -\dfrac{12\eta v_m}{h_0^2}\\
   v(y) = \dfrac{p'}{2\eta}\left(y^2-h_0y\right) \Longrightarrow \dfrac{\partial v}{\partial y} = 0 = \dfrac{p'}{2\eta}\left(2y-h_0\right)\\
   y = \dfrac{h_0}{2} \Longrightarrow v_{max} = v\left(y=\dfrac{h_0}{2}\right) = -\dfrac{h_0^2p'}{8\eta} = \dfrac{3}{2}v_m\\
   v_m = -\dfrac{\Delta p \cdot h_0^2}{12\eta L}\\

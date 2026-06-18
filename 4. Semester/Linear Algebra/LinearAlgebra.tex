@@ -3,10 +3,6 @@
 \usepackage{Mathematics}
 \pdftitle{Linear Algebra}
 
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\spann}{span}
-
 % === TITLE ===
 \title{\textbf{Linear Algebra \\ HSLU, Semester 4}}
 \author{Matteo Frongillo}
@@ -16,8 +12,8 @@
 \begin{document}
 
 \maketitle
-%\tableofcontents
-%\pagebreak
+\tableofcontents
+\pagebreak
 
 \section{Vectors}
 
@@ -368,8 +364,8 @@ If $A$ is invertible, the unique solution of $A\vec{x}=\vec{b}$ is
 \section{Vector Spaces, Subspaces, and Bases}
 
 \subsection{Subspaces}
-A subset $U\subseteq\mathbb{R}^n$ is a vector subspace if:
-\begin{enumerate}
+A subset $U\subseteq\mathbb{R}^n$ is a vector subspace (or linear subspace) if:
+\begin{enumerate}[label=U\arabic*)]
     \item $\vec{0}\in U$;
     \item $\vec{u},\vec{v}\in U\Longrightarrow\vec{u}+\vec{v}\in U$;
     \item $\vec{u}\in U$, $\lambda\in\mathbb{R}
@@ -528,41 +524,36 @@ variables. For $A\in\mathbb{R}^{m\times n}$:
 
 \subsection{Consequences for systems}
 For $A\in\mathbb{R}^{m\times n}$:
-\begin{align*}
-    \ker A=\{\vec{0}\}
-    &\Longleftrightarrow\operatorname{nullity}A=0\\
-    &\Longleftrightarrow\rank A=n\\
-    &\Longleftrightarrow\text{the columns of $A$ are independent}.
-\end{align*}
-
-Furthermore,
-\[
-    \operatorname{im}A=\mathbb{R}^m
-    \Longleftrightarrow\rank A=m
-    \Longleftrightarrow
-    A\vec{x}=\vec{b}\text{ is solvable for every }\vec{b}\in\mathbb{R}^m.
-\]
+\[\ker A=\{\vec{0}\}\Longleftrightarrow\operatorname{nullity}A=0\Longleftrightarrow\rank A=n\Longleftrightarrow\text{the columns of $A$ are independent.}\]
+Furthermore, $\operatorname{im}A=\mathbb{R}^m \Longleftrightarrow\rank A=m \Longleftrightarrow A\vec{x}=\vec{b}\text{ is solvable for every }\vec{b}\in\mathbb{R}^m.$
 
 \subsection{Equivalent conditions for square matrices}
 For $A\in\mathbb{R}^{n\times n}$, the following are equivalent:
-\begin{enumerate}
-    \item $A$ is invertible;
-    \item $\det A\neq0$;
-    \item $\ker A=\{\vec{0}\}$;
-    \item $\rank A=n$;
-    \item $\operatorname{im}A=\mathbb{R}^n$;
-    \item the rows and columns of $A$ each form a basis of
-          $\mathbb{R}^n$;
-    \item $A\vec{x}=\vec{0}$ has only the trivial solution;
-    \item $A\vec{x}=\vec{b}$ has the unique solution
-          $\vec{x}=A^{-1}\vec{b}$ for every $\vec{b}\in\mathbb{R}^n$.
-\end{enumerate}
+
+\begin{minipage}{0.3\textwidth}
+    \begin{enumerate}
+        \item $A$ is invertible;
+        \item $\det A\neq0$;
+        \item $\ker A=\{\vec{0}\}$;
+        \item $\rank A=n$;
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+    \begin{enumerate}
+        \setcounter{enumi}{4}
+        \item $\operatorname{im}A=\mathbb{R}^n$;
+        \item the rows and columns of $A$ each form a basis of
+                $\mathbb{R}^n$;
+        \item $A\vec{x}=\vec{0}$ has only the trivial solution;
+        \item $A\vec{x}=\vec{b}$ has the unique solution
+                $\vec{x}=A^{-1}\vec{b},\ \forall\vec{b}\in\mathbb{R}^n$.
+    \end{enumerate}
+\end{minipage}
 
 \section{Eigenvalues and Eigenvectors}
-
 Let $A\in\mathbb{R}^{n\times n}$. A scalar $\lambda$ is an eigenvalue
-of $A$ if there is a non-zero vector $\vec{v}$ such that
-\figbox{$\dm A\vec{v}=\lambda\vec{v},\qquad\vec{v}\neq\vec{0}$}
+of $A$ if there is a non-zero vector $\vec{v}$ such that $\dm A\vec{v}=\lambda\vec{v},\ \vec{v}\neq\vec{0}$.
+
 The vector $\vec{v}$ is an eigenvector corresponding to $\lambda$.
 Every non-zero scalar multiple of an eigenvector is another
 eigenvector for the same eigenvalue.
@@ -662,6 +653,14 @@ simple:
     \vec{v}=\sum_{i=1}^{k}(\vec{v}\cdot\vec{b}_i)\vec{b}_i.
 \]
 
+\subsubsection{Example}
+Show that $b_1,b_2$ is an ONB of the plane $E = \spann(b_1,b_2)$.
+\begin{align*}
+    &\left\|b_1\right\| = 1\quad ; \quad \left\|b_2\right\| = 1\\
+    &b_1 \cdot b_2 = 0\\
+    &b_1 \neq \alpha b_2,\ \alpha \in \mathbb{R}\qquad \text{set the system of equation to find }\alpha
+\end{align*}
+
 \section{Orthogonal Projections and Gram--Schmidt}
 
 \subsection{Projection onto a line}
@@ -689,6 +688,30 @@ If $\vec{b}_1,\dots,\vec{b}_k$ is an orthonormal basis of $U$, then
     =\sum_{i=1}^{k}(\vec{v}\cdot\vec{b}_i)\vec{b}_i$}
 The residual $\vec{v}-\operatorname{proj}_U(\vec{v})$ lies in
 $U^\perp$.
+
+\subsection{Orthogonal decomposition}
+Given a plane $E = \spann(b_1,b_2)$, to find the orthogonal decomposition of a vector $v$ w.r.t $E$, where $p,w \in \mathbb{R}^3$:
+
+$v = p+w$, $p\in \mathbb{E}$, $w \perp E$
+\begin{equation*}
+    \begin{cases}
+        v = \alpha b_1 + \beta b_2 + w\\
+        w \perp E
+    \end{cases} \Rightarrow
+    \begin{cases}
+        v = \alpha b_1 + \beta b_2 + w\\
+        w\cdot b_1 = 0\\
+        w\cdot b_2 = 0
+    \end{cases} \Rightarrow
+        \begin{cases}
+        v = \alpha b_1 + \beta b_2 + w\\
+        w = k\left(b_1 \times b_2\right)
+    \end{cases}
+\end{equation*}
+Thus,
+\[v = \alpha b_1 + \beta b_2 + k\left(b_1 \times b_2\right)\]
+
+If $b_1,b_2$ are ONB, $\alpha,\beta,k = 1$.
 
 \subsection{Gram--Schmidt process}
 Starting from a basis $\vec{v}_1,\dots,\vec{v}_k$, construct an

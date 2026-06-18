@@ -4,6 +4,8 @@
 \pdftitle{Linear Algebra}
 
 \DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\spann}{span}
 
 % === TITLE ===
 \title{\textbf{Linear Algebra \\ HSLU, Semester 4}}
@@ -14,156 +16,268 @@
 \begin{document}
 
 \maketitle
-\tableofcontents
-\pagebreak
+%\tableofcontents
+%\pagebreak
 
 \section{Vectors}
-\subsection{Linear combination}
-A sum of scalings of vectors is called a linear combination of the vectors.
 
-Let $\vec{u}$, $\vec{v}$ be vectors, and $a$, $b$ be scalars, $a,b \in \mathbb{R}$, then:
-\figbox{$\dm a\cdot\vec{u} + b\cdot\vec{v}$}
+\subsection{Vector arithmetic}
+Let $\vec{a},\vec{b},\vec{c}\in\mathbb{R}^n$ and
+$\lambda,\mu\in\mathbb{R}$. Then:
+\begin{align*}
+    \vec{a}+\vec{b}&=\vec{b}+\vec{a},&
+    (\vec{a}+\vec{b})+\vec{c}&=\vec{a}+(\vec{b}+\vec{c}),\\
+    \vec{a}+\vec{0}&=\vec{a},&
+    \vec{a}+(-\vec{a})&=\vec{0},\\
+    \lambda(\vec{a}+\vec{b})&=\lambda\vec{a}+\lambda\vec{b},&
+    (\lambda+\mu)\vec{a}&=\lambda\vec{a}+\mu\vec{a},\\
+    (\lambda\mu)\vec{a}&=\lambda(\mu\vec{a}),&
+    1\vec{a}&=\vec{a}.
+\end{align*}
 
-Generalizing this to a set of vectors $\vec{u}_1, \dots, \vec{u}_n$, and
-scalars $a_1, \dots, a_n$, we have:
-\figbox{$\dm \sum_{i=1}^{n} a_i \cdot \vec{u}_i$}
+For points $P,Q\in\mathbb{R}^n$, the vector from $P$ to $Q$ is
+\figbox{$\dm \overrightarrow{PQ}=Q-P$}
+
+Component-wise addition and scalar multiplication are:
+\[
+    \begin{pmatrix}a_1\\ \vdots\\a_n\end{pmatrix}
+    +\begin{pmatrix}b_1\\ \vdots\\b_n\end{pmatrix}
+    =\begin{pmatrix}a_1+b_1\\ \vdots\\a_n+b_n\end{pmatrix},
+    \qquad
+    \lambda\begin{pmatrix}a_1\\ \vdots\\a_n\end{pmatrix}
+    =\begin{pmatrix}\lambda a_1\\ \vdots\\\lambda a_n\end{pmatrix}.
+\]
+
+\subsection{Length and unit vectors}
+The Euclidean length of $\vec{a}=(a_1,\dots,a_n)$ is
+\figbox{$\dm \lVert\vec{a}\rVert_2
+    =\sqrt{a_1^2+\cdots+a_n^2}$}
+
+If $\vec{a}\neq\vec{0}$, its normalized vector is
+\[
+    \widehat{\vec{a}}=\frac{\vec{a}}{\lVert\vec{a}\rVert_2}.
+\]
+
+The standard basis vectors of $\mathbb{R}^3$ are
+\figbox{$\dm
+    \vec{e}_1=\vec{i}=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad
+    \vec{e}_2=\vec{j}=\begin{pmatrix}0\\1\\0\end{pmatrix},\qquad
+    \vec{e}_3=\vec{k}=\begin{pmatrix}0\\0\\1\end{pmatrix}$}
+and $\lVert\vec{e}_1\rVert=\lVert\vec{e}_2\rVert
+=\lVert\vec{e}_3\rVert=1$.
+
+\subsection{Linear combinations and span}
+A sum of scalar multiples of vectors is called a linear combination:
+\figbox{$\dm
+    \lambda_1\vec{v}_1+\cdots+\lambda_k\vec{v}_k
+    =\sum_{i=1}^{k}\lambda_i\vec{v}_i$}
+
+The span is the set of all such linear combinations:
+\figbox{$\dm
+    \spann(\vec{v}_1,\dots,\vec{v}_k)
+    =\left\{\sum_{i=1}^{k}\lambda_i\vec{v}_i
+    \,\middle|\,\lambda_i\in\mathbb{R}\right\}$}
+
+Every $\vec{x}\in\mathbb{R}^n$ can be expressed using the standard basis:
+\[
+    \vec{x}=(x_1,\dots,x_n)
+    =x_1\vec{e}_1+\cdots+x_n\vec{e}_n.
+\]
+
+\subsection{Dot product}
+For $\vec{a},\vec{b}\in\mathbb{R}^n$:
+\figbox{$\dm
+    \vec{a}\cdot\vec{b}
+    =\vec{a}^{\,T}\vec{b}
+    =\sum_{i=1}^{n}a_i b_i
+    =\lVert\vec{a}\rVert\lVert\vec{b}\rVert\cos\varphi$}
+
+The dot product satisfies
+\begin{align*}
+    \vec{a}\cdot\vec{a}&\geq0,&
+    \vec{a}\cdot\vec{a}=0&\Longleftrightarrow\vec{a}=\vec{0},\\
+    \vec{a}\cdot\vec{b}&=\vec{b}\cdot\vec{a},&
+    (\vec{a}+\vec{b})\cdot\vec{c}
+        &=\vec{a}\cdot\vec{c}+\vec{b}\cdot\vec{c},\\
+    (\lambda\vec{a})\cdot\vec{b}
+        &=\lambda(\vec{a}\cdot\vec{b}).
+\end{align*}
+
+Two vectors are orthogonal exactly when
+\figbox{$\dm \vec{a}\perp\vec{b}
+    \Longleftrightarrow\vec{a}\cdot\vec{b}=0$}
+
+For non-zero vectors, the angle between them is
+\[
+    \varphi=\arccos\left(
+    \frac{\vec{a}\cdot\vec{b}}
+    {\lVert\vec{a}\rVert\lVert\vec{b}\rVert}\right).
+\]
+
+If $\alpha,\beta,\gamma$ are the angles between a vector and the
+$x$-, $y$-, and $z$-axes, then
+\[
+    \cos^2\alpha+\cos^2\beta+\cos^2\gamma=1.
+\]
+
+Mechanical work by a constant force is
+\[
+    W=\vec{F}\cdot\vec{s}
+    =\lVert\vec{F}\rVert\lVert\vec{s}\rVert\cos\varphi.
+\]
 
 \subsection{Cross product (vector product)}
-The cross product of two vectors $\vec{u}$ and $\vec{v}$ is a
-vector $\vec{w}$ that is perpendicular to both $\vec{u}$ and $\vec{v}$,
-and has a magnitude equal to the area of the parallelogram formed by $\vec{u}$ and $\vec{v}$.
+For $\vec{u}=(u_1,u_2,u_3)$ and
+$\vec{v}=(v_1,v_2,v_3)$:
+\figbox{$\dm
+    \vec{u}\times\vec{v}
+    =(u_2v_3-u_3v_2,\,
+      -(u_1v_3-u_3v_1),\,
+      u_1v_2-u_2v_1)$}
 
-Let $\vec{u} = (x,y,z)$ and $\vec{v}=(t,s,q)$
-\figbox{$\dm \vec{u} \times \vec{v} = (yq-sz,\ -(xq-tz),\ xs-yt)$}
+Equivalently, using reduced determinants:
+\figbox{$\dm
+    \vec{u}\times\vec{v}
+    =\left(
+        \begin{vmatrix}u_2&u_3\\v_2&v_3\end{vmatrix},
+        -\begin{vmatrix}u_1&u_3\\v_1&v_3\end{vmatrix},
+        \begin{vmatrix}u_1&u_2\\v_1&v_2\end{vmatrix}
+    \right)$}
 
-\subsection{Unit vectors}
-Components of the unit vectors of the vector basis are as follow:
-\figbox{$\dm \vec{i} = \vec{e}_x = \begin{bmatrix}
-    1 \\ 0 \\ 0
-\end{bmatrix} \qquad \vec{j} = \vec{e}_y = \begin{bmatrix}
-    0 \\ 1 \\ 0
-\end{bmatrix} \qquad \vec{k} = \vec{e}_z = \begin{bmatrix}
-    0 \\ 0 \\ 1
-\end{bmatrix}$}
+The cross product is perpendicular to both vectors and
+\[
+    \lVert\vec{u}\times\vec{v}\rVert
+    =\lVert\vec{u}\rVert\lVert\vec{v}\rVert\sin\varphi
+\]
+is the area of the parallelogram they span. Furthermore,
+\begin{align*}
+    \vec{u}\times\vec{v}&=-(\vec{v}\times\vec{u}),\\
+    \vec{u}\times(\vec{v}+\vec{w})
+        &=\vec{u}\times\vec{v}+\vec{u}\times\vec{w},\\
+    (\lambda\vec{u})\times\vec{v}
+        &=\lambda(\vec{u}\times\vec{v}),\\
+    \vec{u}\times\vec{v}&=\vec{0}
+        \Longleftrightarrow \vec{u},\vec{v}\quad
+        \text{are collinear (or one is zero).}
+\end{align*}
 
-with their norms being $\Vert{\vec{i}}\Vert = \Vert{\vec{j}}\Vert = \Vert{\vec{k}}\Vert = 1$
+\section{Matrices}
 
-\section{Gaussian elimination}
-We want to archieve a stair of zeros on the bottom left of the matrix:
-\begin{gather*}
+\subsection{Definitions and special matrices}
+An $m\times n$ matrix has $m$ rows and $n$ columns:
+\[
+    A=(a_{ij})\in\mathbb{R}^{m\times n}.
+\]
+A matrix is square if $m=n$. A matrix in $\mathbb{R}^{n\times1}$ is a
+column vector, and one in $\mathbb{R}^{1\times n}$ is a row vector.
+
+Important special matrices are:
+\[
+    O=(0)_{m\times n},\qquad
+    I_n=\begin{pmatrix}
+        1&0&\cdots&0\\
+        0&1&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&1
+    \end{pmatrix},
+\]
+upper and lower triangular matrices, and diagonal matrices
+$D=\operatorname{diag}(d_1,\dots,d_n)$.
+
+The transpose interchanges rows and columns:
+\[
+    (A^T)_{ij}=a_{ji}.
+\]
+A square matrix is symmetric if
+\figbox{$\dm A^T=A$}
+
+\subsection{Addition and scalar multiplication}
+For matrices of equal size:
+\[
+    (A+B)_{ij}=a_{ij}+b_{ij},\qquad
+    (\lambda A)_{ij}=\lambda a_{ij}.
+\]
+The usual associative, commutative, distributive, zero, and additive
+inverse laws apply.
+
+\subsection{Matrix multiplication}
+If $A\in\mathbb{R}^{m\times n}$ and
+$B\in\mathbb{R}^{n\times p}$, then
+$AB\in\mathbb{R}^{m\times p}$ with
+\figbox{$\dm
+    (AB)_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}$}
+
+The multiplication rules are
+\begin{align*}
+    (AB)C&=A(BC),&
+    (A+B)C&=AC+BC,\\
+    A(B+C)&=AB+AC,&
+    \lambda(AB)&=(\lambda A)B=A(\lambda B),\\
+    AI&=IA=A,&
+    (AB)^T&=B^T A^T.
+\end{align*}
+In general, $AB\neq BA$.
+
+\section{Linear Systems and Gaussian Elimination}
+
+A linear system can be written as
+\figbox{$\dm A\vec{x}=\vec{b}$}
+where $A$ is the coefficient matrix, $\vec{x}$ is the vector of
+unknowns, and $\vec{b}$ is the right-hand side. Its augmented matrix is
+$[A\mid\vec{b}]$.
+
+\subsection{Elementary row operations}
+Gaussian elimination uses:
+\begin{enumerate}
+    \item interchange two rows;
+    \item multiply a row by a non-zero scalar;
+    \item add a multiple of one row to another row.
+\end{enumerate}
+
+The objective is row echelon form, with each pivot farther right than
+the pivot above it and zero entries below every pivot:
+\[
     \begin{bmatrix}
-        \begin{array}{ccc|c}
-        * & * & * & * \\
-        0 & * & * & * \\
-        0 & 0 & * & *
-        \end{array}
-    \end{bmatrix}
-\end{gather*}
-
-where $*$ is a non-zero number.
-
-This also applies to higher dimensions, for example:
-\begin{gather*}
-    \begin{bmatrix}
-        \begin{array}{ccccccc|c}
-            * & * & * & * & * & * & * & * \\
-            0 & * & * & * & * & * & * & * \\
-            0 & 0 & * & * & * & * & * & * \\
-            0 & 0 & 0 & * & * & * & * & * \\
-            0 & 0 & 0 & 0 & * & * & * & * \\
-            0 & 0 & 0 & 0 & 0 & * & * & * \\
-            0 & 0 & 0 & 0 & 0 & 0 & * & * 
-        \end{array}
-    \end{bmatrix}
-\end{gather*}
+        *&*&*&\vline&*\\
+        0&*&*&\vline&*\\
+        0&0&*&\vline&*
+    \end{bmatrix}.
+\]
+Gauss--Jordan elimination additionally produces zeros above each pivot,
+giving reduced row echelon form.
 
 \subsection{Solution cases}
-\subsubsection{1 possible solution}
-\begin{minipage}[t]{0.5\textwidth}
-    \begin{gather*}
-        \begin{bmatrix}
-            \begin{array}{ccc|c}
-            * & * & * & * \\
-            0 & * & * & * \\
-            0 & 0 & * & *
-            \end{array}
-        \end{bmatrix}
-    \end{gather*}
-\end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
-    \begin{gather*}
-        \begin{cases}
-            x = * \\
-            y = * \\
-            z = * 
-        \end{cases}
-    \end{gather*}
-\end{minipage}
+\begin{itemize}
+    \item A pivot in every variable column and no contradiction:
+          one unique solution.
+    \item At least one free variable and no contradiction:
+          infinitely many solutions.
+    \item A row $[0\ \cdots\ 0\mid c]$ with $c\neq0$:
+          no solution.
+\end{itemize}
 
-\subsubsection{Infinitely many solutions}
-\begin{minipage}[t]{0.5\textwidth}
-    \begin{gather*}
-        \begin{bmatrix}
-            \begin{array}{ccc|c}
-            * & * & * & * \\
-            0 & * & * & * \\
-            0 & 0 & 0 & 0
-            \end{array}
-        \end{bmatrix}
-    \end{gather*}
-\end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
-    \begin{gather*}
-        \begin{cases}
-            x = * \\
-            y = * \\
-            z = t \in \mathbb{R}
-        \end{cases}
-    \end{gather*}
-\end{minipage}
+\subsection{Homogeneous and inhomogeneous systems}
+The homogeneous system
+\[
+    A\vec{x}=\vec{0}
+\]
+always has the trivial solution $\vec{x}=\vec{0}$. If free variables
+exist, it also has infinitely many non-trivial solutions.
 
-\subsubsection{No solution}
-\begin{minipage}[t]{0.5\textwidth}
-    \begin{gather*}
-        \begin{bmatrix}
-            \begin{array}{ccc|c}
-            * & * & * & * \\
-            0 & * & * & * \\
-            0 & 0 & 0 & *
-            \end{array}
-        \end{bmatrix}
-    \end{gather*}
-\end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
-    \begin{gather*}
-        \begin{cases}
-            x = * \\
-            y = * \\
-            0 = * \rightarrow z \in \emptyset
-        \end{cases}
-    \end{gather*}
-\end{minipage}
+For a consistent inhomogeneous system $A\vec{x}=\vec{b}$, every
+solution has the form
+\figbox{$\dm
+    \vec{x}=\vec{x}_p+\vec{x}_h,\qquad
+    A\vec{x}_p=\vec{b},\quad A\vec{x}_h=\vec{0}$}
 
-\section{dunno I forgot to take notes}
-
-\newpage
-
-\section{Inverse and Determinant}
-Let $A$ be a square matrix. The inverse of $A$, denoted by $A^{-1}$,
-satisfies the following:
-\figbox{$A\cdot A^{-1} = I_n$}
-
-where $I_n$ is the identity matrix
-$\left(\begin{smallmatrix}
-    1 & 0 & 0\\
-    0 & 1 & 0\\
-    0 & 0 & 1
-\end{smallmatrix}\right)$
+\section{Determinants and Inverse Matrices}
 
 \subsection{Determinant}
-For $\dm M \in \mathbb{R}^{2\times 2},\ \det M = ad - bc$
+For a $2\times2$ matrix,
+\figbox{$\dm
+    \det\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc$}
 
-For $\dm M \in \mathbb{R}^{3\times 3}$, use Sarrus rule:
+For $A\in\mathbb{R}^{3\times3}$, Sarrus' rule gives:
 \[
 \begin{tikzpicture}[baseline=(mat.center)]
 \matrix (mat) [matrix of math nodes,
@@ -177,101 +291,445 @@ a_{21} \& a_{22} \& a_{23} \& a_{21} \& a_{22} \\
 a_{31} \& a_{32} \& a_{33} \& a_{31} \& a_{32} \\
 };
 
-% vertical separator after the 3rd column
-\draw[thick] ($(mat-1-3.east)!0.5!(mat-1-4.west)$) -- ($(mat-3-3.east)!0.5!(mat-3-4.west)$);
+% Separator after the original three columns
+\draw[thick]
+    ($(mat-1-3.east)!0.5!(mat-1-4.west)$) --
+    ($(mat-3-3.east)!0.5!(mat-3-4.west)$);
 
-% positive diagonals
+% Positive diagonals
 \draw[blue, thick] (mat-3-1.south west) -- (mat-1-3.north east);
 \draw[blue, thick] (mat-3-2.south west) -- (mat-1-4.north east);
 \draw[blue, thick] (mat-3-3.south west) -- (mat-1-5.north east);
 
-% negative diagonals
+% Negative diagonals
 \draw[red, thick] (mat-1-1.north west) -- (mat-3-3.south east);
 \draw[red, thick] (mat-1-2.north west) -- (mat-3-4.south east);
 \draw[red, thick] (mat-1-3.north west) -- (mat-3-5.south east);
 \end{tikzpicture}
 \]
 
-\figbox{\[\det M = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}\]}
+\begin{align*}
+    \det A={}&a_{11}a_{22}a_{33}
+    +a_{12}a_{23}a_{31}
+    +a_{13}a_{21}a_{32}\\
+    &-a_{13}a_{22}a_{31}
+    -a_{11}a_{23}a_{32}
+    -a_{12}a_{21}a_{33}.
+\end{align*}
 
-For $\dm M \in \mathbb{R}^{{n\times n}},\ n > 3$, apply row enchelon and multiply the diagonal pivots.
+For a triangular matrix,
+\[
+    \det A=\prod_{i=1}^{n}a_{ii}.
+\]
+For a general square matrix, reduce it to triangular form while
+tracking:
+\begin{itemize}
+    \item swapping two rows changes the sign of the determinant;
+    \item multiplying a row by $\lambda$ multiplies the determinant
+          by $\lambda$;
+    \item adding a multiple of one row to another does not change the
+          determinant.
+\end{itemize}
 
-\subsection{Inverse}
-Let $M$ be a $2\times 2$ matrix and $a_{\substack{1\leq i \leq m\\1\leq j\leq n}}$
-\figbox{$\dm M^{-1} = \frac{1}{\det M}\ \mathrm{adj}(M),\quad \det M \neq 0$}
+Important rules are
+\begin{align*}
+    \det(A^T)&=\det A,&
+    \det(\lambda A)&=\lambda^n\det A,\\
+    \det(AB)&=\det A\det B,&
+    \det(A^{-1})&=\frac{1}{\det A}.
+\end{align*}
+A square matrix is singular exactly when $\det A=0$.
 
-where:
-\figbox{$\dm A \in \mathbb{R}^{2\times 2},\ \mathrm{adj}(A) =
-\begin{pmatrix}
-    d & -b\\
-    -c & a
-\end{pmatrix}$}
+\subsection{Inverse matrix}
+A square matrix $A$ is invertible if there is a matrix $A^{-1}$ such
+that
+\figbox{$\dm AA^{-1}=A^{-1}A=I_n$}
 
-For $\dm B \in \mathbb{R}^{{3\times 3}}$, apply Gauss - Jordan elimination $[A|I_n] \Leftrightarrow [I_n|A^{-1}]$
+For a $2\times2$ matrix:
+\figbox{$\dm
+    \begin{pmatrix}a&b\\c&d\end{pmatrix}^{-1}
+    =\frac{1}{ad-bc}
+    \begin{pmatrix}d&-b\\-c&a\end{pmatrix},
+    \qquad ad-bc\neq0$}
 
+In general,
+\[
+    A^{-1}=\frac{1}{\det A}\adj(A),
+    \qquad \det A\neq0.
+\]
+It can also be computed by Gauss--Jordan elimination:
+\[
+    [A\mid I_n]\sim[I_n\mid A^{-1}].
+\]
 
-\subsection{Linear systems}
-\figbox{$Ax = b \Longleftrightarrow x=A^{-1} \bullet b$}
+If $A$ is invertible, the unique solution of $A\vec{x}=\vec{b}$ is
+\figbox{$\dm \vec{x}=A^{-1}\vec{b}$}
 
-\section{Add something here}
+\section{Vector Spaces, Subspaces, and Bases}
 
-\section{Linear independency}
-\subsection{with 1 vector}
-If we only have one vector $\vec{v_k}$ at any $\mathbb{R}^k$,
-then it is independent. 
+\subsection{Subspaces}
+A subset $U\subseteq\mathbb{R}^n$ is a vector subspace if:
+\begin{enumerate}
+    \item $\vec{0}\in U$;
+    \item $\vec{u},\vec{v}\in U\Longrightarrow\vec{u}+\vec{v}\in U$;
+    \item $\vec{u}\in U$, $\lambda\in\mathbb{R}
+          \Longrightarrow\lambda\vec{u}\in U$.
+\end{enumerate}
 
-\section{Linearità}
-\figbox{$\dm f(\alpha v + \beta w) = \alpha f(v) + \beta f(w)$}
+The span of any set of vectors is a subspace. In particular,
+$\spann(\vec{v}_1,\dots,\vec{v}_k)$ is the smallest subspace containing
+all of those vectors.
 
-\subsection{Rotation}
-\begin{minipage}[t]{0.5\textwidth}
-    \subsubsection{Clockwise}
-$
-        \begin{bmatrix}
-            \cos\theta & \sin\theta\\
-            -\sin\theta & \cos\theta
-        \end{bmatrix}
-$
-\end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
-    \subsubsection{Counter-clockwise}
-    $
-        \begin{bmatrix}
-            \cos\theta & -\sin\theta\\
-            \sin\theta & \cos\theta
-        \end{bmatrix}
-    $
-\end{minipage}
+\subsection{Linear independence}
+Vectors $\vec{v}_1,\dots,\vec{v}_k$ are linearly independent if
+\figbox{$\dm
+    \lambda_1\vec{v}_1+\cdots+\lambda_k\vec{v}_k=\vec{0}
+    \Longrightarrow\lambda_1=\cdots=\lambda_k=0$}
+Otherwise they are linearly dependent.
 
-\section{Inverse map}
-$L(v)=w$ is invertible if and only if $v$ is a basis (linear independent)
-and $w$ is also linear independent.
+Two non-zero vectors are dependent exactly when one is a scalar
+multiple of the other. A single vector is independent exactly when it
+is non-zero.
 
-\figbox{$\dm w=L(v) \Longleftrightarrow v=L^{-1}(w)$}
+If the vectors are columns of a matrix $A$, they are independent
+exactly when the homogeneous system $A\vec{x}=\vec{0}$ has only the
+trivial solution.
 
+\subsection{Basis and dimension}
+The vectors $\vec{v}_1,\dots,\vec{v}_k\in U$ form a basis of $U$ if
+they:
+\begin{enumerate}
+    \item span $U$;
+    \item are linearly independent.
+\end{enumerate}
+Every vector in $U$ then has a unique representation as a linear
+combination of the basis vectors.
 
-If $L: \mathbb{R}^n \mapsto \mathbb{R}^n$ has a matrix $A$, then
-\[L^{-1}(x) = A^{-1}x\]
+The dimension $\dim U$ is the number of vectors in any basis of $U$.
+In particular,
+\[
+    \dim\mathbb{R}^n=n,\qquad \dim\{\vec{0}\}=0.
+\]
 
-then $L$ is invertible iff $\det A \neq 0$
+If $\dim U=d$ and $\vec{v}_1,\dots,\vec{v}_d\in U$, then the following
+are equivalent:
+\[
+    \{\vec{v}_1,\dots,\vec{v}_d\}\text{ is a basis of }U
+    \Longleftrightarrow
+    \begin{cases}
+        \vec{v}_1,\dots,\vec{v}_d\quad\text{are independent},\\
+        U=\spann(\vec{v}_1,\dots,\vec{v}_d).
+    \end{cases}
+\]
+With exactly $d$ vectors, it is enough to verify either independence
+or spanning.
 
-Follows that, for $L(e_1) = v$ and $L(e_2) = w$, $L$ is invertible iff $v,w$ are
-linearly independent, as $e_1,\ e_2$ are linearly independent.
+\subsection{Affine subspaces}
+An affine subspace is a translated vector subspace:
+\figbox{$\dm
+    A=\vec{v}+U=\{\vec{v}+\vec{u}\mid\vec{u}\in U\}$}
+where $\vec{v}\in\mathbb{R}^n$ and $U\subseteq\mathbb{R}^n$ is a
+subspace. Its dimension is $\dim A=\dim U$.
+\[
+    \begin{array}{c|c}
+        \dim A&\text{geometric object}\\ \hline
+        0&\text{point}\\
+        1&\text{line}\\
+        2&\text{plane}\\
+        n-1&\text{hyperplane}
+    \end{array}
+\]
+A consistent solution set of $A\vec{x}=\vec{b}$ is an affine subspace:
+$\vec{x}_p+\ker A$.
 
-To calculate $L^{-1} \in \mathbb{R}^2$:
+\section{Linear and Affine Maps}
 
-\figbox{$\dm L^{-1} = \dfrac{1}{\det L} \adj L = \dfrac{1}{ad - bc}\begin{pmatrix}
-    d & -b\\
-    -c & a
-\end{pmatrix}$}
+\subsection{Linear maps}
+A map $L:\mathbb{R}^n\to\mathbb{R}^m$ is linear if, for all
+$\vec{u},\vec{v}\in\mathbb{R}^n$ and $\lambda,\mu\in\mathbb{R}$,
+\figbox{$\dm
+    L(\lambda\vec{u}+\mu\vec{v})
+    =\lambda L(\vec{u})+\mu L(\vec{v})$}
+Equivalently, it is additive and homogeneous:
+\[
+    L(\vec{u}+\vec{v})=L(\vec{u})+L(\vec{v}),\qquad
+    L(\lambda\vec{u})=\lambda L(\vec{u}).
+\]
+Every linear map satisfies $L(\vec{0})=\vec{0}$.
 
-\subsection{Kernel and image}
-Let \(A\) be a matrix, then:
-\begin{gather*}
-    \ker A=\{x\in\mathbb{R}^n \mid Ax=0\}\\
-    \operatorname{im} A=\{Ax \mid x\in\mathbb{R}^n\} \Longrightarrow \operatorname{im} A=\operatorname{span}\{a_1,\dots,a_n\}
-\end{gather*}
+Every linear map $L:\mathbb{R}^n\to\mathbb{R}^m$ has a matrix
+$A\in\mathbb{R}^{m\times n}$ such that
+\[
+    L(\vec{x})=A\vec{x}.
+\]
+In the standard bases, its columns are
+\figbox{$\dm
+    A=\begin{bmatrix}L(\vec{e}_1)&\cdots&L(\vec{e}_n)\end{bmatrix}$}
 
+\subsection{Common transformations}
+Counter-clockwise rotation through angle $\theta$:
+\[
+    R_\theta=
+    \begin{pmatrix}
+        \cos\theta&-\sin\theta\\
+        \sin\theta&\cos\theta
+    \end{pmatrix}.
+\]
+Clockwise rotation through angle $\theta$:
+\[
+    R_{-\theta}=
+    \begin{pmatrix}
+        \cos\theta&\sin\theta\\
+        -\sin\theta&\cos\theta
+    \end{pmatrix}.
+\]
 
+\subsection{Affine maps}
+A map $F:\mathbb{R}^n\to\mathbb{R}^m$ is affine if
+\figbox{$\dm F(\vec{x})=L(\vec{x})+\vec{v}
+    =A\vec{x}+\vec{v}$}
+for a linear map $L$, a matrix $A$, and a translation vector
+$\vec{v}$. It is linear exactly when $\vec{v}=\vec{0}$.
+
+\subsection{Inverse maps}
+A linear map $L:\mathbb{R}^n\to\mathbb{R}^n$ is invertible if there is
+a map $L^{-1}$ such that
+\[
+    L^{-1}(L(\vec{x}))=\vec{x},\qquad
+    L(L^{-1}(\vec{y}))=\vec{y}.
+\]
+If $L(\vec{x})=A\vec{x}$, then
+\figbox{$\dm L^{-1}(\vec{x})=A^{-1}\vec{x}$}
+and $L$ is invertible exactly when $\det A\neq0$.
+
+\section{Kernel, Image, Rank, and Nullity}
+
+For $L(\vec{x})=A\vec{x}$:
+\figbox{$\dm
+    \ker L=\{\vec{x}\in\mathbb{R}^n\mid A\vec{x}=\vec{0}\},
+    \qquad
+    \operatorname{im}L=\{A\vec{x}\mid\vec{x}\in\mathbb{R}^n\}$}
+
+If $A=[\vec{a}_1\ \cdots\ \vec{a}_n]$, then
+\[
+    \operatorname{im}A=\spann(\vec{a}_1,\dots,\vec{a}_n).
+\]
+To obtain a basis of the image, row-reduce $A$ and select the
+\emph{original} columns corresponding to pivot columns.
+
+The rank and nullity are
+\[
+    \rank A=\dim(\operatorname{im}A),\qquad
+    \operatorname{nullity}A=\dim(\ker A).
+\]
+The rank is the number of pivots; the nullity is the number of free
+variables. For $A\in\mathbb{R}^{m\times n}$:
+\figbox{$\dm \rank A+\operatorname{nullity}A=n$}
+
+\subsection{Consequences for systems}
+For $A\in\mathbb{R}^{m\times n}$:
+\begin{align*}
+    \ker A=\{\vec{0}\}
+    &\Longleftrightarrow\operatorname{nullity}A=0\\
+    &\Longleftrightarrow\rank A=n\\
+    &\Longleftrightarrow\text{the columns of $A$ are independent}.
+\end{align*}
+
+Furthermore,
+\[
+    \operatorname{im}A=\mathbb{R}^m
+    \Longleftrightarrow\rank A=m
+    \Longleftrightarrow
+    A\vec{x}=\vec{b}\text{ is solvable for every }\vec{b}\in\mathbb{R}^m.
+\]
+
+\subsection{Equivalent conditions for square matrices}
+For $A\in\mathbb{R}^{n\times n}$, the following are equivalent:
+\begin{enumerate}
+    \item $A$ is invertible;
+    \item $\det A\neq0$;
+    \item $\ker A=\{\vec{0}\}$;
+    \item $\rank A=n$;
+    \item $\operatorname{im}A=\mathbb{R}^n$;
+    \item the rows and columns of $A$ each form a basis of
+          $\mathbb{R}^n$;
+    \item $A\vec{x}=\vec{0}$ has only the trivial solution;
+    \item $A\vec{x}=\vec{b}$ has the unique solution
+          $\vec{x}=A^{-1}\vec{b}$ for every $\vec{b}\in\mathbb{R}^n$.
+\end{enumerate}
+
+\section{Eigenvalues and Eigenvectors}
+
+Let $A\in\mathbb{R}^{n\times n}$. A scalar $\lambda$ is an eigenvalue
+of $A$ if there is a non-zero vector $\vec{v}$ such that
+\figbox{$\dm A\vec{v}=\lambda\vec{v},\qquad\vec{v}\neq\vec{0}$}
+The vector $\vec{v}$ is an eigenvector corresponding to $\lambda$.
+Every non-zero scalar multiple of an eigenvector is another
+eigenvector for the same eigenvalue.
+
+\subsection{Eigenspaces}
+The eigenspace associated with $\lambda$ is
+\figbox{$\dm
+    E_\lambda=\ker(A-\lambda I)
+    =\{\vec{v}\in\mathbb{R}^n\mid A\vec{v}=\lambda\vec{v}\}$}
+It contains the zero vector; its non-zero elements are the
+eigenvectors associated with $\lambda$.
+
+\subsection{Computing eigenvalues and eigenvectors}
+\begin{enumerate}
+    \item Form the characteristic polynomial
+          \[
+              p_A(\lambda)=\det(A-\lambda I).
+          \]
+    \item Solve $p_A(\lambda)=0$. Its roots are the eigenvalues.
+    \item For each eigenvalue $\lambda_i$, solve
+          \[
+              (A-\lambda_i I)\vec{v}=\vec{0}
+          \]
+          to find a basis of $E_{\lambda_i}$.
+\end{enumerate}
+
+\section{Diagonalization}
+
+A square matrix $A$ is diagonalizable if there is a basis of
+$\mathbb{R}^n$ consisting of eigenvectors of $A$. If
+$\vec{v}_1,\dots,\vec{v}_n$ are independent eigenvectors with
+eigenvalues $\lambda_1,\dots,\lambda_n$, define
+\[
+    S=\begin{bmatrix}\vec{v}_1&\cdots&\vec{v}_n\end{bmatrix},
+    \qquad
+    D=\operatorname{diag}(\lambda_1,\dots,\lambda_n).
+\]
+Then
+\figbox{$\dm S^{-1}AS=D
+    \qquad\Longleftrightarrow\qquad
+    A=SDS^{-1}$}
+
+An $n\times n$ matrix is diagonalizable exactly when the sum of the
+dimensions of its eigenspaces is $n$. In particular, $n$ distinct
+eigenvalues guarantee diagonalizability.
+
+Diagonalization simplifies powers:
+\[
+    A^k=SD^kS^{-1}.
+\]
+
+\section{Norms, Metrics, and Orthogonality}
+
+\subsection{Norms}
+A norm satisfies, for all vectors $\vec{x},\vec{y}$ and scalars
+$\lambda$:
+\begin{align*}
+    \lVert\vec{x}\rVert&\geq0,\\
+    \lVert\vec{x}\rVert=0&\Longleftrightarrow\vec{x}=\vec{0},\\
+    \lVert\lambda\vec{x}\rVert&=|\lambda|\lVert\vec{x}\rVert,\\
+    \lVert\vec{x}+\vec{y}\rVert
+        &\leq\lVert\vec{x}\rVert+\lVert\vec{y}\rVert.
+\end{align*}
+
+Common norms are
+\[
+    \lVert\vec{x}\rVert_2
+    =\sqrt{\sum_{i=1}^{n}x_i^2},
+    \qquad
+    \lVert\vec{x}\rVert_\infty
+    =\max_{1\leq i\leq n}|x_i|.
+\]
+
+\subsection{Metrics}
+A metric $d:M\times M\to\mathbb{R}$ satisfies:
+\begin{align*}
+    d(x,y)&\geq0,\\
+    d(x,y)=0&\Longleftrightarrow x=y,\\
+    d(x,y)&=d(y,x),\\
+    d(x,y)&\leq d(x,z)+d(z,y).
+\end{align*}
+A norm induces the metric $d(\vec{x},\vec{y})
+=\lVert\vec{x}-\vec{y}\rVert$.
+
+\subsection{Orthogonal and orthonormal bases}
+A basis $\vec{b}_1,\dots,\vec{b}_k$ is orthogonal if
+\[
+    \vec{b}_i\cdot\vec{b}_j=0\qquad(i\neq j).
+\]
+It is orthonormal if additionally
+\[
+    \lVert\vec{b}_i\rVert=1.
+\]
+For an orthonormal basis, the coordinates of $\vec{v}$ are particularly
+simple:
+\[
+    \vec{v}=\sum_{i=1}^{k}(\vec{v}\cdot\vec{b}_i)\vec{b}_i.
+\]
+
+\section{Orthogonal Projections and Gram--Schmidt}
+
+\subsection{Projection onto a line}
+The orthogonal projection of $\vec{v}$ onto
+$L=\spann(\vec{b})$, $\vec{b}\neq\vec{0}$, is
+\figbox{$\dm
+    \operatorname{proj}_{\vec{b}}(\vec{v})
+    =\frac{\vec{v}\cdot\vec{b}}
+           {\vec{b}\cdot\vec{b}}\,\vec{b}$}
+If $\lVert\vec{b}\rVert=1$, then
+\[
+    \operatorname{proj}_{\vec{b}}(\vec{v})
+    =(\vec{v}\cdot\vec{b})\vec{b}.
+\]
+The error vector is orthogonal to the line:
+\[
+    \vec{v}-\operatorname{proj}_{\vec{b}}(\vec{v})
+    \perp\vec{b}.
+\]
+
+\subsection{Projection onto a subspace}
+If $\vec{b}_1,\dots,\vec{b}_k$ is an orthonormal basis of $U$, then
+\figbox{$\dm
+    \operatorname{proj}_{U}(\vec{v})
+    =\sum_{i=1}^{k}(\vec{v}\cdot\vec{b}_i)\vec{b}_i$}
+The residual $\vec{v}-\operatorname{proj}_U(\vec{v})$ lies in
+$U^\perp$.
+
+\subsection{Gram--Schmidt process}
+Starting from a basis $\vec{v}_1,\dots,\vec{v}_k$, construct an
+orthogonal basis:
+\begin{align*}
+    \vec{u}_1&=\vec{v}_1,\\
+    \vec{u}_2&=\vec{v}_2-\operatorname{proj}_{\vec{u}_1}(\vec{v}_2),\\
+    \vec{u}_j&=\vec{v}_j-
+        \sum_{i=1}^{j-1}
+        \operatorname{proj}_{\vec{u}_i}(\vec{v}_j).
+\end{align*}
+Normalize the resulting vectors:
+\figbox{$\dm
+    \vec{b}_i=\frac{\vec{u}_i}{\lVert\vec{u}_i\rVert},
+    \qquad i=1,\dots,k$}
+Then $\vec{b}_1,\dots,\vec{b}_k$ is an orthonormal basis of the same
+subspace.
+
+\subsection{Algorithm in a nutshell}
+\begin{enumerate}[label=Step \arabic*.]
+    \item $w_1 \longrightarrow v_1 = \dfrac{w_1}{\left\|w_1\right\|}$
+    \item $v_2' = w_2 - \underbrace{\left(w_1 \cdot v_1\right)v_1}_{P_{\spann(v_1)}(w_2)}$
+    \item $v_2 = \dfrac{v_2'}{\left\|v_2'\right\|}$
+    \item $v_3' = w_3 - \underbrace{\left(w_3 \cdot v_1\right)v_1 - \left(w_3 \cdot v_2\right)v_2}_{P_{\spann(v_1,v_2)}(w_3)}$
+    \item $v_3 = \dfrac{v_3'}{\left\|v_3'\right\|}$
+\end{enumerate}
+
+\section{Spectral Theorem}
+
+Every real symmetric matrix $A=A^T$:
+\begin{itemize}
+    \item has only real eigenvalues;
+    \item has mutually orthogonal eigenspaces for distinct eigenvalues;
+    \item has an orthonormal basis of eigenvectors;
+    \item is orthogonally diagonalizable.
+\end{itemize}
+
+If the orthonormal eigenvectors are the columns of
+$V$ and their eigenvalues form $D$, then $V^{-1}=V^T$ and
+\figbox{$\dm V^TAV=D
+    \qquad\Longleftrightarrow\qquad
+    A=VDV^T$}
 
 \end{document}

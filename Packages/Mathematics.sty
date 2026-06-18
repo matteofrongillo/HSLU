@@ -2,14 +2,15 @@
 
 % ============= PACKAGES =============
 
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
 \usepackage{amsmath}
-\usepackage{amssymb}
+%\usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{geometry}
-\usepackage{babel}
+\usepackage{fontspec}
 \usepackage{enumitem}
 \usepackage{parskip}
 \usepackage{chemfig}
@@ -23,7 +24,6 @@
 \usepackage{ulem}
 \usepackage{wrapfig}
 \usepackage{subcaption}
-\usepackage[T1]{fontenc}
 \usepackage{esvect}
 \usepackage{siunitx}
 \usepackage{mathtools}
@@ -43,6 +43,11 @@
 \pgfplotsset{compat=1.17}
 \definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
 
+\usepackage[english]{babel}
+\usepackage{unicode-math}
+\setmainfont{Noto Sans}
+\setsansfont{Noto Sans}
+\setmathfont{KpMath-Regular.otf}
 % ============= GEOMETRY =============
 
 \geometry{

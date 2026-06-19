@@ -37,6 +37,7 @@
 \usepackage{colortbl}
 \usepackage[column=O]{cellspace}
 \usepackage{tcolorbox}
+\usepackage{siunitx}
 
 \usetikzlibrary{arrows, arrows.meta}
 \usetikzlibrary{decorations.pathreplacing}
@@ -1654,7 +1655,474 @@ Properties
 }
 \end{center}
 
+\newpage
+\begin{multicols*}{3}
+\raggedcolumns
+\vspace*{-.5cm}
+
+\footnotesize
+\textbf{HS 25}\\
+\textbf{Exercise 1}\\
+A piston moves in a cylinder with a narrow gap $s$.
+The steady, laminar axial flow varies only across the gap:
+\[
+v(y)=\frac{1}{\eta}p'\frac{y^2}{2}+by+c,
+\qquad
+p'=\frac{p_2-p_1}{l},
+\qquad
+0\leq y\leq s
+\]
+\begin{center}
+  \includegraphics[\lw=.6]{media/hs25_1.png}
+\end{center}
+$\eta=0.10\,\mathrm{kg/(m\,s)},\quad p_1=20\,\mathrm{bar},\quad p_2=35\,\mathrm{bar},\quad s=0.20\,\mathrm{mm},\quad l=12\,\mathrm{cm},\quad d=18\,\mathrm{cm},\quad v(0)=v_1,\quad v(s)=v_2=-0.30v_1$.
+\begin{enumerate}[label=(\alph*)]
+  \item Sketch: velocity profile and shear-stress distribution across $s$.\\
+    \begin{center}
+      \includegraphics[\lw=.6]{media/hs25_2.png}
+    \end{center}
+  \item Determine b and c. Separate Poiseuille and Couette flows.\\
+    \[
+      c=v_1,\qquad b=-\frac{p's}{2\eta}-\frac{1.30v_1}{s}
+    \]
+    \[
+      v(y)=\underbrace{\frac{p'}{\eta}\left(\frac{y^2}{2}-\frac{sy}{2}\right)}_{v_P}
+      +\underbrace{v_1\left(1-\frac{1.30y}{s}\right)}_{v_C}
+    \]
+  \item Choose $v_1$ such that there is no leakage:
+    \[
+      \dot V=\pi d\int_0^s v(y)\,dy=0
+    \]
+    \[
+      p' = \frac{p_2 - p_1}{l}\quad \Rightarrow \quad v_1=\frac{p's^2}{12\eta(1-0.65)}=1.19\,\mathrm{m/s}
+    \]
+  \item Calculate the wall shear stresses:
+    \[
+      \tau(y)=\eta\frac{dv}{dy}
+      =p'\left(y-\frac{s}{2}\right)-\frac{1.30\eta v_1}{s}
+    \]
+    \[
+      \tau(0)=-2.02\,\mathrm{kPa},\qquad
+      \tau(s)=0.476\,\mathrm{kPa}
+    \]
+  \item Find where velocity and shear stress vanish:
+    \[
+      v=0:\ \frac{y}{s}=38.6\%,\qquad
+      \tau=0:\ \frac{y}{s}=80.95\%
+    \]
+  \item Leakage for $v_1=1.00\,\mathrm{m/s}$:
+    \[
+      \dot V = \integral[0][s][v(y)][y]
+    \]
+    \[
+      \dot V=\pi d\left(-\frac{p's^3}{12\eta}
+      +0.35v_1s\right)
+      =-7.54\cdot10^{-6}\,\mathrm{m^3/s}
+    \]
+    Flow direction: toward the low-pressure region $p_1$.
+\end{enumerate}
+
+\textbf{Exercise 2: Similarity}\\
+The drag force $F_D$ on a sphere depends on $D,v,\rho,\mu,c$.\\
+Prototype: $D_P=0.30\,\mathrm{m},\ v_P=40\,\mathrm{m/s},\
+T=20^\circ\mathrm{C},\ p_P=1\,\mathrm{atm}$.\\
+The wind-tunnel model has scale $1{:}3$, $D_M=D_P/3$, and
+$p_M\leq4\,\mathrm{atm}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Buckingham $\Pi$ theorem with $\rho,v,D$:
+    \[
+      \Pi_1=\frac{F_D}{\rho v^2D^2}\sim C_D,\qquad
+      \Pi_2=\frac{\rho vD}{\mu}=\mathrm{Re},\qquad
+      \Pi_3=\frac{v}{c}=\mathrm{Ma}
+    \]
+    Hence $C_D=f(\mathrm{Re},\mathrm{Ma})$.
+  \item Dynamic similarity requires $\mathrm{Re}_M=\mathrm{Re}_P$.
+    At equal temperature, $\mu_M\simeq\mu_P$ and $\rho\propto p$:
+    \[
+      \rho_Mv_MD_M=\rho_Pv_PD_P
+      \Rightarrow
+      v_M=3v_P\frac{p_P}{p_M}
+    \]
+    Choosing $p_M=4\,\mathrm{atm}$:
+    \[
+      v_M=30\,\mathrm{m/s}
+    \]
+    With $c\simeq343\,\mathrm{m/s}$,
+    $\mathrm{Ma}_P=0.12$ and $\mathrm{Ma}_M=0.09$.
+    Both are below $0.3$, so compressibility is negligible.
+  \item For $C_D=0.45$ and $\rho_P=1.2\,\mathrm{kg/m^3}$:
+    \[
+      F_D=C_D\frac{\rho v^2}{2}\frac{\pi D^2}{4}
+    \]
+    \[
+      F_{D,P}=30.5\,\mathrm{N},\qquad
+      F_{D,M}=7.63\,\mathrm{N}
+    \]
+\end{enumerate}
+
+\textbf{Exercise 3: Vorticity}\\
+Given
+\[
+  \vec v(r,\theta,z)=(0,v_\theta(r),0),\qquad
+  v_\theta(r)=ar+b.
+\]
+\begin{enumerate}[label=(\alph*)]
+  \item Determine the vorticity:
+    \[
+      \vec\omega=(0,0,\omega_z),\qquad
+      \omega_z=\frac{1}{r}\frac{\partial(rv_\theta)}{\partial r}
+      =2a+\frac{b}{r}
+    \]
+  \item Local irrotationality at $r=R$:
+    \[
+      \omega_z(R)=0\quad\Rightarrow\quad b=-2aR
+    \]
+  \item With $v_\theta(R)=V_R$:
+    \[
+      a=-\frac{V_R}{R},\qquad b=2V_R
+    \]
+  \item Thus $v_\theta(r)$ varies linearly with $r$, while
+    \[
+      \omega_z(r)=-\frac{2V_R}{R}+\frac{2V_R}{r}
+    \]
+    vanishes only at $r=R$.
+\end{enumerate}
+
+\textbf{Exercise 4: Two-dimensional potential vortex (Rankine vortex)}\\
+For $0\leq r\leq R_1$ the vortex core rotates as a solid body; for
+$R_1<r\leq R_2$ it is a potential vortex.\\
+$p(0.5R_1)=98.5\,\mathrm{kPa},\ R_1=0.10\,\mathrm{m},\
+R_2=0.30\,\mathrm{m},\ h=0.20\,\mathrm{m},\
+p(R_1)=1.00\,\mathrm{bar},\ \rho=1000\,\mathrm{kg/m^3}$.
+\begin{enumerate}[label=(\alph*)]
+  \item In the core, $v_\theta=\Omega r$ and
+    \[
+      p(r)-p(R_1)=\frac{\rho\Omega^2}{2}(r^2-R_1^2)
+    \]
+    Therefore
+    \[
+      \Omega=20\,\mathrm{rad/s}.
+    \]
+  \item In the solid-body vortex:
+    \[
+      \omega_z=2\Omega=40\,\mathrm{s^{-1}},\qquad
+      v_\theta(R_1)=\Omega R_1=2.0\,\mathrm{m/s}
+    \]
+  \item The center pressure is
+    \[
+      p(0)=p(R_1)-\frac{\rho\Omega^2R_1^2}{2}
+      =98.0\,\mathrm{kPa}.
+    \]
+  \item In the potential-vortex region, continuity at $R_1$ gives
+    \[
+      v_\theta(r)=\frac{\Omega R_1^2}{r},\qquad
+      v_\theta(R_2)=0.667\,\mathrm{m/s}.
+    \]
+  \item Volume flow through a radial section:
+    \[
+      \dot V=h\int_{R_1}^{R_2}v_\theta(r)\,dr
+      =\Omega R_1^2h\ln\left(\frac{R_2}{R_1}\right)
+      =4.39\cdot10^{-2}\,\mathrm{m^3/s}
+    \]
+  \item Total pressure $p_\mathrm{tot}=p+\rho v_\theta^2/2$:
+    \[
+      p_\mathrm{tot}(R_1)=102\,\mathrm{kPa},\quad
+      p_\mathrm{tot}(0.5R_1)=99.0\,\mathrm{kPa},\quad
+      p_\mathrm{tot}(2R_1)=102\,\mathrm{kPa}
+    \]
+    It increases quadratically in the core and is constant for
+    $r\geq R_1$.
+\end{enumerate}
+
+\textbf{Exercise 5: Compressible flow}\\
+A Laval nozzle must provide $M_2=2.5$ with
+$p_0=600\,\mathrm{kPa},\ T_0=500\,\mathrm{K},\
+\kappa=1.4,\ R_s=287\,\mathrm{J/(kg\,K)}$, and
+$\dot m=25\,\mathrm{kg/s}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Area--Mach relation:
+    \[
+      \frac{A}{A^*}=\frac{1}{M}
+      \left[\frac{2}{\kappa+1}
+      \left(1+\frac{\kappa-1}{2}M^2\right)\right]^{
+      \frac{\kappa+1}{2(\kappa-1)}}
+    \]
+    \[
+      \frac{A_2}{A^*}=2.64.
+    \]
+  \item Critical mass flow:
+    \[
+      \dot m=A^*p_0\sqrt{\frac{\kappa}{R_sT_0}}
+      \left(\frac{2}{\kappa+1}\right)^{
+      \frac{\kappa+1}{2(\kappa-1)}}
+    \]
+    \[
+      A^*=0.0231\,\mathrm{m^2}.
+    \]
+  \item Exit area and state:
+    \[
+      A_2=2.64A^*=0.0610\,\mathrm{m^2}
+    \]
+    \[
+      T_2=\frac{T_0}{1+\frac{\kappa-1}{2}M_2^2}
+      =222\,\mathrm{K}
+    \]
+    \[
+      p_2=\frac{p_0}{
+      \left(1+\frac{\kappa-1}{2}M_2^2\right)^{
+      \frac{\kappa}{\kappa-1}}}
+      =34.9\,\mathrm{kPa}
+    \]
+    \[
+      v_2=M_2\sqrt{\kappa R_sT_2}=746\,\mathrm{m/s}.
+    \]
+\end{enumerate}
+
+\newpage
+\textbf{HS 23}\\
+\textbf{Task 1: Axial bearing with floating disc}\\
+A floating disc rotates at $\omega/2$ between the shaft rotating at
+$\omega$ and the stationary bearing housing. End-face friction at the
+inner and outer radii is neglected.
+\begin{center}
+  \includegraphics[\lw=.6]{media/hs23_1.png}
+\end{center}
+$r_i=3\,\mathrm{cm},\quad r_a=8\,\mathrm{cm},\quad
+\omega=200\,\mathrm{rad/s},\quad s=0.2\,\mathrm{mm},\quad
+\eta=1.0\cdot10^{-2}\,\mathrm{Pa\,s}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Sketch $v(x),\ \tau(x)$, as well $v(r),\ \tau(r)$
+    \begin{center}
+      \includegraphics[\lw]{media/hs23_2.png}
+    \end{center}
+  \item At the floating disc:
+    \[
+      v(r)=\frac{\omega r}{2},\qquad
+      \tau(r)=\eta\frac{\omega r}{2s}.
+    \]
+    The two disc surfaces experience equal and opposite shear stresses,
+    so the floating disc has no net torque.
+  \item The local dissipation rate is
+    \[
+      \dot e_\mathrm{diss}
+      =\eta\left(\frac{dv}{dx}\right)^2
+      =\eta\left(\frac{\omega r}{2s}\right)^2.
+    \]
+    Integrating over both gaps:
+    \[
+      P_\mathrm{diss}
+      =2\int_{r_i}^{r_a}\dot e_\mathrm{diss}(2\pi rs\,dr)
+      =\frac{\pi\eta\omega^2}{4s}
+      \left(r_a^4-r_i^4\right)
+      =63.1\,\mathrm{W}.
+    \]
+\end{enumerate}
+
+\textbf{Task 2: Maglev train}\\
+$v=600\,\mathrm{km/h},\quad A_d=4\,\mathrm{m^2},\quad
+c_d=0.05,\quad \rho=1.2\,\mathrm{kg/m^3}$.
+\begin{enumerate}[label=(\alph*)]
+  \item With $v=166.7\,\mathrm{m/s}$, the drag force is
+    \[
+      F_D=c_d\frac{\rho v^2}{2}A_d
+      =3.33\,\mathrm{kN}.
+    \]
+  \item Required driving power:
+    \[
+      P=F_Dv=5.56\cdot10^5\,\mathrm{W}
+      =556\,\mathrm{kW}.
+    \]
+  \item Since lift is proportional to $v^2$:
+    \[
+      \frac{F_{L,2}}{F_{L,1}}
+      =\left(\frac{v_2}{v_1}\right)^2
+      \Rightarrow
+      v_2=600\sqrt{\frac{30}{270}}
+      =200\,\mathrm{km/h}.
+    \]
+    Thus $F_L>30\,\mathrm{kN}$ for $v>200\,\mathrm{km/h}$.
+  \item The train is a streamlined body. Adding carriages mainly
+    increases skin-friction drag, while the frontal area and pressure
+    drag change little. Therefore the total drag increases, but the drag
+    coefficient only increases slightly.
+\end{enumerate}
+
+\textbf{Task 3: Compressible flow}\\
+Air flows isentropically through a converging nozzle.\\
+$p_1=1.5\,\mathrm{bar},\quad T_1=303\,\mathrm{K},\quad
+v_1=100\,\mathrm{m/s},\quad A_2=0.0079\,\mathrm{m^2},\quad
+p_2=1.042\,\mathrm{bar},\quad \kappa=1.4,\quad
+R=287\,\mathrm{J/(kg\,K)},\quad c_p=1005\,\mathrm{J/(kg\,K)}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Inlet and stagnation quantities:
+    \[
+      a_1=\sqrt{\kappa RT_1}=349\,\mathrm{m/s},\qquad
+      \mathrm{Ma}_1=\frac{v_1}{a_1}=0.287
+    \]
+    \[
+      T_0=T_1+\frac{v_1^2}{2c_p}=308\,\mathrm{K},
+      \qquad
+      p_0=p_1\left(\frac{T_0}{T_1}\right)^{
+      \frac{\kappa}{\kappa-1}}
+      =1.588\,\mathrm{bar}
+    \]
+    \[
+      \rho_1=\frac{p_1}{RT_1}=1.725\,\mathrm{kg/m^3}.
+    \]
+  \item For $p_2=1.042\,\mathrm{bar}$:
+    \[
+      \mathrm{Ma}_2=
+      \sqrt{\frac{2}{\kappa-1}
+      \left[\left(\frac{p_0}{p_2}\right)^{
+      \frac{\kappa-1}{\kappa}}-1\right]}
+      =0.800
+    \]
+    \[
+      T_2=\frac{T_0}{1+\frac{\kappa-1}{2}\mathrm{Ma}_2^2}
+      =273\,\mathrm{K}
+    \]
+    \[
+      \rho_2=\frac{p_2}{RT_2}=1.330\,\mathrm{kg/m^3},
+      \qquad
+      v_2=\mathrm{Ma}_2\sqrt{\kappa RT_2}
+      =265\,\mathrm{m/s}
+    \]
+    \[
+      \dot m=\rho_2v_2A_2=2.78\,\mathrm{kg/s}.
+    \]
+    Since $\mathrm{Ma}_2<1$, the nozzle is not choked.
+  \item Choking begins at
+    \[
+      p_2=p^*=p_0\left(\frac{2}{\kappa+1}\right)^{
+      \frac{\kappa}{\kappa-1}}
+      =0.839\,\mathrm{bar}.
+    \]
+    At the critical state:
+    \[
+      \mathrm{Ma}_2=1,\qquad
+      T_2=T^*=T_0\frac{2}{\kappa+1}=256.6\,\mathrm{K},
+    \]
+    \[
+      v_2=v^*=\sqrt{\kappa RT^*}=321\,\mathrm{m/s},
+      \qquad
+      \dot m_\mathrm{max}=2.89\,\mathrm{kg/s}.
+    \]
+\end{enumerate}
+
+\textbf{Testat 2}\\
+\textbf{Task 6: Similarity traffic sign}\\
+$b_P=2.0\,\mathrm{m},\ h_P=1.6\,\mathrm{m},\
+v_P=100\,\mathrm{km/h},\ b_M=0.40\,\mathrm{m},\
+F_M=3000\,\mathrm{N}$; water:
+$\rho_M=1000\,\mathrm{kg/m^3},\ \eta_M=10^{-3}\,\mathrm{Pa\,s}$;
+air: $\rho_P=1.2\,\mathrm{kg/m^3},\
+\eta_P=2\cdot10^{-5}\,\mathrm{Pa\,s}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Buckingham $\Pi$ theorem:
+    \[
+      F=f(b,h,v,\rho,\eta),\qquad n=6,\quad r=3
+      \quad\Rightarrow\quad n-r=3.
+    \]
+    Choose $h,\rho,v$ as repeating variables. For
+    $\Pi_F=Fh^a\rho^bv^c$:
+    \[
+      M:\ 1+b=0,\qquad
+      T:\ -2-c=0,\qquad
+      L:\ 1+a-3b+c=0,
+    \]
+    hence $a=-2,\ b=-1,\ c=-2$ and
+    \[
+      \Pi_1=\frac{F}{\rho v^2h^2}.
+    \]
+    For $\Pi_\eta=\eta h^d\rho^ev^f$:
+    \[
+      M:\ 1+e=0,\qquad
+      T:\ -1-f=0,\qquad
+      L:\ -1+d-3e+f=0,
+    \]
+    hence $d=-1,\ e=-1,\ f=-1$ and
+    \[
+      \Pi_2=\frac{\eta}{\rho vh}=\frac{1}{\mathrm{Re}}.
+    \]
+    The remaining geometric group is
+    \[
+      \Pi_3=\frac{b}{h}.
+    \]
+    Thus
+    \[
+      \frac{F}{\rho v^2h^2}
+      =f\left(\mathrm{Re},\frac{b}{h}\right).
+    \]
+  \item Geometric and Reynolds similarity:
+    \[
+      h_M=h_P\frac{b_M}{b_P}=0.32\,\mathrm{m},
+    \]
+    \[
+      v_M=v_P\frac{h_P}{h_M}
+      \frac{\rho_P}{\rho_M}\frac{\eta_M}{\eta_P}
+      =8.33\,\mathrm{m/s}.
+    \]
+    Force scaling:
+    \[
+      F_P=F_M\frac{\rho_P}{\rho_M}
+      \left(\frac{v_P}{v_M}\right)^2
+      \left(\frac{h_P}{h_M}\right)^2
+      =1.00\,\mathrm{kN}.
+    \]
+\end{enumerate}
+
+\textbf{Testat 1}\\
+\textbf{Task 1: Hydraulic press}\\
+$l=0.08\,\mathrm{m},\quad s=0.1\,\mathrm{mm},\quad
+v_0=0.5\,\mathrm{m/s},\quad p_1=15\,\mathrm{bar},\quad
+p_2=45\,\mathrm{bar},\quad \eta=0.1\,\mathrm{Pa\,s}$.
+\begin{center}
+  \includegraphics[\lw=.4]{media/testat1_1.png}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+  \item Sketch the velocity profile $v(y)$ in the gap.
+  \begin{center}
+    \includegraphics[\lw=.7]{media/testat1_2.png}
+  \end{center}
+  \item With $p'=(p_2-p_1)/l$:
+    \[
+      v(y)=\underbrace{\frac{p'}{2\eta}(y^2-sy)}_{v_P}
+      +\underbrace{\frac{v_0}{s}(s-y)}_{v_C}
+    \]
+    \[
+      v(y)=1.875\cdot10^8y^2-2.375\cdot10^4y+0.5
+      \quad[\mathrm{m/s}].
+    \]
+  \item Shear-stress distribution:
+    \[
+      \tau(y)=\eta\frac{dv}{dy}
+      =0.1\left(3.75\cdot10^8y-2.375\cdot10^4\right)
+      \quad[\mathrm{Pa}].
+    \]
+  \item Wall shear stresses:
+    \[
+      \tau_\mathrm{piston}=\tau(0)=-2375\,\mathrm{Pa},
+      \qquad
+      \tau_\mathrm{cylinder}=\tau(s)=1375\,\mathrm{Pa}.
+    \]
+\end{enumerate}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{multicols*}
 \end{document}

@@ -575,6 +575,17 @@ Power balance:
   s = (1-x)s' + xs'' = s' + x\left(\dfrac{\Delta h_v}{T}\right)
 \end{gather*}
 
+\subsubsection{Steam content}
+\begin{gather*}
+  x = \dfrac{v-v'}{v''-v'}\\[1ex]
+  x = \dfrac{h-h'}{h''-h'} = \dfrac{h-h'}{\Delta h_v}\\[1ex]
+  x = \dfrac{s-s'}{s''-s'} = (s-s')\dfrac{T}{\Delta h_v}
+\end{gather*}
+
+\subsection{Water pump}
+\[P_\text{el}\cdot \eta_p = \dot m \cdot c_p \cdot \Delta T\]
+
+\newcolumn
 \section{Steam power stations}
 \subsection{Rankine cycle}
 \includegraphics[width=\linewidth]{media/rankine-T-s.png}
@@ -594,8 +605,9 @@ Power balance:
 
 \[\eta_{th} = \dfrac{(h_3 - h_4) \overbrace{- (h_2 - h_1)}^{\text{pump work}}}{h_3 - h_2}\quad ; \quad \eta_s = \frac{h_3 - h_4}{h_3 - h_{4,s}}\leq 1\]
 
-\newcolumn
-\vspace*{-.6cm}
+\subsubsection{Generator}
+\[P_G = \dot m_D \cdot \left(h_3 - h_4\right) \cdot \prod_i \eta_i\]
+
 \part{Heat pumps and Chillers}
 \section{T-s and log p-h diagrams}
 \includegraphics[\lw]{media/heatpump.png}
@@ -640,7 +652,6 @@ Power balance:
   \varepsilon_{HP} > COP_{HP} \quad ; \quad \zeta_{HP} = \frac{COP_{HP}}{\varepsilon_{HP,C}}
 \end{gather*}
 
-\newcolumn
 \subsubsection{COP of a refrigerator}
 \begin{gather*}
   EER = COP_R = \dfrac{\dot{Q}_{in}}{P_{el}} = \dfrac{\dot{Q}_e}{P_{el}}\\[1ex]

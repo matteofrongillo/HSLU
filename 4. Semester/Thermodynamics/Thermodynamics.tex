@@ -582,6 +582,12 @@ Power balance:
   x = \dfrac{s-s'}{s''-s'} = (s-s')\dfrac{T}{\Delta h_v}
 \end{gather*}
 
+\subsubsection{Subcooling / Condenser enthalpy}
+\begin{gather*}
+  h_1 = h'([p,t,s]) - c_p \Delta T_\text{subcooling}\\
+  \dot Q_\text{heating} = \dot m \cdot c_p \Delta T_\text{heating}
+\end{gather*}
+
 \subsection{Water pump}
 \[P_\text{el}\cdot \eta_p = \dot m \cdot c_p \cdot \Delta T\]
 
@@ -628,34 +634,20 @@ Power balance:
 \subsection{Isentropic efficiency (compressor)}
 \[\eta_s = \frac{h_{2,s}-h_1}{h_2-h_1} \leq 1\]
 
-\section{Coefficient of performance}
+\section{Heat pumps (HP)}
 \subsection{Inner coefficient of performance}
-\subsubsection{Inner COP of a heat pump}
 \begin{gather*}
   \varepsilon_\text{HP} = \frac{\left|q_{23}\right|}{w_{12}} = \frac{\text{heat}}{\text{technical work}} = \frac{h_2-h_3}{h_2-h_1} = \varepsilon_R + 1\\[1ex]
   \text{Carnot: }\frac{1}{\eta_C} = \varepsilon_{HP,C} = \frac{T_C}{T_C - T_E} = \frac{T_C}{\Delta T_\text{lift}} = \varepsilon_{R,C} + 1
 \end{gather*}
 
-\subsubsection{Inner COP of a refrigerator}
-\begin{gather*}
-  \varepsilon_R = \frac{\left|q_{41}\right|}{w_{12}} = \frac{h_1-h_4}{h_2-h_1} = \varepsilon_\text{HP} - 1\\[1ex]
-  \text{Carnot: } \varepsilon_{R,C} = \frac{T_E}{T_C - T_E} = \frac{T_E}{\Delta T_\text{lift}} = \varepsilon_{HP,C} - 1
-\end{gather*}
-
 \subsection{Outer coefficient of performance (COP)}
-\subsubsection{COP of a heat pump}
 \begin{center}
   \includegraphics[\lw=.75]{media/heat-pump.png}
 \end{center}
 \begin{gather*}
-  \text{COP}_\text{HP} = \frac{\lvert\dot{Q}_\omega\rvert}{P_{el}} = \frac{\lvert\dot{Q}\rvert}{P_{el}}\\[1ex]
+  \text{COP}_\text{HP} = \frac{\lvert\dot{Q}_\omega\rvert}{P_{el}} = \frac{\lvert\dot{Q}\rvert}{P_{el}} = \eta_\text{mech}\cdot \varepsilon_\text{HP}\\[1ex]
   \varepsilon_{HP} > COP_{HP} \quad ; \quad \zeta_{HP} = \frac{COP_{HP}}{\varepsilon_{HP,C}}
-\end{gather*}
-
-\subsubsection{COP of a refrigerator}
-\begin{gather*}
-  EER = COP_R = \dfrac{\dot{Q}_{in}}{P_{el}} = \dfrac{\dot{Q}_e}{P_{el}}\\[1ex]
-  \varepsilon_R > EER \quad ; \quad \zeta_R = \dfrac{EER}{\varepsilon_{R,C}}
 \end{gather*}
 
 \subsection{Real inner COP}
@@ -663,8 +655,28 @@ Assumptions: $\zeta = 0.5,\ \Delta T_e = 10K,\ \Delta T_c = 5K$
 
 \begin{gather*}
   \varepsilon_{HP,C} = \dfrac{\vartheta_\text{req} - \Delta T_c}{\left(\vartheta_\text{env} - \Delta T_c\right) - \left(\vartheta_\text{req} - \Delta T_e\right)}\\[1ex]
-  \varepsilon_{R,C} = \dfrac{\vartheta_\text{req} - \Delta T_e}{\left(\vartheta_\text{env} - \Delta T_C\right) - \left(\vartheta_\text{req} - \Delta T_e\right)}\\[1ex]
-  \varepsilon = \zeta\cdot \varepsilon_C
+  \varepsilon_\text{HP} = \zeta_{HP}\cdot \varepsilon_{HP,C}
+\end{gather*}
+
+\section{Chillers / refrigerators (R)}
+\subsection{Inner coefficient of performance}
+\begin{gather*}
+  \varepsilon_R = \frac{\left|q_{41}\right|}{w_{12}} = \frac{h_1-h_4}{h_2-h_1} = \varepsilon_\text{HP} - 1\\[1ex]
+  \text{Carnot: } \varepsilon_{R,C} = \frac{T_E}{T_C - T_E} = \frac{T_E}{\Delta T_\text{lift}} = \varepsilon_{HP,C} - 1
+\end{gather*}
+
+\subsection{Outer coefficient of performance (COP)}
+\begin{gather*}
+  EER = COP_R = \dfrac{\dot{Q}_{in}}{P_{el}} = \dfrac{\dot{Q}_e}{P_{el}} = \eta_\text{mech}\cdot \varepsilon_R\\[1ex]
+  \varepsilon_R > EER \quad ; \quad \zeta_R = \dfrac{EER}{\varepsilon_{R,C}}
+\end{gather*}
+
+\subsection{Real inner COP}
+Assumptions: $\zeta = 0.5,\ \Delta T_e = 10K,\ \Delta T_c = 5K$
+
+\begin{gather*}
+  \varepsilon_{R,C} = \dfrac{\vartheta_\text{req} - \Delta T_e}{\left(\vartheta_\text{env} - \Delta T_c\right) - \left(\vartheta_\text{req} - \Delta T_e\right)}\\[1ex]
+  \varepsilon_R = \zeta_R\cdot \varepsilon_{R,C}
 \end{gather*}
 
 \newpage
@@ -822,5 +834,587 @@ For example, using $25$ bar and $50$ bar to estimate the value at $100$ bar:
 \includepdf[pages=1,pagecommand={\thispagestyle{fancy}}]{media/FormulaSheet-1.pdf}
 \clearpage
 \includepdf[pages=1,pagecommand={\thispagestyle{fancy}}]{media/FormulaSheet-2.pdf}
+
+\clearpage
+\begin{multicols*}{3}
+\raggedcolumns
+\footnotesize
+\section{Heat transfer: Mashing}
+Malt and water are mixed in a mash tank. Hot water flows through a half-pipe
+coil and heats the mash to $80^\circ C$.
+
+\textbf{\underline{Data}}:
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lll@{}}
+  $m_m=100\,kg$ & $m_W=400\,kg$ & $\dot m_{HW}=0.4\,kg/s$\\
+  $\vartheta_m=58^\circ C$ & $\vartheta_W=65^\circ C$ &
+  $\vartheta_{HW,\alpha}=100^\circ C$\\
+  $c_{pm}=3.57$ & $c_{pW}=4.2$ & $[kJ/(kgK)]$\\
+  $Pr=4$ & $\nu_{HW}=2\cdot10^{-7}\,m^2/s$ &
+  $\lambda_{HW}=0.6\,W/(mK)$\\
+  $\rho_{HW}=1000\,kg/m^3$ & $\lambda_s=30\,W/(mK)$ & $D=1\,m$\\
+  $r_i=35\,mm$ & $\delta=5\,mm$ & $\alpha_i=2000\,W/(m^2K)$
+\end{tabular}
+\end{center}
+\renewcommand{\arraystretch}{1}
+
+\subsection*{a\symbol{41}}
+Calculate the initial mixed temperature $\vartheta_\text{mix}$, then the heat
+needed to warm the mixture to $80^\circ C$.
+\begin{gather*}
+  \vartheta_\text{mix} =
+  \frac{m_m c_{pm}\vartheta_m + m_W c_{pW}\vartheta_W}
+  {m_m c_{pm}+m_W c_{pW}}
+  =63.77^\circ C\\
+  Q =
+  \left(m_m c_{pm}+m_W c_{pW}\right)
+  \left(80-\vartheta_\text{mix}\right)
+  =33.05\,MJ
+\end{gather*}
+
+\subsection*{b\symbol{41}}
+Sketch $\dot Q$ over heating time. Since the mash gets warmer, the temperature
+difference to the hot water gets smaller, therefore $\dot Q$ decreases.
+
+At $t_2$, $\vartheta_{HW,\alpha}$ is still $100^\circ C$, but
+$\vartheta_{HW,\omega}$ is higher than at $t_1$ because less heat is transferred.
+The mash temperature is nearly constant over one pass.
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}cc@{}}
+\begin{minipage}{.48\linewidth}
+\centering
+\begin{tikzpicture}[scale=.5]
+  \draw[->] (0,0) -- (3.4,0) node[right] {$t$};
+  \draw[->] (0,0) -- (0,2.8) node[above] {$\dot Q$};
+  \draw[thick] (.45,2.3) .. controls (1,1.3) and (2.1,.75) .. (3,.62);
+  \node[left] at (0,2.3) {$\dot Q_1$};
+  \node[left] at (0,.62) {$\dot Q_2$};
+  \draw (.45,0) -- (.45,-.12) node[below] {$t_1$};
+  \draw (3,0) -- (3,-.12) node[below] {$t_2$};
+\end{tikzpicture}
+\end{minipage}
+&
+\begin{minipage}{.48\linewidth}
+\centering
+\begin{tikzpicture}[scale=.43]
+  \draw[->] (0,0) -- (4,0) node[right] {$A,l$};
+  \draw[->] (0,0) -- (0,3.2) node[above] {$\vartheta$};
+  \draw[thick] (.35,1.15) -- (3.6,1.15) node[right] {$80^\circ C$};
+  \draw[thick] (.35,2.8) .. controls (1.2,2.25) and (2.25,1.9) .. (3.6,1.8);
+  \node[above right] at (.35,2.5) {$\vartheta_{HW,\alpha}$};
+  \node[right] at (3.6,1.8) {$\vartheta_{HW,\omega}$};
+\end{tikzpicture}
+\end{minipage}
+\end{tabular}
+\end{center}
+
+\subsection*{c\symbol{41}}
+At $t_2$, $\dot Q=5\,kW$. Design the heat-transfer area using the half-pipe
+Nusselt correlation and treat the half-pipe as a flat plate for $k$.
+\begingroup
+\scriptsize
+\begin{align*}
+  & A = \dfrac{r_i^2\pi}{2}=0.0019\,m^2\\[.8ex]
+  & \dot V = \dfrac{\dot m}{\rho}=4\cdot10^{-4}\,m^3/s\\[.8ex]
+  & v = \dfrac{\dot V}{A}=0.21\,m/s\\[.8ex]
+  & Re = \dfrac{vL}{\nu}=\dfrac{v\pi r_i}{\nu}=115743\,[-]\\[.8ex]
+  & Nu = 0.0214\left(Re^{0.8}-100\right)Pr^{0.4}
+  \left[1+{\left(\dfrac{L_\text{char}}{D}\right)}^{2/3}\right]=510.37\\[.8ex]
+  & \alpha = \dfrac{Nu\cdot\lambda_{HW}}{L_\text{char}}
+   = \dfrac{Nu\cdot\lambda_{HW}}{\pi r_i}=2785\,W/(m^2K)
+\end{align*}
+\begin{align*}
+  & k^{-1} = \dfrac{1}{\alpha_i}+\dfrac{\delta}{\lambda_s}+\dfrac{1}{\alpha}\\[.8ex]
+  & k = \dfrac{1}{k^{-1}}=975\,W/(m^2K)\\[.8ex]
+  & \dot Q = \dot m_{HW}c_{pW}
+  \left(\vartheta_{HW,\alpha}-\vartheta_{HW,\omega}\right)
+  \Longrightarrow \vartheta_{HW,\omega} = \vartheta_{HW,\alpha}
+  - \dfrac{\dot Q}{\dot m_{HW}c_{pW}}\\[.6ex]
+  & \vartheta_{HW,\omega}
+  = 100^\circ C
+  - \dfrac{\dot Q}{\dot m_{HW}c_{pW}}
+  = 97^\circ C\\[.8ex]
+  & \Delta T_m
+  = \dfrac{\Delta T_a-\Delta T_b}{\ln\Delta T_a-\ln\Delta T_b}
+   = \dfrac{\left(100-80\right)K-\left(97-80\right)K}
+   {\ln\left(\frac{100-80}{97-80}\right)}
+   = 18.5\,K\\[.8ex]
+  & A = \dfrac{\dot Q}{k\Delta T_m}
+   = 0.278\,m^2
+\end{align*}
+\endgroup
+
+\section{2nd LT: Exergy of Thermal Energy Storages}
+Two identical tanks store the same heat amount, either in serial
+($T_{S,A}>T_P>T_{S,B}$) or in parallel ($T_{P,A}=T_{P,B}$), with homogeneous
+tank temperatures.
+
+\textbf{\underline{Data}}:
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lll@{}}
+  Serial mode & $T_{S,A}=90^\circ C$ & $T_{S,B}=50^\circ C$\\
+  Parallel mode & $T_{P,A}=70^\circ C$ & $T_{P,B}=70^\circ C$\\
+  Ambience & $T_{amb}=20^\circ C=293\,K$ & \\
+  Water & $c_{p,W}=4200\,J/(kgK)$ & $=4.2\,kJ/(kgK)$
+\end{tabular}
+\end{center}
+\renewcommand{\arraystretch}{1}
+
+\subsection*{a\symbol{41}}
+Calculate the specific energy content above $T_{amb}$ per $kg$ of water for each
+tank in both cases.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \boxed{u = c_{p,W}\left(T-T_{amb}\right)}\\[.8ex]
+  & u_{S,A}=4.2\,kJ/(kgK)\cdot70\,K=294\,kJ/kg\\[.8ex]
+  & u_{S,B}=4.2\,kJ/(kgK)\cdot30\,K=126\,kJ/kg\\[.8ex]
+  & u_{P,A}=u_{P,B}=4.2\,kJ/(kgK)\cdot50\,K=210\,kJ/kg
+\end{align*}
+\endgroup
+
+\subsection*{b\symbol{41}}
+Calculate the specific entropy difference $s_{S,i}-s_{P,i}$ between serial and
+parallel operation for both tanks. Water is incompressible, therefore
+$c_v=c_p$.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \boxed{s_{S,i}-s_{P,i}=c_{p,W}\ln\left(\dfrac{T_{S,i}}{T_{P,i}}\right)+\cancel{R_i\ln \left(\dfrac{v_2}{v_1}\right)}}\\[.8ex]
+  & s_{S,A}-s_{P,A}=4.2\,kJ/(kgK)\ln\left(\dfrac{90+273}{70+273}\right)
+  =0.24\,kJ/(kgK)\\[.8ex]
+  & s_{S,B}-s_{P,B}=4.2\,kJ/(kgK)\ln\left(\dfrac{50+273}{70+273}\right)
+  =-0.25\,kJ/(kgK)
+\end{align*}
+\endgroup
+
+\subsection*{c\symbol{41}}
+Calculate the specific exergy difference $e_{S,i}-e_{P,i}$ between serial and
+parallel operation for both tanks.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \boxed{e_{S,i}-e_{P,i} = h_{S,i}-h_{P,i}-T_{amb}\left(s_{S,i}-s_{P,i}\right)}\\[.8ex]
+  & e_{S,A}-e_{P,A}
+  = c_{p,W}\left(T_{S,A}-T_{P,A}\right)
+  -T_{amb}\left(s_{S,A}-s_{P,A}\right)
+  =13.68\,kJ/kg\\[.8ex]
+  & e_{S,B}-e_{P,B}
+  = c_{p,W}\left(T_{S,B}-T_{P,B}\right)
+  -T_{amb}\left(s_{S,B}-s_{P,B}\right)
+  =-10.75\,kJ/kg\\[.8ex]
+  & e_S-e_P=\Delta e_A+\Delta e_B
+  =\left(13.68-10.75\right)\,kJ/kg=2.93\,kJ/kg
+\end{align*}
+\endgroup
+
+\section{2nd LT: Exergy Loss of Heat Transfer}
+Heat flow through a wall from system A to B for three temperature pairs.
+
+\textbf{\underline{Data}}:
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lll@{}}
+  $\dot Q=100\,kW$ & $T_E=T_{amb}=300\,K$ & \\
+  i & $T_A=380\,K$ & $T_B=360\,K$\\
+  ii & $T_A=380\,K$ & $T_B=340\,K$\\
+  iii & $T_A=360\,K$ & $T_B=340\,K$
+\end{tabular}
+\end{center}
+\renewcommand{\arraystretch}{1}
+
+\subsection*{a\symbol{41}}
+Formulate the exergy balance of the wall at steady state and derive the exergy
+loss.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \dot E_L=\sum_i\dot E_{x,i}-\sum_j\left|\dot E_{w,j}\right|
+  =\dot Q\dfrac{T_A-T_E}{T_A}
+  -\dot Q\dfrac{T_B-T_E}{T_B}\\[.8ex]
+  & \boxed{\dot E_L
+  =T_E\dot S_{irr}
+  =T_E\dfrac{T_A-T_B}{T_AT_B}\dot Q}
+\end{align*}
+\endgroup
+
+\subsection*{b\symbol{41}}
+Calculate the exergy loss flow $\dot E_L$ for all three cases.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \dot E_{L,i}
+  =300\,K\cdot\dfrac{(380-360)\,K}{380\,K\cdot360\,K}\cdot100\,kW
+  =4.4\,kW\\[.8ex]
+  & \dot E_{L,ii}
+  =300\,K\cdot\dfrac{(380-340)\,K}{380\,K\cdot340\,K}\cdot100\,kW
+  =9.3\,kW\\[.8ex]
+  & \dot E_{L,iii}
+  =300\,K\cdot\dfrac{(360-340)\,K}{360\,K\cdot340\,K}\cdot100\,kW
+  =4.9\,kW
+\end{align*}
+\endgroup
+
+\subsection*{c\symbol{41}}
+Calculate the entropy production $\dot S_{irr}$ for each case.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \dot E_L=T_E\dot S_{irr}
+  \Longrightarrow \dot S_{irr}=\dfrac{\dot E_L}{T_E}\\[.8ex]
+  & \dot S_{irr,i}=\dfrac{4400\,W}{300\,K}=14.7\,W/K\\[.8ex]
+  & \dot S_{irr,ii}=\dfrac{9300\,W}{300\,K}=31\,W/K\\[.8ex]
+  & \dot S_{irr,iii}=\dfrac{4900\,W}{300\,K}=16.3\,W/K
+\end{align*}
+\endgroup
+
+\newcolumn
+\section{Stationary flow processes: Compressed-Air Energy Storage}
+CAES stores electrical energy by compressing air into a cavern; a separate
+turbine generates power during discharge.
+
+\textbf{\underline{Data}}:
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{}}
+  $\dot m_{air}=7200\,kg/h=2\,kg/s$ & $T_{2s}=579\,K$\\
+  $p_1=p_5=1\,bar$ & $p_2=p_3=p_4=10\,bar$\\
+  $T_1=T_3=300\,K$ & $T_2=T_4$\\
+  $n_{comp}=1.5$ & $n_{exp}=1.3,\ \kappa=1.4$\\
+  $c_{p,air}=1.004\,kJ/(kgK)$ & $R_{air}=287\,J/(kgK)$\\
+  $c_{p,stone}=1.5\,kJ/(kgK)$ &
+\end{tabular}
+\end{center}
+\renewcommand{\arraystretch}{1}
+
+\textbf{Assumptions}: adiabatic compression/expansion with dissipation,
+polytropic process, ideal thermal storage with $T_2=T_4$.
+
+\subsection*{a, b\symbol{41}}
+Draw and comment the state points in the $T,s$-diagram.
+\begingroup
+\scriptsize
+\begin{align*}
+  & T_2=T_1\left(\dfrac{p_2}{p_1}\right)^{(n_{comp}-1)/n_{comp}}
+  =300\,K\cdot10^{0.5/1.5}=646\,K\\[.8ex]
+  & T_2=T_4\\[.8ex]
+  & T_5=T_4\left(\dfrac{p_5}{p_4}\right)^{(n_{exp}-1)/n_{exp}}
+  =646\,K\cdot0.1^{0.3/1.3}=380\,K\\[.8ex]
+  & 1\rightarrow2:\ \text{polytropic compression},\quad
+  2\rightarrow3:\ \text{heat to storage}\\
+  & 3\rightarrow4:\ \text{heat from storage},\quad
+  4\rightarrow5:\ \text{polytropic expansion}
+\end{align*}
+\begin{center}
+  \includegraphics[\lw=.75]{media/ex-stationary.png}
+\end{center}
+\endgroup
+
+\subsection*{c\symbol{41}}
+Calculate the technical work and power of the compressor.
+\begingroup
+\scriptsize
+\begin{align*}
+  & w_{t,12}=h_2-h_1=c_{p,air}\left(T_2-T_1\right)=347.4\,kJ/kg\\[.8ex]
+  & P_{12}=w_{t,12}\dot m_{air}=347.4\,kJ/kg\cdot2\,kg/s=694.8\,kW
+\end{align*}
+\endgroup
+
+\subsection*{d\symbol{41}}
+Calculate the technical work and power of the turbine.
+\begingroup
+\scriptsize
+\begin{align*}
+  & w_{t,45}=h_5-h_4=c_{p,air}\left(T_5-T_4\right)=-267.1\,kJ/kg\\[.8ex]
+  & P_{45}=\left|w_{t,45}\right|\dot m_{air}
+  =267.1\,kJ/kg\cdot2\,kg/s=534.1\,kW
+\end{align*}
+\endgroup
+
+\subsection*{e\symbol{41}}
+Calculate the isentropic efficiency of the compression.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \eta_{s,C}=\dfrac{T_{2s}-T_1}{T_2-T_1}
+  =\dfrac{579\,K-300\,K}{646\,K-300\,K}=0.806\,[-]
+\end{align*}
+\endgroup
+
+\subsection*{f\symbol{41}}
+For $4000\,kWh$ of mechanical energy, calculate the required thermal storage
+energy.
+\begingroup
+\scriptsize
+\begin{align*}
+  & P_{34}=\dot m_{air}c_{p,air}\left(T_4-T_3\right)=694.8\,kW\\[.8ex]
+  & t_{45}=\dfrac{E_{el}}{P_{45}}=\dfrac{4000\,kWh}{534.1\,kW}=7.489\,h\\[.8ex]
+  & Q_{th}=P_{34}t_{45}=694.8\,kW\cdot7.489\,h
+  =5203\,kWh=1.87\cdot10^7\,kJ
+\end{align*}
+\endgroup
+
+\subsection*{g\symbol{41}}
+Calculate the required storage mass for stones/gravel.
+\begingroup
+\scriptsize
+\begin{align*}
+  & Q_{th}=mc_{p,stone}\Delta T
+  \Longrightarrow
+  m=\dfrac{Q_{th}}{c_{p,stone}\Delta T}=36.03\,t
+\end{align*}
+\endgroup
+
+\subsection*{h\symbol{41}}
+Calculate the necessary cave volume at $p=10\,bar$.
+\begingroup
+\scriptsize
+\begin{align*}
+  & pV=mR_{air}T
+  \Longrightarrow
+  V=\dfrac{\dot m_{air}t_{45}R_{air}T_3}{p}
+  =4642.6\,m^3
+\end{align*}
+\endgroup
+
+\subsection*{i\symbol{41}}
+Calculate the roundtrip efficiency.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \eta_{RT}=\dfrac{\left|w_{out}\right|}{w_{in}}
+  =\dfrac{\left|w_{t,45}\right|}{w_{t,12}}
+  =\dfrac{267.1\,kJ/kg}{347.4\,kJ/kg}=0.769=76.9\%
+\end{align*}
+\endgroup
+
+\subsection*{j\symbol{41}}
+Choose whether to improve the compressor or turbine.
+
+Improve the turbine: it increases the useful output directly, and for the same
+stored heat and air mass this gives the strongest improvement of delivered
+electricity and roundtrip efficiency.
+
+\newcolumn
+\section{Gas/Steam Turbines: Micro Steam Turbine}
+High-pressure superheated steam is expanded from $15\,bar$ to $2\,bar$ in a
+micro steam turbine instead of a throttling valve. Steam tables are used for the
+property values; the $T,s$-graph is attached separately.
+
+\textbf{\underline{Data}}:
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{}}
+  $p_3=15\,bar(a)$ & $p_4=2\,bar(a)$\\
+  $\dot m_s=6\,t/h=1.67\,kg/s$ & $\vartheta_3=250^\circ C$\\
+  $\eta_s=0.8$ & $\eta_m=0.9,\ \eta_g=0.96$\\
+  $P_{el,p}=20\,kW$ & $\eta_p=0.8,\ c_p=4.2\,kJ/(kgK)$\\
+  $T_1=120.23^\circ C$ & $h_3=2923.5\,kJ/kg$\\
+  $s_3=6.7099\,kJ/(kgK)$ & $h'=504.7,\ h''=2706.3\,kJ/kg$\\
+  $s'=1.5301$ & $s''=7.1268\quad [kJ/(kgK)]$
+\end{tabular}
+\end{center}
+\renewcommand{\arraystretch}{1}
+
+\subsection*{a\symbol{41}}
+Determine the temperature $T_2$ after the feedwater pump.
+\begingroup
+\scriptsize
+\begin{align*}
+  & P_{el,p}=\dfrac{\dot m_sc_p\Delta T}{\eta_p}
+  \Longrightarrow
+  \Delta T=\dfrac{P_{el,p}\eta_p}{\dot m_sc_p}\\[.8ex]
+  & T_2=T_1+\Delta T
+  =120.23^\circ C+
+  \dfrac{20\,kW\cdot0.8}{1.67\,kg/s\cdot4.2\,kJ/(kgK)}
+  =122.5^\circ C
+\end{align*}
+\endgroup
+
+\subsection*{b\symbol{41}}
+Calculate the steam content after the isentropic expansion.
+\begingroup
+\scriptsize
+\begin{align*}
+  & x_{4s}=\dfrac{s_{4s}-s'}{s''-s'}
+  =\dfrac{s_3-s'}{s''-s'}\\[.8ex]
+  & x_{4s}
+  =\dfrac{6.7099-1.5301}{7.1268-1.5301}
+  =0.926=92.6\%
+\end{align*}
+\endgroup
+
+\subsection*{c\symbol{41}}
+Calculate the enthalpy $h_4$ after the polytropic expansion.
+\begingroup
+\scriptsize
+\begin{align*}
+  & h_{4s}=(1-x_{4s})h'+x_{4s}h''
+  =2542.3\,kJ/kg\\[.8ex]
+  & \eta_s=\dfrac{h_3-h_4}{h_3-h_{4s}}
+  \Longrightarrow
+  h_4=h_3-\eta_s\left(h_3-h_{4s}\right)\\[.8ex]
+  & h_4=2923.5-0.8\left(2923.5-2542.3\right)
+  =2618.54\,kJ/kg
+\end{align*}
+\endgroup
+
+\subsection*{f\symbol{41}}
+Calculate the specific cycle work of the micro steam turbine.
+\begingroup
+\scriptsize
+\begin{align*}
+  & w=w_t-w_p=\left(h_3-h_4\right)-\left(h_2-h_1\right)\\[.8ex]
+  & w=\left(h_3-h_4\right)-c_p\left(T_2-T_1\right)\\[.8ex]
+  & w=\left(2923.5-2618.54\right)-4.2\left(122.5-120.23\right)
+  =295.43\,kJ/kg
+\end{align*}
+\endgroup
+
+\subsection*{g\symbol{41}}
+Calculate the electrical power output of the generator.
+\begingroup
+\scriptsize
+\begin{align*}
+  & P_g=\dot m_s\left(h_3-h_4\right)\eta_m\eta_g\\[.8ex]
+  & P_g=1.67\,kg/s\cdot\left(2923.5-2618.54\right)\,kJ/kg
+  \cdot0.9\cdot0.96=440\,kW
+\end{align*}
+\endgroup
+
+\subsection*{h\symbol{41}}
+Calculate the thermal efficiency of the micro steam turbine.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \eta_{th}=\dfrac{w}{q_{23}}
+  =\dfrac{w}{h_3-h_2}
+  =\dfrac{295.43\,kJ/kg}{\left(2923.5-4.2\cdot120\right)\,kJ/kg}
+  =0.122=12.2\%
+\end{align*}
+\endgroup
+
+\subsection*{d,e\symbol{41}}
+\includegraphics[\lw]{media/ex-steam.png}
+
+\section{Heat Pumps: Decentralised Cooling System with Waterloop}
+R290 cooling units reject condenser heat to a closed waterloop. The
+waterloop releases the heat to ambient air through an air cooler.
+
+\textbf{\underline{Data}}:
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ll@{}}
+  R290 propane & log $p,h$ diagram used separately\\
+  $\eta_s=0.6$ & $\eta_{me}=0.92,\ P_{el}=1\,kW$\\
+  $\Delta T_{SH}=7\,K$ & $\Delta T_{SC}=5\,K$\\
+  $c_{p,W}=4.2\,kJ/(kgK)$ & $\rho_W=998\,kg/m^3$\\
+  $\vartheta_{HW,\alpha}=35^\circ C$ & pump power neglected\\
+  $\vartheta_{goods}=5^\circ C$ & $\vartheta_{amb}=23^\circ C$\\
+  $\Delta T_E=10\,K$ & $\Delta T_C=5\,K,\ \Delta T_{AC}=3\,K$
+\end{tabular}
+\end{center}
+\renewcommand{\arraystretch}{1}
+
+\subsection*{a\symbol{41}}
+Draw the cycle in the log $p,h$ diagram and fill in the state points.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \vartheta_E=\vartheta_{goods}-\Delta T_E=5^\circ C-10\,K=-5^\circ C
+  \Longrightarrow p_E\simeq4\,bar\\[.8ex]
+  & \vartheta_C=\vartheta_{HW,\alpha}+\Delta T_C=35^\circ C+5\,K=40^\circ C
+  \Longrightarrow p_C\simeq14\,bar\\[.8ex]
+  & 1:\ p_E,\ \vartheta_1=\vartheta_E+\Delta T_{SH}=2^\circ C
+  \Longrightarrow h_1\simeq580\,kJ/kg\\[.8ex]
+  & 2s:\ p_C,\ s_{2s}=s_1
+  \Longrightarrow \vartheta_{2s}\simeq52^\circ C,\ h_{2s}\simeq640\,kJ/kg\\[.8ex]
+  & 2:\ \eta_s=\dfrac{h_{2s}-h_1}{h_2-h_1}
+  \Longrightarrow h_2=h_1+\dfrac{h_{2s}-h_1}{\eta_s}
+  \simeq680\,kJ/kg\\[.8ex]
+  & 3:\ p_C,\ \vartheta_3=\vartheta_C-\Delta T_{SC}=35^\circ C
+  \Longrightarrow h_3\simeq290\,kJ/kg\\[.8ex]
+  & 4:\ h_4=h_3,\ p_E,\ \vartheta_4=\vartheta_E=-5^\circ C
+\end{align*}
+\endgroup
+\includegraphics[\lw]{media/ex-hp.png}
+
+\subsection*{b\symbol{41}}
+Fill the table (by using the log p,h - diagram and calculations).
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|c|c|c|c|}
+  \hline State point & $\vartheta\,[^\circ C]$ & $p\,[bar]$ & $h\,[kJ/kg]$\\
+  \hline 1 & 2 & 4 & 580\\
+  \hline 2 & 70 & 14 & 680\\
+  \hline 2s & 52 & 14 & 640\\
+  \hline 3 & 35 & 14 & 290\\
+  \hline 4 & -5 & 4 & 290\\
+  \hline 
+\end{tabular}
+\end{center}
+\renewcommand{\arraystretch}{1}
+
+\subsection*{c\symbol{41}}
+Calculate the cooling capacity $\dot Q_E$ of one cooling unit.
+\begingroup
+\scriptsize
+\begin{align*}
+  & P_{el}\eta_{me}=\dot m\left(h_2-h_1\right)
+  \Longrightarrow
+  \dot m=\dfrac{P_{el}\eta_{me}}{h_2-h_1}
+  =\dfrac{1\,kW\cdot0.92}{(680-580)\,kJ/kg}
+  =0.0092\,kg/s\\[.8ex]
+  & \dot Q_E=\dot m\left(h_1-h_4\right)
+  =0.0092\,kg/s\cdot(580-290)\,kJ/kg
+  =2.668\,kW
+\end{align*}
+\endgroup
+
+\subsection*{d\symbol{41}}
+Calculate the cooling-water volume flow for $\vartheta_{amb}=23^\circ C$.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \dot Q_{23}=\dot m\left(h_2-h_3\right)
+  =0.0092\,kg/s\cdot(680-290)\,kJ/kg=3.588\,kW\\[.8ex]
+  & \dot V_{CW}
+  =\dfrac{2\dot Q_{23}}{\rho_Wc_{p,W}\left(\vartheta_{HW,\alpha}-\vartheta_{amb}\right)}
+  =\dfrac{2\cdot3.588\,kW}{998\,kg/m^3\cdot4.2\,kJ/(kgK)\cdot(35-23)\,K}\\
+  & \dot V_{CW}=14.3\cdot10^{-5}\,m^3/s
+\end{align*}
+\endgroup
+
+\subsection*{e\symbol{41}}
+Evaluate the efficiency of one cooling unit.
+\begingroup
+\scriptsize
+\begin{align*}
+  & \varepsilon_C=\dfrac{T_E}{T_C-T_E}
+  =\dfrac{-5+273}{(40+273)-(-5+273)}=5.96\\[.8ex]
+  & \varepsilon_{CU}=\dfrac{h_1-h_4}{h_2-h_1}=2.9\\[.8ex]
+  & COP_{CU}=\eta_{me}\varepsilon_{CU}=0.92\cdot2.9=2.668\\[.8ex]
+  & \zeta_{CU}=\dfrac{COP_{CU}}{\varepsilon_C}=0.448
+\end{align*}
+\endgroup
+
+\subsection*{f\symbol{41}}
+Heating mode: parameters and expected effect.
+
+The condenser temperature rises to supply building heating, therefore $p_C$ and
+compressor work increase. The evaporator side is nearly unchanged, so the COP
+decreases compared with summer operation.
+\end{multicols*}
 
 \end{document}

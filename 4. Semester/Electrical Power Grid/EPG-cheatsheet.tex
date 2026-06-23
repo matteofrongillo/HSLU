@@ -96,9 +96,9 @@
 \titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
 
 \titleformat{\part}{\large\bfseries\color{black}}{}{0em}{}
-\titleformat{\section}{\bfseries\color{red!80}}{}{0em}{}
-\titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{}{0em}{}
-\titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{}{0em}{}
+\titleformat{\section}{\normalsize\bfseries\color{red!80}}{}{0em}{}
+\titleformat{\subsection}{\footnotesize\bfseries\color[HTML]{007AFF}}{}{0em}{}
+\titleformat{\subsubsection}{\footnotesize\bfseries\color[HTML]{007355}}{}{0em}{}
 
 % ============= META DATA =============
 \newcommand{\pdftitle}[1]{\hypersetup{
@@ -269,8 +269,8 @@
 \raggedcolumns
 
 \footnotesize
-\vspace*{-.6cm}
-\part{Exercises}
+\vspace*{-.5cm}
+\part{Exercises -- Power grid}
 \textbf{Exercise 1: Power-flow sign convention}\\
 \underline{Data}:
 \begin{gather*}
@@ -853,22 +853,457 @@ $X_k = 2\pi f K \Longrightarrow K = \dfrac{X_k}{2\pi f} = \dfrac{36.57\, [\Omega
 
 \(i(t) = i_t(t) + i_s(t) = 403.12\, [\mathrm{A}] + 18.29\, [\mathrm{A}] = 421.41\, [\mathrm{A}]\)
 
+\newcolumn
+\vspace*{-.5cm}
+\part{SW 1: Introduction}
+\section{Swiss grid levels}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Voltage} & \textbf{Role}\\
+  \midrule
+  220/380 kV & transmission and international interconnection\\
+  $\sim110$ kV & sub-transmission, large generation/loads\\
+  10--40 kV & regional distribution\\
+  0.4 kV & local distribution and households\\
+  \bottomrule
+\end{tabularx}
 
+\section{Choice of grid voltage}
+\subsection{Transmission losses}
+\[
+  P_{\mathrm{trans}}=U_mI
+  \quad ; \quad
+  P_\Omega=RI^2
+  =R\left(\frac{P_{\mathrm{trans}}}{U_m}\right)^2
+\]
+\[
+  P_{\mathrm{trans}}=\sqrt{3}\,U_LI_L\cos\varphi
+  \quad ; \quad
+  P_\Omega=\frac{P_{\mathrm{trans}}^2R}
+  {U_L^2\cos^2\varphi}
+\]
+where: $P_{\mathrm{trans}}$ = transmitted active power; $P_\Omega$ =
+resistive loss; $U_L$ = line-to-line RMS voltage.
 
+\subsection{Economic optimum}
+\begin{center}
+  \includegraphics[\lw=.7]{media/economics.png}
+\end{center}
+\[
+  C_{\mathrm{total}}=C_V+C_A
+\]
+where: $C_V$ = transmission-loss cost; $C_A$ = insulation/infrastructure
+cost. \textbf{Rule of thumb}: economical transmission requires $\sim1$ kV/km.
 
+\section{Reliability}
+\textbf{$N-1$ criterion}: after any single component failure, the remaining
+system continues operating without a system-wide outage.
 
+\textbf{SAIDI}: average duration of long interruptions per customer and year
+[min/(customer$\cdot$year)].
 
+\section{Electricity markets}
+\begin{itemize}
+  \item \textbf{TSO}: secure transmission-system operation; CH: Swissgrid
+  \item \textbf{Balance group}: financially responsible for deviations between
+        scheduled and actual energy
+  \item \textbf{Futures/OTC}: contracts before delivery
+  \item \textbf{Day-ahead}: double auction for future delivery periods
+  \item \textbf{Balancing}: TSO activation close to real time
+\end{itemize}
+\subsection{Merit order}
+Offers are accepted from lowest to highest marginal cost until demand is met:
+\[
+  p_{\mathrm{market}}=\text{price of the last accepted offer}
+\]
 
+\newcolumn
+\part{SW 2: Three-Phase Systems}
+\section{AC elements and phasors}
+\[
+  U=\frac{\hat U}{\sqrt{2}}
+  \quad ; \quad
+  \omega=2\pi f
+  \quad ; \quad
+  \underline U=Ue^{j\varphi_u}=U\angle\varphi_u
+\]
+\[
+  \frac{\mathrm d}{\mathrm dt}\longleftrightarrow j\omega
+  \quad ; \quad
+  \int\mathrm dt\longleftrightarrow\frac{1}{j\omega}
+  \quad ; \quad
+  \underline U=\underline Z\underline I
+  \quad ; \quad
+  \underline Y=\frac{1}{\underline Z}
+\]
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  & \textbf{Impedance} & \textbf{Phase}\\
+  \midrule
+  R & $\underline Z_R=R$ & $u,i$ in phase\\
+  C & $\underline Z_C=1/(j\omega C)$ & $i$ leads $u$ by $90^\circ$\\
+  L & $\underline Z_L=j\omega L$ & $i$ lags $u$ by $90^\circ$\\
+  \bottomrule
+\end{tabularx}
 
+\section{Complex power}
+\[
+  \underline S=\underline U\underline I^*=P+jQ
+  \quad ; \quad
+  S=UI=\sqrt{P^2+Q^2}
+\]
+\[
+  P=UI\cos\varphi
+  \quad ; \quad
+  Q=UI\sin\varphi
+  \quad ; \quad
+  \lambda=\cos\varphi=\frac{P}{S}
+\]
+where: $\varphi=\varphi_u-\varphi_i$; $Q>0$ inductive/lagging; $Q<0$
+capacitive/leading. Sign depends on the selected load/generator current
+reference.
 
+\section{Balanced three-phase systems}
+\[
+  \underline U_{1N}=U_{\mathrm{ph}}\angle0^\circ
+  \quad ; \quad
+  \underline U_{2N}=U_{\mathrm{ph}}\angle-120^\circ
+  \quad ; \quad
+  \underline U_{3N}=U_{\mathrm{ph}}\angle120^\circ
+\]
+\[
+  \underline U_{12}=\underline U_{1N}-\underline U_{2N}
+  =\sqrt{3}U_{\mathrm{ph}}\angle30^\circ
+  \quad ; \quad
+  U_{\mathrm{LL}}=\sqrt{3}U_{\mathrm{ph}}
+\]
 
+\section{Star and delta}
+\begin{center}
+  \includegraphics[\lw=.9]{media/star-delta-connections.png}
+\end{center}
+\[
+  U_Y=\frac{U_{\mathrm{LL}}}{\sqrt3}
+  \quad ; \quad I_Y=I_L
+  \quad ; \quad U_\Delta=U_{\mathrm{LL}}
+  \quad ; \quad I_\Delta=\frac{I_L}{\sqrt3}
+\]
+\[
+  \underline Z_\Delta=3\underline Z_Y
+  \quad ; \quad
+  \underline Z_Y=\frac{\underline Z_\Delta}{3}
+\]
+Valid for balanced operation.
 
+\section{Three-phase power}
+\[
+  \underline S_{3\mathrm{ph}}
+  =3\underline U_{\mathrm{ph}}\underline I_{\mathrm{ph}}^*
+  =\sqrt3\,U_{\mathrm{LL}}I_L\angle\varphi=P+jQ
+\]
+\[
+  S=\sqrt3\,U_{\mathrm{LL}}I_L
+  \quad ; \quad
+  P=\sqrt3\,U_{\mathrm{LL}}I_L\cos\varphi
+  \quad ; \quad
+  Q=\sqrt3\,U_{\mathrm{LL}}I_L\sin\varphi
+\]
 
+\section{Unbalanced star loads}
+\[
+  \underline Y_i=\frac{1}{\underline Z_i}
+\]
+\subsection{Without neutral conductor}
+\[
+  \underline U_{KN}=
+  \frac{\underline Y_1\underline U_{1N}
+  +\underline Y_2\underline U_{2N}
+  +\underline Y_3\underline U_{3N}}
+  {\underline Y_1+\underline Y_2+\underline Y_3}
+\]
+\subsection{With neutral impedance}
+\[
+  \underline U_{KN}=
+  \frac{\underline Y_1\underline U_{1N}
+  +\underline Y_2\underline U_{2N}
+  +\underline Y_3\underline U_{3N}}
+  {\underline Y_1+\underline Y_2+\underline Y_3+\underline Y_N}
+  \quad ; \quad
+  \underline Y_N=\frac{1}{\underline Z_N}
+\]
+\[
+  \underline U_{iK}=\underline U_{iN}-\underline U_{KN}
+  \quad ; \quad
+  \underline I_i=\underline Y_i\underline U_{iK}
+  \quad ; \quad
+  \underline I_N=\underline I_1+\underline I_2+\underline I_3
+\]
+Ideal neutral: $\underline Z_N=0\Longrightarrow\underline U_{KN}=0$.
 
+\part{SW 3: Power Lines \& Transformers}
+\section{Stiff grid}
+Grid whose voltage magnitude $U$ and frequency $f$ remain approximately
+constant independently of the connected load:
+\[
+  \Delta U\approx0
+  \quad ; \quad
+  \Delta f\approx0
+\]
+Equivalent to an ideal voltage source with very low internal impedance and high
+short-circuit power.
 
+\section{Equivalent line model}
+\[
+  R=R'l\quad ; \quad L=L'l
+  \quad ; \quad G=G'l\quad ; \quad C=C'l
+\]
+\[
+  \underline Z=(R'+j\omega L')l
+  \quad ; \quad
+  \underline Y=(G'+j\omega C')l
+\]
+\begin{center}
+  \includegraphics[\lw=.82]{media/line-pi-model.png}
+\end{center}
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Length} & \textbf{Model} & \textbf{Elements}\\
+  \midrule
+  $<100$ km & short & series $\underline Z$\\
+  100--300 km & medium & lumped $\Pi$\\
+  $>300$ km & long & distributed / cascaded $\Pi$\\
+  \bottomrule
+\end{tabularx}
 
+\subsection{Line parameters}
+\[
+  L'=\frac{\mu_0}{2\pi}\ln\left(\frac D{r'}\right)
+  \quad ; \quad
+  C'=\frac{2\pi\varepsilon\varepsilon_0}{\ln(D/r')}
+  \quad ; \quad
+  r'\approx0.78r
+\]
+\[
+  R'_{\mathrm{DC}}=\frac{1}{\kappa A}
+\]
+where: $D$ = conductor spacing; $r$ = radius; $\kappa$ = conductivity.
+$G'$ is often neglected.
 
+\subsection{Skin effect}
+AC-induced eddy currents reduce current density near the conductor centre:
+\[
+  \delta=\sqrt{\frac{2\rho}{\omega\mu}}
+  =\sqrt{\frac{2}{\omega\mu\kappa}}
+  \quad ; \quad
+  R_{\mathrm{AC}}>R_{\mathrm{DC}}
+\]
+where: $\delta$ = penetration depth; at 50 Hz $\delta\approx9.38$ mm.
 
+\section{Surge impedance loading}
+\[
+  Z_W=\sqrt{\frac{L'}{C'}}
+\]
+For $R'=G'=0$ and $Z_2=Z_W$:
+\[
+  Q_1=Q_2=0
+  \quad ; \quad
+  P_1=P_2=\frac{|U_1|^2}{Z_W}=\frac{|U_2|^2}{Z_W}
+\]
+Typical overhead line: $Z_W\approx200$--$400\,\Omega$.
+
+\section{Voltage drop along a line}
+\[
+  \underline U_1=\underline U_2+jX\underline I_2
+  \quad ; \quad
+  \underline S_2=P_2+jQ_2=\underline U_2\underline I_2^*
+\]
+\[
+  U_1\approx U_2+\frac{XQ_2}{U_2}
+  \quad ; \quad
+  \delta\approx\frac{XP_2}{U_2^2}
+\]
+
+\section{Transformers}
+\subsection{Ideal and referred quantities}
+\[
+  \ddot u=\frac{N_1}{N_2}
+  =\frac{\underline U_1}{\underline U_2}
+  =\frac{\underline I_2}{\underline I_1}
+  \quad ; \quad
+  \underline S_1=\underline S_2
+\]
+\[
+  \underline U'_2=\ddot u\,\underline U_2
+  \quad ; \quad
+  \underline I'_2=\frac{\underline I_2}{\ddot u}
+  \quad ; \quad
+  \underline Z'_2=\ddot u^{\,2}\underline Z_2
+\]
+
+\subsection{Equivalent circuit}
+\begin{center}
+  \includegraphics[\lw=.98]{media/transformer-equivalent-circuit.png}
+\end{center}
+\[
+  R'_2=\ddot u^{\,2}R_2
+  \quad ; \quad
+  X'_{\sigma2}=\ddot u^{\,2}X_{\sigma2}
+\]
+\[
+  R_k=R_1+R'_2
+  \quad ; \quad
+  X_k=X_{\sigma1}+X'_{\sigma2}
+  \quad ; \quad
+  \underline Z_k=R_k+jX_k
+\]
+
+\subsection{Relative short-circuit voltage}
+\[
+  u_k=\frac{U_{1k}}{U_{1N}}
+  \quad ; \quad
+  |\underline Z_k|=u_k\frac{U_N^2}{S_N}
+\]
+$u_k$: primary-voltage fraction producing nominal current with the secondary
+short-circuited; typical range 4--18\%.
+
+\section{Three-phase transformers}
+\subsection{Connections and vector groups}
+\begin{center}
+  \includegraphics[\lw=.9]{media/transformers.png}
+  \includegraphics[\lw]{media/transformers2.png}
+\end{center}
+\[\underline{u} = \frac{\underline{U}_{OS}}{\underline{U}_{US}} = \frac{\underline{U}_{1U1V}}{\underline{U}_{2U2V}} = \frac{\underline{U}_{1U1N}}{\underline{U}_{2U2N}}\]
+
+\newcolumn
+\part{SW 4: Synchronous Generators}
+\section{Three-phase generation}
+A synchronous generator has a DC-excited or permanent-magnet rotor and three
+stator windings displaced by $120^\circ$. The rotating magnetic field induces
+three sinusoidal voltages.
+\[
+  U(t) = B\cdot A\cdot \omega\cdot \sin(\omega t)
+  \quad ; \quad
+  n=\frac{60f}{p}
+  \quad ; \quad
+  \omega_{\mathrm{mech}}=\frac{\omega}{p}=\frac{2\pi f}{p}=2\pi\frac{n}{60}
+\]
+where: $n$ = speed [rpm]; $p$ = number of pole pairs. Non-salient machines are
+used at high speed; salient-pole machines use many poles for low-speed drives.
+
+\subsection{Non-salient vs.\ salient-pole generators}
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  & \textbf{Non-salient pole} & \textbf{Salient pole}\\
+  \midrule
+  Rotor & cylindrical, nearly constant air gap & projecting poles, variable air gap\\
+  Speed & high: typically 1500/3000 rpm & low: typically $\leq1000$ rpm\\
+  Pole pairs & few: usually 1--2 & many\\
+  Drive & steam/gas turbine & hydro turbine\\
+  Model & $X_d=X_q$ & $X_d\neq X_q$\\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Grid inertia}
+Rotating synchronous masses release kinetic energy after a power imbalance,
+slowing the initial frequency change. Converter-based generation requires
+synthetic/virtual inertia for the same function.
+
+\section{Equivalent circuit and torque angle}
+For stationary balanced operation of a non-salient generator, neglecting
+stator resistance:
+\begin{center}
+  \includegraphics[\lw=.7]{media/synchronous-generator-equivalent.png}
+\end{center}
+\[
+  X_d=X_m+X_\sigma
+  \quad ; \quad
+  \underline U_p=\underline U+jX_d\underline I
+  \quad ; \quad
+  \underline I=\frac{\underline U_p-\underline U}{jX_d}
+\]
+where: $\underline U_p$ = induced phase voltage; $\underline U$ = terminal
+phase voltage; $X_d$ = synchronous reactance.
+\[
+  \vartheta=\varphi_{U_p}-\varphi_U
+\]
+$\vartheta>0$: generator operation; $\vartheta<0$: motor operation;
+$\vartheta=0$: no active power.
+
+\section{Active and reactive power}
+With $\underline U=U\angle0^\circ$ and $\underline U_p=U_p\angle\vartheta$:
+\[
+  P=\frac{UU_p}{X_d}\sin\vartheta
+  \quad ; \quad
+  Q=\frac{UU_p}{X_d}\cos\vartheta-\frac{U^2}{X_d}
+\]
+\[
+  P_{3\mathrm{ph}}=3P
+  \quad ; \quad
+  Q_{3\mathrm{ph}}=3Q
+\]
+\[
+  P_{\max,3\mathrm{ph}}=\frac{3UU_p}{X_d}
+  \quad\text{at}\quad \vartheta=90^\circ
+\]
+
+\section{Operating modes and excitation}
+\begin{itemize}
+  \item \textbf{Island operation}: excitation controls terminal voltage
+  \item \textbf{Grid connected}: grid fixes $U$ and $f$; mechanical input mainly
+        controls $P$, excitation mainly controls $Q$
+  \item \textbf{Over-excited}: $U_p>U$, supplies $Q$ (capacitive behaviour)
+  \item \textbf{Under-excited}: $U_p<U$, absorbs $Q$ (inductive behaviour)
+\end{itemize}
+At $\vartheta=0$:
+\[
+  P_{3\mathrm{ph}}=0
+  \quad ; \quad
+  Q_{3\mathrm{ph}}=\frac{3}{X_d}\left(U_pU-U^2\right)
+\]
+
+\section{Grid synchronization}
+Connection to the grid requires:
+\vspace*{-.2cm}
+\begin{enumerate}[label=\arabic*.]
+  \item equal frequency
+  \item equal phase position
+  \item equal voltage magnitude
+  \item equal phase sequence L1--L2--L3
+\end{enumerate}
+
+\section{Per-unit system}
+\subsection{Referenced quantities}
+\[
+  u=\frac{U}{U_N}
+  \quad ; \quad
+  i=\frac{I}{I_N}
+  \quad ; \quad
+  s=\frac{S}{S_N}
+  \quad ; \quad
+  z=\frac{Z}{Z_N}
+\]
+Per-unit values are dimensionless. Choose $U_N$ and $S_N$; the remaining base
+values follow.
+
+\subsection{Three-phase base values}
+Using line-to-line $U_N$ and total three-phase $S_N$:
+\[
+  I_N=\frac{S_N}{\sqrt3\,U_N}
+\]
+\[
+  Z_{N,Y}=\frac{U_N^2}{S_N}
+  \quad ; \quad
+  Z_{N,\Delta}=3\frac{U_N^2}{S_N}
+\]
+\[
+  Z=zZ_N
+\]
+For the usual star-based network reference:
+\[
+  Z=z\frac{U_N^2}{S_N}
+  \quad ; \quad
+  z=Z\frac{S_N}{U_N^2}
+\]
 
 
 \end{multicols*}

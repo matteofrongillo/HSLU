@@ -2153,6 +2153,8 @@ changes the load-flow result and the voltage-stability behaviour.
   \bottomrule
 \end{tabularx}
 
+\newcolumn
+\vspace*{-.5cm}
 \part{SW 6: Grid Operation}
 \section{Design criteria and grid services}
 \subsection{Secure operation}
@@ -2586,6 +2588,238 @@ Tradeoff: low fault current reduces damage and can keep supply running, but
 makes fault detection harder and increases healthy-phase voltage. Low-impedance
 grounding gives clear protection signals but requires fast disconnection.
 
+\part{SW 8: Thermal Power Plants}
+\section{Energy outlook and Swiss context}
+\subsection{Demand and production}
+Swiss electricity demand is expected to increase strongly by 2050 because of
+electrification, especially EVs, heat pumps and sector coupling such as
+power-to-gas and district heating.
+
+Swiss production is already low-CO$_2$: more than 90\% comes from hydro and
+nuclear power. Production is highly seasonal. Run-of-river plants produce most
+in summer and can create export surplus, while winter supply relies more on
+reservoir hydro and electricity imports.
+
+\section{Gas turbines and CCPP}
+\subsection{Gas turbines}
+In a gas turbine, ambient air is compressed, mixed with fuel and burned at high
+temperature. The hot gas expands through the turbine and drives both the
+compressor and generator.
+\[
+  \eta_{\mathrm{GT}}\approx40\%
+  \quad ; \quad
+  t_{\mathrm{start}}\approx5\text{--}10\,\mathrm{min}
+\]
+Gas turbines are useful as flexible reserve and peak units because they start
+quickly, but their standalone efficiency is limited by hot exhaust losses.
+
+\subsection{Combined-cycle power plants}
+A combined-cycle plant uses the gas-turbine exhaust in a heat-recovery steam
+generator. The generated steam drives a second steam turbine.
+\[
+  \eta_{\mathrm{CCPP}}\approx60\%
+\]
+\begin{itemize}
+  \item \textbf{Brayton part}: gas turbine produces fast electrical output.
+  \item \textbf{Rankine part}: waste heat boiler and steam turbine recover exhaust heat.
+  \item \textbf{Swiss reserve role}: winter reserve plants may use
+        CO$_2$-neutral fuels such as HVO, synthetic methane or methanol.
+\end{itemize}
+
+\section{Nuclear power plants}
+\subsection{Role and operation}
+Nuclear plants supply base-load power. They generate roughly one third of Swiss
+electricity, with almost CO$_2$-free operation. Under the Energy Strategy
+2050, no new nuclear plants may be built, but existing plants can continue as
+long as they are considered safe.
+
+\subsection{Reactor types}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Type} & \textbf{Principle}\\
+  \midrule
+  PWR & two circuits; primary water is kept at about 160 bar so it does not boil; heat is transferred to a secondary steam circuit\\
+  BWR & one circuit; water boils directly in the reactor vessel and steam goes to the turbine\\
+  \bottomrule
+\end{tabularx}
+PWR examples: Beznau, Goesgen. BWR example: Leibstadt. BWRs operate at lower
+pressure, but radioactive steam reaches the turbine hall, so shielding
+requirements are stricter.
+
+\section{Waste incineration}
+Waste incineration plants are classic base-load units with high availability.
+They burn waste at about $1000^\circ$C and generate superheated steam. They are
+not suited to fast grid stabilisation because the furnace and boiler have large
+thermal inertia.
+
+About half of the waste is biogenic, so that part is often counted as
+renewable. Waste heat is valuable for district heating; combined heat and power
+operation increases overall efficiency.
+
+\section{Geothermal and fusion energy}
+\subsection{Geothermal}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Type} & \textbf{Characteristics}\\
+  \midrule
+  hydrothermal & uses natural hot-water aquifers; ORC efficiency only about 12\%, but low fuel cost and base-load output\\
+  petrothermal / EGS & drills 3000--6000 m into hot dry rock; high-pressure injection creates an artificial heat exchanger\\
+  \bottomrule
+\end{tabularx}
+Hydrothermal heat is especially attractive for district heating. Petrothermal
+systems have large potential but are technically complex and can induce
+earthquakes.
+
+\subsection{Fusion}
+Tokamak reactors aim to fuse deuterium and tritium into helium. They promise
+very high safety, no meltdown mechanism, no greenhouse gases and no long-lived
+radioactive waste. Magnetic confinement uses toroidal, poloidal and central
+solenoid fields to shape, stabilise and drive the plasma.
+
+\part{SW 9: Hydropower Plants}
+\section{Load profiles and the duck curve}
+\subsection{Base load and peak load}
+Run-of-river, nuclear and conventional thermal plants provide constant base
+load but react slowly to rapid demand changes. Storage hydropower is flexible
+and therefore well suited to cover dynamic peak loads.
+
+\subsection{Duck curve}
+With high PV capacity, residual grid load drops strongly around midday and then
+rises quickly in the evening when solar production falls and demand peaks.
+\[
+  P_{\mathrm{res}}=P_{\mathrm{load}}-P_{\mathrm{PV}}-P_{\mathrm{wind}}
+\]
+The steep evening ramp stresses balancing resources and requires fast
+dispatchable generation, storage or demand response.
+
+\section{Hydropower classification}
+\subsection{Head}
+The head is the elevation difference between headwater and tailwater. It
+determines whether energy is mainly harvested from pressure/head or from very
+large flow volumes.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Plant} & \textbf{Characteristics}\\
+  \midrule
+  low-head & up to about 25 m; large flows; run-of-river, weir and powerhouse in or near river channel\\
+  high-head & about 50 m to over 1000 m; smaller flow at high pressure; dam, intake, penstock and surge tank\\
+  \bottomrule
+\end{tabularx}
+Surge tanks reduce pressure waves when valves close quickly.
+
+\section{Turbine technologies}
+Turbines are selected mainly from head and volumetric flow.
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Turbine} & \textbf{Best range} & \textbf{Principle}\\
+  \midrule
+  Pelton & very high head $>300$ m, low flow & water jets hit cup-shaped buckets; impulse turbine\\
+  Francis & medium head $\approx25$--700 m & guide vanes feed a reaction runner; all-round turbine\\
+  Kaplan & low head $<50$ m, high flow & propeller-like runner with adjustable blades\\
+  \bottomrule
+\end{tabularx}
+\[
+  P_{\mathrm{hydr}}=\rho gQh
+  \quad ; \quad
+  P_{\mathrm{el}}=\rho gQh\,\eta_T\eta_G
+\]
+
+\section{Sustainability and ecology}
+Hydropower is renewable, reliable and CO$_2$-free, but dams interrupt river
+ecosystems.
+\begin{itemize}
+  \item \textbf{Fish migration}: dams block spawning routes; mitigation uses
+        fish ladders, lifts and bypass channels. Fine screens protect
+        downstream fish from turbines.
+  \item \textbf{Sediment transport}: reservoirs trap bed load, causing silting
+        upstream and sediment starvation downstream. Solutions include bypass
+        tunnels, flushing through bottom outlets and dredging.
+\end{itemize}
+
+\section{Tidal and pumped-storage power}
+\subsection{Tidal power}
+Tidal barrage plants trap water at high tide and discharge it through
+bidirectional turbines at low tide. They need at least about 5--7 m tidal range
+and yield only about 25--40\% of an equivalent river plant.
+
+Tidal-stream turbines use the kinetic energy of tidal currents directly. They
+are highly predictable and usually have lower ecological impact than barrages.
+
+\subsection{Pumped storage}
+Pumped-storage plants perform energy arbitrage: they pump water uphill when
+electricity is cheap or surplus, and turbine it when prices and demand are
+high.
+\[
+  \eta_{\mathrm{cycle}}
+  =\frac{W_{\mathrm{out}}}{W_{\mathrm{in}}}
+  \approx80\%
+\]
+Despite losses, they are system-relevant for fast balancing, frequency control
+and absorbing renewable surplus that would otherwise be curtailed. Pumped
+energy does not receive green Guarantees of Origin because the input
+electricity source may be mixed.
+
+\part{SW 10: Smart Grid Trends}
+\section{Core problem: collision zone}
+Swiss PV capacity is growing rapidly, with a target of about 39 GWp by 2050.
+Historically, the Swiss peak grid load is only about 10 GW. The
+\textbf{collision zone} is the range where installed PV capacity exceeds the
+maximum grid load.
+
+At summer midday, local PV generation can exceed local consumption and heavily
+load distribution grids in the reverse direction. The main bottleneck is often
+not national energy balance but local transformers and lines.
+
+\section{Dynamic grid tariffs}
+Time-of-use and dynamic grid tariffs create price signals to shift flexible
+consumption away from critical grid periods.
+\begin{itemize}
+  \item electricity is cheaper when local solar generation is high or the grid
+        has surplus capacity
+  \item electricity is more expensive during evening peaks or local congestion
+  \item flexible loads: EVs, heat pumps, batteries, appliances and industrial processes
+\end{itemize}
+The goal is grid relief, not cheaper electricity production.
+
+\section{Capacity tariffs}
+Traditional billing mainly charges consumed energy in kWh. Capacity tariffs add
+a fee based on the maximum drawn power in kW, often measured over a rolling
+15-minute window.
+\[
+  C_{\mathrm{bill}}\sim E_{\mathrm{kWh}}+P_{\max,\mathrm{kW}}
+\]
+This penalises short extreme spikes, e.g. fast EV charging at 11 kW, and
+rewards slower steady consumption, e.g. charging overnight at 3.7 kW. The
+effect is peak shaving and reduced bottlenecks in local transformers and
+lines.
+
+\section{Local energy communities}
+Local energy communities group consumers and producers so local PV can be used
+locally. Allocation mechanisms can be fixed, proportional, dynamic or
+hierarchical.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Model} & \textbf{Meaning}\\
+  \midrule
+  ZEV & joint self-consumption behind one meter on one parcel/building; saves all grid fees internally but needs private wiring\\
+  vZEV & virtual ZEV using existing public grid inside a local transformer area; DSO billing enables reduced local grid fee\\
+  LEG & local energy community at neighbourhood/municipal scale; uses public grid and legal contracts, no private digging\\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Allocation keys}
+\begin{itemize}
+  \item \textbf{Fixed}: predefined shares, simple but less adaptive.
+  \item \textbf{Proportional}: PV is shared according to simultaneous demand.
+  \item \textbf{Dynamic}: allocation optimises current objectives such as peak reduction.
+  \item \textbf{Hierarchical}: priority loads or investors are served first, then remaining energy is shared.
+\end{itemize}
+ZEV offers the largest grid-fee saving but high private infrastructure effort.
+vZEV reduces installation cost by using the existing grid locally. LEG has the
+largest geographic scope and enables peer-to-peer sharing at scale, but members
+usually still pay regular grid fees.
 
 \end{multicols*}
 \end{document}

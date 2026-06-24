@@ -1,7 +1,6 @@
 \documentclass[9pt, landscape, a4paper]{article}
 
 \usepackage{fontspec}
-\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
 \usepackage[english]{babel}
 \babelfont{rm}{Noto Sans}
 \babelfont{sf}{Noto Sans}
@@ -84,19 +83,19 @@
 % ============= HEADER & TITLES =============
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{\small \vspace*{.1cm}Electrical Power Grid Cheatsheet}
-\lhead{\small \vspace*{.1cm}Matteo Frongillo}
-\cfoot{\small \thepage/10}
+\rhead{\footnotesize \vspace*{.1cm}Electrical Power Grid Cheatsheet}
+\lhead{\footnotesize \vspace*{.1cm}Matteo Frongillo}
+\cfoot{\footnotesize \thepage/10}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headsep}{4pt}
 
-\titlespacing*{\part}{0pt}{2pt}{1pt}
-\titlespacing*{\section}{0pt}{2pt}{1pt}
-\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+\titlespacing*{\part}{0pt}{1pt}{1pt}
+\titlespacing*{\section}{0pt}{1pt}{1pt}
+\titlespacing*{\subsection}{0pt}{1pt}{1pt}
 \titlespacing*{\subsubsection}{0pt}{1pt}{1pt}
 
-\titleformat{\part}{\large\bfseries\color{black}}{}{0em}{}
-\titleformat{\section}{\normalsize\bfseries\color{red!80}}{}{0em}{}
+\titleformat{\part}{\footnotesize\bfseries\color{black}}{}{0em}{}
+\titleformat{\section}{\footnotesize\bfseries\color{red!80}}{}{0em}{}
 \titleformat{\subsection}{\footnotesize\bfseries\color[HTML]{007AFF}}{}{0em}{}
 \titleformat{\subsubsection}{\footnotesize\bfseries\color[HTML]{007355}}{}{0em}{}
 
@@ -853,23 +852,546 @@ $X_k = 2\pi f K \Longrightarrow K = \dfrac{X_k}{2\pi f} = \dfrac{36.57\, [\Omega
 
 \(i(t) = i_t(t) + i_s(t) = 403.12\, [\mathrm{A}] + 18.29\, [\mathrm{A}] = 421.41\, [\mathrm{A}]\)
 
-\newcolumn
-\vspace*{-.5cm}
+\textbf{Exercise 14: Gas and steam combined cycle power plant (CCGT)}
+
+\underline{Data}:
+\[
+  P_{\mathrm{th,fuel}}=600\, [\mathrm{MW}]
+  \quad ; \quad
+  P_{\mathrm{el,GT}}=240\, [\mathrm{MW}]
+  \quad ; \quad
+  \dot m_{\mathrm{exh}}=500\, [\mathrm{kg/s}]
+\]
+\[
+  T_{\mathrm{in}}=600^\circ\mathrm{C}
+  \quad ; \quad
+  T_{\mathrm{out}}=100^\circ\mathrm{C}
+  \quad ; \quad
+  c_{p,\mathrm{exh}}=1.1\, [\mathrm{kJ/(kgK)}]
+  \quad ; \quad
+  \eta_{\mathrm{DT}}=40\%
+\]
+Calculate $\eta_{\mathrm{GT}}$, transferred heat $\dot Q_{\mathrm{trans}}$,
+steam-turbine power $P_{\mathrm{el,DT}}$, total power and total efficiency.
+
+\figbox{
+  $\eta_{\mathrm{GT}}=\dfrac{P_{\mathrm{el,GT}}}{P_{\mathrm{th,fuel}}}$\\[1ex]
+  $\dot Q_{\mathrm{trans}}=\dot m_{\mathrm{exh}}c_{p,\mathrm{exh}}\Delta T$\\[1ex]
+  $P_{\mathrm{el,DT}}=\eta_{\mathrm{DT}}\dot Q_{\mathrm{trans}}$\\[1ex]
+  $P_{\mathrm{el,tot}}=P_{\mathrm{el,GT}}+P_{\mathrm{el,DT}}
+  \quad ; \quad
+  \eta_{\mathrm{tot}}=\dfrac{P_{\mathrm{el,tot}}}{P_{\mathrm{th,fuel}}}$
+}
+
+\underline{Solution}:
+\[
+  \eta_{\mathrm{GT}}=\frac{240}{600}=0.40=40\%
+\]
+\[
+  \Delta T=600^\circ\mathrm{C}-100^\circ\mathrm{C}=500\, [\mathrm{K}]
+\]
+\[
+  \dot Q_{\mathrm{trans}}
+  =500\cdot1.1\cdot500\, [\mathrm{kJ/s}]
+  =275000\, [\mathrm{kW}]
+  =275\, [\mathrm{MW}]
+\]
+\[
+  P_{\mathrm{el,DT}}=0.40\cdot275\, [\mathrm{MW}]
+  =110\, [\mathrm{MW}]
+\]
+\[
+  P_{\mathrm{el,tot}}=240+110=350\, [\mathrm{MW}]
+  \quad ; \quad
+  \eta_{\mathrm{tot}}=\frac{350}{600}=0.583=58.3\%
+\]
+\textbf{Discussion}: the exhaust heat adds $110$ MW without additional fuel.
+Lower chimney temperature would increase efficiency, but condensation of acidic
+components can cause corrosion.
+
+\textbf{Exercise 15: Fuel consumption of a nuclear power plant}
+
+\underline{Data}:
+\[
+  P_{\mathrm{el,net}}=1010\, [\mathrm{MW}]
+  ; \quad
+  \eta_{\mathrm{el}}=34\%
+  ; \quad
+  E_{\mathrm{fission}}\approx200\, [\mathrm{MeV}]
+\]
+\[
+  M_{\mathrm{U235}}=235.04\, [\mathrm{g/mol}]
+  ; \quad
+  1\, [\mathrm{MeV}]=1.602\cdot10^{-13}\, [\mathrm{J}]
+\]
+Calculate the required reactor thermal power, fission rate and daily consumed
+mass of split U-235.
+
+\figbox{
+  $P_{\mathrm{th}}=\dfrac{P_{\mathrm{el,net}}}{\eta_{\mathrm{el}}}$\\[1ex]
+  $\dot N_{\mathrm{fission}}=\dfrac{P_{\mathrm{th}}}{E_{\mathrm{fission}}}$\\[1ex]
+  $N_{\mathrm{day}}=\dot N_{\mathrm{fission}}\cdot86400
+  \quad ; \quad
+  n=\dfrac{N_{\mathrm{day}}}{N_A}
+  \quad ; \quad
+  m=nM_{\mathrm{U235}}$
+}
+
+\underline{Solution}:
+\[
+  P_{\mathrm{th}}=\frac{1010\, [\mathrm{MW}]}{0.34}
+  =2970.6\, [\mathrm{MW}]
+\]
+\[
+  E_{\mathrm{fission}}
+  =200\cdot1.602\cdot10^{-13}\, [\mathrm{J}]
+  =3.204\cdot10^{-11}\, [\mathrm{J}]
+\]
+\[
+  \dot N_{\mathrm{fission}}
+  =\frac{2.9706\cdot10^9\, [\mathrm{J/s}]}
+  {3.204\cdot10^{-11}\, [\mathrm{J}]}
+  =9.27\cdot10^{19}\, [\mathrm{s^{-1}}]
+\]
+\[
+  N_{\mathrm{day}}=9.27\cdot10^{19}\cdot86400
+  =8.01\cdot10^{24}
+  \quad ; \quad
+  n=\frac{8.01\cdot10^{24}}{6.022\cdot10^{23}}
+  =13.3\, [\mathrm{mol}]
+\]
+\[
+  m=13.3\cdot235.04\, [\mathrm{g}]
+  =3126\, [\mathrm{g}]
+  \approx3.13\, [\mathrm{kg/day}]
+\]
+\textbf{Discussion}: only a few kg of actually split U-235 provide the daily
+energy. Real fuel assemblies contain mostly U-238 and only a few percent
+fissile U-235, and remain in the reactor for years.
+
+\textbf{Exercise 16: Hydrothermal geothermal power plant}
+
+\underline{Data}:
+\[
+  T_{\mathrm{prod}}=130^\circ\mathrm{C}
+  \quad ; \quad
+  T_{\mathrm{rein}}=70^\circ\mathrm{C}
+  \quad ; \quad
+  \dot m_{\mathrm{th}}=80\, [\mathrm{kg/s}]
+\]
+\[
+  c_{p,\mathrm{water}}=4.2\, [\mathrm{kJ/(kgK)}]
+  \quad ; \quad
+  \eta_{\mathrm{ORC}}=12\%
+  \quad ; \quad
+  E_{\mathrm{house}}=4000\, [\mathrm{kWh/a}]
+\]
+Assume $8000$ operating hours per year. Calculate extracted thermal power, net
+electrical power and number of supplied households.
+
+\figbox{
+  $P_{\mathrm{th}}=\dot m_{\mathrm{th}}c_{p,\mathrm{water}}\Delta T$\\[1ex]
+  $P_{\mathrm{el,net}}=\eta_{\mathrm{ORC}}P_{\mathrm{th}}$\\[1ex]
+  $E_{\mathrm{plant}}=P_{\mathrm{el,net}}t_{\mathrm{op}}
+  \quad ; \quad
+  N_{\mathrm{house}}=\dfrac{E_{\mathrm{plant}}}{E_{\mathrm{house}}}$
+}
+
+\underline{Solution}:
+\[
+  \Delta T=130^\circ\mathrm{C}-70^\circ\mathrm{C}=60\, [\mathrm{K}]
+\]
+\[
+  P_{\mathrm{th}}=80\cdot4.2\cdot60\, [\mathrm{kJ/s}]
+  =20160\, [\mathrm{kW}]
+  =20.16\, [\mathrm{MW}]
+\]
+\[
+  P_{\mathrm{el,net}}=0.12\cdot20.16\, [\mathrm{MW}]
+  =2.42\, [\mathrm{MW}]
+\]
+\[
+  E_{\mathrm{plant}}=2.42\, [\mathrm{MW}]\cdot8000\, [\mathrm{h/a}]
+  =19360\, [\mathrm{MWh/a}]
+  =19360000\, [\mathrm{kWh/a}]
+\]
+\[
+  N_{\mathrm{house}}=\frac{19360000}{4000}=4840
+\]
+\textbf{Discussion}: the electrical efficiency is low because the temperature
+level is low, but geothermal plants can provide base-load energy. The
+re-injected $70^\circ$C water is still valuable for district heating or CHP;
+drilling success and mass flow are the main economic risks.
+
+\textbf{Exercise 17: Hydropower turbine power}
+
+\underline{Data}:
+\[
+  \rho=1000\, [\mathrm{kg/m^3}]
+  \quad ; \quad
+  g=9.81\, [\mathrm{m/s^2}]
+  \quad ; \quad
+  \eta_T=85\%
+  \quad ; \quad
+  \eta_G=95\%
+\]
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Site} & \textbf{Head $h$} & \textbf{Flow $Q$}\\
+  \midrule
+  A: high Alps & 800 m & 15 $\mathrm{m^3/s}$\\
+  B: upland river & 60 m & 120 $\mathrm{m^3/s}$\\
+  C: lowland weir & 12 m & 400 $\mathrm{m^3/s}$\\
+  \bottomrule
+\end{tabularx}
+
+Select turbine type and estimate power. For Site A, check the calculation.
+
+\figbox{
+  $P_{\mathrm{hydr}}=\rho gQh$\\[1ex]
+  $P_{\mathrm{el}}=P_{\mathrm{hydr}}\eta_T\eta_G$
+}
+
+\underline{Turbine selection}:\\
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Site} & \textbf{Turbine} & \textbf{Diagram estimate}\\
+  \midrule
+  A & Pelton & approx. 100--110 MW\\
+  B & Francis & approx. 60--65 MW\\
+  C & Kaplan & approx. 40 MW\\
+  \bottomrule
+\end{tabularx}
+
+\underline{Site A check}:
+\[
+  P_{\mathrm{hydr}}
+  =1000\cdot9.81\cdot15\cdot800
+  =117720000\, [\mathrm{W}]
+  =117.72\, [\mathrm{MW}]
+\]
+\[
+  P_{\mathrm{el}}
+  =117.72\cdot0.85\cdot0.95
+  =95.06\, [\mathrm{MW}]
+\]
+\textbf{Losses}: hydraulic friction/turbulence, mechanical bearing losses,
+generator copper/iron losses, transformer and line losses.
+
+\textbf{Exercise 18: Raising the dams at Lake Grimsel}
+
+\underline{Data}:
+\[
+  h_{\mathrm{old}}=100\, [\mathrm{m}]
+  \quad ; \quad
+  b_{\mathrm{old}}=800\, [\mathrm{m}]
+  \quad ; \quad
+  L=4000\, [\mathrm{m}]
+  \quad ; \quad
+  \Delta h=23\, [\mathrm{m}]
+\]
+\[
+  h_{\mathrm{new}}=123\, [\mathrm{m}]
+  \quad ; \quad
+  \rho=1000\, [\mathrm{kg/m^3}]
+  \quad ; \quad
+  h_{\mathrm{eff}}\approx110\, [\mathrm{m}]
+\]
+Model the valley as an upside-down triangular prism.
+
+\figbox{
+  $b(h)=\dfrac{b_{\mathrm{old}}}{h_{\mathrm{old}}}h$\\[1ex]
+  $A(h)=b(h)L$\\[1ex]
+  $V=\displaystyle\int_0^h A(h)\,\mathrm dh$\\[1ex]
+  $\Delta E_{\mathrm{pot}}=\rho\Delta Vgh_{\mathrm{eff}}$
+}
+
+\underline{Geometry}:
+\[
+  b(h)=\frac{800}{100}h=8h
+  \quad ; \quad
+  A(h)=8h\cdot4000=32000h
+\]
+\[
+  V_{\mathrm{old}}
+  =\int_0^{100}32000h\,\mathrm dh
+  =16000h^2\big|_0^{100}
+  =160\cdot10^6\, [\mathrm{m^3}]
+\]
+\[
+  V_{\mathrm{new}}
+  =16000\cdot123^2
+  =242.064\cdot10^6\, [\mathrm{m^3}]
+  \approx242\, [\mathrm{Mio.\ m^3}]
+\]
+\[
+  \Delta V=V_{\mathrm{new}}-V_{\mathrm{old}}
+  \approx82\, [\mathrm{Mio.\ m^3}]
+\]
+\[
+  \frac{\Delta h}{h_{\mathrm{old}}}=23\%
+  \quad ; \quad
+  \frac{\Delta V}{V_{\mathrm{old}}}
+  =\frac{82}{160}=51.25\%
+\]
+\[
+  \Delta E_{\mathrm{pot}}
+  =1000\cdot82\cdot10^6\cdot9.81\cdot110
+  =8.84\cdot10^{13}\, [\mathrm{J}]
+  =24.55\, [\mathrm{GWh}]
+\]
+\textbf{Discussion}: technically attractive because storage volume grows
+disproportionately with height. Environmental argument: flooding upper valley
+areas can destroy rare moor/glacial habitats irreversibly.
+
+\textbf{Exercise 19: Pumped-storage cycle}
+
+\underline{Data}:
+\[
+  D=600\, [\mathrm{m}]
+  \quad ; \quad
+  h_{\mathrm{stat,min}}=450\, [\mathrm{m}]
+  \quad ; \quad
+  h_{\mathrm{loss}}=10\, [\mathrm{m}]
+\]
+\[
+  Q_{\mathrm{pump}}=50\, [\mathrm{m^3/s}]
+  \quad ; \quad
+  t_{\mathrm{pump}}=6\, [\mathrm{h}]
+  \quad ; \quad
+  \eta_{\mathrm{pump}}=90\%
+\]
+\[
+  Q_{\mathrm{turb}}=65\, [\mathrm{m^3/s}]
+  \quad ; \quad
+  \eta_{\mathrm{turb}}=92\%
+\]
+\[
+  p_{\mathrm{buy}}=40\, [\mathrm{CHF/MWh}]
+  \quad ; \quad
+  p_{\mathrm{sell}}=180\, [\mathrm{CHF/MWh}]
+\]
+Calculate pumped water volume, reservoir level rise, mean pumping head,
+electrical input energy, mean turbine head, generated output energy, turbine
+operating time, round-trip efficiency and economic profit/loss. Discuss whether
+the cycle is worthwhile and why pumped storage is system-relevant despite
+losses.
+
+\figbox{
+  $V=Qt
+  \quad ; \quad
+  A=\pi(D/2)^2
+  \quad ; \quad
+  \Delta h=V/A$\\[1ex]
+  $W_{\mathrm{in}}=\dfrac{\rho gVh_{\mathrm{pump,mean}}}{\eta_{\mathrm{pump}}}$\\[1ex]
+  $W_{\mathrm{out}}=\rho gVh_{\mathrm{turb,mean}}\eta_{\mathrm{turb}}$\\[1ex]
+  $\eta_{\mathrm{cycle}}=\dfrac{W_{\mathrm{out}}}{W_{\mathrm{in}}}$
+}
+
+\underline{Pumping}:
+\[
+  V=50\cdot6\cdot3600=1080000\, [\mathrm{m^3}]
+\]
+\[
+  A=\pi\cdot300^2=282743\, [\mathrm{m^2}]
+  \quad ; \quad
+  \Delta h=\frac{1080000}{282743}=3.82\, [\mathrm{m}]
+\]
+\[
+  h_{\mathrm{pump,mean}}
+  =450+\frac{3.82}{2}+10
+  =461.91\, [\mathrm{m}]
+\]
+\[
+  W_{\mathrm{in}}
+  =\frac{1000\cdot9.81\cdot1080000\cdot461.91}{0.90}
+  =5.435\cdot10^{12}\, [\mathrm{J}]
+  =1509.7\, [\mathrm{MWh}]
+\]
+
+\underline{Turbining}:
+\[
+  h_{\mathrm{turb,mean}}
+  =450+\frac{3.82}{2}-10
+  =441.91\, [\mathrm{m}]
+\]
+\[
+  W_{\mathrm{out}}
+  =1000\cdot9.81\cdot1080000\cdot441.91\cdot0.92
+  =4.312\cdot10^{12}\, [\mathrm{J}]
+  =1197.8\, [\mathrm{MWh}]
+\]
+\[
+  t_{\mathrm{turb}}=\frac{1080000}{65}
+  =16615\, [\mathrm{s}]
+  =4.62\, [\mathrm{h}]
+\]
+\[
+  \eta_{\mathrm{cycle}}=\frac{1197.8}{1509.7}=79.3\%
+\]
+\[
+  C=1509.7\cdot40=60388\, [\mathrm{CHF}]
+  \quad ; \quad
+  R=1197.8\cdot180=215604\, [\mathrm{CHF}]
+\]
+\[
+  \mathrm{Profit}=R-C=155216\, [\mathrm{CHF}]
+\]
+\textbf{Decision}: economically worthwhile for this price spread. System value:
+fast balancing power, absorption of renewable surplus and firm peak capacity.
+
+\textbf{Exercise 20: Dynamic grid tariffs}
+
+\underline{Task}: Compare CKW standard tariffs with dynamic grid tariffs and
+identify which bill components fluctuate.
+
+\underline{Facts}:
+\begin{itemize}
+  \item Standard tariff: fixed or time-of-use price blocks known in advance.
+  \item Dynamic grid tariff: 15-min grid-use price changes according to grid
+        congestion; published day-ahead.
+  \item In basic supply, the energy component is not freely dynamic; dynamic
+        restructuring mainly applies to grid usage.
+\end{itemize}
+
+\underline{Component split}:
+\[
+  p_{\mathrm{tot}}
+  =(p_{\mathrm{energy}}+p_{\mathrm{grid,dyn}}+p_{\mathrm{levies}}
+  +p_{\mathrm{winter}})\,(1+\mathrm{VAT})
+\]
+Only $p_{\mathrm{grid,dyn}}$ fluctuates in the dynamic grid tariff. Energy,
+levies, winter reserve and VAT remain static for the tariff calculation.
+
+\underline{Dynamic-grid extremes from slides}:
+\[
+  p_{\mathrm{grid,dyn,min}}=0.1\, [\mathrm{Rp/kWh}]
+  \quad ; \quad
+  p_{\mathrm{grid,dyn,max}}=32.0\, [\mathrm{Rp/kWh}]
+\]
+\[
+  \Delta p_{\mathrm{grid}}=31.9\, [\mathrm{Rp/kWh}]
+\]
+\textbf{Interpretation}: dynamic grid tariffs do not make electricity
+production cheaper; they create a financial signal to shift flexible loads away
+from local grid peaks.
+
+\textbf{Exercise 21: Dynamic sharing coefficient}
+
+\underline{Data}:
+\[
+  P_{\mathrm{PV}}=12\, [\mathrm{kW}]
+  \quad ; \quad
+  L_A=14\, [\mathrm{kW}]
+  \quad ; \quad
+  L_B=4\, [\mathrm{kW}]
+\]
+Allocate PV to peers A and B to minimize the highest remaining grid import.
+
+\figbox{
+  $\min P_{\max}$\\[.5ex]
+  $a_A+a_B=P_{\mathrm{PV}}
+  \quad ; \quad
+  0\leq a_A\leq L_A
+  \quad ; \quad
+  0\leq a_B\leq L_B$\\[.5ex]
+  $P_{\max}\geq L_A-a_A
+  \quad ; \quad
+  P_{\max}\geq L_B-a_B$
+}
+
+\underline{Solution}: optimum equalizes the two remaining grid imports:
+\[
+  L_A-a_A=L_B-a_B
+  \quad ; \quad
+  a_A+a_B=12
+\]
+\[
+  14-a_A=4-a_B
+  \Rightarrow a_A-a_B=10
+  \quad ; \quad
+  a_A=11\, [\mathrm{kW}]
+  \quad ; \quad
+  a_B=1\, [\mathrm{kW}]
+\]
+\[
+  P_{\mathrm{grid},A}=14-11=3\, [\mathrm{kW}]
+  \quad ; \quad
+  P_{\mathrm{grid},B}=4-1=3\, [\mathrm{kW}]
+\]
+\[
+  c_A=\frac{11}{12}=91.7\%
+  \quad ; \quad
+  c_B=\frac{1}{12}=8.3\%
+\]
+\textbf{Result}: the dynamic allocation shaves the maximum individual grid
+peak from $14$ kW to $3$ kW.
+
+\textbf{Exercise 22: Choose ZEV, vZEV or LEG}
+
+\underline{Task}: For each scenario choose the regulatory framework and
+allocation key.
+
+\begin{tabularx}{\columnwidth}{@{}XlX@{}}
+  \toprule
+  \textbf{Scenario} & \textbf{Type} & \textbf{Allocation key}\\
+  \midrule
+  MFH + supermarket, one property & ZEV & hierarchical or fixed investor-first\\
+  5 SFH on same street / LV box & vZEV & hierarchical, then proportional\\
+  village: school, bakery, households & LEG & hierarchical political cascade\\
+  \bottomrule
+\end{tabularx}
+
+\textbf{Reasoning}: ZEV is best behind one meter/property and saves all grid
+fees internally. vZEV avoids digging private cables while allowing nearby
+low-voltage neighbours to share energy digitally. LEG is needed for municipal
+scale across several transformer zones and requires a legal entity.
+
+\textbf{Allocation logic}: hierarchical sharing is used when someone has a
+priority claim, e.g. investor ROI, House A's EV or the mayor's bakery-first
+policy. Proportional sharing is fairer for remaining energy after priority
+loads are served.
+
+\textbf{Exercise 23: Sonnendorf smart-grid memo}
+
+\underline{Task}: Write a short technical memo using at least 8 abbreviations:
+ZEV, vZEV, LEG, DSO, EMS, AMI, BESS, ToU, cVPP, DR.
+
+\underline{Model answer}:
+Sonnendorf should create a \textbf{LEG} because the school, bakery and SFHs are
+spread across the municipality and need to use the public \textbf{DSO} grid.
+The \textbf{AMI} smart meters provide 15-min data for allocation and billing.
+An \textbf{EMS} coordinates the school PV, household EV charging and bakery
+loads. A community \textbf{BESS} stores midday surplus and supplies evening
+loads. \textbf{ToU}/dynamic grid tariffs should trigger \textbf{DR}: EVs and
+heat pumps shift away from expensive grid periods. The assets can be aggregated
+as a \textbf{cVPP} to reduce peaks and possibly offer flexibility services.
+Individual apartment blocks could still use \textbf{ZEV}; neighbouring SFHs
+could use \textbf{vZEV}, but the village-wide solution is the LEG.
+
 \part{SW 1: Introduction}
 \section{Swiss grid levels}
+Electric power grids are split into voltage levels because the optimal voltage
+depends on distance and power. High voltage reduces current and losses during
+transport; lower voltage is safer, cheaper to insulate and easier to switch
+close to consumers.
+
 \begin{tabularx}{\columnwidth}{@{}lX@{}}
   \toprule
-  \textbf{Voltage} & \textbf{Role}\\
+  \textbf{Voltage} & \textbf{Purpose}\\
   \midrule
-  220/380 kV & transmission and international interconnection\\
-  $\sim110$ kV & sub-transmission, large generation/loads\\
-  10--40 kV & regional distribution\\
-  0.4 kV & local distribution and households\\
+  380/220 kV & long-distance transport, import/export, large power plants\\
+  $\sim110$ kV & regional transport, large industry, connection to HV grid\\
+  10--40 kV & medium-voltage distribution in cities/regions\\
+  0.4 kV & final low-voltage supply for households and small consumers\\
   \bottomrule
 \end{tabularx}
 
 \section{Choice of grid voltage}
 \subsection{Transmission losses}
+For a given transmitted active power, increasing voltage lowers the current.
+Since ohmic losses grow with $I^2$, high voltage is the main technical reason
+for economical long-distance transmission.
 \[
   P_{\mathrm{trans}}=U_mI
   \quad ; \quad
@@ -886,6 +1408,10 @@ where: $P_{\mathrm{trans}}$ = transmitted active power; $P_\Omega$ =
 resistive loss; $U_L$ = line-to-line RMS voltage.
 
 \subsection{Economic optimum}
+Voltage cannot be increased indefinitely: insulation, towers, clearances,
+switchgear and protection become more expensive. The economical voltage is the
+minimum of loss cost and investment cost.
+
 \begin{center}
   \includegraphics[\lw=.7]{media/economics.png}
 \end{center}
@@ -896,30 +1422,65 @@ where: $C_V$ = transmission-loss cost; $C_A$ = insulation/infrastructure
 cost. \textbf{Rule of thumb}: economical transmission requires $\sim1$ kV/km.
 
 \section{Reliability}
-\textbf{$N-1$ criterion}: after any single component failure, the remaining
-system continues operating without a system-wide outage.
+\subsection{$N-1$ criterion}
+A secure grid is planned with redundancy. After the loss of any single relevant
+component (line, transformer, generator, busbar section), the remaining system
+must stay within current, voltage and stability limits.
 
-\textbf{SAIDI}: average duration of long interruptions per customer and year
-[min/(customer$\cdot$year)].
+\textbf{Consequence}: assets are not operated permanently at their thermal
+limit, because spare capacity is needed after a contingency. $N-1$ improves
+security but increases investment and operating cost.
+
+\subsection{SAIDI}
+\textbf{SAIDI}: average duration of long interruptions per customer and year:
+\[
+  \mathrm{SAIDI}=
+  \frac{\sum \text{customer interruption durations}}
+  {\text{number of customers}}
+\]
+Low SAIDI means high supply reliability. It measures interruption duration, not
+the size of the interrupted power.
 
 \section{Electricity markets}
+\subsection{Responsibilities}
 \begin{itemize}
-  \item \textbf{TSO}: secure transmission-system operation; CH: Swissgrid
+  \item \textbf{TSO}: operates the transmission grid, keeps frequency stable,
+        procures balancing energy and manages congestion; CH: Swissgrid
   \item \textbf{Balance group}: financially responsible for deviations between
-        scheduled and actual energy
-  \item \textbf{Futures/OTC}: contracts before delivery
-  \item \textbf{Day-ahead}: double auction for future delivery periods
-  \item \textbf{Balancing}: TSO activation close to real time
+        scheduled and actual feed-in/withdrawal
+  \item \textbf{Schedule}: planned energy exchange per time interval; deviations
+        are settled via balancing mechanisms
 \end{itemize}
+
+\subsection{Trading horizons}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Market} & \textbf{Role}\\
+  \midrule
+  Futures/OTC & long-term price hedging and bilateral contracts\\
+  Day-ahead & auction for the next delivery day; main spot reference price\\
+  Intraday & correction of forecast errors close to delivery\\
+  Balancing & activated by TSO to keep generation and load equal in real time\\
+  \bottomrule
+\end{tabularx}
+
 \subsection{Merit order}
-Offers are accepted from lowest to highest marginal cost until demand is met:
+Offers are sorted by increasing marginal cost. Low-cost plants are dispatched
+first; the last accepted offer sets the market clearing price for all accepted
+energy in the auction.
 \[
   p_{\mathrm{market}}=\text{price of the last accepted offer}
 \]
+High demand or low renewable feed-in shifts the clearing point to more
+expensive plants. This is why gas or peak units can set the price even if many
+low-cost units are producing.
 
-\newcolumn
 \part{SW 2: Three-Phase Systems}
 \section{AC elements and phasors}
+\subsection{Sinusoidal quantities}
+RMS values are used because they produce the same heating effect as DC. Phasors
+replace sinusoidal time functions by complex numbers; this turns differential
+equations in steady-state AC circuits into algebraic equations.
 \[
   U=\frac{\hat U}{\sqrt{2}}
   \quad ; \quad
@@ -936,6 +1497,12 @@ Offers are accepted from lowest to highest marginal cost until demand is met:
   \quad ; \quad
   \underline Y=\frac{1}{\underline Z}
 \]
+\subsection{R, L, C behaviour}
+Resistance dissipates active power. Inductance stores energy in a magnetic
+field and makes current lag. Capacitance stores energy in an electric field and
+makes current lead. Impedance describes opposition to current; admittance is
+useful when parallel branches or neutral displacement are calculated.
+
 \begin{tabularx}{\columnwidth}{@{}lXX@{}}
   \toprule
   & \textbf{Impedance} & \textbf{Phase}\\
@@ -947,6 +1514,11 @@ Offers are accepted from lowest to highest marginal cost until demand is met:
 \end{tabularx}
 
 \section{Complex power}
+\subsection{Power components}
+Complex power separates energy conversion from energy oscillation. Active power
+$P$ is converted into mechanical work, heat or light. Reactive power $Q$
+oscillates between source and fields; it increases currents and voltage drops
+although no net energy is consumed over a period.
 \[
   \underline S=\underline U\underline I^*=P+jQ
   \quad ; \quad
@@ -960,10 +1532,30 @@ Offers are accepted from lowest to highest marginal cost until demand is met:
   \lambda=\cos\varphi=\frac{P}{S}
 \]
 where: $\varphi=\varphi_u-\varphi_i$; $Q>0$ inductive/lagging; $Q<0$
-capacitive/leading. Sign depends on the selected load/generator current
-reference.
+capacitive/leading.
+
+\subsection{Load and generator signs}
+With the consumer reference direction, positive $P$ and $Q$ mean absorption.
+With generator convention, positive active power means power delivered to the
+grid. Always check the current arrow before interpreting the sign.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Case} & \textbf{Typical meaning}\\
+  \midrule
+  lagging current & inductive load, consumes $Q$\\
+  leading current & capacitive behaviour, supplies $Q$ in load convention\\
+  over-excited generator & supplies reactive power to the grid\\
+  under-excited generator & absorbs reactive power from the grid\\
+  \bottomrule
+\end{tabularx}
 
 \section{Balanced three-phase systems}
+\subsection{Phase system}
+A balanced three-phase system has three equal sinusoidal phase voltages shifted
+by $120^\circ$. The sum of the three phase voltages is zero, so no neutral
+current flows for a balanced load. The total instantaneous power is constant,
+which gives smooth torque in machines.
 \[
   \underline U_{1N}=U_{\mathrm{ph}}\angle0^\circ
   \quad ; \quad
@@ -977,11 +1569,17 @@ reference.
   \quad ; \quad
   U_{\mathrm{LL}}=\sqrt{3}U_{\mathrm{ph}}
 \]
+Line-to-line voltage is the phasor difference of two phase-to-neutral voltages.
+It is $\sqrt3$ times larger and shifted by $30^\circ$.
 
 \section{Star and delta}
+\subsection{Connections}
 \begin{center}
   \includegraphics[\lw=.9]{media/star-delta-connections.png}
 \end{center}
+In star connection each load sees phase voltage and a neutral point exists. In
+delta connection each load sees line-to-line voltage; there is no neutral point
+and circulating currents can occur if the three impedances are not balanced.
 \[
   U_Y=\frac{U_{\mathrm{LL}}}{\sqrt3}
   \quad ; \quad I_Y=I_L
@@ -993,9 +1591,13 @@ reference.
   \quad ; \quad
   \underline Z_Y=\frac{\underline Z_\Delta}{3}
 \]
-Valid for balanced operation.
+The impedance conversion is valid only for balanced loads or symmetrical
+network equivalents.
 
 \section{Three-phase power}
+For balanced operation the total power is three times the phase power. The same
+formula works for star and delta if line-to-line voltage and line current are
+used.
 \[
   \underline S_{3\mathrm{ph}}
   =3\underline U_{\mathrm{ph}}\underline I_{\mathrm{ph}}^*
@@ -1010,10 +1612,15 @@ Valid for balanced operation.
 \]
 
 \section{Unbalanced star loads}
+If the three load impedances differ, the load star point $K$ can shift relative
+to the supply neutral point $N$. This changes the phase voltages across the
+loads and can overvoltage one phase while undervolting another.
 \[
   \underline Y_i=\frac{1}{\underline Z_i}
 \]
 \subsection{Without neutral conductor}
+Without a neutral conductor, the star point is floating. Its displacement is
+set by the three load admittances.
 \[
   \underline U_{KN}=
   \frac{\underline Y_1\underline U_{1N}
@@ -1022,6 +1629,8 @@ Valid for balanced operation.
   {\underline Y_1+\underline Y_2+\underline Y_3}
 \]
 \subsection{With neutral impedance}
+With a neutral conductor, neutral current can flow and the displacement is
+reduced. An ideal neutral fixes $K$ to $N$.
 \[
   \underline U_{KN}=
   \frac{\underline Y_1\underline U_{1N}
@@ -1043,16 +1652,23 @@ Ideal neutral: $\underline Z_N=0\Longrightarrow\underline U_{KN}=0$.
 \part{SW 3: Power Lines \& Transformers}
 \section{Stiff grid}
 Grid whose voltage magnitude $U$ and frequency $f$ remain approximately
-constant independently of the connected load:
+constant for the connected equipment. It is modelled as an ideal voltage source
+behind a very small internal impedance.
 \[
   \Delta U\approx0
   \quad ; \quad
   \Delta f\approx0
 \]
-Equivalent to an ideal voltage source with very low internal impedance and high
-short-circuit power.
+A stiff grid has high short-circuit power: a load or fault current causes only
+a small voltage change. A weak grid has larger voltage deviations and stronger
+interaction between connected devices.
 
 \section{Equivalent line model}
+\subsection{Distributed parameters}
+Power lines are not ideal wires. Resistance causes losses, inductance causes
+reactive voltage drop, capacitance produces charging current, and conductance
+represents insulation/leakage losses. These quantities are distributed along
+the line and are usually given per kilometre.
 \[
   R=R'l\quad ; \quad L=L'l
   \quad ; \quad G=G'l\quad ; \quad C=C'l
@@ -1063,8 +1679,14 @@ short-circuit power.
   \underline Y=(G'+j\omega C')l
 \]
 \begin{center}
-  \includegraphics[\lw=.82]{media/line-pi-model.png}
+  \includegraphics[\lw=.7]{media/line-pi-model.png}
 \end{center}
+\subsection{Short, medium and long lines}
+Short lines can often neglect shunt capacitance. Medium lines use a lumped
+$\Pi$ model because charging current becomes relevant. Long lines require
+distributed modelling or cascaded $\Pi$ sections because voltage and current
+vary continuously along the line.
+
 \begin{tabularx}{\columnwidth}{@{}lXX@{}}
   \toprule
   \textbf{Length} & \textbf{Model} & \textbf{Elements}\\
@@ -1076,6 +1698,10 @@ short-circuit power.
 \end{tabularx}
 
 \subsection{Line parameters}
+Inductance increases with conductor spacing and decreases with larger effective
+conductor radius. Capacitance behaves oppositely: closer conductors or larger
+radius increase capacitance. Bundled conductors reduce field strength and
+improve corona and reactance behaviour.
 \[
   L'=\frac{\mu_0}{2\pi}\ln\left(\frac D{r'}\right)
   \quad ; \quad
@@ -1090,7 +1716,10 @@ where: $D$ = conductor spacing; $r$ = radius; $\kappa$ = conductivity.
 $G'$ is often neglected.
 
 \subsection{Skin effect}
-AC-induced eddy currents reduce current density near the conductor centre:
+In AC operation the alternating magnetic field induces eddy currents inside the
+conductor. They oppose current in the centre and concentrate current near the
+surface. The usable cross-section becomes smaller, so the effective resistance
+is higher than the DC resistance.
 \[
   \delta=\sqrt{\frac{2\rho}{\omega\mu}}
   =\sqrt{\frac{2}{\omega\mu\kappa}}
@@ -1098,8 +1727,15 @@ AC-induced eddy currents reduce current density near the conductor centre:
   R_{\mathrm{AC}}>R_{\mathrm{DC}}
 \]
 where: $\delta$ = penetration depth; at 50 Hz $\delta\approx9.38$ mm.
+Higher frequency, higher permeability or lower conductivity reduce
+penetration depth. Large conductors therefore use stranded/bundled designs to
+limit AC resistance and corona effects.
 
 \section{Surge impedance loading}
+The surge impedance is the characteristic ratio of voltage to current of a
+lossless line. At surge impedance loading, the line's inductive reactive power
+consumption is compensated by its capacitive charging power. The line then
+neither produces nor absorbs net reactive power.
 \[
   Z_W=\sqrt{\frac{L'}{C'}}
 \]
@@ -1110,8 +1746,14 @@ For $R'=G'=0$ and $Z_2=Z_W$:
   P_1=P_2=\frac{|U_1|^2}{Z_W}=\frac{|U_2|^2}{Z_W}
 \]
 Typical overhead line: $Z_W\approx200$--$400\,\Omega$.
+Below SIL the line tends to generate reactive power; above SIL it tends to
+consume reactive power and voltage support becomes more critical.
 
 \section{Voltage drop along a line}
+For overhead lines, reactance usually dominates resistance. Active power mainly
+affects the load angle, while reactive power mainly affects voltage magnitude.
+Inductive loads therefore lower the receiving-end voltage; capacitive
+compensation can support it.
 \[
   \underline U_1=\underline U_2+jX\underline I_2
   \quad ; \quad
@@ -1124,6 +1766,12 @@ Typical overhead line: $Z_W\approx200$--$400\,\Omega$.
 \]
 
 \section{Transformers}
+\subsection{Function in the grid}
+Transformers couple grid levels without changing frequency. They allow high
+voltage for low-loss transmission and lower voltage for distribution and
+consumer safety. Ideally, power is conserved and only voltage/current levels
+change.
+
 \subsection{Ideal and referred quantities}
 \[
   \ddot u=\frac{N_1}{N_2}
@@ -1139,11 +1787,18 @@ Typical overhead line: $Z_W\approx200$--$400\,\Omega$.
   \quad ; \quad
   \underline Z'_2=\ddot u^{\,2}\underline Z_2
 \]
+Referred quantities move the secondary side to the primary side so the whole
+transformer can be calculated as one equivalent circuit. Impedances transform
+with the square of the turns ratio.
 
 \subsection{Equivalent circuit}
 \begin{center}
   \includegraphics[\lw=.98]{media/transformer-equivalent-circuit.png}
 \end{center}
+The series resistance represents copper losses. Leakage reactance represents
+flux that links only one winding and causes voltage drop under load. The shunt
+branch represents magnetising current and iron losses; it is often neglected in
+short-circuit or load-flow approximations.
 \[
   R'_2=\ddot u^{\,2}R_2
   \quad ; \quad
@@ -1158,6 +1813,9 @@ Typical overhead line: $Z_W\approx200$--$400\,\Omega$.
 \]
 
 \subsection{Relative short-circuit voltage}
+The short-circuit voltage describes the transformer impedance in a compact
+rating-based form. A higher $u_k$ limits fault current better but causes a
+larger voltage drop in normal operation.
 \[
   u_k=\frac{U_{1k}}{U_{1N}}
   \quad ; \quad
@@ -1168,18 +1826,30 @@ short-circuited; typical range 4--18\%.
 
 \section{Three-phase transformers}
 \subsection{Connections and vector groups}
+Star, delta and zig-zag connections determine neutral availability, insulation
+stress, zero-sequence behaviour and phase shift. Delta windings can provide a
+path for triplen harmonics and zero-sequence currents; star windings can expose
+a neutral point.
+
 \begin{center}
   \includegraphics[\lw=.9]{media/transformers.png}
   \includegraphics[\lw]{media/transformers2.png}
 \end{center}
-\[\underline{u} = \frac{\underline{U}_{OS}}{\underline{U}_{US}} = \frac{\underline{U}_{1U1V}}{\underline{U}_{2U2V}} = \frac{\underline{U}_{1U1N}}{\underline{U}_{2U2N}}\]
+The vector-group clock number gives the LV line-voltage displacement relative
+to the HV side in multiples of $30^\circ$.
+\[
+  \underline{u}=\frac{\underline{U}_{OS}}{\underline{U}_{US}}
+  =\frac{\underline{U}_{1U1V}}{\underline{U}_{2U2V}}
+  =\frac{\underline{U}_{1U1N}}{\underline{U}_{2U2N}}
+\]
 
-\newcolumn
 \part{SW 4: Synchronous Generators}
 \section{Three-phase generation}
-A synchronous generator has a DC-excited or permanent-magnet rotor and three
-stator windings displaced by $120^\circ$. The rotating magnetic field induces
-three sinusoidal voltages.
+\subsection{Basic principle}
+A synchronous generator converts mechanical torque into three-phase electrical
+power. The rotor produces a magnetic field by DC excitation or permanent
+magnets. The stator has three windings shifted by $120^\circ$; as the rotor
+field turns, it induces three sinusoidal voltages.
 \[
   U(t) = B\cdot A\cdot \omega\cdot \sin(\omega t)
   \quad ; \quad
@@ -1202,11 +1872,15 @@ used at high speed; salient-pole machines use many poles for low-speed drives.
   Model & $X_d=X_q$ & $X_d\neq X_q$\\
   \bottomrule
 \end{tabularx}
+Non-salient rotors are mechanically robust at high speed and are typical for
+steam or gas turbines. Salient-pole rotors are suited to low-speed hydro
+turbines because many pole pairs allow synchronous operation at low rpm.
 
 \subsection{Grid inertia}
 Rotating synchronous masses release kinetic energy after a power imbalance,
-slowing the initial frequency change. Converter-based generation requires
-synthetic/virtual inertia for the same function.
+slowing the initial frequency change. This gives control systems time to react.
+Converter-based generation is decoupled from mechanical inertia unless a
+synthetic/virtual inertia function is implemented.
 
 \section{Equivalent circuit and torque angle}
 For stationary balanced operation of a non-salient generator, neglecting
@@ -1228,8 +1902,15 @@ phase voltage; $X_d$ = synchronous reactance.
 \]
 $\vartheta>0$: generator operation; $\vartheta<0$: motor operation;
 $\vartheta=0$: no active power.
+The torque angle is the electrical angle between internal generated voltage and
+terminal voltage. Increasing mechanical input increases $\vartheta$ and active
+power until the stability limit is reached.
 
 \section{Active and reactive power}
+For a grid-connected generator, the grid fixes terminal voltage and frequency.
+Mechanical torque mainly controls active power. Excitation changes the internal
+voltage $U_p$ and mainly controls reactive power.
+
 With $\underline U=U\angle0^\circ$ and $\underline U_p=U_p\angle\vartheta$:
 \[
   P=\frac{UU_p}{X_d}\sin\vartheta
@@ -1245,10 +1926,14 @@ With $\underline U=U\angle0^\circ$ and $\underline U_p=U_p\angle\vartheta$:
   P_{\max,3\mathrm{ph}}=\frac{3UU_p}{X_d}
   \quad\text{at}\quad \vartheta=90^\circ
 \]
+Operation near $90^\circ$ is not acceptable in practice because synchronism
+would be lost after a small disturbance. Real generators therefore operate with
+a stability margin.
 
 \section{Operating modes and excitation}
 \begin{itemize}
-  \item \textbf{Island operation}: excitation controls terminal voltage
+  \item \textbf{Island operation}: generator sets voltage and frequency;
+        excitation controls voltage and turbine/governor controls frequency
   \item \textbf{Grid connected}: grid fixes $U$ and $f$; mechanical input mainly
         controls $P$, excitation mainly controls $Q$
   \item \textbf{Over-excited}: $U_p>U$, supplies $Q$ (capacitive behaviour)
@@ -1260,6 +1945,9 @@ At $\vartheta=0$:
   \quad ; \quad
   Q_{3\mathrm{ph}}=\frac{3}{X_d}\left(U_pU-U^2\right)
 \]
+Over-excitation raises the internal voltage and supports the grid voltage by
+supplying reactive power. Under-excitation absorbs reactive power and can lower
+the voltage.
 
 \section{Grid synchronization}
 Connection to the grid requires:
@@ -1270,9 +1958,15 @@ Connection to the grid requires:
   \item equal voltage magnitude
   \item equal phase sequence L1--L2--L3
 \end{enumerate}
+If these criteria are not fulfilled, closing the breaker causes large transient
+currents and mechanical torque shocks. Synchronisation is therefore checked
+before paralleling a generator to the grid.
 
 \section{Per-unit system}
 \subsection{Referenced quantities}
+The per-unit system expresses quantities relative to selected base values. It
+removes many transformer ratio conversions and makes impedances comparable
+across voltage levels.
 \[
   u=\frac{U}{U_N}
   \quad ; \quad
@@ -1304,6 +1998,593 @@ For the usual star-based network reference:
   \quad ; \quad
   z=Z\frac{S_N}{U_N^2}
 \]
+
+\part{SW 5: Grid Structure / Load Flow}
+\section{Grid structures}
+\subsection{Transmission and distribution grids}
+The transmission grid is strongly meshed: each node represents a substation or
+connection point, and several paths exist between major nodes. This improves
+reliability and allows power to be rerouted after outages, but requires
+automation, protection coordination and load-flow monitoring.
+
+Medium-voltage distribution grids transfer energy from the high-voltage grid to
+local low-voltage grids. In populated areas they are often built as cables.
+Even if the physical structure is a ring, normal operation is frequently radial
+with one open switch to simplify protection and fault localisation.
+
+\subsection{Distribution topologies}
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Topology} & \textbf{Advantages} & \textbf{Disadvantages}\\
+  \midrule
+  radial & cheap, simple protection & low supply reliability\\
+  ring & feeder switching possible, higher reliability & more switches and planning\\
+  meshed & highest reliability, many supply paths & expensive, complex protection\\
+  \bottomrule
+\end{tabularx}
+
+Low-voltage networks in Europe usually provide 400 V for three-phase loads and
+230 V for single-phase loads. They are built as four-wire systems so
+single-phase consumers can be connected between phase and neutral.
+
+\section{Representation of power grids}
+\subsection{Nodes and branches}
+A \textbf{node} is a branch point or connection point of lines, transformers,
+loads or generators. A \textbf{branch} connects two nodes and represents a line,
+transformer, switch or equivalent impedance.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Quantity} & \textbf{Meaning}\\
+  \midrule
+  $P_A,Q_A$ & active/reactive power injected or consumed at node $A$\\
+  $U_A,\delta_A$ & voltage magnitude and phase angle at node $A$\\
+  $P_{AB},Q_{AB}$ & active/reactive power flow from $A$ to $B$\\
+  $P_{\mathrm{loss}},Q_{\mathrm{loss}}$ & branch losses\\
+  \bottomrule
+\end{tabularx}
+
+The complete network state is known when all node voltages and branch flows are
+known. Load-flow analysis checks line loading, bottlenecks, voltage violations
+and losses in a given operating point.
+
+\subsection{Branch model}
+Branches can be represented as a four-pole or by a $\Pi$ equivalent. For lower
+voltage and short distribution lines, shunt capacitance is often neglected and
+the line is modelled only by a series impedance.
+\[
+  \underline Z=R+jX
+  \quad ; \quad
+  \underline I_{AB}=\frac{\underline U_A-\underline U_B}{\underline Z}
+\]
+Cables and long/high-voltage lines need shunt admittance because charging
+current influences voltage and reactive power.
+
+\section{Two-node load flow}
+For a simple feeder with known sending-end voltage $\underline U_A$ and known
+load power $\underline S_B=P_B+jQ_B$, the receiving-end voltage
+$\underline U_B$ is usually unknown. This is why the problem is nonlinear:
+current depends on voltage, but voltage depends on current.
+\[
+  \underline I_B=\frac{\underline S_B^*}{\underline U_B^*}
+  \quad ; \quad
+  \underline U_B=\underline U_A-\underline Z\underline I_B
+\]
+\textbf{Inductive} loads consume positive $Q$ in load convention and increase voltage
+drop; \textbf{capacitive} behaviour can reduce or reverse the reactive voltage drop.
+
+\section{Node types}
+Load-flow problems need two specified quantities per node. The remaining two
+are solved by the load-flow equations.
+
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Node type} & \textbf{Given} & \textbf{Unknown}\\
+  \midrule
+  slack/reference & $U,\delta$ & $P,Q$\\
+  PU / PV node & $P,U$ & $Q,\delta$\\
+  PQ load node & $P,Q$ & $U,\delta$\\
+  \bottomrule
+\end{tabularx}
+
+\textbf{Slack node}: fixes the voltage-angle reference and balances the power
+mismatch caused by losses.\\
+\textbf{PU node}: typical generator with voltage
+regulation; if reactive limits are reached, it may behave as a PQ node.\\
+\textbf{PQ node}: typical load without voltage regulation.
+
+\section{Admittance matrix}
+\subsection{Construction rules}
+The bus admittance matrix links node currents and node voltages. It is the key
+network model for numerical load-flow algorithms.
+\[
+  \underline{\mathbf I}
+  =\underline{\mathbf Y}_{\mathrm{bus}}\underline{\mathbf U}
+\]
+For passive reciprocal networks, $\underline{\mathbf Y}_{\mathrm{bus}}$ is
+symmetric.
+
+\begin{itemize}
+  \item \textbf{Diagonal}: $\underline Y_{ii}$ is the sum of all admittances
+        connected to node $i$, including shunts.
+  \item \textbf{Off-diagonal}: $\underline Y_{ij}$ is the negative sum of
+        admittances directly connecting nodes $i$ and $j$.
+  \item \textbf{No connection}: $\underline Y_{ij}=0$.
+\end{itemize}
+\[
+  \underline y_{ij}=\frac{1}{\underline z_{ij}}
+  \quad ; \quad
+  \underline Y_{ii}=\sum \underline y_{ij}+\underline y_{\mathrm{sh},i}
+  \quad ; \quad
+  \underline Y_{ij}=-\underline y_{ij}
+\]
+
+\subsection{Node current and power}
+For node $k$:
+\[
+  \underline I_k=\sum_{i=1}^{n}\underline Y_{ki}\underline U_i
+  \quad ; \quad
+  \underline S_k=\underline U_k\underline I_k^*
+\]
+With $\underline U_i=U_i\angle\delta_i$ and
+$\underline Y_{ki}=Y_{ki}\angle\Theta_{ki}$:
+\[
+  P_k=\sum_{i=1}^{n}Y_{ki}U_kU_i
+  \cos(\Theta_{ki}+\delta_i-\delta_k)
+\]
+\[
+  Q_k=-\sum_{i=1}^{n}Y_{ki}U_kU_i
+  \sin(\Theta_{ki}+\delta_i-\delta_k)
+\]
+These nonlinear equations are written for all non-slack node quantities that
+are specified by the node type.
+
+\section{Voltage-dependent PQ nodes}
+Real loads are not always constant-power loads. Their voltage dependence
+changes the load-flow result and the voltage-stability behaviour.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Load model} & \textbf{Voltage behaviour}\\
+  \midrule
+  constant power & $P,Q$ fixed; current rises when voltage falls\\
+  constant current & $P,Q$ approximately proportional to $U$\\
+  constant impedance & $P,Q$ approximately proportional to $U^2$\\
+  \bottomrule
+\end{tabularx}
+
+\part{SW 6: Grid Operation}
+\section{Design criteria and grid services}
+\subsection{Secure operation}
+Grid operation keeps the system inside technical limits at every time. Security
+means that the grid can tolerate expected disturbances without cascading
+outages.
+
+\begin{itemize}
+  \item frequency within limits
+  \item node voltages within admissible bands
+  \item no overload of lines, transformers or generators
+  \item short-circuit proof equipment and protection coordination
+  \item static and dynamic stability, considering the $N-1$ criterion
+\end{itemize}
+
+\subsection{Ancillary services}
+Ancillary services are mechanisms used to maintain secure operation or restore
+it after a disturbance. TSOs normally procure these services from market
+participants because they do not own generation or controllable loads.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Service} & \textbf{Purpose}\\
+  \midrule
+  frequency control & balance active power and keep $f\approx50$ Hz\\
+  voltage support & provide/absorb reactive power to keep voltages in range\\
+  loss compensation & cover active power losses in the grid\\
+  black start & restart grid islands without external supply\\
+  system coordination & schedules, congestion management, measurements\\
+  \bottomrule
+\end{tabularx}
+
+\section{Frequency control}
+\subsection{Active power balance}
+Frequency is the global indicator of active-power balance. If generation
+exceeds load, synchronous machines accelerate and frequency rises. If load
+exceeds generation, rotating masses decelerate and frequency falls.
+\[
+  \Delta P=P_{\mathrm{gen}}-P_{\mathrm{load}}
+\]
+During normal operation, frequency is almost the same throughout the
+synchronous area because active power is transported comparatively easily over
+long distances. A stable frequency is required for machines, converters,
+protection systems and clocks based on grid frequency.
+
+\subsection{Inertia and frequency-dependent load}
+Immediately after a disturbance, kinetic energy stored in synchronously
+connected rotating masses counteracts the frequency change. This inertial
+response is inherent and acts before controllers react.
+
+Some loads are frequency-dependent: motors, for example, change their power
+consumption when speed/frequency changes. This provides a natural damping
+effect.
+\[
+  \Delta P_{\mathrm{demand}}=D\,\Delta f
+\]
+where: $D$ = load-frequency sensitivity, typically about 0--4\%/Hz.
+
+\subsection{Control stages}
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Stage} & \textbf{Time} & \textbf{Function}\\
+  \midrule
+  inertia & instant & slows initial rate of change of frequency\\
+  primary / FCR & $\leq30$ s & automatic local stabilisation\\
+  secondary / aFRR & $\sim5$--15 min & restores frequency and area balance\\
+  tertiary / mFRR & $\sim15$ min & manual/operator reserve replacement\\
+  time control & slow & corrects accumulated time deviation\\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Primary control}
+Primary control is decentralised and activated automatically by local frequency
+measurement at power plants or controllable units. It stabilises frequency but
+does not normally restore it exactly to 50 Hz.
+\[
+  \Delta P_{\mathrm{gen}}=-R\,\Delta f
+\]
+where: $R$ = droop/regulating characteristic [MW/Hz]. FCR is usually procured
+symmetrically and must react without artificial delay; typical requirements are
+partial activation after a few seconds and full activation after about 30 s.
+
+\subsection{Secondary control}
+Secondary control is activated centrally by the TSO through automatic
+generation control. It restores the frequency and the scheduled power exchange
+between control areas. It acts in the control area where the imbalance occurred.
+\[
+  \Delta P_{Ri}=\Delta P_i-\Delta P_{Ki}
+  \quad ; \quad
+  \Delta P_i=-K_{Ni}\Delta f
+\]
+where: $\Delta P_{Ri}$ = secondary-control request of area $i$;
+$\Delta P_{Ki}$ = unscheduled exchange with neighbouring areas;
+$K_{Ni}$ = network power-frequency characteristic [MW/Hz].
+
+\subsection{Tertiary and time control}
+Tertiary control is activated by the operator to free secondary reserves and
+handle longer-lasting imbalances. Providers can be domestic or foreign.
+
+Time control corrects accumulated time deviation. If the synchronous time
+deviation becomes too large, the frequency setpoint of automatic generation
+control is slightly adjusted.
+
+\section{Reserve requirements}
+Primary and secondary control products are prequalified by Swissgrid. Important
+exam distinction: FCR reacts directly to frequency deviation; aFRR follows a
+TSO setpoint and restores the control area balance.
+
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Reserve} & \textbf{Activation} & \textbf{Typical procurement}\\
+  \midrule
+  FCR / primary & proportional to $\Delta f$ & daily blocks, symmetric bids\\
+  aFRR / secondary & AGC setpoint from TSO & weekly, positive/negative bands\\
+  tertiary & operator request & temporary contracts / balancing market\\
+  \bottomrule
+\end{tabularx}
+
+\section{Load shedding}
+If frequency continues to fall and automatic reserves cannot stabilise the
+system, loads are disconnected automatically. This is a last-resort protection
+measure: losing some load is preferable to losing synchronism of the whole
+system.
+
+Load shedding can preserve regional islands with sufficient local generation.
+It is organised by ENTSO-E members and must be autonomous, because operator
+reaction would be too slow during severe frequency collapse.
+
+\section{Voltage and reactive power control}
+\subsection{Voltage behaviour}
+Ideally, the voltage profile is flat: node voltages remain close to nominal and
+the grid is mainly used for active-power transport. In reality, voltages depend
+on loading, reactive power flows and transformer tap positions.
+
+Reactive power has a local effect because transmission lines and transformers
+are mainly inductive ($X\gg R$). Therefore $Q$ cannot be transported over long
+distances efficiently.
+
+\begin{itemize}
+  \item supplying capacitive reactive power increases nearby voltage
+  \item absorbing inductive reactive power lowers nearby voltage
+  \item reactive current increases loading and voltage drops
+\end{itemize}
+
+\subsection{Reactive power sources and sinks}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Supply of $Q$} & \textbf{Absorption of $Q$}\\
+  \midrule
+  over-excited synchronous machines & under-excited synchronous machines\\
+  capacitor banks & induction motors\\
+  line/cable capacitance & line/cable inductance\\
+  synchronous condensers / SVC & transformer inductance / reactors\\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Voltage-control options}
+\begin{itemize}
+  \item generator voltage control by excitation
+  \item synchronous condensers: synchronous machines without mechanical load
+  \item switched capacitor banks or reactors for load-dependent compensation
+  \item SVC/FACTS for fast continuous reactive-power control
+  \item transformer on-load tap changer (OLTC) to change voltage ratio under load
+\end{itemize}
+Swissgrid distinguishes semi-active voltage regulation, often mandatory for
+lower-grid DSOs, and active voltage regulation with larger compensation and
+prequalification requirements for power plants.
+
+\section{Virtual power plants and flexibility}
+Ancillary services were traditionally provided by large power plants, large
+industrial consumers or emergency generators. A virtual power plant aggregates
+many smaller flexible devices into one controllable pool.
+
+\begin{itemize}
+  \item examples: heat pumps, batteries, micro-generators, flexible loads, V2G
+  \item strengths: high aggregated power, short response time, low energy need
+  \item use cases: balancing, congestion management, voltage support,
+        arbitrage, self-consumption optimisation, peak shaving
+\end{itemize}
+
+\section{Blackout Italy 2003}
+\subsection{Cascading mechanism}
+On 28 September 2003 Italy suffered a nationwide blackout. The initial problem
+was not one single missing reserve, but a cascade of line trips and loss of
+synchronism with the interconnected European system.
+
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Line overload}: high power flow heated conductors.
+  \item \textbf{Conductor sag}: higher temperature increased sag.
+  \item \textbf{Flashover}: reduced clearance caused contact/flashover to trees.
+  \item \textbf{Line trip}: remaining lines carried more power and overloaded.
+  \item \textbf{Cascade}: further trips separated Italy from the UCTE system.
+\end{enumerate}
+
+\subsection{Frequency collapse}
+At the time, Italy imported large power from Austria, Switzerland and France.
+After separation, local generation was insufficient; a deficit of about
+6.6 GW occurred. Primary control, disconnection of pumping units and load
+shedding slowed the frequency drop, but generation units also tripped.
+
+When frequency fell below about 47.5 Hz, remaining generating units disconnected
+to protect themselves. The result was an unavoidable blackout. Key lesson:
+thermal limits, vegetation clearance, protection settings, reserves and
+inter-area coordination all interact in system security.
+
+\part{SW 7: Short Circuits / Protection Systems}
+\section{Substations}
+\subsection{GIS and AIS}
+Substations connect, transform, switch and protect grid sections. Their layout
+depends on voltage level, available space, environmental conditions and
+reliability requirements.
+
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  & \textbf{GIS} & \textbf{AIS}\\
+  \midrule
+  Meaning & gas-insulated substation & air-insulated substation\\
+  Pros & compact, expandable, good for urban areas & cheaper, simple setup, air insulation\\
+  Cons & expensive, costly maintenance & large space, exposed to weather/pollution\\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Main substation elements}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Element} & \textbf{Function}\\
+  \midrule
+  busbar & common node connecting feeders, transformers and couplers\\
+  disconnector & visible isolation; not for interrupting fault current\\
+  circuit breaker & interrupts load and short-circuit currents\\
+  instrument transformer & adapts current/voltage for measurement and protection\\
+  overvoltage protection & limits lightning and switching overvoltages\\
+  power transformer & couples voltage levels\\
+  \bottomrule
+\end{tabularx}
+
+\section{Protection fundamentals}
+\subsection{Purpose and selectivity}
+Protection systems detect faults and isolate only the faulty element as fast as
+possible. The goal is to minimise danger, equipment damage and supply
+interruption while keeping the healthy grid in operation.
+
+\textbf{Selectivity}: the protection device closest to the fault trips first.
+Upstream devices act as backup with longer delay or higher threshold. In radial
+grids this is usually achieved by current/time grading; in meshed grids,
+directional, differential or distance criteria are needed.
+
+\subsection{Protection families}
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Type} & \textbf{Typical use}\\
+  \midrule
+  fuses & passive, simple LV/MV short-circuit protection\\
+  overcurrent & radial feeders, graded time delays\\
+  differential & generators, transformers, busbars, short cables\\
+  distance & HV lines; impedance-based fault location\\
+  $I_S$ limiter & limits surge short-circuit current\\
+  \bottomrule
+\end{tabularx}
+
+\section{Fuses}
+\subsection{HH and LH fuses}
+Fuses convert fault current into heat and melt when the generated heat exceeds
+the fuse characteristic. They are simple and fast, but single-use and less
+flexible than relay-based protection.
+
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  & \textbf{HH fuse} & \textbf{LH fuse}\\
+  \midrule
+  Level & MV, about 1--36 kV & LV, e.g. 400 V networks\\
+  Main role & short-circuit protection & overload and short-circuit protection\\
+  Behaviour & trips only at high multiples of rated current & must interrupt from melting current to rated breaking current\\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Fuse selectivity}
+In radial networks, rated fuse currents should differ by at least about a factor
+of 1.6 to obtain selectivity. In meshed LV networks, identical LH fuses may be
+used, but the short-circuit current at the selective device must be high enough
+compared with the neighbouring path; proper neutral treatment is important.
+
+\section{Relay-based protection}
+\subsection{Measure--compare--switch}
+Active protection systems work in three steps:
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Measure}: instrument transformers acquire currents/voltages.
+  \item \textbf{Compare}: relay evaluates values against settings and logic.
+  \item \textbf{Switch}: circuit breaker isolates the faulty component.
+\end{enumerate}
+The circuit breaker must be rated for the maximum expected fault current, while
+relay settings must still detect the minimum fault current.
+
+\subsection{Differential protection}
+Differential protection compares currents entering and leaving a protected
+zone. For a healthy zone, the current sum is approximately zero; for an internal
+fault, the difference exceeds the threshold.
+\[
+  \left|\underline I_1-\underline I_2\right|>I_{\mathrm{threshold}}
+\]
+It is selective by design because it trips only for faults inside its protected
+zone. It requires communication/signal lines and is used for transformers,
+generators, busbars and short lines or cables.
+
+\subsection{Overcurrent protection}
+DMT protection trips if the measured current exceeds a set value for a set
+delay time. Several relays in series can be coordinated by increasing the trip
+delay toward the source.
+
+\textbf{Pros}: simple, cheap, robust. \textbf{Cons}: selectivity is harder in
+meshed grids and the threshold must distinguish high load current from minimum
+short-circuit current.
+
+\subsection{Distance protection}
+Distance protection estimates the fault distance indirectly by measuring the
+impedance from the relay location to the fault.
+\[
+  \underline Z_L=(R'_L+jX'_L)\,l
+  \quad ; \quad
+  \underline Z_{\mathrm{meas}}=\frac{\underline U}{\underline I}
+\]
+Small measured impedance means a nearby fault and can trip immediately; larger
+impedance zones trip with delay. Directional criteria ensure that the relay
+trips only for faults in the protected direction.
+
+\section{Fault analysis}
+\subsection{Why short-circuit currents are calculated}
+Short-circuit analysis is required for breaker rating, protection settings and
+network expansion planning. It must be repeated when topology changes, because
+new generators, lines or transformers can significantly increase fault levels.
+
+Important setting conflict: protection must not trip during heavy load, but
+must still trip for the minimum short-circuit current at the end of the
+protected zone.
+
+\subsection{Fault types and consequences}
+Short circuits may be solid or include fault impedance/arc resistance. Most
+transmission-line faults are single-phase-to-earth faults, but symmetrical
+three-phase faults often produce the highest current and are simpler to
+calculate.
+
+\begin{itemize}
+  \item disturbance of nearby communication lines
+  \item stability problems due to voltage dips and acceleration of machines
+  \item mechanical forces on busbars, windings and conductors
+  \item thermal stress and possible equipment destruction
+  \item danger to personnel from touch/step voltages and arcs
+\end{itemize}
+Short-circuit forces rise with current and can mechanically damage conductors,
+windings, shafts and foundations.
+
+\section{Symmetrical short-circuit current}
+\subsection{RL fault transient}
+For a simplified line or transformer leakage path, the short-circuit current is
+the sum of a symmetrical AC component and a decaying DC offset.
+\[
+  v(t)=\sqrt2\,V_S\sin(\omega t+\alpha)
+  \quad ; \quad
+  i(t)=i_s(t)+i_t(t)
+\]
+\[
+  i_s(t)=\frac{\sqrt2\,V_S}{Z}\sin(\omega t+\alpha-\Theta)
+\]
+\[
+  i_t(t)=-i_s(0)e^{-Rt/L}
+  =\frac{\sqrt2\,V_S}{Z}\sin(\Theta-\alpha)e^{-Rt/L}
+\]
+\[
+  Z=\sqrt{R^2+\omega^2L^2}
+  \quad ; \quad
+  \Theta=\tan^{-1}\left(\frac{\omega L}{R}\right)
+\]
+where: $V_S$ = RMS source voltage; $\alpha$ = switching/fault inception angle.
+The DC offset depends on the instant of fault inception and decays with time
+constant $L/R$.
+
+\subsection{Maximum momentary current}
+The worst asymmetry occurs when the DC offset adds to the AC peak. A useful
+upper bound is:
+\[
+  i_{\mathrm{mm}}\leq2\frac{\sqrt2\,V_S}{Z}
+\]
+Circuit breakers must interrupt the AC short-circuit current and withstand the
+mechanical stress from the peak/momentary current.
+
+\section{Unsymmetrical faults}
+\subsection{Symmetrical components}
+Most real faults are unsymmetrical. They are calculated with symmetrical
+components: any unbalanced three-phase sinusoidal system can be decomposed into
+three balanced systems.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Sequence} & \textbf{Meaning}\\
+  \midrule
+  positive & normal phase order; transfers useful three-phase power\\
+  negative & opposite phase order; appears during unbalance\\
+  zero & three phases in phase; needs earth/neutral return path\\
+  \bottomrule
+\end{tabularx}
+
+This course mainly uses symmetrical three-phase fault calculations, but the
+method is important because earth faults and phase-to-phase faults require
+sequence networks.
+
+\section{Neutral point connection}
+\subsection{Purpose}
+Neutral-point treatment is usually implemented at transformer neutrals. It has
+little influence during balanced normal operation, but strongly affects earth
+fault current, healthy-phase overvoltages and protection behaviour.
+
+\begin{itemize}
+  \item limit touch and step voltages
+  \item limit voltages on healthy conductors during earth faults
+  \item limit fault current and enable arc self-extinction
+  \item allow selective earth-fault detection and maintain supply if possible
+\end{itemize}
+
+\subsection{Comparison}
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}
+  \toprule
+  \textbf{Treatment} & \textbf{Characteristics} & \textbf{Application}\\
+  \midrule
+  \makecell[l]{isolated\\neutral}& low earth-fault current, high healthy-phase voltages, arcs may self-extinguish & CH medium voltage, small networks\\
+  \makecell[l]{earth-fault\\compensation} & Petersen coil compensates capacitive earth-fault current, adjustable after reconfiguration & DE medium voltage\\
+  \makecell[l]{low-impedance\\grounding} & high fault current, little healthy-phase overvoltage, needs fast protection & $\geq110$ kV and LV grids\\
+  \bottomrule
+\end{tabularx}
+
+Tradeoff: low fault current reduces damage and can keep supply running, but
+makes fault detection harder and increases healthy-phase voltage. Low-impedance
+grounding gives clear protection signals but requires fast disconnection.
 
 
 \end{multicols*}

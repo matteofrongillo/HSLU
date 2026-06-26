@@ -38,6 +38,7 @@
 \usetikzlibrary{arrows, arrows.meta}
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{patterns}
+\usetikzlibrary{shapes.geometric}
 \pgfplotsset{compat=1.18}
 \definecolor{darkgreen}{rgb}{0.0, 0.6, 0.0}
 \DeclareMathOperator\arctanh{arctanh}
@@ -69,7 +70,7 @@
 \rhead{\small \vspace*{.1cm}Applied Process Control Cheatsheet}
 \lhead{\small \vspace*{.1cm}Matteo Frongillo}
 \cfoot{\small \vspace*{.4cm}\thepage}
-\newcommand{\TotalPages}{8}
+\newcommand{\TotalPages}{10}
 \cfoot{\small \vspace*{.4cm}\thepage/\TotalPages}
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headsep}{4pt}
@@ -1041,6 +1042,7 @@ Derive $F(s)$ of the following time-domain signal:
 \end{gather*}
 
 \section{Closed-loop controller}
+\footnotesize
 \includegraphics[\lw]{media-cheatsheet/ex.png}
 \begin{enumerate}[label=\alph*.]
     \item Zeros: $G(s) = 0 \Rightarrow$ no zeros\\
@@ -1060,10 +1062,464 @@ Derive $F(s)$ of the following time-domain signal:
     \end{minipage}
 \end{enumerate}
 
+\subsection{Closed-loop block diagram example}
+\begin{center}
+\includegraphics[\lw=.7]{media-cheatsheet/ex_hs22.png}
+\end{center}
+With $P_1(s)=\dfrac{3}{s-1}$, $P_2(s)=\dfrac{1}{s-1}$ and $C(s)=2$,
+calculate the transfer function $G(s) = \frac{Y(s)}{R(s)}$
+\begin{gather*}
+    u(s) = C(s)e(s),\qquad Y(s)=P_1(s)u(s)\\
+    e(s)=R(s)-\left(P_1(s)u(s)-P_2(s)u(s)\right)
+    =R(s)-\left(P_1(s)-P_2(s)\right)C(s)e(s)\\
+    e(s)\left[1+C(s)\left(P_1(s)-P_2(s)\right)\right]=R(s)\\
+    G(s)=\frac{Y(s)}{R(s)}
+    =\frac{C(s)P_1(s)}{1+C(s)\left(P_1(s)-P_2(s)\right)}\\
+    =\frac{2\cdot\frac{3}{s-1}}{1+2\left(\frac{3}{s-1}-\frac{1}{s-1}\right)}
+    =\frac{\frac{6}{s-1}}{\frac{s+3}{s-1}}
+    =\boxed{\frac{6}{s+3}}
+\end{gather*}
 
+\subsection{Steady-state error from block diagram}
+Question: find the smallest positive $k_p$ such that the unity-feedback system is
+stable and, for a unit step $r(t)$, $\lim_{t\to\infty}|e(t)|\le 0.1$.
+\begin{center}
+\begin{tikzpicture}[>=Latex, scale=0.58, every node/.style={transform shape}]
+    \node (r) at (0,0) {$R(s)$};
+    \node[draw, circle, inner sep=1.2pt, minimum size=0.48cm] (sum) at (1.45,0) {};
+    \node[draw, minimum width=1.35cm, minimum height=0.62cm] (c) at (3.4,0) {$C(s)$};
+    \node[draw, minimum width=1.35cm, minimum height=0.62cm] (g) at (5.55,0) {$G(s)$};
+    \node (y) at (7.35,0) {$Y(s)$};
+    \draw[->] (r) -- (sum);
+    \draw[->] (sum) -- node[above] {$E(s)$} (c);
+    \draw[->] (c) -- (g);
+    \draw[->] (g) -- (y);
+    \draw (6.35,0) |- (1.45,-1.0);
+    \draw[->] (1.45,-1.0) -- (sum);
+    \node at (1.12,-0.25) {$+$};
+    \node at (1.18,-0.62) {$-$};
+\end{tikzpicture}
+\end{center}
+\[
+    C(s)=k_p,\qquad G(s)=\frac{1}{1+10s}
+\]
+Unity negative feedback:
+\begin{gather*}
+    E(s)=R(s)-Y(s),\qquad Y(s)=C(s)G(s)E(s)\\
+    E(s)=\frac{R(s)}{1+C(s)G(s)}
+    =\frac{R(s)(1+10s)}{1+10s+k_p}
+\end{gather*}
+For a unit step $R(s)=\frac{1}{s}$:
+\begin{gather*}
+    e_\infty=\lim_{t\to\infty}e(t)
+    =\lim_{s\to0}sE(s)
+    =\frac{1}{1+k_p}\\
+    \left|e_\infty\right|\le 0.1
+    \Rightarrow \frac{1}{1+k_p}\le 0.1
+    \Rightarrow k_p\ge 9
+\end{gather*}
+Closed-loop pole:
+\[
+    1+10s+k_p=0 \Rightarrow s=-\frac{1+k_p}{10}
+\]
+Stable for $k_p>-1$, therefore the smallest positive gain satisfying both conditions is
+\[
+    \boxed{k_p=9}
+\]
 
+\subsection{Order and free integrator from step response}
+Proportional-control negative feedback, unit step input. The open-loop transfer
+function $L(s)$ is stated to be 2nd order and without zeros.
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        width=.78\linewidth,
+        height=3.8cm,
+        xmin=0, xmax=2.5,
+        ymin=0, ymax=1.4,
+        xlabel={$t$ [s]},
+        ylabel={$y(t)$},
+        title={Step response},
+        grid=both,
+        tick label style={font=\scriptsize},
+        label style={font=\scriptsize},
+        title style={font=\scriptsize},
+        legend style={font=\scriptsize, draw=none},
+        every axis plot/.append style={line width=0.8pt}
+    ]
+        \addplot[gray, domain=0:2.5, samples=160]
+        {1 - exp(-2.02*x)*(cos(deg(3.91*x)) + 0.516*sin(deg(3.91*x)))};
+        \addplot[dashed] coordinates {(0,1) (2.5,1)};
+        \addplot[dash dot] coordinates {(0,1.2) (2.5,1.2)};
+        \addplot[only marks, mark=*] coordinates {(0.8,1.2) (1.85,0.98)};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\textbf{a) Question:} Use the graph to give two arguments that $L(s)$ is at
+least 2nd order.
+\begin{itemize}
+    \item Overshoot and damped oscillation imply complex conjugate closed-loop poles.
+    A 1st order system cannot oscillate or overshoot without zeros.
+    \item The response starts with zero initial slope, which is typical for a
+    strictly proper system with relative degree $\ge 2$.
+\end{itemize}
+\textbf{b) Question:} Does the graph justify that $L(s)$ contains a free
+integrator?
+\[
+    T(s)=\frac{Y(s)}{R(s)}=\frac{L(s)}{1+L(s)},\qquad
+    y_\infty=T(0)
+\]
+The graph settles at $y_\infty\approx 1$ for a unit step, so the steady-state
+error is approximately zero:
+\[
+    e_\infty=1-y_\infty\approx 0
+\]
+For unity negative feedback this requires $L(0)\to\infty$, which is obtained
+when $L(s)$ contains a free integrator:
+\[
+    \boxed{L(s)\ \text{contains a free integrator}}
+\]
 
+\subsection{Closed loop with measurement noise}
+\tiny
+Question: solve the following closed-loop process with measurement noise
+$V(s)$, process $G(s)$, and controller $C(s)$.
+\begin{center}
+\includegraphics[\lw=.8]{media-cheatsheet/ex22-2.png}
+\end{center}
+\[
+    G(s)=\frac{K}{(1+T_1s)(1+T_2s)},\qquad
+    K=30,\ T_1=0.01,\ T_2=0.001
+\]
+\begin{enumerate}[label=\alph*.]
+    \item \textbf{Calculate the poles and zeros of $G(s)$.}\\
+    No zeros.\\
+    Poles: $1+T_1s=0,\ 1+T_2s=0 \Rightarrow
+    \boxed{s_1=-100,\ s_2=-1000}$.
+    \item \textbf{Is this process stable? Justify.}\\
+    Stable, because all poles have negative real part.
+    \item \textbf{A P controller is introduced. What is its generic transfer function?}\\
+    \[
+        \boxed{C(s)=k_p}
+    \]
+    \item \textbf{Derive the open-loop transfer function $L(s)$.}
+    \[
+        \boxed{L(s)=C(s)G(s)
+        =\frac{30k_p}{(1+0.01s)(1+0.001s)}
+        =\frac{30k_p}{10^{-5}s^2+0.011s+1}}
+    \]
+    \item \textbf{Derive the reference tracking closed-loop transfer function.}\\
+    With $V=0$:
+    \[
+        \boxed{\frac{Y_m(s)}{Y_f(s)}=\frac{L(s)}{1+L(s)}
+        =\frac{30k_p}{10^{-5}s^2+0.011s+1+30k_p}}
+    \]
+    \item \textbf{Derive the disturbance rejection closed-loop transfer function.}\\
+    With $Y_f=0$:
+    \[
+        E(s)=Y_f(s)-Y_m(s)-V(s),\quad Y_m(s)=L(s)E(s)
+    \]
+    \[
+        \boxed{\frac{Y_m(s)}{V(s)}=-\frac{L(s)}{1+L(s)}
+        =-\frac{30k_p}{10^{-5}s^2+0.011s+1+30k_p}}
+    \]
+    \item \textbf{Calculate the steady-state error as a function of $k_p$.}\\
+    Unit-step reference and $V=0$:
+    \[
+        e_\infty=\lim_{s\to0}sE(s)
+        =\frac{1}{1+L(0)}
+        =\boxed{\frac{1}{1+30k_p}}
+    \]
+    \item \textbf{Which values of $k_p$ lead to a steady-state error smaller than $5\%$?}
+    \[
+        \left|\frac{1}{1+30k_p}\right|<0.05
+        \quad\text{and stable }(k_p>-1/30)
+        \Rightarrow \boxed{k_p>\frac{19}{30}\approx0.633}
+    \]
+    \item \textbf{A PID controller is introduced. What is its generic transfer function?}
+    \[
+        \boxed{C(s)=k_p\left(1+\frac{1}{T_is}+T_ds\right)}
+    \]
+    \item \textbf{Choose $T_i$ and $T_d$ so that $L(s)$ simplifies to
+    $\frac{KK_p}{T_is}$.}\\
+    Given $C(s)=K_p(1+T_ds)\frac{1+T_is}{T_is}$, choose
+    \[
+        \boxed{T_i=T_1=0.01,\qquad T_d=T_2=0.001}
+    \]
+    so that
+    \[
+        L(s)=C(s)G(s)
+        =K_p(1+T_2s)\frac{1+T_1s}{T_1s}
+        \frac{K}{(1+T_1s)(1+T_2s)}
+        =\boxed{\frac{KK_p}{T_is}}
+    \]
+    \item \textbf{Derive the reference closed-loop transfer function using these
+    parameters; $k_p$ is free.}
+    \[
+        \boxed{\frac{Y_m(s)}{Y_f(s)}
+        =\frac{\frac{KK_p}{T_is}}{1+\frac{KK_p}{T_is}}
+        =\frac{KK_p}{T_is+KK_p}
+        =\frac{30K_p}{0.01s+30K_p}}
+    \]
+    \item \textbf{Derive the disturbance rejection closed-loop transfer function.}
+    \[
+        \boxed{\frac{Y_m(s)}{V(s)}
+        =-\frac{\frac{KK_p}{T_is}}{1+\frac{KK_p}{T_is}}
+        =-\frac{KK_p}{T_is+KK_p}
+        =-\frac{30K_p}{0.01s+30K_p}}
+    \]
+    \item \textbf{Calculate the steady-state error with this new controller.}\\
+    With the PID, the free integrator gives
+    \[
+        e_\infty=\frac{1}{1+L(0)}=\boxed{0}
+    \]
+\end{enumerate}
 
+\subsection{Equivalent block diagram}
+\footnotesize
+Question: the two systems are equivalent. Write $H(s)$ as a function of $C(s)$
+and $G(s)$, reporting the algebraic steps.
+\begin{center}
+\includegraphics[\lw]{media-cheatsheet/ex-21-1.png}
+\end{center}
+Let the summing-junction output be $E(s)$. The feedback signal is $2Y(s)$:
+\begin{gather*}
+    E(s)=X(s)-2Y(s)\\
+    Y(s)=C(s)G(s)E(s)
+    =C(s)G(s)\left[X(s)-2Y(s)\right]\\
+    Y(s)=C(s)G(s)X(s)-2C(s)G(s)Y(s)\\
+    Y(s)\left[1+2C(s)G(s)\right]=C(s)G(s)X(s)
+\end{gather*}
+Therefore
+\[
+    H(s)=\frac{Y(s)}{X(s)}
+    =\boxed{\frac{C(s)G(s)}{1+2C(s)G(s)}}
+\]
+
+\subsection{First-order process with PI controller}
+Question: a process is modelled by
+\[
+    G(s)=\frac{Y(s)}{X(s)}=\frac{50}{1+0.2s}.
+\]
+\begin{enumerate}[label=\alph*.]
+    \item \textbf{Derive the differential equation corresponding to $G(s)$.}
+    \[
+        \frac{Y(s)}{X(s)}=\frac{50}{1+0.2s}
+        \Rightarrow (1+0.2s)Y(s)=50X(s)
+    \]
+    \[
+        \boxed{y(t)+0.2\dot{y}(t)=50x(t)}
+    \]
+    \item \textbf{Draw a block diagram for this process.}
+    \begin{center}
+    \begin{tikzpicture}[>=Latex, scale=0.62, every node/.style={transform shape}]
+        \node (x) at (0,0) {$X(s)$};
+        \node[draw, minimum width=1.8cm, minimum height=0.65cm] (g) at (2.1,0)
+        {$\dfrac{50}{1+0.2s}$};
+        \node (y) at (4.2,0) {$Y(s)$};
+        \draw[->] (x) -- (g);
+        \draw[->] (g) -- (y);
+    \end{tikzpicture}
+    \end{center}
+    \item \textbf{Determine the orders of numerator and denominator of $G(s)$.}
+    \[
+        \boxed{\deg N(s)=0,\qquad \deg D(s)=1}
+    \]
+    \item \textbf{Compute the poles and zeros of this transfer function.}\\
+    No zeros. Pole:
+    \[
+        1+0.2s=0 \Rightarrow \boxed{s=-5}
+    \]
+    \item \textbf{Is this process stable? Explain.}\\
+    Yes. The only pole is in the left half-plane: $s=-5<0$.
+    \item \textbf{The controller is
+    $C(s)=0.02\frac{1+0.2s}{s}$. What kind of controller is this?}
+    \[
+        C(s)=0.02\frac{1+0.2s}{s}
+        =0.004\frac{1+0.2s}{0.2s}
+        =0.004\left(1+\frac{1}{0.2s}\right)
+    \]
+    \[
+        \boxed{\text{PI controller with }k_p=0.004,\ T_i=0.2}
+    \]
+    \item \textbf{Derive the open-loop transfer function $L(s)$.}
+    \[
+        L(s)=C(s)G(s)
+        =0.02\frac{1+0.2s}{s}\cdot\frac{50}{1+0.2s}
+        =\boxed{\frac{1}{s}}
+    \]
+    \item \textbf{Derive the reference tracking closed-loop transfer function.}
+    \[
+        \boxed{\frac{Y(s)}{R(s)}
+        =\frac{L(s)}{1+L(s)}
+        =\frac{\frac{1}{s}}{1+\frac{1}{s}}
+        =\frac{1}{s+1}}
+    \]
+    \item \textbf{Compute the steady-state error for a unit-step input.}
+    \[
+        E(s)=\frac{R(s)}{1+L(s)}
+        =\frac{\frac{1}{s}}{1+\frac{1}{s}}
+        =\frac{1}{s+1}
+    \]
+    \[
+        e_\infty=\lim_{s\to0}sE(s)=\boxed{0}
+    \]
+    \item \textbf{Draw the step answer for a unit-step input.}\\
+    Since $\frac{Y(s)}{R(s)}=\frac{1}{s+1}$ and $R(s)=\frac{1}{s}$:
+    \[
+        Y(s)=\frac{1}{s(s+1)}
+        \Rightarrow \boxed{y(t)=1-e^{-t}}
+    \]
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=.75\linewidth,
+            height=3.4cm,
+            xmin=0, xmax=5,
+            ymin=0, ymax=1.1,
+            xlabel={$t$ [s]},
+            ylabel={$y(t)$},
+            grid=both,
+            tick label style={font=\scriptsize},
+            label style={font=\scriptsize},
+            every axis plot/.append style={line width=0.8pt}
+        ]
+            \addplot[gray, domain=0:5, samples=120] {1-exp(-x)};
+            \addplot[dashed] coordinates {(0,1) (5,1)};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+
+\subsection{First-order lag answer computation}
+Question: a process can be modelled by
+\[
+    G(s)=\frac{Y(s)}{U(s)}=\frac{100}{0.1s+1}.
+\]
+\begin{enumerate}[label=\alph*.]
+    \item \textbf{Derive the differential equation corresponding to $G(s)$.}
+    \[
+        \frac{Y(s)}{U(s)}=\frac{100}{0.1s+1}
+        \Rightarrow (0.1s+1)Y(s)=100U(s)
+    \]
+    \[
+        \boxed{0.1\dot{y}(t)+y(t)=100u(t)}
+    \]
+    \item \textbf{Compute the poles and zeros of this transfer function.}\\
+    No zeros. Pole:
+    \[
+        0.1s+1=0 \Rightarrow \boxed{s=-10}
+    \]
+    \item \textbf{Is this process stable?}\\
+    Yes. The only pole is in the left half-plane: $s=-10<0$.
+    \item \textbf{Draw the step answer of this process for a step with amplitude 1.}
+    \[
+        Y(s)=G(s)\frac{1}{s}
+        =\frac{100}{s(0.1s+1)}
+        \Rightarrow \boxed{y(t)=100\left(1-e^{-10t}\right)}
+    \]
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=.72\linewidth,
+            height=3.2cm,
+            xmin=0, xmax=0.6,
+            ymin=0, ymax=110,
+            xlabel={$t$ [s]},
+            ylabel={$y(t)$},
+            grid=both,
+            tick label style={font=\scriptsize},
+            label style={font=\scriptsize},
+            every axis plot/.append style={line width=0.8pt}
+        ]
+            \addplot[gray, domain=0:0.6, samples=120] {100*(1-exp(-10*x))};
+            \addplot[dashed] coordinates {(0,100) (0.6,100)};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \item \textbf{Draw the step answer of this process for a step with amplitude 2.}
+    \[
+        Y(s)=G(s)\frac{2}{s}
+        =\frac{200}{s(0.1s+1)}
+        \Rightarrow \boxed{y(t)=200\left(1-e^{-10t}\right)}
+    \]
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=.72\linewidth,
+            height=3.2cm,
+            xmin=0, xmax=0.6,
+            ymin=0, ymax=220,
+            xlabel={$t$ [s]},
+            ylabel={$y(t)$},
+            grid=both,
+            tick label style={font=\scriptsize},
+            label style={font=\scriptsize},
+            every axis plot/.append style={line width=0.8pt}
+        ]
+            \addplot[gray, domain=0:0.6, samples=120] {200*(1-exp(-10*x))};
+            \addplot[dashed] coordinates {(0,200) (0.6,200)};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \item \textbf{The controller is
+    $C(s)=0.01\frac{0.1s+1}{s}$. What kind of controller is that?}
+    \[
+        C(s)=0.01\frac{0.1s+1}{s}
+        =0.001\frac{0.1s+1}{0.1s}
+        =0.001\left(1+\frac{1}{0.1s}\right)
+    \]
+    \[
+        \boxed{\text{PI controller with }k_p=0.001,\ T_i=0.1}
+    \]
+    \item \textbf{Derive the open-loop transfer function $L(s)$.}
+    \[
+        L(s)=C(s)G(s)
+        =0.01\frac{0.1s+1}{s}\cdot\frac{100}{0.1s+1}
+        =\boxed{\frac{1}{s}}
+    \]
+    \item \textbf{Derive the reference tracking closed-loop transfer function.}
+    \[
+        \boxed{\frac{Y(s)}{R(s)}
+        =\frac{L(s)}{1+L(s)}
+        =\frac{\frac{1}{s}}{1+\frac{1}{s}}
+        =\frac{1}{s+1}}
+    \]
+    \item \textbf{Compute the steady state error.}
+    \[
+        E(s)=\frac{R(s)}{1+L(s)}
+        =\frac{\frac{1}{s}}{1+\frac{1}{s}}
+        =\frac{1}{s+1}
+    \]
+    \[
+        \boxed{e_\infty=\lim_{s\to0}sE(s)=0}
+    \]
+    \item \textbf{Draw the process output if the reference signal is a step with amplitude 1.}
+    \[
+        Y(s)=\frac{1}{s+1}\cdot\frac{1}{s}
+        =\frac{1}{s(s+1)}
+        \Rightarrow \boxed{y(t)=1-e^{-t}}
+    \]
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=.72\linewidth,
+            height=3.2cm,
+            xmin=0, xmax=5,
+            ymin=0, ymax=1.1,
+            xlabel={$t$ [s]},
+            ylabel={$y(t)$},
+            grid=both,
+            tick label style={font=\scriptsize},
+            label style={font=\scriptsize},
+            every axis plot/.append style={line width=0.8pt}
+        ]
+            \addplot[gray, domain=0:5, samples=120] {1-exp(-x)};
+            \addplot[dashed] coordinates {(0,1) (5,1)};
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
 
 \end{multicols*}
 

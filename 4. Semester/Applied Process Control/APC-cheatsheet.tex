@@ -80,7 +80,7 @@
 \titlespacing*{\subsubsection}{0pt}{6pt}{1pt}
 
 \titleformat{\part}{\large\bfseries\color{black}}{\thepart.}{0.4em}{}
-\titleformat{\section}{\bfseries\color{red!80}}{}{0em}{}
+\titleformat{\section}{\normalsize\bfseries\color{red!80}}{}{0em}{}
 \titleformat{\subsection}{\small\bfseries\color[HTML]{007AFF}}{}{0em}{}
 \titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{}{0em}{}
 
@@ -939,7 +939,57 @@ Transfer function:
 
 \newpage
 \section{True/False}
-\includegraphics[\lw]{media-cheatsheet/tf.png}
+\scriptsize
+\begin{enumerate}[leftmargin=*, itemsep=2pt, parsep=1pt]
+    \item Time discretization is called sampling. \textbf{\textcolor{darkgreen}{T}}
+    \item From a system-modelling point of view, springs and capacitors are analogous as elements in mechanical and electrical systems, respectively. \textbf{\textcolor{darkgreen}{T}}
+    \item A stable system must exhibit a bounded/limited output for a bounded/limited input. \textbf{\textcolor{darkgreen}{T}}
+    \item Feedback control systems can feed sensor noise into the system. \textbf{\textcolor{darkgreen}{T}}
+    \item The integral is represented by $s$ in the s-domain. \textbf{\textcolor{red}{F}}; integration is represented by $\frac{1}{s}$.
+    \item A system modelled by $\ddot{y}(t)+\dot{y}(t)=u(t)$ is time-variant. \textbf{\textcolor{red}{F}}; it is time-invariant.
+    \item Two first-order systems in series result in a second-order system. \textbf{\textcolor{darkgreen}{T}}
+    \item High damping coefficient results in oscillatory response of a second-order system. \textbf{\textcolor{red}{F}}; low damping causes oscillations.
+    \item Adding a real derivative action (D) to a PI controller strongly decreases oscillations, as well as overshoots. \textbf{\textcolor{darkgreen}{T}}
+    \item In a PID controller, an increase in the derivative gain affects the steady-state error. \textbf{\textcolor{red}{F}}; steady-state error is mainly affected by integral action.
+    \item A process modelled by $3\dot{y}(t)-4y^3(t)=2u(t)$ is linear. \textbf{\textcolor{red}{F}}
+    \item A process modelled by $y(t)=t^2x(t)$ is stable. \textbf{\textcolor{red}{F}}; a bounded input can give an unbounded output.
+    \item While actuators, sensors and physical processes are in the lowest level of the automation pyramid, the top level represents business management. \textbf{\textcolor{darkgreen}{T}}
+    \item A parallel combination of two systems represented by $A(s)$ and $B(s)$ results in $H(s)=A(s)\cdot B(s)$. \textbf{\textcolor{red}{F}}; parallel transfer functions add.
+    \item The command signal of controller $C$ is equal to $C(e(t))$, with $e(t)$ being the tracking error. \textbf{\textcolor{darkgreen}{T}}
+    \item First-order systems typically exhibit faster responses than comparable higher-order systems. \textbf{\textcolor{darkgreen}{T}}
+    \item Feedforward can be used to improve reference tracking and disturbance rejection abilities of a system. \textbf{\textcolor{darkgreen}{T}}
+    \item Two complex conjugate poles lead to an oscillating behavior of systems. \textbf{\textcolor{darkgreen}{T}}
+    \item The Laplace transform of the delta function (unit impulse) is $\frac{1}{s}$. \textbf{\textcolor{red}{F}}; $\mathcal{L}\{\delta(t)\}=1$.
+    \item The ODE diagram can be drawn for non-linear processes. \textbf{\textcolor{darkgreen}{T}}
+    \item A process modelled by $\dot{y}(t)=y(t)+u(t)$ is unstable. \textbf{\textcolor{darkgreen}{T}}
+    \item A process is stable if all poles of its transfer function have negative real parts. \textbf{\textcolor{darkgreen}{T}}
+    \item The step answer of a first-order lag oscillates. \textbf{\textcolor{red}{F}}
+    \item The ODE diagram can be drawn for a non-linear process. \textbf{\textcolor{darkgreen}{T}}
+    \item Nowadays, most controllers are implemented in a digital way. \textbf{\textcolor{darkgreen}{T}}
+    \item An instable process can be stabilized with an open-loop controller. \textbf{\textcolor{red}{F}}
+    \item A good disturbance rejection behavior means that the tracking error is small for reference signals of interest. \textbf{\textcolor{red}{F}}; this describes reference tracking.
+    \item Two complex conjugate poles lead to an oscillating behavior. \textbf{\textcolor{darkgreen}{T}}
+    \item A process, stable when uncontrolled, remains necessarily stable once closed-loop controlled for any controller. \textbf{\textcolor{red}{F}}
+    \item An integrator is needed in a controller to improve the steady-state behavior. \textbf{\textcolor{darkgreen}{T}}
+    \item Measurement noises are amplified by the derivative component of a controller. \textbf{\textcolor{darkgreen}{T}}
+    \item An integrator is good to make an unstable process stable. \textbf{\textcolor{red}{F}}
+    \item A simple household bread toaster is an example of an open-loop control system. \textbf{\textcolor{darkgreen}{T}}
+    \item Sensors deliver accurate measurement data of the process output and do not possess any internal noise or inaccuracies. \textbf{\textcolor{red}{F}}
+    \item Systems are the physical carriers of information in communication, measurement, and control processes. \textbf{\textcolor{red}{F}}; signals are the information carriers.
+    \item The automation pyramid represents the hierarchical structure of industrial automation systems, from field levels at the bottom to enterprise levels at the top. \textbf{\textcolor{darkgreen}{T}}
+    \item Feedforward can be used to improve reference tracking and disturbance rejection abilities of a system. \textbf{\textcolor{darkgreen}{T}}
+    \item A process modelled by $\dot{y}(t)-3y^2(t)-2u(t)=0$ is linear. \textbf{\textcolor{red}{F}}
+    \item A process modelled by $2\dot{y}(t)-\sqrt{3}y(t)=\ln(2)\cdot u(t)$ is linear. \textbf{\textcolor{darkgreen}{T}}
+    \item The unit ramp signal is the first derivative of the unit step signal. \textbf{\textcolor{red}{F}}; the derivative of the ramp is the step.
+    \item Derivation in the time domain is represented by $\frac{1}{s}$ in the Laplace domain. \textbf{\textcolor{red}{F}}; differentiation is represented by $s$.
+    \item Sampling an analog signal leads to time discretization. \textbf{\textcolor{darkgreen}{T}}
+    \item Digitalization involves sampling in time and quantization of the amplitude. \textbf{\textcolor{darkgreen}{T}}
+    \item Integration in the time domain is represented by $s$ in the Laplace domain. \textbf{\textcolor{red}{F}}; integration is represented by $\frac{1}{s}$.
+    \item The output of a linear, time-invariant system with impulse response $h(t)$ to an input $x(t)$ is represented in the Laplace domain by $Y(s)=X(s)\cdot H(s)$. \textbf{\textcolor{darkgreen}{T}}
+    \item A parallel combination of two systems represented by $A(s)$ and $B(s)$ results in $H(s)=A(s)\cdot B(s)$. \textbf{\textcolor{red}{F}}; parallel transfer functions add.
+    \item If $H(s)$ were the system transfer function, then $\lim_{s\to 0}H(s)$ would represent the steady-state behavior of the system. \textbf{\textcolor{darkgreen}{T}}
+    \item Two complex conjugate poles lead to an oscillating behavior of systems. \textbf{\textcolor{darkgreen}{T}}
+\end{enumerate}
 
 \section{Components of a medical infusion pump system}
 \tiny
@@ -1009,9 +1059,6 @@ Derive $F(s)$ of the following time-domain signal:
         \includegraphics[width=\linewidth]{media-cheatsheet/bl2.png}
     \end{minipage}
 \end{enumerate}
-
-
-
 
 
 

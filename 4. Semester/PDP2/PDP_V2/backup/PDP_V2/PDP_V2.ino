@@ -58,17 +58,12 @@ AMG8833 sensor;
 // ===================== HELPER FUNCTIONS =====================
 
 float getHotThreshold(float distanceCm) {
-  const float ambientTempC = 23.00;
-  const float boardSideLength = 100.00;
-
-  if (distanceCm <= 0.743 * boardSideLength) {
+  if (distanceCm <= 38.28694) {
     return 30.0;
-  } else if (distanceCm < 1.430 * boardSideLength) {
-    return ambientTempC + 28.50 * exp(-0.02343 * distanceCm);
+  } else if (distanceCm < 78.44575) {
+    return 23.5 + 38.72 * exp(-0.04661 * distanceCm);
   } else {
-    float minimumThreshold = 24.5;
-    float ambientThreshold = ambientTempC + 1.0;
-    return (minimumThreshold > ambientThreshold) ? minimumThreshold : ambientThreshold;
+    return 24.5;
   }
 }
 

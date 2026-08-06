@@ -60,7 +60,16 @@ University personal notes
         • <a href="./4.%20Semester/Sustainable%20Energy%20Systems">SES</a><br>
         • <a href="./4.%20Semester/Thermodynamics">Thermodyn</a>
       </td>
-      <td valign="top"><i>2026</i></td>
+      <td valign="top">
+        <a href="./5.%20Semester">📂 <b>View Folder</b></a><br><br>
+        • <a href="./5.%20Semester/Chemistry">Chemistry</a><br>
+        • <a href="./5.%20Semester/Corporate%20Ethics">Corporate Ethics</a><br>
+        • <a href="./5.%20Semester/PAIND">PAIND</a><br>
+        • <a href="./5.%20Semester/PinCH%20analysis">PinCH analysis</a><br>
+        • <a href="./5.%20Semester/Renewable%20Energy%20Technologies">Renewable Energy Tech</a><br>
+        • <a href="./5.%20Semester/THFL+SIM">THFL+SIM</a><br>
+        • <a href="./5.%20Semester/Waste%20Management">Waste Management</a>
+      </td>
       <td valign="top"><i>2027</i></td>
     </tr>
   </tbody>

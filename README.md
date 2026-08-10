@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://lunarnotes.ch">
-    <img src="./assets/lunarnotes-brand.svg" width="590" alt="Lunarnotes">
+    <img src="./assets/lunarnotes-header.svg" width="700" alt="Lunarnotes">
   </a>
 </p>
 

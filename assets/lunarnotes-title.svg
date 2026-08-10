@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="92" viewBox="0 0 480 92" role="img" aria-labelledby="title">
+    <title id="title">Lunarnotes</title>
+    <defs>
+        <linearGradient id="title-gradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="30%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#1d4ed8" />
+        </linearGradient>
+    </defs>
+    <text x="240" y="70" text-anchor="middle" fill="url(#title-gradient)" font-family="Outfit, Arial, sans-serif"
+        font-size="72" font-weight="800" letter-spacing="-2">Lunarnotes</text>
+</svg>

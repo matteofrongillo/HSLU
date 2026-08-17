@@ -1,11 +1,13 @@
+<h1 align="center">
+  <a href="https://lunarnotes.ch">Lunarnotes</a>
+</h1>
+
 <p align="center">
-  <a href="https://lunarnotes.ch">
-    <img src="./assets/lunarnotes-header.svg" width="700" alt="Lunarnotes">
-  </a>
+  Browse the published notes by semester here on GitHub or through Lunarnotes
 </p>
 
 <p align="center">
-  Browse everything by semester here on GitHub or through Lunarnotes
+  <em>Some personal, project, and exam material is intentionally kept local.</em>
 </p>
 
 ---
@@ -19,7 +21,6 @@
 
 | Module | Module |
 | :--- | :--- |
-| [Context 1](./1.%20Semester/Context%201) | [Mathematics Refresh Courses](./1.%20Semester/Maths-refresh-courses) |
 | [English C1](./1.%20Semester/English%20C1) | [Python Basics](./1.%20Semester/Python) |
 | [Environmental Chemistry & Biology](./1.%20Semester/Environmental-chem-bio) | [Systems Engineering](./1.%20Semester/Systems%20Engineering) |
 | [Mathematics 1A](./1.%20Semester/Mathematics%201A) | [Wind Power & Ecotechnology](./1.%20Semester/Windpower%20and%20Ecotechnology) |
@@ -55,7 +56,6 @@
 | [English for Engineers](./3.%20Semester/English%20for%20Engineers) | [Sustainable Environmental Systems](./3.%20Semester/UT) |
 | [Materials Lab](./3.%20Semester/Materials%20Lab) | [Systems Modelling](./3.%20Semester/Systems%20Modeling) |
 | [Mathematics 3A](./3.%20Semester/Mathematics%203A) | [Tutoring Mathematics 1A](./3.%20Semester/Tutoring%20Math1A) |
-| [Product Development Project 1](./3.%20Semester/PDP1) | |
 
 **[Open the complete Semester 3 folder →](./3.%20Semester)**
 
@@ -86,7 +86,7 @@
 | :--- | :--- |
 | [Chemistry](./5.%20Semester/Chemistry) | [PinCH Analysis](./5.%20Semester/PinCH%20analysis) |
 | [Corporate Ethics](./5.%20Semester/Corporate%20Ethics) | [Thermo and Fluid Dynamics Simulation](./5.%20Semester/THFL%2BSIM) |
-| [Industrial Project (PAIND)](./5.%20Semester/PAIND) | [Waste Management](./5.%20Semester/Waste%20Management) |
+| [Waste Management](./5.%20Semester/Waste%20Management) | |
 
 **[Open the complete Semester 5 folder →](./5.%20Semester)**
 

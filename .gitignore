@@ -46,6 +46,8 @@ tmp*.pdf
 # mirrored from .lunarignore
 /assets/
 Maths-refresh-courses/
+PDP1/
+Context 1/
 Introductory_email*
 Sys-engineering-EES*
 **/Linear Algebra/Exam/

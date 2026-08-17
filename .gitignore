@@ -38,7 +38,16 @@ tmp*.pdf
 *.DS_Store
 
 # Codex
-.codex
+*.codex
 
 # Lunar
-.lunarignore
+*.lunarignore
+
+# mirrored from .lunarignore
+/assets/
+Maths-refresh-courses/
+Introductory_email*
+Sys-engineering-EES*
+**/Linear Algebra/Exam/
+**/Linear Algebra/linear_algebra_python_exam_solutions_with_data/
+PAIND/

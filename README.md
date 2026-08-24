@@ -1,13 +1,11 @@
-<h1 align="center">
-  <a href="https://lunarnotes.ch">Lunarnotes</a>
-</h1>
-
 <p align="center">
-  Browse the published notes by semester here on GitHub or through Lunarnotes
+  <a href="https://lunarnotes.ch">
+    <img src="./assets/lunarnotes-header.svg" width="700" alt="Lunarnotes">
+  </a>
 </p>
 
 <p align="center">
-  <em>Some personal, project, and exam material is intentionally kept local.</em>
+  Browse the published notes by semester here on GitHub or through Lunarnotes
 </p>
 
 ---

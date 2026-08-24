@@ -44,7 +44,8 @@ tmp*.pdf
 *.lunarignore
 
 # mirrored from .lunarignore
-/assets/
+/assets/*
+!/assets/lunarnotes-header.svg
 Maths-refresh-courses/
 PDP1/
 Context 1/

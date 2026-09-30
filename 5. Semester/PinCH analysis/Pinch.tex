@@ -247,10 +247,92 @@
 
 \begin{multicols*}{3}
 \raggedcolumns
-\vspace*{-.5cm}
-\part{Part 1}
-\section*{Section}
+\vspace*{-.7cm}
+\part{Fundamentals of Energy and Processes}
+\section{Heat exchanger}
+\subsection{Energy balance}
+\begin{gather*}
+  \dot{Q} = \dot{m}c_p\Delta\vartheta =CP\Delta\vartheta,\quad \dot{Q} = \const\\
+  \dot{m}_1 c_{p1} \Delta\vartheta_1 = \dot{m}_2 c_{p2} \Delta\vartheta_2 \Longleftrightarrow CP_1 \Delta\vartheta_1 = CP_2 \Delta\vartheta_2
+\end{gather*}
 
+\subsection{Average temperature difference}
+\begin{center}
+  \includegraphics[width=\linewidth]{media/heatexchangers.png}
+\end{center}
+
+\subsubsection{Logarithmic mean temperature difference (LMTD)}
+\figbox{$\dm \Delta T_m = \dfrac{\Delta T_a - \Delta T_b}{\ln\dfrac{\Delta T_a}{\Delta T_b}}$}
+\[\Delta T_a = \left|\vartheta_{1,a} - \vartheta_{2,a}\right|\quad ; \quad \Delta T_b = \left|\vartheta_{1,b} - \vartheta_{2,b}\right|\]
+
+\subsubsection{Corrected mean temperature heat flow}
+\begin{center}
+  \fbox{$\dot{Q} = kA\Delta T_m \cdot F_T$} , with $0 < F_T < 1$
+\end{center}
+
+\begin{center}
+  \includegraphics[\lw=.9]{media/HEXcorrection.png}
+\end{center}
+
+\subsection{Co-current vs countercurrent flow heat exchanger}
+\begin{gather*}
+  \dot{Q} = kA_\text{co}\Delta T_{m,\text{co}} = kA_\text{count}\Delta T_{m,\text{count}}\\
+  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\Delta T_{m,\text{count}}}{\Delta T_{m,\text{co}}}\\[1ex]
+  \dfrac{A_\text{co}}{A_\text{count}} = \dfrac{\dot{Q}_\text{co}}{\dot{Q}_\text{count}}\cdot \dfrac{\Delta T_{m,\text{count}}}{\Delta T_{m,\text{co}}},\quad \text{if } \dot{Q}_1 \neq \dot{Q}_2
+\end{gather*}
+
+\subsection{Heat capacity rate ratio (Capacity ratio)}
+It measures the relative ability of stream 1 vs. stream 2 to carry
+heat per kelvin:
+\begin{gather*}
+  CP_1 \left(\vartheta_{1, \alpha} - \vartheta _{1, \omega}\right) = CP_2 \left(\vartheta_{2\omega} - \vartheta_{2,\alpha}\right)\\[1ex]
+  R_1 = \dfrac{CP_1}{CP_2} = \dfrac{\vartheta_{2,\omega} - \vartheta_{2,\alpha}}{\vartheta_{1,\alpha}-\vartheta_{1,\omega}} = \dfrac{\Delta \vartheta_2}{\Delta \vartheta_1}
+\end{gather*}
+
+\section{T,H diagram}
+\subsection{Cold and Hot streams}
+The process is extracted into material streams that must be heated
+(heating need) or cooled (cooling need):
+\begingroup
+\renewcommand{\arraystretch}{1.25}
+\footnotesize
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+  \hline
+  \textbf{\textcolor{blue}{Cold streams}}
+  & \textbf{\textcolor{red}{Hot streams}} \\
+  \hline
+  \begin{minipage}[t]{\linewidth}
+    Heating needed (heat sink):
+    \begin{itemize}[nosep,leftmargin=*]
+      \item Warming of milk for pasteurisation
+      \item Heating a heat transfer oil
+      \item Preparation of hot water
+      \item Evaporation of fruit juice
+    \end{itemize}
+  \end{minipage}
+  &
+  \begin{minipage}[t]{\linewidth}
+    Cooling needed (heat source)
+    \begin{itemize}[nosep,leftmargin=*]
+      \item Cooling of a salt solution
+      \item Cooling a polymer melt
+      \item Cooling water from air compressors
+      \item Chiller refrigerant
+      \item Flue gas
+    \end{itemize}
+  \end{minipage} \\
+  \hline
+\end{tabularx}
+\endgroup
+
+\begin{center}
+  \includegraphics[\lw]{media/C,H streams.png}
+\end{center}
+
+\subsubsection{Slope of the streams}
+\begin{gather*}\dm
+  \frac{\Delta T}{\Delta \dot{H}} \Longleftrightarrow \frac{\Delta T_1}{CP_1 \cdot \Delta T_1} = \frac{1}{CP_1} \Longleftrightarrow \frac{\Delta T_2}{CP_2 \cdot \Delta T_2} = \frac{1}{CP_2}
+\end{gather*}
 
 
 

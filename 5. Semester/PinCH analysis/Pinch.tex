@@ -334,9 +334,153 @@ The process is extracted into material streams that must be heated
   \frac{\Delta T}{\Delta \dot{H}} \Longleftrightarrow \frac{\Delta T_1}{CP_1 \cdot \Delta T_1} = \frac{1}{CP_1} \Longleftrightarrow \frac{\Delta T_2}{CP_2 \cdot \Delta T_2} = \frac{1}{CP_2}
 \end{gather*}
 
+\subsection{Composite curve}
+\figbox{$\dm \frac{1}{CP_n} = \frac{\Delta T_n}{\Delta \dot{H}_n} = \frac{\Delta T_n}{\sum_i CP_i \Delta T_n} = \frac{1}{\sum_i CP_i}$}
 
+\begin{center}
+  \includegraphics[\lw=.8]{media/composite-curve.png}
+\end{center}
 
+\includegraphics[\lw]{media/composite-curve2.png}
 
+\part{Energy and Cost Targets}
+\noindent\resizebox{\linewidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|c|}
+  \hline $\Delta T_\text{min}$ & \makecell{HR\\Potential} & \makecell{Required\\Utilities} & \makecell{HEX\\Area} & \makecell{Investments\\Costs} & \makecell{Energy\\Costs} \\
+  \hline decreases & increases & decreases & increases & increases & decreases \\
+  \hline increases & decreases & increases & decreases & decreases & increases \\
+  \hline 
+\end{tabular}%
+}
+
+\section{Cost targets}
+\subsection{Calculation of Annual Total Costs (Annualized Total Costs)}
+\figbox{$C_\text{tot} = AC_\text{inv} + C_\text{Op}$}
+
+\subsection{Annuity factor}
+\[A=\dfrac{Z(1+Z)^n}{(1+Z)^n - 1}\]
+
+$Z$ = interest rate\\
+$n$ = Depreciation/Amortisation period 
+
+\subsection{Investment costs}
+\[C_\text{Inv} = C_\text{HEN} + C_\text{ECU} + C_\text{Ind}\]
+
+HEN = Heat exchanger network cost\\
+ECUs = Energy conversion units\\
+Ind = Independent (eg. control integration)
+
+\subsubsection{Capital costs for heat exchanger network (HEN)}
+\[C_\text{HEN} = \sum C_\text{HEX} = \sum\left(a + C_b\left(\dfrac{Q}{Q_b}\right)^m\right)\]
+
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+  $C_\text{HEX}$ & Capital cost of heat exchanger (HEX) \\
+  $a$ & Base cost \\
+  $C_b$ & Cost of reference heat exchanger \\
+  $Q_b$ & Heat transfer area of reference heat exchanger \\
+  $m$ & Degression exponent \\
+  $Q$ & Area of HEX to be costed
+\end{tabularx}
+
+$Q$ refers to quantity (in this case, Area for the HEX costs)
+
+\subsection{Annual operating costs}
+\[C_\text{Op} = C_\text{En} + C_\text{M} + C_\text{Per}\]
+
+\subsubsection{Maintenance costs}
+\[C_\text{M} = C_\text{Inv}f_\text{M}\]
+
+\subsubsection{Personnel costs}
+\[C_\text{Per} = C_\text{Inv}f_\text{Per}\]
+
+\subsection{Annual energy costs}
+Annual energy costs are the sum of the annual hot and cold utility costs and the energy costs of the ECUs.
+\[C_\text{En} = C_\text{HU} + C_\text{CU} + C_{\text{En,ECU}}\]
+
+\subsubsection{Hot utility costs}
+\[C_\text{HU} = \dot{Q}_\text{HU}\tau c_\text{HU}\]
+
+\subsubsection{Cold utility costs}
+\[C_\text{CU} = \dot{Q}_\text{CU}\tau c_\text{CU}\]
+
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+  $\dot{Q}_{\text{HU/CU}}$ & Hot/cold utility requirements (heat flow rate) \\
+  $C_{\text{HU/CU}}$ & Annual energy cost of hot/cold utility \\
+  $\tau$ & Annual operating hours \\
+  $c_{\text{HU/CU}}$ & Specific energy cost of hot/cold utility
+\end{tabularx}
+
+\subsubsection{Energy costs of energy conversion units (ECUs)}
+\[C_{\text{En,ECU}} = \sum E_\text{ECU}c_\text{En}\]
+
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+  $C_{\text{En,ECU}}$ & Annual energy cost of ECUs \\
+  $E_\text{ECU}$ & Annual energy requirement of an ECU \\
+  $c_\text{En}$ & Specific cost of the energy supplied to an ECU
+\end{tabularx}
+
+\subsection{Heat exchanger network cost target}
+Assuming an equal distribution of the total heat transfer area among the required heat exchangers:
+\[
+  C_{\text{HEN,Target}} = N_{\text{Units,Target}}
+  \left(a + C_b\left(
+    \frac{A_{\text{HEN,Target}}}{N_{\text{Units,Target}}Q_b}
+  \right)^m\right)
+\]
+
+\subsubsection{Single-stream heat transfer area target}
+\[
+  A_{\text{HEN,Target}} = \frac{\dot{Q}}{\Delta T_m}
+  \left(\frac{1}{\alpha_h} + \frac{1}{\alpha_c}\right)
+\]
+
+\subsubsection{Heat transfer area target (Uniform Bath Formula)}
+\[
+  A_{\text{HEN,Target}} = \sum_{k=1}^{K}\frac{1}{\Delta T_{m,k}}
+  \left[
+    \sum_{i=1}^{I}\frac{\dot{Q}_{i,k}}{\alpha_i}
+    + \sum_{j=1}^{J}\frac{\dot{Q}_{j,k}}{\alpha_j}
+  \right]
+\]
+
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+  $k,K$ & Enthalpy interval index $k$ through $K$ \\
+  $i,j$ & Hot and cold stream indices within interval $k$ \\
+  $I,J$ & Number of hot and cold streams within interval $k$ \\
+  $\alpha_i,\alpha_j$ & Heat transfer coefficients of hot and cold streams \\
+  $\dot{Q}_{i,k},\dot{Q}_{j,k}$ & Heat flow rates of the streams within interval $k$ \\
+  $\Delta T_{m,k}$ & Mean temperature difference within interval $k$ \\
+  $A_{\text{HEN,Target}}$ & Target total heat transfer area of the HEN
+\end{tabularx}
+
+\subsubsection{Number of heat exchangers}
+\[N_{\text{Units,Target}} = [S_\text{above}-1] + [S_\text{below}-1]\]
+
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+  $N_{\text{Units,Target}}$ & Target number of heat exchangers \\
+  $S_\text{above}$ & \footnotesize Number of streams including utilities above the pinch \\
+  $S_\text{below}$ & \footnotesize Number of streams including utilities below the pinch
+\end{tabularx}
+
+\section{Energy targets}
+\subsection{Three main pinch rules}
+\figbox{\begin{enumerate}
+  \item No heat transfer through the pinch
+  \item No external heating below the pinch
+  \item No external cooling above the pinch
+\end{enumerate}}
+
+\subsection{Characteristics of the pinch point}
+The pinch divides the total system into two subsystems with:
+\vspace*{-.2cm}
+\begin{itemize}
+  \item Heat deficit above the pinch
+  \item Heat excess below the pinch.
+\end{itemize}
+
+\begin{center}
+  \includegraphics[\lw=.8]{media/above-below-pinch.png}
+\end{center}
 
 
 

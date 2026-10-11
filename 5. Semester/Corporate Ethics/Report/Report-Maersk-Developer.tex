@@ -1,0 +1,196 @@
+\documentclass{article}
+
+\usepackage{Paper}
+\usepackage{tikz}
+\renewcommand\theadfont{\bfseries}
+\setcellgapes{2pt}
+
+\fancyhead[L]{Maersk Developer}
+
+\geometry{
+    a4paper,
+    total={170mm, 257mm},   
+    left=20mm,
+    top=20mm,
+    bottom=15mm
+}
+
+\pdftitle{Report-Maersk-Developer-CE-SB}
+
+% === TEXT ===
+\begin{document}
+\thispagestyle{empty}
+
+\vspace*{1.5cm}
+
+\textbf{\huge Report Maersk Developer Oil Rig}\\[.25cm]
+{\large Bürli Norman, Frongillo Matteo, Spichtig David}\\[3.5cm]
+\begin{center}
+    \includegraphics[\lw=.8]{media/main-page.png}\\
+\end{center}
+
+\vfill
+
+{\large HS26 -- Corporate Ethics and Sustainability -- Prof. Dr. Claas Wagner}
+
+\newpage
+\section*{Question}
+\begin{enumerate}
+    \item Describe your initial operating strategy, covering the following points:
+    \begin{itemize}
+        \item Production volume
+        \item Overhauls
+        \item Maintenance and safety spending
+        \item Crew management
+    \end{itemize}
+\end{enumerate}
+
+\section*{Initial strategy}
+\subsection*{Production volume}
+In practice round 1 (PR1), the production volume was tested by increasing
+the production to its maximum (1,650,000 bbls) and hiring more workers.
+This allowed the group to understand how extreme conditions affect the sustainability factors.\\
+The takeaway for PR1 was that increasing the production volume to
+its maximum value was not the correct strategy under the specific starting conditions of PR1,
+as profit was reduced by high hiring costs.
+
+In practice round 2 (PR2), crude oil production was not prioritized;
+instead, safety was prioritized.
+
+Decisions in PR1 and PR2 were made to understand how the economic factors
+respond to these decisions.
+
+The production volume in Round 1 was set to 1,300,000 bbls. To ensure a
+high volume, ten workers were hired. The same strategy was applied
+for Round 2.
+
+After Round 1 and Round 2, the group was breaking even.
+This result is helpful in identifying the threshold at which production
+becomes profitable under specific conditions.
+
+The next steps in production aim to keep the company profitable.
+
+\subsection*{Overhauls}
+The overhaul schedule in \autoref{fig:overhauls} illustrates how the
+timing of major overhauls affects the BOP value over successive rounds.
+\begin{figure}[H]
+    \centering
+    \resizebox{.9\linewidth}{!}{\input{media/bop_rounds.tikz}}
+    \caption{BOP planning schedule}
+    \label{fig:overhauls}
+\end{figure}
+
+The weather report predicts Beaufort 10 (Storm) in Round 3. For safety reasons,
+a shut-in is necessary if a storm occurs, as the platform and the oil pumps might
+be compromised. To mitigate the risks, an early overhaul is the best option
+because it restores the BOP before the expected storm, reducing the risk of a blowout.
+Assuming that a Beaufort 10 will occur only in Round 3, this strategy allows
+crude oil production to continue for multiple rounds, meaning that major overhauls
+would only be needed in Rounds 8 and 9.
+
+The group's strategy is that the oil rig should never go below 0 BOP, as the
+company's priority is safety, and falling below the BOP threshold would increase the
+risk of a blowout, carrying out major overhauls at six-round intervals,
+regardless of the BOP value.
+
+\subsection*{Maintenance and safety spending}
+The company’s main goal is to ensure the safety of the oil rig by consistently investing
+in maintenance and keeping the Rig Equipment Condition Index (RECI) above its baseline
+value of 100.
+
+To achieve this goal, two main strategies are being considered:
+\begin{enumerate}
+    \item Invest on maintenance and safety to keep the probability of failures and accidents low\\
+    $\to$ Expensive but safe
+    \begin{table}[H]
+        \centering
+        \caption{Maintenance and safety expenditure}
+        \begin{tabularx}{0.8\linewidth}{*{4}{>{\centering\arraybackslash}X}}
+            \toprule
+            & \makecell[c]{\textbf{Maintenance}\\\textbf{[\$/bbl.]}} & \textbf{Safety [\$]} & \textbf{RECI}\\
+            \midrule
+            \textbf{Baseline} & 8 & 1,200,000 & 100\\
+            \textbf{Round 1} & 12 & 2,000,000 & 141\\
+            \textbf{Round 2} & 12 & 2,000,000 & 182\\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+    \item Let the RECI degrade and restore it to its baseline value (100) during major overhauls perfomed every six rounds.\\
+    $\to$ Cheap but risky. 
+\end{enumerate}
+
+During Rounds 1 and 2, the first strategy was used.
+To decide which strategy to adopt, a better understanding of the RECI and its effect on safety is needed.
+
+\subsection*{Crew management}
+Because one of the goals is to ensure the rig’s safety, five crew members are hired each round.
+This strategy allows the company to increase production volume while keeping the tiredness index low.
+
+Each round, five crew members receive training, allowing expertise to develop over time while
+keeping training costs low.
+
+\section*{Ethical Questions}
+\subsection*{\#1: Arctic Investment Opportunity}
+The Arctic investment was considered too risky given the expected
+return and the high initial cost. Therefore, no investment was made.
+
+\subsection*{\#2: Backup Battery}
+The BOP backup battery test costs approximately \$5 million.
+
+\begin{table}[H]
+    \centering
+    \caption{Cost and probability comparison of a blowout and the BOP backup battery test}
+    \label{tab:backup-battery}
+    \definecolor{backupBatteryGreen}{HTML}{00B050}
+    \renewcommand{\arraystretch}{1.4}
+    \setlength{\extrarowheight}{4pt}
+    \begin{tabularx}{0.92\linewidth}{>{\raggedright\arraybackslash}X *{3}{>{\centering\arraybackslash}X}}
+        \toprule
+        & \makecell[c]{\textbf{Cost}\\\textbf{[1e6 \$]}} & \makecell[c]{\textbf{Estimated chance}\\\textbf{[\%]}} & \makecell[c]{\textbf{Normalized cost}\\\textbf{[1e6 \$]}}\\
+        \midrule
+        \textbf{Blowout (minimum)} & 250 & 1 & 2.5\\
+        \makecell[l]{\textbf{Backup Battery}\\\textbf{test of BOP}} & 5 & 100 & \cellcolor{backupBatteryGreen}5\\
+        \textbf{Blowout (realistic)} & 500 & 1 & \cellcolor{backupBatteryGreen}5\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+
+A blowout has an estimated minimum cost of \$250 million, while a
+more realistic estimate is \$500 million.
+Assuming a 1\% probability of blowout, the expected cost would be
+\$5 million, equal to the cost of the test \parenref{tab:backup-battery}.
+
+Ensuring safety is a priority of the company's strategy, so
+based on these assumptions, carrying out the test is also justified,
+as it helps verify the reliability of the backup system and
+supports safe operation and continued production.
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \newpage
+% \appendix
+% \section{Appendix}
+% 
+% \listoffigures
+% 
+% \listoftables
+% 
+% \printbibliography
+% 
+% \section*{Declarations on the use of AI tools}
+% ``\textit{ChatGPT 5.5}'' was used to enhance vocabulary and as a fact-checker.\\
+% {\color{darkgray!95}{\textit{All sentences originate from our own ideas and were refined with the support of this tool.}}}\\
+% \url{https://chatgpt.com/}
+% \thispagestyle{fancy}
+\end{document}

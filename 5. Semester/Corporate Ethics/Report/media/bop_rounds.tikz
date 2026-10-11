@@ -1,0 +1,68 @@
+% Vector recreation of bop_rounds.png; standard TikZ, no shell escape required.
+\begin{tikzpicture}[x=1cm,y=1cm,
+    font=\sffamily\fontsize{9}{11}\selectfont]
+    \definecolor{bopBlue}{HTML}{2B7BDD}
+    \definecolor{bopHatch}{HTML}{98BFF2}
+    \definecolor{bopGrid}{HTML}{E3E2DF}
+    \definecolor{bopShade}{HTML}{EFEEEA}
+    \definecolor{bopAxis}{HTML}{565550}
+    \path[use as bounding box] (0,0) rectangle (20,10);
+    \begin{scope}[shift={(1.22,2.44)},x=1.53cm,y=1.683cm]
+        % Shut-in periods: round 3 and rounds 8--9.
+        \fill[bopShade] (2,0) rectangle (3,4.3);
+        \fill[bopShade] (7,0) rectangle (9,4.3);
+        \foreach \x in {0,...,12}
+            \draw[bopGrid,line width=.6pt] (\x,0) -- (\x,4.3);
+        \foreach \y in {0,...,4}
+            \draw[bopGrid,line width=.6pt] (-.05,\y) -- (12.05,\y);
+
+        % Diagonal hatching only beneath the declining BOP segments.
+        \begin{scope}
+            \clip (0,0) -- (0,4) -- (2,2) -- (2,0) -- cycle
+                (3,0) -- (3,4) -- (7,0) -- cycle
+                (9,0) -- (9,4) -- (12,1) -- (12,0) -- cycle;
+            \foreach \i in {-24,...,60} {
+                \pgfmathsetmacro{\hatchStart}{\i*0.2222}
+                \draw[bopHatch,line width=.8pt]
+                    (\hatchStart,0) -- ++(5,4.5455);
+            }
+        \end{scope}
+
+        % Axes and ticks; round numbers are centred within each round.
+        \draw[bopAxis,line width=.65pt] (-.05,4.3) -- (-.05,0) -- (12.05,0);
+        \foreach \y in {0,...,4} {
+            \draw[bopAxis,line width=.65pt] (-.115,\y) -- (-.05,\y);
+            \node[anchor=east,text=bopAxis,inner sep=0pt]
+                at (-.185,\y) {\y};
+        }
+        \foreach \x in {0,...,12}
+            \draw[bopAxis,line width=.45pt] (\x,0) -- (\x,-.06);
+        \foreach \round in {1,...,12} {
+            \node[anchor=north,text=bopAxis,inner sep=0pt]
+                at ({\round-.5},-.09) {\round};
+        }
+
+        \draw[bopBlue,line width=1.7pt,line join=round]
+            (0,4) -- (2,2) -- (3,4) -- (7,0) -- (8,0) -- (9,4) -- (12,1);
+        \foreach \point in {(0,4),(2,2),(3,4),(7,0),(8,0),(9,4),(12,1)}
+            \fill[bopBlue] \point circle[radius=2.4pt];
+        \node[font=\sffamily\bfseries\fontsize{9}{11}\selectfont]
+            at (2.1,3) {+2};
+        \node[font=\sffamily\bfseries\fontsize{9}{11}\selectfont]
+            at (8.1,2) {+4};
+
+        % Brackets and overhaul annotations below the horizontal axis.
+        \draw[bopAxis,line width=.8pt]
+            (2.05,-.25) -- (2.05,-.365) -- (2.95,-.365) -- (2.95,-.25);
+        \draw[bopAxis,line width=.8pt]
+            (7.05,-.25) -- (7.05,-.365) -- (8.95,-.365) -- (8.95,-.25);
+        \node[anchor=north,align=center,text=bopAxis,inner sep=0pt,
+            font=\sffamily\fontsize{8}{9}\selectfont]
+            at (2.5,-.47) {Shut-in\\$\rightarrow$ overhaul (1)};
+        \node[anchor=north,align=center,text=bopAxis,inner sep=0pt,
+            font=\sffamily\fontsize{8}{9}\selectfont]
+            at (8,-.47) {Shut-in\\$\rightarrow$ overhaul (2)};
+    \end{scope}
+    \node[rotate=90,inner sep=0pt] at (.44,6.05) {BOP};
+    \node[inner sep=0pt] at (10.4,.49) {Rounds};
+\end{tikzpicture}

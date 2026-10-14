@@ -3,9 +3,17 @@
 \usepackage{Mathematics}
 \usepackage{tabularray}
 \usepackage{tikz}
+\usepackage[version=3]{acro}
 \usetikzlibrary{arrows.meta}
 \definecolor{flowblue}{HTML}{4F7FB7}
 \pdftitle{CE-SB}
+
+% === GLOSSARY ===
+\acsetup{
+    list/display = all,
+    list/template = description,
+}
+\input{glossary.tex}
 
 % === TITLE ===
 \title{\textbf{Corporate Ethics and Sustainability \\ HSLU, Semester 5}}
@@ -17,7 +25,15 @@
 
 \maketitle
 \tableofcontents
-\pagebreak
+\clearpage
+
+\begingroup
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\theHsection}{frontmatter.\arabic{section}}
+\printacronyms[name=Glossary, heading=section]
+\endgroup
+\clearpage
+\setcounter{section}{0}
 
 \section{Introduction to Business ethics}
 \subsection{Morality vs Ethics bs Ethical theory}
@@ -270,24 +286,155 @@ CSR = Attempt by companies to meet economic, legal, ethical, and philanthropic d
     \includegraphics[\lw=.8]{media/CSR.png}
 \end{center}
 
-The model does not address problem when different layers are in conflic
+The model does not address problem when different layers are in conflic.
 
+\subsubsection{International context}
+\begin{itemize}
+    \item CSR is particularly strong in US, where companies are responsible for CE\\
+    $\to$ Explicit CSR = distinct activity of corporations
+    \item Other countries operate in a more implicit CSR:
+    \begin{itemize}
+        \item Social responsibilities embedded in legal/institution framework of society
+        \item Sometimes based on religious, customary, tribal traditions
+    \end{itemize}
+\end{itemize}
 
+\pph{Examples of regional differences within different CSR levels:}
+\vspace*{-.4cm}
+\begin{center}
+    \begingroup
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabularx}{\linewidth}{|*{2}{>{\raggedright\arraybackslash}X|}}
+        \hline
+        \textbf{Economic (focus) responsibility} & \textbf{Legal responsibility} \\
+        \hline
+        \textbf{US:} focus on shareholders.\par
+        \textbf{France:} extensive responsibility for employees.
+        &
+        \textbf{EU:} state seen as key enforcer of rules.\par
+        \textbf{Elsewhere:} government seen with more scepticism. \\
+        \hline
+        \textbf{Ethical responsibility} & \textbf{Philanthropic responsibility} \\
+        \hline
+        Wide range of local ethical values and preferences.\par
+        Different opinions towards topics like nuclear power, genetic engineering, animal testing, and such.
+        &
+        \textbf{Europe:} donations are observed critically.\par
+        \textbf{US, India, China:} tradition/expectation to share their wealth. \\
+        \hline
+    \end{tabularx}
+    \endgroup
+\end{center}
 
+\newpage
+\subsubsection{Strategies of CSR -- Traditional vs. contemporary CSR}
+\begin{center}
+    \begingroup
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabularx}{\linewidth}{|*{3}{>{\raggedright\arraybackslash}X|}}
+        \hline
+        & \textbf{Traditional CSR} & \textbf{Contemporary CSR} \\
+        \hline
+        \textbf{Focus} & Risk & Reward \\
+        \hline
+        \textbf{Driver} & Image, brand, public acceptance & Performance, markets, products \\
+        \hline
+        \textbf{Relation to bottom line} & No direct contribution: CSR is value distribution & Integral goals: CSR is value contribution \\
+        \hline
+        \textbf{Responsiveness} & Reaction, defence & Pro-action \\
+        \hline
+        \textbf{Motto} & `CSR is bolt-on' & `CSR is built-in' \\
+        \hline
+    \end{tabularx}
+    \endgroup
+\end{center}
 
+\subsection{Stakeholder theory of the firm}
+\begin{itemize}
+    \item CSR approach focuses on types of responsibilities of corporations towards society and specific stakeholders
+    \item A stakeholder of an organization is any group or individual who can affect or is affected by the achievement of the organization's objectives (Freeman)
+    \item `Affects' and `affected by' can be explained by two principles
+    \begin{itemize}
+        \item Principle of corporate rights $\to$ Corporation has obligation not to violate the rights of others
+        \item Principle of corporate effect $\to$ Companies responsible for the effects of their actions on others
+    \end{itemize}
+    \item Stakeholders vary from company to company and for the same company in different situations
+\end{itemize}
 
+\noindent
+    \begin{minipage}[t]{.45\linewidth}
+    \subsubsection{Traditional management model}
+    Corporation is only related to four groups\\
+    \begin{center}
+        \includegraphics[\lw=1]{media/theoryofthefirm1.png}
+    \end{center}
+\end{minipage}\hfill%
+    \begin{minipage}[t]{.51\linewidth}
+    \subsubsection{Model of stakeholders view}
+    Corporation is situated in centre of interdependent two-ways relationships
+    \begin{center}
+        \includegraphics[\lw=1]{media/theoryofthefirm2.png}
+    \end{center}
+    \end{minipage}
+\par
 
+\subsubsection{Network model}
+Considers also stakeholders’ obligations to their own stakeholders
+\begin{center}
+    \includegraphics[\lw=.7]{media/theoryofthefirm3.png}
+\end{center}
 
+\subsubsection{Role of management}
+Broader view of responsibility towards multiple stakeholders demands a new role for management
+\begin{itemize}
+    \item Model of stakeholder democracy\\
+    $\to$ Stakeholders influence and control corporate decisions -- feasible?
+    \item Model of corporate governance\\
+    $\to$ Codifies and regulates various rights of stakeholder groups -- which?
+\end{itemize}
 
+\begin{center}
+    \begin{tikzpicture}[
+        principle/.style={draw, circle, minimum size=2.2cm,
+            text width=2cm, align=center, inner sep=1pt, font=\small},
+        arrow/.style={-{Stealth[length=2mm]}, thick}
+    ]
+        \node[principle, font=\large] (gcg) at (0,0) {GCG};
+        \node[principle] (transparency) at (90:3.2cm) {Transparency};
+        \node[principle] (accountability) at (18:3.2cm) {Accountability};
+        \node[principle] (responsibility) at (-54:3.2cm) {Responsibility};
+        \node[principle] (professional) at (-126:3.2cm) {Professional};
+        \node[principle] (fairness) at (162:3.2cm) {Fairness};
+        \foreach \target in {transparency,accountability,responsibility,professional,fairness}
+            \draw[arrow] (gcg) -- (\target);
+    \end{tikzpicture}
+\end{center}
 
+GCG = Good Corporate Governance
 
+\subsubsection{Stakeholder thinking in an international context}
+International examples of stakeholder integration
+\begin{itemize}
+    \item German supervisory boards of corporations must include employee representatives
+    \item ``Scandinavian Cooperative Advantage''\\
+    $\to$ Participative management strategies (consensus building, stakeholder involvement)
+    \item Keiretsu system in Japan (Chaebol in Korea)\\
+    $\to$ Network of banks, manufacturers, suppliers and service providers\\
+    $\to$ Member companies own small portions of shares in each other's companies
+\end{itemize}
 
+\subsubsection{Different forms of Stakeholder theory of the firm}
+\pph{Normative stakeholder theory}
+Attemps to provide a reason why corporations should take into account
+stakeholders interests
 
+\pph{Descriptive stakeholder theory}
+Attemps to ascertain whether (and how) corporations actually do take
+into account stakeholders interests
 
-
-
-
-
+\pph{Instrumental stakeholder theory}
+Attempts to answer whether it is beneficial for corporations to take
+into account stakeholders interets
 
 
 

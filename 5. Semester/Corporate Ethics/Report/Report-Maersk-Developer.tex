@@ -46,6 +46,9 @@
 \end{enumerate}
 
 \section*{Initial strategy}
+The group's initial strategy prioritizes safety while seeking profitable
+production, combining planned overhauls, maintenance spending, and crew development.
+
 \subsection*{Production volume}
 In practice round 1 (PR1), the production volume was tested by increasing
 the production to its maximum (1,650,000 bbls) and hiring more workers.
@@ -54,8 +57,8 @@ The takeaway for PR1 was that increasing the production volume to
 its maximum value was not the correct strategy under the specific starting conditions of PR1,
 as profit was reduced by high hiring costs.
 
-In practice round 2 (PR2), crude oil production was not prioritized;
-instead, safety was prioritized.
+In practice round 2 (PR2), the focus shifted from maximizing crude oil
+production to testing a more safety-oriented approach.
 
 Decisions in PR1 and PR2 were made to understand how the economic factors
 respond to these decisions.
@@ -72,7 +75,7 @@ The next steps in production aim to keep the company profitable.
 
 \subsection*{Overhauls}
 The overhaul schedule in \autoref{fig:overhauls} illustrates how the
-timing of major overhauls affects the BOP value over successive rounds.
+timing of major overhauls affects the BOP (Blow out preventer) value over successive rounds.
 \begin{figure}[H]
     \centering
     \resizebox{.9\linewidth}{!}{\input{media/bop_rounds.tikz}}
@@ -80,28 +83,26 @@ timing of major overhauls affects the BOP value over successive rounds.
     \label{fig:overhauls}
 \end{figure}
 
-The weather report predicts Beaufort 10 (Storm) in Round 3. For safety reasons,
-a shut-in is necessary if a storm occurs, as the platform and the oil pumps might
-be compromised. To mitigate the risks, an early overhaul is the best option
+The weather report predicts Beaufort 10 (Storm) in Round 3.
+A shut-in is necessary if a storm occurs, as the platform and the oil pumps might
+be compromised. An early overhaul is the best option
 because it restores the BOP before the expected storm, reducing the risk of a blowout.
 Assuming that a Beaufort 10 will occur only in Round 3, this strategy allows
 crude oil production to continue for multiple rounds, meaning that major overhauls
 would only be needed in Rounds 8 and 9.
 
-The group's strategy is that the oil rig should never go below 0 BOP, as the
-company's priority is safety, and falling below the BOP threshold would increase the
-risk of a blowout, carrying out major overhauls at six-round intervals,
-regardless of the BOP value.
+The overhaul schedule aims to keep the BOP value above 0. The risk of a blowout
+exists regardless of the BOP value, but once it reaches 0, the BOP can no longer
+effectively prevent a blowout.
 
 \subsection*{Maintenance and safety spending}
-The company’s main goal is to ensure the safety of the oil rig by consistently investing
-in maintenance and keeping the Rig Equipment Condition Index (RECI) above its baseline
-value of 100.
+Regular maintenance spending aims to keep the Rig Equipment Condition Index
+(RECI) above its baseline value of 100.
 
-To achieve this goal, two main strategies are being considered:
+Two spending approaches are being considered:
 \begin{enumerate}
-    \item Invest on maintenance and safety to keep the probability of failures and accidents low\\
-    $\to$ Expensive but safe
+    \item Invest in maintenance and safety to keep the probability of failures and accidents low\\
+    $\to$ Higher spending, lower risk
     \begin{table}[H]
         \centering
         \caption{Maintenance and safety expenditure}
@@ -123,8 +124,8 @@ During Rounds 1 and 2, the first strategy was used.
 To decide which strategy to adopt, a better understanding of the RECI and its effect on safety is needed.
 
 \subsection*{Crew management}
-Because one of the goals is to ensure the rig’s safety, five crew members are hired each round.
-This strategy allows the company to increase production volume while keeping the tiredness index low.
+Five crew members were hired in Round 1 to support increased production
+while keeping the tiredness index low.
 
 Each round, five crew members receive training, allowing expertise to develop over time while
 keeping training costs low.
@@ -161,10 +162,9 @@ more realistic estimate is \$500 million.
 Assuming a 1\% probability of blowout, the expected cost would be
 \$5 million, equal to the cost of the test \parenref{tab:backup-battery}.
 
-Ensuring safety is a priority of the company's strategy, so
-based on these assumptions, carrying out the test is also justified,
-as it helps verify the reliability of the backup system and
-supports safe operation and continued production.
+Under these assumptions, the test costs as much as the estimated expected
+loss from a blowout. Carrying out the test is justified as a precaution
+to verify the backup system's reliability before relying on it during production.
 
 
 

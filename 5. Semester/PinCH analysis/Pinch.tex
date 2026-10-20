@@ -88,6 +88,8 @@
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\headsep}{4pt}
 
+% Discard the space above part headings at the top of a column.
+\titleclass{\part}{straight}
 \titlespacing*{\part}{0pt}{6pt}{1pt}
 \titlespacing*{\section}{0pt}{6pt}{1pt}
 \titlespacing*{\subsection}{0pt}{6pt}{1pt}
@@ -247,7 +249,6 @@
 
 \begin{multicols*}{3}
 \raggedcolumns
-\vspace*{-.7cm}
 \part{Fundamentals of Energy and Processes}
 \section{Heat exchanger}
 \subsection{Energy balance}
@@ -482,12 +483,39 @@ The pinch divides the total system into two subsystems with:
   \includegraphics[\lw=.8]{media/above-below-pinch.png}
 \end{center}
 
+\newcolumn
+\part{Heat Exchanger Network (HEN)}
+MER = Maximum Energy Recovery (for HR)\\
+MER = Minimum Energy Requirement (for CU/HU)\\[1ex]
+Inwards = Stream that is approaching the PT\\
+Outwards = Stream temperature that is leaving the PT
 
+\section{HEN design rules}
+These design rules help to achieve the targets.
+\begin{enumerate}
+  \item Start from the pinch and progress outwards
+  \item Number rule: $N_\text{out} \geq N_\text{in}$ : every stream which heads in the direction of the pinch has a match partner in a HEX
+  \item Begin with the largest $CP_\text{in}$ : stream which heads in the direction of the pinch with the largest $CP_\text{in}$
+  \item $CP$ rule: $CP_\text{out} \geq CP_\text{in}$ : no HEX less than $\Delta T_\text{min}$
+  \item HEX Optimization:
+  \begin{enumerate}[label=\alph*)]
+    \item ``Tick Off Rule'': minimize the number of HEX and/or
+    \item ``Driving Force Plot'': minimize the area of the HEN
+  \end{enumerate}
+  \item Continue with the largest $CP_\text{in}$ at the Pinch
+  \item If all HEXs at the Pinch are set, then proceed with the stream closest to the Pinch that leads to the Pinch
+\end{enumerate}
 
-
-
-
-
+\begin{center}
+  \begin{minipage}[c]{0.46\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{media/HEN rules 1.png}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.51\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{media/HEN rules 2.png}
+  \end{minipage}
+\end{center}
 
 
 

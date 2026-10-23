@@ -1,10 +1,10 @@
-\documentclass[9pt, landscape, a4paper]{article}
+\documentclass[landscape, a4paper]{article}
 
 \usepackage{fontspec}
 \renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
 \usepackage[english]{babel}
-\babelfont{rm}{Noto Sans}
-\babelfont{sf}{Noto Sans}
+\babelfont{rm}[Language=Default]{Noto Sans}
+\babelfont{sf}[Language=Default]{Noto Sans}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -36,6 +36,7 @@
 \usepackage{tabularx}
 \usepackage{colortbl}
 \usepackage[column=O]{cellspace}
+\addparagraphcolumntypes{X}
 \usepackage{tcolorbox}
 \usepackage{siunitx}
 
@@ -65,7 +66,8 @@
     right=0.5cm,
     top=1.5cm, 
     bottom=0.5cm,
-    footskip=0cm
+    headheight=14pt,
+    footskip=4pt
 }
 
 \setlist{nosep, leftmargin=*}
@@ -99,8 +101,8 @@
 \titleformat{\subsubsection}{\small\bfseries\color[HTML]{007355}}{}{0em}{}
 
 % ============= META DATA =============
+\hypersetup{colorlinks=true}
 \newcommand{\pdftitle}[1]{\hypersetup{
-  colorlinks=true,
   linkcolor=black,
   urlcolor=blue,
   pdftitle={#1},
@@ -503,7 +505,7 @@ The far right of the spectrum, where viscosity finally acts.
 \[\eta = \left(\frac{\nu^3}{\epsilon}\right)^{1/4}\]
 
 where:
-\begin{tabularx}{\linewidth}{ll}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   $\eta$ & smallest eddy size [m]\\
   $\nu$ & kinematic viscosity [m$^2$/s]\\
   $\epsilon$ & dissipation rate of kin. energy [m$^2$/s$^3$]
@@ -656,11 +658,11 @@ In 3D, this symmetric tensor has six independent components, but there are only 
 
 Eddy-viscosity models (EVM) provide closure, e.g.\ $k$--$\epsilon$, $k$--$\omega$ and SST.
 
-\subsection{Modeling strategies}
-\subsubsection{Eddy-viscosity models (EVM)}
+\section{Modeling strategies}
+\subsection{Eddy-viscosity models (EVM)}
 The six unknown stresses are related to the mean strain, as for a viscous stress.
 
-\textbf{Boussinesq hypothesis}
+\subsubsection{Boussinesq hypothesis}
 \[
   \tau_{ij}^{R}=-\rho\overline{u_i'u_j'}
   =2\mu_t S_{ij}-\frac{2}{3}\rho k\delta_{ij}
@@ -686,7 +688,10 @@ The eddy viscosity $\mu_t$ is modeled, not a fluid property:
   \item Two equations: $k$--$\epsilon$, $k$--$\omega$, SST.
 \end{itemize}
 
-\textbf{EVM: Two-equation models}
+\subsubsection{Eddy viscosity ratio}
+EVR = $\dm \beta = \frac{\eta_t}{\eta}$
+
+\subsubsection{Two-equation models}
 \begin{itemize}
   \item Common turbulence models, widely used in industry.
   \item Two additional transport equations are solved iteratively.
@@ -716,7 +721,124 @@ Rate at which turbulent kinetic energy is converted into heat per unit mass, pre
 \]
 Dissipation rate per unit turbulent kinetic energy, scaled by $1/C_\mu$; an inverse turbulent time scale with units $\mathrm{s}^{-1}$.
 
-\subsubsection{Reynolds-stress models (RSM)}
+\subsubsection{Reynolds-averaged momentum equations under EVM}
+\textbf{1. Averaged momentum, Reynolds stress still unknown}
+\[
+  \frac{\partial\rho u_i}{\partial t}
+  +\nabla\cdot(\rho u_i u_j)
+  =-\nabla p
+  +\nabla\cdot\left[\mu\left(\nabla u_i+\nabla u_i^T\right)\right]
+  -\nabla\cdot\left(\rho\overline{u_i'u_j'}\right)
+\]
+
+\textbf{2. Insert the Boussinesq relation}
+\[
+  -\rho\overline{u_i'u_j'}
+  =2\mu_t S_{ij}-\frac{2}{3}\rho k I_{ij}
+  =\mu_t\left(\nabla u_i+\nabla u_i^T\right)
+  -\frac{2}{3}\rho k I_{ij}
+\]
+Because $2S_{ij}=\nabla u_i+\nabla u_i^T$, the strain term has the same form as the viscous stress, so $\mu_t$ adds to $\mu$.
+
+\textbf{3. Momentum equation under EVM}
+{\footnotesize\[
+  \frac{\partial\rho u_i}{\partial t}
+  +\nabla\cdot(\rho u_i u_j)
+  =-\nabla p
+  +\nabla\cdot\left[(\mu+\mu_t)\left(\nabla u_i+\nabla u_i^T\right)\right]
+  -\nabla\cdot\left(\frac{2}{3}\rho k I_{ij}\right)
+\]}
+
+Effective viscosity is the sum of physical and modeled viscosity:
+\[
+  \mu_{\mathrm{eff}}=\mu+\mu_t
+\]
+
+\subsection{EVM-Model 1: $k-\epsilon$ turbulence model}
+Has been the most popular turbulence model in the past. Still the reference in many industries due to its robustness.
+
+\subsubsection{Turbulent viscosity}
+\[
+  \mu_t = \rho c_\mu \frac{k^2}{\epsilon}
+\]
+
+\subsubsection{PDE for turbulent kinetic energy}
+\[
+  \underbrace{\rho U_i\frac{\partial k}{\partial x_i}}_{\text{Convection}}
+  = \underbrace{\mu_t\left(
+      \frac{\partial U_j}{\partial x_i}+\frac{\partial U_i}{\partial x_j}
+    \right)\frac{\partial U_j}{\partial x_i}}_{\text{Production}}
+  + \underbrace{\frac{\partial}{\partial x_i}\left\{
+      (\mu_t/\sigma_k)\frac{\partial k}{\partial x_i}
+    \right\}}_{\text{Diffusion}}
+  - \underbrace{\rho\epsilon}_{\text{Dissipation}}
+\]
+
+\subsubsection{PDE for turbulent dissipation rate}
+\[\begin{aligned}
+    \underbrace{\rho U_i\frac{\partial\epsilon}{\partial x_i}}_{\text{Convection}}
+  = &\underbrace{C_{1\epsilon}\left(\frac{\epsilon}{k}\right)\mu_t\left(
+      \frac{\partial U_j}{\partial x_i}+\frac{\partial U_i}{\partial x_j}
+    \right)\frac{\partial U_j}{\partial x_i}}_{\text{Production}}
+  + \underbrace{\frac{\partial}{\partial x_i}\left\{
+      (\mu_t/\sigma_\epsilon)\frac{\partial\epsilon}{\partial x_i}
+    \right\}}_{\text{Diffusion}}\\
+  &- \underbrace{C_{2\epsilon}\rho\left(\frac{\epsilon^2}{k}\right)}_{\text{Dissipation}}
+\end{aligned}
+\]
+
+$\sigma_k,\sigma_\epsilon,C_{1\epsilon},C_{2\epsilon},C_\mu$ are empirical constant, tuned to canonical flows (very simple, well understood cases)
+
+\begin{itemize}
+  \item Good compromise between numerical effort and computational accuracy
+  \item Two transport equations for the solution of TKE and turbulent dissipation rate
+  \item Turbulent viscosity is modeled as product of turbulent velocity and turbulent length scale
+  \item Good predictions for many flows of engineering interest
+\end{itemize}
+Not suitable for:
+\begin{itemize}
+  \item Flow with boundary layer separation
+  \item Flow with sudden changes in the mean strain rate
+  \item Flows in rotating fluids
+  \item Flows over curved surfaces
+\end{itemize}
+
+\subsection{EVM-Model 2: $k-\omega$ turbulence model}
+Developed to address weakness of previous model in near wall treatment for wall bounded flows, no more need for near wall region modifications.
+
+\subsubsection{Turbulent viscosity}
+\[
+  \mu_t = \rho\frac{k}{\omega}
+\]
+$\omega$ is an inverse time scale associated with turbulence (mathematically $\epsilon/k$ replaced by $\omega$).
+
+\subsubsection{PDE for turbulent kinetic energy}
+\[
+  \underbrace{\rho U_i\frac{\partial k}{\partial x_i}}_{\text{Convection}}
+  = \underbrace{\mu_t\left(
+      \frac{\partial U_j}{\partial x_i}+\frac{\partial U_i}{\partial x_j}
+    \right)\frac{\partial U_j}{\partial x_i}}_{\text{Production}}
+  + \underbrace{\frac{\partial}{\partial x_i}\left\{
+      (\mu+\sigma_k\mu_t)\frac{\partial k}{\partial x_i}
+    \right\}}_{\text{Diffusion}}
+  - \underbrace{\beta^*\rho\omega k}_{\text{Dissipation}}
+\]
+
+\subsubsection{PDE for turbulent dissipation rate}
+\[
+  \underbrace{\rho U_i\frac{\partial\omega}{\partial x_i}}_{\text{Convection}}
+  = \underbrace{\frac{\alpha\omega}{k}\mu_t\left(
+      \frac{\partial U_j}{\partial x_i}+\frac{\partial U_i}{\partial x_j}
+    \right)\frac{\partial U_j}{\partial x_i}}_{\text{Production}}
+  + \underbrace{\frac{\partial}{\partial x_i}\left\{
+      (\mu+\sigma_\omega\mu_t)\frac{\partial\omega}{\partial x_i}
+    \right\}}_{\text{Diffusion}}
+  - \underbrace{\beta\rho\omega^2}_{\text{Dissipation}}
+\]
+
+$\beta^*,\beta,\alpha,\sigma_k,\sigma_\omega$ are empirical constant, tuned to canonical flows (very simple, well understood cases)
+
+\subsection{Reynolds-stress models (RSM)}
 \[
   -\rho\overline{u_i'u_j'}=
   \begin{bmatrix}
@@ -764,48 +886,55 @@ Each independent component has its own transport equation.
 \textbf{Both approaches close the RANS equations:}\\
 EVM models $\mu_t$; RSM transports the six stresses.
 
-\subsection{Final Reynolds-averaged momentum equations under EVM}
-\textbf{1. Averaged momentum, Reynolds stress still unknown}
+\section{Energy cascade}
+\begin{itemize}
+  \item Injection of energy at the largest eddies
+  \item Flux of energy from large-scale eddies toward dissipating eddies
+  \item Dissipation of energy by viscous dissipation
+  \item Generation of largest eddies, then energy transfer, then viscous dissipation
+\end{itemize}
+\[L_\epsilon = \frac{L}{Re^{3/4}}\]
+
+\begin{center}
+  \includegraphics[\lw=.8]{media/image69.png}
+\end{center}
+
+\newcolumn
+\section{Navier-Stokes equations (NS)}
+\subsection{Conservation equations}
+\begingroup
+\renewcommand{\arraystretch}{1.6}
+\setlength{\tabcolsep}{3pt}
+\setlength{\cellspacetoplimit}{4pt}
+\setlength{\cellspacebottomlimit}{4pt}
+\begin{tabularx}{\linewidth}{@{}O{l}|O{l}|>{\raggedright\arraybackslash}O{X}@{}}
+  \hline Name & EFPLab & NS PDE\\
+  \hline Continuity & $\dot m_\alpha = \dot m_\omega$ &
+    $\dm \frac{\partial \rho}{\partial t} + \nabla \cdot \rho\u{u} = 0$\\
+  \hline Momentum & $\begin{aligned}
+    \dot m \u{u} &= \sum F\\
+    \dot m \u{u} &= \rho\u{u}\ \u{u} A
+  \end{aligned}$ &
+  $\begin{aligned}\dm
+    &\frac{\partial \rho \u{u}}{\partial t} + \nabla \cdot \rho\u{u}\ \u{u} = -\nabla p + \nabla\cdot \u{\u{\tau}}\\
+    &\u{\u{\tau}} = \nabla\cdot \eta \nabla\u{u}
+  \end{aligned}$
+  \\
+  \hline 
+\end{tabularx}
+\endgroup
+
 \[
-  \frac{\partial\rho u_i}{\partial t}
-  +\nabla\cdot(\rho u_i u_j)
-  =-\nabla p
-  +\nabla\cdot\left[\mu\left(\nabla u_i+\nabla u_i^T\right)\right]
-  -\nabla\cdot\left(\rho\overline{u_i'u_j'}\right)
+  \u{\u{\tau}} =
+  \begin{pmatrix}
+    \tau_{xx} & \tau_{xy} & \tau_{xz} \\
+    \tau_{yx} & \tau_{yy} & \tau_{yz} \\
+    \tau_{zx} & \tau_{zy} & \tau_{zz}
+  \end{pmatrix}
 \]
 
-\textbf{2. Insert the Boussinesq relation}
-\[
-  -\rho\overline{u_i'u_j'}
-  =2\mu_t S_{ij}-\frac{2}{3}\rho k I_{ij}
-  =\mu_t\left(\nabla u_i+\nabla u_i^T\right)
-  -\frac{2}{3}\rho k I_{ij}
-\]
-Because $2S_{ij}=\nabla u_i+\nabla u_i^T$, the strain term has the same form as the viscous stress, so $\mu_t$ adds to $\mu$.
-
-\textbf{3. Momentum equation under EVM}
-{\footnotesize\[
-  \frac{\partial\rho u_i}{\partial t}
-  +\nabla\cdot(\rho u_i u_j)
-  =-\nabla p
-  +\nabla\cdot\left[(\mu+\mu_t)\left(\nabla u_i+\nabla u_i^T\right)\right]
-  -\nabla\cdot\left(\frac{2}{3}\rho k I_{ij}\right)
-\]}
-
-Effective viscosity is the sum of physical and modeled viscosity:
-\[
-  \mu_{\mathrm{eff}}=\mu+\mu_t
-\]
-
-
-
-
-
-
-
-
-
-
+\subsubsection{Steady momentum equation}
+\[\nabla\rho\u{u}\ \u{u} = -\nabla p + \nabla\cdot \eta\left(\nabla\u{u} + \nabla\bar{u}^T\right)\]
 
 
 

@@ -8,6 +8,10 @@
 \definecolor{flowblue}{HTML}{4F7FB7}
 \pdftitle{CE-SB}
 
+\DeclareRobustCommand{\k}[1]{\textcolor{red}{#1}}
+\pdfstringdefDisableCommands{\def\k#1{#1}}
+
+
 % === GLOSSARY ===
 \acsetup{
     list/display = all,
@@ -36,7 +40,7 @@
 \setcounter{section}{0}
 
 \section{Introduction to Business ethics}
-\subsection{Morality vs Ethics bs Ethical theory}
+\subsection{\k{Morality vs Ethics bs Ethical theory}}
 
 \begin{center}
 \begin{tikzpicture}[
@@ -237,7 +241,7 @@ of assets:
     \item Managers and directors have responsibility to protect investment of shareholders
 \end{itemize}
 
-\subsection{Can a corporation have social responsibility?}
+\subsection{\k{Can a corporation have social responsibility?}}
 \begin{itemize}
     \item Only human beings have a moral responsibility for their actions
     \item It is managers' responsibility to act solely in the interests of shareholders (profit oriented)
@@ -278,10 +282,10 @@ of assets:
         $\to$ Have a duty to also take into account the interests of stakeholders
 \end{itemize}
 
-\subsection{Corporate Social Responsibility (CSR)}
+\subsection{\k{Corporate Social Responsibility (CSR)}}
 CSR = Attempt by companies to meet economic, legal, ethical, and philanthropic demands of a given society at a particular point in time
 
-\subsubsection{Four-part model of CSR}
+\subsubsection{\k{Four-part model of CSR}}
 \begin{center}
     \includegraphics[\lw=.8]{media/CSR.png}
 \end{center}
@@ -349,7 +353,7 @@ The model does not address problem when different layers are in conflic.
     \endgroup
 \end{center}
 
-\subsection{Stakeholder theory of the firm}
+\subsection{\k{Stakeholder theory of the firm}}
 \begin{itemize}
     \item CSR approach focuses on types of responsibilities of corporations towards society and specific stakeholders
     \item A stakeholder of an organization is any group or individual who can affect or is affected by the achievement of the organization's objectives (Freeman)
@@ -423,7 +427,7 @@ International examples of stakeholder integration
     $\to$ Member companies own small portions of shares in each other's companies
 \end{itemize}
 
-\subsubsection{Different forms of Stakeholder theory of the firm}
+\subsubsection{\k{Different forms of Stakeholder theory of the firm}}
 \pph{Normative stakeholder theory}
 Attemps to provide a reason why corporations should take into account
 stakeholders interests
@@ -436,7 +440,7 @@ into account stakeholders interests
 Attempts to answer whether it is beneficial for corporations to take
 into account stakeholders interets
 
-\subsection{Corporate citizenship (CC)}
+\subsection{\k{Corporate citizenship (CC)}}
 \subsubsection{Corporation as a political actor}
 Areas where corporations have taken on a political role:
 \begin{itemize}
@@ -476,14 +480,14 @@ There are 3 conceptual perspectives:
 
 \section{Evaluating business ethics}
 \subsection{Ethical theories}
-\subsubsection{Normative ethical theories (focus on this session)}
+\subsubsection{\k{Normative ethical theories (focus on this session)}}
 Attempts to explain the morally correct way of acting
 
-\subsubsection{Descriptive ethical theories (focus on next session)}
+\subsubsection{\k{Descriptive ethical theories (focus on next session)}}
 Attempts to describe how ethics decisions are actually made in business
 
 \subsection{Role of ethical theories}
-\subsubsection{Ethical absolutism}
+\subsubsection{\k{Ethical absolutism}}
 \begin{itemize}
     \item Claims that eternal, universally applicable moral principles exist
     \item Right and wrong are objective qualities
@@ -491,7 +495,7 @@ Attempts to describe how ethics decisions are actually made in business
     \item (Typically) Non-consequentialist traditional ethical theories
 \end{itemize}
 
-\subsubsection{Ethical relativism}
+\subsubsection{\k{Ethical relativism}}
 \begin{itemize}
     \item Claims that morality is context-dependent and subjective
     \item No universal right and wrongs that can be rationally determined
@@ -500,7 +504,7 @@ Attempts to describe how ethics decisions are actually made in business
     \item (Typically) Contemporary ethical theories
 \end{itemize}
 
-\subsubsection{Ethical pluralism}
+\subsubsection{\k{Ethical pluralism}}
 \begin{itemize}
     \item Middle ground between absolutism and relativism
     \item Accepts different moral backgrounds
@@ -508,7 +512,7 @@ Attempts to describe how ethics decisions are actually made in business
 \end{itemize}
 
 \subsection{Classical ethical theories}
-\subsubsection{Theory of egoism}
+\subsubsection{\k{Theory of egoism}}
 \begin{itemize}
     \item An action is morally right if in a given situation\\
     $\to$ All decision-makers freely decide to pursue their (short-therm) desires or their (long-therm) interest
@@ -521,7 +525,7 @@ Attempts to describe how ethics decisions are actually made in business
     \end{itemize}
 \end{itemize}
 
-\subsubsection{Utilitarianism}
+\subsubsection{\k{Utilitarianism}}
 \begin{itemize}
     \item Foundation is the ``greatest happines principle'':
     \begin{itemize}[label=$\to$]
@@ -568,7 +572,7 @@ even when a misleading advertisement could increase sales in a particular case.
 Rule utilitarianism supports this rule because its widespread adoption helps
 customers make informed choices, prevents harm, and builds long-term trust in markets.
 
-\subsection{Ethics of duties (Immanuel Kant's approach)}
+\subsection{\k{Ethics of duties (Immanuel Kant's approach)}}
 Ethics of duties is defined by a set of rationally derived moral rules.
 
 Categorical imperative constitutes a test whether an action is ethical:
@@ -634,7 +638,7 @@ would guarantee a high quality standard
     \item Optimism $\to$ theory is quite optimistic (view of humans as rational actor)
 \end{itemize}
 
-\subsection{Ethics of rights and justice}
+\subsection{\k{Ethics of rights and justice}}
 \begin{itemize}
     \item Based on human rights
     \begin{itemize}[label=$\to$]
@@ -653,7 +657,7 @@ would guarantee a high quality standard
     \end{itemize}
 \end{itemize}
 
-\subsubsection{The problem of justice}
+\subsubsection{\k{The problem of justice}}
 Justice = simultaneous fair treatment of individuals in a given situation
 with the results that everybody gets what they deserve
 
@@ -682,17 +686,177 @@ ideally seek to achieve both types of fairness:
 \end{center}
 
 \section{Making decisions in business ethics}
-\subsection{Descriptive ethical theories}
+\begin{center}
+\begin{tikzpicture}[
+    theory box/.style={draw=black, fill=white, line width=.7pt,
+        rounded corners=6pt, minimum width=3cm, minimum height=1.8cm,
+        text width=2.75cm, align=center, inner sep=3pt,
+        font=\sffamily\small},
+    connector/.style={draw=black, line width=.7pt}
+]
+    % Branches sit behind the overlapping, unshaded boxes.
+    \draw[connector] (0,4.5) -- (0,4.1);
+    \draw[connector] (-1.85,3.6) -- (-1.85,4.1)
+        -- (1.85,4.1) -- (1.85,3.6);
+    \draw[connector] (-1.85,1.8) -- (-1.85,.9);
+    \draw[connector] (1.85,1.8) -- (1.85,.9);
 
+    % Offset outlines reproduce the layered rectangles in the reference.
+    \foreach \x/\y in {0/5.4,-1.85/2.7,1.85/2.7,-1.85/0,1.85/0} {
+        \node[theory box, xshift=-3mm, yshift=3mm] at (\x,\y) {};
+    }
+    \node[theory box, font=\sffamily\small\bfseries] at (0,5.4)
+        {Ethical\\Theories};
+    \node[theory box, font=\sffamily\small\bfseries] at (-1.85,2.7)
+        {Descriptive};
+    \node[theory box, font=\sffamily\small\bfseries] at (1.85,2.7)
+        {Normative};
+    \node[theory box] at (-1.85,0)
+        {Describe\\ethical\\phenomena};
+    \node[theory box] at (1.85,0)
+        {Provide\\general rules\\and principles\\of behaviour};
+\end{tikzpicture}
+\end{center}
 
+\subsection{\k{Factors in deciding the moral status of a situation}}
+\begin{itemize}
+    \item Decision is likely to have significant effects on others
+    \item Decision is likely to be characterized by choice (alternative exist)
+    \item Decision is perceived as ethically relevant by one or more parties 
+\end{itemize}
 
+\newpage
+\subsection{Models of ethical decision-making}
+\subsubsection{Purpose of ethical models}
+\begin{enumerate}
+    \item Understanding the stages in ethical decision-making\\
+    $\to$ which stages people go through in responding to an ethics problem in business context
+    \item Understanding influences on that processes
+\end{enumerate}
 
+\subsubsection{\k{Stages in ethical decision-making}}
+\begin{itemize}
+    \item Recognize a moral issue
+    \item Make moral judgement about that issue
+    \item Establish intention to act upon that judgement
+    \item Act according to intention
+\end{itemize}
 
+\subsection{\k{Influence on ethical decision-making}}
+\begin{center}
+\begin{tikzpicture}[
+    stage/.style={draw=black, fill=white, line width=.7pt,
+        minimum width=.18\linewidth, minimum height=1.9cm,
+        text width=.16\linewidth, align=center, inner sep=3pt,
+        text=black, font=\small},
+    factor/.style={draw=black, fill=white, line width=.7pt,
+        minimum width=3.6cm, minimum height=.8cm,
+        align=center, inner sep=5pt, text=black, font=\small\bfseries},
+    sequence/.style={draw=black, line width=.7pt,
+        -{Stealth[length=2mm]}},
+    influence/.style={sequence, dashed}
+]
+    \node[stage] (recognize) at (-.39\linewidth,0)
+        {Recognize\\moral issue};
+    \node[stage] (judgement) at (-.13\linewidth,0)
+        {Make moral\\judgement};
+    \node[stage] (intent) at (.13\linewidth,0)
+        {Establish\\moral intent};
+    \node[stage] (behaviour) at (.39\linewidth,0)
+        {Engage in\\moral\\behaviour};
 
+    \node[factor] (individual) at (0,2.7) {Individual factors};
+    \node[factor] (situational) at (0,-2.7) {Situational factors};
 
+    \draw[sequence] (recognize.east) -- (judgement.west);
+    \draw[sequence] (judgement.east) -- (intent.west);
+    \draw[sequence] (intent.east) -- (behaviour.west);
 
+    \foreach \stage in {recognize,judgement,intent,behaviour} {
+        \draw[influence] (individual.south) -- (\stage.north);
+        \draw[influence] (situational.north) -- (\stage.south);
+    }
+\end{tikzpicture}
+\end{center}
 
+\subsubsection{Individual factors}
+\begin{itemize}
+    \item Characteristics given by birth (e.g. age, gender)
+    \item Experience and socialization (e.g. education, personality)
+    \item National and cultural characteristics (e.g. nationality, religion)
+    \item Education and employment
+    \item Psychological factors (cognitive moral development)
+    \item Personal values
+    \item Personal integrity (coherence with personal values)
+\end{itemize}
 
+\pph{\k{Cognitive moral development (CMD)}}
+Division of moral development in three levels (as people mature through childhood into adulthood)
+\begin{enumerate}[label={\textbf{Level \arabic*:}}, leftmargin=*, labelindent=0pt, align=left]
+    \item \textbf{Pre-conventional}\\
+        Individual exhibits a concern with self-interest and externals rewards/punishment (relativistic)
+    \item \textbf{Conventional}\\
+        Individual does what is expected of them by others (relativistic)
+    \item \textbf{Post-conventional}\\
+        Individual is developing autonomous decision-making based on principles of rights and justice (absolute)
+\end{enumerate}
+
+\newpage
+\begin{center}
+\begin{tblr}{
+    width=\linewidth,
+    colspec={X[1.2,l] X[1.8,l] X[4,l]},
+    hlines={black},
+    vlines={black},
+    cells={valign=t, bg=white, fg=black, font=\small},
+    rows={rowsep=6pt},
+    row{1}={font=\small\bfseries}
+}
+    Level & Stage & Explanation \\
+    \SetCell[r=2]{valign=m} {Pre-\\conventional}
+    & 1 Obedience and punishment
+    & Individuals define right and wrong according to expected rewards and punishments from authority figures. \\
+    & 2 Instrumental purpose and exchange
+    & Individuals are concerned with their own immediate interests and define right according to whether there is fairness in the exchanges or deals they make to achieve those interests. \\
+    \SetCell[r=2]{valign=m} Conventional
+    & 3 Interpersonal accord, conformity and mutual expectations
+    & Individuals live up to what is expected of them by their immediate peers and those close to them. \\
+    & 4 Social accord and system maintenance
+    & Individuals' consideration of the expectations of others broadens to social accord more generally, rather than just the specific people around them. \\
+    \SetCell[r=2]{valign=m} {Post-\\conventional}
+    & 5 Social contract and individual rights
+    & Individuals go beyond identifying with others' expectations, and assess right and wrong according to the upholding of basic rights, values and contracts of society. \\
+    & 6 Universal ethical principles
+    & Individuals will make decisions autonomously based on self-chosen universal ethical principles, such as justice, equality, and rights, which they believe everyone should follow. \\
+\end{tblr}
+\end{center}
+
+\vspace{.5cm}
+\k{\textbf{Personal values}}
+\begin{enumerate}
+    \item Individual beliefs about desirable behaviors and goals that are stable over time and which influence decision-making
+    \item ``Personal value is an enduring belief that a specific mode of conduct is personally or socially preferable to an opposite or converse mode of conduct''
+    \begin{itemize}[label=$\to$]
+        \item Values persist over time
+        \item Values influence behavior
+        \item Values are concerned with individual and/or collective well-being
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Personal integrity}\\
+An individual's adherence to a consistent set of moral principles, even when
+acting on those principles is difficult or involves personal costs.
+
+\textbf{Whistleblowing:} An intentional act by employees to expose
+perceived ethical or legal violations by their organization, internally or externally.
+\begin{itemize}[label=$\to$]
+    \item Can express personal integrity when employees act on their moral
+    principles despite pressure to remain silent.
+    \item Organizational pressure can suppress such action through fear of
+    job loss, blacklisting or social exclusion.
+    \item Illustrates the gap between making a moral judgement and actually
+    acting on it.
+\end{itemize}
 
 
 

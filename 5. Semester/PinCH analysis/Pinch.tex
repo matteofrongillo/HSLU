@@ -509,19 +509,58 @@ These design rules help to achieve the targets.
   \item If all HEXs at the Pinch are set, then proceed with the stream closest to the Pinch that leads to the Pinch
 \end{enumerate}
 
+\part{Process requirements}
+{\color{red}TODO}
 
+\newcolumn
+\part{Optimizing energy supply systems (ESS)}
+\section{Optimizing utilities ESS}
+\subsection{Grand Composite Curve (GCC)}
+GCC is formed from the Composite Curves (CC) and applies only for
+a certain $\Delta T_\text{min}$.
 
+To construct the GCC, the CCs are each shifted vertically by $\dm \pm\frac{\Delta T_\text{min}}{2}$
+until they touch at the pinch point.
+\begin{center}
+  \includegraphics[\lw=.7]{media/GCC.png}
+\end{center}
+The horizontal distance correspond to the required hot and cold utilities.
 
+The horizontal distance between the shifted CCs are transferred into another $T,\dot H$-diagram
+\begin{center}
+  \includegraphics[\lw]{media/shifted-GCC.png}
+\end{center}
 
+\subsubsection{Pockets in the GCC}
+Pockets show internal heat recovery: heat released at higher temperatures
+supplies process heat demand at lower temperatures, without external utilities.
 
+\subsubsection{Optimization of the utility system temperature levels}
+Calculation of the real temperature of the hot utility from the optimized
+shifted temperature, according to the GCC:
+\begin{gather*}\dm
+  T_{HU} = T^*_{HU} + \frac{\Delta T_\text{min}}{2}\\
+  T_{CU} = T^*_{CU} - \frac{\Delta T_\text{min}}{2}
+\end{gather*}
 
+\begin{center}
+  \includegraphics[\lw]{media/optimal-GCC.png}
+\end{center}
 
+\section{Utility optimization and consequences for the HEN design}
+HEN has to be constructed on the CCs including the utilities\\
+$\to$ Balanced Composite Curve (BCC)
 
+\subsection{Balanced Composite Curves (BCCs) and BGCCs}
+\begin{center}
+  \includegraphics[\lw]{media/BCC.png}
+\end{center}
 
-
-
-
-
+\begin{itemize}
+  \item The pinch rules must be applied at te Utility-Pinch
+  \item Between two pinches is a clash of the pinch rules
+  \item Always start at the most constaint pinch
+\end{itemize}
 
 
 

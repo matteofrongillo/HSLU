@@ -512,7 +512,6 @@ These design rules help to achieve the targets.
 \part{Process requirements}
 {\color{red}TODO}
 
-\newcolumn
 \part{Optimizing energy supply systems (ESS)}
 \section{Optimizing utilities ESS}
 \subsection{Grand Composite Curve (GCC)}
@@ -532,16 +531,13 @@ The horizontal distance between the shifted CCs are transferred into another $T,
 \end{center}
 
 \subsubsection{Pockets in the GCC}
-Pockets show internal heat recovery: heat released at higher temperatures
+Pockets show internal heat recovery. Heat released at higher temperatures
 supplies process heat demand at lower temperatures, without external utilities.
 
 \subsubsection{Optimization of the utility system temperature levels}
 Calculation of the real temperature of the hot utility from the optimized
 shifted temperature, according to the GCC:
-\begin{gather*}\dm
-  T_{HU} = T^*_{HU} + \frac{\Delta T_\text{min}}{2}\\
-  T_{CU} = T^*_{CU} - \frac{\Delta T_\text{min}}{2}
-\end{gather*}
+\[T_{HU} = T^*_{HU} + \frac{\Delta T_\text{min}}{2}\quad ; \quad T_{CU} = T^*_{CU} - \frac{\Delta T_\text{min}}{2}\]
 
 \begin{center}
   \includegraphics[\lw]{media/optimal-GCC.png}
@@ -556,27 +552,48 @@ $\to$ Balanced Composite Curve (BCC)
   \includegraphics[\lw]{media/BCC.png}
 \end{center}
 
-\begin{itemize}
-  \item The pinch rules must be applied at te Utility-Pinch
+\figbox{\begin{enumerate}
+  \item The pinch rules must be applied at the Utility-Pinch
   \item Between two pinches is a clash of the pinch rules
   \item Always start at the most constaint pinch
+\end{enumerate}}
+
+\part{Integrating ECUs}
+ECU = Energy Conversion Unit
+
+\begin{center}
+  \includegraphics[\lw]{media/GCC-complete.png}
+\end{center}
+
+\section{Combined Heat and Power (CHP) systems}
+\begin{itemize}
+  \item Thermal engines generate electrical energy and heat
+  \item $\eta_\text{el}$ 30-40\%, $\eta_\text{tot}$ 80-90\%
+  \item Typical CHP: gas turbine, steam turbine, combustion engine
 \end{itemize}
 
+\subsection{Integrating CHP}
+\begin{center}
+  \includegraphics[\lw]{media/CHP-integration.png}
+\end{center}
 
+\subsubsection{False integration -- Below the Pinch}
+The heat surplus is increased by the amount of heat generated
+by the CHP. This results in a higher cooling requirement.
 
+\subsubsection{Correct integration -- Above the Pinch}
+The heat deficit is decreased by the amount of heat generated
+by the CHP. This results in a decrease of the heating requirement.
 
+\subsection{Method to integrate a steam turbine}
+\begin{center}
+  \includegraphics[\lw]{media/CHP-steam.png}
+\end{center}
 
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Method to integrate a gas turbine}
+\begin{center}
+  \includegraphics[\lw]{media/CHP-gas.png}
+\end{center}
 
 
 

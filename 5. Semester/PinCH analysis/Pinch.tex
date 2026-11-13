@@ -240,6 +240,14 @@
 
 \DeclareMathOperator{\rot}{rot}
 
+\AtBeginDocument{%
+  \ifdefined\originalto
+  \else
+    \let\originalto\to
+    \DeclareRobustCommand{\to}{\ensuremath{\originalto\ }}%
+  \fi
+}
+
 % ============= DOCUMENT CONTENT =============
 
 \begin{document}
@@ -558,6 +566,7 @@ $\to$ Balanced Composite Curve (BCC)
   \item Always start at the most constaint pinch
 \end{enumerate}}
 
+\newpage
 \part{Integrating ECUs}
 ECU = Energy Conversion Unit
 
@@ -594,6 +603,127 @@ by the CHP. This results in a decrease of the heating requirement.
 \begin{center}
   \includegraphics[\lw]{media/CHP-gas.png}
 \end{center}
+
+\subsection{Organic Rankine Cycle (ORC) Systems}
+Basics:\\
+1 \to 2: adiabatic (polytropic) compression\\
+2 \to 3: isobaric heat input (high temperature level)\\
+3 \to 4: adiabatic expansion\\
+4 \to 1: isobaric heat output (low temperature level)
+\includegraphics[\lw]{media/ORC-integration.png}
+
+\subsubsection{False integration -- Over the Pinch}
+The heat deficit is increased by the amount of electrical power
+generated and condenser heat. The heat surplus is increased
+by the amount of condenser heat. Both a higher heating and
+cooling requirement results.
+
+\subsubsection{Suboptimal integration -- Above the Pinch}
+The heat deficit is increased by the amount of electrical power
+generated leading to a higher heating requirement
+
+\subsubsection{Correct integration -- Below the Pinch}
+The ORC reduces the cooling demand of the process and the
+associated operating costs.
+
+\includegraphics[\lw]{media/ORC.png}
+
+\subsection{Integrating Heat Pumps (HP)}
+Basics:\\
+1 \to 2: adiabatic (polytropic) compression\\
+2 \to 3: isobaric heat output (high temperature level)\\
+3 \to 4: adiabatic expansion\\
+4 \to 1: isobaric heat input (low temperature level)
+
+\includegraphics[\lw]{media/HP-integration.png}
+
+\subsubsection{False integration -- Below the Pinch}
+The heat surplus is increased by the amount of compressor
+electrical power leading to a higher cooling requirement.
+
+\subsubsection{False integration -- Above the Pinch}
+The heat deficit is reduced by the amount of compressor
+electrical power. From an energetic perspective this type of
+integration is equivalent to electrical heating.
+
+\subsubsection{Correct integration -- Over the Pinch}
+The heat pump reduces both the cooling and the heating
+demands of the process and the associated operating costs.
+
+\subsubsection{Correct integration and basic design using the GCC}
+A heat pump may only absorb heat below the pinch (excess heat) and
+give off heat above the pinch (heat deficit) to the process.
+
+\includegraphics[\lw]{media/HP.png}
+
+\subsubsection{HP integration across the Process Pinch or Utility Pinch}
+\includegraphics[\lw]{media/HP-integration2.png}
+
+\subsection{Principle of Mechanical Vapor Recompression (MVR)}
+\includegraphics[\lw]{media/MVR.png}
+
+The drive energy of the compressor is usually less than 10\% of the heat
+when supplied by direct heating.
+
+\newcolumn
+\subsection{Principle of Thermal Vapor Recompression (TVR)}
+A typical application of an TVR is for the compression of exhaust steam to a higher pressure
+\includegraphics[\lw]{media/TVR.png}
+
+The resulting enthalpy of the resulting mixture of the two steam flows is typically between 3 to 6 times
+higher the enthalpy of the exhaust steam! This fact makes a TVR suitable for different energetic situations
+than an MVR.
+
+\subsection{Integration of MVR/TVR}
+\includegraphics[\lw]{media/VR-integration.png}
+
+\subsubsection{False integration -- Below the Pinch}
+The heat surplus is increased by the amount of compressor
+electrical power leading to a higher cooling requirement.
+
+\subsubsection{Correct integration -- Over the Pinch}
+The MVR/TVR reduces both the cooling and the heating
+demands of the process and the associated operating costs.
+
+\includegraphics[\lw]{media/VR.png}
+
+A vapor recompression may only absorb heat below the pinch
+(excess heat) and give off heat above the pinch (heat deficit).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

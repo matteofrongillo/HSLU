@@ -140,3 +140,12 @@
 \newcommand{\pph}[1]{\paragraph{#1} \phantom{}\\}
 \newcommand{\dm}{\displaystyle}
 \newcommand{\rad}{^{\mathrm{c}}}
+
+
+\AtBeginDocument{%
+  \ifdefined\originalto
+  \else
+    \let\originalto\to
+    \DeclareRobustCommand{\to}{\ensuremath{\originalto}}%
+  \fi
+}

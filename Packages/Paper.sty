@@ -226,3 +226,12 @@
 \define@key{Gin}{lw}[1]{\setkeys{Gin}{width=#1\linewidth}}
 \newcommand{\lw}{lw}
 \makeatother
+
+
+\AtBeginDocument{%
+  \ifdefined\originalto
+  \else
+    \let\originalto\to
+    \DeclareRobustCommand{\to}{\ensuremath{\originalto}}%
+  \fi
+}

@@ -182,3 +182,12 @@
         \end{tikzpicture}%
     }%
 }
+
+
+\AtBeginDocument{%
+  \ifdefined\originalto
+  \else
+    \let\originalto\to
+    \DeclareRobustCommand{\to}{\ensuremath{\originalto}}%
+  \fi
+}

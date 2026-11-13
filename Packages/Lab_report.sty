@@ -238,3 +238,12 @@
 
 % ================= TITLE/CHAPTER FORMAT =================
 \titleformat{\chapter}[block]{\bfseries\Large}{\thechapter.}{1em}{}
+
+
+\AtBeginDocument{%
+  \ifdefined\originalto
+  \else
+    \let\originalto\to
+    \DeclareRobustCommand{\to}{\ensuremath{\originalto}}%
+  \fi
+}
